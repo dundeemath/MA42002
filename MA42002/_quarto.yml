@@ -1,0 +1,23 @@
+project:
+  type: book
+
+book:
+  title: "MA42002"
+  author: "Philip Murray"
+  date: "12/22/2023"
+  chapters:
+    - index.qmd
+    - conservationequations.qmd
+    - linearreactiondiffusion.qmd
+
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+
