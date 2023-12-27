@@ -3,18 +3,21 @@ title: "Aggregation via Chemotaxis"
 format: html
 ---
 
-**Dictyostelium discoideum** is a slime-mold. It is widely studied experimentally since the individual amoebae that constitute the slime-mold exhibit a range of phenomena also observed in developmental biology by cells e.g. differentiation, proliferation, migration. During one particular stage of its life-cycle the single-cell amoebae become starved of food and begin to secrete a diffusible chemical, cyclic AMP or cAMP. The amoebae respond chemotactically to cAMP and begin to migrate towards regions of high cAMP concentration via  *chemotaxis*. As they migrate they generate a range of intricate patterns including *spiral waves* and *streaming* aggregation patterns. Examples of such patterns can be seen in figure \ref{dicty1}. 
+**Dictyostelium discoideum** is a slime-mold. It is widely studied experimentally since the individual amoebae that constitute the slime-mold exhibit a range of phenomena also observed in developmental biology by cells e.g. differentiation, proliferation, migration. During one particular stage of its life-cycle the single-cell amoebae become starved of food and begin to secrete a diffusible chemical, cyclic AMP or cAMP. The amoebae respond chemotactically to cAMP and begin to migrate towards regions of high cAMP concentration via  *chemotaxis*. As they migrate they generate a range of intricate patterns including *spiral waves* and *streaming* aggregation patterns. Examples of such patterns can be seen in figure \ref{dicty1}.
 
 
-\begin{figure}
-\includegraphics[width=6in]{dicty1}
-\caption{Spiral waves and aggregation patterns observed in the slime-mold Dictyostelium discoideum.} \label{dicty1}
-\end{figure}
+See also [this link to a fascinating Youtube movie of slime mold aggregation](https://www.youtube.com/watch?v=bkVhLJLG7ug). Note the aggregation  between 0:35 and 0.48.
 
-%\begin{figure}
-%\includegraphics[width=6in]{dicty2}
-%\caption{Spiral waves and aggregation patterns observed in the slime-mold Dictyostelium discoideum.} \label{dicty2}
-%\end{figure}
+In @dicty_spiral we can see stills-shot images of spiral patterns. This spirals are dynamic as can be seen [in this movie](https://www.youtube.com/watch?v=OX5Yiz38fgY). See spiral pattern at around 0:36. 
+
+[![Spiral wave patterns underly Dictystelium aggregation. Image from @durston2013dictyostelium. ](CG-14-355_F2.jpg)]{#fig-dicty_spiral}
+
+* can we simulate/model the mechanisms regulate that give rise to cellular aggregation? 
+* how do features of patterns that form (e.g. pattern wavelength, speepd of aggregation) depend on individual cell properties?
+
+
+
+
 
 ##  Model derivation
 
@@ -95,6 +98,7 @@ In @fig-bacterialchemotaxispde we plot numerical solution of @#eq-chemotaxis1d t
 ```{python}
 #| label: fig-bacterialchemotaxispde
 #| fig-cap: "Numerical solution of bacterial chemtaxis model"
+#| code-fold: True
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
@@ -378,9 +382,17 @@ In general, from the above inequality, we can say that there is a likelihood of 
 
 Considering all other parameters to be fixed, in theory the above result states that it is possible to find a large enough value for the chemotactic coefficient $\chi_0$ to satisfy the instability condition i.e. chemotaxis induces instability and leads to aggregation of the amoebae.
 
-\begin{center}
-chemotaxis is a destabilizing effect \\
-diffusion is a stabilizing effect cf. fundamental solution to the diffusion equation
-\end{center}
+## Exercise 
+From the results we have obtained we deduce that
+* chemotaxis has a destabilizing effect \\
+* diffusion has a stabilizing effect
+on spatially homogeneous solutions
+
+If this is true then one might expect the numerical results presented in @fig-bacterialchemotaxispde to have spatially homogeneous solutions if the diffusion coefficient is made sufficiently large. 
+* Can you test this by running the code for larger values of the parameter $D$?
+* Alternatively, what happens if you make the chemotaxic coefficient $\chi_0$ smaller?
+* what kind of aggregation patterns do you see if the system is solved in two spatial dimensions?
+
+
 
 However, there is one type of system where diffusion also has a destabilizing effect...

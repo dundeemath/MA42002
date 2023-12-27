@@ -245,6 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#numerical-solutions" id="toc-numerical-solutions" class="nav-link" data-scroll-target="#numerical-solutions"><span class="header-section-number">5.2</span> Numerical solutions</a></li>
   <li><a href="#spatially-homogeneous-steady-states" id="toc-spatially-homogeneous-steady-states" class="nav-link" data-scroll-target="#spatially-homogeneous-steady-states"><span class="header-section-number">5.3</span> Spatially Homogeneous Steady States</a></li>
   <li><a href="#stability-analysis" id="toc-stability-analysis" class="nav-link" data-scroll-target="#stability-analysis"><span class="header-section-number">5.4</span> Stability Analysis</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="header-section-number">5.5</span> Exercise</a></li>
   </ul>
 </nav>
     </div>
@@ -269,8 +270,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p><strong>Dictyostelium discoideum</strong> is a slime-mold. It is widely studied experimentally since the individual amoebae that constitute the slime-mold exhibit a range of phenomena also observed in developmental biology by cells e.g.&nbsp;differentiation, proliferation, migration. During one particular stage of its life-cycle the single-cell amoebae become starved of food and begin to secrete a diffusible chemical, cyclic AMP or cAMP. The amoebae respond chemotactically to cAMP and begin to migrate towards regions of high cAMP concentration via <em>chemotaxis</em>. As they migrate they generate a range of intricate patterns including <em>spiral waves</em> and <em>streaming</em> aggregation patterns. Examples of such patterns can be seen in figure <span class="math inline">\(\ref{dicty1}\)</span>.</p>
-%\begin{figure} % %
-<p>%\end{figure}</p>
+<p>See also <a href="https://www.youtube.com/watch?v=bkVhLJLG7ug">this link to a fascinating Youtube movie of slime mold aggregation</a>. Note the aggregation between 0:35 and 0.48.</p>
+<p>In <span class="citation" data-cites="dicty_spiral">(<a href="#ref-dicty_spiral" role="doc-biblioref"><strong>dicty_spiral?</strong></a>)</span> we can see stills-shot images of spiral patterns. This spirals are dynamic as can be seen <a href="https://www.youtube.com/watch?v=OX5Yiz38fgY">in this movie</a>. See spiral pattern at around 0:36.</p>
+<p><span id="fig-dicty_spiral"><img src="CG-14-355_F2.jpg" class="img-fluid" alt="Spiral wave patterns underly Dictystelium aggregation. Image from (durston2013dictyostelium?)."></span></p>
+<ul>
+<li>can we simulate/model the mechanisms regulate that give rise to cellular aggregation?</li>
+<li>how do features of patterns that form (e.g.&nbsp;pattern wavelength, speepd of aggregation) depend on individual cell properties?</li>
+</ul>
 <section id="model-derivation" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="model-derivation"><span class="header-section-number">5.1</span> Model derivation</h2>
 <p>We consider a model for the aggregation of <em>Dictyostelium discoideum</em> through the secretion of and chemotactic response to cAMP. We denote by <span class="math inline">\(n({\bf x}, t)\)</span> the density of amoebae and <span class="math inline">\(a({\bf x}, t)\)</span> the concentration of cAMP. The general conservation equation for the amoebae can be written:</p>
@@ -329,6 +335,8 @@ D_n \frac{\partial n}{\partial  x} - \chi_0 n \frac{\partial a}{\partial  x} &am
 <li>How does spatial pattern depend on the initial data?</li>
 </ul>
 <div class="cell" data-execution_count="1">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -421,6 +429,7 @@ D_n \frac{\partial n}{\partial  x} - \chi_0 n \frac{\partial a}{\partial  x} &am
 <span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
 <span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
 <span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="fig-bacterialchemotaxispde" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -558,6 +567,11 @@ k  =  \frac{m \pi}{L}, \;\;\; m = 1,2, \dots
 <li><span class="math inline">\(\chi_0 , \mu , n^*\)</span> are ``large’’</li>
 </ul>
 <p>Considering all other parameters to be fixed, in theory the above result states that it is possible to find a large enough value for the chemotactic coefficient <span class="math inline">\(\chi_0\)</span> to satisfy the instability condition i.e.&nbsp;chemotaxis induces instability and leads to aggregation of the amoebae.</p>
+</section>
+<section id="exercise" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="exercise"><span class="header-section-number">5.5</span> Exercise</h2>
+<p>From the results we have obtained we deduce that * chemotaxis has a destabilizing effect \ * diffusion has a stabilizing effect on spatially homogeneous solutions</p>
+<p>If this is true then one might expect the numerical results presented in <a href="#fig-bacterialchemotaxispde">Figure&nbsp;<span>5.1</span></a> to have spatially homogeneous solutions if the diffusion coefficient is made sufficiently large. * Can you test this by running the code for larger values of the parameter <span class="math inline">\(D\)</span>? * Alternatively, what happens if you make the chemotaxic coefficient <span class="math inline">\(\chi_0\)</span> smaller? * what kind of aggregation patterns do you see if the system is solved in two spatial dimensions?</p>
 <p>However, there is one type of system where diffusion also has a destabilizing effect…</p>
 
 
