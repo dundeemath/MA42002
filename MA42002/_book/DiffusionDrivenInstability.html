@@ -983,9 +983,9 @@ h(k^2) = dk^4 - \gamma (df_u + g_v) k^2 + \gamma^2 | J | .
  [ True]]</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/m_/vc0kz_0x6ls5n4qnksq052jw0000gp/T/ipykernel_28336/2851046048.py:30: RuntimeWarning: invalid value encountered in sqrt
+<pre><code>/var/folders/m_/vc0kz_0x6ls5n4qnksq052jw0000gp/T/ipykernel_29320/2851046048.py:30: RuntimeWarning: invalid value encountered in sqrt
   lambda_m= (-b-np.sqrt(b**2-4*a*c))/(2*a)
-/var/folders/m_/vc0kz_0x6ls5n4qnksq052jw0000gp/T/ipykernel_28336/2851046048.py:31: RuntimeWarning: invalid value encountered in sqrt
+/var/folders/m_/vc0kz_0x6ls5n4qnksq052jw0000gp/T/ipykernel_29320/2851046048.py:31: RuntimeWarning: invalid value encountered in sqrt
   lambda_p= (-b+np.sqrt(b**2-4*a*c))//(2*a)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -1149,11 +1149,12 @@ V(x,t) \approx \sum_{k_{1}}^{k_2} C_k e^{\lambda(k^2) t} \, \psi_k(x) \; .
 <p><strong>Summary</strong></p>
 <p>We have obtained conditions for the generation of spatial patterns via systems of reaction-diffusion equations of the general form <a href="#eq-pp">Equation&nbsp;<span>6.2</span></a>. Such systems involve <strong>two chemicals or morphogens</strong> reacting and diffusing together to generate a chemical pre-pattern that underlies a subsequent cellular pattern. The four conditions are as follows:</p>
 <p><span id="eq-pattern_conditions"><span class="math display">\[
-\begin{eqnarray}
-f_u + g_v &lt; 0, &amp; &amp; f_u g_v - f_v g_u &gt; 0, \nonumber \\
-&amp; &amp; \\
-d f_u + g_v &gt; 0, &amp; &amp; (d f_u + g_v )^2 - 4d (f_u g_v - f_v g_u)^2 &lt; 0 , \nonumber
-\end{eqnarray}
+\begin{align}
+f_u + g_v &amp;&lt; 0, \\
+f_u g_v - f_v g_u &amp;&gt; 0, \\
+d f_u + g_v &amp;&gt; 0, \\
+(d f_u + g_v )^2 - 4d (f_u g_v - f_v g_u)^2 &amp;&lt; 0 , \nonumber
+\end{align}
 \tag{6.21}\]</span></span> with all partial derivatives being evaluated at the spatially homogeneous steady state <span class="math inline">\((u_0 , v_0)\)</span>.</p>
 <p>From the first and third conditions, <span class="math inline">\(d \neq 1\)</span> and <span class="math inline">\(f_u\)</span> and <span class="math inline">\(g_v\)</span> must be of different signs. For each of the reaction kinetics mentioned here (Schnakenberg, Gierer-Meinhardt, Thomas), we have that <span class="math inline">\(f_u &gt; 0, g_v &lt; 0\)</span> and so this implies that <span class="math inline">\(d &gt; 1\)</span>.</p>
 <p>If the conditions <a href="#eq-pattern_conditions">Equation&nbsp;<span>6.21</span></a> are satisfied, then there is a range of unstable wavenumbers given by <a href="#eq-k2range">Equation&nbsp;<span>6.20</span></a> which give rise to a spatial pattern. The spatial patterns which initially grow are those spatial eigenfunctions <span class="math inline">\(\psi_k(x)\)</span> whose wavenumbers <span class="math inline">\(k\)</span> are such that <span class="math inline">\(k_1 &lt; k &lt; k_2\)</span>.</p>

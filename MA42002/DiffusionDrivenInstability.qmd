@@ -1000,11 +1000,12 @@ All the previous calculations concern a **linear stability analysis** carried ou
 We have obtained conditions for the generation of spatial patterns via systems of reaction-diffusion equations of the general form @eq-pp. Such systems involve **two chemicals or morphogens** reacting and diffusing together to generate a chemical pre-pattern that underlies a subsequent cellular pattern. The four conditions are as follows:
 
 $$
-\begin{eqnarray}
-f_u + g_v < 0, & & f_u g_v - f_v g_u > 0, \nonumber \\
- & & \\
-d f_u + g_v > 0, & & (d f_u + g_v )^2 - 4d (f_u g_v - f_v g_u)^2 < 0 , \nonumber 
-\end{eqnarray}
+\begin{align}
+f_u + g_v &< 0, \\
+f_u g_v - f_v g_u &> 0, \\
+d f_u + g_v &> 0, \\
+(d f_u + g_v )^2 - 4d (f_u g_v - f_v g_u)^2 &< 0 , \nonumber 
+\end{align}
 $$ {#eq-pattern_conditions}
 with all partial derivatives being evaluated at the spatially homogeneous steady state $(u_0 , v_0)$. 
 
