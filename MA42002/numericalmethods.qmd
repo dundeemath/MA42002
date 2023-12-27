@@ -1,0 +1,20 @@
+---
+title: "Numerical methods in Python"
+format: html
+---
+
+## Python libraries
+
+## Single PDEs
+
+## MOL
+
+### Spatial discretisation
+
+### odeint
+
+### implementing boundary conditions
+
+### Identifying parameters
+
+# Systems of PDEs

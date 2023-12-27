@@ -1,5 +1,5 @@
 ---
-title: "Bacterial Aggregation via Chemotaxis"
+title: "Aggregation via Chemotaxis"
 format: html
 ---
 
@@ -64,11 +64,13 @@ Under such assumption we obtain the model equation
 
 which becomes, when considering a 1-dimensional domain $[0,L]$:
 
+$$
 \begin{eqnarray*}
 \frac{\partial n}{\partial  t} & = & D_n \frac{\partial ^2 n}{\partial x^2} - \chi_0 \frac{\partial}{\partial x} \left( n \frac{\partial a}{\partial x} \right), \\
   & & \hspace{4.5cm} ( \dagger ) \\
 \frac{\partial a}{\partial  t} & = &  D_a \frac{\partial ^2 a}{\partial x^2}  +  \mu n - \delta a,
 \end{eqnarray*}
+$$ {#eq-chemotaxis1d}
 
 with zero flux boundary conditions:
 
@@ -82,6 +84,111 @@ which in this case reduce to:
 $$
 \frac{\partial a}{\partial  x} = \frac{\partial n}{\partial  x} = 0, \;\;\; x = 0,L
 $$
+
+## Numerical solutions
+
+In @fig-bacterialchemotaxispde we plot numerical solution of @#eq-chemotaxis1d together with no-flux boundary condition. The initial data are uniformly sampled. Note the emergence of periodic spatial structure in both variables. These correspond to peaks and troughs of cell density. The cells produce chemoattractant, $a$, and the this induces a chemtactic flux up the gradient in $a$. Hence more cells move towards regions where $a$ is high, more chemoattractant is produced in this region etc. 
+
+* What is the long-time behaviour of these solutions
+* For which parameters do we expect to see pattern formation?
+* How does spatial pattern depend on the initial data?
+```{python}
+#| label: fig-bacterialchemotaxispde
+#| fig-cap: "Numerical solution of bacterial chemtaxis model"
+import numpy as np
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+import random
+
+
+T=80
+L=150
+
+mu=1.2
+delta=0.1
+D_n=2.50
+D_a=2.5
+chi_0=1.4
+
+N_x=200
+N_t=100
+
+t=np.linspace(1,T,N_t)
+x=np.linspace(0,L,N_x)
+
+u_0=np.ones_like(x)+0.01*np.random.uniform(low=0.0, high=0.1, size=(N_x,))
+n_0=np.ones_like(x)
+
+u_0=np.concatenate((u_0,n_0))
+
+dx=L/(N_x-1)
+dt=T/(N_t-1)
+
+def LVPDErhs(sol,t):
+
+    N_x=int(np.ceil(len(sol)/2))
+
+    n=sol[0:N_x]
+    a=sol[N_x:2*N_x]
+
+
+
+    f_n=np.zeros_like(n)
+    f_a=np.zeros_like(n)
+
+    for i in range(1,N_x-2):
+      f_n[i]=D_n/dx**2*(n[i-1]-2*n[i]+n[i+1]) - chi_0*n[i]*1/dx**2*(a[i-1]-2*a[i]+a[i+1])-chi_0/(2*dx)**2*(a[i+1]-a[i-1])*(n[i+1]-n[i-1])
+
+    i=0
+    f_n[i]=D_n/dx**2*(-n[i]+n[i+1]) - chi_0*n[i]*1/(2*dx)**2*(-a[i]+a[i+1])-chi_0/(2*dx)**2*(a[i+1]-a[i])*(n[i+1]-n[i])
+
+    i=N_x-1
+    f_n[i]=D_n/dx**2*(n[i-1]-n[i])- chi_0*n[i]*1/(2*dx)**2*(a[i-1]-a[i])-chi_0/(2*dx)**2*(a[i]-a[i-1])*(n[i]-n[i-1])
+
+
+    for i in range(1,N_x-2):
+      f_a[i]=D_a/dx**2*(a[i-1]-2*a[i]+a[i+1]) 
+    i=0
+    f_a[i]=D_a/dx**2*(-a[i]+a[i+1]) 
+    i=N_x-1
+    f_a[i]=D_a/dx**2*(a[i-1]-a[i])
+
+    reaction_n=0
+    reaction_a=mu*n-delta*a
+
+    f_n=f_n+reaction_n
+    f_a=f_a+reaction_a
+
+    f= np.concatenate((f_n, f_a)) 
+    return f  
+
+sol=odeint(LVPDErhs,u_0,t)
+
+n=sol[:,0:N_x]
+a=sol[:,0:N_x]
+
+fig, ax = plt.subplots(2,1)
+
+ax[0].plot(x,n[0,:],'r')
+ax[0].plot(x,n[16,:],'b')
+ax[0].plot(x,n[32,:],'m')
+ax[0].plot(x,n[48,:],'k')
+ax[0].set_xlabel('$x$')
+ax[0].set_ylabel('$n$')
+
+ax[1].plot(x, a[0,:],'r--')
+ax[1].plot(x, a[16,:],'b--')
+ax[1].plot(x, a[32,:],'m--')
+ax[1].plot(x, a[48,:],'k--')
+ax[1].set_xlabel('$x$')
+ax[1].set_ylabel('$a$')
+
+plt.legend(['t'+ str(t[0]),'t='+ str(t[4]),'t='+ str(t[8]),'t='+ str(t[12])])
+plt.xlabel('$x$')
+plt.grid()
+plt.show()
+
+```
 
 ## Spatially Homogeneous Steady States
 

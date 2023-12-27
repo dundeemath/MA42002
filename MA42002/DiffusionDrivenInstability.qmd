@@ -98,10 +98,12 @@ $$u = A \left( \frac{k_3}{k_2} \right)^{1/2}, \;\;\;\; v = B \left( \frac{k_3}{k
 
 where $L$ is a typical length scale, the dimensionless reaction-diffusion system with Schnakenberg kinetics becomes (upon dropping the $*$):
 
+$$
 \begin{eqnarray*}
 \frac{\partial u}{\partial  t} & = &\gamma ( a - u + u^2 v ) + \nabla^2 u = \gamma f(u,v)  + \nabla^2 u, \\
 \frac{\partial v}{\partial  t} & = &\gamma ( b - u^2 v ) + d \nabla^2 v = \gamma g(u,w)  + d \nabla^2 v, 
 \end{eqnarray*}
+$$ {#eq-schnackenbergeqns}
 where 
 $$
 d = \frac{D_B}{D_A}, \;\;\; a = \frac{k_1}{k_2} \left( \frac{k_3}{k_2} \right)^{1/2}, \;\;\; b = \frac{k_4}{k_2} \left( \frac{k_3}{k_2} \right)^{1/2}, \;\;\; \gamma = \frac{L^2 k_2}{D_A}.
@@ -137,6 +139,287 @@ Note that in the case where the parameter $d > 1$, this means that the original 
 \includegraphics[width=6in]{activator_inhibitor}
 \caption{(a) Schematic diagram of the Gierer-Meinhardt activator-inhibitor system; (b) Schematic diagram showing the spatial representation of local activation and long-range inhibition.} \label{AI}
 \end{figure}
+
+
+## Numerical solution
+
+In Figure @fig-schnack_ddi_pde we plot numerical solutions of @eq-schnackenbergeqns with no flux boundary conditions. 
+
+In this numerical solution the initial condition  are the spatially homogeneous steady state perturbed by uniformly sampled noise.  As time evolves a spatial pattern emerges. The main idea from a biological perspeftive is that an unpatterned region of an embryo could undergo chemical reactions, with the result being a patterned chemcial field. 
+
+SOme question that might arise:
+
+* How does pattern formation depend on model parameters?
+* How does pattern formation depend on domain size?
+* How does the pattern wavelength depend on model parameters?
+* How does the pattern depend on the initial conditions?
+* How can we numerically solve the reaction diffusion PDEs?
+
+```{python}
+#| label: fig-schnack_ddi_pde
+#| fig-cap: "DDI with Schnackenberg kinetics"
+#| code-fold: true
+
+import numpy as np
+from scipy.integrate import odeint
+from scipy.integrate import solve_ivp
+
+import matplotlib.pyplot as plt
+import random
+
+T=3
+L=1
+
+gamma=650.0
+a=0.2
+b=1.3
+d=30.0
+
+N_x=80
+N_t=50
+
+t=np.linspace(1,T,N_t)
+x=np.linspace(0,L,N_x)
+
+u_0=(a+b)*np.ones_like(x)+0.01*np.random.uniform(low=-1.0, high=1.0, size=(N_x,))
+v_0=b*(1/(a+b)**2)*np.ones_like(x)+0.01*np.random.uniform(low=-1.0, high=1.0, size=(N_x,))
+
+u_0=np.concatenate((u_0,v_0))
+
+dx=L/(N_x-1)
+dt=T/(N_t-1)
+
+def ShcnackPDErhs(sol,t):
+
+    N_x=int(np.ceil(len(sol)/2))
+
+    u=sol[0:N_x]
+    v=sol[N_x:]
+
+    f_u=np.zeros_like(u)
+    f_v=np.zeros_like(u)
+
+    for i in range(1,N_x-2):
+      f_u[i]=1/dx**2*(u[i-1]-2*u[i]+u[i+1]) 
+
+    i=0
+    f_u[i]=1/dx**2*(-u[i]+u[i+1])
+
+    i=N_x-1
+    f_u[i]=1/dx**2*(u[i-1]-u[i])
+
+
+    for i in range(1,N_x-2):
+      f_v[i]=d/dx**2*(v[i-1]-2*v[i]+v[i+1]) 
+    i=0
+    f_v[i]=d/dx**2*(-v[i]+v[i+1]) 
+    i=N_x-1
+    f_v[i]=d/dx**2*(v[i-1]-v[i])
+
+    reaction_u=gamma*(a-u+(u**2)*v)
+    reaction_v=gamma*(b-(u**2)*v)
+
+    f_u=f_u+reaction_u
+    f_v=f_v+reaction_v
+
+    f= np.concatenate((f_u,f_v)) 
+    return f  
+
+sol=odeint(ShcnackPDErhs,u_0,t)
+#soln = solve_ivp(ShcnackPDErhs,(0, T), u_0, method='Radau')
+
+u=sol[:,0:N_x]
+v=sol[:,N_x:]
+
+fig, ax = plt.subplots(2,1)
+
+ax[0].plot(x,u[0,:],'r')
+ax[0].plot(x,u[16,:],'b')
+ax[0].plot(x,u[32,:],'m')
+ax[0].plot(x,u[48,:],'k')
+ax[0].set_xlabel('$x$')
+ax[0].set_ylabel('$u$')
+
+ax[1].plot(x, v[0,:],'r--')
+ax[1].plot(x, v[16,:],'b--')
+ax[1].plot(x, v[32,:],'m--')
+ax[1].plot(x, v[48,:],'k--')
+ax[1].set_xlabel('$x$')
+ax[1].set_ylabel('$v$')
+
+plt.legend(['t'+ str(t[0]),'t='+ str(t[4]),'t='+ str(t[8]),'t='+ str(t[12])])
+plt.xlabel('$x$')
+plt.grid()
+plt.show()
+
+```
+
+
+
+In Figure @fig-schnack_ddi_pde_2d we consider a numerical solution of the Schnackenberg model on a 2D square domain with no-flux boundary conditions. Note 
+
+```{python}
+#| label: fig-schnack_ddi_pde_2d
+#| fig-cap: "DDI with Schnackenberg kinetics in 2D"
+#| cache: false
+#| code-fold: true
+import numpy as np
+from scipy.integrate import odeint
+from scipy.integrate import solve_ivp
+
+import matplotlib.pyplot as plt
+import random
+
+T=5
+L=1
+
+gamma=650.0
+a=0.2
+b=1.3
+d=25.0
+
+N_x=40
+N_t=30
+
+t=np.linspace(1,T,N_t)
+x=np.linspace(0,L,N_x)
+y=np.linspace(0,L,N_x)
+
+[x,y]=np.meshgrid(x,y)
+
+u_0=(a+b)*np.ones_like(x)+0.01*np.random.uniform(low=-1.0, high=1.0, size=(N_x,N_x))
+v_0=b*(1/(a+b)**2)*np.ones_like(x)+0.01*np.random.uniform(low=-1.0, high=1.0, size=(N_x,N_x))
+
+u_0=np.concatenate((np.ravel(u_0),np.ravel(v_0)))
+
+dx=L/(N_x-1)
+dt=T/(N_t-1)
+
+
+
+def ShcnackPDErhs2d(sol,t):
+
+    num_nodes=int(np.ceil(len(sol)/2))
+
+    u=sol[0:num_nodes]
+    v=sol[num_nodes:]
+
+
+    u=np.reshape(u,(N_x,N_x))
+    v=np.reshape(v,(N_x,N_x))
+
+    f_u=np.zeros_like(u)
+    f_v=np.zeros_like(u)
+
+ 
+
+    for i in range(1,N_x-2):
+      for j in range(1,N_x-2):
+        f_u[i,j]=1/dx**2*(u[i-1,j]-4*u[i,j]+u[i+1,j]+u[i,j+1]+u[i,j-1]) 
+        f_v[i,j]=d/dx**2*(v[i-1,j]-4*v[i,j]+v[i+1,j]+v[i,j+1]+v[i,j-1]) 
+
+    i=0 
+    for j in range(1,N_x-2):
+      f_u[i,j]=1/dx**2*(-3*u[i,j]+u[i+1,j]+u[i,j+1]+u[i,j-1]) 
+      f_v[i,j]=d/dx**2*(-3*v[i,j]+v[i+1,j]+v[i,j+1]+v[i,j-1]) 
+
+    i=N_x-1
+    for j in range(1,N_x-2):
+      f_u[i,j]=1/dx**2*(u[i-1,j]-3*u[i,j]+u[i,j+1]+u[i,j-1]) 
+      f_v[i,j]=d/dx**2*(v[i-1,j]-3*v[i,j]+v[i,j+1]+v[i,j-1])   
+
+    j=0
+    for i in range(1,N_x-2):
+        f_u[i,j]=1/dx**2*(u[i-1,j]-3*u[i,j]+u[i+1,j]+u[i,j+1]) 
+        f_v[i,j]=d/dx**2*(v[i-1,j]-3*v[i,j]+v[i+1,j]+v[i,j+1]) 
+
+    j =N_x-1
+    for i in range(1,N_x-2):
+        f_u[i,j]=1/dx**2*(u[i-1,j]-3*u[i,j]+u[i+1,j]+u[i,j-1]) 
+        f_v[i,j]=d/dx**2*(v[i-1,j]-3*v[i,j]+v[i+1,j]+v[i,j-1])  
+
+    i=0
+    j=0
+    f_u[i,j]=1/dx**2*(-2*u[i,j]+u[i+1,j]+u[i,j+1]) 
+    f_v[i,j]=d/dx**2*(-2*v[i,j]+v[i+1,j]+v[i,j+1]) 
+
+    i=0
+    j=N_x-1
+    f_u[i,j]=1/dx**2*(-2*u[i,j]+u[i+1,j]+u[i,j-1]) 
+    f_v[i,j]=d/dx**2*(-2*v[i,j]+v[i+1,j]+v[i,j-1]) 
+
+    i=N_x-1
+    j=0
+
+    f_u[i,j]=1/dx**2*(u[i-1,j]-2*u[i,j]+u[i,j+1]) 
+    f_v[i,j]=d/dx**2*(v[i-1,j]-2*v[i,j]+v[i,j+1]) 
+    
+    i=N_x-1
+    j=N_x-1
+
+
+    f_u[i,j]=1/dx**2*(-2*u[i,j]+u[i-1,j]+u[i,j-1]) 
+    f_v[i,j]=d/dx**2*(-2*v[i,j]+v[i-1,j]+v[i,j-1]) 
+
+
+    reaction_u=gamma*(a-u+(u**2)*v)
+    reaction_v=gamma*(b-(u**2)*v)
+
+    f_u=f_u+reaction_u
+    f_v=f_v+reaction_v
+
+
+
+    f= np.concatenate((np.ravel(f_u),np.ravel(f_v))) 
+    return f  
+
+sol=odeint(ShcnackPDErhs2d,u_0,t)
+#soln = solve_ivp(ShcnackPDErhs,(0, T), u_0, method='Radau')
+
+
+u_0=sol[0,0:N_x**2]
+v_0=sol[0,N_x**2:]
+u_0=np.reshape(u_0,(N_x,N_x))
+v_0=np.reshape(v_0,(N_x,N_x))
+
+u_m=sol[20,0:N_x**2]
+v_m=sol[20,N_x**2:]
+u_m=np.reshape(u_m,(N_x,N_x))
+v_m=np.reshape(v_m,(N_x,N_x))
+
+u=sol[-1,0:N_x**2]
+v=sol[-1,N_x**2:]
+u=np.reshape(u,(N_x,N_x))
+v=np.reshape(v,(N_x,N_x))
+
+fig, ax = plt.subplots(2,3)
+ax[0,0].imshow(u_0)
+ax[1,0].imshow(v_0)
+ax[0,1].imshow(u_m)
+ax[1,1].imshow(v_m)
+ax[0,2].imshow(u)
+ax[1,2].imshow(v)
+
+'''
+ax[0].plot(x,u[0,:],'r')
+ax[0].plot(x,u[16,:],'b')
+ax[0].plot(x,u[32,:],'m')
+ax[0].plot(x,u[48,:],'k')
+ax[0].set_xlabel('$x$')
+ax[0].set_ylabel('$u$')
+
+ax[1].plot(x, v[0,:],'r--')
+ax[1].plot(x, v[16,:],'b--')
+ax[1].plot(x, v[32,:],'m--')
+ax[1].plot(x, v[48,:],'k--')
+ax[1].set_xlabel('$x$')
+ax[1].set_ylabel('$v$')
+'''
+
+plt.xlabel('$x$')
+plt.show()
+
+```
 
 
 ## Linear Stability Analysis and Evolution of Spatial Pattern: General Conditions for Diffusion-driven Instability
@@ -638,4 +921,13 @@ From the first and third conditions, $d \neq 1$ and $f_u$ and $g_v$ must be of d
 If the conditions @eq-pattern_conditions are satisfied, then there is a range of unstable wavenumbers given by @eq-k2range which give rise to a spatial pattern. The spatial patterns which initially grow are those spatial eigenfunctions $\psi_k(x)$ whose wavenumbers $k$ are such that $k_1 < k < k_2$. 
 
 In most biological systems, the kinetic parameters and diffusion coefficients are fixed. This means that the only variable parameter in the system is $\gamma$ which as we have seen is related to the size of the domain under consideration. This has implications when considering patterns on finite domains, as will be seen in the next section. 
+
+## Exercise
+Demonstrate that the derived results are consistent with th numerical solutions. Some predictions to test:
+
+* No patterning when diffusion coefficients are equal
+* How does spatial pattern formation change as you try  values of parameters $a$ and $b$?
+* Can you correlate the observation of pattern to the conditions for DDI being satisfied?
+
+## References
 

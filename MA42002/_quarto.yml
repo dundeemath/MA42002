@@ -15,7 +15,6 @@ book:
         - conservationequations.qmd
         - linearreactiondiffusion.qmd
         - nonlinearreactiondiffusion.qmd
-        - linearstablityanalysis.qmd
       
     - part: "Coupled PDE"
       chapters:
@@ -23,6 +22,11 @@ book:
         - BacterialChemotaxis.qmd
         - DiffusionDrivenInstability.qmd
         - SIR_PDE.qmd
+    - part: "Appendices"
+      chapters:
+        - NumericalMethods.qmd
+        - linearstablityanalysis.qmd
+
 
 
    

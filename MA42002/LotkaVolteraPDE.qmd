@@ -48,6 +48,100 @@ Upon dropping the asteriked notation
  $$
  D= \dfrac{D_u}{D_n}, \quad a = \dfrac{\beta K}\rho, \quad   b = \dfrac \gamma{ K \beta}.
  $$
+
+## Numerical solutions
+```{python}
+#| label: fig-LVpde
+#| fig-cap: "Numerical solution of LV model"
+import numpy as np
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+
+T=100
+L=150
+
+a=0.2
+b=0.4
+D_u=0.10
+
+N_x=100
+N_t=100
+
+t=np.linspace(1,T,N_t)
+x=np.linspace(0,L,N_x)
+
+u_0=b+(1-b)*0.5*(1+np.tanh(1*0.5*(x-50)))
+n_0=(1-b)*0.5*(1+np.tanh(-1*0.5*(x-50)))
+
+u_0=np.concatenate((u_0,n_0))
+
+dx=L/(N_x-1)
+dt=T/(N_t-1)
+
+def LVPDErhs(sol,t):
+
+    N_x=int(np.ceil(len(sol)/2))
+
+    u=sol[0:N_x]
+    n=sol[N_x:2*N_x]
+
+
+
+    f_u=np.zeros_like(u)
+    f_n=np.zeros_like(u)
+
+    for i in range(1,N_x-2):
+      f_u[i]=D_u/dx**2*(u[i-1]-2*u[i]+u[i+1]) 
+    i=0
+    f_u[i]=D_u/dx**2*(-u[i]+u[i+1]) 
+    i=N_x-1
+    f_u[i]=D_u/dx**2*(u[i-1]-u[i])
+
+    for i in range(1,N_x-2):
+      f_n[i]=1/dx**2*(n[i-1]-2*n[i]+n[i+1]) 
+    i=0
+    f_n[i]=1/dx**2*(-n[i]+n[i+1]) 
+    i=N_x-1
+    f_n[i]=1/dx**2*(n[i-1]-n[i])
+
+    reaction_u=u*(1-u-n)
+    reaction_n=a*n*(u-b)
+
+    f_u=f_u+reaction_u
+    f_n=f_n+reaction_n
+
+    f= np.concatenate((f_u, f_n)) 
+    return f  
+
+sol=odeint(LVPDErhs,u_0,t)
+
+u=sol[:,0:N_x]
+n=sol[:,N_x:2*N_x]
+
+print(np.shape((u)))
+
+fig, ax = plt.subplots(2,1)
+
+ax[0].plot(x,u[0,:],'r')
+ax[0].plot(x,u[16,:],'b')
+ax[0].plot(x,u[32,:],'m')
+ax[0].plot(x,u[48,:],'k')
+ax[0].set_xlabel('$x$')
+ax[0].set_ylabel('$u$')
+
+ax[1].plot(x, n[0,:],'r--')
+ax[1].plot(x, n[16,:],'b--')
+ax[1].plot(x, n[32,:],'m--')
+ax[1].plot(x, n[48,:],'k--')
+ax[1].set_xlabel('$x$')
+ax[1].set_ylabel('$n$')
+
+plt.legend(['t'+ str(t[0]),'t='+ str(t[4]),'t='+ str(t[8]),'t='+ str(t[12])])
+plt.xlabel('$x$')
+plt.grid()
+plt.show()
+
+```
  
 
 ## Spatially homogeneous steady states
