@@ -4,10 +4,13 @@ format: html
 ---
 
 ## Python libraries
+* matplotlib
+* numpp
+* scipy
 
 ## Single PDEs
 
-## MOL
+### MOL
 
 ### Spatial discretisation
 
@@ -17,4 +20,4 @@ format: html
 
 ### Identifying parameters
 
-# Systems of PDEs
+## Systems of PDEs

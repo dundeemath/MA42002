@@ -1,5 +1,5 @@
 ---
-title: "Linear stability analysis"
+title: "Linear stability analysis of a system of nonlinear ODES"
 format: html
 ---
 

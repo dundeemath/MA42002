@@ -108,6 +108,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conservationequations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conservation equations</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
@@ -117,18 +123,6 @@ ul.task-list li input[type="checkbox"] {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./conservationequations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conservation equations</span></span></a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./linearreactiondiffusion.html" class="sidebar-item-text sidebar-link">
@@ -196,7 +190,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./linearstablityanalysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
   </div>
 </li>
       </ul>
@@ -212,15 +206,15 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#python-libraries" id="toc-python-libraries" class="nav-link active" data-scroll-target="#python-libraries"><span class="header-section-number">8.1</span> Python libraries</a></li>
-  <li><a href="#single-pdes" id="toc-single-pdes" class="nav-link" data-scroll-target="#single-pdes"><span class="header-section-number">8.2</span> Single PDEs</a></li>
-  <li><a href="#mol" id="toc-mol" class="nav-link" data-scroll-target="#mol"><span class="header-section-number">8.3</span> MOL</a>
+  <li><a href="#single-pdes" id="toc-single-pdes" class="nav-link" data-scroll-target="#single-pdes"><span class="header-section-number">8.2</span> Single PDEs</a>
   <ul class="collapse">
-  <li><a href="#spatial-discretisation" id="toc-spatial-discretisation" class="nav-link" data-scroll-target="#spatial-discretisation"><span class="header-section-number">8.3.1</span> Spatial discretisation</a></li>
-  <li><a href="#odeint" id="toc-odeint" class="nav-link" data-scroll-target="#odeint"><span class="header-section-number">8.3.2</span> odeint</a></li>
-  <li><a href="#implementing-boundary-conditions" id="toc-implementing-boundary-conditions" class="nav-link" data-scroll-target="#implementing-boundary-conditions"><span class="header-section-number">8.3.3</span> implementing boundary conditions</a></li>
-  <li><a href="#identifying-parameters" id="toc-identifying-parameters" class="nav-link" data-scroll-target="#identifying-parameters"><span class="header-section-number">8.3.4</span> Identifying parameters</a></li>
+  <li><a href="#mol" id="toc-mol" class="nav-link" data-scroll-target="#mol"><span class="header-section-number">8.2.1</span> MOL</a></li>
+  <li><a href="#spatial-discretisation" id="toc-spatial-discretisation" class="nav-link" data-scroll-target="#spatial-discretisation"><span class="header-section-number">8.2.2</span> Spatial discretisation</a></li>
+  <li><a href="#odeint" id="toc-odeint" class="nav-link" data-scroll-target="#odeint"><span class="header-section-number">8.2.3</span> odeint</a></li>
+  <li><a href="#implementing-boundary-conditions" id="toc-implementing-boundary-conditions" class="nav-link" data-scroll-target="#implementing-boundary-conditions"><span class="header-section-number">8.2.4</span> implementing boundary conditions</a></li>
+  <li><a href="#identifying-parameters" id="toc-identifying-parameters" class="nav-link" data-scroll-target="#identifying-parameters"><span class="header-section-number">8.2.5</span> Identifying parameters</a></li>
   </ul></li>
-  <li><a href="#systems-of-pdes" id="toc-systems-of-pdes" class="nav-link" data-scroll-target="#systems-of-pdes"><span class="header-section-number">9</span> Systems of PDEs</a></li>
+  <li><a href="#systems-of-pdes" id="toc-systems-of-pdes" class="nav-link" data-scroll-target="#systems-of-pdes"><span class="header-section-number">8.3</span> Systems of PDEs</a></li>
   </ul>
 </nav>
     </div>
@@ -246,27 +240,32 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="python-libraries" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="python-libraries"><span class="header-section-number">8.1</span> Python libraries</h2>
+<ul>
+<li>matplotlib</li>
+<li>numpp</li>
+<li>scipy</li>
+</ul>
 </section>
 <section id="single-pdes" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="single-pdes"><span class="header-section-number">8.2</span> Single PDEs</h2>
+<section id="mol" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="mol"><span class="header-section-number">8.2.1</span> MOL</h3>
 </section>
-<section id="mol" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="mol"><span class="header-section-number">8.3</span> MOL</h2>
-<section id="spatial-discretisation" class="level3" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="spatial-discretisation"><span class="header-section-number">8.3.1</span> Spatial discretisation</h3>
+<section id="spatial-discretisation" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="spatial-discretisation"><span class="header-section-number">8.2.2</span> Spatial discretisation</h3>
 </section>
-<section id="odeint" class="level3" data-number="8.3.2">
-<h3 data-number="8.3.2" class="anchored" data-anchor-id="odeint"><span class="header-section-number">8.3.2</span> odeint</h3>
+<section id="odeint" class="level3" data-number="8.2.3">
+<h3 data-number="8.2.3" class="anchored" data-anchor-id="odeint"><span class="header-section-number">8.2.3</span> odeint</h3>
 </section>
-<section id="implementing-boundary-conditions" class="level3" data-number="8.3.3">
-<h3 data-number="8.3.3" class="anchored" data-anchor-id="implementing-boundary-conditions"><span class="header-section-number">8.3.3</span> implementing boundary conditions</h3>
+<section id="implementing-boundary-conditions" class="level3" data-number="8.2.4">
+<h3 data-number="8.2.4" class="anchored" data-anchor-id="implementing-boundary-conditions"><span class="header-section-number">8.2.4</span> implementing boundary conditions</h3>
 </section>
-<section id="identifying-parameters" class="level3" data-number="8.3.4">
-<h3 data-number="8.3.4" class="anchored" data-anchor-id="identifying-parameters"><span class="header-section-number">8.3.4</span> Identifying parameters</h3>
+<section id="identifying-parameters" class="level3" data-number="8.2.5">
+<h3 data-number="8.2.5" class="anchored" data-anchor-id="identifying-parameters"><span class="header-section-number">8.2.5</span> Identifying parameters</h3>
 </section>
 </section>
-<section id="systems-of-pdes" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Systems of PDEs</h1>
+<section id="systems-of-pdes" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="systems-of-pdes"><span class="header-section-number">8.3</span> Systems of PDEs</h2>
 
 
 </section>
@@ -513,7 +512,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./linearstablityanalysis.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

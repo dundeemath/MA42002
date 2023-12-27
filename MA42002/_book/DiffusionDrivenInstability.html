@@ -163,6 +163,12 @@ div.csl-indent {
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conservationequations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conservation equations</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
@@ -172,18 +178,6 @@ div.csl-indent {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./conservationequations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conservation equations</span></span></a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./linearreactiondiffusion.html" class="sidebar-item-text sidebar-link">
@@ -251,7 +245,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./linearstablityanalysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
   </div>
 </li>
       </ul>
@@ -279,7 +273,7 @@ div.csl-indent {
   <li><a href="#stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations" id="toc-stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations" class="nav-link" data-scroll-target="#stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations"><span class="header-section-number">6.4.1</span> Stability of spatially homogeneous steady states to spatially homogeneous perturbations</a></li>
   <li><a href="#stability-of-spatially-homogeneous-steady-states-to-spatially-heterogeneous-spatially-dependent-perturbations" id="toc-stability-of-spatially-homogeneous-steady-states-to-spatially-heterogeneous-spatially-dependent-perturbations" class="nav-link" data-scroll-target="#stability-of-spatially-homogeneous-steady-states-to-spatially-heterogeneous-spatially-dependent-perturbations"><span class="header-section-number">6.4.2</span> Stability of spatially homogeneous steady states to spatially heterogeneous: spatially dependent, perturbations</a></li>
   </ul></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="header-section-number">6.5</span> Exercise</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">6.5</span> Exercises</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">6.6</span> References</a></li>
   </ul>
 </nav>
@@ -519,7 +513,7 @@ h(u,v) &amp; = &amp; \frac{\rho u v}{1 + u + K u^2},
 </div>
 </div>
 <p>In Figure <a href="#fig-schnack_ddi_pde_2d">Figure&nbsp;<span>6.2</span></a> we consider a numerical solution of the Schnackenberg model on a 2D square domain with no-flux boundary conditions. Note</p>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-cache="true" data-execution_count="2">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -537,7 +531,7 @@ h(u,v) &amp; = &amp; \frac{\rho u v}{1 + u + K u^2},
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span><span class="fl">1.3</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>d<span class="op">=</span><span class="fl">25.0</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>N_x<span class="op">=</span><span class="dv">40</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>N_x<span class="op">=</span><span class="dv">20</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>N_t<span class="op">=</span><span class="dv">30</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.linspace(<span class="dv">1</span>,T,N_t)</span>
@@ -681,7 +675,7 @@ h(u,v) &amp; = &amp; \frac{\rho u v}{1 + u + K u^2},
 <div class="cell-output cell-output-display">
 <div id="fig-schnack_ddi_pde_2d" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="DiffusionDrivenInstability_files/figure-html/fig-schnack_ddi_pde_2d-output-1.png" width="566" height="418" class="figure-img"></p>
+<p><img src="DiffusionDrivenInstability_files/figure-html/fig-schnack_ddi_pde_2d-output-1.png" width="566" height="416" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;6.2: DDI with Schnackenberg kinetics in 2D</figcaption>
 </figure>
 </div>
@@ -889,6 +883,130 @@ D \nabla^2  V(x,t) = D \nabla^2 \left[ \sum_k \hat V_k(t) \psi_k(x) \right]   = 
 h(k^2) = dk^4 - \gamma (df_u + g_v) k^2 + \gamma^2 | J | .
 \end{equation}
 \tag{6.14}\]</span></span></p>
+<div id="fig-dispersion" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># genera</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>k_sq<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="dv">25</span>,<span class="dv">100</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>gamma<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>d_1<span class="op">=</span><span class="fl">0.02</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>d_2<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>d_3<span class="op">=</span><span class="dv">6</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>f_u<span class="op">=</span><span class="fl">0.2</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>g_v<span class="op">=-</span><span class="fl">0.5</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>term1<span class="op">=</span>d<span class="op">*</span>f_u<span class="op">+</span>g_v</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>J<span class="op">=</span><span class="fl">1.0</span> <span class="co"># positive determinant</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Computeh(k_sq,d):</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  h<span class="op">=</span>d<span class="op">*</span>k_sq<span class="op">**</span><span class="dv">2</span><span class="op">-</span>gamma<span class="op">*</span>(term1)<span class="op">*</span>k_sq<span class="op">+</span> gamma<span class="op">**</span><span class="dv">2</span><span class="op">*</span>J</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> h</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> SolveReLambda(k_sq,d):</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>   <span class="co"># a lam^2 + b * lam +c</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    a<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    b<span class="op">=</span> k_sq<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>d)<span class="op">-</span>gamma<span class="op">*</span>(f_u<span class="op">+</span>g_v)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    c<span class="op">=</span> Computeh(k_sq,d)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    lambda_m<span class="op">=</span> (<span class="op">-</span>b<span class="op">-</span>np.sqrt(b<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">4</span><span class="op">*</span>a<span class="op">*</span>c))<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>a)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    lambda_p<span class="op">=</span> (<span class="op">-</span>b<span class="op">+</span>np.sqrt(b<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">4</span><span class="op">*</span>a<span class="op">*</span>c))<span class="op">//</span>(<span class="dv">2</span><span class="op">*</span>a)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lambda_m,lambda_p</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> TestDDIconditions(d):</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    cond_1<span class="op">=</span>f_u<span class="op">+</span>g_v</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    cond_2 <span class="op">=</span> J</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    cond_3 <span class="op">=</span> d<span class="op">*</span>f_u<span class="op">+</span>g_v</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    cond_4 <span class="op">=</span> (d<span class="op">*</span>f_u<span class="op">+</span>g_v)<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">4</span><span class="op">*</span>d<span class="op">*</span>J</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    cond_true<span class="op">=</span>np.zeros((<span class="dv">4</span>,<span class="dv">1</span>),dtype<span class="op">=</span><span class="bu">bool</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    cond_true[<span class="dv">0</span>]<span class="op">=</span>(cond_1<span class="op">&lt;</span><span class="dv">0</span>) </span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    cond_true[<span class="dv">1</span>]<span class="op">=</span> (cond_2<span class="op">&gt;</span><span class="dv">0</span>) </span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    cond_true[<span class="dv">2</span>]<span class="op">=</span> (cond_3<span class="op">&gt;</span><span class="dv">0</span>)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    cond_true[<span class="dv">3</span>]<span class="op">=</span>(cond_4<span class="op">&lt;</span><span class="dv">0</span>)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cond_true</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>h_1<span class="op">=</span>Computeh(k_sq,d_1)</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>h_2<span class="op">=</span>Computeh(k_sq,d_2)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>h_3<span class="op">=</span>Computeh(k_sq,d_3)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>l_1_m, l_1_p <span class="op">=</span> SolveReLambda(k_sq,d_1)</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>l_2_m, l_2_p <span class="op">=</span> SolveReLambda(k_sq,d_2)</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>l_3_m, l_3_p <span class="op">=</span> SolveReLambda(k_sq,d_3)</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>conditions_satisfied1<span class="op">=</span>TestDDIconditions(d_1)</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>conditions_satisfied2<span class="op">=</span>TestDDIconditions(d_2)</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>conditions_satisfied3<span class="op">=</span>TestDDIconditions(d_3)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(conditions_satisfied1,conditions_satisfied2,conditions_satisfied3)</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>fig, ax<span class="op">=</span>plt.subplots()</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>ax.plot(k_sq,h_1,<span class="st">'r'</span>,k_sq,h_2,<span class="st">'k'</span>,k_sq,h_3,<span class="st">'m'</span>)</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'$k^2$'</span>)</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'$h$'</span>)</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>ax.legend([<span class="st">'d='</span><span class="op">+</span><span class="bu">str</span>(d_1),<span class="st">'d='</span><span class="op">+</span><span class="bu">str</span>(d_2),<span class="st">'d='</span><span class="op">+</span><span class="bu">str</span>(d_3)])</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>fig, ax<span class="op">=</span>plt.subplots()</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>ax.plot(k_sq,np.real(l_1_m),<span class="st">'r'</span>,k_sq,np.real(l_2_m),<span class="st">'k'</span>,k_sq,np.real(l_3_m),<span class="st">'m'</span>)</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>ax.plot(k_sq,np.real(l_1_p),<span class="st">'r--'</span>,k_sq,np.real(l_2_p),<span class="st">'k--'</span>,k_sq,np.real(l_3_p),<span class="st">'m--'</span>)</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'$k^2$'</span>)</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'$\Re{\lambda}$'</span>)</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="op">-</span><span class="dv">20</span>,<span class="dv">5</span>])</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>ax.legend([<span class="st">'d='</span><span class="op">+</span><span class="bu">str</span>(d_1),<span class="st">'d='</span><span class="op">+</span><span class="bu">str</span>(d_2),<span class="st">'d='</span><span class="op">+</span><span class="bu">str</span>(d_3)])</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ True]
+ [ True]
+ [False]
+ [False]] [[ True]
+ [ True]
+ [ True]
+ [ True]] [[ True]
+ [ True]
+ [ True]
+ [ True]]</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/m_/vc0kz_0x6ls5n4qnksq052jw0000gp/T/ipykernel_28336/2851046048.py:30: RuntimeWarning: invalid value encountered in sqrt
+  lambda_m= (-b-np.sqrt(b**2-4*a*c))/(2*a)
+/var/folders/m_/vc0kz_0x6ls5n4qnksq052jw0000gp/T/ipykernel_28336/2851046048.py:31: RuntimeWarning: invalid value encountered in sqrt
+  lambda_p= (-b+np.sqrt(b**2-4*a*c))//(2*a)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-dispersion-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="DiffusionDrivenInstability_files/figure-html/fig-dispersion-output-3.png" data-ref-parent="fig-dispersion" width="613" height="431" class="figure-img"></p>
+<figcaption class="figure-caption">(a) A plot of <span class="math inline">\(h(k^2)\)</span> against k^2.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-dispersion-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="DiffusionDrivenInstability_files/figure-html/fig-dispersion-output-4.png" data-ref-parent="fig-dispersion" width="596" height="436" class="figure-img"></p>
+<figcaption class="figure-caption">(b)</figcaption>
+</figure>
+</div>
+</div>
+<figcaption class="figure-caption">Figure&nbsp;6.3: <strong>?(caption)</strong></figcaption>
+</figure>
+</div>
 <p><strong>NOTE</strong>: From <a href="#eq-charact_pp_1">Equation&nbsp;<span>6.12</span></a>, <a href="#eq-spatial_eigenvalues">Equation&nbsp;<span>6.13</span></a> we can recover the characteristic equation for the spatially homogeneous perturbation when <span class="math inline">\(k=0\)</span>, i.e.&nbsp; <span class="math display">\[
 \tilde J \Big|_{k=0} = ( \gamma J - k^2 D )\Big|_{k=0} = \gamma J.
 \]</span></p>
@@ -900,10 +1018,11 @@ h(k^2) = dk^4 - \gamma (df_u + g_v) k^2 + \gamma^2 | J | .
 \]</span> to be satisfied we require <span class="math display">\[
 \text{tr}(\tilde J) &gt; 0 \quad \text{ or } \quad \det(\tilde J) &lt;0 \; .
 \]</span></p>
-<p>Consider first <span class="math inline">\({\rm tr} (\tilde{J})\)</span>. We have <span class="math display">\[\begin{equation*}
+<p>Consider first <span class="math inline">\({\rm tr} (\tilde{J})\)</span>. We have <span class="math display">\[
+\begin{equation*}
 \text{tr}(\tilde J) = \gamma ( f_u+ g_v) - k^2(1+d) &lt; 0, \hspace{4 cm}  
-\end{equation*}\]</span></p>
-<p>since <span class="math inline">\(\gamma &gt; 0\)</span> and <span class="math display">\[
+\end{equation*}
+\]</span> since <span class="math inline">\(\gamma &gt; 0\)</span> and <span class="math display">\[
 f_u+ g_v &lt; 0
 \]</span> by the stability condition for the spatially homogeneous perturbation <a href="#eq-stable_hom">Equation&nbsp;<span>6.6</span></a>.</p>
 <p>Thus instability to the spatially heterogeneous perturbation <strong>can only occur</strong> if <span class="math display">\[
@@ -913,9 +1032,9 @@ f_u+ g_v &lt; 0
 \end{eqnarray*}\]</span></p>
 <p>From the spatially homogeneous stability conditions <a href="#eq-stable_hom">Equation&nbsp;<span>6.6</span></a> we have <span class="math inline">\(\det(J) &gt;0\)</span>. Thus <span class="math inline">\(h(k^2)&lt;0\)</span> is possible only if <span id="eq-stabil_cond_nes"><span class="math display">\[
 \begin{equation}
-d\,  f_u + g_v &gt;0.
+d f_u + g_v &gt;0.
 \end{equation}
-\tag{6.15}\]</span></span> However, once again, due to <a href="#eq-stable_hom">Equation&nbsp;<span>6.6</span></a>, we have <span class="math inline">\(f_u+ g_v &lt;0\)</span>, and so we can conclude that <span class="math inline">\(d\neq 1\)</span> and <span class="math inline">\(f_u\)</span> and <span class="math inline">\(g_v\)</span> must have opposite signs.</p>
+\tag{6.15}\]</span></span> However, once again, due to <a href="#eq-stable_hom">Equation&nbsp;<span>6.6</span></a>, we have <span class="math inline">\(f_u+ g_v &lt;0\)</span>, and so we can conclude that <em><span class="math inline">\(d\neq 1\)</span> and <span class="math inline">\(f_u\)</span> and <span class="math inline">\(g_v\)</span> must have opposite signs</em>.</p>
 <p>Condition <a href="#eq-stabil_cond_nes">Equation&nbsp;<span>6.15</span></a> is <strong>necessary but not sufficient</strong> to ensure <span class="math inline">\(h(k^2) &lt;0\)</span>. In order to guarantee that <span class="math inline">\(h(k^2) &lt; 0\)</span>, the minimum value <span class="math inline">\(h_{{\rm min}}\)</span> must be negative. Differentiating <a href="#eq-hk2">Equation&nbsp;<span>6.14</span></a> w.r.t. <span class="math inline">\(k^2\)</span>, we find that:</p>
 <p><span id="eq-hmin"><span class="math display">\[
 \begin{equation}
@@ -954,7 +1073,7 @@ q(d_c) = d^2_c f_u^2 + 2( 2 f_v g_u - f_u g_v) d_c + g_v^2 =0.
 k_c^2 =\gamma  \frac{( d_c f_u + g_v)} { 2 d_c} = \gamma \left[ \frac {|J|}{d_c} \right]^{1/2} = \gamma \left[ \frac{f_u g_v - f_v g_u}{d_c} \right]^{1/2}.
 \end{equation}
 \tag{6.19}\]</span></span></p>
-<p>Figure <span class="math inline">\(\ref{dispersion}\)</span>(a) shows a schematic diagram of the (quadratic) function <span class="math inline">\(h(k^2)\)</span> for three different values of the diffusion coefficient <span class="math inline">\(d\)</span>:</p>
+<p><a href="#fig-dispersion">Figure&nbsp;<span>6.3</span></a> (a) shows a schematic diagram of the (quadratic) function <span class="math inline">\(h(k^2)\)</span> for three different values of the diffusion coefficient <span class="math inline">\(d\)</span>:</p>
 <ul>
 <li><span class="math inline">\(d &lt; d_c, \; h(k^2) &gt; 0\)</span>, and there is no pattern;</li>
 <li><span class="math inline">\(d = d_c, \; h_{{\rm min}} = 0\)</span>, critical case;</li>
@@ -969,7 +1088,7 @@ k^2_1 = \gamma \frac{(df_u + g_v) - \left\{ (df_u + g_v)^2 -4d |J| \right\}^{1/2
 &lt; \gamma \frac{(df_u + g_v) +  \left\{ (df_u + g_v)^2 -4d |J| \right\}^{1/2}}{2d} = k^2_2 \nonumber
 \end{eqnarray}
 \tag{6.20}\]</span></span></p>
-<p>Figure <span class="math inline">\(\ref{dispersion}\)</span>(b) shows a schematic diagram of <span class="math inline">\({\rm Re}\lambda (k^2)\)</span> for three different values of the diffusion coefficient <span class="math inline">\(d\)</span>: * $d &lt; d_c, ; {}(k^2) &lt; 0, k^2 $, and there is no pattern; * <span class="math inline">\(d = d_c, \; k^2_c = 0\)</span>, critical case; * <span class="math inline">\(d &gt; d_c, \; {\rm Re}\lambda (k^2) &gt; 0, k^2_1 &lt; k^2 &lt; k^2_2\)</span>, and there is pattern.</p>
+<p><a href="#fig-dispersion">Figure&nbsp;<span>6.3</span></a> (b) shows a schematic diagram of <span class="math inline">\({\rm Re}\lambda (k^2)\)</span> for three different values of the diffusion coefficient <span class="math inline">\(d\)</span>: * $d &lt; d_c, ; {}(k^2) &lt; 0, k^2 $, and there is no pattern; * <span class="math inline">\(d = d_c, \; k^2_c = 0\)</span>, critical case; * <span class="math inline">\(d &gt; d_c, \; {\rm Re}\lambda (k^2) &gt; 0, k^2_1 &lt; k^2 &lt; k^2_2\)</span>, and there is pattern.</p>
 <p>The expression <span class="math inline">\(\lambda = \lambda (k^2)\)</span> is known as the <strong>dispersion relation</strong> and the plot of <span class="math inline">\({\rm Re} \lambda\)</span> against <span class="math inline">\(k^2\)</span> is known as the <strong>dispersion curve</strong>.</p>
 <p>From the previous analysis, within the unstable range of wavenumbers <span class="math inline">\((k^2_1 , k^2_2)\)</span>, <span class="math inline">\({\rm Re}\lambda (k^2) &gt; 0\)</span> has a <strong>maximum value</strong> at wavenumber <span class="math inline">\(k^2_m\)</span> given by <a href="#eq-hmin">Equation&nbsp;<span>6.16</span></a> when <span class="math inline">\(d &gt; d_c\)</span>. This implies that there is a <strong>fastest growing mode</strong> in the solution <a href="#eq-vxt">Equation&nbsp;<span>6.10</span></a> of our linearised system <a href="#eq-pp_4">Equation&nbsp;<span>6.8</span></a>.</p>
 
@@ -1033,7 +1152,7 @@ V(x,t) \approx \sum_{k_{1}}^{k_2} C_k e^{\lambda(k^2) t} \, \psi_k(x) \; .
 \begin{eqnarray}
 f_u + g_v &lt; 0, &amp; &amp; f_u g_v - f_v g_u &gt; 0, \nonumber \\
 &amp; &amp; \\
-d f_u + g_v &gt; 0, &amp; &amp; (d f_u + g_v )^2 - 4d (f_u g_v - f_v g_u)^2 &gt; 0 , \nonumber
+d f_u + g_v &gt; 0, &amp; &amp; (d f_u + g_v )^2 - 4d (f_u g_v - f_v g_u)^2 &lt; 0 , \nonumber
 \end{eqnarray}
 \tag{6.21}\]</span></span> with all partial derivatives being evaluated at the spatially homogeneous steady state <span class="math inline">\((u_0 , v_0)\)</span>.</p>
 <p>From the first and third conditions, <span class="math inline">\(d \neq 1\)</span> and <span class="math inline">\(f_u\)</span> and <span class="math inline">\(g_v\)</span> must be of different signs. For each of the reaction kinetics mentioned here (Schnakenberg, Gierer-Meinhardt, Thomas), we have that <span class="math inline">\(f_u &gt; 0, g_v &lt; 0\)</span> and so this implies that <span class="math inline">\(d &gt; 1\)</span>.</p>
@@ -1041,13 +1160,14 @@ d f_u + g_v &gt; 0, &amp; &amp; (d f_u + g_v )^2 - 4d (f_u g_v - f_v g_u)^2 &gt;
 <p>In most biological systems, the kinetic parameters and diffusion coefficients are fixed. This means that the only variable parameter in the system is <span class="math inline">\(\gamma\)</span> which as we have seen is related to the size of the domain under consideration. This has implications when considering patterns on finite domains, as will be seen in the next section.</p>
 </section>
 </section>
-<section id="exercise" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="exercise"><span class="header-section-number">6.5</span> Exercise</h2>
-<p>Demonstrate that the derived results are consistent with th numerical solutions. Some predictions to test:</p>
+<section id="exercises" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6.5</span> Exercises</h2>
+<p>Demonstrate that the derived results are consistent with numerical solutions. Some predictions to test:</p>
 <ul>
 <li>No patterning when diffusion coefficients are equal</li>
 <li>How does spatial pattern formation change as you try values of parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>?</li>
 <li>Can you correlate the observation of pattern to the conditions for DDI being satisfied?</li>
+<li>what about different kinetics (e.g.&nbsp;Gierer-Meinhardt, Thomas models)?</li>
 </ul>
 </section>
 <section id="references" class="level2" data-number="6.6">

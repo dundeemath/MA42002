@@ -261,7 +261,7 @@ In Figure @fig-schnack_ddi_pde_2d we consider a numerical solution of the Schnac
 ```{python}
 #| label: fig-schnack_ddi_pde_2d
 #| fig-cap: "DDI with Schnackenberg kinetics in 2D"
-#| cache: false
+#| cache: true
 #| code-fold: true
 import numpy as np
 from scipy.integrate import odeint
@@ -278,7 +278,7 @@ a=0.2
 b=1.3
 d=25.0
 
-N_x=40
+N_x=20
 N_t=30
 
 t=np.linspace(1,T,N_t)
@@ -703,6 +703,98 @@ h(k^2) = dk^4 - \gamma (df_u + g_v) k^2 + \gamma^2 | J | .
 $$ {#eq-hk2}
 
 
+```{python}
+#| label: fig-dispersion
+#| fig-cap: "A plot of $h(k^2)$ against k^2."
+#| code-fold: true
+import numpy as np
+import matplotlib.pyplot as plt
+
+# genera
+k_sq=np.linspace(0,25,100)
+
+
+gamma=10
+d_1=0.02
+d_2=3
+d_3=6
+
+
+f_u=0.2
+g_v=-0.5
+term1=d*f_u+g_v
+J=1.0 # positive determinant
+
+
+
+def Computeh(k_sq,d):
+  h=d*k_sq**2-gamma*(term1)*k_sq+ gamma**2*J
+  return h
+
+def SolveReLambda(k_sq,d):
+   # a lam^2 + b * lam +c
+    a=1
+    b= k_sq*(1+d)-gamma*(f_u+g_v)
+    c= Computeh(k_sq,d)
+    lambda_m= (-b-np.sqrt(b**2-4*a*c))/(2*a)
+    lambda_p= (-b+np.sqrt(b**2-4*a*c))//(2*a)
+    return lambda_m,lambda_p
+
+def TestDDIconditions(d):
+
+    cond_1=f_u+g_v
+    cond_2 = J
+    cond_3 = d*f_u+g_v
+    cond_4 = (d*f_u+g_v)**2-4*d*J
+
+    cond_true=np.zeros((4,1),dtype=bool)
+    cond_true[0]=(cond_1<0) 
+    cond_true[1]= (cond_2>0) 
+    cond_true[2]= (cond_3>0)
+    cond_true[3]=(cond_4<0)
+
+
+    return cond_true
+
+h_1=Computeh(k_sq,d_1)
+h_2=Computeh(k_sq,d_2)
+h_3=Computeh(k_sq,d_3)
+
+l_1_m, l_1_p = SolveReLambda(k_sq,d_1)
+l_2_m, l_2_p = SolveReLambda(k_sq,d_2)
+l_3_m, l_3_p = SolveReLambda(k_sq,d_3)
+
+conditions_satisfied1=TestDDIconditions(d_1)
+conditions_satisfied2=TestDDIconditions(d_2)
+conditions_satisfied3=TestDDIconditions(d_3)
+
+print(conditions_satisfied1,conditions_satisfied2,conditions_satisfied3)
+
+fig, ax=plt.subplots()
+ax.plot(k_sq,h_1,'r',k_sq,h_2,'k',k_sq,h_3,'m')
+plt.grid()
+ax.set_xlabel('$k^2$')
+ax.set_ylabel('$h$')
+ax.legend(['d='+str(d_1),'d='+str(d_2),'d='+str(d_3)])
+plt.show()
+
+fig, ax=plt.subplots()
+ax.plot(k_sq,np.real(l_1_m),'r',k_sq,np.real(l_2_m),'k',k_sq,np.real(l_3_m),'m')
+ax.plot(k_sq,np.real(l_1_p),'r--',k_sq,np.real(l_2_p),'k--',k_sq,np.real(l_3_p),'m--')
+
+plt.grid()
+ax.set_xlabel('$k^2$')
+ax.set_ylabel('$\Re{\lambda}$')
+ax.set_ylim([-20,5])
+
+ax.legend(['d='+str(d_1),'d='+str(d_2),'d='+str(d_3)])
+plt.show()
+
+
+
+```
+
+
 **NOTE**: From @eq-charact_pp_1, @eq-spatial_eigenvalues we can recover the characteristic equation for the spatially homogeneous perturbation when $k=0$, i.e. 
 $$
 \tilde J \Big|_{k=0} = ( \gamma J - k^2 D )\Big|_{k=0} = \gamma J.
@@ -726,10 +818,11 @@ $$
 
 Consider first ${\rm tr} (\tilde{J})$. 
 We have
+$$
 \begin{equation*}
 \text{tr}(\tilde J) = \gamma ( f_u+ g_v) - k^2(1+d) < 0, \hspace{4 cm}  
 \end{equation*}
-
+$$
 since $\gamma > 0$ and 
 $$ 
 f_u+ g_v < 0
@@ -748,10 +841,10 @@ and so we require:
 From the spatially homogeneous stability conditions @eq-stable_hom we have $\det(J) >0$. Thus $h(k^2)<0$ is possible only if 
 $$
 \begin{equation}
-d\,  f_u + g_v >0.
+d f_u + g_v >0.
 \end{equation}
 $$ {#eq-stabil_cond_nes}
-However, once again, due to @eq-stable_hom, we have $f_u+ g_v <0$,  and so we can conclude that $d\neq 1$ and $f_u$ and $g_v$ must have opposite signs. 
+However, once again, due to @eq-stable_hom, we have $f_u+ g_v <0$,  and so we can conclude that *$d\neq 1$ and $f_u$ and $g_v$ must have opposite signs*. 
 
 Condition @eq-stabil_cond_nes is **necessary but not sufficient** to ensure $h(k^2) <0$. In order to guarantee that $h(k^2) < 0$, the minimum value $h_{{\rm min}}$ must be negative.  Differentiating @eq-hk2 w.r.t. $k^2$, we find that:
 
@@ -802,7 +895,7 @@ k_c^2 =\gamma  \frac{( d_c f_u + g_v)} { 2 d_c} = \gamma \left[ \frac {|J|}{d_c}
 \end{equation}
 $$ {#eq-kcrit}
 
-Figure \ref{dispersion}(a) shows a schematic diagram of the (quadratic) function $h(k^2)$ for three different values of the diffusion coefficient $d$: 
+@fig-dispersion (a) shows a schematic diagram of the (quadratic) function $h(k^2)$ for three different values of the diffusion coefficient $d$: 
 
 * $d < d_c, \; h(k^2) > 0$, and there is no pattern; 
 * $d = d_c, \; h_{{\rm min}} = 0$, critical case; 
@@ -821,7 +914,7 @@ k^2_1 = \gamma \frac{(df_u + g_v) - \left\{ (df_u + g_v)^2 -4d |J| \right\}^{1/2
 \end{eqnarray}
 $$ {#eq-k2range}
 
-Figure \ref{dispersion}(b) shows a schematic diagram of ${\rm Re}\lambda (k^2)$ for three different values of the diffusion coefficient $d$:
+@fig-dispersion (b) shows a schematic diagram of ${\rm Re}\lambda (k^2)$ for three different values of the diffusion coefficient $d$:
 *  $d < d_c, \; {\rm Re}\lambda (k^2) < 0, \forall k^2 $, and there is no pattern; 
 *  $d = d_c, \; k^2_c = 0$, critical case; 
 *  $d > d_c, \; {\rm Re}\lambda (k^2) > 0, k^2_1 < k^2 < k^2_2$, and there is pattern.  
@@ -902,7 +995,6 @@ $$
 
 All the previous calculations concern a **linear stability analysis** carried out about a spatially homogeneous steady state of the system @eq-pp. This linear theory indicates that for $d > d_c$ there exists a finite number of **linearly unstable** spatial eigenfunctions which grow exponentially as $t \to \infty$. However, this linear theory holds only when we are close to the steady state i.e. it only holds for small perturbations. In the full **nonlinear system** the exponentially growing (unbounded) modes will eventually be bounded by the nonlinear terms and so bounded, stable spatial patterns characterised by the corresponding wavenumbers will be formed. 
 
-
 **Summary**
 
 We have obtained conditions for the generation of spatial patterns via systems of reaction-diffusion equations of the general form @eq-pp. Such systems involve **two chemicals or morphogens** reacting and diffusing together to generate a chemical pre-pattern that underlies a subsequent cellular pattern. The four conditions are as follows:
@@ -911,7 +1003,7 @@ $$
 \begin{eqnarray}
 f_u + g_v < 0, & & f_u g_v - f_v g_u > 0, \nonumber \\
  & & \\
-d f_u + g_v > 0, & & (d f_u + g_v )^2 - 4d (f_u g_v - f_v g_u)^2 > 0 , \nonumber 
+d f_u + g_v > 0, & & (d f_u + g_v )^2 - 4d (f_u g_v - f_v g_u)^2 < 0 , \nonumber 
 \end{eqnarray}
 $$ {#eq-pattern_conditions}
 with all partial derivatives being evaluated at the spatially homogeneous steady state $(u_0 , v_0)$. 
@@ -922,12 +1014,13 @@ If the conditions @eq-pattern_conditions are satisfied, then there is a range of
 
 In most biological systems, the kinetic parameters and diffusion coefficients are fixed. This means that the only variable parameter in the system is $\gamma$ which as we have seen is related to the size of the domain under consideration. This has implications when considering patterns on finite domains, as will be seen in the next section. 
 
-## Exercise
-Demonstrate that the derived results are consistent with th numerical solutions. Some predictions to test:
+## Exercises
+Demonstrate that the derived results are consistent with  numerical solutions. Some predictions to test:
 
 * No patterning when diffusion coefficients are equal
 * How does spatial pattern formation change as you try  values of parameters $a$ and $b$?
 * Can you correlate the observation of pattern to the conditions for DDI being satisfied?
+* what about different kinetics (e.g. Gierer-Meinhardt, Thomas models)?
 
 ## References
 

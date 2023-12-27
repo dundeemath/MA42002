@@ -9,10 +9,10 @@ book:
 
   chapters:
     - index.qmd
+    - conservationequations.qmd
+
     - part: "Single PDE"
       chapters:
-        - index.qmd
-        - conservationequations.qmd
         - linearreactiondiffusion.qmd
         - nonlinearreactiondiffusion.qmd
       

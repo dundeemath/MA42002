@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MA42002 - 5&nbsp; Lotka Voltera model</title>
+<title>MA42002 - 4&nbsp; Lotka Voltera model</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./BacterialChemotaxis.html" rel="next">
-<link href="./linearstablityanalysis.html" rel="prev">
+<link href="./nonlinearreactiondiffusion.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -110,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html">Coupled PDE</a></li><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lotka Voltera model</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html">Coupled PDE</a></li><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lotka Voltera model</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -144,6 +144,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conservationequations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conservation equations</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
@@ -155,18 +161,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./conservationequations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conservation equations</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./linearreactiondiffusion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linear reaction diffusion equations</span></span></a>
   </div>
@@ -175,12 +169,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./nonlinearreactiondiffusion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Non linear reaction diffusion equations</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./linearstablityanalysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear stability analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -197,25 +185,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./LotkaVolteraPDE.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lotka Voltera model</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lotka Voltera model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./BacterialChemotaxis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Aggregation via Chemotaxis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Aggregation via Chemotaxis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./DiffusionDrivenInstability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./SIR_PDE.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">SIR models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">SIR models</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NumericalMethods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linearstablityanalysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
   </div>
 </li>
       </ul>
@@ -230,10 +241,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#nondimensionalization" id="toc-nondimensionalization" class="nav-link active" data-scroll-target="#nondimensionalization"><span class="header-section-number">5.1</span> Nondimensionalization</a></li>
-  <li><a href="#numerical-solutions" id="toc-numerical-solutions" class="nav-link" data-scroll-target="#numerical-solutions"><span class="header-section-number">5.2</span> Numerical solutions</a></li>
-  <li><a href="#spatially-homogeneous-steady-states" id="toc-spatially-homogeneous-steady-states" class="nav-link" data-scroll-target="#spatially-homogeneous-steady-states"><span class="header-section-number">5.3</span> Spatially homogeneous steady states</a></li>
-  <li><a href="#existence-of-travelling-wave-profiles-connection-10-and-b1-b" id="toc-existence-of-travelling-wave-profiles-connection-10-and-b1-b" class="nav-link" data-scroll-target="#existence-of-travelling-wave-profiles-connection-10-and-b1-b"><span class="header-section-number">5.4</span> Existence of travelling wave profiles connection <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((b,1-b)\)</span></a></li>
+  <li><a href="#nondimensionalization" id="toc-nondimensionalization" class="nav-link active" data-scroll-target="#nondimensionalization"><span class="header-section-number">4.1</span> Nondimensionalization</a></li>
+  <li><a href="#numerical-solutions" id="toc-numerical-solutions" class="nav-link" data-scroll-target="#numerical-solutions"><span class="header-section-number">4.2</span> Numerical solutions</a></li>
+  <li><a href="#spatially-homogeneous-steady-states" id="toc-spatially-homogeneous-steady-states" class="nav-link" data-scroll-target="#spatially-homogeneous-steady-states"><span class="header-section-number">4.3</span> Spatially homogeneous steady states</a></li>
+  <li><a href="#existence-of-travelling-wave-profiles-connection-10-and-b1-b" id="toc-existence-of-travelling-wave-profiles-connection-10-and-b1-b" class="nav-link" data-scroll-target="#existence-of-travelling-wave-profiles-connection-10-and-b1-b"><span class="header-section-number">4.4</span> Existence of travelling wave profiles connection <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((b,1-b)\)</span></a></li>
   </ul>
 </nav>
     </div>
@@ -242,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lotka Voltera model</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lotka Voltera model</span></h1>
 </div>
 
 
@@ -265,7 +276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 &amp;  \frac{\partial n}{\partial t} = \beta \; u\, n - \gamma \; n + D_n \Delta n\; ,
 \end{aligned}
 \end{equation}
-  \tag{5.1}\]</span></span></p>
+  \tag{4.1}\]</span></span></p>
 <p>where</p>
 <ul>
 <li><span class="math inline">\(u\)</span> – density of the prey,</li>
@@ -278,8 +289,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><span class="math inline">\(D_u\)</span> – diffusion coefficient of the prey</li>
 <li><span class="math inline">\(D_n\)</span> - diffusion coefficient for the predator .</li>
 </ul>
-<section id="nondimensionalization" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="nondimensionalization"><span class="header-section-number">5.1</span> Nondimensionalization</h2>
+<section id="nondimensionalization" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="nondimensionalization"><span class="header-section-number">4.1</span> Nondimensionalization</h2>
 <p>Consider the scaling <span class="math display">\[\begin{eqnarray*}
 x^\ast = x \sqrt{\frac \rho {D_n}} , \qquad t^\ast = \rho \, t , \quad u^\ast = \frac uK, \quad n^\ast = n \frac \alpha \rho
 \end{eqnarray*}\]</span> in one dimension. Upon dropping the asteriked notation <span id="eq-pp_eq_2"><span class="math display">\[
@@ -289,12 +300,12 @@ x^\ast = x \sqrt{\frac \rho {D_n}} , \qquad t^\ast = \rho \, t , \quad u^\ast = 
 &amp; \dfrac{\partial n}{\partial t} = a\,  n(u -b) + \dfrac{\partial^2  n}{\partial x^2}\; =\; \;  g(u,n) + \dfrac{\partial^2  n}{\partial x^2}\;  \qquad x\in \mathbb R , t&gt;0,
 \end{cases}
 \end{equation}
-  \tag{5.2}\]</span></span> where <span class="math display">\[
+  \tag{4.2}\]</span></span> where <span class="math display">\[
 D= \dfrac{D_u}{D_n}, \quad a = \dfrac{\beta K}\rho, \quad   b = \dfrac \gamma{ K \beta}.
 \]</span></p>
 </section>
-<section id="numerical-solutions" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="numerical-solutions"><span class="header-section-number">5.2</span> Numerical solutions</h2>
+<section id="numerical-solutions" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="numerical-solutions"><span class="header-section-number">4.2</span> Numerical solutions</h2>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
@@ -390,14 +401,14 @@ D= \dfrac{D_u}{D_n}, \quad a = \dfrac{\beta K}\rho, \quad   b = \dfrac \gamma{ K
 <div id="fig-lvpde" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="LotkaVolteraPDE_files/figure-html/fig-lvpde-output-2.png" width="589" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.1: Numerical solution of LV model</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;4.1: Numerical solution of LV model</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="spatially-homogeneous-steady-states" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="spatially-homogeneous-steady-states"><span class="header-section-number">5.3</span> Spatially homogeneous steady states</h2>
+<section id="spatially-homogeneous-steady-states" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="spatially-homogeneous-steady-states"><span class="header-section-number">4.3</span> Spatially homogeneous steady states</h2>
 <p>We have for spatially homogeneous steady states <span class="math display">\[
 f(u,n) =0 , \qquad g(u,n) = 0
 \]</span> Thus <span class="math display">\[\begin{eqnarray*}
@@ -430,8 +441,8 @@ an &amp;a(u-b)
 &amp;&amp; \text{ for } b&gt;0, \; 1-b&gt;0 \text{ spiral oscillations  are biologically realistic as long } u&gt;0, \; n&gt;0\; .
 \end{eqnarray*}\]</span></p>
 </section>
-<section id="existence-of-travelling-wave-profiles-connection-10-and-b1-b" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="existence-of-travelling-wave-profiles-connection-10-and-b1-b"><span class="header-section-number">5.4</span> Existence of travelling wave profiles connection <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((b,1-b)\)</span></h2>
+<section id="existence-of-travelling-wave-profiles-connection-10-and-b1-b" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="existence-of-travelling-wave-profiles-connection-10-and-b1-b"><span class="header-section-number">4.4</span> Existence of travelling wave profiles connection <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((b,1-b)\)</span></h2>
 <p>Consider travelling wave solutions <span class="math display">\[\begin{eqnarray*}
 u(t,x) = W(x+ vt) = W(z) , \quad v&gt;0, \\
 n(t,x) = N( x + vt) = N(z) , \quad v &gt;0.
@@ -441,7 +452,7 @@ u(t,x) \to b \; \text{ as } x \to +\infty, &amp;&amp; \;  \qquad   W(z)\to b \; 
 n(t,x) \to 0 \;  \text{ as } x \to - \infty ,  &amp;&amp;\qquad  \;  N(z)\to 0 \;  \text{ as } z \to - \infty, \quad \\
 n(t,x) \to 1-b \; \text{ as } x \to +\infty, &amp;&amp; \;  \qquad N(z)\to 1-b \;  \text{ as } z \to +\infty
 \end{eqnarray*}\]</span></p>
-<p>The system <a href="#eq-pp_eq_2">Equation&nbsp;<span>5.2</span></a> becomes now <span id="eq-tw_pp"><span class="math display">\[
+<p>The system <a href="#eq-pp_eq_2">Equation&nbsp;<span>4.2</span></a> becomes now <span id="eq-tw_pp"><span class="math display">\[
 \begin{eqnarray}
 \begin{aligned}
 &amp;v \frac{dW}{dz} = D \frac{d^2W}{dz^2} + W(1-W-N) ,\\
@@ -452,10 +463,10 @@ n(t,x) \to 1-b \; \text{ as } x \to +\infty, &amp;&amp; \;  \qquad N(z)\to 1-b \
 &amp; N(z)\to 0 \;  \text{ as } z \to - \infty, \quad N(z)\to 1-b \;  \text{ as } z \to +\infty\; .
   \end{aligned}
 \end{eqnarray}
-\tag{5.3}\]</span></span></p>
+\tag{4.3}\]</span></span></p>
 <p>We shall suppose that the prey species moves much more slowly than the predator species, i.e.&nbsp; <span class="math display">\[
 D= D_u/D_n \ll 1
-\]</span> and simplify <a href="#eq-tw_pp">Equation&nbsp;<span>5.3</span></a> as</p>
+\]</span> and simplify <a href="#eq-tw_pp">Equation&nbsp;<span>4.3</span></a> as</p>
 <p><span id="eq-tw_pp_2"><span class="math display">\[
 \begin{eqnarray}
 \begin{aligned}
@@ -463,8 +474,8 @@ D= D_u/D_n \ll 1
 &amp; v \frac{dN}{dz} =  \frac{d^2N}{dz^2} + a N(W-b),
 \end{aligned}
 \end{eqnarray}
-\tag{5.4}\]</span></span></p>
-<p>We can rewrite <a href="#eq-tw_pp_2">Equation&nbsp;<span>5.4</span></a> as a system of 1st order ODEs: <span id="eq-tw_pp_3"><span class="math display">\[
+\tag{4.4}\]</span></span></p>
+<p>We can rewrite <a href="#eq-tw_pp_2">Equation&nbsp;<span>4.4</span></a> as a system of 1st order ODEs: <span id="eq-tw_pp_3"><span class="math display">\[
 \begin{eqnarray}
 \begin{aligned}
 &amp; \frac{dW}{dz} = \frac 1 v W(1-W-N) &amp;= F(W,N,P),\\
@@ -472,7 +483,7 @@ D= D_u/D_n \ll 1
 &amp;  \frac{dP}{dz} = v P - a N(W-b)  &amp;= R(W,N,P).
 \end{aligned}
 \end{eqnarray}
-\tag{5.5}\]</span></span> Steady states of <a href="#eq-tw_pp_2">Equation&nbsp;<span>5.4</span></a> are <span class="math display">\[
+\tag{4.5}\]</span></span> Steady states of <a href="#eq-tw_pp_2">Equation&nbsp;<span>4.4</span></a> are <span class="math display">\[
 (W^\ast_1, N^\ast_1, P^\ast_1) = (0,0,0), \quad (W^\ast_2, N^\ast_2, P^\ast_2) = (1,0,0), \quad (W^\ast_3, N^\ast_3, P^\ast_3) =(b, 1-b, 0).
 \]</span> Stability of steady states <span class="math display">\[
 J(W,N,P) = \begin{pmatrix}
@@ -510,7 +521,7 @@ p^\prime(\lambda) = 3 \lambda^2 - 2 \lambda \left( v - \frac b v\right) - b = 0
 </ul>
 <p>This can be easily seen from a sketch of the cubic equation:</p>
 <p><span class="math display">\[p(\lambda) = \lambda^3 - \lambda^2(v- \frac b v) - \lambda b - \frac 1 v ab(1-b).\]</span></p>
-<p>Thus we have a possible heteroclinic connection between <span class="math inline">\((1,0,0)\)</span> and <span class="math inline">\((b, 1-b, 0)\)</span>, i.e.&nbsp;between <span class="math inline">\(2\)</span>-dim unstable manifold at <span class="math inline">\((1,0,0)\)</span> and <span class="math inline">\(2\)</span>-dim stable manifold at <span class="math inline">\((b, 1-b, 0)\)</span>, and therefore an existence of a travelling wave front solution for <a href="#eq-pp_eq_2">Equation&nbsp;<span>5.2</span></a> with <span class="math display">\[\begin{eqnarray*}
+<p>Thus we have a possible heteroclinic connection between <span class="math inline">\((1,0,0)\)</span> and <span class="math inline">\((b, 1-b, 0)\)</span>, i.e.&nbsp;between <span class="math inline">\(2\)</span>-dim unstable manifold at <span class="math inline">\((1,0,0)\)</span> and <span class="math inline">\(2\)</span>-dim stable manifold at <span class="math inline">\((b, 1-b, 0)\)</span>, and therefore an existence of a travelling wave front solution for <a href="#eq-pp_eq_2">Equation&nbsp;<span>4.2</span></a> with <span class="math display">\[\begin{eqnarray*}
 u(t,x) \to 1 \; \text{ as } x \to - \infty,  \quad &amp;&amp;
 u(t,x) \to b \; \text{ as } x \to +\infty,  \\
 n(t,x) \to 0 \;  \text{ as } x \to - \infty ,  \quad &amp;&amp;
@@ -756,13 +767,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./linearstablityanalysis.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear stability analysis</span></span>
+      <a href="./nonlinearreactiondiffusion.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Non linear reaction diffusion equations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./BacterialChemotaxis.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Aggregation via Chemotaxis</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Aggregation via Chemotaxis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
