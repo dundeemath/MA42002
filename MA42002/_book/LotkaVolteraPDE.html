@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Philip Murray">
-<meta name="dcterms.date" content="2023-12-22">
 
-<title>MA42002</title>
+<title>MA42002 - 5&nbsp; Lotka Voltera model</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./conservationequations.html" rel="next">
+<link href="./BacterialChemotaxis.html" rel="next">
+<link href="./linearstablityanalysis.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -63,6 +62,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -75,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html">Coupled PDE</a></li><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lotka Voltera model</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -105,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -161,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./LotkaVolteraPDE.html" class="sidebar-item-text sidebar-link">
+  <a href="./LotkaVolteraPDE.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lotka Voltera model</span></span></a>
   </div>
 </li>
@@ -195,7 +196,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#nondimensionalization" id="toc-nondimensionalization" class="nav-link active" data-scroll-target="#nondimensionalization"><span class="header-section-number">5.1</span> Nondimensionalization</a></li>
+  <li><a href="#spatially-homogeneous-steady-states" id="toc-spatially-homogeneous-steady-states" class="nav-link" data-scroll-target="#spatially-homogeneous-steady-states"><span class="header-section-number">5.2</span> Spatially homogeneous steady states</a></li>
+  <li><a href="#existence-of-travelling-wave-profiles-connection-10-and-b1-b" id="toc-existence-of-travelling-wave-profiles-connection-10-and-b1-b" class="nav-link" data-scroll-target="#existence-of-travelling-wave-profiles-connection-10-and-b1-b"><span class="header-section-number">5.3</span> Existence of travelling wave profiles connection <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((b,1-b)\)</span></a></li>
   </ul>
 </nav>
     </div>
@@ -204,26 +207,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">MA42002</h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lotka Voltera model</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Philip Murray </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">December 22, 2023</p>
-    </div>
-  </div>
   
     
   </div>
@@ -231,10 +222,162 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>This is a Quarto book.</p>
-<p>To learn more about Quarto books visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
+<p>Consider the predator-prey system (modified Lotka-Voltera equations) with diffusion of both the prey and the predator species:</p>
+<p><span id="eq-pp_eq"><span class="math display">\[
+\begin{equation}
+\begin{aligned}
+&amp; \frac{\partial u}{\partial t} = \rho \, u \left( 1 - \frac u K\right) - \alpha\, u \,  n + D_u \Delta u, \\
+&amp;  \frac{\partial n}{\partial t} = \beta \; u\, n - \gamma \; n + D_n \Delta n\; ,
+\end{aligned}
+\end{equation}
+  \tag{5.1}\]</span></span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(u\)</span> – density of the prey,</li>
+<li><span class="math inline">\(n\)</span> – density of the predator,</li>
+<li><span class="math inline">\(\rho\)</span> – growth rate of the prey,</li>
+<li><span class="math inline">\(K\)</span> – carrying capacity,</li>
+<li><span class="math inline">\(\beta u\)</span> – growth rate of the predator,</li>
+<li><span class="math inline">\(\alpha\)</span> – rate at which the predator eats the prey,</li>
+<li><span class="math inline">\(\gamma\)</span> – death rate of the predator,</li>
+<li><span class="math inline">\(D_u\)</span> – diffusion coefficient of the prey</li>
+<li><span class="math inline">\(D_n\)</span> - diffusion coefficient for the predator .</li>
+</ul>
+<section id="nondimensionalization" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="nondimensionalization"><span class="header-section-number">5.1</span> Nondimensionalization</h2>
+<p>Consider the scaling <span class="math display">\[\begin{eqnarray*}
+x^\ast = x \sqrt{\frac \rho {D_n}} , \qquad t^\ast = \rho \, t , \quad u^\ast = \frac uK, \quad n^\ast = n \frac \alpha \rho
+\end{eqnarray*}\]</span> in one dimension. Upon dropping the asteriked notation <span id="eq-pp_eq_2"><span class="math display">\[
+\begin{equation}
+\begin{cases}
+  &amp;\dfrac{\partial u}{\partial t} =  u ( 1 - u - n)  + D \dfrac{\partial^2 u}{\partial x^2}\; = \; f(u,n) + D\dfrac{\partial^2 u}{\partial x^2} \qquad x\in \mathbb R , t&gt;0 \,,  \\
+&amp; \dfrac{\partial n}{\partial t} = a\,  n(u -b) + \dfrac{\partial^2  n}{\partial x^2}\; =\; \;  g(u,n) + \dfrac{\partial^2  n}{\partial x^2}\;  \qquad x\in \mathbb R , t&gt;0,
+\end{cases}
+\end{equation}
+  \tag{5.2}\]</span></span> where <span class="math display">\[
+D= \dfrac{D_u}{D_n}, \quad a = \dfrac{\beta K}\rho, \quad   b = \dfrac \gamma{ K \beta}.
+\]</span></p>
+</section>
+<section id="spatially-homogeneous-steady-states" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="spatially-homogeneous-steady-states"><span class="header-section-number">5.2</span> Spatially homogeneous steady states</h2>
+<p>We have for spatially homogeneous steady states <span class="math display">\[
+f(u,n) =0 , \qquad g(u,n) = 0
+\]</span> Thus <span class="math display">\[\begin{eqnarray*}
+u(1-u-n) = 0 , &amp;&amp; \quad  u =0, \quad u+n=1,\\
+an(u-b) = 0 , &amp;&amp; \quad n =0, \quad u =b \; .
+\end{eqnarray*}\]</span> Thus steady states are <span class="math display">\[
+(u_1^\ast, n_1^\ast)= (0,0), \quad (u_2^\ast, n_2^\ast)= (1,0), \quad (u_3^\ast, n_3^\ast)= (b,1-b), \, 0\leq b &lt;1
+\]</span></p>
+<p>Stability of steady states to spatially homogeneous perturbations <span class="math display">\[\begin{equation}
+J(u_j^\ast, n^\ast_j) = \begin{pmatrix}
+1-2u -n &amp; -u \\
+an &amp;a(u-b)
+\end{pmatrix}_{(u^\ast_j, n^\ast_j)}, \quad j = 1,2,3.
+\end{equation}\]</span></p>
+<p>For <span class="math inline">\((u_1^\ast, n_1^\ast)= (0,0)\)</span> <span class="math display">\[
+\det(J (0,0) - \lambda I) = - (1- \lambda)(\lambda+ ab) = 0
+\]</span> and <span class="math display">\[
+\lambda_1^+ = 1, \quad \lambda_1^- = - ab &lt;0.
+\]</span> Thus <span class="math inline">\((0,0)\)</span> is a saddle point.</p>
+<p>For <span class="math inline">\((u_2^\ast, n_2^\ast)= (1,0)\)</span> <span class="math display">\[
+\det(J (1,0) - \lambda I) = - (1+ \lambda)(a(1-b)- \lambda) = 0
+\]</span> and <span class="math display">\[
+\lambda_2^- =- 1, \quad \lambda_2^+ = a(1-b) &gt;0 \; \text{ for } \; 0 \leq b &lt;1.
+\]</span> Thus <span class="math inline">\((1,0)\)</span> is a saddle point.</p>
+<p>For <span class="math inline">\((u_3^\ast, n_3^\ast)= (b,1-b)\)</span> <span class="math display">\[
+\det(J (b,1-b) - \lambda I) =\lambda^2 + b \lambda + ab(1-b) = 0
+\]</span> and <span class="math display">\[\begin{eqnarray*}
+\text{ If } &amp;&amp; \;  4 ab (1-b) \leq b^2 \qquad \lambda_3^{\pm} &lt; 0 \quad \text{ stable node } \\
+  \text{ If }  &amp;&amp; \; 4 ab (1-b) &gt; b^2 \qquad Re(\lambda_3^{\pm}) &lt; 0 , \;  Im(\lambda_3^{\pm}) \neq 0\quad \text{ stable focus (spiral) } , \\
+&amp;&amp; \text{ for } b&gt;0, \; 1-b&gt;0 \text{ spiral oscillations  are biologically realistic as long } u&gt;0, \; n&gt;0\; .
+\end{eqnarray*}\]</span></p>
+</section>
+<section id="existence-of-travelling-wave-profiles-connection-10-and-b1-b" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="existence-of-travelling-wave-profiles-connection-10-and-b1-b"><span class="header-section-number">5.3</span> Existence of travelling wave profiles connection <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((b,1-b)\)</span></h2>
+<p>Consider travelling wave solutions <span class="math display">\[\begin{eqnarray*}
+u(t,x) = W(x+ vt) = W(z) , \quad v&gt;0, \\
+n(t,x) = N( x + vt) = N(z) , \quad v &gt;0.
+\end{eqnarray*}\]</span> and <span class="math display">\[\begin{eqnarray*}
+u(t,x) \to 1 \; \text{ as } x \to - \infty,  &amp;&amp; \; \qquad  W(z)\to 1 \; \text{ as } z \to - \infty, \quad\\
+u(t,x) \to b \; \text{ as } x \to +\infty, &amp;&amp; \;  \qquad   W(z)\to b \; \text{ as } z \to + \infty \\
+n(t,x) \to 0 \;  \text{ as } x \to - \infty ,  &amp;&amp;\qquad  \;  N(z)\to 0 \;  \text{ as } z \to - \infty, \quad \\
+n(t,x) \to 1-b \; \text{ as } x \to +\infty, &amp;&amp; \;  \qquad N(z)\to 1-b \;  \text{ as } z \to +\infty
+\end{eqnarray*}\]</span></p>
+<p>The system <a href="#eq-pp_eq_2">Equation&nbsp;<span>5.2</span></a> becomes now <span id="eq-tw_pp"><span class="math display">\[
+\begin{eqnarray}
+\begin{aligned}
+&amp;v \frac{dW}{dz} = D \frac{d^2W}{dz^2} + W(1-W-N) ,\\
+&amp; v \frac{dN}{dz} =  \frac{d^2N}{dz^2} + a N(W-b),
+\end{aligned}\\
+\begin{aligned}\label{TW_pp_BC}
+&amp; W(z)\to 1 \; \text{ as } z \to - \infty, \quad W(z)\to b \; \text{ as } z \to + \infty, \\
+&amp; N(z)\to 0 \;  \text{ as } z \to - \infty, \quad N(z)\to 1-b \;  \text{ as } z \to +\infty\; .
+  \end{aligned}
+\end{eqnarray}
+\tag{5.3}\]</span></span></p>
+<p>We shall suppose that the prey species moves much more slowly than the predator species, i.e.&nbsp; <span class="math display">\[
+D= D_u/D_n \ll 1
+\]</span> and simplify <a href="#eq-tw_pp">Equation&nbsp;<span>5.3</span></a> as</p>
+<p><span id="eq-tw_pp_2"><span class="math display">\[
+\begin{eqnarray}
+\begin{aligned}
+&amp;v \frac{dW}{dz} =  W(1-W-N) ,\\
+&amp; v \frac{dN}{dz} =  \frac{d^2N}{dz^2} + a N(W-b),
+\end{aligned}
+\end{eqnarray}
+\tag{5.4}\]</span></span></p>
+<p>We can rewrite <a href="#eq-tw_pp_2">Equation&nbsp;<span>5.4</span></a> as a system of 1st order ODEs: <span id="eq-tw_pp_3"><span class="math display">\[
+\begin{eqnarray}
+\begin{aligned}
+&amp; \frac{dW}{dz} = \frac 1 v W(1-W-N) &amp;= F(W,N,P),\\
+&amp;\frac{dN}{dz} = P  &amp;= G(W, N,P)\\
+&amp;  \frac{dP}{dz} = v P - a N(W-b)  &amp;= R(W,N,P).
+\end{aligned}
+\end{eqnarray}
+\tag{5.5}\]</span></span> Steady states of <a href="#eq-tw_pp_2">Equation&nbsp;<span>5.4</span></a> are <span class="math display">\[
+(W^\ast_1, N^\ast_1, P^\ast_1) = (0,0,0), \quad (W^\ast_2, N^\ast_2, P^\ast_2) = (1,0,0), \quad (W^\ast_3, N^\ast_3, P^\ast_3) =(b, 1-b, 0).
+\]</span> Stability of steady states <span class="math display">\[
+J(W,N,P) = \begin{pmatrix}
+\dfrac 1 v - \dfrac{2W} v - \dfrac Nv &amp; - \dfrac Wv &amp; 0 \\
+0 &amp; 0 &amp; 1 \\
+- aN &amp; a(b-W) &amp; v
+\end{pmatrix}
+\]</span> At <span class="math display">\[
+(W^\ast_1, N^\ast_1, P^\ast_1) = (0,0,0)
+\]</span> we have <span class="math display">\[
+\det(J(0,0,0) - \lambda I)= \left( \frac 1 v - \lambda\right) (\lambda^2 - \lambda v - ab) =0
+\]</span> and <span class="math display">\[
+\lambda_1^1= \frac 1 v &gt; 0, \quad \lambda_2^{\pm} = \frac{ v \pm \sqrt{v^2 + 4 ab} } 2
+\]</span> Thus <span class="math inline">\((0,0,0)\)</span> is a saddle point with a <span class="math inline">\(2\)</span>-dim unstable manifold</p>
+<p>At <span class="math inline">\((W^\ast_2, N^\ast_2, P^\ast_2) = (1,0,0)\)</span> we have <span class="math display">\[
+\det(J(1,0,0) - \lambda I)= \left(- \frac 1 v - \lambda\right) (\lambda^2 - \lambda v + a(1-b)) =0
+\]</span> and <span class="math display">\[
+\lambda_1^1= -\frac 1 v &lt; 0, \quad \lambda_2^{\pm} = \frac{ v \pm \sqrt{v^2 - 4 a(1-b)} } 2
+\]</span> Thus since, <span class="math inline">\(0\leq b &lt; 1\)</span> and <span class="math inline">\(4(1-b)&gt;0\)</span>, <span class="math display">\[\begin{eqnarray*}
+\text{If } &amp;&amp;  v^2 \geq  4 a(1-b) \quad (1,0,0) \text{ is a saddle with $2$-dim unstable manifold},\\
+\text{If } &amp;&amp;  v^2 &lt;  4 a(1-b) \quad (1,0,0) \text{ is an unstable focus}
+\end{eqnarray*}\]</span></p>
+<p>For a travelling wave with <span class="math inline">\(W\geq 0\)</span> and <span class="math inline">\(N \geq 0\)</span> to exist we requite <span class="math inline">\(v^2 \geq 4 a(1-b)\)</span> and obtain a minimal wave speed <span class="math display">\[v_\text{min}=2\sqrt{a(1-b)}   \quad \text{ with } \quad  0\leq b&lt;1.\]</span></p>
+<p>At <span class="math inline">\((W^\ast_3, N^\ast_3, P^\ast_3) =(b, 1-b, 0)\)</span> we have <span class="math display">\[
+\det(J(b,1-b,0) - \lambda I)= \lambda^3 - \lambda^2(v- \frac b v) - \lambda b - \frac 1 v ab(1-b) = p(\lambda) =0
+\]</span> To analyse <span class="math inline">\(p(\lambda)\)</span> we observe that local min and max of <span class="math inline">\(p(\lambda)\)</span> are independent of <span class="math inline">\(a\)</span>: <span class="math display">\[
+p^\prime(\lambda) = 3 \lambda^2 - 2 \lambda \left( v - \frac b v\right) - b = 0
+\]</span> and <span class="math display">\[
+\lambda_{m,M}= \frac 13 \left[ \left(v - \frac bv \right) \pm \sqrt{ \left(v - \frac bv\right) ^2 + 3 b } \right]
+\]</span> If <span class="math inline">\(a=0\)</span> then we have eigenvalues <span class="math display">\[
+\lambda_3^1 = 0, \quad \lambda_3^\pm = \frac 12 \left( v - \frac bv \pm \sqrt{\left(v - \frac bv\right)^2 + 4 b} \right)\; .
+\]</span> Thus there exists a critical value <span class="math inline">\(a^\ast&gt;0\)</span> such that * for <span class="math inline">\(a \in (0, a^\ast)\)</span> we obtain <span class="math inline">\(2\)</span> real negative eigenvalues and <span class="math inline">\(1\)</span> positive real eigenvalue and <span class="math inline">\((b, 1-b, 0)\)</span> is a saddle with <span class="math inline">\(2\)</span>-dim stable manifold and <span class="math inline">\(1\)</span>-dim unstable manifold</p>
+<ul>
+<li>for <span class="math inline">\(a&gt;a^\ast\)</span> we will have a pair of complex conjugate eigenvalues with negative real part and one real positive eigenvalue corresponding to <span class="math inline">\(1\)</span>-dim unstable manifold.</li>
+</ul>
+<p>This can be easily seen from a sketch of the cubic equation:</p>
+<p><span class="math display">\[p(\lambda) = \lambda^3 - \lambda^2(v- \frac b v) - \lambda b - \frac 1 v ab(1-b).\]</span></p>
+<p>Thus we have a possible heteroclinic connection between <span class="math inline">\((1,0,0)\)</span> and <span class="math inline">\((b, 1-b, 0)\)</span>, i.e.&nbsp;between <span class="math inline">\(2\)</span>-dim unstable manifold at <span class="math inline">\((1,0,0)\)</span> and <span class="math inline">\(2\)</span>-dim stable manifold at <span class="math inline">\((b, 1-b, 0)\)</span>, and therefore an existence of a travelling wave front solution for <a href="#eq-pp_eq_2">Equation&nbsp;<span>5.2</span></a> with <span class="math display">\[\begin{eqnarray*}
+u(t,x) \to 1 \; \text{ as } x \to - \infty,  \quad &amp;&amp;
+u(t,x) \to b \; \text{ as } x \to +\infty,  \\
+n(t,x) \to 0 \;  \text{ as } x \to - \infty ,  \quad &amp;&amp;
+n(t,x) \to 1-b \; \text{ as } x \to +\infty\; .
+\end{eqnarray*}\]</span></p>
 
 
 </section>
@@ -475,10 +618,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./linearstablityanalysis.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear stability analysis</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./conservationequations.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conservation equations</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./BacterialChemotaxis.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bacterial Aggregation via Chemotaxis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

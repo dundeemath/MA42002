@@ -1,0 +1,148 @@
+---
+title: "Linear stability analysis"
+format: html
+---
+
+Consider a system of ODEs 
+
+\begin{equation*}
+\frac{du}{dt} = f(u) \quad \text{ with } \quad u \in \mathbb R^m\quad  \text{ and }\quad  t \in \mathbb R. 
+\end{equation*}  
+
+As an example consider $m=2$:
+$$
+\begin{eqnarray}
+\begin{cases}
+\dfrac{du_1}{dt} =F(u_1, u_2) ,\\
+\dfrac{du_2}{dt} =G(u_1, u_2)
+\end{cases}
+\end{eqnarray}
+$$ {#eq-system_ode11}
+
+$(u_1, u_2) = (u^\ast_1, u^\ast_2)$ is the steady state of the system @eq-system_ode11, i.e.
+$$ 
+\dfrac{du_1}{dt} = 0
+$$
+and 
+$$ 
+ \dfrac{du_2}{dt} = 0 
+ $$.
+
+To determine the behaviour of the solution near a steady state we consider 
+$$
+u_1(t) = u^\ast_1 + \bar u_1(t), \quad  u_2(t) = u^\ast_2 + \bar u_2(t)
+$$
+$$
+\begin{eqnarray}
+\begin{cases}
+\dfrac{d(u^\ast_1+ \bar u_1)}{dt} =F(u^\ast_1+ u_1, u^\ast_2+ \bar u_2) ,\\
+\dfrac{d(u^\ast_2+\bar u_2)}{dt} =G(u^\ast_1+u_1,u^\ast_2+\bar u_2)
+\end{cases}
+\end{eqnarray}
+$$ {#eq-system_ode12}
+
+Then using the fact that $(u^\ast_1, u^\ast_2)$ is a steady state and applying Taylor series expansion about $( u^\ast_1, u^\ast_2)$  and assuming that  
+$$
+\sup_{t}|\bar u_1(t)| \ll 1, \sup_{t}|\bar u_2(t)|\ll 1
+$$
+ (small perturbations of the steady state)  we have
+$$
+\begin{eqnarray}
+\begin{cases}
+\dfrac{d  \bar u_1}{dt} =F(u^\ast_1, u^\ast_2) +\dfrac{\partial F}{\partial u_1}(u^\ast_1, u^\ast_2) \,   \bar u_1
++\dfrac{\partial F}{\partial u_2}(u^\ast_1, u^\ast_2) \, \bar u_2 + O(|\bar u_1|^2, |\bar u_2|^2) ,\\
+\dfrac{d \bar u_2}{dt} =G(u^\ast_1,u^\ast_2)+ \dfrac{\partial G}{\partial u_1}(u^\ast_1, u^\ast_2) \,   \bar u_1
++\dfrac{\partial G}{\partial u_2}(u^\ast_1, u^\ast_2) \,\bar u_2 + O(|\bar u_1|^2, |\bar u_2|^2) 
+\end{cases}
+\end{eqnarray}
+$$ {#eq-system_ode13}
+
+Thus since $(u^\ast_1, u^\ast_2)$ is a steady state, i.e. $F(u^\ast_1, u^\ast_2) =0$ and $G(u^\ast_1, u^\ast_2) =0$   (ignoring negligibly small higher order terms) we obtain system of linearised equations 
+$$
+\begin{eqnarray}
+\begin{pmatrix}
+\dfrac{d  \bar u_1}{dt} \\
+\dfrac{d \bar u_2}{dt} 
+\end{pmatrix} = J( u^\ast_1, u^\ast_2) \begin{pmatrix} \bar u_1 \\
+\bar u_2 
+\end{pmatrix}
+\end{eqnarray}
+$$ {#eq-system_ode14}
+where the Jacobian matrix $J(u^\ast_1, u^\ast_2)$ is defined as 
+$$
+J( u^\ast_1, u^\ast_2) = \begin{pmatrix}
+\dfrac{\partial F(u^\ast_1, u^\ast_2) }{\partial u_1}\; \; & \dfrac{\partial F(u^\ast_1, u^\ast_2)}{\partial u_2}\\
+\dfrac{\partial G(u^\ast_1, u^\ast_2)}{\partial u_1} & \dfrac{\partial G(u^\ast_1, u^\ast_2)}{\partial u_2}
+\end{pmatrix}
+$$
+Therefore the behaviour of the nonlinear system @eq-system_ode11  near the steady state 
+$(u^\ast_1, u^\ast_2)$
+is determined by  solutions of  system of linear  ODEs @eq-system_ode14.
+
+Since @eq-system_ode14 is linear we can write the general solution of @eqsystem_ode14
+\begin{equation}
+\begin{pmatrix} \bar u_1 \\
+\bar u_2 
+\end{pmatrix} = e^{\lambda_1 t} \begin{pmatrix} \phi_1 \\
+\phi_2 
+\end{pmatrix}   +
+e^{\lambda_2 t} \begin{pmatrix} \psi_1 \\
+\psi_2 
+\end{pmatrix}
+\end{equation}
+where $\lambda_1$ and $\lambda_2$ are eigenvalues of Jacobian matrix  $J( u^\ast_1, u^\ast_2)$ and 
+$$
+\phi=\begin{pmatrix} \phi_1 \\
+\phi_2 
+\end{pmatrix} \quad \textrm{and} \quad  \psi= \begin{pmatrix} \psi_1 \\
+\psi_2 
+\end{pmatrix}
+$$ 
+are corresponding eigenvectors. 
+
+Denote 
+$$\bar u=
+\begin{pmatrix} \bar u_1 \\
+\bar u_2 
+\end{pmatrix}
+$$.
+
+
+If both $\lambda_{1,2} \neq 0$ then the stability of the steady state 
+$(u^\ast_1, u^\ast_2)$ is determined by the real part of the eigenvalues $\lambda_{1,2}$. 
+
+* If either $\mathcal Re (\lambda_1)>0$ or  $\mathcal Re (\lambda_2)>0$ then  
+$|\bar u(t)| \to +\infty$ as $t \to + \infty$ and $(u^\ast_1, u^\ast_2)$  is unstable.
+
+* If  $\mathcal Re (\lambda_1)<0$ and  $\mathcal Re (\lambda_2)<0$ then  
+$|\bar u(t)| \to 0$ as $t \to + \infty$ and $(u^\ast_1, u^\ast_2)$  is stable.
+
+*  If  $\lambda_1=0$ or $\lambda_2=0$ we have to consider higher order terms. 
+
+Denote $\beta = \textrm{tr} (J( u^\ast_1, u^\ast_2))$ and $\gamma= \det(J( u^\ast_1, u^\ast_2))$. Then the characteristic (eigenvalue) equation for  $J( u^\ast_1, u^\ast_2)$ is 
+$$
+\lambda^2 - \beta \lambda + \gamma = 0 \; , \quad  \lambda_{1,2} = \frac{ \beta \pm \sqrt{ \beta^2 - 4 \gamma}} 2.
+$$
+Then
+
+* If  $\gamma <0$ we have two real eigenvalues  with different signs, i.e. $\lambda_1 < 0 < \lambda_2$. Thus $(u^\ast_1, u^\ast_2)$ is a **saddle**.
+
+*  If  $\gamma >0$  and $\beta^2 \geq 4\gamma$ we have two real eigenvalues  with the same sign.  Thus $(u^\ast_1, u^\ast_2)$ is a **node**.
+
+    * if $\beta >0$ then $\lambda_2 > \lambda_1 >0$  and  $(u^\ast_1, u^\ast_2)$ is an **unstable node**.
+    *  if $\beta <0$ then $\lambda_1 < \lambda_2 < 0$   and  $(u^\ast_1, u^\ast_2)$ is a **stable node**.
+
+*  If  $\gamma >0$  and $\beta^2 < 4\gamma$ we have two complex conjugate eigenvalues.
+Thus $(u^\ast_1, u^\ast_2)$ is a **focus (spiral)**.
+
+    * if $\beta >0$ then  $\mathcal Re(\lambda_{1,2}) > 0$ and   $(u^\ast_1, u^\ast_2)$ is an **unstable focus**
+    *  if $\beta <0$ then  $\mathcal Re(\lambda_{1,2}) < 0$ and  $(u^\ast_1, u^\ast_2)$ is a **stable focus**.
+
+    * If $\beta =0$ then for linear system we have a **centre**, but in general we have no information on the behaviour of the nonlinear system near the steady state  $(u^\ast_1, u^\ast_2)$. 
+
+\begin{center}
+\begin{figure}
+\includegraphics[width=0.99\textwidth]{phase_plane} 
+\caption{Schematic diagram showing where the different types of fixed points lie in relation to {\rm det}A and {\rm tr}A, where A is the Jacobian matrix of system (44)}  
+\end{figure}
+\end{center} 

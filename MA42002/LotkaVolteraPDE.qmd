@@ -1,0 +1,241 @@
+---
+title: "Lotka Voltera model"
+format: html
+---
+
+
+ 
+ Consider the predator-prey system (modified Lotka-Voltera equations) with diffusion of both the prey and the predator species:
+ 
+ $$
+ \begin{equation}
+ \begin{aligned}
+ & \frac{\partial u}{\partial t} = \rho \, u \left( 1 - \frac u K\right) - \alpha\, u \,  n + D_u \Delta u, \\
+&  \frac{\partial n}{\partial t} = \beta \; u\, n - \gamma \; n + D_n \Delta n\; ,
+ \end{aligned} 
+ \end{equation}
+ $$ {#eq-pp_eq}
+
+where 
+
+*  $u$ -- density of the prey, 
+*  $n$ -- density of the predator, 
+*  $\rho$ -- growth rate of the prey,
+*  $K$ -- carrying capacity, 
+*  $\beta u$ -- growth rate of the predator,
+*  $\alpha$ -- rate at which the predator eats the prey,
+*  $\gamma$ -- death rate of the predator,
+*  $D_u$ -- diffusion coefficient of the prey
+*  $D_n$ - diffusion coefficient for the predator .
+ 
+ 
+## Nondimensionalization 
+ Consider the scaling
+ \begin{eqnarray*}
+ x^\ast = x \sqrt{\frac \rho {D_n}} , \qquad t^\ast = \rho \, t , \quad u^\ast = \frac uK, \quad n^\ast = n \frac \alpha \rho
+ \end{eqnarray*}
+ in one dimension. 
+Upon dropping the asteriked notation
+ $$
+ \begin{equation}
+ \begin{cases}
+  &\dfrac{\partial u}{\partial t} =  u ( 1 - u - n)  + D \dfrac{\partial^2 u}{\partial x^2}\; = \; f(u,n) + D\dfrac{\partial^2 u}{\partial x^2} \qquad x\in \mathbb R , t>0 \,,  \\
+ & \dfrac{\partial n}{\partial t} = a\,  n(u -b) + \dfrac{\partial^2  n}{\partial x^2}\; =\; \;  g(u,n) + \dfrac{\partial^2  n}{\partial x^2}\;  \qquad x\in \mathbb R , t>0,
+ \end{cases} 
+ \end{equation}
+ $$ {#eq-pp_eq_2}
+ where 
+ $$
+ D= \dfrac{D_u}{D_n}, \quad a = \dfrac{\beta K}\rho, \quad   b = \dfrac \gamma{ K \beta}.
+ $$
+ 
+
+## Spatially homogeneous steady states
+ 
+ We have for spatially homogeneous steady states 
+ $$
+ f(u,n) =0 , \qquad g(u,n) = 0 
+ $$
+ Thus 
+ \begin{eqnarray*}
+ u(1-u-n) = 0 , && \quad  u =0, \quad u+n=1,\\
+ an(u-b) = 0 , && \quad n =0, \quad u =b \; .
+ \end{eqnarray*}
+ Thus steady states are
+ $$
+ (u_1^\ast, n_1^\ast)= (0,0), \quad (u_2^\ast, n_2^\ast)= (1,0), \quad (u_3^\ast, n_3^\ast)= (b,1-b), \, 0\leq b <1
+ $$
+ 
+ Stability of steady states to spatially homogeneous perturbations
+ \begin{equation}
+ J(u_j^\ast, n^\ast_j) = \begin{pmatrix}
+ 1-2u -n & -u \\
+ an &a(u-b)
+ \end{pmatrix}_{(u^\ast_j, n^\ast_j)}, \quad j = 1,2,3.
+ \end{equation}
+ 
+ For $(u_1^\ast, n_1^\ast)= (0,0)$ 
+ $$
+ \det(J (0,0) - \lambda I) = - (1- \lambda)(\lambda+ ab) = 0
+ $$
+ and 
+ $$
+ \lambda_1^+ = 1, \quad \lambda_1^- = - ab <0.
+ $$
+ Thus $(0,0)$ is a saddle point.
+ 
+ 
+For $(u_2^\ast, n_2^\ast)= (1,0)$
+ $$
+ \det(J (1,0) - \lambda I) = - (1+ \lambda)(a(1-b)- \lambda) = 0
+ $$
+ and 
+ $$
+ \lambda_2^- =- 1, \quad \lambda_2^+ = a(1-b) >0 \; \text{ for } \; 0 \leq b <1.
+ $$
+ Thus $(1,0)$ is a saddle point.
+ 
+ For $(u_3^\ast, n_3^\ast)= (b,1-b)$
+$$
+ \det(J (b,1-b) - \lambda I) =\lambda^2 + b \lambda + ab(1-b) = 0
+ $$
+ and 
+ \begin{eqnarray*}
+ \text{ If } && \;  4 ab (1-b) \leq b^2 \qquad \lambda_3^{\pm} < 0 \quad \text{ stable node } \\
+  \text{ If }  && \; 4 ab (1-b) > b^2 \qquad Re(\lambda_3^{\pm}) < 0 , \;  Im(\lambda_3^{\pm}) \neq 0\quad \text{ stable focus (spiral) } , \\
+ && \text{ for } b>0, \; 1-b>0 \text{ spiral oscillations  are biologically realistic as long } u>0, \; n>0\; .
+\end{eqnarray*}
+
+##  Existence of travelling wave profiles connection $(1,0)$ and $(b,1-b)$
+
+Consider travelling wave solutions 
+\begin{eqnarray*}
+u(t,x) = W(x+ vt) = W(z) , \quad v>0, \\
+n(t,x) = N( x + vt) = N(z) , \quad v >0.
+\end{eqnarray*}
+ and
+ \begin{eqnarray*}
+u(t,x) \to 1 \; \text{ as } x \to - \infty,  && \; \qquad  W(z)\to 1 \; \text{ as } z \to - \infty, \quad\\
+ u(t,x) \to b \; \text{ as } x \to +\infty, && \;  \qquad   W(z)\to b \; \text{ as } z \to + \infty \\
+n(t,x) \to 0 \;  \text{ as } x \to - \infty ,  &&\qquad  \;  N(z)\to 0 \;  \text{ as } z \to - \infty, \quad \\
+n(t,x) \to 1-b \; \text{ as } x \to +\infty, && \;  \qquad N(z)\to 1-b \;  \text{ as } z \to +\infty
+\end{eqnarray*}
+
+The system @eq-pp_eq_2 becomes now 
+$$
+\begin{eqnarray}
+\begin{aligned}
+&v \frac{dW}{dz} = D \frac{d^2W}{dz^2} + W(1-W-N) ,\\
+& v \frac{dN}{dz} =  \frac{d^2N}{dz^2} + a N(W-b), 
+\end{aligned}\\
+\begin{aligned}\label{TW_pp_BC}
+& W(z)\to 1 \; \text{ as } z \to - \infty, \quad W(z)\to b \; \text{ as } z \to + \infty, \\
+ & N(z)\to 0 \;  \text{ as } z \to - \infty, \quad N(z)\to 1-b \;  \text{ as } z \to +\infty\; .
+  \end{aligned}
+\end{eqnarray}
+$$ {#eq-tw_pp}
+
+We shall suppose that the prey species moves much more slowly than the predator species, i.e. 
+$$
+D= D_u/D_n \ll 1
+$$
+and simplify @eq-tw_pp as 
+
+$$
+\begin{eqnarray}
+\begin{aligned}
+&v \frac{dW}{dz} =  W(1-W-N) ,\\
+& v \frac{dN}{dz} =  \frac{d^2N}{dz^2} + a N(W-b), 
+\end{aligned}
+\end{eqnarray}
+$${#eq-tw_pp_2}
+
+We can rewrite @eq-tw_pp_2 as a system of 1st order ODEs:
+$$
+\begin{eqnarray}
+\begin{aligned}
+& \frac{dW}{dz} = \frac 1 v W(1-W-N) &= F(W,N,P),\\
+&\frac{dN}{dz} = P  &= G(W, N,P)\\
+&  \frac{dP}{dz} = v P - a N(W-b)  &= R(W,N,P). 
+\end{aligned}
+\end{eqnarray}
+$$ {#eq-tw_pp_3}
+Steady states of @eq-tw_pp_2 are 
+$$
+(W^\ast_1, N^\ast_1, P^\ast_1) = (0,0,0), \quad (W^\ast_2, N^\ast_2, P^\ast_2) = (1,0,0), \quad (W^\ast_3, N^\ast_3, P^\ast_3) =(b, 1-b, 0).
+$$
+Stability of steady states 
+$$
+J(W,N,P) = \begin{pmatrix}
+\dfrac 1 v - \dfrac{2W} v - \dfrac Nv & - \dfrac Wv & 0 \\
+0 & 0 & 1 \\
+- aN & a(b-W) & v 
+\end{pmatrix}
+$$
+At 
+$$
+(W^\ast_1, N^\ast_1, P^\ast_1) = (0,0,0)
+$$
+ we have
+$$
+\det(J(0,0,0) - \lambda I)= \left( \frac 1 v - \lambda\right) (\lambda^2 - \lambda v - ab) =0
+$$
+and 
+$$
+\lambda_1^1= \frac 1 v > 0, \quad \lambda_2^{\pm} = \frac{ v \pm \sqrt{v^2 + 4 ab} } 2
+$$
+Thus 
+$(0,0,0)$ is a saddle point with a $2$-dim unstable manifold
+
+At $(W^\ast_2, N^\ast_2, P^\ast_2) = (1,0,0)$  we have 
+$$
+\det(J(1,0,0) - \lambda I)= \left(- \frac 1 v - \lambda\right) (\lambda^2 - \lambda v + a(1-b)) =0
+$$
+and 
+$$
+\lambda_1^1= -\frac 1 v < 0, \quad \lambda_2^{\pm} = \frac{ v \pm \sqrt{v^2 - 4 a(1-b)} } 2
+$$
+Thus since, $0\leq b < 1$ and $4(1-b)>0$,
+\begin{eqnarray*}
+\text{If } &&  v^2 \geq  4 a(1-b) \quad (1,0,0) \text{ is a saddle with $2$-dim unstable manifold},\\
+ \text{If } &&  v^2 <  4 a(1-b) \quad (1,0,0) \text{ is an unstable focus}
+\end{eqnarray*}
+
+
+For a travelling wave with  $W\geq 0$ and $N \geq 0$  to exist we requite $v^2 \geq  4 a(1-b)$ and obtain a minimal wave 
+speed 
+$$v_\text{min}=2\sqrt{a(1-b)}   \quad \text{ with } \quad  0\leq b<1.$$ 
+
+At $(W^\ast_3, N^\ast_3, P^\ast_3) =(b, 1-b, 0)$ we have 
+$$
+\det(J(b,1-b,0) - \lambda I)= \lambda^3 - \lambda^2(v- \frac b v) - \lambda b - \frac 1 v ab(1-b) = p(\lambda) =0
+$$
+To analyse $p(\lambda)$ we observe that  local min and max of $p(\lambda)$ are independent of $a$:
+$$
+p^\prime(\lambda) = 3 \lambda^2 - 2 \lambda \left( v - \frac b v\right) - b = 0
+$$
+and 
+$$
+\lambda_{m,M}= \frac 13 \left[ \left(v - \frac bv \right) \pm \sqrt{ \left(v - \frac bv\right) ^2 + 3 b } \right]
+$$
+If $a=0$ then we have eigenvalues 
+$$
+\lambda_3^1 = 0, \quad \lambda_3^\pm = \frac 12 \left( v - \frac bv \pm \sqrt{\left(v - \frac bv\right)^2 + 4 b} \right)\; .
+$$ 
+Thus there exists a critical value $a^\ast>0$ such that 
+* for 
+$a \in (0, a^\ast)$ we obtain $2$ real negative eigenvalues and $1$ positive real eigenvalue and $(b, 1-b, 0)$ is a saddle with $2$-dim stable manifold and $1$-dim unstable manifold
+
+* for $a>a^\ast$  we will have a pair of complex conjugate eigenvalues with negative real part and one real positive eigenvalue corresponding to $1$-dim unstable manifold. 
+ 
+This can be easily seen from a sketch of the cubic equation: 
+
+$$p(\lambda) = \lambda^3 - \lambda^2(v- \frac b v) - \lambda b - \frac 1 v ab(1-b).$$
+
+Thus we have a possible heteroclinic connection  between $(1,0,0)$ and $(b, 1-b, 0)$, i.e. between $2$-dim unstable manifold at $(1,0,0)$ and $2$-dim stable manifold at $(b, 1-b, 0)$, and therefore an existence of a travelling wave front solution for @eq-pp_eq_2 with 
+ \begin{eqnarray*}
+u(t,x) \to 1 \; \text{ as } x \to - \infty,  \quad &&
+ u(t,x) \to b \; \text{ as } x \to +\infty,  \\
+n(t,x) \to 0 \;  \text{ as } x \to - \infty ,  \quad &&
+n(t,x) \to 1-b \; \text{ as } x \to +\infty\; .
+\end{eqnarray*}

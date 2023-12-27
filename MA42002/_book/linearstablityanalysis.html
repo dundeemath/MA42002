@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Philip Murray">
-<meta name="dcterms.date" content="2023-12-22">
 
-<title>MA42002</title>
+<title>MA42002 - 4&nbsp; Linear stability analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./conservationequations.html" rel="next">
+<link href="./LotkaVolteraPDE.html" rel="next">
+<link href="./nonlinearreactiondiffusion.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -63,6 +62,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -75,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Single PDE</a></li><li class="breadcrumb-item"><a href="./linearstablityanalysis.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear stability analysis</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -105,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -144,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./linearstablityanalysis.html" class="sidebar-item-text sidebar-link">
+  <a href="./linearstablityanalysis.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear stability analysis</span></span></a>
   </div>
 </li>
@@ -191,39 +192,21 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">MA42002</h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear stability analysis</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Philip Murray </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">December 22, 2023</p>
-    </div>
-  </div>
   
     
   </div>
@@ -231,13 +214,109 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>This is a Quarto book.</p>
-<p>To learn more about Quarto books visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
+<p>Consider a system of ODEs</p>
+<p><span class="math display">\[\begin{equation*}
+\frac{du}{dt} = f(u) \quad \text{ with } \quad u \in \mathbb R^m\quad  \text{ and }\quad  t \in \mathbb R.
+\end{equation*}\]</span></p>
+<p>As an example consider <span class="math inline">\(m=2\)</span>: <span id="eq-system_ode11"><span class="math display">\[
+\begin{eqnarray}
+\begin{cases}
+\dfrac{du_1}{dt} =F(u_1, u_2) ,\\
+\dfrac{du_2}{dt} =G(u_1, u_2)
+\end{cases}
+\end{eqnarray}
+\tag{4.1}\]</span></span></p>
+<p><span class="math inline">\((u_1, u_2) = (u^\ast_1, u^\ast_2)\)</span> is the steady state of the system <a href="#eq-system_ode11">Equation&nbsp;<span>4.1</span></a>, i.e. <span class="math display">\[
+\dfrac{du_1}{dt} = 0
+\]</span> and <span class="math display">\[
+\dfrac{du_2}{dt} = 0
+\]</span>.</p>
+<p>To determine the behaviour of the solution near a steady state we consider <span class="math display">\[
+u_1(t) = u^\ast_1 + \bar u_1(t), \quad  u_2(t) = u^\ast_2 + \bar u_2(t)
+\]</span> <span id="eq-system_ode12"><span class="math display">\[
+\begin{eqnarray}
+\begin{cases}
+\dfrac{d(u^\ast_1+ \bar u_1)}{dt} =F(u^\ast_1+ u_1, u^\ast_2+ \bar u_2) ,\\
+\dfrac{d(u^\ast_2+\bar u_2)}{dt} =G(u^\ast_1+u_1,u^\ast_2+\bar u_2)
+\end{cases}
+\end{eqnarray}
+\tag{4.2}\]</span></span></p>
+<p>Then using the fact that <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span> is a steady state and applying Taylor series expansion about <span class="math inline">\(( u^\ast_1, u^\ast_2)\)</span> and assuming that<br>
+<span class="math display">\[
+\sup_{t}|\bar u_1(t)| \ll 1, \sup_{t}|\bar u_2(t)|\ll 1
+\]</span> (small perturbations of the steady state) we have <span id="eq-system_ode13"><span class="math display">\[
+\begin{eqnarray}
+\begin{cases}
+\dfrac{d  \bar u_1}{dt} =F(u^\ast_1, u^\ast_2) +\dfrac{\partial F}{\partial u_1}(u^\ast_1, u^\ast_2) \,   \bar u_1
++\dfrac{\partial F}{\partial u_2}(u^\ast_1, u^\ast_2) \, \bar u_2 + O(|\bar u_1|^2, |\bar u_2|^2) ,\\
+\dfrac{d \bar u_2}{dt} =G(u^\ast_1,u^\ast_2)+ \dfrac{\partial G}{\partial u_1}(u^\ast_1, u^\ast_2) \,   \bar u_1
++\dfrac{\partial G}{\partial u_2}(u^\ast_1, u^\ast_2) \,\bar u_2 + O(|\bar u_1|^2, |\bar u_2|^2)
+\end{cases}
+\end{eqnarray}
+\tag{4.3}\]</span></span></p>
+<p>Thus since <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span> is a steady state, i.e.&nbsp;<span class="math inline">\(F(u^\ast_1, u^\ast_2) =0\)</span> and <span class="math inline">\(G(u^\ast_1, u^\ast_2) =0\)</span> (ignoring negligibly small higher order terms) we obtain system of linearised equations <span id="eq-system_ode14"><span class="math display">\[
+\begin{eqnarray}
+\begin{pmatrix}
+\dfrac{d  \bar u_1}{dt} \\
+\dfrac{d \bar u_2}{dt}
+\end{pmatrix} = J( u^\ast_1, u^\ast_2) \begin{pmatrix} \bar u_1 \\
+\bar u_2
+\end{pmatrix}
+\end{eqnarray}
+\tag{4.4}\]</span></span> where the Jacobian matrix <span class="math inline">\(J(u^\ast_1, u^\ast_2)\)</span> is defined as <span class="math display">\[
+J( u^\ast_1, u^\ast_2) = \begin{pmatrix}
+\dfrac{\partial F(u^\ast_1, u^\ast_2) }{\partial u_1}\; \; &amp; \dfrac{\partial F(u^\ast_1, u^\ast_2)}{\partial u_2}\\
+\dfrac{\partial G(u^\ast_1, u^\ast_2)}{\partial u_1} &amp; \dfrac{\partial G(u^\ast_1, u^\ast_2)}{\partial u_2}
+\end{pmatrix}
+\]</span> Therefore the behaviour of the nonlinear system <a href="#eq-system_ode11">Equation&nbsp;<span>4.1</span></a> near the steady state <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span> is determined by solutions of system of linear ODEs <a href="#eq-system_ode14">Equation&nbsp;<span>4.4</span></a>.</p>
+<p>Since <a href="#eq-system_ode14">Equation&nbsp;<span>4.4</span></a> is linear we can write the general solution of <span class="citation" data-cites="eqsystem_ode14">(<a href="#ref-eqsystem_ode14" role="doc-biblioref"><strong>eqsystem_ode14?</strong></a>)</span> <span class="math display">\[\begin{equation}
+\begin{pmatrix} \bar u_1 \\
+\bar u_2
+\end{pmatrix} = e^{\lambda_1 t} \begin{pmatrix} \phi_1 \\
+\phi_2
+\end{pmatrix}   +
+e^{\lambda_2 t} \begin{pmatrix} \psi_1 \\
+\psi_2
+\end{pmatrix}
+\end{equation}\]</span> where <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> are eigenvalues of Jacobian matrix <span class="math inline">\(J( u^\ast_1, u^\ast_2)\)</span> and <span class="math display">\[
+\phi=\begin{pmatrix} \phi_1 \\
+\phi_2
+\end{pmatrix} \quad \textrm{and} \quad  \psi= \begin{pmatrix} \psi_1 \\
+\psi_2
+\end{pmatrix}
+\]</span> are corresponding eigenvectors.</p>
+<p>Denote <span class="math display">\[\bar u=
+\begin{pmatrix} \bar u_1 \\
+\bar u_2
+\end{pmatrix}
+\]</span>.</p>
+<p>If both <span class="math inline">\(\lambda_{1,2} \neq 0\)</span> then the stability of the steady state <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span> is determined by the real part of the eigenvalues <span class="math inline">\(\lambda_{1,2}\)</span>.</p>
+<ul>
+<li><p>If either <span class="math inline">\(\mathcal Re (\lambda_1)&gt;0\)</span> or <span class="math inline">\(\mathcal Re (\lambda_2)&gt;0\)</span> then<br>
+<span class="math inline">\(|\bar u(t)| \to +\infty\)</span> as <span class="math inline">\(t \to + \infty\)</span> and <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span> is unstable.</p></li>
+<li><p>If <span class="math inline">\(\mathcal Re (\lambda_1)&lt;0\)</span> and <span class="math inline">\(\mathcal Re (\lambda_2)&lt;0\)</span> then<br>
+<span class="math inline">\(|\bar u(t)| \to 0\)</span> as <span class="math inline">\(t \to + \infty\)</span> and <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span> is stable.</p></li>
+<li><p>If <span class="math inline">\(\lambda_1=0\)</span> or <span class="math inline">\(\lambda_2=0\)</span> we have to consider higher order terms.</p></li>
+</ul>
+<p>Denote <span class="math inline">\(\beta = \textrm{tr} (J( u^\ast_1, u^\ast_2))\)</span> and <span class="math inline">\(\gamma= \det(J( u^\ast_1, u^\ast_2))\)</span>. Then the characteristic (eigenvalue) equation for <span class="math inline">\(J( u^\ast_1, u^\ast_2)\)</span> is <span class="math display">\[
+\lambda^2 - \beta \lambda + \gamma = 0 \; , \quad  \lambda_{1,2} = \frac{ \beta \pm \sqrt{ \beta^2 - 4 \gamma}} 2.
+\]</span> Then</p>
+<ul>
+<li><p>If <span class="math inline">\(\gamma &lt;0\)</span> we have two real eigenvalues with different signs, i.e.&nbsp;<span class="math inline">\(\lambda_1 &lt; 0 &lt; \lambda_2\)</span>. Thus <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span> is a <strong>saddle</strong>.</p></li>
+<li><p>If <span class="math inline">\(\gamma &gt;0\)</span> and <span class="math inline">\(\beta^2 \geq 4\gamma\)</span> we have two real eigenvalues with the same sign. Thus <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span> is a <strong>node</strong>.</p>
+<ul>
+<li>if <span class="math inline">\(\beta &gt;0\)</span> then <span class="math inline">\(\lambda_2 &gt; \lambda_1 &gt;0\)</span> and <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span> is an <strong>unstable node</strong>.</li>
+<li>if <span class="math inline">\(\beta &lt;0\)</span> then <span class="math inline">\(\lambda_1 &lt; \lambda_2 &lt; 0\)</span> and <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span> is a <strong>stable node</strong>.</li>
+</ul></li>
+<li><p>If <span class="math inline">\(\gamma &gt;0\)</span> and <span class="math inline">\(\beta^2 &lt; 4\gamma\)</span> we have two complex conjugate eigenvalues. Thus <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span> is a <strong>focus (spiral)</strong>.</p>
+<ul>
+<li><p>if <span class="math inline">\(\beta &gt;0\)</span> then <span class="math inline">\(\mathcal Re(\lambda_{1,2}) &gt; 0\)</span> and <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span> is an <strong>unstable focus</strong></p></li>
+<li><p>if <span class="math inline">\(\beta &lt;0\)</span> then <span class="math inline">\(\mathcal Re(\lambda_{1,2}) &lt; 0\)</span> and <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span> is a <strong>stable focus</strong>.</p></li>
+<li><p>If <span class="math inline">\(\beta =0\)</span> then for linear system we have a <strong>centre</strong>, but in general we have no information on the behaviour of the nonlinear system near the steady state <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span>.</p></li>
+</ul></li>
+</ul>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -475,10 +554,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./nonlinearreactiondiffusion.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Non linear reaction diffusion equations</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./conservationequations.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conservation equations</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./LotkaVolteraPDE.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lotka Voltera model</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

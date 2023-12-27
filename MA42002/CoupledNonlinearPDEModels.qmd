@@ -1,0 +1,37 @@
+---
+title: "Untitled"
+format: html
+---
+
+ \section{\bf \Large Systems of reaction-diffusion equations}
+We now consider systems of reaction-diffusion equations which will be used to model, for example, predator-prey interactions, aggregation of bacteria, animal coat patterning (spatial pattern formation) and the spread of diseases. To do this we will consider systems modelling the spatio-temporal interactions between several species $u_1({\bf x}, t), u_2({\bf x}, t), \dots , u_m(t,{\bf x})$, \; $u(t,x) = (u_1, u_2, \ldots, u_m)$. \\
+
+Let $\Omega \subset \mathbb R^n$ be a  domain with a (sufficiently) smooth boundary $\partial \Omega$ which has unit outward normal ${\bf n}$. The systems we will now investigate are of the general form:
+
+ \begin{eqnarray*}
+&& \frac{\partial u}{\partial t} = \nabla \cdot( D_u \nabla u) + f(u), \qquad u \in \mathbb R^m, \qquad {\bf x} \in \Omega, \quad t>0, \\ 
+%&& \frac{\partial v}{\partial t} = \nabla \cdot( D_v \nabla v) + g(u, v, \dots ,p), \qquad v \in \mathbb R^m, \qquad {\bf x} \in \Omega, \quad t>0, \\ 
+%&& \vdots \\
+%&& \frac{\partial p}{\partial t} = \nabla \cdot( D_p \nabla p) + h(u, v, \dots , p), \qquad p \in \mathbb R^m, \qquad {\bf x} \in \Omega, \quad t>0, \\ 
+%&& \\
+&&  u(t, {\bf x}) = u_0,  \hspace{1.8cm}  {\bf x} \in \Omega ,\\
+&&  D_u \nabla u \cdot {\bf n } = 0 \hspace{ 0.8cm } {\bf x} \in \partial \Omega, \; \; t>0.
+ \end{eqnarray*} 
+ 
+ 
+
+
+
+
+\subsection{Infinite Domain + Detailed Analysis + Spruce Budworm}
+
+\newpage
+ 
+ \subsection{Spatial Pattern Formation via Mechanical Models: \\ The Mechanochemical Theory of Pattern Formation} 
+ 
+ \newpage
+ 
+ 
+
+
+

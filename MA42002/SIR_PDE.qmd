@@ -1,0 +1,398 @@
+---
+title: "SIR models"
+format: html
+---
+\subsection{\Large Mathematical modelling of infection diseases (SIR)}{$\phantom{aaaaa}$}
+ 
+ Mathematical modelling of infection diseases can help to understand complex (nonlinear) interactions, to design vaccination strategies, predict further outbreaks of diseases, how many individual will be affected.
+ 
+ Assumptions
+ \begin{itemize}
+\item   Total population is constant: the duration of the epidemic is short compared to the lifetime of its hosts, so we can neglect birth and disease-unrelated death
+
+\item Consider a disease which, after recovery, confers immunity (and/or death if lethal)  
+
+\item  Simple diffusion for spatial distribution of population 
+  \end{itemize}
+
+ 
+ 
+ Consider consider three classes of population density 
+ \begin{itemize}
+\item  $S$ -- susceptibles - such that can be infected
+ \item  $I$ -- invectives  - such that have the disease and can transmit it to susceptibles
+\item  $R$ -- recovered (removed)  - such that have had the disease and are immune or isolate until recovered or death (if the disease is lethal) 
+  \end{itemize}
+ 
+ Progress through the disease 
+ $$
+S \longrightarrow I \longrightarrow R $$ 
+
+Model assumptions 
+ \begin{itemize}
+\item The gain in the invectives class is at the rate proportional to the number of invectives $I$ and susceptibles $S$, i.e. $r\;  I\; S$, \; $r>0$.  
+
+\item  The susceptibles are lost at the same rate, i.r. $r\; I\; S$
+\item The rate of removal of invectives to the recovered class $R$ is proportional to the number of invectives, i.e. $a\; I$, \; $a>0$. 
+
+$\dfrac 1 a $ measures the time spent in the infectious state.
+ 
+ \item The incubation period is short enough to be negligible: susceptibles are directly infected after coming into contact with the disease (with invectives). 
+ 
+\end{itemize}
+
+Then a simple SIR model reads  ( in a long thin domain or in $3$-dim domain with solutions in a form of planar fronts) 
+\begin{equation}\label{SIR1}
+\begin{aligned}
+&\frac{\partial S}{\partial t} = - r SI + D_S \frac{ \partial^2 S}{\partial x^2}\; ,  &\qquad x \in \mathbb R , \; t>0 \; , \\
+&\frac{\partial I}{\partial t} = r SI - a I+ D_I \frac{ \partial^2 I}{\partial x^2} \; ,  &\qquad x \in \mathbb R , \; t>0 \; , \\
+&\frac{\partial R}{\partial t} = a I + D_R \frac{ \partial^2 R}{\partial x^2} \; , & \qquad x \in \mathbb R , \; t>0 \; \\
+&S(0,x) = S_0(x), \qquad I(0,x) = I_0(x), \quad R(0,x) = R_0(x),& \qquad x \in \mathbb R \; , 
+\end{aligned}
+\end{equation}
+where
+\begin{itemize} 
+\item  $a>0$ -- removal or death rate 
+\item $r>0$ --  transmission or infection rate 
+\item  $D_S>0$, \; $D_I>0$, \; $D_R>0$ -- diffusion coefficients 
+\end{itemize}
+We assume that $S_0(x) \geq 0$, $I_0(x) \geq 0$, $R_0(x) \geq 0$ for $x \in \mathbb R$ and obtain that  solutions of \eqref{SIR1} are nonnegative, i.e. 
+$$
+S(t,x) \geq 0, \quad I(t,x) \geq 0, \quad R(t,x) \geq 0, \quad  x\in \mathbb R, \quad t >0 \; .
+$$
+
+To analyse the model \eqref{SIR1} it is sufficient to consider the first two equations, since $R$ is completely determined by $I$ and does not influence the dynamics of $S$ and $I$. 
+
+
+Considering the non-dimensionalisation 
+$$
+I^\ast = \frac I{\bar S_0} , \quad S^\ast = \frac S{\bar S_0} ,  \quad x^\ast = \left(\frac{ r \bar S_0}{D_I} \right)^{1/2} x, \quad t^\ast = r \bar S_0 t 
+$$ 
+we obtain ( after dropping $`\ast'$) 
+\begin{equation}\label{SIR2}
+\begin{aligned}
+& \frac{\partial S}{\partial t} = -  SI + d \frac{ \partial^2 S}{\partial x^2}\; , & \qquad x \in \mathbb R , \; t>0 \; , \\
+& \frac{\partial I}{\partial t} = SI - \mu I+  \frac{ \partial^2 I}{\partial x^2} \; ,  & \qquad x \in \mathbb R , \; t>0 \; , \\
+& S(0,x) = \frac{S_0(x)}{\bar S_0}, \qquad I(0,x) = \frac{I_0(x)}{\bar S_0},  & \quad x \in \mathbb R \; ,
+\end{aligned}
+\end{equation}
+where $\bar S_0$ is a representative population density and $\mu = \dfrac a { r \bar S_0}$.
+
+We would like to investigate the spatial spread of an epidemic wave of invectives into a uniform susceptibles population $S_0(x) =\bar S_0$. We would like to determine conditions for existence of an epidemic wave and propagation speed. 
+
+We shall assume first that $D_S= D_I$, i.e. $d=1$. Consider travelling wave solutions 
+$$
+S(t,x) = s(z), \quad I(t,x) = i(z), \quad z = x - v t, \quad v >0
+$$
+and obtain following ODEs   for $s$ and $i$
+\begin{equation}\label{SIR_TW}
+\begin{aligned}
+s^{\prime \prime} + v s^\prime - i s = 0 \; , \\
+i^{\prime \prime} + v i^\prime + i s - \mu i= 0\; .
+\end{aligned}
+\end{equation}
+We would like to analyse the existence of a travelling wave from for $S$ and travelling wave pulse for $I$.  We assume that  the infection comes into susceptible population from the left. 
+
+Therefore we consider the following boundary conditions for the travelling wave solutions 
+\begin{equation}\label{SIR_TW_BC}
+\begin{aligned}
+s(z) \to 1 \qquad  z\to + \infty, \quad \qquad  i(z) \to 0 \qquad  z\to + \infty\; ,\\
+s(z) \to \sigma \qquad  z\to - \infty, \quad \qquad  i(z) \to 0 \qquad  z\to - \infty\; ,\\
+s^\prime(z) \to 0\qquad  z\to \pm \infty, \quad \qquad i^\prime(z) \to 0 \qquad z \to \pm \infty \; ,
+\end{aligned}
+\end{equation}
+ where $0 \leq \sigma <1$.  
+ 
+ 
+ The steady states of \eqref{SIR_TW} are given by 
+ $$
+ is =0 , \quad i ( s- \mu) = 0  \quad \Longrightarrow \quad \ i=0, \quad s = \text{const} \; .
+ $$
+Considering boundary conditions \eqref{SIR_TW_BC} we obtain 
+two steady states 
+$$
+(s_0, i_0) = ( 1, 0), \qquad (s_0, i_0) = (\sigma, 0)
+$$
+Hence we would like to have a heteroclinic connection between $(\sigma , 0)$ and $(1,0)$. 
+ 
+ The necessary condition for existence of travelling wave solutions satisfying 
+ \eqref{SIR_TW} and \eqref{SIR_TW_BC} is 
+ \begin{equation}\label{cond_v_SIR}
+ v \geq 2 \sqrt{ 1- \mu} \, \quad \text{ and } \quad 0 \leq \mu < 1\; .  
+ \end{equation}
+ In terms of original parameters  we have 
+ $$
+ \mu = \frac a { r S_0} < 1. 
+ $$
+This is the necessary threshold conditions for the propagation of an epidemic wave pulse.  The condition \eqref{cond_v_SIR} determine also the non-dimensionalised  minimal wave speed
+$$
+v^\ast_{\text{min}} = 2\sqrt{ 1- \mu}
+$$
+
+In dimensional terms we obtain 
+$$
+z^\ast = x^\ast - v^\ast t^\ast = \left( \frac { r S_0} {D_I} \right)^{1/} x - v^\ast r S_0 t  = 
+\left( \frac { r S_0} {D_I} \right)^{1/} ( x - v t) = \left( \frac { r S_0} {D_I} \right)^{1/} z
+$$
+and 
+$$
+v = \sqrt{ r S_0 D_I} v^\ast \quad v_{\text{min}} = 2  \sqrt{ r S_0 D_I}\sqrt{ 1- \mu} = 
+2  \sqrt{ r S_0 D_I}\sqrt{ 1- \frac a{ r S_0} }
+$$
+
+We can analyse the behaviour of travelling wave solutions as $z \to + \infty$.
+
+Linearised equation for the second equation in \eqref{SIR_TW}  near $s=1$, $i=0$, i.e.  as $z \to + \infty$ reads 
+$$
+i^{\prime \prime} + v i^\prime + i  - \mu i = 0\; .
+$$
+Thus 
+\begin{equation}\label{i_TW_infty}
+i(z) \sim \exp \left(\frac 1 2 \left[ - v \pm \sqrt{ v^2 - 4(1-\mu)} \right] z \right) \quad \text{ as } z \to + \infty \; . 
+\end{equation} 
+
+We can also show that the travelling wave solution $s(z)$ can not have a local maximum, since for $s^\prime(z) = 0$ first equation in   \eqref{SIR_TW} implies 
+$$
+s^{\prime \prime}(z) = is >0, 
+$$
+which implies a local minimum. So $s(z)$ is monotone increasing. 
+
+Considering linearisation  of  the first equation in \eqref{SIR_TW}  near $s=1$, $i=0$, i.e.  as $z \to + \infty$, we obtain with $s(z) = 1 - \tilde s(z)$
+$$
+\tilde s^{\prime \prime} + v \tilde s^{\prime} - i = 0 \; . 
+$$
+The using \eqref{i_TW_infty} we can conclude that 
+\begin{equation*}\label{tilde s_TW_infty}
+\tilde s(z) \sim \exp \left(\frac 1 2 \left[ - v \pm \sqrt{ v^2 - 4(1-\mu)} \right] z \right) \quad \text{ as } z \to + \infty \; . 
+\end{equation*} 
+and 
+\begin{equation*}\label{s_TW_infty}
+ s(z) \sim 1 - C \exp \left(\frac 1 2 \left[ - v \pm \sqrt{ v^2 - 4(1-\mu)} \right] z \right) \quad \text{ as } z \to + \infty \; . 
+\end{equation*} 
+
+\subsubsection{\bf Spatial spread of rabies among foxes} 
+
+Spread of rabies is due primary to the migration of infected foxes. We assume the heathy foxes are territorial and do not travel very far, whereas rabid foxes wander over large distances.  
+
+Thus we assume that  $D_S \ll D_I$ and $d= \dfrac{ D_S}{D_I} \approx 0$.  
+\begin{equation}\label{SIR3}
+\begin{aligned}
+& \frac{\partial S}{\partial t} = -  SI \; , & \qquad x \in \mathbb R , \; t>0 \; , \\
+& \frac{\partial I}{\partial t} = SI - \mu I+  \frac{ \partial^2 I}{\partial x^2} \; ,  & \qquad x \in \mathbb R , \; t>0 \; , \\
+& S(0,x) = 1, \qquad I(0,x) = \frac{I_0}{\bar S_0},  & \quad x \in \mathbb R \; ,
+\end{aligned}
+\end{equation}
+
+We shall  look for travelling wave solutions of \eqref{SIR3}: travelling wave front for $S$ and travelling wave pulse for $I$. Considering $$
+S(t,x) = s(z), \quad I(t,x) = i(z), \quad z = x - v t, \quad v >0
+$$
+and obtain following ODEs   for $s$ and $i$
+\begin{equation}\label{SIR_TW_2}
+\begin{aligned}
+&  v s^\prime = i s  \; , \\
+& i^{\prime \prime} + v i^\prime + i s - \mu i= 0\; 
+\end{aligned}
+\end{equation}
+and corresponding boundary conditions 
+\begin{equation}\label{SIR_TW_BC_2}
+\begin{aligned}
+s(z) \to 1 \qquad  z\to + \infty, \quad \qquad  i(z) \to 0 \qquad  z\to + \infty\; ,\\
+s(z) \to \sigma \qquad  z\to - \infty, \quad \qquad  i(z) \to 0 \qquad  z\to - \infty\; ,\\
+s^\prime(z) \to 0\qquad  z\to \pm \infty, \quad \qquad i^\prime(z) \to 0 \qquad z \to \pm \infty \; ,
+\end{aligned}
+\end{equation}
+ where $0 \leq \sigma <1$.  
+
+
+
+
+ As before, the steady states of \eqref{SIR_TW_2} are given by 
+ $$
+ is =0 , \quad i ( s- \mu) = 0  \quad \Longrightarrow \quad  i=0, \quad s = \text{const} \; .
+ $$
+Considering boundary conditions \eqref{SIR_TW_BC_2} we obtain 
+two steady states 
+$$
+(s_0, i_0) = ( 1, 0), \qquad (s_0, i_0) = (\sigma, 0) \; .
+$$
+
+Linearising equations \eqref{SIR_TW_2} about the steady state $(1,0)$ and requiring that $i$ is nonnegative we obtain, as for \eqref{SIR_TW}, 
+ the necessary conditions  for existence of  travelling wave solutions satisfying 
+  \eqref{SIR_TW_2} and  \eqref{SIR_TW_BC_2} :
+  $$
+ v \geq 2 \sqrt{ 1- \mu} \, \quad \text{ and } \quad 0 \leq \mu < 1\; .  
+ $$
+
+
+We can determine the relation between density of  susceptibles left behind the infection pulse and the model parameters. 
+
+Using first equation in \eqref{SIR_TW_2} in the second implies 
+\begin{equation}\label{sigma_1}
+ i^{\prime \prime} + v i^\prime + v s^\prime  - \mu i= 0\; .
+\end{equation}
+Integrating with respect to $z$ yields 
+\begin{equation}\label{sigma_2}
+ i^{\prime } + v i + v s  - \mu \int i\, dz = K= const\; .
+\end{equation}
+Consider now ageing the first equation in \eqref{SIR_TW_2}
+$$
+i= v \frac {s^\prime} s, \quad \quad s \neq 0 \; 
+$$
+and obtain from \eqref{sigma_2}
+\begin{equation*}
+ i^{\prime } + v i + v s  - v  \mu \int   \frac {s^\prime} s\, dz = K= const\; .
+\end{equation*}
+or
+\begin{equation}\label{sigma_3}
+ i^{\prime } + v i + v s  - v  \mu \ln(s) = K\; .
+\end{equation}
+Using now in \eqref{sigma_3} boundary conditions as $z \to + \infty$,  from    \eqref{SIR_TW_BC_2},   we can determine constant $K$:
+\begin{equation*}
+ v    = K\; .
+\end{equation*}
+Thus we have 
+\begin{equation}\label{sigma_4}
+ i^{\prime } + v i + v( s  - \mu \ln(s) -1)= 0\; .
+\end{equation}
+Using now in \eqref{sigma_4} boundary conditions as $z \to - \infty$, see   \eqref{SIR_TW_BC_2},  gives 
+\begin{equation*}
+ v( \sigma - \mu \ln(\sigma) -1)= 0\; .
+\end{equation*}
+and 
+\begin{equation}\label{sigma_5}
+\frac{ \sigma- 1}{\ln(\sigma)} = \mu \; . 
+\end{equation}
+We obtain that the number of susceptibles is defined independently of the wave speed and the smaller $\mu$ corresponds to smaller $\sigma$ ( i.e. fever susceptibles survive  infection wave).  Thus $\mu$ measures how sever the epidemic is. 
+
+Considering the critical value for $\mu =1$, which in dimensional terms means
+$$
+\frac a { r S_0} = 1, 
+$$
+we can conclude that there exists  no wave of infection 
+\begin{itemize}
+\item 
+ if $S_0$ is too low - density of foxes is too low in order to spread the disease,  
+ \item 
+ or if removal rate is too large - high death rate  and the infection is too virulent
+ \item
+ or if  infection rate $r$ is too small - the disease is too weak and no wave of infection is possible. 
+ \end{itemize} 
+ 
+ \subsubsection{\bf Generalisation of simple SIR model} 
+  We developed a simple model for the passage of a wave of infection,  however data of a spread of rabies in continental Europe looks quite different, i.e. comprises oscillations behind the wave front.  It is likely that  birth-death processes, not included in the simple model,  impact  dynamics of susceptibles and invectives.  
+ 
+We generalised the simple model by considering growth of susceptibles population in a logistic manner 
+ \begin{equation}\label{SIR_growth}
+\begin{aligned}
+& \frac{\partial S}{\partial t} = -  rSI + B S\left( 1 - \frac S{S_0} \right) \; , & \qquad x \in \mathbb R , \; t>0 \; , \\
+& \frac{\partial I}{\partial t} =  r SI - a I+  D_I \frac{ \partial^2 I}{\partial x^2} \; ,  & \qquad x \in \mathbb R , \; t>0 \; , \\
+& S(0,x) = S_0, \qquad I(0,x) = I_0,  & \quad x \in \mathbb R \; ,
+\end{aligned}
+\end{equation}
+where $B$ is the intrinsic growth rate and $S_0$ is the carrying capacity. 
+
+We can non-dimensionalize \eqref{SIR_growth} as before and obtain 
+ \begin{equation}\label{SIR_growth_nd}
+\begin{aligned}
+& \frac{\partial S}{\partial t} = -  SI + b S\left( 1 -  S \right) \; , & \qquad x \in \mathbb R , \; t>0 \; , \\
+& \frac{\partial I}{\partial t} =   SI - \mu \,  I+   \frac{ \partial^2 I}{\partial x^2} \; ,  & \qquad x \in \mathbb R , \; t>0 \; , \\
+& S(0,x) = 1, \qquad I(0,x) = I_0/S_0,  & \quad x \in \mathbb R \; ,
+\end{aligned}
+\end{equation}
+ where $b= \dfrac{B}{r S_0}$.
+ 
+Spatially homogeneous  steady states of  \eqref{SIR_growth_nd} are 
+ $(S^\ast_1, I^\ast_1) = (1,0)$ and  $(S^\ast_1, I^\ast_1) = (\mu, b(1-\mu))$. 
+ 
+ To analyse the existence of travelling wave solutions we write equations for $s(z)$ and $i(z)$, where $s(z)=S(t,x)$, $i(z) = I(t,x)$ with $z= x- vt$ 
+ \begin{equation}\label{SIR_TW_growth}
+\begin{aligned}
+&  -v s^\prime =- i s  + b s ( 1-s) \; , \\
+& - v i^\prime =  i s - \mu i +  i^{\prime \prime}  \; 
+\end{aligned}
+\end{equation}
+ and by introducing new variable $w= i^\prime$ obtain 
+  \begin{equation}\label{SIR_TW_growth_2}
+\begin{aligned}
+&   s^\prime = \frac 1 v i\,  s  - \frac  b v \,  s ( 1-s) \; , \\
+& i^\prime = w, \\
+& w^{\prime}= -  v w - i (s - \mu)\; .
+\end{aligned}
+\end{equation}
+The system  \eqref{SIR_TW_growth_2} has two stationary  solutions 
+ $(s^\ast_1, i^\ast_1, w^\ast_1) = (1,0,0)$ and  $(s^\ast_2, i^\ast_2, w^\ast_2) = (\mu, b(1-\mu),0)$.
+Considering linearisation of  \eqref{SIR_TW_growth_2} and computing eigenvalues of Jabocian matrix 
+$$
+J(s,i,w)= \begin{pmatrix}
+\dfrac i v - \dfrac b v + \dfrac{ 2b s} v & \dfrac sv & 0 \\
+0 & 0 & 1\\
+- i & \mu - s & -v
+\end{pmatrix}
+$$ 
+ evaluated at the steady states we obtain that 
+ $(s^\ast_1, i^\ast_1, w^\ast_1) = (1,0,0)$  is a saddle point and 
+ $(s^\ast_2, i^\ast_2, w^\ast_2) = (\mu, b(1-\mu),0)$ is a stable node for $\mu < \mu^\ast$ and a stable spiral (focus) for $\mu >\mu^\ast$, with some threshold value $\mu^\ast$. 
+ 
+ Thus we can show that a travelling wave solution exists which connects two steady states 
+ $(1,0)$ and  $(\mu, b(1-\mu))$ and there exists a threshold $\mu = \mu^\ast$ such that for $1>\mu > \mu^\ast $ the approach to $(\mu, b(1-\mu))$ is oscillatory, whereas for $0<\mu < \mu^\ast$ it is monotonic. \\
+ 
+ \end{document}
+ 
+\subsection{\bf Pattern formations in chemotaxis model}
+ We shall consider a minimal model for the aggregation phase.  
+Starved slime hold amoebae sect  a chemical cyclin AMP (cAMP) that attract other cells. 
+Cells also secrete phosphodiesterase, an enzyme that degrades cAMP. \\
+
+
+\textbf{Model assumptions}
+\begin{itemize}
+\item Individual cells undergo combination of random motion and chemotaxis towards cAMP
+\item Cells neither die nor divide during aggregation 
+\item Attractant cAMP is produced at a constant rate by each cell 
+\item The rate of degradation of cAMP depends linearly on its concentration 
+\item cAMP diffuses passively 
+\end{itemize} 
+
+\begin{equation}
+\begin{aligned}
+& \frac{\partial a}{\partial t} = - \nabla \cdot ( J_{\text{diffusion}} + J_{\text{chemotaxis}}) , \\
+& \frac{\partial a}{\partial t} = - \nabla \cdot ( J_{\text{diffusion}} ) + \text{reaction (source, sink) term} \; .
+\end{aligned}
+\end{equation}
+
+Thus we obtain chemotaxis system  in a domain $\Omega \subset \mathbb R^n$ with sufficiently smooth boundary 
+\begin{equation}
+\begin{aligned}
+&\frac{\partial a}{\partial t} = - \nabla \cdot ( -D_a \nabla a +  \chi \, a \, \nabla c) \qquad x \in  \Omega, \; \; t>0\;   , \\
+&\frac{\partial a}{\partial t} = - \nabla \cdot ( - D_c \nabla c ) +  \beta \, a - d\,  c\;  \qquad x\in  \Omega , \; \; t >0\;, \\
+&a(0,x) = a_0(x), \qquad c(0,x) =  c_0(x) \qquad \text{ in } \Omega , \\
+& \nabla a \cdot \textbf{n}  = 0 , \quad  \nabla c \cdot \textbf{n}  = 0 \qquad x \in \partial \Omega, \; \; t >0, 
+\end{aligned}
+\end{equation}
+where $D_a>0$, $D_c>0$ diffusion coefficients,  $\beta>0$ - rate of cAMP secretion by cells per unit density, $d>0$ - rate of degradation of cAMP, $\textbf{n}$ - outer normal vector to $\partial \Omega$. 
+%\frame{
+%\frametitle{Positively invariant domains} 
+%{\color{blau} \bf Definition} A closed subset $M\subset \mathbb R^n$ is called a {\color{gruen} positively invariant region} for solutions of  (a system of ODE)
+%\begin{align}\label{ode_nonlin_2}
+%\begin{aligned}
+%\frac{du}{dt} &= F(t,u(t)), \qquad u\in  \mathbb R^n, \\
+%u(0)&= u_0 
+%\end{aligned}
+%\end{align}
+%if any solution $u(t)$, having initial values $u_0$ in $M$, satisfies $u(t) \in M$ for all $t\geq 0$ .
+%%( if $u_0\in M$ implies that $u(t, u_0) \in M$ for all $t\geq 0$ ).
+%
+%{\color{blau} \bf Theorem }
+%Let $\Phi \in C^1(U, \mathbb R)$ such that $\nabla \Phi(u) \neq 0$ for all $u\in \Phi^{-1}(0)$, that is assume that $0$ is a regular value of $\Phi$.  \\
+%Then the region  $M:=\{u \in U: \Phi(u) \leq 0 \} $ is positively invariant for solutions of \eqref{ode_nonlin_2} if and only if  
+%$$
+%(\nabla \Phi(u), F(u)) \leq 0 \quad \quad \forall u \in \partial M = \Phi^{-1}(0).
+%$$
+%
+%Let $\Phi_i \in C^1(U, \mathbb R)$ and $0$ is a regular value of $\Phi_i$,  with  $i=1, \dots k$. Consider $M:=\cap_{i=1}^k\{u \in U: \Phi_i(u) \leq 0 \}$.
+%If we have 
+%$$
+%(\nabla \Phi_i(u), F(u)) \leq 0 \qquad \forall u \in \partial M = \Phi_i^{-1}(0), \quad i=1,\ldots, k,
+%$$
+%then $M$ is positively invariant for solutions of  \eqref{ode_nonlin_2} with $u_0 \in M$.
+%}
