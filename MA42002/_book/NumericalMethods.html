@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MA42002 - 8&nbsp; Numerical methods in Python</title>
+<title>MA42002 - 7&nbsp; Numerical methods in Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./linearstablityanalysis.html" rel="next">
-<link href="./SIR_PDE.html" rel="prev">
+<link href="./DiffusionDrivenInstability.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -74,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./NumericalMethods.html">Appendices</a></li><li class="breadcrumb-item"><a href="./NumericalMethods.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./NumericalMethods.html">Appendices</a></li><li class="breadcrumb-item"><a href="./NumericalMethods.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -91,6 +91,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">MA42002</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/dundeemath/MA42002/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="./MA42002.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
@@ -117,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Single PDE</span></a>
+ <span class="menu-text">Single species</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -140,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Coupled PDE</span></a>
+ <span class="menu-text">Multi species</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -164,12 +165,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./SIR_PDE.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">SIR models</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -184,13 +179,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./NumericalMethods.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./linearstablityanalysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
   </div>
 </li>
       </ul>
@@ -205,16 +200,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#python-libraries" id="toc-python-libraries" class="nav-link active" data-scroll-target="#python-libraries"><span class="header-section-number">8.1</span> Python libraries</a></li>
-  <li><a href="#single-pdes" id="toc-single-pdes" class="nav-link" data-scroll-target="#single-pdes"><span class="header-section-number">8.2</span> Single PDEs</a>
+  <li><a href="#python-libraries" id="toc-python-libraries" class="nav-link active" data-scroll-target="#python-libraries"><span class="header-section-number">7.1</span> Python libraries</a></li>
+  <li><a href="#single-pdes" id="toc-single-pdes" class="nav-link" data-scroll-target="#single-pdes"><span class="header-section-number">7.2</span> Single PDEs</a>
   <ul class="collapse">
-  <li><a href="#mol" id="toc-mol" class="nav-link" data-scroll-target="#mol"><span class="header-section-number">8.2.1</span> MOL</a></li>
-  <li><a href="#spatial-discretisation" id="toc-spatial-discretisation" class="nav-link" data-scroll-target="#spatial-discretisation"><span class="header-section-number">8.2.2</span> Spatial discretisation</a></li>
-  <li><a href="#odeint" id="toc-odeint" class="nav-link" data-scroll-target="#odeint"><span class="header-section-number">8.2.3</span> odeint</a></li>
-  <li><a href="#implementing-boundary-conditions" id="toc-implementing-boundary-conditions" class="nav-link" data-scroll-target="#implementing-boundary-conditions"><span class="header-section-number">8.2.4</span> implementing boundary conditions</a></li>
-  <li><a href="#identifying-parameters" id="toc-identifying-parameters" class="nav-link" data-scroll-target="#identifying-parameters"><span class="header-section-number">8.2.5</span> Identifying parameters</a></li>
+  <li><a href="#mol" id="toc-mol" class="nav-link" data-scroll-target="#mol"><span class="header-section-number">7.2.1</span> MOL</a></li>
+  <li><a href="#spatial-discretisation" id="toc-spatial-discretisation" class="nav-link" data-scroll-target="#spatial-discretisation"><span class="header-section-number">7.2.2</span> Spatial discretisation</a></li>
+  <li><a href="#odeint" id="toc-odeint" class="nav-link" data-scroll-target="#odeint"><span class="header-section-number">7.2.3</span> odeint</a></li>
+  <li><a href="#implementing-boundary-conditions" id="toc-implementing-boundary-conditions" class="nav-link" data-scroll-target="#implementing-boundary-conditions"><span class="header-section-number">7.2.4</span> implementing boundary conditions</a></li>
+  <li><a href="#identifying-parameters" id="toc-identifying-parameters" class="nav-link" data-scroll-target="#identifying-parameters"><span class="header-section-number">7.2.5</span> Identifying parameters</a></li>
   </ul></li>
-  <li><a href="#systems-of-pdes" id="toc-systems-of-pdes" class="nav-link" data-scroll-target="#systems-of-pdes"><span class="header-section-number">8.3</span> Systems of PDEs</a></li>
+  <li><a href="#systems-of-pdes" id="toc-systems-of-pdes" class="nav-link" data-scroll-target="#systems-of-pdes"><span class="header-section-number">7.3</span> Systems of PDEs</a></li>
   </ul>
 </nav>
     </div>
@@ -223,7 +218,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></h1>
 </div>
 
 
@@ -238,34 +233,34 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="python-libraries" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="python-libraries"><span class="header-section-number">8.1</span> Python libraries</h2>
+<section id="python-libraries" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="python-libraries"><span class="header-section-number">7.1</span> Python libraries</h2>
 <ul>
 <li>matplotlib</li>
 <li>numpp</li>
 <li>scipy</li>
 </ul>
 </section>
-<section id="single-pdes" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="single-pdes"><span class="header-section-number">8.2</span> Single PDEs</h2>
-<section id="mol" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="mol"><span class="header-section-number">8.2.1</span> MOL</h3>
+<section id="single-pdes" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="single-pdes"><span class="header-section-number">7.2</span> Single PDEs</h2>
+<section id="mol" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="mol"><span class="header-section-number">7.2.1</span> MOL</h3>
 </section>
-<section id="spatial-discretisation" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="spatial-discretisation"><span class="header-section-number">8.2.2</span> Spatial discretisation</h3>
+<section id="spatial-discretisation" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="spatial-discretisation"><span class="header-section-number">7.2.2</span> Spatial discretisation</h3>
 </section>
-<section id="odeint" class="level3" data-number="8.2.3">
-<h3 data-number="8.2.3" class="anchored" data-anchor-id="odeint"><span class="header-section-number">8.2.3</span> odeint</h3>
+<section id="odeint" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="odeint"><span class="header-section-number">7.2.3</span> odeint</h3>
 </section>
-<section id="implementing-boundary-conditions" class="level3" data-number="8.2.4">
-<h3 data-number="8.2.4" class="anchored" data-anchor-id="implementing-boundary-conditions"><span class="header-section-number">8.2.4</span> implementing boundary conditions</h3>
+<section id="implementing-boundary-conditions" class="level3" data-number="7.2.4">
+<h3 data-number="7.2.4" class="anchored" data-anchor-id="implementing-boundary-conditions"><span class="header-section-number">7.2.4</span> implementing boundary conditions</h3>
 </section>
-<section id="identifying-parameters" class="level3" data-number="8.2.5">
-<h3 data-number="8.2.5" class="anchored" data-anchor-id="identifying-parameters"><span class="header-section-number">8.2.5</span> Identifying parameters</h3>
+<section id="identifying-parameters" class="level3" data-number="7.2.5">
+<h3 data-number="7.2.5" class="anchored" data-anchor-id="identifying-parameters"><span class="header-section-number">7.2.5</span> Identifying parameters</h3>
 </section>
 </section>
-<section id="systems-of-pdes" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="systems-of-pdes"><span class="header-section-number">8.3</span> Systems of PDEs</h2>
+<section id="systems-of-pdes" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="systems-of-pdes"><span class="header-section-number">7.3</span> Systems of PDEs</h2>
 
 
 </section>
@@ -506,13 +501,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./SIR_PDE.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">SIR models</span></span>
+      <a href="./DiffusionDrivenInstability.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./linearstablityanalysis.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -110,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html">Coupled PDE</a></li><li class="breadcrumb-item"><a href="./BacterialChemotaxis.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Aggregation via Chemotaxis</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html">Multi species</a></li><li class="breadcrumb-item"><a href="./BacterialChemotaxis.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Aggregation via Chemotaxis</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -127,6 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="./">MA42002</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/dundeemath/MA42002/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="./MA42002.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
@@ -153,7 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Single PDE</span></a>
+ <span class="menu-text">Single species</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -176,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Coupled PDE</span></a>
+ <span class="menu-text">Multi species</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -200,12 +220,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./SIR_PDE.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">SIR models</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -220,13 +234,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./NumericalMethods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./linearstablityanalysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
   </div>
 </li>
       </ul>
@@ -269,29 +283,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p><strong>Dictyostelium discoideum</strong> is a slime-mold. It is widely studied experimentally since the individual amoebae that constitute the slime-mold exhibit a range of phenomena also observed in developmental biology by cells e.g.&nbsp;differentiation, proliferation, migration. During one particular stage of its life-cycle the single-cell amoebae become starved of food and begin to secrete a diffusible chemical, cyclic AMP or cAMP. The amoebae respond chemotactically to cAMP and begin to migrate towards regions of high cAMP concentration via <em>chemotaxis</em>. As they migrate they generate a range of intricate patterns including <em>spiral waves</em> and <em>streaming</em> aggregation patterns. Examples of such patterns can be seen in figure <span class="math inline">\(\ref{dicty1}\)</span>.</p>
+<p><strong>Dictyostelium discoideum</strong> is a slime-mold. It is widely studied experimentally since the individual amoebae that constitute the slime-mold exhibit a range of phenomena also observed in developmental biology by cells e.g.&nbsp;differentiation, proliferation, migration. During one particular stage of its life-cycle the single-cell amoebae become starved of food and begin to secrete a diffusible chemical, cyclic AMP or cAMP. The amoebae respond chemotactically to cAMP and begin to migrate towards regions of high cAMP concentration via <em>chemotaxis</em>. As they migrate they generate a range of intricate patterns including <em>spiral waves</em> and <em>streaming</em> aggregation patterns. Examples of such patterns can be seen in <span class="quarto-unresolved-ref">?fig-dicty_spiral</span>.</p>
 <p>See also <a href="https://www.youtube.com/watch?v=bkVhLJLG7ug">this link to a fascinating Youtube movie of slime mold aggregation</a>. Note the aggregation between 0:35 and 0.48.</p>
-<p>In <span class="citation" data-cites="dicty_spiral">(<a href="#ref-dicty_spiral" role="doc-biblioref"><strong>dicty_spiral?</strong></a>)</span> we can see stills-shot images of spiral patterns. This spirals are dynamic as can be seen <a href="https://www.youtube.com/watch?v=OX5Yiz38fgY">in this movie</a>. See spiral pattern at around 0:36.</p>
-<p><span id="fig-dicty_spiral"><img src="CG-14-355_F2.jpg" class="img-fluid" alt="Spiral wave patterns underly Dictystelium aggregation. Image from (durston2013dictyostelium?)."></span></p>
+<p>In <span class="quarto-unresolved-ref">?fig-dicty_spiral</span> we can see stills-shot images of spiral patterns. This spirals are dynamic as can be seen <a href="https://www.youtube.com/watch?v=OX5Yiz38fgY">in this movie</a>. See spiral pattern at around 0:36.</p>
+<p><span id="fig-dicty_spiral"><img src="CG-14-355_F2.jpg" class="img-fluid" alt="Spiral wave patterns underly Dictystelium aggregation. Image from Durston (2013)."></span></p>
 <ul>
 <li>can we simulate/model the mechanisms regulate that give rise to cellular aggregation?</li>
 <li>how do features of patterns that form (e.g.&nbsp;pattern wavelength, speepd of aggregation) depend on individual cell properties?</li>
 </ul>
 <section id="model-derivation" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="model-derivation"><span class="header-section-number">5.1</span> Model derivation</h2>
-<p>We consider a model for the aggregation of <em>Dictyostelium discoideum</em> through the secretion of and chemotactic response to cAMP. We denote by <span class="math inline">\(n({\bf x}, t)\)</span> the density of amoebae and <span class="math inline">\(a({\bf x}, t)\)</span> the concentration of cAMP. The general conservation equation for the amoebae can be written:</p>
+<p>We consider a model for the aggregation of <em>Dictyostelium discoideum</em> through the secretion of and chemotactic response to cAMP. We denote by <span class="math inline">\(n({\mathbf{x}}, t)\)</span> the density of amoebae and <span class="math inline">\(a({\mathbf{x}}, t)\)</span> the concentration of cAMP. The general conservation equation for the amoebae can be written:</p>
 <p><span class="math display">\[
-\frac{\partial n}{\partial  t} + \nabla \cdot {\bf J} = f(n,a),
+\frac{\partial n}{\partial  t} + \nabla \cdot {\mathbf{J}} = f(n,a),
 \]</span></p>
 <p>where <span class="math inline">\(f(n,a)\)</span> models any reaction terms for the amoebae e.g.&nbsp;proliferation, and the flux is given by</p>
 <p><span class="math display">\[
-{\bf J} = {\bf J}_{diffusion} + {\bf J}_{chemotaxis}
+{\mathbf{J}} = {\mathbf{J}}_{diffusion} + {\mathbf{J}}_{chemotaxis}
 \]</span></p>
 <p>Assuming Fickian diffusion and the general chemotactic flux stated earlier, the general * reaction-diffusion-chemotaxis*model for the amoebae responding to cAMP is given by:</p>
-<p><span class="math display">\[\begin{eqnarray*}
-\frac{\partial n}{\partial  t} &amp; = &amp; \underbrace{D_n \nabla^2 n}_{diffusion} - \underbrace{\nabla \cdot \left( \chi(a) n \nabla a \right)}_{chemotaxis} + f(n,a)   \\
-\frac{\partial a}{\partial  t} &amp; = &amp;  D_a \nabla^2 a + g(n,a),
-\end{eqnarray*}\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial n}{\partial  t} &amp;=  \underbrace{D_n \nabla^2 n}_{diffusion} - \underbrace{\nabla \cdot \left( \chi(a) n \nabla a \right)}_{chemotaxis} + f(n,a),   \\
+\frac{\partial a}{\partial  t} &amp; =   D_a \nabla^2 a + g(n,a),
+\end{aligned}
+\]</span></p>
 <p>where we have assumed Fickian diffusion for the cAMP and <span class="math inline">\(g(a,n)\)</span> represents the kinetics i.e.&nbsp;source/sink terms, of cAMP.</p>
 <p>One simple model has the following assumptiond:</p>
 <p><span class="math display">\[f(n,a) = 0, \;\;\; g(n,a) = \mu n - \delta a, \;\;\; \chi (a) = \chi_0\]</span></p>
@@ -304,23 +320,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><span class="math inline">\(D_a &gt; D_n\)</span> since chemicals diffuse faster than cells move randomly.</p></li>
 </ul>
 <p>Under such assumption we obtain the model equation</p>
-<p><span class="math display">\[\begin{eqnarray*}
-\frac{\partial n}{\partial  t} &amp; = &amp; D_n \nabla^2 n - \chi_0 \nabla \cdot \left( n \nabla a \right), \\
-\frac{\partial a}{\partial  t} &amp; = &amp;  D_a \nabla^2 a +  \mu n - \delta a,
-\end{eqnarray*}\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial n}{\partial  t} &amp; =  D_n \nabla^2 n - \chi_0 \nabla \cdot \left( n \nabla a \right), \\
+\frac{\partial a}{\partial  t} &amp; =   D_a \nabla^2 a +  \mu n - \delta a,
+\end{aligned}
+\]</span></p>
 <p>which becomes, when considering a 1-dimensional domain <span class="math inline">\([0,L]\)</span>:</p>
 <p><span id="eq-chemotaxis1d"><span class="math display">\[
-\begin{eqnarray*}
-\frac{\partial n}{\partial  t} &amp; = &amp; D_n \frac{\partial ^2 n}{\partial x^2} - \chi_0 \frac{\partial}{\partial x} \left( n \frac{\partial a}{\partial x} \right), \\
+\begin{aligned}
+\frac{\partial n}{\partial  t} &amp;=  D_n \frac{\partial ^2 n}{\partial x^2} - \chi_0 \frac{\partial}{\partial x} \left( n \frac{\partial a}{\partial x} \right), \\
   &amp; &amp; \hspace{4.5cm} ( \dagger ) \\
-\frac{\partial a}{\partial  t} &amp; = &amp;  D_a \frac{\partial ^2 a}{\partial x^2}  +  \mu n - \delta a,
-\end{eqnarray*}
+\frac{\partial a}{\partial  t} &amp;=  D_a \frac{\partial ^2 a}{\partial x^2}  +  \mu n - \delta a,
+\end{aligned}
 \tag{5.1}\]</span></span></p>
 <p>with zero flux boundary conditions:</p>
-<p><span class="math display">\[\begin{eqnarray*}
-D_a \frac{\partial a}{\partial  x} &amp; = &amp; 0, \;\;\; x = 0,L, \\
-D_n \frac{\partial n}{\partial  x} - \chi_0 n \frac{\partial a}{\partial  x} &amp; = &amp; 0, \;\;\; x = 0,L,
-\end{eqnarray*}\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+D_a \frac{\partial a}{\partial  x} &amp; =  0, \;\;\; x = 0,L, \\
+D_n \frac{\partial n}{\partial  x} - \chi_0 n \frac{\partial a}{\partial  x} &amp; =  0, \;\;\; x = 0,L,
+\end{aligned}
+\]</span></p>
 <p>which in this case reduce to:</p>
 <p><span class="math display">\[
 \frac{\partial a}{\partial  x} = \frac{\partial n}{\partial  x} = 0, \;\;\; x = 0,L
@@ -433,7 +453,7 @@ D_n \frac{\partial n}{\partial  x} - \chi_0 n \frac{\partial a}{\partial  x} &am
 <div class="cell-output cell-output-display">
 <div id="fig-bacterialchemotaxispde" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="BacterialChemotaxis_files/figure-html/fig-bacterialchemotaxispde-output-1.png" width="606" height="429" class="figure-img"></p>
+<p><img src="BacterialChemotaxis_files/figure-html/fig-bacterialchemotaxispde-output-1.png" width="614" height="432" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;5.1: Numerical solution of bacterial chemtaxis model</figcaption>
 </figure>
 </div>
@@ -458,25 +478,23 @@ n(x,t) = n^* + \tilde{n}(x,t), \;\;\; a(x,t) = a^* + \tilde{a}(x,t)
 <p><span class="math display">\[\frac{\partial}{\partial x} \left[ ( n^* + \tilde{n}) \frac{\partial}{\partial x} \left( a^* + \tilde{a} \right) \right] = \frac{\partial}{\partial x} \left[ ( n^* + \tilde{n}) \frac{\partial \tilde{a}}{\partial x}  \right] \approx n^* \frac{\partial ^2 \tilde{a}}{\partial x^2}\]</span></p>
 <p>The fully linearized system is then given by:</p>
 <p><span id="eq-chemotax_linear"><span class="math display">\[
-\begin{eqnarray}
 \begin{aligned}
 \frac{\partial \tilde{n}}{\partial  t} &amp; =  D_n \frac{\partial ^2 \tilde{n}}{\partial x^2} - \chi_0 n^* \frac{\partial ^2 \tilde{a}}{\partial x^2} \\
 \frac{\partial \tilde{a}}{\partial  t} &amp; =   D_a \frac{\partial ^2 \tilde{a}}{\partial x^2}  +  \mu \tilde{n} - \delta \tilde{a}.
 \end{aligned}
-\end{eqnarray}
 \tag{5.2}\]</span></span></p>
 <p>Although the above equations are linear, an explicit solution is non-trivial and we are required to make a further <em>ansatz</em>. We use the``separation of variables ” approach where <span class="math display">\[
 \tilde{n}(t,x) = u(t) \phi_1(x)
 \]</span> and <span class="math display">\[
 \tilde a (t,x) = v(t) \phi_2(x)
 \]</span></p>
-<p><span class="math display">\[\begin{eqnarray*}
+<p><span class="math display">\[
 \begin{aligned}
 &amp;\frac{\partial u}{\partial  t}  \phi_1  =   D_n  u\frac{\partial ^2 \phi_1}{\partial x^2} - \chi_0 n^*  v\frac{\partial ^2 \phi_1}{\partial x^2} \\
 &amp; \frac{v}{\partial  t}  \phi_2=     D_a v \frac{\partial ^2  \phi_2}{\partial x^2}  +  \mu u \,  \phi_1 - \delta v\,  \phi_2, \\
 &amp; u \frac{\partial \phi_1}{\partial x} = 0, \quad   v \frac{\partial \phi_2}{\partial x} = 0 \quad \text{ for } \; x = 0, \; x=L.
 \end{aligned}
-\end{eqnarray*}\]</span></p>
+\]</span></p>
 <p>We assume that<br>
 <span class="math display">\[
 \phi_1 = \phi_2 = \phi,
@@ -489,28 +507,25 @@ n(x,t) = n^* + \tilde{n}(x,t), \;\;\; a(x,t) = a^* + \tilde{a}(x,t)
 \phi(x) = A \cos(kx) + B\sin(kx).
 \]</span> Since <span class="math inline">\(\phi\)</span> satisfied zero Neumann boundary conditions we have that <span class="math inline">\(\phi(x) = A \cos(kx)\)</span>, with an arbitrary const <span class="math inline">\(A\)</span>, and <span class="math inline">\(k = \dfrac {m \pi} L\)</span>, ; <span class="math inline">\(m \in \mathbb N\)</span>.</p>
 <p>Then we have <span class="math display">\[
-\begin{eqnarray*}
 \begin{aligned}
 &amp;\frac{\partial u}{\partial  t}  \phi  =   - k^2 D_n  u \phi +  \chi_0 n^* k^2\,  v \, \phi,  \\
 &amp; \frac{v}{\partial  t} \phi =   - k^2 D_a  \, v \phi  +  \mu u \,  \phi - \delta v\,  \phi,
 \end{aligned}
-\end{eqnarray*}
 \]</span> and since <span class="math inline">\(\phi\)</span> is not identically zero on <span class="math inline">\((0,L)\)</span> we obtain a system of linear ODEs for <span class="math inline">\((u(t),v(t))\)</span> <span class="math display">\[
-\begin{eqnarray*}
 \begin{aligned}
 &amp;\frac{\partial u}{\partial  t}    =   - k^2 D_n  u  +  \chi_0 n^* k^2\,  v,  \\
 &amp; \frac{v}{\partial  t} =   - k^2 D_a  \, v  +  \mu u  - \delta v.
 \end{aligned}
-\end{eqnarray*}
 \]</span></p>
 <p>We know that solutions of linear ODEs have the form <span class="math display">\[
 u(t) = C_1 e^{\lambda t} \quad \textrm{and} \quad v(t) = C_2 e^{\lambda t}
 \]</span> for some constant <span class="math inline">\(C_1\)</span>, <span class="math inline">\(C_2\)</span> and <span class="math inline">\(\lambda\)</span> are eigenvalues of the corresponding matrix.</p>
-<p>Thus we obtain <span class="math display">\[\begin{eqnarray*}
-\lambda C_1 &amp; = &amp; - D_n k^2 C_1  + \chi_0 n^* k^2 C_2,  \\
-\lambda C_2 &amp; = &amp; - D_a k^2 C_2 +  \mu C_1 - \delta C_2,
-\end{eqnarray*}\]</span></p>
-<p>which can be written</p>
+<p>Thus we obtain <span class="math display">\[
+\begin{aligned}
+\lambda C_1 &amp; =  - D_n k^2 C_1  + \chi_0 n^* k^2 C_2,  \\
+\lambda C_2 &amp; = - D_a k^2 C_2 +  \mu C_1 - \delta C_2,
+\end{aligned}
+\]</span> which can be written</p>
 <p><span class="math display">\[
 \left(
 \begin{array}{cc}
@@ -523,7 +538,7 @@ u(t) = C_1 e^{\lambda t} \quad \textrm{and} \quad v(t) = C_2 e^{\lambda t}
 C_1 \\
 C_2
 \end{array}
-\right) = \bf{0} .
+\right) = \mathbf{0} .
 \]</span></p>
 <p><strong>Remark</strong> Notice that we obtained that <span class="math inline">\(\tilde n\)</span> and <span class="math inline">\(\tilde a\)</span> are of the form <span class="math display">\[\tilde{n}(x,t) = C_1 e^{\lambda t} e^{ikx}, \;\;\; \tilde{a}(x,t) = C_2 e^{\lambda t} e^{ikx}.\]</span></p>
 <p>For a non-trivial solution (for non-trivial perturbations <span class="math inline">\(\tilde n\)</span>, <span class="math inline">\(\tilde a\)</span>), i.e.&nbsp;<span class="math inline">\(C_1 \neq 0\)</span> and <span class="math inline">\(C_2 \neq 0\)</span>, the determinant of the above matrix must be zero, and this leads to the following quadratic equation to be solved for <span class="math inline">\(\lambda\)</span>:</p>
@@ -544,11 +559,12 @@ C_2
 \]</span></p>
 <p>Now <span class="math display">\[\alpha = D_n k^2 + D_a k^2 + \delta &gt; 0,
 \]</span> and so for stability, we require <span class="math inline">\(\beta &gt; 0\)</span> i.e.&nbsp;</p>
-<p><span class="math display">\[\begin{eqnarray*}
+<p><span class="math display">\[
+\begin{aligned}
 &amp; &amp; D_n k^2 \left( D_a k^2 + \delta \right) - \mu \chi_0 n^* k^2 &gt; 0 \\
 &amp; &amp; \Rightarrow \mu \chi_0 n^* &lt;  D_n  \left( D_a k^2 + \delta \right)
-\end{eqnarray*}\]</span></p>
-<p>Hence, we will have instability when this condition is not satisfied i.e.&nbsp; <span class="math display">\[
+\end{aligned}
+\]</span> Hence, we will have instability when this condition is not satisfied i.e.&nbsp; <span class="math display">\[
 \mu \chi_0 n^* &gt;  D_n  \left( D_a k^2 + \delta \right).
 \]</span></p>
 <p>The precise value of <span class="math inline">\(k^2\)</span> can be determined from the zero-flux boundary conditions i.e. <span class="math display">\[
@@ -575,6 +591,11 @@ k  =  \frac{m \pi}{L}, \;\;\; m = 1,2, \dots
 <p>However, there is one type of system where diffusion also has a destabilizing effect…</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-durston2013dictyostelium" class="csl-entry" role="listitem">
+Durston, AJ. 2013. <span>“Dictyostelium: The Mathematician’s Organism.”</span> <em>Current Genomics</em> 14 (6): 355–60.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

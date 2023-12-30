@@ -83,7 +83,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./SIR_PDE.html" rel="next">
+<link href="./NumericalMethods.html" rel="next">
 <link href="./BacterialChemotaxis.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -129,7 +129,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html">Coupled PDE</a></li><li class="breadcrumb-item"><a href="./DiffusionDrivenInstability.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html">Multi species</a></li><li class="breadcrumb-item"><a href="./DiffusionDrivenInstability.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -146,6 +146,7 @@ div.csl-indent {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">MA42002</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/dundeemath/MA42002/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="./MA42002.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
@@ -172,7 +173,7 @@ div.csl-indent {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Single PDE</span></a>
+ <span class="menu-text">Single species</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -195,7 +196,7 @@ div.csl-indent {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Coupled PDE</span></a>
+ <span class="menu-text">Multi species</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -219,12 +220,6 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./SIR_PDE.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">SIR models</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -239,13 +234,13 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./NumericalMethods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./linearstablityanalysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
   </div>
 </li>
       </ul>
@@ -260,21 +255,25 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#reaction-diffusion-turing-pre-pattern-mechanisms" id="toc-reaction-diffusion-turing-pre-pattern-mechanisms" class="nav-link active" data-scroll-target="#reaction-diffusion-turing-pre-pattern-mechanisms"><span class="header-section-number">6.1</span> Reaction-diffusion (Turing) Pre-pattern Mechanisms</a>
+  <li><a href="#spatial-pattern-formation-via-reaction-diffusion-mechanisms" id="toc-spatial-pattern-formation-via-reaction-diffusion-mechanisms" class="nav-link active" data-scroll-target="#spatial-pattern-formation-via-reaction-diffusion-mechanisms"><span class="header-section-number">6.1</span> Spatial Pattern Formation via Reaction-Diffusion Mechanisms</a>
   <ul class="collapse">
-  <li><a href="#schnackenberg-kinetics" id="toc-schnackenberg-kinetics" class="nav-link" data-scroll-target="#schnackenberg-kinetics"><span class="header-section-number">6.1.1</span> Schnackenberg Kinetics</a></li>
-  <li><a href="#activator-inhibitor-kinetics-cf.-gierer-meinhardt-system-gierer-meinhardt-1972" id="toc-activator-inhibitor-kinetics-cf.-gierer-meinhardt-system-gierer-meinhardt-1972" class="nav-link" data-scroll-target="#activator-inhibitor-kinetics-cf.-gierer-meinhardt-system-gierer-meinhardt-1972"><span class="header-section-number">6.1.2</span> Activator-inhibitor kinetics cf.&nbsp;Gierer-Meinhardt system; Gierer &amp; Meinhardt, 1972</a></li>
-  <li><a href="#substrate-inhibition-system-thomas-1975" id="toc-substrate-inhibition-system-thomas-1975" class="nav-link" data-scroll-target="#substrate-inhibition-system-thomas-1975"><span class="header-section-number">6.1.3</span> Substrate-inhibition system (Thomas, 1975)</a></li>
+  <li><a href="#pattern-in-developmental-biology" id="toc-pattern-in-developmental-biology" class="nav-link" data-scroll-target="#pattern-in-developmental-biology"><span class="header-section-number">6.1.1</span> Pattern in Developmental Biology</a></li>
   </ul></li>
-  <li><a href="#non-dimensionalization" id="toc-non-dimensionalization" class="nav-link" data-scroll-target="#non-dimensionalization"><span class="header-section-number">6.2</span> Non-dimensionalization</a></li>
-  <li><a href="#numerical-solution" id="toc-numerical-solution" class="nav-link" data-scroll-target="#numerical-solution"><span class="header-section-number">6.3</span> Numerical solution</a></li>
-  <li><a href="#linear-stability-analysis-and-evolution-of-spatial-pattern-general-conditions-for-diffusion-driven-instability" id="toc-linear-stability-analysis-and-evolution-of-spatial-pattern-general-conditions-for-diffusion-driven-instability" class="nav-link" data-scroll-target="#linear-stability-analysis-and-evolution-of-spatial-pattern-general-conditions-for-diffusion-driven-instability"><span class="header-section-number">6.4</span> Linear Stability Analysis and Evolution of Spatial Pattern: General Conditions for Diffusion-driven Instability</a>
+  <li><a href="#reaction-diffusion-turing-pre-pattern-mechanisms" id="toc-reaction-diffusion-turing-pre-pattern-mechanisms" class="nav-link" data-scroll-target="#reaction-diffusion-turing-pre-pattern-mechanisms"><span class="header-section-number">6.2</span> Reaction-diffusion (Turing) Pre-pattern Mechanisms</a>
   <ul class="collapse">
-  <li><a href="#stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations" id="toc-stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations" class="nav-link" data-scroll-target="#stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations"><span class="header-section-number">6.4.1</span> Stability of spatially homogeneous steady states to spatially homogeneous perturbations</a></li>
-  <li><a href="#stability-of-spatially-homogeneous-steady-states-to-spatially-heterogeneous-spatially-dependent-perturbations" id="toc-stability-of-spatially-homogeneous-steady-states-to-spatially-heterogeneous-spatially-dependent-perturbations" class="nav-link" data-scroll-target="#stability-of-spatially-homogeneous-steady-states-to-spatially-heterogeneous-spatially-dependent-perturbations"><span class="header-section-number">6.4.2</span> Stability of spatially homogeneous steady states to spatially heterogeneous: spatially dependent, perturbations</a></li>
+  <li><a href="#schnackenberg-kinetics" id="toc-schnackenberg-kinetics" class="nav-link" data-scroll-target="#schnackenberg-kinetics"><span class="header-section-number">6.2.1</span> Schnackenberg Kinetics</a></li>
+  <li><a href="#activator-inhibitor-kinetics-cf.-gierer-meinhardt-system-gierer-meinhardt-1972" id="toc-activator-inhibitor-kinetics-cf.-gierer-meinhardt-system-gierer-meinhardt-1972" class="nav-link" data-scroll-target="#activator-inhibitor-kinetics-cf.-gierer-meinhardt-system-gierer-meinhardt-1972"><span class="header-section-number">6.2.2</span> Activator-inhibitor kinetics cf.&nbsp;Gierer-Meinhardt system; Gierer &amp; Meinhardt, 1972</a></li>
+  <li><a href="#substrate-inhibition-system-thomas-1975" id="toc-substrate-inhibition-system-thomas-1975" class="nav-link" data-scroll-target="#substrate-inhibition-system-thomas-1975"><span class="header-section-number">6.2.3</span> Substrate-inhibition system (Thomas, 1975)</a></li>
   </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">6.5</span> Exercises</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">6.6</span> References</a></li>
+  <li><a href="#non-dimensionalization" id="toc-non-dimensionalization" class="nav-link" data-scroll-target="#non-dimensionalization"><span class="header-section-number">6.3</span> Non-dimensionalization</a></li>
+  <li><a href="#numerical-solution" id="toc-numerical-solution" class="nav-link" data-scroll-target="#numerical-solution"><span class="header-section-number">6.4</span> Numerical solution</a></li>
+  <li><a href="#linear-stability-analysis-and-evolution-of-spatial-pattern-general-conditions-for-diffusion-driven-instability" id="toc-linear-stability-analysis-and-evolution-of-spatial-pattern-general-conditions-for-diffusion-driven-instability" class="nav-link" data-scroll-target="#linear-stability-analysis-and-evolution-of-spatial-pattern-general-conditions-for-diffusion-driven-instability"><span class="header-section-number">6.5</span> Linear Stability Analysis and Evolution of Spatial Pattern: General Conditions for Diffusion-driven Instability</a>
+  <ul class="collapse">
+  <li><a href="#stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations" id="toc-stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations" class="nav-link" data-scroll-target="#stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations"><span class="header-section-number">6.5.1</span> Stability of spatially homogeneous steady states to spatially homogeneous perturbations</a></li>
+  <li><a href="#stability-of-spatially-homogeneous-steady-states-to-spatially-heterogeneous-spatially-dependent-perturbations" id="toc-stability-of-spatially-homogeneous-steady-states-to-spatially-heterogeneous-spatially-dependent-perturbations" class="nav-link" data-scroll-target="#stability-of-spatially-homogeneous-steady-states-to-spatially-heterogeneous-spatially-dependent-perturbations"><span class="header-section-number">6.5.2</span> Stability of spatially homogeneous steady states to spatially heterogeneous: spatially dependent, perturbations</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">6.6</span> Exercises</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">6.7</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -298,6 +297,11 @@ div.csl-indent {
 
 </header>
 
+<section id="spatial-pattern-formation-via-reaction-diffusion-mechanisms" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="spatial-pattern-formation-via-reaction-diffusion-mechanisms"><span class="header-section-number">6.1</span> Spatial Pattern Formation via Reaction-Diffusion Mechanisms</h2>
+<p>** Insert human embryogenesis image **</p>
+<section id="pattern-in-developmental-biology" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="pattern-in-developmental-biology"><span class="header-section-number">6.1.1</span> Pattern in Developmental Biology</h3>
 <p>Embryology or developmental biology is that part of biology which is concerned with the formation, growth and development of the embryo from fertilization until birth. From the very moment of conception the embryo undergoes a process of dynamic change, brought about largely by cells responding to various chemical signalling cues e.g.&nbsp;migration, differentiation, proliferation. Figure <span class="math inline">\(\ref{embryogenesis}\)</span> shows some of the major changes in embryonic development which occur up to a few weeks after fertilization. Many of the processes occurring at this early stage are vital for the successful subsequent development of the embryo and also lay down basic structures (e.g.&nbsp;<a href="https://en.wikipedia.org/wiki/Somite">somites</a>) that form the foundation of major body structures later on (e.g.&nbsp;the vertebrae of the spine) cf.&nbsp;Professor Lewis Wolpert: ‘<em>It is not birth, marriage, or death, but gastrulation which is truly the most important time in your life.</em>’</p>
 <!--
 \url{https://en.wikipedia.org/wiki/Lewis\_Wolpert}]. 
@@ -332,72 +336,87 @@ div.csl-indent {
 
 \url{https://www.youtube.com/watch?v=6Yj5Nyb_VyU} 
 -->
-<section id="reaction-diffusion-turing-pre-pattern-mechanisms" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="reaction-diffusion-turing-pre-pattern-mechanisms"><span class="header-section-number">6.1</span> Reaction-diffusion (Turing) Pre-pattern Mechanisms</h2>
-<p>We now consider our general (dimensional) reaction-diffusion model for two chemicals or morphogens with concentrations <span class="math inline">\(A({\bf x}, t)\)</span> and <span class="math inline">\(B({\bf x}, t)\)</span> which react together and diffuse in some spatial domain:</p>
-<p><span class="math display">\[\begin{eqnarray*}
-\frac{\partial A}{\partial  t} &amp; = &amp; F(A,B)  + D_A \nabla^2 A, \\
-\frac{\partial B}{\partial  t} &amp; = &amp; G(A,B)  + D_B \nabla^2 B,
-\end{eqnarray*}\]</span></p>
+</section>
+</section>
+<section id="reaction-diffusion-turing-pre-pattern-mechanisms" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="reaction-diffusion-turing-pre-pattern-mechanisms"><span class="header-section-number">6.2</span> Reaction-diffusion (Turing) Pre-pattern Mechanisms</h2>
+<p>We now consider our general (dimensional) reaction-diffusion model for two chemicals or morphogens with concentrations <span class="math inline">\(A({\mathbf{x}}, t)\)</span> and <span class="math inline">\(B({\mathbf{x}}, t)\)</span> which react together and diffuse in some spatial domain:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial A}{\partial  t} &amp; =  F(A,B)  + D_A \nabla^2 A, \\
+\frac{\partial B}{\partial  t} &amp; =  G(A,B)  + D_B \nabla^2 B,
+\end{aligned}
+\]</span></p>
 <p>where <span class="math inline">\(F(A,B)\)</span> and <span class="math inline">\(G(A,B)\)</span> describe the reaction kinetics between the two morphogens and <span class="math inline">\(D_A, D_B &gt; 0\)</span> are the diffusion coefficients. Turing’s theory (Turing, 1952) <em>The chemical basis of morphogenesis</em> proposed that it was the diffusion of the substances <span class="math inline">\(A, B\)</span> which led to the evolution of a spatially heterogeneous solution to arise i.e.&nbsp;a spatial pattern. This has given rise to the phrase <em>diffusion-driven instability</em>. This was a rather revolutionary and counter-intuitive proposal, since, as we have seen, diffusion normally has the opposite tendency i.e.&nbsp;to smooth or average out spatial heterogeneities, and to give rise to spatially homogeneous solutions.</p>
 <p>Various forms can be considered for the kinetic functions <span class="math inline">\(F\)</span> and <span class="math inline">\(G\)</span>. However, we will focus mainly on three specific classes as follows:</p>
-<section id="schnackenberg-kinetics" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="schnackenberg-kinetics"><span class="header-section-number">6.1.1</span> Schnackenberg Kinetics</h3>
+<section id="schnackenberg-kinetics" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="schnackenberg-kinetics"><span class="header-section-number">6.2.1</span> Schnackenberg Kinetics</h3>
 <p><span class="math display">\[
 F(A,B) = k_1 - k_2 A + k_3 A^2 B, \;\;\;\; G(A,B) = k_4 - k_3 A^2 B
 \]</span></p>
 <p><span class="math inline">\(k_1, k_2, k_3, k_4 &gt;0\)</span>. The term <span class="math inline">\(k_3 A^2 B\)</span> is <strong>autocatalytic</strong>, since the species <span class="math inline">\(A\)</span> is involved in its own production. </p>
 </section>
-<section id="activator-inhibitor-kinetics-cf.-gierer-meinhardt-system-gierer-meinhardt-1972" class="level3" data-number="6.1.2">
-<h3 data-number="6.1.2" class="anchored" data-anchor-id="activator-inhibitor-kinetics-cf.-gierer-meinhardt-system-gierer-meinhardt-1972"><span class="header-section-number">6.1.2</span> Activator-inhibitor kinetics cf.&nbsp;Gierer-Meinhardt system; Gierer &amp; Meinhardt, 1972</h3>
+<section id="activator-inhibitor-kinetics-cf.-gierer-meinhardt-system-gierer-meinhardt-1972" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="activator-inhibitor-kinetics-cf.-gierer-meinhardt-system-gierer-meinhardt-1972"><span class="header-section-number">6.2.2</span> Activator-inhibitor kinetics cf.&nbsp;Gierer-Meinhardt system; Gierer &amp; Meinhardt, 1972</h3>
 <p><span class="math display">\[
 F(A,B) = k_1 - k_2 A + \frac{k_3 A^2}{B}, \;\;\;\; G(A,B) = k_4 A^2 - k_5 B
 \]</span></p>
 <p><span class="math inline">\(k_1, k_2, k_3, k_4 , k_5 &gt; 0\)</span>. Again, the term <span class="math inline">\(k_3 A^2 / B\)</span> is <strong>autocatalytic</strong>.</p>
 </section>
-<section id="substrate-inhibition-system-thomas-1975" class="level3" data-number="6.1.3">
-<h3 data-number="6.1.3" class="anchored" data-anchor-id="substrate-inhibition-system-thomas-1975"><span class="header-section-number">6.1.3</span> Substrate-inhibition system (Thomas, 1975)</h3>
+<section id="substrate-inhibition-system-thomas-1975" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="substrate-inhibition-system-thomas-1975"><span class="header-section-number">6.2.3</span> Substrate-inhibition system (Thomas, 1975)</h3>
 <p><span class="math display">\[F(A,B) = k_1 - k_2 A - H(A,B), \;\;\;\; G(A,B) = k_4 A^2 - k_4 B -H(A,B), \]</span></p>
 <p><span class="math display">\[H(A,B) = \frac{k_5 AB}{k_6 + k_7 + k_8 A^2}\;,\]</span></p>
 <p><span class="math inline">\(k_i &gt; 0\)</span>. In the original paper of Thomas (1975), <span class="math inline">\(A\)</span> represents the concentration of oxygen (substrate) and <span class="math inline">\(B\)</span> the concentration of uricase (enzyme). Substrate inhibition is evident in the term <span class="math inline">\(k_8 A^2\)</span>.</p>
 </section>
 </section>
-<section id="non-dimensionalization" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="non-dimensionalization"><span class="header-section-number">6.2</span> Non-dimensionalization</h2>
+<section id="non-dimensionalization" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="non-dimensionalization"><span class="header-section-number">6.3</span> Non-dimensionalization</h2>
 <p>Before proceeding with our analysis, it is prudent to non-dimensionalize each of the above systems. We illustrate this process for the Schnakenberg kinetics. Using the scaling,</p>
-<p><span class="math display">\[u = A \left( \frac{k_3}{k_2} \right)^{1/2}, \;\;\;\; v = B \left( \frac{k_3}{k_2} \right)^{1/2}, \;\;\;\; t^* = \frac{D_A t}{L^2}, \;\;\;\; x^* = \frac{x}{L},\]</span></p>
+<p><span class="math display">\[
+u = A \left( \frac{k_3}{k_2} \right)^{1/2}, \;\;\;\; v = B \left( \frac{k_3}{k_2} \right)^{1/2}, \;\;\;\; t^* = \frac{D_A t}{L^2}, \;\;\;\; x^* = \frac{x}{L},
+\]</span></p>
 <p>where <span class="math inline">\(L\)</span> is a typical length scale, the dimensionless reaction-diffusion system with Schnakenberg kinetics becomes (upon dropping the <span class="math inline">\(*\)</span>):</p>
 <p><span id="eq-schnackenbergeqns"><span class="math display">\[
-\begin{eqnarray*}
-\frac{\partial u}{\partial  t} &amp; = &amp;\gamma ( a - u + u^2 v ) + \nabla^2 u = \gamma f(u,v)  + \nabla^2 u, \\
-\frac{\partial v}{\partial  t} &amp; = &amp;\gamma ( b - u^2 v ) + d \nabla^2 v = \gamma g(u,w)  + d \nabla^2 v,
-\end{eqnarray*}
-\tag{6.1}\]</span></span> where <span class="math display">\[
-d = \frac{D_B}{D_A}, \;\;\; a = \frac{k_1}{k_2} \left( \frac{k_3}{k_2} \right)^{1/2}, \;\;\; b = \frac{k_4}{k_2} \left( \frac{k_3}{k_2} \right)^{1/2}, \;\;\; \gamma = \frac{L^2 k_2}{D_A}.
+\begin{aligned}
+\frac{\partial u}{\partial  t} &amp; = \gamma ( a - u + u^2 v ) + \nabla^2 u = \gamma f(u,v)  + \nabla^2 u, \\
+\frac{\partial v}{\partial  t} &amp; = \gamma ( b - u^2 v ) + d \nabla^2 v = \gamma g(u,w)  + d \nabla^2 v,
+\end{aligned}
+\tag{6.1}\]</span></span></p>
+<p>where <span class="math display">\[
+d = \frac{D_B}{D_A}, \quad a = \frac{k_1}{k_2} \left( \frac{k_3}{k_2} \right)^{1/2}, \quad b = \frac{k_4}{k_2} \left( \frac{k_3}{k_2} \right)^{1/2}, \quad \gamma = \frac{L^2 k_2}{D_A}.
 \]</span></p>
 <p>The Gierer-Meinhardt and Thomas kinetics can be non-dimensionalized as follows:</p>
-<p><span class="math display">\[\begin{eqnarray*}
-f(u, v) &amp; = &amp; a - b u + \frac{u^2}{v}, \;\;\; g(u,v) = u^2 - v, \\
-&amp; &amp; \\
-f(u,v) &amp; = &amp; a - u - h(u,v), \;\;\; g(u,v) = \alpha (b - v) - h(u,v), \\
-h(u,v) &amp; = &amp; \frac{\rho u v}{1 + u + K u^2},
-\end{eqnarray*}\]</span></p>
-<p>where <span class="math inline">\(a , b, \alpha, \rho , K\)</span> are positive parameters (Exercise/Tutorial). \</p>
+<p><span class="math display">\[
+\begin{aligned}
+f(u, v) &amp; =  a - b u + \frac{u^2}{v},
+g(u,v) &amp;= u^2 - v, \\
+\end{aligned}
+\]</span> and <span class="math display">\[
+\begin{aligned}
+f(u,v) &amp; =  a - u - h(u,v), \\
+g(u,v) &amp;= \alpha (b - v) - h(u,v), \\
+h(u,v) &amp; =  \frac{\rho u v}{1 + u + K u^2},
+\end{aligned}
+\]</span> respectively, where <span class="math inline">\(a , b, \alpha, \rho , K\)</span> are positive parameters (Exercise/Tutorial).</p>
 <p>Any reaction-diffusion system can be non-dimensionalized and scaled following the above procedure to take the following general form:</p>
-<p><span class="math display">\[\begin{eqnarray*}
-\frac{\partial u}{\partial  t} &amp; = &amp;  \gamma f(u,v)  + \nabla^2 u, \\
-\frac{\partial v}{\partial  t} &amp; = &amp; \gamma g(u,w)  + d \nabla^2 v,
-\end{eqnarray*}\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial u}{\partial  t} &amp; = \gamma f(u,v)  + \nabla^2 u, \\
+\frac{\partial v}{\partial  t} &amp; = \gamma g(u,w)  + d \nabla^2 v,
+\end{aligned}
+\]</span></p>
 <p>where the parameter <span class="math inline">\(d\)</span> is the ratio of the diffusion coefficients from the dimensional system and the parameter <span class="math inline">\(\gamma\)</span> can be interpreted in any one of the following ways:</p>
 <ul>
-<li><span class="math inline">\(\gamma^{1/2}\)</span> is proportional to the {} of the spatial domain in one-dimension. In two-dimensions, <span class="math inline">\(\gamma\)</span> is proportional to the area.</li>
+<li><span class="math inline">\(\gamma^{1/2}\)</span> is proportional to the <strong>linear size</strong> of the spatial domain in one-dimension. In two-dimensions, <span class="math inline">\(\gamma\)</span> is proportional to the area.</li>
 <li><span class="math inline">\(\gamma\)</span> represents the relative strength of the reaction terms – an increase in <span class="math inline">\(\gamma\)</span> may represent an increase in the activity of some rate-limiting step in the reaction sequence.</li>
 <li>An increase in <span class="math inline">\(\gamma\)</span> is equivalent to a decrease in the diffusion coefficient <span class="math inline">\(d\)</span>.</li>
 </ul>
 <p>Note that in the case where the parameter <span class="math inline">\(d &gt; 1\)</span>, this means that the original diffusion coefficients are not equal. Specifically, in the case of the Gierer-Meinhardt activator-inhibitor system, <span class="math inline">\(d &gt;1\)</span> implies that the inhibitor <em>diffuses more quickly</em> than the activator [<span class="math inline">\(d &gt; 1 \Rightarrow D_B &gt; D_A\)</span> ]. The spatial implications of this are shown in figure <span class="math inline">\(\ref{AI}\)</span> – the inhibitor diffuses a greater distance than the activator, giving rise to what is known as <em>local activation, long-range inhibition</em>.</p>
+<p>** Insert activator_inhibitor here **</p>
 </section>
-<section id="numerical-solution" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="numerical-solution"><span class="header-section-number">6.3</span> Numerical solution</h2>
+<section id="numerical-solution" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="numerical-solution"><span class="header-section-number">6.4</span> Numerical solution</h2>
 <p>In Figure <a href="#fig-schnack_ddi_pde">Figure&nbsp;<span>6.1</span></a> we plot numerical solutions of <a href="#eq-schnackenbergeqns">Equation&nbsp;<span>6.1</span></a> with no flux boundary conditions.</p>
 <p>In this numerical solution the initial condition are the spatially homogeneous steady state perturbed by uniformly sampled noise. As time evolves a spatial pattern emerges. The main idea from a biological perspeftive is that an unpatterned region of an embryo could undergo chemical reactions, with the result being a patterned chemcial field.</p>
 <p>SOme question that might arise:</p>
@@ -682,52 +701,44 @@ h(u,v) &amp; = &amp; \frac{\rho u v}{1 + u + K u^2},
 </div>
 </div>
 </section>
-<section id="linear-stability-analysis-and-evolution-of-spatial-pattern-general-conditions-for-diffusion-driven-instability" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="linear-stability-analysis-and-evolution-of-spatial-pattern-general-conditions-for-diffusion-driven-instability"><span class="header-section-number">6.4</span> Linear Stability Analysis and Evolution of Spatial Pattern: General Conditions for Diffusion-driven Instability</h2>
-<p>Let <span class="math inline">\(\Omega\subset \mathbb R^n\)</span> be a domain with smooth (sufficiently regular) boundary <span class="math inline">\(\partial \Omega\)</span>, with outward unit normal <span class="math inline">\({\bf n}\)</span>. Our general, non-dimensional reaction-diffusion system is then:</p>
+<section id="linear-stability-analysis-and-evolution-of-spatial-pattern-general-conditions-for-diffusion-driven-instability" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="linear-stability-analysis-and-evolution-of-spatial-pattern-general-conditions-for-diffusion-driven-instability"><span class="header-section-number">6.5</span> Linear Stability Analysis and Evolution of Spatial Pattern: General Conditions for Diffusion-driven Instability</h2>
+<p>Let <span class="math inline">\(\Omega\subset \mathbb R^n\)</span> be a domain with smooth (sufficiently regular) boundary <span class="math inline">\(\partial \Omega\)</span>, with outward unit normal <span class="math inline">\({\mathbf{n}}\)</span>. Our general, non-dimensional reaction-diffusion system is then:</p>
 <p><span id="eq-pp"><span class="math display">\[
-\begin{eqnarray}
 \begin{aligned}
 &amp;\frac{\partial u}{\partial  t} = \gamma\, f(u,v)  +  \nabla^2 u, \qquad x\in \Omega, \quad t&gt;0, \\
 &amp;\frac{\partial v}{\partial  t} = \gamma\, g(u,v)  + d \nabla^2 v, \qquad x\in \Omega, \quad t&gt;0, \\
 &amp;
 \end{aligned}
-\end{eqnarray}
 \tag{6.2}\]</span></span> <span id="eq-pp_bc"><span class="math display">\[
-\begin{eqnarray}
 \begin{aligned}
-\nabla u \cdot {\bf n } = 0, \qquad \nabla v \cdot {\bf n } = 0, \qquad x\in \partial \Omega, \quad t&gt;0, \\
+\nabla u \cdot {\mathbf{n} } = 0, \qquad \nabla v \cdot {\mathbf{n} } = 0, \qquad x\in \partial \Omega, \quad t&gt;0, \\
 u(x,0)  = u_0(x), \qquad  v(x,0)  = v_0(x), \qquad x\in \Omega\; .
 \end{aligned}
-\end{eqnarray}
 \tag{6.3}\]</span></span></p>
 <p>A <strong>spatially homogeneous steady-state</strong> of the system <a href="#eq-pp">Equation&nbsp;<span>6.2</span></a> satisfies <span class="math display">\[
 f(u,v) = 0 , \qquad g(u,v) =0
 \]</span> and we denote it by <span class="math inline">\((u_0, v_0)\)</span>.</p>
-<section id="stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations" class="level3" data-number="6.4.1">
-<h3 data-number="6.4.1" class="anchored" data-anchor-id="stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations"><span class="header-section-number">6.4.1</span> Stability of spatially homogeneous steady states to spatially homogeneous perturbations</h3>
+<section id="stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations"><span class="header-section-number">6.5.1</span> Stability of spatially homogeneous steady states to spatially homogeneous perturbations</h3>
 <p>Before we consider the effect of the spatial terms in the system (i.e.&nbsp;diffusion), we first of all explore the stability of the underlying spatially homogeneous steady state, defined previously.</p>
 <p>Consider the following perturbations to the steady state <span class="math inline">\((u_0 , v_0)\)</span>: <span class="math display">\[
 u(x,t) = u_0 + \tilde u(t), \quad  v(x,t) = v_0 + \tilde v(t), \qquad \|\tilde u(t) \| \ll 1, \quad  \|\tilde v(t) \| \ll 1.
 \]</span></p>
 <p>Substitute these into <a href="#eq-pp">Equation&nbsp;<span>6.2</span></a> <span id="eq-pp_1"><span class="math display">\[
-\begin{eqnarray}
 \begin{aligned}
 \frac{d\tilde u}{d t} = \gamma\, f(u_0 + \tilde u,v_0 + \tilde v) ,  \\
 \frac{d \tilde v}{d  t} = \gamma\, g(u_0 + \tilde u,v_0 + \tilde v) ,
 \end{aligned}
-\end{eqnarray}
 \tag{6.4}\]</span></span></p>
 <p>and using a Taylor expansion of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> about <span class="math inline">\((u_0, v_0)\)</span> we obtain the linearised system <span id="eq-linear_pp"><span class="math display">\[
-\begin{equation}
 \begin{pmatrix}
 \tilde u_t \\
 \tilde v_t
 \end{pmatrix}  = \gamma J  \begin{pmatrix}
 \tilde u \\
 \tilde v
-\end{pmatrix}  ,
-\end{equation}
+\end{pmatrix},
 \tag{6.5}\]</span></span> where <span class="math display">\[
 J =J(u_0, v_0) =  \begin{pmatrix}
 f_u &amp; f_v  \\
@@ -747,32 +758,28 @@ g_u &amp; g_v
 \lambda_{1,2} = \frac \gamma 2 \left( \text{tr} (J) \pm \sqrt{ \text{tr}(J)^2 - 4 \det(J)} \right),
 \]</span></p>
 <p>and thus a spatially homogeneous steady state <span class="math inline">\((u_0, v_0)\)</span> is <strong>stable</strong> to spatially homogeneous perturbations if <span class="math display">\[
-{\rm Re}( \lambda_{1,2}) &lt;0,
+{\mathrm Re}( \lambda_{1,2}) &lt;0,
 \]</span> i.e.&nbsp;if</p>
 <p><span id="eq-stable_hom"><span class="math display">\[
-\begin{eqnarray}
 \begin{aligned}
 \text{tr}(J) &amp; = f_u + g_v &lt; 0, \\
 \det(J) &amp; = f_u g_v - f_v g_u &gt; 0.
 \end{aligned}
-\end{eqnarray}
 \tag{6.6}\]</span></span></p>
 <p>Conditions <a href="#eq-stable_hom">Equation&nbsp;<span>6.6</span></a> provide restrictions on the parameters in the model equations <a href="#eq-pp">Equation&nbsp;<span>6.2</span></a>. We shall be interested only in such parameter values for which conditions <a href="#eq-stable_hom">Equation&nbsp;<span>6.6</span></a> are satisfied.</p>
 </section>
-<section id="stability-of-spatially-homogeneous-steady-states-to-spatially-heterogeneous-spatially-dependent-perturbations" class="level3" data-number="6.4.2">
-<h3 data-number="6.4.2" class="anchored" data-anchor-id="stability-of-spatially-homogeneous-steady-states-to-spatially-heterogeneous-spatially-dependent-perturbations"><span class="header-section-number">6.4.2</span> Stability of spatially homogeneous steady states to spatially heterogeneous: spatially dependent, perturbations</h3>
+<section id="stability-of-spatially-homogeneous-steady-states-to-spatially-heterogeneous-spatially-dependent-perturbations" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="stability-of-spatially-homogeneous-steady-states-to-spatially-heterogeneous-spatially-dependent-perturbations"><span class="header-section-number">6.5.2</span> Stability of spatially homogeneous steady states to spatially heterogeneous: spatially dependent, perturbations</h3>
 <p>We now consider perturbations about the spatially homogeneous steady state that are spatially dependent i.e.&nbsp; <span class="math display">\[
 u(x,t) = u_0 + \tilde u(x,t), \quad  v(x,t) = v_0 + \tilde v(x,t), \qquad \|\tilde u(x,t) \| \ll 1, \quad  \|\tilde v(x,t) \| \ll 1 .
 \]</span></p>
 <p>Once again substitute into <a href="#eq-pp">Equation&nbsp;<span>6.2</span></a> and apply a Taylor expansion about <span class="math inline">\((u_0, v_0)\)</span> to <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> to obtain the linearised problem</p>
 <p><span id="eq-pp_3"><span class="math display">\[
-\begin{eqnarray}
 \begin{aligned}
 \frac{\partial \tilde u(x,t)}{\partial t} = \gamma\, \left(f_u \tilde u(x,t) + f_v \tilde v(x,t)\right) + \nabla^2 \tilde u(x,t)  , \quad x\in \Omega, \;  t &gt;0, \\
 \frac{\partial \tilde v(x,t)}{\partial   t} = \gamma\,  \left(g_u  \tilde u(x,t) + g_v \tilde v(x,t)\right) +d \nabla^2 \tilde v(x,t)  ,  \quad x\in \Omega, \;  t &gt;0,  \\
-{\bf n} \cdot \nabla \tilde u (x,t) = 0, \qquad {\bf n} \cdot \nabla \tilde v (x,t)  = 0, \qquad   x\in   \partial \Omega, \; t &gt;0
+{\mathbf{n}} \cdot \nabla \tilde u (x,t) = 0, \qquad {\mathbf{n}} \cdot \nabla \tilde v (x,t)  = 0, \qquad   x\in   \partial \Omega, \; t &gt;0
 \end{aligned}
-\end{eqnarray}
 \tag{6.7}\]</span></span></p>
 <p>Defining <span class="math display">\[
 V(x,t) = \begin{pmatrix}
@@ -796,46 +803,44 @@ V(x,t) =\begin{pmatrix}
 \bar v(t)  \varphi_2(x)
 \end{pmatrix}\;
 \]</span> and obtain <span id="eq-pp_4"><span class="math display">\[
-\begin{eqnarray}
 \begin{aligned}
 \frac{d \bar u(t)}{d t}\varphi_1(x) = \gamma\, \left(f_u \bar u(t) \varphi_1(x) + f_v \bar v(t) \varphi_2(x)\right) +\bar u(t)  \nabla^2 \varphi_1(x)  , \quad x\in \Omega, \;  t &gt;0, \\
 \frac{d \bar v(t)}{d t}\varphi_2(x) = \gamma\,  \left(g_u  \bar u(t) \varphi_1(x) + g_v \bar v(t) \varphi_2(x)\right) +  d \bar v(t) \nabla^2  \varphi_2(x)  ,  \quad x\in \Omega, \;  t &gt;0,  \\
-{\bf n} \cdot \nabla \varphi_1(x) = 0, \qquad {\bf n} \cdot \nabla\varphi_2 (x) = 0, \qquad   x\in   \partial \Omega, \; t &gt;0
+{\mathbf{n}} \cdot \nabla \varphi_1(x) = 0, \qquad {\mathbf{n}} \cdot \nabla\varphi_2 (x) = 0, \qquad   x\in   \partial \Omega, \; t &gt;0
 \end{aligned}
-\end{eqnarray}
 \tag{6.8}\]</span></span> with <span class="math display">\[
 \bar u(t)\, / \hspace{-0.35 cm}\equiv 0 \quad \textrm{and} \quad  \bar v(t)\, / \hspace{-0.35 cm}\equiv 0
 \]</span> for <span class="math inline">\(t&gt;0\)</span>.</p>
-<p>Consider the spatial eigenvalue problem for the Laplacian <span class="math inline">\(\nabla^2\)</span> with zero-Neumann boundary conditions i.e.</p>
+<div id="lem-laplacianeiegenvalues" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lemma 6.1 </strong></span>Consider the spatial eigenvalue problem for the Laplacian <span class="math inline">\(\nabla^2\)</span> with zero-Neumann boundary conditions i.e.</p>
 <p><span id="eq-ev"><span class="math display">\[
-\begin{eqnarray}
 \begin{aligned}
 \nabla^2 \psi(x) = -k^2 \psi(x) , \qquad x \in \Omega ,  \\
-{\bf n} \cdot \nabla \psi(x) = 0 , \qquad x\in \partial \Omega \; .
+{\mathbf{n}} \cdot \nabla \psi(x) = 0 , \qquad x\in \partial \Omega \; .
 \end{aligned}
-\end{eqnarray}
 \tag{6.9}\]</span></span></p>
 <p>For a bounded domain <span class="math inline">\(\Omega\)</span> there exists a discrete set of eigenvalues <span class="math display">\[
 0 \leq k^2_1&lt; k_2^2\leq k_3^2\leq \ldots \leq k_j^2\leq \ldots,
 \]</span> with <span class="math display">\[
 j \in \mathbb N, \quad  \textrm{and} \quad k_j^2 \to \infty \quad \textrm{as}  \quad j \to \infty.
 \]</span></p>
-<p>Moreover, the eigenfunctions ${ _k } $ form an <strong>orthogonal set</strong> of basis functions of the corresponding functional space (i.e.&nbsp;<span class="math inline">\(L^2(\Omega)\)</span>, <span class="math inline">\(H^1(\Omega)\)</span>).</p>
+<p>Moreover, the eigenfunctions <span class="math inline">\(\{\psi_k(x) \}\)</span> form an <strong>orthogonal set</strong> of basis functions of the corresponding functional space (i.e.&nbsp;<span class="math inline">\(L^2(\Omega)\)</span>, <span class="math inline">\(H^1(\Omega)\)</span>).</p>
+</div>
 <p>Thus we can look for the spatial component of the solution as follows: <span class="math display">\[
 \varphi(x) = \begin{pmatrix}  
 \varphi_1(x) \\
 \varphi_2(x)
 \end{pmatrix} = \sum_k C_k \psi_k(x), \qquad C_k =  \begin{pmatrix}  C_k^1 \\ C_k^2 \end{pmatrix} \in \mathbb R^2 \;
 \]</span> and <span id="eq-vxt"><span class="math display">\[
-\begin{equation}
-V(x,t) =\sum_k \hat V_k(t) \psi_k(x), \qquad \text{ where}
+\begin{aligned}
+V(x,t) =\sum_k \hat V_k(t) \psi_k(x), \qquad \textrm{ where}
 \quad \hat V_k(t)=
 \begin{pmatrix}  
 C_k^1 \; \bar u(t)
 \\
 C_k^2 \; \bar v(t)
-\end{pmatrix}\; .
-\end{equation}
+\end{pmatrix}.
+\end{aligned}
 \tag{6.10}\]</span></span></p>
 <p>Then since <span class="math inline">\(\nabla^2 \psi_k(x) = - k^2 \psi_k(x)\)</span> we obtain</p>
 <p><span class="math display">\[
@@ -855,9 +860,9 @@ D \nabla^2  V(x,t) = D \nabla^2 \left[ \sum_k \hat V_k(t) \psi_k(x) \right]   = 
 \psi_k(x)\;  /\hspace{-0.35 cm }\equiv 0
 \]</span> in <span class="math inline">\(\Omega\)</span> this implies for each <span class="math inline">\(k\)</span> a system of ODEs:</p>
 <p><span id="eq-stab_pp_ode"><span class="math display">\[
-\begin{equation}
-\frac{d}{d t}  \hat V_k(t)   =   \left(\gamma J  -  k^2  D\right) \hat V_k(t) = \tilde J\hat V_k(t) ,
-\end{equation}
+\begin{aligned}
+\frac{d}{d t}  \hat V_k(t)   &amp;=   \left(\gamma J  -  k^2  D\right) \hat V_k(t) &amp;= \tilde J\hat V_k(t) ,
+\end{aligned}
 \tag{6.11}\]</span></span></p>
 <p>where <span class="math inline">\(\tilde J\)</span> is a ``modified’’ Jacobian:</p>
 <p><span class="math display">\[
@@ -870,18 +875,12 @@ D \nabla^2  V(x,t) = D \nabla^2 \left[ \sum_k \hat V_k(t) \psi_k(x) \right]   = 
 \hat V_k(t) = e^{\lambda t} P_k
 \]</span> with <span class="math inline">\(P_k \in \mathbb R^2\)</span>, where, since <span class="math inline">\(P_k\neq 0\)</span> (looking for nontrivial solutions), we find that <span class="math inline">\(\lambda\)</span> are the eigenvalues of <span class="math inline">\(\tilde J\)</span> , i.e.&nbsp;</p>
 <p>solutions of the characteristic equation <span id="eq-charact_pp_1"><span class="math display">\[
-\begin{equation}
-\det(\tilde J - \lambda I) = \det ( \gamma J - k^2 D - \lambda I) =0 \; .
-\end{equation}
+\det(\tilde J - \lambda I) = \det ( \gamma J - k^2 D - \lambda I) =0.
 \tag{6.12}\]</span></span></p>
 <p>Evaluating the above determinant, we arrive at the equation: <span id="eq-spatial_eigenvalues"><span class="math display">\[
-\begin{equation}
 \lambda^2 + [ k^2 (1 + d) - \gamma (f_u + g_v) ] \lambda + h(k^2) = 0,
-\end{equation}
 \tag{6.13}\]</span></span> where <span id="eq-hk2"><span class="math display">\[
-\begin{equation}
 h(k^2) = dk^4 - \gamma (df_u + g_v) k^2 + \gamma^2 | J | .
-\end{equation}
 \tag{6.14}\]</span></span></p>
 <div id="fig-dispersion" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -983,9 +982,9 @@ h(k^2) = dk^4 - \gamma (df_u + g_v) k^2 + \gamma^2 | J | .
  [ True]]</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/m_/vc0kz_0x6ls5n4qnksq052jw0000gp/T/ipykernel_30942/2851046048.py:30: RuntimeWarning: invalid value encountered in sqrt
+<pre><code>/var/folders/m_/vc0kz_0x6ls5n4qnksq052jw0000gp/T/ipykernel_62695/2851046048.py:30: RuntimeWarning: invalid value encountered in sqrt
   lambda_m= (-b-np.sqrt(b**2-4*a*c))/(2*a)
-/var/folders/m_/vc0kz_0x6ls5n4qnksq052jw0000gp/T/ipykernel_30942/2851046048.py:31: RuntimeWarning: invalid value encountered in sqrt
+/var/folders/m_/vc0kz_0x6ls5n4qnksq052jw0000gp/T/ipykernel_62695/2851046048.py:31: RuntimeWarning: invalid value encountered in sqrt
   lambda_p= (-b+np.sqrt(b**2-4*a*c))//(2*a)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -1011,124 +1010,69 @@ h(k^2) = dk^4 - \gamma (df_u + g_v) k^2 + \gamma^2 | J | .
 \tilde J \Big|_{k=0} = ( \gamma J - k^2 D )\Big|_{k=0} = \gamma J.
 \]</span></p>
 <p>Thus the steady state <span class="math inline">\((u_0, v_0)\)</span> is <strong>unstable</strong> to spatially heterogeneous perturbations iff <span class="math display">\[
-{\rm Re}(\lambda_1) &gt; 0 \quad \text{and/or } \quad {\rm Re}(\lambda_2) &gt;0,
+{\mathrm Re}(\lambda_1) &gt; 0 \quad \text{and/or } \quad {\mathrm Re}(\lambda_2) &gt;0,
 \]</span> where <span class="math inline">\(\lambda_{1,2}\)</span> are solutions of <a href="#eq-charact_pp_1">Equation&nbsp;<span>6.12</span></a>, <a href="#eq-spatial_eigenvalues">Equation&nbsp;<span>6.13</span></a>.</p>
 <p>Now for <span class="math display">\[
-{\rm Re}(\lambda_1) &gt; 0 \quad \text{and/or } \quad {\rm Re}(\lambda_2) &gt;0
+{\mathrm Re}(\lambda_1) &gt; 0 \quad \text{and/or } \quad {\mathrm Re}(\lambda_2) &gt;0
 \]</span> to be satisfied we require <span class="math display">\[
 \text{tr}(\tilde J) &gt; 0 \quad \text{ or } \quad \det(\tilde J) &lt;0 \; .
 \]</span></p>
-<p>Consider first <span class="math inline">\({\rm tr} (\tilde{J})\)</span>. We have <span class="math display">\[
-\begin{equation*}
+<p>Consider first <span class="math inline">\({\mathrm tr} (\tilde{J})\)</span>. We have <span class="math display">\[
 \text{tr}(\tilde J) = \gamma ( f_u+ g_v) - k^2(1+d) &lt; 0, \hspace{4 cm}  
-\end{equation*}
 \]</span> since <span class="math inline">\(\gamma &gt; 0\)</span> and <span class="math display">\[
 f_u+ g_v &lt; 0
 \]</span> by the stability condition for the spatially homogeneous perturbation <a href="#eq-stable_hom">Equation&nbsp;<span>6.6</span></a>.</p>
 <p>Thus instability to the spatially heterogeneous perturbation <strong>can only occur</strong> if <span class="math display">\[
 \det(\tilde J) &lt; 0
-\]</span> and so we require: <span class="math display">\[\begin{eqnarray*}
+\]</span> and so we require: <span class="math display">\[
 \det(\tilde J) = h(k^2) = dk^4  - \gamma ( d\,  f_u + g_v) k^2 + \gamma^2 \det(J) &lt; 0.
-\end{eqnarray*}\]</span></p>
-<p>From the spatially homogeneous stability conditions <a href="#eq-stable_hom">Equation&nbsp;<span>6.6</span></a> we have <span class="math inline">\(\det(J) &gt;0\)</span>. Thus <span class="math inline">\(h(k^2)&lt;0\)</span> is possible only if <span id="eq-stabil_cond_nes"><span class="math display">\[
-\begin{equation}
+\]</span> From the spatially homogeneous stability conditions <a href="#eq-stable_hom">Equation&nbsp;<span>6.6</span></a> we have <span class="math inline">\(\det(J) &gt;0\)</span>. Thus <span class="math inline">\(h(k^2)&lt;0\)</span> is possible only if <span id="eq-stabil_cond_nes"><span class="math display">\[
 d f_u + g_v &gt;0.
-\end{equation}
 \tag{6.15}\]</span></span> However, once again, due to <a href="#eq-stable_hom">Equation&nbsp;<span>6.6</span></a>, we have <span class="math inline">\(f_u+ g_v &lt;0\)</span>, and so we can conclude that <em><span class="math inline">\(d\neq 1\)</span> and <span class="math inline">\(f_u\)</span> and <span class="math inline">\(g_v\)</span> must have opposite signs</em>.</p>
-<p>Condition <a href="#eq-stabil_cond_nes">Equation&nbsp;<span>6.15</span></a> is <strong>necessary but not sufficient</strong> to ensure <span class="math inline">\(h(k^2) &lt;0\)</span>. In order to guarantee that <span class="math inline">\(h(k^2) &lt; 0\)</span>, the minimum value <span class="math inline">\(h_{{\rm min}}\)</span> must be negative. Differentiating <a href="#eq-hk2">Equation&nbsp;<span>6.14</span></a> w.r.t. <span class="math inline">\(k^2\)</span>, we find that:</p>
+<p>Condition <a href="#eq-stabil_cond_nes">Equation&nbsp;<span>6.15</span></a> is <strong>necessary but not sufficient</strong> to ensure <span class="math inline">\(h(k^2) &lt;0\)</span>. In order to guarantee that <span class="math inline">\(h(k^2) &lt; 0\)</span>, the minimum value <span class="math inline">\(h_{{\mathrm min}}\)</span> must be negative. Differentiating <a href="#eq-hk2">Equation&nbsp;<span>6.14</span></a> w.r.t. <span class="math inline">\(k^2\)</span>, we find that:</p>
 <p><span id="eq-hmin"><span class="math display">\[
-\begin{equation}
-k^2_{m} = \gamma \frac{d f_u + g_v}{2d} \;\; \Rightarrow \;\; h_{{\rm min}} = \gamma^2 \left[ | J | - \frac{(df_u + g_v)^2}{4d} \right] .
-\end{equation}
+k^2_{m} = \gamma \frac{d f_u + g_v}{2d} \;\; \Rightarrow \;\; h_{{\mathrm min}} = \gamma^2 \left[ | J | - \frac{(df_u + g_v)^2}{4d} \right].
 \tag{6.16}\]</span></span></p>
 <p>Thus the condition that <span class="math inline">\(h(k^2) &lt; 0\)</span> for some <span class="math inline">\(k^2\)</span> is:</p>
-<p><span class="math display">\[\begin{equation}
+<p><span class="math display">\[
 \frac{(df_u + g_v)^2}{4d} &gt; |J|.
-\end{equation}\]</span></p>
-<p>The transition from stability to instability i.e.&nbsp;<strong>bifurcation</strong>, occurs when <span class="math inline">\(h_{{\rm min}} = 0\)</span>. From <a href="#eq-hmin">Equation&nbsp;<span>6.16</span></a>, this means at bifurcation we have <span id="eq-bif"><span class="math display">\[
-\begin{equation}
-|J| = \frac{(df_u + g_v)^2}{4d} .
-\end{equation}
+\]</span></p>
+<p>The transition from stability to instability i.e.&nbsp;<strong>bifurcation</strong>, occurs when <span class="math inline">\(h_{{\mathrm min}} = 0\)</span>. From <a href="#eq-hmin">Equation&nbsp;<span>6.16</span></a>, this means at bifurcation we have <span id="eq-bif"><span class="math display">\[
+|J| = \frac{(df_u + g_v)^2}{4d}.
 \tag{6.17}\]</span></span></p>
 <p>For a fixed set of kinetics parameters, this means that we have a <strong>critical diffusion coefficient</strong> <span class="math inline">\(d_c \;(&gt;1)\)</span>, which, after re-arranging <a href="#eq-bif">Equation&nbsp;<span>6.17</span></a>, is the appropriate root of</p>
 <p><span id="eq-dcrit"><span class="math display">\[
-\begin{equation}
 q(d_c) = d^2_c f_u^2 + 2( 2 f_v g_u - f_u g_v) d_c + g_v^2 =0.
-\end{equation}
 \tag{6.18}\]</span></span></p>
-<!--
-%The critical value of $d=d_c$ at which the  bifurcation to instability occurs is defined by  $h_{\text{min}} =0$, i.e. such value of $d$ at which $h(k^2)=0$ has a double root. 
-%Thus the bifurcation point is defined by $d=d_c$ satisfying 
-%\begin{equation}\label{critical_d}
-%h_{min} = \gamma^2 (\det(J)- \gamma^2\frac{(d\, f_u + g_w)^2} { 4 d} = 0 \quad \iff \quad \frac{(d\, f_u + g_w)^2} { 4 d} = \det(J)\; . 
-%\end{equation}
-%The equation \eqref{critical_d} is equivalent to the quadratic equation in $d$
-%$$
-%q(d) = d^2 f_u^2 + 2( 2 f_v g_u - f_u g_v) d + g_v^2 =0.
-%$$
-%Thus starting with $d$ large we can decrease $d$ until it hits the critical value  $d=d_c$, which is the larger root of $q(d) =0$. 
--->
 <p>Finally, we note that using <a href="#eq-hmin">Equation&nbsp;<span>6.16</span></a>, <a href="#eq-bif">Equation&nbsp;<span>6.17</span></a>, the <strong>critical wave number</strong> can be written: <span id="eq-kcrit"><span class="math display">\[
-\begin{equation}
 k_c^2 =\gamma  \frac{( d_c f_u + g_v)} { 2 d_c} = \gamma \left[ \frac {|J|}{d_c} \right]^{1/2} = \gamma \left[ \frac{f_u g_v - f_v g_u}{d_c} \right]^{1/2}.
-\end{equation}
 \tag{6.19}\]</span></span></p>
 <p><a href="#fig-dispersion">Figure&nbsp;<span>6.3</span></a> (a) shows a schematic diagram of the (quadratic) function <span class="math inline">\(h(k^2)\)</span> for three different values of the diffusion coefficient <span class="math inline">\(d\)</span>:</p>
 <ul>
 <li><span class="math inline">\(d &lt; d_c, \; h(k^2) &gt; 0\)</span>, and there is no pattern;</li>
-<li><span class="math inline">\(d = d_c, \; h_{{\rm min}} = 0\)</span>, critical case;</li>
+<li><span class="math inline">\(d = d_c, \; h_{{\mathrm{min}}} = 0\)</span>, critical case;</li>
 <li><span class="math inline">\(d &gt; d_c, \; h(k^2) &lt; 0\)</span>, and there is pattern.</li>
 </ul>
 <p>Hence we can see from <a href="#eq-spatial_eigenvalues">Equation&nbsp;<span>6.13</span></a> that whenever <span class="math inline">\(h(k^2) &lt; 0\)</span> the curve <span class="math inline">\(\lambda(k^2)\)</span> is positive for the same range of wavenumbers that make <span class="math inline">\(h(k^2)\)</span> negative. The range of unstable wavenumbers <span class="math display">\[
 k^2_1 &lt; k^2 &lt; k^2_2
 \]</span> can be found from the roots of <a href="#eq-hk2">Equation&nbsp;<span>6.14</span></a>, <span class="math inline">\(h(k^2) = 0\)</span>:</p>
 <p><span id="eq-k2range"><span class="math display">\[
-\begin{eqnarray}
-k^2_1 = \gamma \frac{(df_u + g_v) - \left\{ (df_u + g_v)^2 -4d |J| \right\}^{1/2} }{2d} &lt; k^2 \nonumber \\
-&lt; \gamma \frac{(df_u + g_v) +  \left\{ (df_u + g_v)^2 -4d |J| \right\}^{1/2}}{2d} = k^2_2 \nonumber
-\end{eqnarray}
+\begin{aligned}
+k^2_1 &amp;= \gamma \frac{(df_u + g_v) - \left\{ (df_u + g_v)^2 -4d |J| \right\}^{1/2} }{2d} &lt; k^2  \\
+&amp;&lt; \gamma \frac{(df_u + g_v) +  \left\{ (df_u + g_v)^2 -4d |J| \right\}^{1/2}}{2d} = k^2_2
+\end{aligned}
 \tag{6.20}\]</span></span></p>
-<p><a href="#fig-dispersion">Figure&nbsp;<span>6.3</span></a> (b) shows a schematic diagram of <span class="math inline">\({\rm Re}\lambda (k^2)\)</span> for three different values of the diffusion coefficient <span class="math inline">\(d\)</span>: * $d &lt; d_c, ; {}(k^2) &lt; 0, k^2 $, and there is no pattern; * <span class="math inline">\(d = d_c, \; k^2_c = 0\)</span>, critical case; * <span class="math inline">\(d &gt; d_c, \; {\rm Re}\lambda (k^2) &gt; 0, k^2_1 &lt; k^2 &lt; k^2_2\)</span>, and there is pattern.</p>
-<p>The expression <span class="math inline">\(\lambda = \lambda (k^2)\)</span> is known as the <strong>dispersion relation</strong> and the plot of <span class="math inline">\({\rm Re} \lambda\)</span> against <span class="math inline">\(k^2\)</span> is known as the <strong>dispersion curve</strong>.</p>
-<p>From the previous analysis, within the unstable range of wavenumbers <span class="math inline">\((k^2_1 , k^2_2)\)</span>, <span class="math inline">\({\rm Re}\lambda (k^2) &gt; 0\)</span> has a <strong>maximum value</strong> at wavenumber <span class="math inline">\(k^2_m\)</span> given by <a href="#eq-hmin">Equation&nbsp;<span>6.16</span></a> when <span class="math inline">\(d &gt; d_c\)</span>. This implies that there is a <strong>fastest growing mode</strong> in the solution <a href="#eq-vxt">Equation&nbsp;<span>6.10</span></a> of our linearised system <a href="#eq-pp_4">Equation&nbsp;<span>6.8</span></a>.</p>
-
-<!--
-%we need to consider $\min(h(k^2))$ or the roots of the quadratic equation $h(k^2) =0$, with respect to $k^2$,
-%\begin{equation}\label{roots_hk}
-%k_{\pm}^2 = \frac{\gamma} {2 d} \left[ (d\, f_u + g_v) \pm \sqrt{ (d\, f_u + g_v)^2 - 4 \det(J) d} \right] \; .
-%\end{equation}
-%Thus we have two positive real roots if
-
-%\begin{equation}\label{roots_hk_cond}
-%(d\, f_u + g_v)^2 > 4 \det(J) d \quad \iff \quad \frac{(d\, f_u + g_v)^2} { 4 d} > \det(J) \; .
-%\end{equation} 
-
-%Then provided the condition \eqref{roots_hk_cond} is satisfied we have two positive  values $k_-^2$ and $k_+^2$ and for $k^2 \in (k_-^2, k_+^2)$ holds $h(k^2) <0$.  Therefore  $Re(\lambda(k)) >0$ and $(u_0, v_0)$ is unstable to spatially heterogeneous perturbations with wave numbers $k$ such that 
-%$k^2 \in  (k_-^2, k_+^2)$. 
--->
+<p><a href="#fig-dispersion">Figure&nbsp;<span>6.3</span></a> (b) shows a schematic diagram of <span class="math inline">\({\mathrm Re}\lambda (k^2)\)</span> for three different values of the diffusion coefficient <span class="math inline">\(d\)</span>: * $d &lt; d_c, ; <span class="math inline">\({\mathrm Re}\lambda (k^2)\)</span> &lt; 0, k^2 $, and there is no pattern; * <span class="math inline">\(d = d_c, \; k^2_c = 0\)</span>, critical case;</p>
+<p>The expression <span class="math inline">\(\lambda = \lambda (k^2)\)</span> is known as the <strong>dispersion relation</strong> and the plot of <span class="math inline">\({\mathrm Re} \lambda\)</span> against <span class="math inline">\(k^2\)</span> is known as the <strong>dispersion curve</strong>.</p>
+<p>From the previous analysis, within the unstable range of wavenumbers <span class="math inline">\((k^2_1 , k^2_2)\)</span>, <span class="math inline">\({\mathrm Re}\lambda (k^2) &gt; 0\)</span> has a <strong>maximum value</strong> at wavenumber <span class="math inline">\(k^2_m\)</span> given by <a href="#eq-hmin">Equation&nbsp;<span>6.16</span></a> when <span class="math inline">\(d &gt; d_c\)</span>. This implies that there is a <strong>fastest growing mode</strong> in the solution <a href="#eq-vxt">Equation&nbsp;<span>6.10</span></a> of our linearised system <a href="#eq-pp_4">Equation&nbsp;<span>6.8</span></a>.</p>
 <p>Recalling <a href="#eq-vxt">Equation&nbsp;<span>6.10</span></a>,<br>
 <span class="math display">\[
 V(x,t) = \sum_k C_k e^{\lambda(k^2) t} \, \psi_k(x),
-\]</span> and noting the above analysis, this implies that as <span class="math inline">\(t\to \infty\)</span> the dominant contributions in the above sum are those for which <span class="math inline">\({\rm Re} \lambda(k^2) &gt; 0\)</span>, since all other modes will tend to zero exponentially fast as <span class="math inline">\(t\to \infty\)</span>. Thus, for large <span class="math inline">\(t\)</span>, the solution is effectively given by: <span class="math display">\[
+\]</span> and noting the above analysis, this implies that as <span class="math inline">\(t\to \infty\)</span> the dominant contributions in the above sum are those for which <span class="math inline">\({\mathrm Re} \lambda(k^2) &gt; 0\)</span>, since all other modes will tend to zero exponentially fast as <span class="math inline">\(t\to \infty\)</span>. Thus, for large <span class="math inline">\(t\)</span>, the solution is effectively given by: <span class="math display">\[
 V(x,t) \approx \sum_{k_{1}}^{k_2} C_k e^{\lambda(k^2) t} \, \psi_k(x) \; .
 \]</span></p>
 <p>%The critical value of <span class="math inline">\(d=d_c\)</span> at which the bifurcation to instability occurs is defined by <span class="math inline">\(h_{\textrm{min}} =0\)</span>, i.e.&nbsp;such value of <span class="math inline">\(d\)</span> at which <span class="math inline">\(h(k^2)=0\)</span> has a double root.</p>
-<!--
-%Thus the bifurcation point is defined by $d=d_c$ satisfying 
-%\begin{equation}\label{critical_d}
-%h_{min} = \gamma^2 (\det(J)- \gamma^2\frac{(d\, f_u + g_w)^2} { 4 d} = 0 \quad \iff \quad \frac{(d\, f_u + g_w)^2} { 4 d} = \det(J)\; . 
-%\end{equation}
-%The equation @eq-critical_d is equivalent to the quadratic equation in $d$
-%$$
-%q(d) = d^2 f_u^2 + 2( 2 f_v g_u - f_u g_v) d + g_v^2 =0.
-%$$
-%Thus starting with $d$ large we can decrease $d$ until it hits the critical value  $d=d_c$, which is the larger root of $q(d) =0$. 
-%
-%Then the critical wave number is given by 
-%$$
-%k_c^2 = \frac{ \gamma ( d_c f_u + g_v)} { 2 d_c} = \gamma \left(\frac {\det(J)}{d_c} \right)^{1/2} \; . 
-%$$
--->
+<p>** include figure dispersion **</p>
 
 <!--
 %\textbf{ Dispersion relation}  \; When the diffusion coefficient $d$  increases beyond the critical value $d_c$, $h(k^2)$ becomes negative over a finite interval $(k_-^2, k_+^2)$, where $k^2_\pm$ are zeros of the quadratic equation $h(k^2) =0$. Thus   $(k_-^2, k_+^2)$ is the range of the unstable wave numbers. 
@@ -1149,20 +1093,20 @@ V(x,t) \approx \sum_{k_{1}}^{k_2} C_k e^{\lambda(k^2) t} \, \psi_k(x) \; .
 <p><strong>Summary</strong></p>
 <p>We have obtained conditions for the generation of spatial patterns via systems of reaction-diffusion equations of the general form <a href="#eq-pp">Equation&nbsp;<span>6.2</span></a>. Such systems involve <strong>two chemicals or morphogens</strong> reacting and diffusing together to generate a chemical pre-pattern that underlies a subsequent cellular pattern. The four conditions are as follows:</p>
 <p><span id="eq-pattern_conditions"><span class="math display">\[
-\begin{align}
+\begin{aligned}
 f_u + g_v &amp;&lt; 0, \\
 f_u g_v - f_v g_u &amp;&gt; 0, \\
 d f_u + g_v &amp;&gt; 0, \\
 (d f_u + g_v)^2 - 4d (f_u g_v - f_v g_u)^2 &amp;&lt; 0 , \nonumber
-\end{align}
+\end{aligned}
 \tag{6.21}\]</span></span> with all partial derivatives being evaluated at the spatially homogeneous steady state <span class="math inline">\((u_0 , v_0)\)</span>.</p>
 <p>From the first and third conditions, <span class="math inline">\(d \neq 1\)</span> and <span class="math inline">\(f_u\)</span> and <span class="math inline">\(g_v\)</span> must be of different signs. For each of the reaction kinetics mentioned here (Schnakenberg, Gierer-Meinhardt, Thomas), we have that <span class="math inline">\(f_u &gt; 0, g_v &lt; 0\)</span> and so this implies that <span class="math inline">\(d &gt; 1\)</span>.</p>
 <p>If the conditions <a href="#eq-pattern_conditions">Equation&nbsp;<span>6.21</span></a> are satisfied, then there is a range of unstable wavenumbers given by <a href="#eq-k2range">Equation&nbsp;<span>6.20</span></a> which give rise to a spatial pattern. The spatial patterns which initially grow are those spatial eigenfunctions <span class="math inline">\(\psi_k(x)\)</span> whose wavenumbers <span class="math inline">\(k\)</span> are such that <span class="math inline">\(k_1 &lt; k &lt; k_2\)</span>.</p>
 <p>In most biological systems, the kinetic parameters and diffusion coefficients are fixed. This means that the only variable parameter in the system is <span class="math inline">\(\gamma\)</span> which as we have seen is related to the size of the domain under consideration. This has implications when considering patterns on finite domains, as will be seen in the next section.</p>
 </section>
 </section>
-<section id="exercises" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6.5</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6.6</span> Exercises</h2>
 <p>Demonstrate that the derived results are consistent with numerical solutions. Some predictions to test:</p>
 <ul>
 <li>No patterning when diffusion coefficients are equal</li>
@@ -1171,8 +1115,8 @@ d f_u + g_v &amp;&gt; 0, \\
 <li>what about different kinetics (e.g.&nbsp;Gierer-Meinhardt, Thomas models)?</li>
 </ul>
 </section>
-<section id="references" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="references"><span class="header-section-number">6.6</span> References</h2>
+<section id="references" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="references"><span class="header-section-number">6.7</span> References</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
@@ -1432,8 +1376,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./SIR_PDE.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">SIR models</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./NumericalMethods.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

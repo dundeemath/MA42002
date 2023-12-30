@@ -11,12 +11,12 @@ Consider a system of ODEs
 
 As an example consider $m=2$:
 $$
-\begin{eqnarray}
+\begin{aligned}
 \begin{cases}
 \dfrac{du_1}{dt} =F(u_1, u_2) ,\\
 \dfrac{du_2}{dt} =G(u_1, u_2)
 \end{cases}
-\end{eqnarray}
+\end{aligned}
 $$ {#eq-system_ode11}
 
 $(u_1, u_2) = (u^\ast_1, u^\ast_2)$ is the steady state of the system @eq-system_ode11, i.e.
@@ -33,12 +33,12 @@ $$
 u_1(t) = u^\ast_1 + \bar u_1(t), \quad  u_2(t) = u^\ast_2 + \bar u_2(t)
 $$
 $$
-\begin{eqnarray}
+\begin{aligned}
 \begin{cases}
 \dfrac{d(u^\ast_1+ \bar u_1)}{dt} =F(u^\ast_1+ u_1, u^\ast_2+ \bar u_2) ,\\
 \dfrac{d(u^\ast_2+\bar u_2)}{dt} =G(u^\ast_1+u_1,u^\ast_2+\bar u_2)
 \end{cases}
-\end{eqnarray}
+\end{aligned}
 $$ {#eq-system_ode12}
 
 Then using the fact that $(u^\ast_1, u^\ast_2)$ is a steady state and applying Taylor series expansion about $( u^\ast_1, u^\ast_2)$  and assuming that  
@@ -47,26 +47,26 @@ $$
 $$
  (small perturbations of the steady state)  we have
 $$
-\begin{eqnarray}
+\begin{aligned}
 \begin{cases}
 \dfrac{d  \bar u_1}{dt} =F(u^\ast_1, u^\ast_2) +\dfrac{\partial F}{\partial u_1}(u^\ast_1, u^\ast_2) \,   \bar u_1
 +\dfrac{\partial F}{\partial u_2}(u^\ast_1, u^\ast_2) \, \bar u_2 + O(|\bar u_1|^2, |\bar u_2|^2) ,\\
 \dfrac{d \bar u_2}{dt} =G(u^\ast_1,u^\ast_2)+ \dfrac{\partial G}{\partial u_1}(u^\ast_1, u^\ast_2) \,   \bar u_1
 +\dfrac{\partial G}{\partial u_2}(u^\ast_1, u^\ast_2) \,\bar u_2 + O(|\bar u_1|^2, |\bar u_2|^2) 
 \end{cases}
-\end{eqnarray}
+\end{aligned}
 $$ {#eq-system_ode13}
 
 Thus since $(u^\ast_1, u^\ast_2)$ is a steady state, i.e. $F(u^\ast_1, u^\ast_2) =0$ and $G(u^\ast_1, u^\ast_2) =0$   (ignoring negligibly small higher order terms) we obtain system of linearised equations 
 $$
-\begin{eqnarray}
+\begin{aligned}
 \begin{pmatrix}
 \dfrac{d  \bar u_1}{dt} \\
 \dfrac{d \bar u_2}{dt} 
 \end{pmatrix} = J( u^\ast_1, u^\ast_2) \begin{pmatrix} \bar u_1 \\
 \bar u_2 
 \end{pmatrix}
-\end{eqnarray}
+\end{aligned}
 $$ {#eq-system_ode14}
 where the Jacobian matrix $J(u^\ast_1, u^\ast_2)$ is defined as 
 $$
@@ -140,9 +140,6 @@ Thus $(u^\ast_1, u^\ast_2)$ is a **focus (spiral)**.
 
     * If $\beta =0$ then for linear system we have a **centre**, but in general we have no information on the behaviour of the nonlinear system near the steady state  $(u^\ast_1, u^\ast_2)$. 
 
-\begin{center}
-\begin{figure}
-\includegraphics[width=0.99\textwidth]{phase_plane} 
-\caption{Schematic diagram showing where the different types of fixed points lie in relation to {\rm det}A and {\rm tr}A, where A is the Jacobian matrix of system (44)}  
-\end{figure}
-\end{center} 
+
+
+** Insert figure phase plane **

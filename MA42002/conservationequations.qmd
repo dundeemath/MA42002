@@ -3,6 +3,10 @@ title: "Conservation equations"
 format: html
 ---
 
+## Introduction
+
+Many biological systems are spatio-temporal, i.e. concentrations of biochemicals, densities of cells etc. depend on spatial position as well time. To describe such cases we must relax a major assumption that was made in Mathematical Biology I (MA32009): spatial homogeneity. This leads us to describe biological system using partial differential equations.
+
 ##  Notation
 Throughout this course, we will study {\em partial differential equation models} of biological systems and as such we will consider $x \in \mathbb R^n$, $t \in [0, \infty)$ and functions $c: \mathbb R^n \times [0, \infty) \to \mathbb R$, where $n=1,2,3$. For example:
 
@@ -29,9 +33,10 @@ $$
 \end{pmatrix}
 $$
 
-In this introductory first section, we shall neglect spatial movement and consider examples of growth/death and chemical reactions. Spatial movement will be considered in the next section and subsequently throughout the course. 
+### Spatially homogeneous model
+In this introductory first section, we  neglect spatial movement and consider examples of growth/death and chemical reactions.  
 
-### Modelling the growth of bacteria in a petri dish (flask) containing nutrient medium
+#### Modelling the growth of bacteria in a petri dish (flask) containing nutrient medium
 
 Bacteria are found to reproduce by undergoing successive cell divisions. 
 
@@ -41,72 +46,70 @@ Over a period of one unit time a single bacterial cell divides, then its daughte
 
 Define $K$ - rate of reproduction per unit time, $K>0$, and 
 $$ 
-\begin{eqnarray}
 \begin{aligned}
-N(t+\Delta t) &=  \quad N(t)  & + \quad  &K N(t) \Delta t \\
+N(t+\Delta t) &=  \quad N(t)   + \quad  &K N(t) \Delta t \\
 \text{ density at time } t + \Delta t & \quad   \text{ density at time } t  & &\text{ increase in density due to}\\
 && &\text{reproduction during}\\
 && &\text{ the time interval } \Delta t
 \end{aligned}
-\end{eqnarray}
 $$ {#eq-n_1}
 Assuming that $N$ is differentiable, dividing  @eq-n_1 by $\Delta t$ and tailing limit as $\Delta t \to 0$ imply
 $$
  \frac{dN}{dt} = K N 
-$$ {eq-N_2}
+$$ {eq-n_2}
 The growth rate $K$ can take several forms e.g. 
 * $K = \text{constant}$
 * $K = K(t)$ \qquad  time-dependent
 * $K= K(N(t))$ \qquad depends on bacterial density 
 * $K= K(c(t)):= \kappa c(t), \;\; (\text{with} \;\; \kappa >0  \;\; \text{a constant}$),  which depends on the nutrient concentration $c(t)$ at time $t$ i.e. $K$ depends on the available resources
 
+#### Logistic growth via depleting nutrient source
+
 We denote by $\alpha$ the units of nutrients consumed during the production of one unit of population increment (Note: the quantity $Y= 1/\alpha$ is called the yield)  and obtain 
 $$
-\begin{eqnarray}
-& \frac{dN}{dt} = K(c) N = \kappa \, c \, N,  & \quad N(0) = N_0\label{eq:N_3}\\ 
- & \frac{ dc}{dt} = - \alpha \frac{dN}{dt} = - \alpha   \kappa \, c \, N,  &\quad  c(0)= c_0 
-\end{eqnarray}
+\begin{aligned}
+\frac{dN}{dt} &= K(c) N = \kappa cN,  \\
+ \frac{ dc}{dt} &= - \alpha \frac{dN}{dt} = - \alpha   \kappa c N,  
+ \end{aligned}
 $${#eq-C_1}
-
-We can determine the nutrient concentration by solving equation @eq-C_1. We can integrate @eq-C_1 with respect to time and obtain
+with initial conditions
 $$
-\begin{equation}
+ N(0) = N_0 \quad \textrm{and}  \quad  c(0)= c_0.
+$$
+
+We can determine the nutrient concentration by integrating the second of @eq-C_1 with respect to time and obtaining
+$$
 c(t)  = - \alpha N(t) + c(0)+ \alpha N(0) = - \alpha N(t) + \beta,
-\end{equation}
 $$ {#eq-sol_c}
 where $\beta=c_0 +\alpha N_0$. 
-Using @eq-sol_c in @eq-C_1 we obtain an equation just for $N$
+Using @eq-sol_c in @eq-C_1 we obtain the *logistic growth* equation
 $$
-\begin{eqnarray}
-\frac{dN}{dt} = \kappa ( \beta- \alpha N)  N, \qquad  N(0)= N_0\quad  \text{logistic equation (logistic growth)}
-\end{eqnarray}
+\frac{dN}{dt} = \kappa ( \beta- \alpha N)  N, \qquad  N(0)= N_0\quad  
 $$ {#eq-N_4}
 Here we have $K=K(N) =  \kappa (\beta - \alpha N)$. 
 
 The last equation can be rewritten as
 $$  
-\begin{eqnarray}
 \frac{dN}{dt} = \rho  N \,  (1 - \frac N B)  \qquad \quad N(0)= N_0, 
-\end{eqnarray}
 $$ {#eq-N_5}
 where $\rho = \kappa \beta$ is the {\em intrinsic growth rate} and $B = \frac \beta \alpha$ is the {\em carrying capacity}.
-The solution of @eq-N_5 is given by
+The solution of @eq-n_5 is given by
 $$
 N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
 $$ 
 
 
 
-**Death/decay**
+#### Death/decay
 
-In addition to growth, we may  assume that cells die at rate $d$  and the simple growth @eq-N_2 can be generalised to 
+In addition to growth, we may  assume that cells die at rate $d$  and the simple growth @eq-n_2 can be generalised to 
 $$
-\frac{dN}{dt} = KN - d N , 
+\frac{dN}{dt} = KN - d N, 
 $$
-where $d$ is  the mortality (death) rate. 
+where $d$ is the mortality (death) rate. 
 
 
-**Competition**
+#### Competition
 
  The fact that individuals compete for food, habitat (i.e. space) or any limited resources, means that an increase in the net mortality of the population may be observed under crowded conditions 
 $$
@@ -114,12 +117,12 @@ $$
 $$
 where $d=d_1N$ is the mortality (death) rate and is proportional to the population density. 
 
-###  Chemical reactions
+####  Chemical reactions
 \textbf{Basic enzyme reactions} 
 
 Most biochemical reactions involve proteins called {\em enzymes} which act as catalysts of chemical reactions. Enzymes react selectively on specific compounds called {\em substrates}.
 
-A substrate $S$ reacts, in a {\em reversible reaction}, with an enzyme $E$ to form a {\em complex} $SE$ or $C$, which in turn is converted into a product $P$. This may be described as follows:
+A substrate $S$ reacts, in a {\em reversible reaction}, with an enzyme $E$ to form a **complex** $SE$ or $C$, which in turn is converted into a product $P$. This may be described as follows:
 
 ```{mermaid}
 flowchart LR
@@ -141,7 +144,6 @@ $$
 where $k_{-1}, k_1$ and $k_2$ are rate constants ($>0$) determining the rate of the reaction i.e. how fast the reaction proceeds. 
 
 
-%$\longrightleftharpoons$  - reaction is reversible
 
 The law of mass action states that the rate of a reaction is proportional to the product of the concentrations of the reactants.
 (Note: The law of mass action is only an approximation, but it is a very good one for dilute solutions of the chemical concerned.)
@@ -151,15 +153,14 @@ $$
 s=[S], \quad e=[E], \quad c = [SE], \quad p =[P]
 $$
 and obtain 
-\begin{eqnarray}
+$$
 \begin{aligned}
-\frac{ds}{dt}& = - k_1 es + k_{-1} c, \qquad && s(0) = s_0,  \label{eq:s}\\
-\frac{de}{dt} &= - k_1 es + k_{-1} c + k_2 c, \qquad && e(0) = e_0, \label{eq:e} \\
-\frac{dc}{dt} &=  k_1 es - k_{-1} c - k_2 c, \qquad && c(0) = 0, \label{eq:c} \\
-\frac{dp}{dt} &=  k_{2} c, \qquad && p(0) = p_0. \label{eq:p}
+\frac{ds}{dt}& = - k_1 es + k_{-1} c, \qquad && s(0) = s_0, \\
+\frac{de}{dt} &= - k_1 es + k_{-1} c + k_2 c, \qquad && e(0) = e_0, \\
+\frac{dc}{dt} &=  k_1 es - k_{-1} c - k_2 c, \qquad && c(0) = 0,\\
+\frac{dp}{dt} &=  k_{2} c, \qquad && p(0) = p_0. 
 \end{aligned}
-\end{eqnarray}
-
+$$
 A study of this system is given in Homework 1. 
 
 
@@ -202,17 +203,17 @@ Assume
 Let $x$ be the distance along the tube relative to an origin. We shall consider the interval $(x, x+\Delta x)$, for some $\Delta x >0$, and a domain $V= (x, x+ \Delta x) \times S$, where $S$ is the cross-section of the tube with 
 the constant area $A=|S|$. 
 
-* $c(t,x)$ - concentration of particles (number of particles per unit volume)  at time $t$ and position $x$
+* $c(t,x)$ - concentration of particles (number of particles per unit volume)  at time, $t$, and position, $x$
 
 * $J(t,x)$ - flux of particles per unit time and unit area (number of particles crossing a unit area in the positive $x$-direction per unit time)
 
 * $f(t,x,c(t,x))$ - source/sink  (number of particles created or destroyed per unit volume and unit time)
 
-We consider  $S$ to be very small and $c(t,x)$ is assumed to be constant in  $S$ (independent of $y$ and $z$). We also assume that $c$ is continuously differentiable with respect to  $t$.
+We consider  $S$ to be very small and $c(t,x)$ is assumed to be constant in $S$ (independent of $y$ and $z$). We also assume that $c$ is continuously differentiable with respect to  $t$.
 
 The volume of $V$ is $A \Delta x$ and  number  of particles is given by 
 $$
- \int_x^{x+\Delta x} c(t, \tilde x) \,  d \tilde x A.
+\int_x^{x+\Delta x} c(t, \tilde x) \,  d \tilde x A.
 $$
 
 Then the conservation equation for the number of particles in the volume $V$ is given by
@@ -243,18 +244,18 @@ $$ {#eq-concerv_3}
 Let $V \subset \mathbb R^n$ be an arbitrary bounded domain (i.e. satisfying the conditions of the divergence theorem) and let $S$ be the surface enclosing $V$, i.e $S = \partial V$. 
 
 * $c(t,x)$ --   concentration of particles at $x\in V$ and $t>0$ (number of particles per unit volume)
-*   $J(t,x)$ -- flux vector of particles across $V$ (number of particles per unit area and per unit time entering or leaving through $S$ (the boundary of $V$).
+* $J(t,x)$ -- flux vector of particles across $V$ (number of particles per unit area and per unit time entering or leaving through $S$ (the boundary of $V$).
 * $f(t,x,c(t,x))$ - source/sink term (number of particles created or destroyed per unit volume and  per  unit time)
 
 Then the conservation equation reads
 $$
-\frac{\partial}{\partial t} \int_V c(t,x) \, dx = - \int_{S} J(t,x) \cdot {\bf n} \, d\sigma + \int_V f(t,x,c), 
+\frac{\partial}{\partial t} \int_V c(t,x) \, dx = - \int_{S} J(t,x) \cdot {\mathbf{n}} \, d\sigma + \int_V f(t,x,c), 
 $$
 where $\mathbf{n}$ is the outward normal vector to $S$. 
-The normal component of the flux $J$ on $S$ leads to a change of number of particles ( of mass ) in $V$. 
+The normal component of the flux $J$ on $S$ leads to a change of number of particles (of mass) in $V$. 
 Applying the divergence theorem, i.e.
 $$
-\int_S J \cdot {\bf n} \, d\sigma = \int_V \text{ div} J \, dx,
+\int_S J \cdot {\mathbf{n}} \, d\sigma = \int_V \text{ div} J \, dx,
 $$
 and using the fact that $V$ is independent of time $t$ we obtain 
 $$
@@ -270,10 +271,10 @@ $$ {#eq-conservation_3D}
 #### Types of flux terms
 * Fickian Diffusion
 
-  Diffusion is an important and ``metabolically cheap'' transport mechanism in biological systems. It can be also viewed as the random motion of individual molecules. 
+  Diffusion is an important and ''metabolically cheap'' transport mechanism in biological systems. It can be also viewed as the random motion of individual molecules. 
 
   $$
-  {\bf J} = - D\nabla c,
+  {\mathbf{J}} = - D\nabla c,
   $$ {#eq-diffusion}
   where $D$ is the diffusion coefficient. 
   $D$ depends on the size of the particles, the type of solvent, the temperature, \ldots. 
@@ -284,7 +285,7 @@ $$ {#eq-conservation_3D}
   \quad x\in \mathbb R^n, \,  \, t >0.
   $$ {#eq-react-diff}
 
-  If $D$ is a constant we can write 
+If $D$ is a constant we can write 
 $$
   \frac{\partial}{\partial t} c(t,x) =  D \Delta c(t,x) + f(t,x,c),
   \quad x\in \mathbb R^n \,  (\text{or } x \in \Omega), \quad t >0, 
@@ -327,30 +328,25 @@ $$
 
     In the presence of some chemoattractant $a(t,x)$ we have 
     $$
-    {\bf J} = \chi(a) c \nabla a,  
+    {\mathbf{J}} = \chi(a) c \nabla a,  
     $$
-    where $\chi(a)$ is a `model-specific' function of $a$ defining the sensitivity to the signal, 
-    and the conservation equation reads 
+    where $\chi(a)$ is a `model-specific' function of $a$ defining the sensitivity to the signal, and the conservation equation reads 
     $$
     \frac{\partial}{\partial t} c(t,x) = -\nabla \cdot (\chi(a) c(t,x) \nabla a )  + f(t,x,c),
-    \quad x\in \mathbb R^n \,  \quad t >0 \; , 
+    \quad x\in \mathbb R^n \,  \quad t >0. 
     $$ {#eq-taxis}
 
 
 We can have any combination of fluxes, depending on the biological system.  For example, chemotaxis and diffusion 
 
 $$
-\begin{equation}
 \frac{\partial}{\partial t} c = D \Delta c -\nabla \cdot (\chi(a) c \nabla a )  + f(t,x,c),
 \quad x\in \mathbb R^n \,  \quad t >0, 
-\end{equation}
 $${#eq-chemotaxis}
 which can be augmented by an equation for the (diffusible) chemoattractant $a$
 $$
-\begin{equation}
 \frac{\partial}{\partial t} a = D \nabla^2 a + g(t,x,a, c),
 \quad x\in \mathbb R^n \,  \quad t >0. 
-\end{equation}
 $$ {#eq-chemoattrac}
 @eq-chemotaxis and @eq-chemoattrac form a  system of equations, a so-called  chemotaxis system. 
 
@@ -393,7 +389,7 @@ particles cannot escape from the domain
 
 For a domain $\Omega \subset \mathbb R^n$
 $$
-D\nabla c  \cdot {\bf n}  = 0  \quad \text{ on } \quad \partial \Omega, \quad t >0 
+D\nabla c  \cdot {\mathbf{n}}  = 0  \quad \text{ on } \quad \partial \Omega, \quad t >0 
 $$
 In one-dimensional domain $(0,L)$
 $$
@@ -404,7 +400,7 @@ $$
 
 For a domain $\Omega \subset \mathbb R^n$
 $$
-D\nabla c \cdot {\bf n} = g(t,x)  \quad \text{ on } \quad \partial \Omega, \quad t >0 
+D\nabla c \cdot {\mathbf{n}} = g(t,x)  \quad \text{ on } \quad \partial \Omega, \quad t >0 
 $$
 with a given function $g$ ( $g$ can also be a constant). 
 
@@ -415,7 +411,7 @@ $$
 
 * Homogeneous Robin B.C. 
 $$
-D\nabla c(t,x)  \cdot {\bf n}  + k c(t,x)  = 0  \quad \text{ on } \quad \partial \Omega, \quad t >0 
+D\nabla c(t,x)  \cdot {\mathbf{n}}  + k c(t,x)  = 0  \quad \text{ on } \quad \partial \Omega, \quad t >0 
 $$
 with some constant $k \in \mathbb R$.
 
@@ -426,7 +422,7 @@ $$
 
 * Non-homogeneous Robin B.C. 
 $$
-D\nabla c(t,x)  \cdot {\bf n}  + k c(t,x)  = g(t,x)  \quad \text{ on } \quad \partial \Omega, \quad t >0 
+D\nabla c(t,x)  \cdot {\mathbf{n}}  + k c(t,x)  = g(t,x)  \quad \text{ on } \quad \partial \Omega, \quad t >0 
 $$
 with some constant $k \in \mathbb R$ and given function $g$ ( $g$ can  also be a constant).
 
@@ -436,13 +432,19 @@ D \frac{\partial c(t,x)}{\partial x}  + k c(t,x) = g(t,x)  \quad \text{ at } \qu
 $$ 
 
 
-\textbf{Remark} We can also have different types of boundary conditions at different parts of the boundary of the considered domain. 
+**Remark** We can also have different types of boundary conditions at different parts of the boundary of the considered domain. 
 
 ### Initial conditions
 For  a conservation equation defined in a domain $\Omega \subset \mathbb R^n$, $n=1,2,3$, additionally to boundary conditions we need to define an initial concentration, i.e. initial condition
 $$
 c(0,x) = c_0(x) , \qquad x \in \Omega  \; . 
 $$
+
+### Formulating a model
+
+The models that we  will consider will comprise one or more partial differential equations together with boundary and initial conditions. The right-hand side of the PDEs willbe dervied based upon assumptions about a particular biological system under study. We will consider exploratory numerical solutions and then study qualitative behaviours of the solutions using analyses familiar from MA32009 (e.g. steady state analysis, linear stability analysis). 
+
+
 
 ###  Nondimensionalization
 

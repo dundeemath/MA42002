@@ -5,32 +5,28 @@ book:
   title: "MA42002"
   author: "Philip Murray"
   date: "12/22/2023"
+  repo-url: https://github.com/dundeemath/MA42002/
+
   downloads: pdf
 
   chapters:
     - index.qmd
     - conservationequations.qmd
-
-    - part: "Single PDE"
+    - part: "Single species"
       chapters:
         - linearreactiondiffusion.qmd
         - nonlinearreactiondiffusion.qmd
       
-    - part: "Coupled PDE"
+    - part: "Multi species"
       chapters:
-        - LotkaVolteraPDE.qmd
-        - BacterialChemotaxis.qmd
-        - DiffusionDrivenInstability.qmd
-        - SIR_PDE.qmd
+         - LotkaVolteraPDE.qmd
+         - BacterialChemotaxis.qmd
+         - DiffusionDrivenInstability.qmd
+      #  - SIR_PDE.qmd
     - part: "Appendices"
       chapters:
         - NumericalMethods.qmd
         - linearstablityanalysis.qmd
-
-
-
-   
-
 
 bibliography: references.bib
 
@@ -39,6 +35,4 @@ format:
     theme: cosmo
   pdf:
     documentclass: scrreprt
-
-
 

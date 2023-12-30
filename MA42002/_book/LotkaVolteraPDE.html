@@ -110,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html">Coupled PDE</a></li><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lotka Voltera model</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html">Multi species</a></li><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lotka Voltera model</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -127,6 +127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="./">MA42002</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/dundeemath/MA42002/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="./MA42002.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
@@ -153,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Single PDE</span></a>
+ <span class="menu-text">Single species</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -176,7 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Coupled PDE</span></a>
+ <span class="menu-text">Multi species</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -200,12 +201,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./SIR_PDE.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">SIR models</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -220,13 +215,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./NumericalMethods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./linearstablityanalysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
   </div>
 </li>
       </ul>
@@ -270,13 +265,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Consider the predator-prey system (modified Lotka-Voltera equations) with diffusion of both the prey and the predator species:</p>
 <p><span id="eq-pp_eq"><span class="math display">\[
-\begin{equation}
 \begin{aligned}
 &amp; \frac{\partial u}{\partial t} = \rho \, u \left( 1 - \frac u K\right) - \alpha\, u \,  n + D_u \Delta u, \\
 &amp;  \frac{\partial n}{\partial t} = \beta \; u\, n - \gamma \; n + D_n \Delta n\; ,
 \end{aligned}
-\end{equation}
-  \tag{4.1}\]</span></span></p>
+\tag{4.1}\]</span></span></p>
 <p>where</p>
 <ul>
 <li><span class="math inline">\(u\)</span> – density of the prey,</li>
@@ -291,15 +284,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="nondimensionalization" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="nondimensionalization"><span class="header-section-number">4.1</span> Nondimensionalization</h2>
-<p>Consider the scaling <span class="math display">\[\begin{eqnarray*}
+<p>Consider the scaling <span class="math display">\[
 x^\ast = x \sqrt{\frac \rho {D_n}} , \qquad t^\ast = \rho \, t , \quad u^\ast = \frac uK, \quad n^\ast = n \frac \alpha \rho
-\end{eqnarray*}\]</span> in one dimension. Upon dropping the asteriked notation <span id="eq-pp_eq_2"><span class="math display">\[
-\begin{equation}
+\]</span> in one dimension. Upon dropping the asteriked notation <span id="eq-pp_eq_2"><span class="math display">\[
 \begin{cases}
   &amp;\dfrac{\partial u}{\partial t} =  u ( 1 - u - n)  + D \dfrac{\partial^2 u}{\partial x^2}\; = \; f(u,n) + D\dfrac{\partial^2 u}{\partial x^2} \qquad x\in \mathbb R , t&gt;0 \,,  \\
 &amp; \dfrac{\partial n}{\partial t} = a\,  n(u -b) + \dfrac{\partial^2  n}{\partial x^2}\; =\; \;  g(u,n) + \dfrac{\partial^2  n}{\partial x^2}\;  \qquad x\in \mathbb R , t&gt;0,
 \end{cases}
-\end{equation}
   \tag{4.2}\]</span></span> where <span class="math display">\[
 D= \dfrac{D_u}{D_n}, \quad a = \dfrac{\beta K}\rho, \quad   b = \dfrac \gamma{ K \beta}.
 \]</span></p>
@@ -411,78 +402,92 @@ D= \dfrac{D_u}{D_n}, \quad a = \dfrac{\beta K}\rho, \quad   b = \dfrac \gamma{ K
 <h2 data-number="4.3" class="anchored" data-anchor-id="spatially-homogeneous-steady-states"><span class="header-section-number">4.3</span> Spatially homogeneous steady states</h2>
 <p>We have for spatially homogeneous steady states <span class="math display">\[
 f(u,n) =0 , \qquad g(u,n) = 0
-\]</span> Thus <span class="math display">\[\begin{eqnarray*}
-u(1-u-n) = 0 , &amp;&amp; \quad  u =0, \quad u+n=1,\\
-an(u-b) = 0 , &amp;&amp; \quad n =0, \quad u =b \; .
-\end{eqnarray*}\]</span> Thus steady states are <span class="math display">\[
+\]</span> Thus <span class="math display">\[
+\begin{aligned}
+&amp;u(1-u-n) = 0,  \quad  u =0, \quad u+n=1,\\
+&amp; an(u-b) = 0,  \quad n =0, \quad u =b.
+\end{aligned}
+\]</span> Thus steady states are <span class="math display">\[
 (u_1^\ast, n_1^\ast)= (0,0), \quad (u_2^\ast, n_2^\ast)= (1,0), \quad (u_3^\ast, n_3^\ast)= (b,1-b), \, 0\leq b &lt;1
 \]</span></p>
-<p>Stability of steady states to spatially homogeneous perturbations <span class="math display">\[\begin{equation}
-J(u_j^\ast, n^\ast_j) = \begin{pmatrix}
+<p>Stability of steady states to spatially homogeneous perturbations <span class="math display">\[
+\begin{aligned}
+J(u_j^\ast, n^\ast_j) =
+\begin{pmatrix}
 1-2u -n &amp; -u \\
 an &amp;a(u-b)
 \end{pmatrix}_{(u^\ast_j, n^\ast_j)}, \quad j = 1,2,3.
-\end{equation}\]</span></p>
-<p>For <span class="math inline">\((u_1^\ast, n_1^\ast)= (0,0)\)</span> <span class="math display">\[
+\end{aligned}
+\]</span></p>
+<p>For <span class="math display">\[
+(u_1^\ast, n_1^\ast)= (0,0)
+\]</span></p>
+<p><span class="math display">\[
 \det(J (0,0) - \lambda I) = - (1- \lambda)(\lambda+ ab) = 0
-\]</span> and <span class="math display">\[
+\]</span></p>
+<p>and <span class="math display">\[
 \lambda_1^+ = 1, \quad \lambda_1^- = - ab &lt;0.
 \]</span> Thus <span class="math inline">\((0,0)\)</span> is a saddle point.</p>
-<p>For <span class="math inline">\((u_2^\ast, n_2^\ast)= (1,0)\)</span> <span class="math display">\[
+<p>For <span class="math display">\[
+(u_2^\ast, n_2^\ast)= (1,0)
+\]</span></p>
+<p><span class="math display">\[
 \det(J (1,0) - \lambda I) = - (1+ \lambda)(a(1-b)- \lambda) = 0
 \]</span> and <span class="math display">\[
 \lambda_2^- =- 1, \quad \lambda_2^+ = a(1-b) &gt;0 \; \text{ for } \; 0 \leq b &lt;1.
 \]</span> Thus <span class="math inline">\((1,0)\)</span> is a saddle point.</p>
 <p>For <span class="math inline">\((u_3^\ast, n_3^\ast)= (b,1-b)\)</span> <span class="math display">\[
 \det(J (b,1-b) - \lambda I) =\lambda^2 + b \lambda + ab(1-b) = 0
-\]</span> and <span class="math display">\[\begin{eqnarray*}
-\text{ If } &amp;&amp; \;  4 ab (1-b) \leq b^2 \qquad \lambda_3^{\pm} &lt; 0 \quad \text{ stable node } \\
-  \text{ If }  &amp;&amp; \; 4 ab (1-b) &gt; b^2 \qquad Re(\lambda_3^{\pm}) &lt; 0 , \;  Im(\lambda_3^{\pm}) \neq 0\quad \text{ stable focus (spiral) } , \\
-&amp;&amp; \text{ for } b&gt;0, \; 1-b&gt;0 \text{ spiral oscillations  are biologically realistic as long } u&gt;0, \; n&gt;0\; .
-\end{eqnarray*}\]</span></p>
+\]</span> and <span class="math display">\[
+\begin{aligned}
+\text{ If } \;  4 ab (1-b) \leq b^2 \qquad \lambda_3^{\pm} &lt; 0 \quad \text{ stable node } \\
+  \text{ If }   \; 4 ab (1-b) &gt; b^2 \qquad Re(\lambda_3{\pm}) &lt; 0 , \;  Im(\lambda_3^{\pm}) \neq 0\quad \text{ stable focus (spiral) } , \\
+\text{ for } b&gt;0, \; 1-b&gt;0 \text{ spiral oscillations  are biologically realistic as long } u&gt;0, \; n&gt;0\; .
+\end{aligned}
+\]</span></p>
 </section>
 <section id="existence-of-travelling-wave-profiles-connection-10-and-b1-b" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="existence-of-travelling-wave-profiles-connection-10-and-b1-b"><span class="header-section-number">4.4</span> Existence of travelling wave profiles connection <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((b,1-b)\)</span></h2>
-<p>Consider travelling wave solutions <span class="math display">\[\begin{eqnarray*}
-u(t,x) = W(x+ vt) = W(z) , \quad v&gt;0, \\
-n(t,x) = N( x + vt) = N(z) , \quad v &gt;0.
-\end{eqnarray*}\]</span> and <span class="math display">\[\begin{eqnarray*}
-u(t,x) \to 1 \; \text{ as } x \to - \infty,  &amp;&amp; \; \qquad  W(z)\to 1 \; \text{ as } z \to - \infty, \quad\\
-u(t,x) \to b \; \text{ as } x \to +\infty, &amp;&amp; \;  \qquad   W(z)\to b \; \text{ as } z \to + \infty \\
-n(t,x) \to 0 \;  \text{ as } x \to - \infty ,  &amp;&amp;\qquad  \;  N(z)\to 0 \;  \text{ as } z \to - \infty, \quad \\
-n(t,x) \to 1-b \; \text{ as } x \to +\infty, &amp;&amp; \;  \qquad N(z)\to 1-b \;  \text{ as } z \to +\infty
-\end{eqnarray*}\]</span></p>
-<p>The system <a href="#eq-pp_eq_2">Equation&nbsp;<span>4.2</span></a> becomes now <span id="eq-tw_pp"><span class="math display">\[
-\begin{eqnarray}
+<p>Consider travelling wave solutions <span class="math display">\[
 \begin{aligned}
-&amp;v \frac{dW}{dz} = D \frac{d^2W}{dz^2} + W(1-W-N) ,\\
+u(t,x) &amp;= W(x+ vt) = W(z) , \quad v&gt;0, \\
+n(t,x) &amp;= N( x + vt) = N(z) , \quad v &gt;0.
+\end{aligned}
+\]</span> and <span class="math display">\[
+\begin{aligned}
+u(t,x) \to 1 \; \text{ as } x \to - \infty,  &amp; \; \qquad  W(z)\to 1 \; \text{ as } z \to - \infty, \quad\\
+u(t,x) \to b \; \text{ as } x \to +\infty, &amp; \;  \qquad   W(z)\to b \; \text{ as } z \to + \infty \\
+n(t,x) \to 0 \;  \text{ as } x \to - \infty ,  &amp;\qquad  \;  N(z)\to 0 \;  \text{ as } z \to - \infty, \quad \\
+n(t,x) \to 1-b \; \text{ as } x \to +\infty, &amp; \;  \qquad N(z)\to 1-b \;  \text{ as } z \to +\infty
+\end{aligned}
+\]</span></p>
+<p>The system <a href="#eq-pp_eq_2">Equation&nbsp;<span>4.2</span></a> becomes <span class="math display">\[
+\begin{aligned}
+&amp;v \frac{dW}{dz} = D \frac{d^2W}{dz^2} + W(1-W-N),\\
 &amp; v \frac{dN}{dz} =  \frac{d^2N}{dz^2} + a N(W-b),
-\end{aligned}\\
-\begin{aligned}\label{TW_pp_BC}
+\end{aligned}
+\]</span></p>
+<p><span id="eq-tw_pp"><span class="math display">\[
+\begin{aligned}
 &amp; W(z)\to 1 \; \text{ as } z \to - \infty, \quad W(z)\to b \; \text{ as } z \to + \infty, \\
 &amp; N(z)\to 0 \;  \text{ as } z \to - \infty, \quad N(z)\to 1-b \;  \text{ as } z \to +\infty\; .
   \end{aligned}
-\end{eqnarray}
 \tag{4.3}\]</span></span></p>
 <p>We shall suppose that the prey species moves much more slowly than the predator species, i.e.&nbsp; <span class="math display">\[
 D= D_u/D_n \ll 1
 \]</span> and simplify <a href="#eq-tw_pp">Equation&nbsp;<span>4.3</span></a> as</p>
 <p><span id="eq-tw_pp_2"><span class="math display">\[
-\begin{eqnarray}
 \begin{aligned}
 &amp;v \frac{dW}{dz} =  W(1-W-N) ,\\
 &amp; v \frac{dN}{dz} =  \frac{d^2N}{dz^2} + a N(W-b),
 \end{aligned}
-\end{eqnarray}
 \tag{4.4}\]</span></span></p>
 <p>We can rewrite <a href="#eq-tw_pp_2">Equation&nbsp;<span>4.4</span></a> as a system of 1st order ODEs: <span id="eq-tw_pp_3"><span class="math display">\[
-\begin{eqnarray}
 \begin{aligned}
 &amp; \frac{dW}{dz} = \frac 1 v W(1-W-N) &amp;= F(W,N,P),\\
 &amp;\frac{dN}{dz} = P  &amp;= G(W, N,P)\\
 &amp;  \frac{dP}{dz} = v P - a N(W-b)  &amp;= R(W,N,P).
 \end{aligned}
-\end{eqnarray}
 \tag{4.5}\]</span></span> Steady states of <a href="#eq-tw_pp_2">Equation&nbsp;<span>4.4</span></a> are <span class="math display">\[
 (W^\ast_1, N^\ast_1, P^\ast_1) = (0,0,0), \quad (W^\ast_2, N^\ast_2, P^\ast_2) = (1,0,0), \quad (W^\ast_3, N^\ast_3, P^\ast_3) =(b, 1-b, 0).
 \]</span> Stability of steady states <span class="math display">\[
@@ -502,10 +507,12 @@ J(W,N,P) = \begin{pmatrix}
 \det(J(1,0,0) - \lambda I)= \left(- \frac 1 v - \lambda\right) (\lambda^2 - \lambda v + a(1-b)) =0
 \]</span> and <span class="math display">\[
 \lambda_1^1= -\frac 1 v &lt; 0, \quad \lambda_2^{\pm} = \frac{ v \pm \sqrt{v^2 - 4 a(1-b)} } 2
-\]</span> Thus since, <span class="math inline">\(0\leq b &lt; 1\)</span> and <span class="math inline">\(4(1-b)&gt;0\)</span>, <span class="math display">\[\begin{eqnarray*}
+\]</span> Thus since, <span class="math inline">\(0\leq b &lt; 1\)</span> and <span class="math inline">\(4(1-b)&gt;0\)</span>, <span class="math display">\[
+\begin{aligned}
 \text{If } &amp;&amp;  v^2 \geq  4 a(1-b) \quad (1,0,0) \text{ is a saddle with $2$-dim unstable manifold},\\
 \text{If } &amp;&amp;  v^2 &lt;  4 a(1-b) \quad (1,0,0) \text{ is an unstable focus}
-\end{eqnarray*}\]</span></p>
+\end{aligned}
+\]</span></p>
 <p>For a travelling wave with <span class="math inline">\(W\geq 0\)</span> and <span class="math inline">\(N \geq 0\)</span> to exist we requite <span class="math inline">\(v^2 \geq 4 a(1-b)\)</span> and obtain a minimal wave speed <span class="math display">\[v_\text{min}=2\sqrt{a(1-b)}   \quad \text{ with } \quad  0\leq b&lt;1.\]</span></p>
 <p>At <span class="math inline">\((W^\ast_3, N^\ast_3, P^\ast_3) =(b, 1-b, 0)\)</span> we have <span class="math display">\[
 \det(J(b,1-b,0) - \lambda I)= \lambda^3 - \lambda^2(v- \frac b v) - \lambda b - \frac 1 v ab(1-b) = p(\lambda) =0
@@ -521,12 +528,15 @@ p^\prime(\lambda) = 3 \lambda^2 - 2 \lambda \left( v - \frac b v\right) - b = 0
 </ul>
 <p>This can be easily seen from a sketch of the cubic equation:</p>
 <p><span class="math display">\[p(\lambda) = \lambda^3 - \lambda^2(v- \frac b v) - \lambda b - \frac 1 v ab(1-b).\]</span></p>
-<p>Thus we have a possible heteroclinic connection between <span class="math inline">\((1,0,0)\)</span> and <span class="math inline">\((b, 1-b, 0)\)</span>, i.e.&nbsp;between <span class="math inline">\(2\)</span>-dim unstable manifold at <span class="math inline">\((1,0,0)\)</span> and <span class="math inline">\(2\)</span>-dim stable manifold at <span class="math inline">\((b, 1-b, 0)\)</span>, and therefore an existence of a travelling wave front solution for <a href="#eq-pp_eq_2">Equation&nbsp;<span>4.2</span></a> with <span class="math display">\[\begin{eqnarray*}
-u(t,x) \to 1 \; \text{ as } x \to - \infty,  \quad &amp;&amp;
+<p>Thus we have a possible heteroclinic connection between <span class="math inline">\((1,0,0)\)</span> and <span class="math inline">\((b, 1-b, 0)\)</span>, i.e.&nbsp;between <span class="math inline">\(2\)</span>-dim unstable manifold at <span class="math inline">\((1,0,0)\)</span> and <span class="math inline">\(2\)</span>-dim stable manifold at <span class="math inline">\((b, 1-b, 0)\)</span>, and therefore an existence of a travelling wave front solution for <a href="#eq-pp_eq_2">Equation&nbsp;<span>4.2</span></a> with</p>
+<p><span class="math display">\[
+\begin{aligned}
+u(t,x) \to 1 \; \text{ as } x \to - \infty,  \quad &amp;
 u(t,x) \to b \; \text{ as } x \to +\infty,  \\
-n(t,x) \to 0 \;  \text{ as } x \to - \infty ,  \quad &amp;&amp;
-n(t,x) \to 1-b \; \text{ as } x \to +\infty\; .
-\end{eqnarray*}\]</span></p>
+n(t,x) \to 0 \;  \text{ as } x \to - \infty ,  \quad &amp;
+n(t,x) \to 1-b \; \text{ as } x \to +\infty.
+\end{aligned}
+\]</span></p>
 
 
 </section>

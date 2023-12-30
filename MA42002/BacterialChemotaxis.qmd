@@ -3,12 +3,12 @@ title: "Aggregation via Chemotaxis"
 format: html
 ---
 
-**Dictyostelium discoideum** is a slime-mold. It is widely studied experimentally since the individual amoebae that constitute the slime-mold exhibit a range of phenomena also observed in developmental biology by cells e.g. differentiation, proliferation, migration. During one particular stage of its life-cycle the single-cell amoebae become starved of food and begin to secrete a diffusible chemical, cyclic AMP or cAMP. The amoebae respond chemotactically to cAMP and begin to migrate towards regions of high cAMP concentration via  *chemotaxis*. As they migrate they generate a range of intricate patterns including *spiral waves* and *streaming* aggregation patterns. Examples of such patterns can be seen in figure \ref{dicty1}.
+**Dictyostelium discoideum** is a slime-mold. It is widely studied experimentally since the individual amoebae that constitute the slime-mold exhibit a range of phenomena also observed in developmental biology by cells e.g. differentiation, proliferation, migration. During one particular stage of its life-cycle the single-cell amoebae become starved of food and begin to secrete a diffusible chemical, cyclic AMP or cAMP. The amoebae respond chemotactically to cAMP and begin to migrate towards regions of high cAMP concentration via  *chemotaxis*. As they migrate they generate a range of intricate patterns including *spiral waves* and *streaming* aggregation patterns. Examples of such patterns can be seen in @fig-dicty_spiral.
 
 
 See also [this link to a fascinating Youtube movie of slime mold aggregation](https://www.youtube.com/watch?v=bkVhLJLG7ug). Note the aggregation  between 0:35 and 0.48.
 
-In @dicty_spiral we can see stills-shot images of spiral patterns. This spirals are dynamic as can be seen [in this movie](https://www.youtube.com/watch?v=OX5Yiz38fgY). See spiral pattern at around 0:36. 
+In @fig-dicty_spiral we can see stills-shot images of spiral patterns. This spirals are dynamic as can be seen [in this movie](https://www.youtube.com/watch?v=OX5Yiz38fgY). See spiral pattern at around 0:36. 
 
 [![Spiral wave patterns underly Dictystelium aggregation. Image from @durston2013dictyostelium. ](CG-14-355_F2.jpg)]{#fig-dicty_spiral}
 
@@ -21,24 +21,26 @@ In @dicty_spiral we can see stills-shot images of spiral patterns. This spirals 
 
 ##  Model derivation
 
-We consider a model for the aggregation of *Dictyostelium discoideum* through the secretion of and chemotactic response to cAMP. We denote by $n({\bf x}, t)$ the density of amoebae and $a({\bf x}, t)$ the concentration of cAMP. The general conservation equation for the amoebae can be written:
+We consider a model for the aggregation of *Dictyostelium discoideum* through the secretion of and chemotactic response to cAMP. We denote by $n({\mathbf{x}}, t)$ the density of amoebae and $a({\mathbf{x}}, t)$ the concentration of cAMP. The general conservation equation for the amoebae can be written:
 
 $$
-\frac{\partial n}{\partial  t} + \nabla \cdot {\bf J} = f(n,a),
+\frac{\partial n}{\partial  t} + \nabla \cdot {\mathbf{J}} = f(n,a),
 $$
 
 where $f(n,a)$ models any reaction terms for the amoebae e.g. proliferation, and the flux is given by
 
 $$
-{\bf J} = {\bf J}_{diffusion} + {\bf J}_{chemotaxis}
+{\mathbf{J}} = {\mathbf{J}}_{diffusion} + {\mathbf{J}}_{chemotaxis}
 $$
 
 Assuming Fickian diffusion and the general chemotactic flux stated earlier, the general * reaction-diffusion-chemotaxis*model for the amoebae responding to cAMP is given by:
 
-\begin{eqnarray*}
-\frac{\partial n}{\partial  t} & = & \underbrace{D_n \nabla^2 n}_{diffusion} - \underbrace{\nabla \cdot \left( \chi(a) n \nabla a \right)}_{chemotaxis} + f(n,a)   \\
-\frac{\partial a}{\partial  t} & = &  D_a \nabla^2 a + g(n,a), 
-\end{eqnarray*}
+$$
+\begin{aligned}
+\frac{\partial n}{\partial  t} &=  \underbrace{D_n \nabla^2 n}_{diffusion} - \underbrace{\nabla \cdot \left( \chi(a) n \nabla a \right)}_{chemotaxis} + f(n,a),   \\
+\frac{\partial a}{\partial  t} & =   D_a \nabla^2 a + g(n,a), 
+\end{aligned}
+$$
 
 where we have assumed Fickian diffusion for the cAMP and $g(a,n)$ represents the kinetics i.e. source/sink terms, of cAMP. 
 
@@ -60,27 +62,31 @@ i.e.
 
 Under such assumption we obtain the model equation
 
-\begin{eqnarray*}
-\frac{\partial n}{\partial  t} & = & D_n \nabla^2 n - \chi_0 \nabla \cdot \left( n \nabla a \right), \\
-\frac{\partial a}{\partial  t} & = &  D_a \nabla^2 a +  \mu n - \delta a,
-\end{eqnarray*}
+$$
+\begin{aligned}
+\frac{\partial n}{\partial  t} & =  D_n \nabla^2 n - \chi_0 \nabla \cdot \left( n \nabla a \right), \\
+\frac{\partial a}{\partial  t} & =   D_a \nabla^2 a +  \mu n - \delta a,
+\end{aligned}
+$$
 
 which becomes, when considering a 1-dimensional domain $[0,L]$:
 
 $$
-\begin{eqnarray*}
-\frac{\partial n}{\partial  t} & = & D_n \frac{\partial ^2 n}{\partial x^2} - \chi_0 \frac{\partial}{\partial x} \left( n \frac{\partial a}{\partial x} \right), \\
+\begin{aligned}
+\frac{\partial n}{\partial  t} &=  D_n \frac{\partial ^2 n}{\partial x^2} - \chi_0 \frac{\partial}{\partial x} \left( n \frac{\partial a}{\partial x} \right), \\
   & & \hspace{4.5cm} ( \dagger ) \\
-\frac{\partial a}{\partial  t} & = &  D_a \frac{\partial ^2 a}{\partial x^2}  +  \mu n - \delta a,
-\end{eqnarray*}
+\frac{\partial a}{\partial  t} &=  D_a \frac{\partial ^2 a}{\partial x^2}  +  \mu n - \delta a,
+\end{aligned}
 $$ {#eq-chemotaxis1d}
 
 with zero flux boundary conditions:
 
-\begin{eqnarray*}
-D_a \frac{\partial a}{\partial  x} & = & 0, \;\;\; x = 0,L, \\
-D_n \frac{\partial n}{\partial  x} - \chi_0 n \frac{\partial a}{\partial  x} & = & 0, \;\;\; x = 0,L,
-\end{eqnarray*}
+$$
+\begin{aligned}
+D_a \frac{\partial a}{\partial  x} & =  0, \;\;\; x = 0,L, \\
+D_n \frac{\partial n}{\partial  x} - \chi_0 n \frac{\partial a}{\partial  x} & =  0, \;\;\; x = 0,L,
+\end{aligned}
+$$
 
 which in this case reduce to:
 
@@ -221,12 +227,10 @@ $$\frac{\partial}{\partial x} \left[ ( n^* + \tilde{n}) \frac{\partial}{\partial
 The fully linearized system is then given by:
 
 $$
-\begin{eqnarray}
 \begin{aligned}
 \frac{\partial \tilde{n}}{\partial  t} & =  D_n \frac{\partial ^2 \tilde{n}}{\partial x^2} - \chi_0 n^* \frac{\partial ^2 \tilde{a}}{\partial x^2} \\
 \frac{\partial \tilde{a}}{\partial  t} & =   D_a \frac{\partial ^2 \tilde{a}}{\partial x^2}  +  \mu \tilde{n} - \delta \tilde{a}.
 \end{aligned}
-\end{eqnarray}
 $$ {#eq-chemotax_linear}
 
 Although the above equations are linear, an explicit solution is non-trivial and we are required to make a further *ansatz*. We use the``separation of variables " approach where 
@@ -238,13 +242,13 @@ $$
 \tilde a (t,x) = v(t) \phi_2(x)
 $$
 
-\begin{eqnarray*}
+$$
 \begin{aligned}
 &\frac{\partial u}{\partial  t}  \phi_1  =   D_n  u\frac{\partial ^2 \phi_1}{\partial x^2} - \chi_0 n^*  v\frac{\partial ^2 \phi_1}{\partial x^2} \\
 & \frac{v}{\partial  t}  \phi_2=     D_a v \frac{\partial ^2  \phi_2}{\partial x^2}  +  \mu u \,  \phi_1 - \delta v\,  \phi_2, \\
 & u \frac{\partial \phi_1}{\partial x} = 0, \quad   v \frac{\partial \phi_2}{\partial x} = 0 \quad \text{ for } \; x = 0, \; x=L.
 \end{aligned}
-\end{eqnarray*}
+$$
 
 We assume that  
 $$
@@ -266,21 +270,17 @@ $\phi(x) = A \cos(kx)$, with an arbitrary const $A$, and $k = \dfrac {m \pi} L$,
 
 Then we have
 $$
-\begin{eqnarray*}
 \begin{aligned}
 &\frac{\partial u}{\partial  t}  \phi  =   - k^2 D_n  u \phi +  \chi_0 n^* k^2\,  v \, \phi,  \\
 & \frac{v}{\partial  t} \phi =   - k^2 D_a  \, v \phi  +  \mu u \,  \phi - \delta v\,  \phi, 
 \end{aligned}
-\end{eqnarray*}
 $$
  and since $\phi$ is not identically zero on $(0,L)$ we obtain a system of linear ODEs for $(u(t),v(t))$
 $$
-\begin{eqnarray*}
 \begin{aligned}
 &\frac{\partial u}{\partial  t}    =   - k^2 D_n  u  +  \chi_0 n^* k^2\,  v,  \\
 & \frac{v}{\partial  t} =   - k^2 D_a  \, v  +  \mu u  - \delta v. 
 \end{aligned}
-\end{eqnarray*}
 $$
 
 We know that solutions of linear ODEs have the form 
@@ -290,11 +290,12 @@ $$
  for some constant $C_1$, $C_2$ and $\lambda$ are eigenvalues of the corresponding matrix. 
 
 Thus  we obtain 
-\begin{eqnarray*}
-\lambda C_1 & = & - D_n k^2 C_1  + \chi_0 n^* k^2 C_2,  \\
-\lambda C_2 & = & - D_a k^2 C_2 +  \mu C_1 - \delta C_2,
-\end{eqnarray*}
-
+$$
+\begin{aligned}
+\lambda C_1 & =  - D_n k^2 C_1  + \chi_0 n^* k^2 C_2,  \\
+\lambda C_2 & = - D_a k^2 C_2 +  \mu C_1 - \delta C_2,
+\end{aligned}
+$$
 which can be written
 
 $$
@@ -309,7 +310,7 @@ $$
 C_1 \\
 C_2
 \end{array}
-\right) = \bf{0} .
+\right) = \mathbf{0} .
 $$
 
 
@@ -348,11 +349,12 @@ $$\alpha = D_n k^2 + D_a k^2 + \delta > 0,
 $$ 
 and so for stability, we require $\beta > 0$ i.e. 
 
-\begin{eqnarray*}
+$$
+\begin{aligned}
 & & D_n k^2 \left( D_a k^2 + \delta \right) - \mu \chi_0 n^* k^2 > 0 \\
 & & \Rightarrow \mu \chi_0 n^* <  D_n  \left( D_a k^2 + \delta \right)
-\end{eqnarray*}
-
+\end{aligned}
+$$
 Hence, we will have instability when this condition is not satisfied i.e. 
 $$
 \mu \chi_0 n^* >  D_n  \left( D_a k^2 + \delta \right).

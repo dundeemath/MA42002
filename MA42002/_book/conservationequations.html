@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<head>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
 
-<meta charset="utf-8" />
-<meta name="generator" content="quarto-1.3.450" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MA42002 – 1  Conservation equations</title>
+<title>MA42002 - 1&nbsp; Conservation equations</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,7 +22,25 @@ ul.task-list li input[type="checkbox"] {
 }
 </style>
 
-<!-- htmldependencies:E3FAD763 -->
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./linearreactiondiffusion.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -45,31 +61,26 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script  src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script  src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link  href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet" />
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
-<body>
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn"
-      data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" 
-      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
-      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <h1 class="quarto-secondary-nav-title"></h1>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" 
-      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
-      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./conservationequations.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conservation equations</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -83,11 +94,10 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="/">
-      MA42002
-      </a> 
+      <a href="./">MA42002</a> 
         <div class="sidebar-tools-main">
-    <a href="/MA42002.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="https://github.com/dundeemath/MA42002/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./MA42002.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -100,20 +110,20 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/index.html" class="sidebar-item-text sidebar-link">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/conservationequations.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class='chapter-number'>1</span>  <span class='chapter-title'>Conservation equations</span></span></a>
+  <a href="./conservationequations.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conservation equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Single PDE</span></a>
+ <span class="menu-text">Single species</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -121,14 +131,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/linearreactiondiffusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>2</span>  <span class='chapter-title'>Linear reaction diffusion equations</span></span></a>
+  <a href="./linearreactiondiffusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linear reaction diffusion equations</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/nonlinearreactiondiffusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>3</span>  <span class='chapter-title'>Non linear reaction diffusion equations</span></span></a>
+  <a href="./nonlinearreactiondiffusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Non linear reaction diffusion equations</span></span></a>
   </div>
 </li>
       </ul>
@@ -136,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Coupled PDE</span></a>
+ <span class="menu-text">Multi species</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -144,26 +154,20 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/LotkaVolteraPDE.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>4</span>  <span class='chapter-title'>Lotka Voltera model</span></span></a>
+  <a href="./LotkaVolteraPDE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lotka Voltera model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/BacterialChemotaxis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>5</span>  <span class='chapter-title'>Aggregation via Chemotaxis</span></span></a>
+  <a href="./BacterialChemotaxis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Aggregation via Chemotaxis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/DiffusionDrivenInstability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>6</span>  <span class='chapter-title'>Diffusion driven instability</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="/SIR_PDE.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>7</span>  <span class='chapter-title'>SIR models</span></span></a>
+  <a href="./DiffusionDrivenInstability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></span></a>
   </div>
 </li>
       </ul>
@@ -179,14 +183,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/NumericalMethods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>8</span>  <span class='chapter-title'>Numerical methods in Python</span></span></a>
+  <a href="./NumericalMethods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/linearstablityanalysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>9</span>  <span class='chapter-title'>Linear stability analysis of a system of nonlinear ODES</span></span></a>
+  <a href="./linearstablityanalysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
   </div>
 </li>
       </ul>
@@ -194,17 +198,33 @@ ul.task-list li input[type="checkbox"] {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" ></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <div id="quarto-toc-target"></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1.1</span> Introduction</a></li>
+  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation"><span class="header-section-number">1.2</span> Notation</a></li>
+  <li><a href="#derivation-of-conservation-equations" id="toc-derivation-of-conservation-equations" class="nav-link" data-scroll-target="#derivation-of-conservation-equations"><span class="header-section-number">1.3</span> Derivation of conservation equations</a>
+  <ul class="collapse">
+  <li><a href="#spatially-homogeneous-model" id="toc-spatially-homogeneous-model" class="nav-link" data-scroll-target="#spatially-homogeneous-model"><span class="header-section-number">1.3.1</span> Spatially homogeneous model</a></li>
+  <li><a href="#spatial-movement" id="toc-spatial-movement" class="nav-link" data-scroll-target="#spatial-movement"><span class="header-section-number">1.3.2</span> Spatial movement</a></li>
+  <li><a href="#boundary-conditions-b.c." id="toc-boundary-conditions-b.c." class="nav-link" data-scroll-target="#boundary-conditions-b.c."><span class="header-section-number">1.3.3</span> Boundary conditions (B.C.)</a></li>
+  <li><a href="#initial-conditions" id="toc-initial-conditions" class="nav-link" data-scroll-target="#initial-conditions"><span class="header-section-number">1.3.4</span> Initial conditions</a></li>
+  <li><a href="#formulating-a-model" id="toc-formulating-a-model" class="nav-link" data-scroll-target="#formulating-a-model"><span class="header-section-number">1.3.5</span> Formulating a model</a></li>
+  <li><a href="#nondimensionalization" id="toc-nondimensionalization" class="nav-link" data-scroll-target="#nondimensionalization"><span class="header-section-number">1.3.6</span> Nondimensionalization</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>  <span class="chapter-title">Conservation equations</span></h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conservation equations</span></h1>
 </div>
 
 
@@ -218,24 +238,13 @@ ul.task-list li input[type="checkbox"] {
   
 
 </header>
-<nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#notation" id="toc-notation"><span class="header-section-number">1.1</span> Notation</a></li>
-  <li><a href="#derivation-of-conservation-equations" id="toc-derivation-of-conservation-equations"><span class="header-section-number">1.2</span> Derivation of conservation equations</a>
-  <ul>
-  <li><a href="#modelling-the-growth-of-bacteria-in-a-petri-dish-flask-containing-nutrient-medium" id="toc-modelling-the-growth-of-bacteria-in-a-petri-dish-flask-containing-nutrient-medium"><span class="header-section-number">1.2.1</span> Modelling the growth of bacteria in a petri dish (flask) containing nutrient medium</a></li>
-  <li><a href="#chemical-reactions" id="toc-chemical-reactions"><span class="header-section-number">1.2.2</span> Chemical reactions</a></li>
-  <li><a href="#spatial-movement" id="toc-spatial-movement"><span class="header-section-number">1.2.3</span> Spatial movement</a></li>
-  <li><a href="#boundary-conditions-b.c." id="toc-boundary-conditions-b.c."><span class="header-section-number">1.2.4</span> Boundary conditions (B.C.)</a></li>
-  <li><a href="#initial-conditions" id="toc-initial-conditions"><span class="header-section-number">1.2.5</span> Initial conditions</a></li>
-  <li><a href="#nondimensionalization" id="toc-nondimensionalization"><span class="header-section-number">1.2.6</span> Nondimensionalization</a></li>
-  </ul></li>
-  </ul>
-</nav>
-<section id="notation" class="level2" data-number="1.1">
-<h2 data-number="1.1"><span class="header-section-number">1.1</span> Notation</h2>
+
+<section id="introduction" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.1</span> Introduction</h2>
+<p>Many biological systems are spatio-temporal, i.e.&nbsp;concentrations of biochemicals, densities of cells etc. depend on spatial position as well time. To describe such cases we must relax a major assumption that was made in Mathematical Biology I (MA32009): spatial homogeneity. This leads us to describe biological system using partial differential equations.</p>
+</section>
+<section id="notation" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="notation"><span class="header-section-number">1.2</span> Notation</h2>
 <p>Throughout this course, we will study {} of biological systems and as such we will consider <span class="math inline">\(x \in \mathbb R^n\)</span>, <span class="math inline">\(t \in [0, \infty)\)</span> and functions <span class="math inline">\(c: \mathbb R^n \times [0, \infty) \to \mathbb R\)</span>, where <span class="math inline">\(n=1,2,3\)</span>. For example:</p>
 <ul>
 <li><span class="math inline">\(c(t,x)\)</span> - the density of a population [number per volume] at time <span class="math inline">\(t\)</span> and position <span class="math inline">\(x\)</span> (at <span class="math inline">\((t,x)\)</span>)</li>
@@ -243,8 +252,8 @@ ul.task-list li input[type="checkbox"] {
 <li><span class="math inline">\(c(t,x)\)</span> - the temperature at <span class="math inline">\((t,x)\)</span>.</li>
 </ul>
 </section>
-<section id="derivation-of-conservation-equations" class="level2" data-number="1.2">
-<h2 data-number="1.2"><span class="header-section-number">1.2</span> Derivation of conservation equations</h2>
+<section id="derivation-of-conservation-equations" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="derivation-of-conservation-equations"><span class="header-section-number">1.3</span> Derivation of conservation equations</h2>
 <p>A conservation equation is the most fundamental statement through which changes in the distribution of the density (or concentration, temperature) is described. <span class="math display">\[
 \begin{pmatrix}
 \text{rate of change}\\
@@ -260,60 +269,63 @@ ul.task-list li input[type="checkbox"] {
   \text{due to chemical reactions}
 \end{pmatrix}
 \]</span></p>
-<p>In this introductory first section, we shall neglect spatial movement and consider examples of growth/death and chemical reactions. Spatial movement will be considered in the next section and subsequently throughout the course.</p>
-<section id="modelling-the-growth-of-bacteria-in-a-petri-dish-flask-containing-nutrient-medium" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1"><span class="header-section-number">1.2.1</span> Modelling the growth of bacteria in a petri dish (flask) containing nutrient medium</h3>
+<section id="spatially-homogeneous-model" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="spatially-homogeneous-model"><span class="header-section-number">1.3.1</span> Spatially homogeneous model</h3>
+<p>In this introductory first section, we neglect spatial movement and consider examples of growth/death and chemical reactions.</p>
+<section id="modelling-the-growth-of-bacteria-in-a-petri-dish-flask-containing-nutrient-medium" class="level4" data-number="1.3.1.1">
+<h4 data-number="1.3.1.1" class="anchored" data-anchor-id="modelling-the-growth-of-bacteria-in-a-petri-dish-flask-containing-nutrient-medium"><span class="header-section-number">1.3.1.1</span> Modelling the growth of bacteria in a petri dish (flask) containing nutrient medium</h4>
 <p>Bacteria are found to reproduce by undergoing successive cell divisions.</p>
 <p>Denote by <span class="math inline">\(N(t)\)</span> - bacterial density observed at time <span class="math inline">\(t\)</span> [number of cells per volume].</p>
 <p>Over a period of one unit time a single bacterial cell divides, then its daughter cells divide, and so forth, leading to a total of <span class="math inline">\(K\)</span> new bacterial cells.</p>
 <p>Define <span class="math inline">\(K\)</span> - rate of reproduction per unit time, <span class="math inline">\(K&gt;0\)</span>, and <span id="eq-n_1"><span class="math display">\[
-\begin{eqnarray}
 \begin{aligned}
-N(t+\Delta t) &amp;=  \quad N(t)  &amp; + \quad  &amp;K N(t) \Delta t \\
+N(t+\Delta t) &amp;=  \quad N(t)   + \quad  &amp;K N(t) \Delta t \\
 \text{ density at time } t + \Delta t &amp; \quad   \text{ density at time } t  &amp; &amp;\text{ increase in density due to}\\
 &amp;&amp; &amp;\text{reproduction during}\\
 &amp;&amp; &amp;\text{ the time interval } \Delta t
 \end{aligned}
-\end{eqnarray}
-\tag{1.1}\]</span></span> Assuming that <span class="math inline">\(N\)</span> is differentiable, dividing <a href="#eq-n_1">Equation <span class="quarto-unresolved-ref">eq-n_1</span></a> by <span class="math inline">\(\Delta t\)</span> and tailing limit as <span class="math inline">\(\Delta t \to 0\)</span> imply <span class="math display">\[
+\tag{1.1}\]</span></span> Assuming that <span class="math inline">\(N\)</span> is differentiable, dividing <a href="#eq-n_1">Equation&nbsp;<span>1.1</span></a> by <span class="math inline">\(\Delta t\)</span> and tailing limit as <span class="math inline">\(\Delta t \to 0\)</span> imply <span class="math display">\[
 \frac{dN}{dt} = K N
-\]</span> {eq-N_2} The growth rate <span class="math inline">\(K\)</span> can take several forms e.g.  * <span class="math inline">\(K = \text{constant}\)</span> * <span class="math inline">\(K = K(t)\)</span> time-dependent * <span class="math inline">\(K= K(N(t))\)</span> depends on bacterial density * <span class="math inline">\(K= K(c(t)):= \kappa c(t), \;\; (\text{with} \;\; \kappa &gt;0 \;\; \text{a constant}\)</span>), which depends on the nutrient concentration <span class="math inline">\(c(t)\)</span> at time <span class="math inline">\(t\)</span> i.e. <span class="math inline">\(K\)</span> depends on the available resources</p>
+\]</span> {eq-n_2} The growth rate <span class="math inline">\(K\)</span> can take several forms e.g.&nbsp; * <span class="math inline">\(K = \text{constant}\)</span> * <span class="math inline">\(K = K(t)\)</span> time-dependent * <span class="math inline">\(K= K(N(t))\)</span> depends on bacterial density * <span class="math inline">\(K= K(c(t)):= \kappa c(t), \;\; (\text{with} \;\; \kappa &gt;0 \;\; \text{a constant}\)</span>), which depends on the nutrient concentration <span class="math inline">\(c(t)\)</span> at time <span class="math inline">\(t\)</span> i.e.&nbsp;<span class="math inline">\(K\)</span> depends on the available resources</p>
+</section>
+<section id="logistic-growth-via-depleting-nutrient-source" class="level4" data-number="1.3.1.2">
+<h4 data-number="1.3.1.2" class="anchored" data-anchor-id="logistic-growth-via-depleting-nutrient-source"><span class="header-section-number">1.3.1.2</span> Logistic growth via depleting nutrient source</h4>
 <p>We denote by <span class="math inline">\(\alpha\)</span> the units of nutrients consumed during the production of one unit of population increment (Note: the quantity <span class="math inline">\(Y= 1/\alpha\)</span> is called the yield) and obtain <span id="eq-C_1"><span class="math display">\[
-\begin{eqnarray}
-&amp; \frac{dN}{dt} = K(c) N = \kappa \, c \, N,  &amp; \quad N(0) = N_0\label{eq:N_3}\\
-&amp; \frac{ dc}{dt} = - \alpha \frac{dN}{dt} = - \alpha   \kappa \, c \, N,  &amp;\quad  c(0)= c_0
-\end{eqnarray}
-\tag{1.2}\]</span></span></p>
-<p>We can determine the nutrient concentration by solving equation <a href="#eq-C_1">Equation <span class="quarto-unresolved-ref">eq-C_1</span></a>. We can integrate <a href="#eq-C_1">Equation <span class="quarto-unresolved-ref">eq-C_1</span></a> with respect to time and obtain <span id="eq-sol_c"><span class="math display">\[
-\begin{equation}
+\begin{aligned}
+\frac{dN}{dt} &amp;= K(c) N = \kappa cN,  \\
+\frac{ dc}{dt} &amp;= - \alpha \frac{dN}{dt} = - \alpha   \kappa c N,  
+\end{aligned}
+\tag{1.2}\]</span></span> with initial conditions <span class="math display">\[
+N(0) = N_0 \quad \textrm{and}  \quad  c(0)= c_0.
+\]</span></p>
+<p>We can determine the nutrient concentration by integrating the second of <a href="#eq-C_1">Equation&nbsp;<span>1.2</span></a> with respect to time and obtaining <span id="eq-sol_c"><span class="math display">\[
 c(t)  = - \alpha N(t) + c(0)+ \alpha N(0) = - \alpha N(t) + \beta,
-\end{equation}
-\tag{1.3}\]</span></span> where <span class="math inline">\(\beta=c_0 +\alpha N_0\)</span>. Using <a href="#eq-sol_c">Equation <span class="quarto-unresolved-ref">eq-sol_c</span></a> in <a href="#eq-C_1">Equation <span class="quarto-unresolved-ref">eq-C_1</span></a> we obtain an equation just for <span class="math inline">\(N\)</span> <span id="eq-N_4"><span class="math display">\[
-\begin{eqnarray}
-\frac{dN}{dt} = \kappa ( \beta- \alpha N)  N, \qquad  N(0)= N_0\quad  \text{logistic equation (logistic growth)}
-\end{eqnarray}
+\tag{1.3}\]</span></span> where <span class="math inline">\(\beta=c_0 +\alpha N_0\)</span>. Using <a href="#eq-sol_c">Equation&nbsp;<span>1.3</span></a> in <a href="#eq-C_1">Equation&nbsp;<span>1.2</span></a> we obtain the <em>logistic growth</em> equation <span id="eq-N_4"><span class="math display">\[
+\frac{dN}{dt} = \kappa ( \beta- \alpha N)  N, \qquad  N(0)= N_0\quad  
 \tag{1.4}\]</span></span> Here we have <span class="math inline">\(K=K(N) = \kappa (\beta - \alpha N)\)</span>.</p>
 <p>The last equation can be rewritten as <span id="eq-N_5"><span class="math display">\[  
-\begin{eqnarray}
 \frac{dN}{dt} = \rho  N \,  (1 - \frac N B)  \qquad \quad N(0)= N_0,
-\end{eqnarray}
-\tag{1.5}\]</span></span> where <span class="math inline">\(\rho = \kappa \beta\)</span> is the {} and <span class="math inline">\(B = \frac \beta \alpha\)</span> is the {}. The solution of <a href="#eq-N_5">Equation <span class="quarto-unresolved-ref">eq-N_5</span></a> is given by <span class="math display">\[
+\tag{1.5}\]</span></span> where <span class="math inline">\(\rho = \kappa \beta\)</span> is the {} and <span class="math inline">\(B = \frac \beta \alpha\)</span> is the {}. The solution of <span class="quarto-unresolved-ref">?eq-n_5</span> is given by <span class="math display">\[
 N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
 \]</span></p>
-<p><strong>Death/decay</strong></p>
-<p>In addition to growth, we may assume that cells die at rate <span class="math inline">\(d\)</span> and the simple growth <a href="#eq-N_2">Equation <span class="quarto-unresolved-ref">eq-N_2</span></a> can be generalised to <span class="math display">\[
-\frac{dN}{dt} = KN - d N ,
+</section>
+<section id="deathdecay" class="level4" data-number="1.3.1.3">
+<h4 data-number="1.3.1.3" class="anchored" data-anchor-id="deathdecay"><span class="header-section-number">1.3.1.3</span> Death/decay</h4>
+<p>In addition to growth, we may assume that cells die at rate <span class="math inline">\(d\)</span> and the simple growth <span class="quarto-unresolved-ref">?eq-n_2</span> can be generalised to <span class="math display">\[
+\frac{dN}{dt} = KN - d N,
 \]</span> where <span class="math inline">\(d\)</span> is the mortality (death) rate.</p>
-<p><strong>Competition</strong></p>
-<p>The fact that individuals compete for food, habitat (i.e. space) or any limited resources, means that an increase in the net mortality of the population may be observed under crowded conditions <span class="math display">\[
+</section>
+<section id="competition" class="level4" data-number="1.3.1.4">
+<h4 data-number="1.3.1.4" class="anchored" data-anchor-id="competition"><span class="header-section-number">1.3.1.4</span> Competition</h4>
+<p>The fact that individuals compete for food, habitat (i.e.&nbsp;space) or any limited resources, means that an increase in the net mortality of the population may be observed under crowded conditions <span class="math display">\[
 \frac{dN}{dt} = KN - d_1 N^2 ,
 \]</span> where <span class="math inline">\(d=d_1N\)</span> is the mortality (death) rate and is proportional to the population density.</p>
 </section>
-<section id="chemical-reactions" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2"><span class="header-section-number">1.2.2</span> Chemical reactions</h3>
+<section id="chemical-reactions" class="level4" data-number="1.3.1.5">
+<h4 data-number="1.3.1.5" class="anchored" data-anchor-id="chemical-reactions"><span class="header-section-number">1.3.1.5</span> Chemical reactions</h4>
 <p></p>
 <p>Most biochemical reactions involve proteins called {} which act as catalysts of chemical reactions. Enzymes react selectively on specific compounds called {}.</p>
-<p>A substrate <span class="math inline">\(S\)</span> reacts, in a {}, with an enzyme <span class="math inline">\(E\)</span> to form a {} <span class="math inline">\(SE\)</span> or <span class="math inline">\(C\)</span>, which in turn is converted into a product <span class="math inline">\(P\)</span>. This may be described as follows:</p>
+<p>A substrate <span class="math inline">\(S\)</span> reacts, in a {}, with an enzyme <span class="math inline">\(E\)</span> to form a <strong>complex</strong> <span class="math inline">\(SE\)</span> or <span class="math inline">\(C\)</span>, which in turn is converted into a product <span class="math inline">\(P\)</span>. This may be described as follows:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -337,23 +349,22 @@ C & \stackrel{k_2}{\rightarrow} & P + E \nonumber
 \end{eqnarray}
 $$
 -->
-<p>where <span class="math inline">\(k_{-1}, k_1\)</span> and <span class="math inline">\(k_2\)</span> are rate constants (<span class="math inline">\(&gt;0\)</span>) determining the rate of the reaction i.e. how fast the reaction proceeds.</p>
-<p>%<span class="math inline">\(\longrightleftharpoons\)</span> - reaction is reversible</p>
+<p>where <span class="math inline">\(k_{-1}, k_1\)</span> and <span class="math inline">\(k_2\)</span> are rate constants (<span class="math inline">\(&gt;0\)</span>) determining the rate of the reaction i.e.&nbsp;how fast the reaction proceeds.</p>
 <p>The law of mass action states that the rate of a reaction is proportional to the product of the concentrations of the reactants. (Note: The law of mass action is only an approximation, but it is a very good one for dilute solutions of the chemical concerned.)</p>
 <p>We denote the concentrations $ [ ; ]$ as follows: <span class="math display">\[
 s=[S], \quad e=[E], \quad c = [SE], \quad p =[P]
-\]</span> and obtain <span class="math display">\[\begin{eqnarray}
+\]</span> and obtain <span class="math display">\[
 \begin{aligned}
-\frac{ds}{dt}&amp; = - k_1 es + k_{-1} c, \qquad &amp;&amp; s(0) = s_0,  \label{eq:s}\\
-\frac{de}{dt} &amp;= - k_1 es + k_{-1} c + k_2 c, \qquad &amp;&amp; e(0) = e_0, \label{eq:e} \\
-\frac{dc}{dt} &amp;=  k_1 es - k_{-1} c - k_2 c, \qquad &amp;&amp; c(0) = 0, \label{eq:c} \\
-\frac{dp}{dt} &amp;=  k_{2} c, \qquad &amp;&amp; p(0) = p_0. \label{eq:p}
+\frac{ds}{dt}&amp; = - k_1 es + k_{-1} c, \qquad &amp;&amp; s(0) = s_0, \\
+\frac{de}{dt} &amp;= - k_1 es + k_{-1} c + k_2 c, \qquad &amp;&amp; e(0) = e_0, \\
+\frac{dc}{dt} &amp;=  k_1 es - k_{-1} c - k_2 c, \qquad &amp;&amp; c(0) = 0,\\
+\frac{dp}{dt} &amp;=  k_{2} c, \qquad &amp;&amp; p(0) = p_0.
 \end{aligned}
-\end{eqnarray}\]</span></p>
-<p>A study of this system is given in Homework 1.</p>
+\]</span> A study of this system is given in Homework 1.</p>
 </section>
-<section id="spatial-movement" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3"><span class="header-section-number">1.2.3</span> Spatial movement</h3>
+</section>
+<section id="spatial-movement" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="spatial-movement"><span class="header-section-number">1.3.2</span> Spatial movement</h3>
 <p>Consider a spatial domain <span class="math inline">\(V\)</span>. A conservation equation can be written either in terms of the mass or number of particles of a species as follows:</p>
 <p><span class="math display">\[
 \begin{pmatrix}
@@ -378,16 +389,16 @@ s=[S], \quad e=[E], \quad c = [SE], \quad p =[P]
   \text{in $V$ per unit time}
 \end{pmatrix}
 \]</span></p>
-<section id="one-dimensional-conservation-equations" class="level4" data-number="1.2.3.1">
-<h4 data-number="1.2.3.1"><span class="header-section-number">1.2.3.1</span> One-dimensional conservation equations</h4>
+<section id="one-dimensional-conservation-equations" class="level4" data-number="1.3.2.1">
+<h4 data-number="1.3.2.1" class="anchored" data-anchor-id="one-dimensional-conservation-equations"><span class="header-section-number">1.3.2.1</span> One-dimensional conservation equations</h4>
 <p>Assume</p>
 <ul>
-<li>motion takes place in a one-dimensional domain (e.g. a long very thin tube)</li>
+<li>motion takes place in a one-dimensional domain (e.g.&nbsp;a long very thin tube)</li>
 <li>the tube has a constant cross-section area</li>
 </ul>
 <p>Let <span class="math inline">\(x\)</span> be the distance along the tube relative to an origin. We shall consider the interval <span class="math inline">\((x, x+\Delta x)\)</span>, for some <span class="math inline">\(\Delta x &gt;0\)</span>, and a domain <span class="math inline">\(V= (x, x+ \Delta x) \times S\)</span>, where <span class="math inline">\(S\)</span> is the cross-section of the tube with the constant area <span class="math inline">\(A=|S|\)</span>.</p>
 <ul>
-<li><p><span class="math inline">\(c(t,x)\)</span> - concentration of particles (number of particles per unit volume) at time <span class="math inline">\(t\)</span> and position <span class="math inline">\(x\)</span></p></li>
+<li><p><span class="math inline">\(c(t,x)\)</span> - concentration of particles (number of particles per unit volume) at time, <span class="math inline">\(t\)</span>, and position, <span class="math inline">\(x\)</span></p></li>
 <li><p><span class="math inline">\(J(t,x)\)</span> - flux of particles per unit time and unit area (number of particles crossing a unit area in the positive <span class="math inline">\(x\)</span>-direction per unit time)</p></li>
 <li><p><span class="math inline">\(f(t,x,c(t,x))\)</span> - source/sink (number of particles created or destroyed per unit volume and unit time)</p></li>
 </ul>
@@ -398,27 +409,27 @@ s=[S], \quad e=[E], \quad c = [SE], \quad p =[P]
 <p>Then the conservation equation for the number of particles in the volume <span class="math inline">\(V\)</span> is given by <span id="eq-concerv_01"><span class="math display">\[
 \frac{\partial}{\partial t} \int_x^{x+\Delta x} c(t,\tilde x) A d\tilde x = J(t,x) \, A  - J(t,x+\Delta x) \, A +\int_x^{x + \Delta x}  f(t,\tilde x,c(t, \tilde x))\,  A \, d \tilde x.
 \tag{1.6}\]</span></span></p>
-<p>i.e. the flux that changes the total population in <span class="math inline">\(V\)</span> is that entering through the cross-section at <span class="math inline">\(x\)</span> and leaving through the cross-section at <span class="math inline">\(x+\Delta x\)</span> (it is assumed that there no flux through the external surface of the tube). Assuming <span class="math inline">\(c\)</span> and <span class="math inline">\(f\)</span> to be sufficiently smooth (continuous in <span class="math inline">\(x\)</span>) and applying The Mean Value Theorem in <a href="#eq-concerv_01">Equation <span class="quarto-unresolved-ref">eq-concerv_01</span></a>, we obtain <span id="eq-concerv_1"><span class="math display">\[
+<p>i.e.&nbsp;the flux that changes the total population in <span class="math inline">\(V\)</span> is that entering through the cross-section at <span class="math inline">\(x\)</span> and leaving through the cross-section at <span class="math inline">\(x+\Delta x\)</span> (it is assumed that there no flux through the external surface of the tube). Assuming <span class="math inline">\(c\)</span> and <span class="math inline">\(f\)</span> to be sufficiently smooth (continuous in <span class="math inline">\(x\)</span>) and applying The Mean Value Theorem in <a href="#eq-concerv_01">Equation&nbsp;<span>1.6</span></a>, we obtain <span id="eq-concerv_1"><span class="math display">\[
 \frac{\partial}{\partial t} c(t,\xi) A \Delta x = J(t,x) \, A  - J(t,x+\Delta x) \, A +  f(t,\eta,c(t, \eta))\,  A \Delta x, \qquad \xi, \eta \in (x, x+ \Delta x).
 \tag{1.7}\]</span></span></p>
-<p>Dividing <a href="#eq-concerv_01">Equation <span class="quarto-unresolved-ref">eq-concerv_01</span></a> by <span class="math inline">\(A \, \Delta x\)</span> yields <span id="eq-concerv_2"><span class="math display">\[
+<p>Dividing <a href="#eq-concerv_01">Equation&nbsp;<span>1.6</span></a> by <span class="math inline">\(A \, \Delta x\)</span> yields <span id="eq-concerv_2"><span class="math display">\[
 \frac{\partial}{\partial t} c(t,\xi)  = - \frac  {J(t,x+\Delta x) - J(t,x)} { \Delta x} + f(t,\eta,c(t,\eta)), \qquad \xi, \eta \in (x, x+ \Delta x).
 \tag{1.8}\]</span></span> Assuming that <span class="math inline">\(J\)</span> is differentiable with respect to <span class="math inline">\(x\)</span> and taking the limit as <span class="math inline">\(\Delta x \to 0\)</span> (and using the definition of partial derivatives) we obtain a one-dimensional conservation (balance) equation: <span id="eq-concerv_3"><span class="math display">\[
 \frac{\partial}{\partial t} c(t,x)  = - \frac  {\partial} { \partial x} J(t,x) + f(t,x,c(t,x)).
 \tag{1.9}\]</span></span></p>
 </section>
-<section id="conservation-equations-in-mathbb-rn" class="level4" data-number="1.2.3.2">
-<h4 data-number="1.2.3.2"><span class="header-section-number">1.2.3.2</span> Conservation equations in <span class="math inline">\(\mathbb R^n\)</span></h4>
-<p>Let <span class="math inline">\(V \subset \mathbb R^n\)</span> be an arbitrary bounded domain (i.e. satisfying the conditions of the divergence theorem) and let <span class="math inline">\(S\)</span> be the surface enclosing <span class="math inline">\(V\)</span>, i.e <span class="math inline">\(S = \partial V\)</span>.</p>
+<section id="conservation-equations-in-mathbb-rn" class="level4" data-number="1.3.2.2">
+<h4 data-number="1.3.2.2" class="anchored" data-anchor-id="conservation-equations-in-mathbb-rn"><span class="header-section-number">1.3.2.2</span> Conservation equations in <span class="math inline">\(\mathbb R^n\)</span></h4>
+<p>Let <span class="math inline">\(V \subset \mathbb R^n\)</span> be an arbitrary bounded domain (i.e.&nbsp;satisfying the conditions of the divergence theorem) and let <span class="math inline">\(S\)</span> be the surface enclosing <span class="math inline">\(V\)</span>, i.e <span class="math inline">\(S = \partial V\)</span>.</p>
 <ul>
 <li><span class="math inline">\(c(t,x)\)</span> – concentration of particles at <span class="math inline">\(x\in V\)</span> and <span class="math inline">\(t&gt;0\)</span> (number of particles per unit volume)</li>
 <li><span class="math inline">\(J(t,x)\)</span> – flux vector of particles across <span class="math inline">\(V\)</span> (number of particles per unit area and per unit time entering or leaving through <span class="math inline">\(S\)</span> (the boundary of <span class="math inline">\(V\)</span>).</li>
 <li><span class="math inline">\(f(t,x,c(t,x))\)</span> - source/sink term (number of particles created or destroyed per unit volume and per unit time)</li>
 </ul>
 <p>Then the conservation equation reads <span class="math display">\[
-\frac{\partial}{\partial t} \int_V c(t,x) \, dx = - \int_{S} J(t,x) \cdot {\bf n} \, d\sigma + \int_V f(t,x,c),
-\]</span> where <span class="math inline">\(\mathbf{n}\)</span> is the outward normal vector to <span class="math inline">\(S\)</span>. The normal component of the flux <span class="math inline">\(J\)</span> on <span class="math inline">\(S\)</span> leads to a change of number of particles ( of mass ) in <span class="math inline">\(V\)</span>. Applying the divergence theorem, i.e. <span class="math display">\[
-\int_S J \cdot {\bf n} \, d\sigma = \int_V \text{ div} J \, dx,
+\frac{\partial}{\partial t} \int_V c(t,x) \, dx = - \int_{S} J(t,x) \cdot {\mathbf{n}} \, d\sigma + \int_V f(t,x,c),
+\]</span> where <span class="math inline">\(\mathbf{n}\)</span> is the outward normal vector to <span class="math inline">\(S\)</span>. The normal component of the flux <span class="math inline">\(J\)</span> on <span class="math inline">\(S\)</span> leads to a change of number of particles (of mass) in <span class="math inline">\(V\)</span>. Applying the divergence theorem, i.e. <span class="math display">\[
+\int_S J \cdot {\mathbf{n}} \, d\sigma = \int_V \text{ div} J \, dx,
 \]</span> and using the fact that <span class="math inline">\(V\)</span> is independent of time <span class="math inline">\(t\)</span> we obtain <span class="math display">\[
 \int_V \Big(\frac{\partial}{\partial t} c(t,x) + \nabla \cdot  J(t,x) -  f(t,x,c)\Big) dx.
 \]</span> Since <span class="math inline">\(V\)</span> can be chosen arbitrary we get the conservation equation in <span class="math inline">\(\mathbb R^n\)</span> (or a subdomain <span class="math inline">\(\Omega \subset \mathbb R^n\)</span>)</p>
@@ -426,25 +437,27 @@ s=[S], \quad e=[E], \quad c = [SE], \quad p =[P]
 \frac{\partial}{\partial t} c(t,x) =  - \nabla \cdot  J(t,x)+  f(t,x,c), \quad x\in \mathbb R^n \,  (\text{or } x \in \Omega), \quad t &gt;0.
 \tag{1.10}\]</span></span></p>
 </section>
-<section id="types-of-flux-terms" class="level4" data-number="1.2.3.3">
-<h4 data-number="1.2.3.3"><span class="header-section-number">1.2.3.3</span> Types of flux terms</h4>
+<section id="types-of-flux-terms" class="level4" data-number="1.3.2.3">
+<h4 data-number="1.3.2.3" class="anchored" data-anchor-id="types-of-flux-terms"><span class="header-section-number">1.3.2.3</span> Types of flux terms</h4>
 <ul>
 <li><p>Fickian Diffusion</p>
-<p>Diffusion is an important and ``metabolically cheap’’ transport mechanism in biological systems. It can be also viewed as the random motion of individual molecules.</p>
+<p>Diffusion is an important and ‘’metabolically cheap’’ transport mechanism in biological systems. It can be also viewed as the random motion of individual molecules.</p>
 <p><span id="eq-diffusion"><span class="math display">\[
-{\bf J} = - D\nabla c,
+{\mathbf{J}} = - D\nabla c,
 \tag{1.11}\]</span></span> where <span class="math inline">\(D\)</span> is the diffusion coefficient. <span class="math inline">\(D\)</span> depends on the size of the particles, the type of solvent, the temperature, .</p>
-<p>Then applying <a href="#eq-diffusion">Equation <span class="quarto-unresolved-ref">eq-diffusion</span></a> in <a href="#eq-conservation_3D">Equation <span class="quarto-unresolved-ref">eq-conservation_3D</span></a> we obtain reaction-diffusion equation <span id="eq-react-diff"><span class="math display">\[
+<p>Then applying <a href="#eq-diffusion">Equation&nbsp;<span>1.11</span></a> in <a href="#eq-conservation_3D">Equation&nbsp;<span>1.10</span></a> we obtain reaction-diffusion equation <span id="eq-react-diff"><span class="math display">\[
 \frac{\partial}{\partial t} c =  - \nabla\cdot ( - D \nabla c(t,x))+  f(t,x,c) = \nabla \cdot ( D \nabla c) + f(t,x,c),
 \quad x\in \mathbb R^n, \,  \, t &gt;0.
-\tag{1.12}\]</span></span></p>
+\tag{1.12}\]</span></span></p></li>
+</ul>
 <p>If <span class="math inline">\(D\)</span> is a constant we can write <span class="math display">\[
-\frac{\partial}{\partial t} c(t,x) =  D \Delta c(t,x) + f(t,x,c),
-\quad x\in \mathbb R^n \,  (\text{or } x \in \Omega), \quad t &gt;0,
-\]</span><br />
+  \frac{\partial}{\partial t} c(t,x) =  D \Delta c(t,x) + f(t,x,c),
+  \quad x\in \mathbb R^n \,  (\text{or } x \in \Omega), \quad t &gt;0,
+\]</span><br>
 where <span class="math display">\[
 \Delta c = \sum\limits_{j=1}^n \dfrac{\partial^2 c}{\partial x_j^2}.
-\]</span></p></li>
+\]</span></p>
+<ul>
 <li><p>Nonlinear diffusion <span class="math display">\[
 D = D(c) , \qquad \text{ e.g. }\,   D(c)= D_0 c^m, \quad D_0 &gt;0,
 \]</span> and <span id="eq-diff_nonlin"><span class="math display">\[
@@ -467,30 +480,26 @@ J = \textbf{v} c,
 <li>haptotaxis - movement directed by a gradient in density, adhesion</li>
 </ul>
 <p>In the presence of some chemoattractant <span class="math inline">\(a(t,x)\)</span> we have <span class="math display">\[
-  {\bf J} = \chi(a) c \nabla a,  
+  {\mathbf{J}} = \chi(a) c \nabla a,  
   \]</span> where <span class="math inline">\(\chi(a)\)</span> is a `model-specific’ function of <span class="math inline">\(a\)</span> defining the sensitivity to the signal, and the conservation equation reads <span id="eq-taxis"><span class="math display">\[
   \frac{\partial}{\partial t} c(t,x) = -\nabla \cdot (\chi(a) c(t,x) \nabla a )  + f(t,x,c),
-  \quad x\in \mathbb R^n \,  \quad t &gt;0 \; ,
+  \quad x\in \mathbb R^n \,  \quad t &gt;0.
    \tag{1.15}\]</span></span></p></li>
 </ul>
 <p>We can have any combination of fluxes, depending on the biological system. For example, chemotaxis and diffusion</p>
 <p><span id="eq-chemotaxis"><span class="math display">\[
-\begin{equation}
 \frac{\partial}{\partial t} c = D \Delta c -\nabla \cdot (\chi(a) c \nabla a )  + f(t,x,c),
 \quad x\in \mathbb R^n \,  \quad t &gt;0,
-\end{equation}
 \tag{1.16}\]</span></span> which can be augmented by an equation for the (diffusible) chemoattractant <span class="math inline">\(a\)</span> <span id="eq-chemoattrac"><span class="math display">\[
-\begin{equation}
 \frac{\partial}{\partial t} a = D \nabla^2 a + g(t,x,a, c),
 \quad x\in \mathbb R^n \,  \quad t &gt;0.
-\end{equation}
-\tag{1.17}\]</span></span> <a href="#eq-chemotaxis">Equation <span class="quarto-unresolved-ref">eq-chemotaxis</span></a> and <a href="#eq-chemoattrac">Equation <span class="quarto-unresolved-ref">eq-chemoattrac</span></a> form a system of equations, a so-called chemotaxis system.</p>
+\tag{1.17}\]</span></span> <a href="#eq-chemotaxis">Equation&nbsp;<span>1.16</span></a> and <a href="#eq-chemoattrac">Equation&nbsp;<span>1.17</span></a> form a system of equations, a so-called chemotaxis system.</p>
 </section>
 </section>
-<section id="boundary-conditions-b.c." class="level3" data-number="1.2.4">
-<h3 data-number="1.2.4"><span class="header-section-number">1.2.4</span> Boundary conditions (B.C.)</h3>
+<section id="boundary-conditions-b.c." class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="boundary-conditions-b.c."><span class="header-section-number">1.3.3</span> Boundary conditions (B.C.)</h3>
 <ul>
-<li>Infinite domain (e.g. <span class="math inline">\((-\infty, \infty)\)</span>, <span class="math inline">\(\mathbb R^2\)</span>, <span class="math inline">\(\mathbb R^3\)</span> ):</li>
+<li>Infinite domain (e.g.&nbsp;<span class="math inline">\((-\infty, \infty)\)</span>, <span class="math inline">\(\mathbb R^2\)</span>, <span class="math inline">\(\mathbb R^3\)</span> ):</li>
 </ul>
 <p>the density is not influenced by the boundary <span class="math display">\[
 c(t,x) \to 0 \qquad \text{ as } \qquad \|x\| \to \infty \quad  \text{decay at infinity}
@@ -517,7 +526,7 @@ c(t,x) = c_D(t,x) \qquad  x\in  \partial \Omega, \, \, t\geq 0 \; .
 </ul>
 <p>particles cannot escape from the domain</p>
 <p>For a domain <span class="math inline">\(\Omega \subset \mathbb R^n\)</span> <span class="math display">\[
-D\nabla c  \cdot {\bf n}  = 0  \quad \text{ on } \quad \partial \Omega, \quad t &gt;0
+D\nabla c  \cdot {\mathbf{n}}  = 0  \quad \text{ on } \quad \partial \Omega, \quad t &gt;0
 \]</span> In one-dimensional domain <span class="math inline">\((0,L)\)</span> <span class="math display">\[
 \frac{\partial c(t,x)}{\partial x} = 0 \quad \text{ at } \quad x=0  \text{ and } \quad x= L, \quad t &gt;0 \; ,
 \]</span></p>
@@ -525,14 +534,14 @@ D\nabla c  \cdot {\bf n}  = 0  \quad \text{ on } \quad \partial \Omega, \quad t 
 <li>Non-homogeneous Neumann B.C.</li>
 </ul>
 <p>For a domain <span class="math inline">\(\Omega \subset \mathbb R^n\)</span> <span class="math display">\[
-D\nabla c \cdot {\bf n} = g(t,x)  \quad \text{ on } \quad \partial \Omega, \quad t &gt;0
+D\nabla c \cdot {\mathbf{n}} = g(t,x)  \quad \text{ on } \quad \partial \Omega, \quad t &gt;0
 \]</span> with a given function <span class="math inline">\(g\)</span> ( <span class="math inline">\(g\)</span> can also be a constant).</p>
 <p>In one-dimensional domain <span class="math inline">\((0,L)\)</span> <span class="math display">\[
 D \frac{\partial c(t,x)}{\partial x} = g(t,x)  \quad \text{ at } \quad x=0  \text{ and } \quad x= L, \quad t &gt;0 \; ,
 \]</span></p>
 <ul>
 <li>Homogeneous Robin B.C. <span class="math display">\[
-D\nabla c(t,x)  \cdot {\bf n}  + k c(t,x)  = 0  \quad \text{ on } \quad \partial \Omega, \quad t &gt;0
+D\nabla c(t,x)  \cdot {\mathbf{n}}  + k c(t,x)  = 0  \quad \text{ on } \quad \partial \Omega, \quad t &gt;0
 \]</span> with some constant <span class="math inline">\(k \in \mathbb R\)</span>.</li>
 </ul>
 <p>In one-dimensional domain <span class="math inline">\((0,L)\)</span> <span class="math display">\[
@@ -540,22 +549,26 @@ D \frac{\partial c(t,x)}{\partial x}  + k c(t,x) = 0  \quad \text{ at } \quad x=
 \]</span></p>
 <ul>
 <li>Non-homogeneous Robin B.C. <span class="math display">\[
-D\nabla c(t,x)  \cdot {\bf n}  + k c(t,x)  = g(t,x)  \quad \text{ on } \quad \partial \Omega, \quad t &gt;0
+D\nabla c(t,x)  \cdot {\mathbf{n}}  + k c(t,x)  = g(t,x)  \quad \text{ on } \quad \partial \Omega, \quad t &gt;0
 \]</span> with some constant <span class="math inline">\(k \in \mathbb R\)</span> and given function <span class="math inline">\(g\)</span> ( <span class="math inline">\(g\)</span> can also be a constant).</li>
 </ul>
 <p>In one-dimensional domain <span class="math inline">\((0,L)\)</span> <span class="math display">\[
 D \frac{\partial c(t,x)}{\partial x}  + k c(t,x) = g(t,x)  \quad \text{ at } \quad x=0  \text{ and } \quad x= L, \quad t &gt;0 \; ,
 \]</span></p>
-<p> We can also have different types of boundary conditions at different parts of the boundary of the considered domain.</p>
+<p><strong>Remark</strong> We can also have different types of boundary conditions at different parts of the boundary of the considered domain.</p>
 </section>
-<section id="initial-conditions" class="level3" data-number="1.2.5">
-<h3 data-number="1.2.5"><span class="header-section-number">1.2.5</span> Initial conditions</h3>
-<p>For a conservation equation defined in a domain <span class="math inline">\(\Omega \subset \mathbb R^n\)</span>, <span class="math inline">\(n=1,2,3\)</span>, additionally to boundary conditions we need to define an initial concentration, i.e. initial condition <span class="math display">\[
+<section id="initial-conditions" class="level3" data-number="1.3.4">
+<h3 data-number="1.3.4" class="anchored" data-anchor-id="initial-conditions"><span class="header-section-number">1.3.4</span> Initial conditions</h3>
+<p>For a conservation equation defined in a domain <span class="math inline">\(\Omega \subset \mathbb R^n\)</span>, <span class="math inline">\(n=1,2,3\)</span>, additionally to boundary conditions we need to define an initial concentration, i.e.&nbsp;initial condition <span class="math display">\[
 c(0,x) = c_0(x) , \qquad x \in \Omega  \; .
 \]</span></p>
 </section>
-<section id="nondimensionalization" class="level3" data-number="1.2.6">
-<h3 data-number="1.2.6"><span class="header-section-number">1.2.6</span> Nondimensionalization</h3>
+<section id="formulating-a-model" class="level3" data-number="1.3.5">
+<h3 data-number="1.3.5" class="anchored" data-anchor-id="formulating-a-model"><span class="header-section-number">1.3.5</span> Formulating a model</h3>
+<p>The models that we will consider will comprise one or more partial differential equations together with boundary and initial conditions. The right-hand side of the PDEs willbe dervied based upon assumptions about a particular biological system under study. We will consider exploratory numerical solutions and then study qualitative behaviours of the solutions using analyses familiar from MA32009 (e.g.&nbsp;steady state analysis, linear stability analysis).</p>
+</section>
+<section id="nondimensionalization" class="level3" data-number="1.3.6">
+<h3 data-number="1.3.6" class="anchored" data-anchor-id="nondimensionalization"><span class="header-section-number">1.3.6</span> Nondimensionalization</h3>
 <p>The variables and parameters in a biological or physical model have units:</p>
 <ul>
 <li><span class="math inline">\(\#\textrm{velocity} = \dfrac{\#\text{length }}{\#\text{time}}\)</span></li>
@@ -566,17 +579,13 @@ c(0,x) = c_0(x) , \qquad x \in \Omega  \; .
 <li><span class="math inline">\(\#\text{flux} = \dfrac{\text{mass (number) of particles}}{\#\text{area} \times \# \text{time}}\)</span></li>
 </ul>
 <p>It is standard to non-dimensionalize a system of differential equations by scaling or non-dimensionalizing both the dependent and independent variables in the model.</p>
-<div id="quarto-navigation-envelope" class="hidden">
-<p><span class="hidden" data-render-id="quarto-int-sidebar-title">MA42002</span> <span class="hidden" data-render-id="quarto-int-navbar-title">MA42002</span> <span class="hidden" data-render-id="quarto-int-next"><span class="chapter-number">2</span>  <span class="chapter-title">Linear reaction diffusion equations</span></span> <span class="hidden" data-render-id="quarto-int-prev">Preface</span> <span class="hidden" data-render-id="quarto-int-sidebar:/index.html">Preface</span> <span class="hidden" data-render-id="quarto-int-sidebar:/conservationequations.html"><span class="chapter-number">1</span>  <span class="chapter-title">Conservation equations</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-1">Single PDE</span> <span class="hidden" data-render-id="quarto-int-sidebar:/linearreactiondiffusion.html"><span class="chapter-number">2</span>  <span class="chapter-title">Linear reaction diffusion equations</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/nonlinearreactiondiffusion.html"><span class="chapter-number">3</span>  <span class="chapter-title">Non linear reaction diffusion equations</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-2">Coupled PDE</span> <span class="hidden" data-render-id="quarto-int-sidebar:/LotkaVolteraPDE.html"><span class="chapter-number">4</span>  <span class="chapter-title">Lotka Voltera model</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/BacterialChemotaxis.html"><span class="chapter-number">5</span>  <span class="chapter-title">Aggregation via Chemotaxis</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/DiffusionDrivenInstability.html"><span class="chapter-number">6</span>  <span class="chapter-title">Diffusion driven instability</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/SIR_PDE.html"><span class="chapter-number">7</span>  <span class="chapter-title">SIR models</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-3">Appendices</span> <span class="hidden" data-render-id="quarto-int-sidebar:/NumericalMethods.html"><span class="chapter-number">8</span>  <span class="chapter-title">Numerical methods in Python</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/linearstablityanalysis.html"><span class="chapter-number">9</span>  <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span> <span class="hidden" data-render-id="quarto-breadcrumbs-f96e03643b4a3fd567e31a5a08ceb5b8"><span class="chapter-number">1</span>  <span class="chapter-title">Conservation equations</span></span></p>
-</div>
-<div id="quarto-meta-markdown" class="hidden">
-<p><span class="hidden" data-render-id="quarto-metatitle">MA42002 - <span class="chapter-number">1</span>  <span class="chapter-title">Conservation equations</span></span> <span class="hidden" data-render-id="quarto-twittercardtitle">MA42002 - <span class="chapter-number">1</span>  <span class="chapter-title">Conservation equations</span></span> <span class="hidden" data-render-id="quarto-ogcardtitle">MA42002 - <span class="chapter-number">1</span>  <span class="chapter-title">Conservation equations</span></span> <span class="hidden" data-render-id="quarto-metasitename">MA42002</span> <span class="hidden" data-render-id="quarto-twittercarddesc"></span> <span class="hidden" data-render-id="quarto-ogcardddesc"></span></p>
-</div>
+
+
 </section>
 </section>
 
 </main> <!-- /main -->
-<script id = "quarto-html-after-body" type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -811,18 +820,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a  href="/index.html" class="pagination-link">
+      <a href="./index.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a  href="/linearreactiondiffusion.html" class="pagination-link">
-        <span class="nav-page-text"><span class='chapter-number'>2</span>  <span class='chapter-title'>Linear reaction diffusion equations</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./linearreactiondiffusion.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linear reaction diffusion equations</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 
-</body>
 
-</html>
+
+</body></html>
