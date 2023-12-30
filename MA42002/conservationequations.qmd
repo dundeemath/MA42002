@@ -56,7 +56,8 @@ $$ {#eq-n_1}
 Assuming that $N$ is differentiable, dividing  @eq-n_1 by $\Delta t$ and tailing limit as $\Delta t \to 0$ imply
 $$
  \frac{dN}{dt} = K N 
-$$ {eq-n_2}
+$$ {#eq-n_2}
+
 The growth rate $K$ can take several forms e.g. 
 * $K = \text{constant}$
 * $K = K(t)$ \qquad  time-dependent
@@ -71,7 +72,7 @@ $$
 \frac{dN}{dt} &= K(c) N = \kappa cN,  \\
  \frac{ dc}{dt} &= - \alpha \frac{dN}{dt} = - \alpha   \kappa c N,  
  \end{aligned}
-$${#eq-C_1}
+$${#eq-c_1}
 with initial conditions
 $$
  N(0) = N_0 \quad \textrm{and}  \quad  c(0)= c_0.
@@ -82,17 +83,17 @@ $$
 c(t)  = - \alpha N(t) + c(0)+ \alpha N(0) = - \alpha N(t) + \beta,
 $$ {#eq-sol_c}
 where $\beta=c_0 +\alpha N_0$. 
-Using @eq-sol_c in @eq-C_1 we obtain the *logistic growth* equation
+Using @eq-sol_c in @eq-c_1 we obtain the *logistic growth* equation
 $$
 \frac{dN}{dt} = \kappa ( \beta- \alpha N)  N, \qquad  N(0)= N_0\quad  
-$$ {#eq-N_4}
+$$ {#eq-n_4}
 Here we have $K=K(N) =  \kappa (\beta - \alpha N)$. 
 
 The last equation can be rewritten as
 $$  
 \frac{dN}{dt} = \rho  N \,  (1 - \frac N B)  \qquad \quad N(0)= N_0, 
-$$ {#eq-N_5}
-where $\rho = \kappa \beta$ is the {\em intrinsic growth rate} and $B = \frac \beta \alpha$ is the {\em carrying capacity}.
+$$ {#eq-n_5}
+where $\rho = \kappa \beta$ is the **intrinsic growth rate** and $B = \frac \beta \alpha$ is the **carrying capacity**.
 The solution of @eq-n_5 is given by
 $$
 N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
@@ -102,7 +103,7 @@ $$
 
 #### Death/decay
 
-In addition to growth, we may  assume that cells die at rate $d$  and the simple growth @eq-n_2 can be generalised to 
+In addition to growth, we may  assume that cells die at rate $d$ and the simple growth @eq-n_2 can be generalised to 
 $$
 \frac{dN}{dt} = KN - d N, 
 $$

@@ -284,34 +284,35 @@ N(t+\Delta t) &amp;=  \quad N(t)   + \quad  &amp;K N(t) \Delta t \\
 &amp;&amp; &amp;\text{reproduction during}\\
 &amp;&amp; &amp;\text{ the time interval } \Delta t
 \end{aligned}
-\tag{1.1}\]</span></span> Assuming that <span class="math inline">\(N\)</span> is differentiable, dividing <a href="#eq-n_1">Equation&nbsp;<span>1.1</span></a> by <span class="math inline">\(\Delta t\)</span> and tailing limit as <span class="math inline">\(\Delta t \to 0\)</span> imply <span class="math display">\[
+\tag{1.1}\]</span></span> Assuming that <span class="math inline">\(N\)</span> is differentiable, dividing <a href="#eq-n_1">Equation&nbsp;<span>1.1</span></a> by <span class="math inline">\(\Delta t\)</span> and tailing limit as <span class="math inline">\(\Delta t \to 0\)</span> imply <span id="eq-n_2"><span class="math display">\[
 \frac{dN}{dt} = K N
-\]</span> {eq-n_2} The growth rate <span class="math inline">\(K\)</span> can take several forms e.g.&nbsp; * <span class="math inline">\(K = \text{constant}\)</span> * <span class="math inline">\(K = K(t)\)</span> time-dependent * <span class="math inline">\(K= K(N(t))\)</span> depends on bacterial density * <span class="math inline">\(K= K(c(t)):= \kappa c(t), \;\; (\text{with} \;\; \kappa &gt;0 \;\; \text{a constant}\)</span>), which depends on the nutrient concentration <span class="math inline">\(c(t)\)</span> at time <span class="math inline">\(t\)</span> i.e.&nbsp;<span class="math inline">\(K\)</span> depends on the available resources</p>
+\tag{1.2}\]</span></span></p>
+<p>The growth rate <span class="math inline">\(K\)</span> can take several forms e.g.&nbsp; * <span class="math inline">\(K = \text{constant}\)</span> * <span class="math inline">\(K = K(t)\)</span> time-dependent * <span class="math inline">\(K= K(N(t))\)</span> depends on bacterial density * <span class="math inline">\(K= K(c(t)):= \kappa c(t), \;\; (\text{with} \;\; \kappa &gt;0 \;\; \text{a constant}\)</span>), which depends on the nutrient concentration <span class="math inline">\(c(t)\)</span> at time <span class="math inline">\(t\)</span> i.e.&nbsp;<span class="math inline">\(K\)</span> depends on the available resources</p>
 </section>
 <section id="logistic-growth-via-depleting-nutrient-source" class="level4" data-number="1.3.1.2">
 <h4 data-number="1.3.1.2" class="anchored" data-anchor-id="logistic-growth-via-depleting-nutrient-source"><span class="header-section-number">1.3.1.2</span> Logistic growth via depleting nutrient source</h4>
-<p>We denote by <span class="math inline">\(\alpha\)</span> the units of nutrients consumed during the production of one unit of population increment (Note: the quantity <span class="math inline">\(Y= 1/\alpha\)</span> is called the yield) and obtain <span id="eq-C_1"><span class="math display">\[
+<p>We denote by <span class="math inline">\(\alpha\)</span> the units of nutrients consumed during the production of one unit of population increment (Note: the quantity <span class="math inline">\(Y= 1/\alpha\)</span> is called the yield) and obtain <span id="eq-c_1"><span class="math display">\[
 \begin{aligned}
 \frac{dN}{dt} &amp;= K(c) N = \kappa cN,  \\
 \frac{ dc}{dt} &amp;= - \alpha \frac{dN}{dt} = - \alpha   \kappa c N,  
 \end{aligned}
-\tag{1.2}\]</span></span> with initial conditions <span class="math display">\[
+\tag{1.3}\]</span></span> with initial conditions <span class="math display">\[
 N(0) = N_0 \quad \textrm{and}  \quad  c(0)= c_0.
 \]</span></p>
-<p>We can determine the nutrient concentration by integrating the second of <a href="#eq-C_1">Equation&nbsp;<span>1.2</span></a> with respect to time and obtaining <span id="eq-sol_c"><span class="math display">\[
+<p>We can determine the nutrient concentration by integrating the second of <span class="quarto-unresolved-ref">?eq-C_1</span> with respect to time and obtaining <span id="eq-sol_c"><span class="math display">\[
 c(t)  = - \alpha N(t) + c(0)+ \alpha N(0) = - \alpha N(t) + \beta,
-\tag{1.3}\]</span></span> where <span class="math inline">\(\beta=c_0 +\alpha N_0\)</span>. Using <a href="#eq-sol_c">Equation&nbsp;<span>1.3</span></a> in <a href="#eq-C_1">Equation&nbsp;<span>1.2</span></a> we obtain the <em>logistic growth</em> equation <span id="eq-N_4"><span class="math display">\[
+\tag{1.4}\]</span></span> where <span class="math inline">\(\beta=c_0 +\alpha N_0\)</span>. Using <a href="#eq-sol_c">Equation&nbsp;<span>1.4</span></a> in <a href="#eq-c_1">Equation&nbsp;<span>1.3</span></a> we obtain the <em>logistic growth</em> equation <span id="eq-n_4"><span class="math display">\[
 \frac{dN}{dt} = \kappa ( \beta- \alpha N)  N, \qquad  N(0)= N_0\quad  
-\tag{1.4}\]</span></span> Here we have <span class="math inline">\(K=K(N) = \kappa (\beta - \alpha N)\)</span>.</p>
-<p>The last equation can be rewritten as <span id="eq-N_5"><span class="math display">\[  
+\tag{1.5}\]</span></span> Here we have <span class="math inline">\(K=K(N) = \kappa (\beta - \alpha N)\)</span>.</p>
+<p>The last equation can be rewritten as <span id="eq-n_5"><span class="math display">\[  
 \frac{dN}{dt} = \rho  N \,  (1 - \frac N B)  \qquad \quad N(0)= N_0,
-\tag{1.5}\]</span></span> where <span class="math inline">\(\rho = \kappa \beta\)</span> is the {} and <span class="math inline">\(B = \frac \beta \alpha\)</span> is the {}. The solution of <span class="quarto-unresolved-ref">?eq-n_5</span> is given by <span class="math display">\[
+\tag{1.6}\]</span></span> where <span class="math inline">\(\rho = \kappa \beta\)</span> is the <strong>intrinsic growth rate</strong> and <span class="math inline">\(B = \frac \beta \alpha\)</span> is the <strong>carrying capacity</strong>. The solution of <a href="#eq-n_5">Equation&nbsp;<span>1.6</span></a> is given by <span class="math display">\[
 N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
 \]</span></p>
 </section>
 <section id="deathdecay" class="level4" data-number="1.3.1.3">
 <h4 data-number="1.3.1.3" class="anchored" data-anchor-id="deathdecay"><span class="header-section-number">1.3.1.3</span> Death/decay</h4>
-<p>In addition to growth, we may assume that cells die at rate <span class="math inline">\(d\)</span> and the simple growth <span class="quarto-unresolved-ref">?eq-n_2</span> can be generalised to <span class="math display">\[
+<p>In addition to growth, we may assume that cells die at rate <span class="math inline">\(d\)</span> and the simple growth <a href="#eq-n_2">Equation&nbsp;<span>1.2</span></a> can be generalised to <span class="math display">\[
 \frac{dN}{dt} = KN - d N,
 \]</span> where <span class="math inline">\(d\)</span> is the mortality (death) rate.</p>
 </section>
@@ -408,15 +409,15 @@ s=[S], \quad e=[E], \quad c = [SE], \quad p =[P]
 \]</span></p>
 <p>Then the conservation equation for the number of particles in the volume <span class="math inline">\(V\)</span> is given by <span id="eq-concerv_01"><span class="math display">\[
 \frac{\partial}{\partial t} \int_x^{x+\Delta x} c(t,\tilde x) A d\tilde x = J(t,x) \, A  - J(t,x+\Delta x) \, A +\int_x^{x + \Delta x}  f(t,\tilde x,c(t, \tilde x))\,  A \, d \tilde x.
-\tag{1.6}\]</span></span></p>
-<p>i.e.&nbsp;the flux that changes the total population in <span class="math inline">\(V\)</span> is that entering through the cross-section at <span class="math inline">\(x\)</span> and leaving through the cross-section at <span class="math inline">\(x+\Delta x\)</span> (it is assumed that there no flux through the external surface of the tube). Assuming <span class="math inline">\(c\)</span> and <span class="math inline">\(f\)</span> to be sufficiently smooth (continuous in <span class="math inline">\(x\)</span>) and applying The Mean Value Theorem in <a href="#eq-concerv_01">Equation&nbsp;<span>1.6</span></a>, we obtain <span id="eq-concerv_1"><span class="math display">\[
-\frac{\partial}{\partial t} c(t,\xi) A \Delta x = J(t,x) \, A  - J(t,x+\Delta x) \, A +  f(t,\eta,c(t, \eta))\,  A \Delta x, \qquad \xi, \eta \in (x, x+ \Delta x).
 \tag{1.7}\]</span></span></p>
-<p>Dividing <a href="#eq-concerv_01">Equation&nbsp;<span>1.6</span></a> by <span class="math inline">\(A \, \Delta x\)</span> yields <span id="eq-concerv_2"><span class="math display">\[
+<p>i.e.&nbsp;the flux that changes the total population in <span class="math inline">\(V\)</span> is that entering through the cross-section at <span class="math inline">\(x\)</span> and leaving through the cross-section at <span class="math inline">\(x+\Delta x\)</span> (it is assumed that there no flux through the external surface of the tube). Assuming <span class="math inline">\(c\)</span> and <span class="math inline">\(f\)</span> to be sufficiently smooth (continuous in <span class="math inline">\(x\)</span>) and applying The Mean Value Theorem in <a href="#eq-concerv_01">Equation&nbsp;<span>1.7</span></a>, we obtain <span id="eq-concerv_1"><span class="math display">\[
+\frac{\partial}{\partial t} c(t,\xi) A \Delta x = J(t,x) \, A  - J(t,x+\Delta x) \, A +  f(t,\eta,c(t, \eta))\,  A \Delta x, \qquad \xi, \eta \in (x, x+ \Delta x).
+\tag{1.8}\]</span></span></p>
+<p>Dividing <a href="#eq-concerv_01">Equation&nbsp;<span>1.7</span></a> by <span class="math inline">\(A \, \Delta x\)</span> yields <span id="eq-concerv_2"><span class="math display">\[
 \frac{\partial}{\partial t} c(t,\xi)  = - \frac  {J(t,x+\Delta x) - J(t,x)} { \Delta x} + f(t,\eta,c(t,\eta)), \qquad \xi, \eta \in (x, x+ \Delta x).
-\tag{1.8}\]</span></span> Assuming that <span class="math inline">\(J\)</span> is differentiable with respect to <span class="math inline">\(x\)</span> and taking the limit as <span class="math inline">\(\Delta x \to 0\)</span> (and using the definition of partial derivatives) we obtain a one-dimensional conservation (balance) equation: <span id="eq-concerv_3"><span class="math display">\[
+\tag{1.9}\]</span></span> Assuming that <span class="math inline">\(J\)</span> is differentiable with respect to <span class="math inline">\(x\)</span> and taking the limit as <span class="math inline">\(\Delta x \to 0\)</span> (and using the definition of partial derivatives) we obtain a one-dimensional conservation (balance) equation: <span id="eq-concerv_3"><span class="math display">\[
 \frac{\partial}{\partial t} c(t,x)  = - \frac  {\partial} { \partial x} J(t,x) + f(t,x,c(t,x)).
-\tag{1.9}\]</span></span></p>
+\tag{1.10}\]</span></span></p>
 </section>
 <section id="conservation-equations-in-mathbb-rn" class="level4" data-number="1.3.2.2">
 <h4 data-number="1.3.2.2" class="anchored" data-anchor-id="conservation-equations-in-mathbb-rn"><span class="header-section-number">1.3.2.2</span> Conservation equations in <span class="math inline">\(\mathbb R^n\)</span></h4>
@@ -435,7 +436,7 @@ s=[S], \quad e=[E], \quad c = [SE], \quad p =[P]
 \]</span> Since <span class="math inline">\(V\)</span> can be chosen arbitrary we get the conservation equation in <span class="math inline">\(\mathbb R^n\)</span> (or a subdomain <span class="math inline">\(\Omega \subset \mathbb R^n\)</span>)</p>
 <p><span id="eq-conservation_3D"><span class="math display">\[
 \frac{\partial}{\partial t} c(t,x) =  - \nabla \cdot  J(t,x)+  f(t,x,c), \quad x\in \mathbb R^n \,  (\text{or } x \in \Omega), \quad t &gt;0.
-\tag{1.10}\]</span></span></p>
+\tag{1.11}\]</span></span></p>
 </section>
 <section id="types-of-flux-terms" class="level4" data-number="1.3.2.3">
 <h4 data-number="1.3.2.3" class="anchored" data-anchor-id="types-of-flux-terms"><span class="header-section-number">1.3.2.3</span> Types of flux terms</h4>
@@ -444,11 +445,11 @@ s=[S], \quad e=[E], \quad c = [SE], \quad p =[P]
 <p>Diffusion is an important and ‘’metabolically cheap’’ transport mechanism in biological systems. It can be also viewed as the random motion of individual molecules.</p>
 <p><span id="eq-diffusion"><span class="math display">\[
 {\mathbf{J}} = - D\nabla c,
-\tag{1.11}\]</span></span> where <span class="math inline">\(D\)</span> is the diffusion coefficient. <span class="math inline">\(D\)</span> depends on the size of the particles, the type of solvent, the temperature, .</p>
-<p>Then applying <a href="#eq-diffusion">Equation&nbsp;<span>1.11</span></a> in <a href="#eq-conservation_3D">Equation&nbsp;<span>1.10</span></a> we obtain reaction-diffusion equation <span id="eq-react-diff"><span class="math display">\[
+\tag{1.12}\]</span></span> where <span class="math inline">\(D\)</span> is the diffusion coefficient. <span class="math inline">\(D\)</span> depends on the size of the particles, the type of solvent, the temperature, .</p>
+<p>Then applying <a href="#eq-diffusion">Equation&nbsp;<span>1.12</span></a> in <a href="#eq-conservation_3D">Equation&nbsp;<span>1.11</span></a> we obtain reaction-diffusion equation <span id="eq-react-diff"><span class="math display">\[
 \frac{\partial}{\partial t} c =  - \nabla\cdot ( - D \nabla c(t,x))+  f(t,x,c) = \nabla \cdot ( D \nabla c) + f(t,x,c),
 \quad x\in \mathbb R^n, \,  \, t &gt;0.
-\tag{1.12}\]</span></span></p></li>
+\tag{1.13}\]</span></span></p></li>
 </ul>
 <p>If <span class="math inline">\(D\)</span> is a constant we can write <span class="math display">\[
   \frac{\partial}{\partial t} c(t,x) =  D \Delta c(t,x) + f(t,x,c),
@@ -463,13 +464,13 @@ D = D(c) , \qquad \text{ e.g. }\,   D(c)= D_0 c^m, \quad D_0 &gt;0,
 \]</span> and <span id="eq-diff_nonlin"><span class="math display">\[
   \frac{\partial}{\partial t} c = D_0 \nabla\cdot (c^m \nabla c) + f(t,x,c),
 \quad x\in \mathbb R^n,  \quad t &gt;0.
-\tag{1.13}\]</span></span></p></li>
+\tag{1.14}\]</span></span></p></li>
 <li><p>Convection or Advection <span class="math display">\[
 J = \textbf{v} c,
 \]</span> where <span class="math inline">\(\textbf{v}\)</span> is a velocity vector. Hence <span id="eq-convection"><span class="math display">\[
 \frac{\partial}{\partial t} c(t,x) = - \nabla\cdot (\textbf{v}(t,x) c(t,x))  + f(t,x,c),
 \quad x\in \mathbb R^n,   \quad t &gt;0.
-\tag{1.14}\]</span></span></p>
+\tag{1.15}\]</span></span></p>
 <p>If <span class="math inline">\(\textbf{v}\)</span> is constant or <span class="math inline">\(\nabla \cdot \textbf{v} = 0\)</span>, then <span class="math display">\[
 \frac{\partial}{\partial t} c = - \textbf{v} \nabla c  + f(t,x,c)
 \quad x\in \mathbb R^n, \,  \quad t &gt;0.
@@ -484,16 +485,16 @@ J = \textbf{v} c,
   \]</span> where <span class="math inline">\(\chi(a)\)</span> is a `model-specific’ function of <span class="math inline">\(a\)</span> defining the sensitivity to the signal, and the conservation equation reads <span id="eq-taxis"><span class="math display">\[
   \frac{\partial}{\partial t} c(t,x) = -\nabla \cdot (\chi(a) c(t,x) \nabla a )  + f(t,x,c),
   \quad x\in \mathbb R^n \,  \quad t &gt;0.
-   \tag{1.15}\]</span></span></p></li>
+   \tag{1.16}\]</span></span></p></li>
 </ul>
 <p>We can have any combination of fluxes, depending on the biological system. For example, chemotaxis and diffusion</p>
 <p><span id="eq-chemotaxis"><span class="math display">\[
 \frac{\partial}{\partial t} c = D \Delta c -\nabla \cdot (\chi(a) c \nabla a )  + f(t,x,c),
 \quad x\in \mathbb R^n \,  \quad t &gt;0,
-\tag{1.16}\]</span></span> which can be augmented by an equation for the (diffusible) chemoattractant <span class="math inline">\(a\)</span> <span id="eq-chemoattrac"><span class="math display">\[
+\tag{1.17}\]</span></span> which can be augmented by an equation for the (diffusible) chemoattractant <span class="math inline">\(a\)</span> <span id="eq-chemoattrac"><span class="math display">\[
 \frac{\partial}{\partial t} a = D \nabla^2 a + g(t,x,a, c),
 \quad x\in \mathbb R^n \,  \quad t &gt;0.
-\tag{1.17}\]</span></span> <a href="#eq-chemotaxis">Equation&nbsp;<span>1.16</span></a> and <a href="#eq-chemoattrac">Equation&nbsp;<span>1.17</span></a> form a system of equations, a so-called chemotaxis system.</p>
+\tag{1.18}\]</span></span> <a href="#eq-chemotaxis">Equation&nbsp;<span>1.17</span></a> and <a href="#eq-chemoattrac">Equation&nbsp;<span>1.18</span></a> form a system of equations, a so-called chemotaxis system.</p>
 </section>
 </section>
 <section id="boundary-conditions-b.c." class="level3" data-number="1.3.3">
