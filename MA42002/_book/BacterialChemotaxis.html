@@ -161,7 +161,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -283,10 +283,15 @@ div.csl-indent {
 
 </header>
 
-<p><strong>Dictyostelium discoideum</strong> is a slime-mold. It is widely studied experimentally since the individual amoebae that constitute the slime-mold exhibit a range of phenomena also observed in developmental biology by cells e.g.&nbsp;differentiation, proliferation, migration. During one particular stage of its life-cycle the single-cell amoebae become starved of food and begin to secrete a diffusible chemical, cyclic AMP or cAMP. The amoebae respond chemotactically to cAMP and begin to migrate towards regions of high cAMP concentration via <em>chemotaxis</em>. As they migrate they generate a range of intricate patterns including <em>spiral waves</em> and <em>streaming</em> aggregation patterns. Examples of such patterns can be seen in <span class="quarto-unresolved-ref">?fig-dicty_spiral</span>.</p>
+<p><strong>Dictyostelium discoideum</strong> is a slime-mold. It is widely studied experimentally since the individual amoebae that constitute the slime-mold exhibit a range of phenomena also observed in developmental biology by cells e.g.&nbsp;differentiation, proliferation, migration. During one particular stage of its life-cycle the single-cell amoebae become starved of food and begin to secrete a diffusible chemical, cyclic AMP or cAMP. The amoebae respond chemotactically to cAMP and begin to migrate towards regions of high cAMP concentration via <em>chemotaxis</em>. As they migrate they generate a range of intricate patterns including <em>spiral waves</em> and <em>streaming</em> aggregation patterns. Examples of such patterns can be seen in <a href="#fig-dicty_spiral">Figure&nbsp;<span>5.1</span></a>.</p>
 <p>See also <a href="https://www.youtube.com/watch?v=bkVhLJLG7ug">this link to a fascinating Youtube movie of slime mold aggregation</a>. Note the aggregation between 0:35 and 0.48.</p>
-<p>In <span class="quarto-unresolved-ref">?fig-dicty_spiral</span> we can see stills-shot images of spiral patterns. This spirals are dynamic as can be seen <a href="https://www.youtube.com/watch?v=OX5Yiz38fgY">in this movie</a>. See spiral pattern at around 0:36.</p>
-<p><span id="fig-dicty_spiral"><img src="CG-14-355_F2.jpg" class="img-fluid" alt="Spiral wave patterns underly Dictystelium aggregation. Image from Durston (2013)."></span></p>
+<p>In <a href="#fig-dicty_spiral">Figure&nbsp;<span>5.1</span></a> we can see stills-shot images of spiral patterns. This spirals are dynamic as can be seen <a href="https://www.youtube.com/watch?v=OX5Yiz38fgY">in this movie</a>. See spiral pattern at around 0:36.</p>
+<div id="fig-dicty_spiral" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="CG-14-355_F2.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;5.1: Spiral wave patterns underly Dictystelium aggregation. Image from <span class="citation" data-cites="durston2013dictyostelium">Durston (<a href="#ref-durston2013dictyostelium" role="doc-biblioref">2013</a>)</span>.</figcaption>
+</figure>
+</div>
 <ul>
 <li>can we simulate/model the mechanisms regulate that give rise to cellular aggregation?</li>
 <li>how do features of patterns that form (e.g.&nbsp;pattern wavelength, speepd of aggregation) depend on individual cell properties?</li>
@@ -296,10 +301,8 @@ div.csl-indent {
 <p>We consider a model for the aggregation of <em>Dictyostelium discoideum</em> through the secretion of and chemotactic response to cAMP. We denote by <span class="math inline">\(n({\mathbf{x}}, t)\)</span> the density of amoebae and <span class="math inline">\(a({\mathbf{x}}, t)\)</span> the concentration of cAMP. The general conservation equation for the amoebae can be written:</p>
 <p><span class="math display">\[
 \frac{\partial n}{\partial  t} + \nabla \cdot {\mathbf{J}} = f(n,a),
-\]</span></p>
-<p>where <span class="math inline">\(f(n,a)\)</span> models any reaction terms for the amoebae e.g.&nbsp;proliferation, and the flux is given by</p>
-<p><span class="math display">\[
-{\mathbf{J}} = {\mathbf{J}}_{diffusion} + {\mathbf{J}}_{chemotaxis}
+\]</span> where <span class="math inline">\(f(n,a)\)</span> models any reaction terms for the amoebae e.g.&nbsp;proliferation, and the flux is given by <span class="math display">\[
+{\mathbf{J}} = {\mathbf{J}}_{diffusion} + {\mathbf{J}}_{chemotaxis}.
 \]</span></p>
 <p>Assuming Fickian diffusion and the general chemotactic flux stated earlier, the general * reaction-diffusion-chemotaxis*model for the amoebae responding to cAMP is given by:</p>
 <p><span class="math display">\[
@@ -326,7 +329,7 @@ div.csl-indent {
 \frac{\partial a}{\partial  t} &amp; =   D_a \nabla^2 a +  \mu n - \delta a,
 \end{aligned}
 \]</span></p>
-<p>which becomes, when considering a 1-dimensional domain <span class="math inline">\([0,L]\)</span>:</p>
+<p>which becomes, upon considering a 1-dimensional domain <span class="math inline">\([0,L]\)</span>,</p>
 <p><span id="eq-chemotaxis1d"><span class="math display">\[
 \begin{aligned}
 \frac{\partial n}{\partial  t} &amp;=  D_n \frac{\partial ^2 n}{\partial x^2} - \chi_0 \frac{\partial}{\partial x} \left( n \frac{\partial a}{\partial x} \right), \\
@@ -338,17 +341,17 @@ div.csl-indent {
 <p><span class="math display">\[
 \begin{aligned}
 D_a \frac{\partial a}{\partial  x} &amp; =  0, \;\;\; x = 0,L, \\
-D_n \frac{\partial n}{\partial  x} - \chi_0 n \frac{\partial a}{\partial  x} &amp; =  0, \;\;\; x = 0,L,
+D_n \frac{\partial n}{\partial  x} - \chi_0 n \frac{\partial a}{\partial  x} &amp; =  0, \;\;\; x = 0,L.
 \end{aligned}
 \]</span></p>
-<p>which in this case reduce to:</p>
+<p>These reduce to:</p>
 <p><span class="math display">\[
-\frac{\partial a}{\partial  x} = \frac{\partial n}{\partial  x} = 0, \;\;\; x = 0,L
+\frac{\partial a}{\partial  x} = \frac{\partial n}{\partial  x} = 0, \;\;\; x = 0,L.
 \]</span></p>
 </section>
 <section id="numerical-solutions" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="numerical-solutions"><span class="header-section-number">5.2</span> Numerical solutions</h2>
-<p>In <a href="#fig-bacterialchemotaxispde">Figure&nbsp;<span>5.1</span></a> we plot numerical solution of @#eq-chemotaxis1d together with no-flux boundary condition. The initial data are uniformly sampled. Note the emergence of periodic spatial structure in both variables. These correspond to peaks and troughs of cell density. The cells produce chemoattractant, <span class="math inline">\(a\)</span>, and the this induces a chemtactic flux up the gradient in <span class="math inline">\(a\)</span>. Hence more cells move towards regions where <span class="math inline">\(a\)</span> is high, more chemoattractant is produced in this region etc.</p>
+<p>In <a href="#fig-bacterialchemotaxispde">Figure&nbsp;<span>5.2</span></a> we plot numerical solution of @#eq-chemotaxis1d together with no-flux boundary condition. The initial data are uniformly sampled. Note the emergence of periodic spatial structure in both variables. These correspond to peaks and troughs of cell density. The cells produce chemoattractant, <span class="math inline">\(a\)</span>, and the this induces a chemtactic flux up the gradient in <span class="math inline">\(a\)</span>. Hence more cells move towards regions where <span class="math inline">\(a\)</span> is high, more chemoattractant is produced in this region etc.</p>
 <ul>
 <li>What is the long-time behaviour of these solutions</li>
 <li>For which parameters do we expect to see pattern formation?</li>
@@ -453,8 +456,8 @@ D_n \frac{\partial n}{\partial  x} - \chi_0 n \frac{\partial a}{\partial  x} &am
 <div class="cell-output cell-output-display">
 <div id="fig-bacterialchemotaxispde" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="BacterialChemotaxis_files/figure-html/fig-bacterialchemotaxispde-output-1.png" width="614" height="432" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.1: Numerical solution of bacterial chemtaxis model</figcaption>
+<p><img src="BacterialChemotaxis_files/figure-html/fig-bacterialchemotaxispde-output-1.png" width="606" height="429" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;5.2: Numerical solution of bacterial chemtaxis model</figcaption>
 </figure>
 </div>
 </div>
@@ -587,7 +590,7 @@ k  =  \frac{m \pi}{L}, \;\;\; m = 1,2, \dots
 <section id="exercise" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="exercise"><span class="header-section-number">5.5</span> Exercise</h2>
 <p>From the results we have obtained we deduce that * chemotaxis has a destabilizing effect \ * diffusion has a stabilizing effect on spatially homogeneous solutions</p>
-<p>If this is true then one might expect the numerical results presented in <a href="#fig-bacterialchemotaxispde">Figure&nbsp;<span>5.1</span></a> to have spatially homogeneous solutions if the diffusion coefficient is made sufficiently large. * Can you test this by running the code for larger values of the parameter <span class="math inline">\(D\)</span>? * Alternatively, what happens if you make the chemotaxic coefficient <span class="math inline">\(\chi_0\)</span> smaller? * what kind of aggregation patterns do you see if the system is solved in two spatial dimensions?</p>
+<p>If this is true then one might expect the numerical results presented in <a href="#fig-bacterialchemotaxispde">Figure&nbsp;<span>5.2</span></a> to have spatially homogeneous solutions if the diffusion coefficient is made sufficiently large. * Can you test this by running the code for larger values of the parameter <span class="math inline">\(D\)</span>? * Alternatively, what happens if you make the chemotaxic coefficient <span class="math inline">\(\chi_0\)</span> smaller? * what kind of aggregation patterns do you see if the system is solved in two spatial dimensions?</p>
 <p>However, there is one type of system where diffusion also has a destabilizing effect…</p>
 
 

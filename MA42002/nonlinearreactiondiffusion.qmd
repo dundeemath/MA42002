@@ -44,6 +44,8 @@ At long times the solution tends to $u\sim1$ (behind the wavefront). Ahead of th
 ```{python}
 #| label: fig-logisticpde
 #| fig-cap: "Numerical solution of logistic PDE"
+#| code-fold: True
+
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
@@ -182,6 +184,8 @@ Note that some problem  will not have a travelling wave solution. In this situat
 ```{python}
 #| label: fig-fishernumtravwave
 #| fig-cap: "Proposed numerical solution of @eq-tw_eq_2  with prospective values of wavespeed $c$."
+#| code-fold: True
+
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
@@ -599,6 +603,8 @@ $$
 ```{python}
 #| label: fig-bistablepde
 #| fig-cap: "Numerical solution of bistable PDE"
+#| code-fold: True
+
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
@@ -786,6 +792,7 @@ $$
 ```{python}
 #| label: fig-bistablenumtravwave
 #| fig-cap: "Numerical solution of bistable PDE"
+#| code-fold: True
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt

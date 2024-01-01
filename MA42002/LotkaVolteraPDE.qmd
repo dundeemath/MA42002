@@ -49,6 +49,7 @@ $$
 ```{python}
 #| label: fig-LVpde
 #| fig-cap: "Numerical solution of LV model"
+#| code-fold: True
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt

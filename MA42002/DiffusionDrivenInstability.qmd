@@ -65,7 +65,7 @@ where $F(A,B)$ and $G(A,B)$ describe the reaction kinetics between the two morph
 
 Various forms can be considered for the kinetic functions $F$ and $G$. However, we will focus mainly on three specific classes as follows:
 
-### Schnackenberg Kinetics
+### Schnackenberg kinetics
 
 $$
 F(A,B) = k_1 - k_2 A + k_3 A^2 B, \;\;\;\; G(A,B) = k_4 - k_3 A^2 B
@@ -73,25 +73,34 @@ $$
 
 $k_1, k_2, k_3, k_4 >0$. The term $k_3 A^2 B$ is **autocatalytic**, since the species $A$ is involved in its own production. \url{https://en.wikipedia.org/wiki/Autocatalysis}
 
-### Activator-inhibitor kinetics cf. Gierer-Meinhardt system; Gierer \& Meinhardt, 1972
+###  Gierer \& Meinhardt kinetics
 
+Gierer \& Meinhardt developed a model that describes activator-inhibitor kinetics. The  total reaction rates are
 $$
 F(A,B) = k_1 - k_2 A + \frac{k_3 A^2}{B}, \;\;\;\; G(A,B) = k_4 A^2 - k_5 B
 $$
+where
+$k_1, k_2, k_3, k_4 , k_5 > 0$. The term $k_3 A^2 / B$ is **autocatalytic**. 
 
-$k_1, k_2, k_3, k_4 , k_5 > 0$. Again, the term $k_3 A^2 / B$ is **autocatalytic**. 
+### Thomas kinetics
 
-### Substrate-inhibition system (Thomas, 1975)
-
-$$F(A,B) = k_1 - k_2 A - H(A,B), \;\;\;\; G(A,B) = k_4 A^2 - k_4 B -H(A,B), $$ 
-
-$$H(A,B) = \frac{k_5 AB}{k_6 + k_7 + k_8 A^2}\;,$$
-
-$k_i > 0$. In the original paper of Thomas (1975), $A$ represents the concentration of oxygen (substrate) and $B$ the concentration of uricase (enzyme). Substrate inhibition is evident in the term $k_8 A^2$. 
+Thomas developed a model of substrate inhibition in which
+$$
+\begin{align}
+F(A,B) &= k_1 - k_2 A - H(A,B), \\
+G(A,B) &= k_4 A^2 - k_4 B -H(A,B), \\ 
+H(A,B) &= \frac{k_5 AB}{k_6 + k_7 + k_8 A^2}.
+\end{align}
+$$
+with $k_i > 0$. In the original paper of Thomas (1975), $A$ represents the concentration of oxygen (substrate) and $B$ the concentration of uricase (enzyme). Substrate inhibition is evident in the term $k_8 A^2$. 
 
 ## Non-dimensionalization
 
-Before proceeding with our analysis, it is prudent to non-dimensionalize each of the above systems. We illustrate this process for the Schnakenberg kinetics. Using the scaling, 
+Before proceeding with our analysis, it is prudent to non-dimensionalize each of the above systems. 
+
+### Schnakenberg
+
+We illustrate this process for the Schnakenberg kinetics. Using the scaling
 
 $$
 u = A \left( \frac{k_3}{k_2} \right)^{1/2}, \;\;\;\; v = B \left( \frac{k_3}{k_2} \right)^{1/2}, \;\;\;\; t^* = \frac{D_A t}{L^2}, \;\;\;\; x^* = \frac{x}{L},
@@ -111,7 +120,9 @@ $$
 d = \frac{D_B}{D_A}, \quad a = \frac{k_1}{k_2} \left( \frac{k_3}{k_2} \right)^{1/2}, \quad b = \frac{k_4}{k_2} \left( \frac{k_3}{k_2} \right)^{1/2}, \quad \gamma = \frac{L^2 k_2}{D_A}.
 $$
 
-The Gierer-Meinhardt and Thomas kinetics can be non-dimensionalized as follows:
+### Gierer-Meinhardt
+
+The Gierer-Meinhardt kinetics can be non-dimensionalized as follows:
 
 $$
 \begin{aligned}
@@ -119,7 +130,12 @@ f(u, v) & =  a - b u + \frac{u^2}{v},
 g(u,v) &= u^2 - v, \\
 \end{aligned}
 $$
-and
+where $a , b$ are positive parameters (Exercise/Tutorial).
+
+### Thomas
+
+The Thomas kinetics can be non-dimensionalized as follows:
+ 
 $$
 \begin{aligned}
 f(u,v) & =  a - u - h(u,v), \\
@@ -127,7 +143,10 @@ g(u,v) &= \alpha (b - v) - h(u,v), \\
 h(u,v) & =  \frac{\rho u v}{1 + u + K u^2},
 \end{aligned}
 $$
-respectively, where $a , b, \alpha, \rho , K$ are positive parameters (Exercise/Tutorial).
+where $a , b, \alpha, \rho , K$ are positive parameters (Exercise/Tutorial).
+
+
+### General
 
 Any reaction-diffusion system can be non-dimensionalized and scaled following the above procedure to take the following general form:
 
@@ -142,7 +161,7 @@ where the parameter $d$ is the ratio of the diffusion coefficients from the dime
 
 * $\gamma^{1/2}$ is proportional to the  **linear size** of the spatial domain in one-dimension. In two-dimensions, $\gamma$ is proportional to the area. 
 * $\gamma$ represents the relative strength of the reaction terms -- an increase in $\gamma$ may represent an increase in the activity of some rate-limiting step in the reaction sequence. 
-* An increase in $\gamma$ is equivalent to a decrease in the diffusion coefficient $d$. 
+* An increase in $\gamma$ is equivalent to a decrease in the diffusion coefficient, $d$. 
 
 Note that in the case where the parameter $d > 1$, this means that the original diffusion coefficients are not equal. Specifically, in the case of the Gierer-Meinhardt activator-inhibitor system, $d >1$ implies that the inhibitor *diffuses more quickly* than the activator [$d > 1 \Rightarrow D_B > D_A$ ]. The spatial implications of this are shown in figure \ref{AI} -- the inhibitor diffuses a greater distance than the activator, giving rise to what is known as *local activation, long-range inhibition*. 
 
@@ -152,11 +171,11 @@ Note that in the case where the parameter $d > 1$, this means that the original 
 
 ## Numerical solution
 
-In Figure @fig-schnack_ddi_pde we plot numerical solutions of @eq-schnackenbergeqns with no flux boundary conditions. 
+In  @fig-schnack_ddi_pde we plot numerical solutions of @eq-schnackenbergeqns with no flux boundary conditions. 
 
-In this numerical solution the initial condition  are the spatially homogeneous steady state perturbed by uniformly sampled noise.  As time evolves a spatial pattern emerges. The main idea from a biological perspeftive is that an unpatterned region of an embryo could undergo chemical reactions, with the result being a patterned chemcial field. 
+In this numerical solution the initial condition are the spatially homogeneous steady state perturbed by uniformly sampled noise. As time evolves, a spatial pattern emerges. The main idea from a biological perspeftive is that an unpatterned region of an embryo could undergo chemical reactions, with the result being a patterned chemcial field. 
 
-SOme question that might arise:
+Some question that might arise:
 
 * How does pattern formation depend on model parameters?
 * How does pattern formation depend on domain size?
@@ -167,7 +186,7 @@ SOme question that might arise:
 ```{python}
 #| label: fig-schnack_ddi_pde
 #| fig-cap: "DDI with Schnackenberg kinetics"
-#| code-fold: true
+#| code-fold: True
 
 import numpy as np
 from scipy.integrate import odeint
@@ -235,8 +254,6 @@ def ShcnackPDErhs(sol,t):
     return f  
 
 sol=odeint(ShcnackPDErhs,u_0,t)
-#soln = solve_ivp(ShcnackPDErhs,(0, T), u_0, method='Radau')
-
 u=sol[:,0:N_x]
 v=sol[:,N_x:]
 
@@ -442,6 +459,7 @@ $$
 &
 \end{aligned}
 $${#eq-pp}
+together with boundary and initial Conditions
 $$
 \begin{aligned}
 \nabla u \cdot {\mathbf{n} } = 0, \qquad \nabla v \cdot {\mathbf{n} } = 0, \qquad x\in \partial \Omega, \quad t>0, \\
@@ -450,7 +468,8 @@ u(x,0)  = u_0(x), \qquad  v(x,0)  = v_0(x), \qquad x\in \Omega\; .
 $$ {#eq-pp_bc}
 
 
-A **spatially homogeneous steady-state** of the system @eq-pp satisfies 
+A **spatially homogeneous steady-state** of @eq-pp  and @eq-pp_bc
+satisfies 
 $$
 f(u,v) = 0 , \qquad g(u,v) =0
 $$
@@ -459,22 +478,22 @@ and we denote it by $(u_0, v_0)$.
 
 ### Stability of spatially homogeneous steady states to spatially homogeneous perturbations
 
-Before we consider the effect of the spatial terms in the system (i.e. diffusion), we first of all explore the stability of the underlying spatially homogeneous steady state, defined previously.
+Before we consider the effect of the spatial terms (i.e. diffusion) in @eq-pp  and @eq-pp_bc, we first of all explore the stability of the underlying spatially homogeneous steady state.
 
 Consider the following perturbations to the steady state $(u_0 , v_0)$:
 $$
 u(x,t) = u_0 + \tilde u(t), \quad  v(x,t) = v_0 + \tilde v(t), \qquad \|\tilde u(t) \| \ll 1, \quad  \|\tilde v(t) \| \ll 1.
 $$ 
 
-Substitute these into @eq-pp
+Upon substitution  into @eq-pp
 $$
 \begin{aligned}
-\frac{d\tilde u}{d t} = \gamma\, f(u_0 + \tilde u,v_0 + \tilde v) ,  \\
-\frac{d \tilde v}{d  t} = \gamma\, g(u_0 + \tilde u,v_0 + \tilde v) , 
+\frac{d\tilde u}{d t} = \gamma\, f(u_0 + \tilde u,v_0 + \tilde v),  \\
+\frac{d \tilde v}{d  t} = \gamma\, g(u_0 + \tilde u,v_0 + \tilde v).
 \end{aligned}
 $$ {#eq-pp_1}
 
-and using a Taylor expansion of $f$ and $g$ about $(u_0, v_0)$ we obtain the linearised system 
+ Using a Taylor expansion of $f$ and $g$ about $(u_0, v_0)$ we obtain the linearised system 
 $$
 \begin{pmatrix} 
 \tilde u_t \\
@@ -492,7 +511,7 @@ g_u & g_v
 \end{pmatrix}_{(u_0 , v_0)} \; .  
 $$
 
-The general solution of the above system of linear ODEs @eq-linear_pp is  
+The general solution of @eq-linear_pp is  
 
 $$
  \begin{pmatrix} 
@@ -523,8 +542,7 @@ $$
 \end{aligned}
 $${#eq-stable_hom}
 
-Conditions @eq-stable_hom provide restrictions on the parameters in the model equations @eq-pp. We shall be interested only in such parameter values for which conditions @eq-stable_hom are satisfied. 
-
+ We shall be interested only in such parameter values for which conditions @eq-stable_hom are satisfied (i.e. the spatially homogeneous steady state is linearly stable in the absence of diffusion).
 
 ### Stability of spatially homogeneous steady states to spatially heterogeneous: spatially dependent, perturbations
 
@@ -533,15 +551,20 @@ $$
 u(x,t) = u_0 + \tilde u(x,t), \quad  v(x,t) = v_0 + \tilde v(x,t), \qquad \|\tilde u(x,t) \| \ll 1, \quad  \|\tilde v(x,t) \| \ll 1 .
 $$ 
 
-Once again substitute into @eq-pp and apply a Taylor expansion about $(u_0, v_0)$ to $f$ and $g$ to obtain the linearised problem 
+Upon substitution in @eq-pp and apply a Taylor expansion about $(u_0, v_0)$ to $f$ and $g$ to obtain the linearised problem 
 
 $$
 \begin{aligned}
 \frac{\partial \tilde u(x,t)}{\partial t} = \gamma\, \left(f_u \tilde u(x,t) + f_v \tilde v(x,t)\right) + \nabla^2 \tilde u(x,t)  , \quad x\in \Omega, \;  t >0, \\
 \frac{\partial \tilde v(x,t)}{\partial   t} = \gamma\,  \left(g_u  \tilde u(x,t) + g_v \tilde v(x,t)\right) +d \nabla^2 \tilde v(x,t)  ,  \quad x\in \Omega, \;  t >0,  \\
-{\mathbf{n}} \cdot \nabla \tilde u (x,t) = 0, \qquad {\mathbf{n}} \cdot \nabla \tilde v (x,t)  = 0, \qquad   x\in   \partial \Omega, \; t >0
 \end{aligned}
 $$ {#eq-pp_3}
+with boundary conditions
+$$
+\begin{aligned}
+{\mathbf{n}} \cdot \nabla \tilde u (x,t) = 0, \qquad {\mathbf{n}} \cdot \nabla \tilde v (x,t)  = 0, \qquad   x\in   \partial \Omega, \; t >0.
+\end{aligned}
+$$ {#eq-pp_3bc}
 
 Defining 
 $$
@@ -550,7 +573,7 @@ V(x,t) = \begin{pmatrix}
 \tilde v(x,t)
 \end{pmatrix}
 $$ 
-we can rewrite @eq-pp_3 as 
+we rewrite @eq-pp_3 as 
 $$
 \frac{\partial}{\partial t}  V(x,t) = \gamma J  V(x,t) + D \nabla^2   V(x,t), 
 $$
@@ -564,7 +587,7 @@ D =  \begin{pmatrix}
 \end{pmatrix}\;.
 $$
 
-We shall consider a separation of variables approach i.e.
+We shall consider a separation of variables approach, i.e.
 $$
 V(x,t) =\begin{pmatrix}  
  \bar u(t)  \varphi_1(x)
@@ -577,10 +600,17 @@ $$
 \begin{aligned}
 \frac{d \bar u(t)}{d t}\varphi_1(x) = \gamma\, \left(f_u \bar u(t) \varphi_1(x) + f_v \bar v(t) \varphi_2(x)\right) +\bar u(t)  \nabla^2 \varphi_1(x)  , \quad x\in \Omega, \;  t >0, \\
 \frac{d \bar v(t)}{d t}\varphi_2(x) = \gamma\,  \left(g_u  \bar u(t) \varphi_1(x) + g_v \bar v(t) \varphi_2(x)\right) +  d \bar v(t) \nabla^2  \varphi_2(x)  ,  \quad x\in \Omega, \;  t >0,  \\
-{\mathbf{n}} \cdot \nabla \varphi_1(x) = 0, \qquad {\mathbf{n}} \cdot \nabla\varphi_2 (x) = 0, \qquad   x\in   \partial \Omega, \; t >0
 \end{aligned}
 $$ {#eq-pp_4}
-with 
+
+with boundary conditions
+$$
+\begin{aligned}
+{\mathbf{n}} \cdot \nabla \varphi_1(x) = 0, \qquad {\mathbf{n}} \cdot \nabla\varphi_2 (x) = 0, \qquad   x\in   \partial \Omega, \; t >0.
+\end{aligned}
+$$ {#eq-pp_4bc}
+
+It is assumed that 
 $$
 \bar u(t)\, / \hspace{-0.35 cm}\equiv 0 \quad \textrm{and} \quad  \bar v(t)\, / \hspace{-0.35 cm}\equiv 0
 $$ 
@@ -612,7 +642,7 @@ form an **orthogonal set** of basis functions of the corresponding functional sp
 
 :::
 
-Thus we can look for the spatial component of the solution as follows:
+Thus we can look for the spatial component of the solution of @eq-pp_4 as follows:
 $$
 \varphi(x) = \begin{pmatrix}  
 \varphi_1(x) \\
@@ -632,14 +662,14 @@ C_k^1 \; \bar u(t)
 \end{aligned}
 $$ {#eq-vxt}
 
-Then since $\nabla^2 \psi_k(x) = - k^2 \psi_k(x)$ we obtain 
+SEince $\nabla^2 \psi_k(x) = - k^2 \psi_k(x)$ we obtain 
 
 $$
 D \nabla^2  V(x,t) = D \nabla^2 \left[ \sum_k \hat V_k(t) \psi_k(x) \right]   = \sum_k D \hat V_k(t) \nabla^2 \psi_k(x)= 
-- \sum_k k^2 D \hat V_k(t)  \psi_k(x)
+- \sum_k k^2 D \hat V_k(t)  \psi_k(x).
 $$
 
-and hence 
+ Hence 
 
 $$
 \sum_k \frac{d}{d t}  \hat V_k(t) \psi_k(x)  =
@@ -656,7 +686,7 @@ for each $k$. Finally, since
 $$
 \psi_k(x)\;  /\hspace{-0.35 cm }\equiv 0
 $$ 
-in  $\Omega$ this implies for each $k$ a system of ODEs:
+in $\Omega$ this implies for each $k$ a system of ODEs:
 
 $$
 \begin{aligned}
@@ -664,7 +694,7 @@ $$
 \end{aligned}
 $${#eq-stab_pp_ode}
 
-where $\tilde J$ is a ``modified'' Jacobian:
+where $\tilde J$ is a "modified" Jacobian:
 
 $$
 \tilde{J} =  \begin{pmatrix} 
@@ -698,7 +728,7 @@ $$ {#eq-hk2}
 ```{python}
 #| label: fig-dispersion
 #| fig-cap: "A plot of $h(k^2)$ against k^2."
-#| code-fold: true
+#| code-fold: True
 import numpy as np
 import matplotlib.pyplot as plt
 

@@ -111,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -209,7 +209,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation"><span class="header-section-number">1.2</span> Notation</a></li>
   <li><a href="#derivation-of-conservation-equations" id="toc-derivation-of-conservation-equations" class="nav-link" data-scroll-target="#derivation-of-conservation-equations"><span class="header-section-number">1.3</span> Derivation of conservation equations</a>
   <ul class="collapse">
-  <li><a href="#spatially-homogeneous-model" id="toc-spatially-homogeneous-model" class="nav-link" data-scroll-target="#spatially-homogeneous-model"><span class="header-section-number">1.3.1</span> Spatially homogeneous model</a></li>
+  <li><a href="#spatially-homogeneous-models" id="toc-spatially-homogeneous-models" class="nav-link" data-scroll-target="#spatially-homogeneous-models"><span class="header-section-number">1.3.1</span> Spatially homogeneous models</a></li>
   <li><a href="#spatial-movement" id="toc-spatial-movement" class="nav-link" data-scroll-target="#spatial-movement"><span class="header-section-number">1.3.2</span> Spatial movement</a></li>
   <li><a href="#boundary-conditions-b.c." id="toc-boundary-conditions-b.c." class="nav-link" data-scroll-target="#boundary-conditions-b.c."><span class="header-section-number">1.3.3</span> Boundary conditions (B.C.)</a></li>
   <li><a href="#initial-conditions" id="toc-initial-conditions" class="nav-link" data-scroll-target="#initial-conditions"><span class="header-section-number">1.3.4</span> Initial conditions</a></li>
@@ -241,15 +241,15 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.1</span> Introduction</h2>
-<p>Many biological systems are spatio-temporal, i.e.&nbsp;concentrations of biochemicals, densities of cells etc. depend on spatial position as well time. To describe such cases we must relax a major assumption that was made in Mathematical Biology I (MA32009): spatial homogeneity. This leads us to describe biological system using partial differential equations.</p>
+<p>Many biological systems are spatio-temporal, i.e.&nbsp;concentrations of biochemicals, densities of cells etc. depend on spatial position as well time. To describe such cases we must **relax* a major assumption that was made in Mathematical Biology I (MA32009): spatial homogeneity. This leads us to describe biological system using partial differential equations.</p>
 </section>
 <section id="notation" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="notation"><span class="header-section-number">1.2</span> Notation</h2>
-<p>Throughout this course, we will study {} of biological systems and as such we will consider <span class="math inline">\(x \in \mathbb R^n\)</span>, <span class="math inline">\(t \in [0, \infty)\)</span> and functions <span class="math inline">\(c: \mathbb R^n \times [0, \infty) \to \mathbb R\)</span>, where <span class="math inline">\(n=1,2,3\)</span>. For example:</p>
+<p>We will consider <span class="math inline">\(x \in \mathbb R^n\)</span>, <span class="math inline">\(t \in [0, \infty)\)</span> and functions <span class="math inline">\(c: \mathbb R^n \times [0, \infty) \to \mathbb R\)</span>, where <span class="math inline">\(n=1,2,3\)</span>. For example:</p>
 <ul>
-<li><span class="math inline">\(c(t,x)\)</span> - the density of a population [number per volume] at time <span class="math inline">\(t\)</span> and position <span class="math inline">\(x\)</span> (at <span class="math inline">\((t,x)\)</span>)</li>
-<li><span class="math inline">\(c(t,x)\)</span> - the concentration of a substance (chemicals, particles) [mass per volume] at time <span class="math inline">\(t\)</span> and position <span class="math inline">\(x\)</span> (at <span class="math inline">\((t,x)\)</span>)</li>
-<li><span class="math inline">\(c(t,x)\)</span> - the temperature at <span class="math inline">\((t,x)\)</span>.</li>
+<li><span class="math inline">\(c(x,t)\)</span> - the density of a population [number per volume] at position <span class="math inline">\(x\)</span> and time <span class="math inline">\(t\)</span> (at <span class="math inline">\((x,t)\)</span>)</li>
+<li><span class="math inline">\(c(x,t)\)</span> - the concentration of a substance (chemicals, particles) [mass per volume] at position <span class="math inline">\(x\)</span> and time <span class="math inline">\(t\)</span> (at <span class="math inline">\((x,t)\)</span>)</li>
+<li><span class="math inline">\(c(x,t)\)</span> - the temperature at <span class="math inline">\((x,t)\)</span>.</li>
 </ul>
 </section>
 <section id="derivation-of-conservation-equations" class="level2" data-number="1.3">
@@ -269,8 +269,8 @@ ul.task-list li input[type="checkbox"] {
   \text{due to chemical reactions}
 \end{pmatrix}
 \]</span></p>
-<section id="spatially-homogeneous-model" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="spatially-homogeneous-model"><span class="header-section-number">1.3.1</span> Spatially homogeneous model</h3>
+<section id="spatially-homogeneous-models" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="spatially-homogeneous-models"><span class="header-section-number">1.3.1</span> Spatially homogeneous models</h3>
 <p>In this introductory first section, we neglect spatial movement and consider examples of growth/death and chemical reactions.</p>
 <section id="modelling-the-growth-of-bacteria-in-a-petri-dish-flask-containing-nutrient-medium" class="level4" data-number="1.3.1.1">
 <h4 data-number="1.3.1.1" class="anchored" data-anchor-id="modelling-the-growth-of-bacteria-in-a-petri-dish-flask-containing-nutrient-medium"><span class="header-section-number">1.3.1.1</span> Modelling the growth of bacteria in a petri dish (flask) containing nutrient medium</h4>
@@ -279,15 +279,18 @@ ul.task-list li input[type="checkbox"] {
 <p>Over a period of one unit time a single bacterial cell divides, then its daughter cells divide, and so forth, leading to a total of <span class="math inline">\(K\)</span> new bacterial cells.</p>
 <p>Define <span class="math inline">\(K\)</span> - rate of reproduction per unit time, <span class="math inline">\(K&gt;0\)</span>, and <span id="eq-n_1"><span class="math display">\[
 \begin{aligned}
-N(t+\Delta t) &amp;=  \quad N(t)   + \quad  &amp;K N(t) \Delta t \\
-\text{ density at time } t + \Delta t &amp; \quad   \text{ density at time } t  &amp; &amp;\text{ increase in density due to}\\
-&amp;&amp; &amp;\text{reproduction during}\\
-&amp;&amp; &amp;\text{ the time interval } \Delta t
+N(t+\Delta t) &amp;=  \quad N(t)   + \quad  K N(t) \Delta t.
 \end{aligned}
 \tag{1.1}\]</span></span> Assuming that <span class="math inline">\(N\)</span> is differentiable, dividing <a href="#eq-n_1">Equation&nbsp;<span>1.1</span></a> by <span class="math inline">\(\Delta t\)</span> and tailing limit as <span class="math inline">\(\Delta t \to 0\)</span> imply <span id="eq-n_2"><span class="math display">\[
 \frac{dN}{dt} = K N
 \tag{1.2}\]</span></span></p>
-<p>The growth rate <span class="math inline">\(K\)</span> can take several forms e.g.&nbsp; * <span class="math inline">\(K = \text{constant}\)</span> * <span class="math inline">\(K = K(t)\)</span> time-dependent * <span class="math inline">\(K= K(N(t))\)</span> depends on bacterial density * <span class="math inline">\(K= K(c(t)):= \kappa c(t), \;\; (\text{with} \;\; \kappa &gt;0 \;\; \text{a constant}\)</span>), which depends on the nutrient concentration <span class="math inline">\(c(t)\)</span> at time <span class="math inline">\(t\)</span> i.e.&nbsp;<span class="math inline">\(K\)</span> depends on the available resources</p>
+<p>The growth rate <span class="math inline">\(K\)</span> can take several forms e.g.&nbsp;</p>
+<ul>
+<li><span class="math inline">\(K = \textrm{constant}\)</span></li>
+<li><span class="math inline">\(K = K(t)\)</span> time-dependent</li>
+<li><span class="math inline">\(K= K(N(t))\)</span> depends on bacterial density</li>
+<li><span class="math inline">\(K= K(c(t)):= \kappa c(t), \;\; (\text{with} \;\; \kappa &gt;0 \;\; \text{a constant}\)</span>), which depends on the nutrient concentration <span class="math inline">\(c(t)\)</span> at time <span class="math inline">\(t\)</span> i.e.&nbsp;<span class="math inline">\(K\)</span> depends on the available resources.</li>
+</ul>
 </section>
 <section id="logistic-growth-via-depleting-nutrient-source" class="level4" data-number="1.3.1.2">
 <h4 data-number="1.3.1.2" class="anchored" data-anchor-id="logistic-growth-via-depleting-nutrient-source"><span class="header-section-number">1.3.1.2</span> Logistic growth via depleting nutrient source</h4>
@@ -299,7 +302,7 @@ N(t+\Delta t) &amp;=  \quad N(t)   + \quad  &amp;K N(t) \Delta t \\
 \tag{1.3}\]</span></span> with initial conditions <span class="math display">\[
 N(0) = N_0 \quad \textrm{and}  \quad  c(0)= c_0.
 \]</span></p>
-<p>We can determine the nutrient concentration by integrating the second of <span class="quarto-unresolved-ref">?eq-C_1</span> with respect to time and obtaining <span id="eq-sol_c"><span class="math display">\[
+<p>We can determine the nutrient concentration by integrating the second of <a href="#eq-c_1">Equation&nbsp;<span>1.3</span></a> with respect to time and obtaining <span id="eq-sol_c"><span class="math display">\[
 c(t)  = - \alpha N(t) + c(0)+ \alpha N(0) = - \alpha N(t) + \beta,
 \tag{1.4}\]</span></span> where <span class="math inline">\(\beta=c_0 +\alpha N_0\)</span>. Using <a href="#eq-sol_c">Equation&nbsp;<span>1.4</span></a> in <a href="#eq-c_1">Equation&nbsp;<span>1.3</span></a> we obtain the <em>logistic growth</em> equation <span id="eq-n_4"><span class="math display">\[
 \frac{dN}{dt} = \kappa ( \beta- \alpha N)  N, \qquad  N(0)= N_0\quad  
@@ -318,7 +321,7 @@ N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
 </section>
 <section id="competition" class="level4" data-number="1.3.1.4">
 <h4 data-number="1.3.1.4" class="anchored" data-anchor-id="competition"><span class="header-section-number">1.3.1.4</span> Competition</h4>
-<p>The fact that individuals compete for food, habitat (i.e.&nbsp;space) or any limited resources, means that an increase in the net mortality of the population may be observed under crowded conditions <span class="math display">\[
+<p>The fact that individuals compete for food, habitat (i.e.&nbsp;space) or any limited resources, means that an increase in the net mortality of the population may be observed under crowded conditions. Hence we could obtain <span class="math display">\[
 \frac{dN}{dt} = KN - d_1 N^2 ,
 \]</span> where <span class="math inline">\(d=d_1N\)</span> is the mortality (death) rate and is proportional to the population density.</p>
 </section>
@@ -822,7 +825,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

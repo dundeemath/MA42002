@@ -10,7 +10,7 @@ See also [this link to a fascinating Youtube movie of slime mold aggregation](ht
 
 In @fig-dicty_spiral we can see stills-shot images of spiral patterns. This spirals are dynamic as can be seen [in this movie](https://www.youtube.com/watch?v=OX5Yiz38fgY). See spiral pattern at around 0:36. 
 
-[![Spiral wave patterns underly Dictystelium aggregation. Image from @durston2013dictyostelium. ](CG-14-355_F2.jpg)]{#fig-dicty_spiral}
+![Spiral wave patterns underly Dictystelium aggregation. Image from @durston2013dictyostelium. ](CG-14-355_F2.jpg){#fig-dicty_spiral}
 
 * can we simulate/model the mechanisms regulate that give rise to cellular aggregation? 
 * how do features of patterns that form (e.g. pattern wavelength, speepd of aggregation) depend on individual cell properties?
@@ -26,11 +26,9 @@ We consider a model for the aggregation of *Dictyostelium discoideum* through th
 $$
 \frac{\partial n}{\partial  t} + \nabla \cdot {\mathbf{J}} = f(n,a),
 $$
-
 where $f(n,a)$ models any reaction terms for the amoebae e.g. proliferation, and the flux is given by
-
 $$
-{\mathbf{J}} = {\mathbf{J}}_{diffusion} + {\mathbf{J}}_{chemotaxis}
+{\mathbf{J}} = {\mathbf{J}}_{diffusion} + {\mathbf{J}}_{chemotaxis}.
 $$
 
 Assuming Fickian diffusion and the general chemotactic flux stated earlier, the general * reaction-diffusion-chemotaxis*model for the amoebae responding to cAMP is given by:
@@ -69,7 +67,7 @@ $$
 \end{aligned}
 $$
 
-which becomes, when considering a 1-dimensional domain $[0,L]$:
+which becomes, upon considering a 1-dimensional domain $[0,L]$,
 
 $$
 \begin{aligned}
@@ -84,14 +82,14 @@ with zero flux boundary conditions:
 $$
 \begin{aligned}
 D_a \frac{\partial a}{\partial  x} & =  0, \;\;\; x = 0,L, \\
-D_n \frac{\partial n}{\partial  x} - \chi_0 n \frac{\partial a}{\partial  x} & =  0, \;\;\; x = 0,L,
+D_n \frac{\partial n}{\partial  x} - \chi_0 n \frac{\partial a}{\partial  x} & =  0, \;\;\; x = 0,L.
 \end{aligned}
 $$
 
-which in this case reduce to:
+These reduce to:
 
 $$
-\frac{\partial a}{\partial  x} = \frac{\partial n}{\partial  x} = 0, \;\;\; x = 0,L
+\frac{\partial a}{\partial  x} = \frac{\partial n}{\partial  x} = 0, \;\;\; x = 0,L.
 $$
 
 ## Numerical solutions
