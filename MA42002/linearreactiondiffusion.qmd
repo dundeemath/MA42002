@@ -23,11 +23,11 @@ $$
 In order to provide some insight into the structure of solutions of reaction-diffusion equations, we make an initial simplifying assumption i.e. we assume $f(c)=0$, and obtain the linear diffusion equation (or heat equation): 
 
 $$
-\frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2},   \quad x\in \mathbb R, \, \, t >0, 
+\frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2},   \quad x\in \mathbb R, \, \, t >0.
 $$ {#eq-heat_eq}
 This equation is used to model the evolution of the concentration of a chemical in a long thin tube, or the temperature of a long thin rod.  
 
-We assume that the initial condition for our species $c$ is located in one point $x=0$ i.e. 
+We assume that the initial condition for our species $c$ is located in one point $x=0$, i.e. 
 $$
 c(x_0 , 0) = \delta_0(x)\qquad x \in \mathbb R, 
 $$ {#eq-heat_IC}
@@ -46,13 +46,13 @@ converges to $\delta_0(x)$ as $\varepsilon \to 0$ (in the sense of distributions
 
 Then for the diffusion @eq-heat_eq with initial condition @eq-heat_IC, it can be shown that the explicit (analytic) solution is given by 
 $$
-c(t,x) = \frac1{\sqrt{4 \pi D t}} \exp \left( - \frac{ x^2}{ 4Dt} \right).
+c(x, t) = \frac1{\sqrt{4 \pi D t}} \exp \left( - \frac{ x^2}{ 4Dt} \right).
 $$ {#eq-fund_sol}
 This is known as **the fundamental solution** of the diffusion equation in $\mathbb R$. 
 
 We also have, for general initial condition $c(x, 0) = c_0(x)$ for $x\in \mathbb R$:
 $$
-c(t,x) = \int_{-\infty}^{+\infty} \frac{c_0(y)}{\sqrt{4 \pi D t}} \exp \left( - \frac{ (x-y)^2}{ 4Dt} \right) dy.
+c(x, t) = \int_{-\infty}^{+\infty} \frac{c_0(y)}{\sqrt{4 \pi D t}} \exp \left( - \frac{ (x-y)^2}{ 4Dt} \right) dy.
 $$
 
 This result can be generalized to $\mathbb R^n\times (0,\infty)$ where the fundamental solution has the form 
@@ -68,7 +68,9 @@ In @fig-diffusionpde we compute a numerical solution of the diffusion equation a
 
 ```{python}
 #| label: fig-diffusionpde
-#| fig-cap: "Numerical solution of diffusion equation"
+#| fig-cap: 
+#|  - "Numerical solution of diffusion equation."
+#|  - "Exact solution of diffusion equation."
 #| code-fold: True
 import numpy as np
 from scipy.integrate import odeint
@@ -370,7 +372,9 @@ $$
 
 ```{python}
 #| label: fig-diffusionlinearsource
-#| fig-cap: "Numerical solution of linear reaction diffusion equation"
+#| fig-cap: 
+#|  - Numerical solution of linear reaction diffusion equation
+#|  - Exact solution of linear reaction diffusion equation
 #| code-fold: True
 import numpy as np
 from scipy.integrate import odeint

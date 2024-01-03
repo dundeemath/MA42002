@@ -161,7 +161,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -274,6 +274,7 @@ div.csl-indent {
   <li><a href="#relation-between-sign-of-v-and-sign-of-intlimits_01-fu-du" id="toc-relation-between-sign-of-v-and-sign-of-intlimits_01-fu-du" class="nav-link" data-scroll-target="#relation-between-sign-of-v-and-sign-of-intlimits_01-fu-du"><span class="header-section-number">3.5.2</span> Relation between sign of <span class="math inline">\(v\)</span> and sign of <span class="math inline">\(\int\limits_0^1 f(u) \, du\)</span></a></li>
   <li><a href="#the-shooting-method-proof-of-a-heteroclinic-connection" id="toc-the-shooting-method-proof-of-a-heteroclinic-connection" class="nav-link" data-scroll-target="#the-shooting-method-proof-of-a-heteroclinic-connection"><span class="header-section-number">3.5.3</span> The shooting method proof of a heteroclinic connection</a></li>
   </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">3.6</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -310,7 +311,7 @@ u(x,0) =u_0(x).
 <p><span class="math display">\[
 \frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2} +   u(1-u), \qquad x\in \mathbb R, \, \, t &gt;0
 \]</span> with initial condition <span id="eq-fisher_1"><span class="math display">\[
-u(x,0) = u_0(x)
+u(x,0) = u_0(x).
 \tag{3.2}\]</span></span></p>
 <section id="numerical-solutions" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="numerical-solutions"><span class="header-section-number">3.1</span> Numerical solutions</h2>
@@ -373,7 +374,7 @@ u(x,0) = u_0(x)
 <div id="fig-logisticpde" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="nonlinearreactiondiffusion_files/figure-html/fig-logisticpde-output-1.png" width="571" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.1: Numerical solution of logistic PDE</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;3.1: Numerical solution of Fisher’s equation.</figcaption>
 </figure>
 </div>
 </div>
@@ -381,7 +382,7 @@ u(x,0) = u_0(x)
 </section>
 <section id="travelling-waves" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="travelling-waves"><span class="header-section-number">3.2</span> Travelling waves</h2>
-<p>It is known that the Fisher <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a> exhibits what are known as <strong>travelling wave solutions</strong>.</p>
+<p>It is known that the Fisher <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a> exhibits what are known as <em>travelling wave</em> solutions.</p>
 <div id="def-trwave" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 3.1 </strong></span>A travelling wave is a solution of a partial differential equation with a constant profile (shape) and a constant propagation speed.</p>
 </div>
@@ -389,11 +390,11 @@ u(x,0) = u_0(x)
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="types-of-travelling-waves"><span class="header-section-number">3.2.1</span> Types of travelling waves</h3>
 <ul>
 <li>Travelling pulse: <span class="math inline">\(u(x,t) \to a\)</span>, as <span class="math inline">\(x \to \pm \infty\)</span>.</li>
-<li>Travelling front : <span class="math inline">\(u(x,t) \to a\)</span>, as <span class="math inline">\(x \to - \infty\)</span>, <span class="math inline">\(u(t,x) \to b\)</span>, as <span class="math inline">\(x \to + \infty\)</span> and <span class="math inline">\(a\neq b\)</span> (this is what we see in <a href="#fig-logisticpde">Figure&nbsp;<span>3.1</span></a>)</li>
+<li>Travelling front : <span class="math inline">\(u(x,t) \to a\)</span>, as <span class="math inline">\(x \to - \infty\)</span>, <span class="math inline">\(u(x,t) \to b\)</span>, as <span class="math inline">\(x \to + \infty\)</span> and <span class="math inline">\(a\neq b\)</span> (this is what we see in <a href="#fig-logisticpde">Figure&nbsp;<span>3.1</span></a>)</li>
 <li>Travelling train: <span class="math inline">\(u(x,t)\)</span> is a periodic function in <span class="math inline">\(x\)</span>.</li>
 </ul>
 <p>A travelling wave solution of a PDE can be written in the form <span class="math inline">\(u(x,t) = W(z)\)</span>, where <span class="math inline">\(z = x - vt\)</span>. We shall consider <span class="math inline">\(v&gt;0\)</span>, which describes a wave moving from left to right.</p>
-<p>Consider first the <strong>spatially uniform (homogeneous) solution</strong> of <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a></p>
+<p>Consider first the <em>spatially uniform (homogeneous)</em> solution of <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a></p>
 <p><span id="eq-fisher_unif"><span class="math display">\[
 \frac{\partial u}{\partial t} =    u(1-u), \qquad   \, \, t &gt;0.
 \tag{3.3}\]</span></span></p>
@@ -402,20 +403,19 @@ u=u_1 =1
 \]</span> and <span class="math display">\[
 u=u_2 =0.
 \]</span> To analyse the stability we consider <span class="math display">\[
-f(u)=u(1-u) \quad \textrm{and} \quad \frac{ df}{du}(u)= 1 - 2u
+f(u)=u(1-u) \quad \textrm{and} \quad \frac{ df}{du}(u)= 1 - 2u.
 \]</span> Then <span class="math display">\[
-\frac{ df}{du}(u_1)= -1 \quad \textrm{and} \quad \frac{ df}{du}(u_2)= 1
-\]</span> Thus <span class="math inline">\(u_1=1\)</span> is <strong>stable</strong> and <span class="math inline">\(u_2=0\)</span> is <strong>unstable</strong>.</p>
+\frac{ df}{du}(u_1)= -1 \quad \textrm{and} \quad \frac{ df}{du}(u_2)= 1.
+\]</span> Thus <span class="math inline">\(u_1=1\)</span> is <em>stable</em> and <span class="math inline">\(u_2=0\)</span> is <em>unstable</em>.</p>
 <p>This stability analysis suggests that for the spatially dependent situation we can have a travelling wave solution that connects the two steady states <span class="math inline">\(u_1\)</span> and <span class="math inline">\(u_2\)</span> i.e.&nbsp;a travelling front.</p>
-<p>Considering the travelling wave <strong>ansatz</strong><br>
+<p>Consider the travelling wave <em>ansatz</em><br>
 <span class="math display">\[
-u(x,t)= W(z) = W(x-vt)
-\]</span> in <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a> and using</p>
-<p><span class="math display">\[
+u(x,t)= W(z) = W(x-vt),
+\]</span> where <span class="math inline">\(v\)</span> is a constant. Changing variables in <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a> and using <span class="math display">\[
 \begin{aligned}
-\frac{ \partial u}{\partial t} &amp;= \frac{ dW}{dz} \frac{\partial z}{\partial t} &amp;= - v   \frac{ dW}{dz}, \\
-\frac{ \partial u}{\partial x} &amp;= \frac{ dW}{dz} \frac{\partial z}{\partial x} &amp;=\frac{ dW}{dz}, \\
-\frac{ \partial^2 u}{\partial x^2} &amp;= \frac{ d^2W}{dz^2} \left(\frac{\partial z}{\partial x} \right)^2 +  \frac{ dW}{dz} \frac{\partial^2 z}{\partial x^2} &amp;=\frac{ d^2W}{dz^2},
+\frac{ \partial u}{\partial t} &amp;= \frac{ dW}{dz} \frac{\partial z}{\partial t} = - v   \frac{ dW}{dz}, \\
+\frac{ \partial u}{\partial x} &amp;= \frac{ dW}{dz} \frac{\partial z}{\partial x} =\frac{ dW}{dz}, \\
+\frac{ \partial^2 u}{\partial x^2} &amp;= \frac{ d^2W}{dz^2} \left(\frac{\partial z}{\partial x} \right)^2 +  \frac{ dW}{dz} \frac{\partial^2 z}{\partial x^2} =\frac{ d^2W}{dz^2},
 \end{aligned}
 \]</span></p>
 <p>we obtain a second order ordinary differential equation for <span class="math inline">\(W\)</span></p>
@@ -437,7 +437,7 @@ W(z) \in [0,1].
 </section>
 <section id="numerical-solutions-1" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="numerical-solutions-1"><span class="header-section-number">3.2.2</span> Numerical solutions</h3>
-<p>In <a href="#fig-fishernumtravwave">Figure&nbsp;<span>3.2</span></a> we plot the numerical solution to equations <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a> for different values of the wavespeed <span class="math inline">\(v\)</span>. Note that when the wavespeed is too small the solution spirals in towards the origin. This solution cannot be valid as it implies that <span class="math inline">\(u&lt;0\)</span> for some <span class="math inline">\(z\)</span>.</p>
+<p>In <a href="#fig-fishernumtravwave">Figure&nbsp;<span>3.2</span></a> we plot the numerical solution to equations <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a> for different values of the wavespeed, <span class="math inline">\(v\)</span>. Note that when the wavespeed is too small the solution spirals in towards the origin. This solution cannot be valid as it implies that <span class="math inline">\(u&lt;0\)</span> for some <span class="math inline">\(z\)</span>.</p>
 <p>Note that some problem will not have a travelling wave solution. In this situation we could still make the travelling wave ansatz but this would usually result in a contradiction. In such a case this tells us that a travelling wave solution is not possible.</p>
 <div class="cell" data-execution_count="2">
 <details>
@@ -523,7 +523,7 @@ P(W) &lt; 0 \quad  \mathrm{for} \quad  W \in (0,1).
 </section>
 <section id="connection-between-sign-of-p-and-sign-of-speed-v" class="level3" data-number="3.2.4">
 <h3 data-number="3.2.4" class="anchored" data-anchor-id="connection-between-sign-of-p-and-sign-of-speed-v"><span class="header-section-number">3.2.4</span> Connection between sign of <span class="math inline">\(P\)</span> and sign of speed <span class="math inline">\(v\)</span></h3>
-<p>Consider equation <a href="#eq-tw_eq_3">Equation&nbsp;<span>3.8</span></a>. Multiplying it by <span class="math inline">\(P\)</span> and integrating over <span class="math inline">\(W\)</span> from <span class="math inline">\(0\)</span> to <span class="math inline">\(1\)</span>, we obtain <span class="math display">\[
+<p>Consider <a href="#eq-tw_eq_3">Equation&nbsp;<span>3.8</span></a>. Multiplying it by <span class="math inline">\(P\)</span> and integrating over <span class="math inline">\(W\)</span> from <span class="math inline">\(0\)</span> to <span class="math inline">\(1\)</span>, we obtain <span class="math display">\[
 \int_0^1 \frac{dP}{dW}  P(W)\, dW = - v \int_0^1  P(W) dW - \int_0^1 W(1-W) dW.
 \]</span> Using conditions <a href="#eq-tw_eq_3_bc">Equation&nbsp;<span>3.9</span></a> we have <span class="math display">\[
 \int_0^1 \frac{dP}{dW} \, P\, dW = \frac 12 \int  \frac{d}{dW} (P^2) dW = \frac 12\left( P^2(1) - P^2(0)\right) = 0,
@@ -590,8 +590,13 @@ W\\
 \]</span></p>
 <p>Consider that <span class="math display">\[
 \lambda_2^- &lt;0 &lt; \lambda_2^+  \quad \textrm{and choose} \quad W = \pm 1.
-\]</span> The eigenvectors are sketched in the figure below.</p>
-<p><strong>Insert eigenvector picture here</strong></p>
+\]</span> The eigenvectors are sketched in <a href="#fig-eigenvectors">Figure&nbsp;<span>3.3</span></a>.</p>
+<div id="fig-eigenvectors" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="fig_4.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;3.3: Schematic diagram of eigenvectors.</figcaption>
+</figure>
+</div>
 <div id="def-line" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 3.2 </strong></span>The trajectory that connects two different points is called a heteroclinic connection. The trajectory that connects a point with itself is called a homoclinic connection.</p>
 </div>
@@ -731,8 +736,7 @@ u(x,0)=u_0(x)  \qquad x\in \mathbb R,
 </section>
 <section id="numerical-solutions-2" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="numerical-solutions-2"><span class="header-section-number">3.4</span> Numerical solutions</h2>
-<div id="fig-bistablepde" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
+<div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -761,53 +765,54 @@ u(x,0)=u_0(x)  \qquad x\in \mathbb R,
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>u_samp<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">100</span>)</span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>reac<span class="op">=</span>u_samp<span class="op">*</span>(u_samp<span class="op">-</span>a)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>u_samp)</span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>ax.plot(u_samp,reac) </span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'$u$'</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'$f(u)$'</span>)</span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bistablePDErhs(u,t):</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    N_x<span class="op">=</span><span class="bu">len</span>(u)</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span>np.zeros_like(u)</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,N_x<span class="op">-</span><span class="dv">1</span>):</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>      f[i]<span class="op">=</span><span class="dv">1</span><span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(u[i<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span><span class="dv">2</span><span class="op">*</span>u[i]<span class="op">+</span>u[i<span class="op">+</span><span class="dv">1</span>]) </span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span><span class="dv">0</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    f[i]<span class="op">=</span><span class="dv">1</span><span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(<span class="op">-</span>u[i]<span class="op">+</span>u[i<span class="op">+</span><span class="dv">1</span>]) </span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span>N_x<span class="op">-</span><span class="dv">1</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    f[i]<span class="op">=</span><span class="dv">1</span><span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(u[i<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>u[i])</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    reaction<span class="op">=</span>u<span class="op">*</span>(u<span class="op">-</span>a)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>u) </span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span> f<span class="op">+</span>reaction </span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f  </span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>sol<span class="op">=</span>odeint(bistablePDErhs,u_0,t)</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">0</span>,:], <span class="st">'r'</span>)</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">15</span>,:], <span class="st">'b'</span>)</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">30</span>,:], <span class="st">'m'</span>)</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">45</span>,:], <span class="st">'k'</span>)</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'t'</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">0</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">4</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">8</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">12</span>])])</span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bistablePDErhs(u,t):</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    N_x<span class="op">=</span><span class="bu">len</span>(u)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span>np.zeros_like(u)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,N_x<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>      f[i]<span class="op">=</span><span class="dv">1</span><span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(u[i<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span><span class="dv">2</span><span class="op">*</span>u[i]<span class="op">+</span>u[i<span class="op">+</span><span class="dv">1</span>]) </span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    f[i]<span class="op">=</span><span class="dv">1</span><span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(<span class="op">-</span>u[i]<span class="op">+</span>u[i<span class="op">+</span><span class="dv">1</span>]) </span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span>N_x<span class="op">-</span><span class="dv">1</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    f[i]<span class="op">=</span><span class="dv">1</span><span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(u[i<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>u[i])</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    reaction<span class="op">=</span>u<span class="op">*</span>(u<span class="op">-</span>a)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>u) </span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span> f<span class="op">+</span>reaction </span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f  </span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>sol<span class="op">=</span>odeint(bistablePDErhs,u_0,t)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">0</span>,:], <span class="st">'r'</span>)</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">15</span>,:], <span class="st">'b'</span>)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">30</span>,:], <span class="st">'m'</span>)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">45</span>,:], <span class="st">'k'</span>)</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'t'</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">0</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">4</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">8</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">12</span>])])</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-bistablepde-1" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-bistablepde" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="nonlinearreactiondiffusion_files/figure-html/fig-bistablepde-output-1.png" data-ref-parent="fig-bistablepde" width="579" height="411" class="figure-img"></p>
-<figcaption class="figure-caption">(a) Numerical solution of bistable PDE</figcaption>
+<p><img src="nonlinearreactiondiffusion_files/figure-html/fig-bistablepde-output-1.png" width="598" height="429" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;3.4: A plot of f(u) against u.</figcaption>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-bistablepde-2" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-bistablepde" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="nonlinearreactiondiffusion_files/figure-html/fig-bistablepde-output-2.png" data-ref-parent="fig-bistablepde" width="571" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">(b)</figcaption>
+<p><img src="nonlinearreactiondiffusion_files/figure-html/fig-bistablepde-output-2.png" width="571" height="429" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;3.5: Numerical solution of bistable PDE.</figcaption>
 </figure>
 </div>
 </div>
-<figcaption class="figure-caption">Figure&nbsp;3.3: <strong>?(caption)</strong></figcaption>
-</figure>
 </div>
 </section>
 <section id="general-assumptions-on-f" class="level2" data-number="3.5">
@@ -865,8 +870,13 @@ W\\
 \lambda_j^\pm W
 \end{pmatrix} , \qquad  j=1,2, 3.
 \]</span></p>
-<p>As we vary the wave speed <span class="math inline">\(v\)</span>, the stable and unstable manifolds move and we wish to show that for some <span class="math inline">\(v\)</span> the unstable manifold leaving one saddle point coincides with the stable manifold entering the other saddle point, i.e.&nbsp;we can choose a value for the wave speed <span class="math inline">\(v\)</span> such that a heteroclinic connection between <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((0,0)\)</span> is obtained. We shall use a ``shooting argument’’ to prove this.</p>
-<p>** Insert fig3 here**</p>
+<p>As we vary the wave speed <span class="math inline">\(v\)</span>, the stable and unstable manifolds move and we wish to show that for some <span class="math inline">\(v\)</span> the unstable manifold leaving one saddle point coincides with the stable manifold entering the other saddle point, i.e.&nbsp;we can choose a value for the wave speed <span class="math inline">\(v\)</span> such that a heteroclinic connection between <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((0,0)\)</span> is obtained. We shall use a “shooting argument” to prove this.</p>
+<div id="fig-eigenvectorsbistable" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="fig3.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;3.6: Schematic diagram of eigenvectors.</figcaption>
+</figure>
+</div>
 </section>
 <section id="relation-between-sign-of-v-and-sign-of-intlimits_01-fu-du" class="level3" data-number="3.5.2">
 <h3 data-number="3.5.2" class="anchored" data-anchor-id="relation-between-sign-of-v-and-sign-of-intlimits_01-fu-du"><span class="header-section-number">3.5.2</span> Relation between sign of <span class="math inline">\(v\)</span> and sign of <span class="math inline">\(\int\limits_0^1 f(u) \, du\)</span></h3>
@@ -943,7 +953,7 @@ v= \dfrac {\int\limits_{0}^{1}f(W) \, dW}{\int\limits_{-\infty}^{+ \infty} \left
 <div id="fig-bistablenumtravwave" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="nonlinearreactiondiffusion_files/figure-html/fig-bistablenumtravwave-output-1.png" width="617" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.4: Numerical solution of bistable PDE</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;3.7: Numerical solution of bistable PDE</figcaption>
 </figure>
 </div>
 </div>
@@ -973,31 +983,38 @@ v= \dfrac {\int\limits_{0}^{1}f(W) \, dW}{\int\limits_{-\infty}^{+ \infty} \left
   \]</span> Thus the trajectory leaves <span class="math inline">\((1,0)\)</span> with <span class="math display">\[
    \dfrac{dP}{dW} &gt;0
   \]</span> along the unstable manifold <span class="math inline">\(\textit{M}_u^{(1,0)}\)</span> and intersects the line <span class="math inline">\(\{ W=a\}\)</span> at the point <span class="math inline">\((a, P_1)\)</span>.</p></li>
+</ul></li>
 </ul>
-<p>** Insert fig1 here **</p>
+<div id="fig-shooting" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="fig1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;3.8: Schematic diagram of eigenvectors.</figcaption>
+</figure>
+</div>
 <p>Now we shall compare <span class="math inline">\(P_0\)</span> and <span class="math inline">\(P_1\)</span>. For this we consider again equation <a href="#eq-tw_eq_bis">Equation&nbsp;<span>3.12</span></a>, multiply by <span class="math inline">\(\dfrac{dW}{dz}\)</span> and integrate first over <span class="math inline">\((-\infty, z^\ast)\)</span> and then over <span class="math inline">\((z^\ast, + \infty)\)</span>, where <span class="math inline">\(z^\ast \in (-\infty, + \infty)\)</span> such that <span class="math inline">\(W(z^\ast)=a\)</span>. Then since <span class="math inline">\(v=0\)</span> we have first <span class="math display">\[    
-  \int_{-\infty}^{z^\ast}  \dfrac{d^2W}{dz^2} \dfrac{dW}{dz} \, dz   + \int_{-\infty}^{z^\ast}f(W)\dfrac{dW}{dz} \, dz =0.
-  \]</span> and <span class="math display">\[
-      \frac 12\left|\dfrac{dW}{dz}\right|^2 \Big|_{z=-\infty}^{z=z^\ast}  + \int_{W(-\infty)}^{W(z^\ast)}f(W) dW=0 \; .
-  \]</span> Since <span class="math inline">\(W(-\infty) =1\)</span> we are moving along the unstable manifold <span class="math inline">\(M_u^{(1,0)}\)</span> and <span class="math display">\[
-  \dfrac{dW(z^\ast)}{dz}=P(z^\ast+ 0) = P_1.
-  \]</span> Thus using that <span class="math inline">\(\dfrac{dW}{dz}\Big|_{z= - \infty} =0\)</span> we obtain</p>
+    \int_{-\infty}^{z^\ast}  \dfrac{d^2W}{dz^2} \dfrac{dW}{dz} \, dz   + \int_{-\infty}^{z^\ast}f(W)\dfrac{dW}{dz} \, dz =0.
+\]</span> and <span class="math display">\[
+    \frac 12\left|\dfrac{dW}{dz}\right|^2 \Big|_{z=-\infty}^{z=z^\ast}  + \int_{W(-\infty)}^{W(z^\ast)}f(W) dW=0 \; .
+\]</span> Since <span class="math inline">\(W(-\infty) =1\)</span> we are moving along the unstable manifold <span class="math inline">\(M_u^{(1,0)}\)</span> and <span class="math display">\[
+\dfrac{dW(z^\ast)}{dz}=P(z^\ast+ 0) = P_1.
+\]</span> Thus using that <span class="math inline">\(\dfrac{dW}{dz}\Big|_{z= - \infty} =0\)</span> we obtain</p>
 <p><span class="math display">\[
     \frac 12 P^2_1  + \int_{1}^{a}f(W) dW=0 \; \quad  \Longrightarrow \quad  P_1^2 = 2 \int_{a}^{1}f(W) dW
 \]</span> Integration over <span class="math inline">\((z^\ast, + \infty)\)</span> implies <span class="math display">\[
 \int_{z^\ast}^{+ \infty}  \dfrac{d^2W}{dz^2} \dfrac{dW}{dz} \, dz   + \int_{z^\ast}^{+ \infty} f(W)\dfrac{dW}{dz} \, dz =0.
 \]</span> and <span class="math display">\[
-  \frac 12 \left|\dfrac{dW(+ \infty)}{dz}\right|^2 -  \frac 12 \left|\dfrac{dW(z^\ast)}{dz}\right|^2  + \int_{W(z^\ast)}^{W(+ \infty)} f(W) \, dW =0 \; .
+    \frac 12 \left|\dfrac{dW(+ \infty)}{dz}\right|^2 -  \frac 12 \left|\dfrac{dW(z^\ast)}{dz}\right|^2  + \int_{W(z^\ast)}^{W(+ \infty)} f(W) \, dW =0 \; .
 \]</span> Since <span class="math inline">\(W(+\infty) =0\)</span> we are moving along the stable manifold <span class="math inline">\(M_s^{(0,0)}\)</span> and <span class="math inline">\(\dfrac{dW(z^\ast)}{dz}=P(z^\ast- 0) = P_0\)</span>. Thus using that <span class="math inline">\(\dfrac{dW}{dz}\Big|_{z= + \infty} =0\)</span> we obtain <span class="math display">\[
-  -\frac 12 P^2_0  + \int_{a}^{0}f(W) dW=0 \;  \quad  \Longrightarrow \quad  P_0^2 = - 2 \int_{0}^{a}f(W) dW\; .
+    -\frac 12 P^2_0  + \int_{a}^{0}f(W) dW=0 \;  \quad  \Longrightarrow \quad  P_0^2 = - 2 \int_{0}^{a}f(W) dW\; .
 \]</span> Since <span class="math display">\[
 \int\limits_{0}^{1}f(u) \, du &gt; 0
 \]</span> we obtain <span class="math display">\[
 P^2_1 - P_0^2=2 \int\limits_{0}^{1}f(W) \, dW &gt; 0   \quad  \Longrightarrow \quad P^2_1 &gt; P_0^2
 \]</span> Then since <span class="math inline">\(P&lt;0\)</span> we have <span class="math display">\[
 P_1 &lt; P_0 \; .
-\]</span></p></li>
-<li><p>Consider <span class="math inline">\(v&gt;0\)</span> large.</p></li>
+\]</span></p>
+<ul>
+<li>Consider <span class="math inline">\(v&gt;0\)</span> large.</li>
 </ul>
 <p>From the equations in <a href="#eq-tw_eq_2_bis">Equation&nbsp;<span>3.13</span></a> and the assumptions on the function <span class="math inline">\(f\)</span> we have</p>
 <pre><code>* If $W \in (0,a)$</code></pre>
@@ -1029,7 +1046,12 @@ P_1 &lt; P_0 \; .
 \end{cases}
 \]</span></p>
 <p>Therefore if <span class="math inline">\(v&gt;0\)</span> large we have that <span class="math inline">\(P(W)\)</span> is monotone increasing for small <span class="math inline">\(|P|\)</span> and monotone decreasing for large <span class="math inline">\(|P|\)</span>.</p>
-<p>** Insert fig2 here **</p>
+<div id="fig-2eigenvectors" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="fig2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;3.9: Schematic diagram.</figcaption>
+</figure>
+</div>
 <p>Thus since for <span class="math inline">\(v=0\)</span> we have <span class="math inline">\(P_1 &lt; P_0\)</span> and for <span class="math inline">\(v&gt;0\)</span> we have that <span class="math inline">\(P(W)\)</span> is monotone decreasing for large <span class="math inline">\(|P|\)</span>, due to the continuity of the phase trajectories with respect to the velocity <span class="math inline">\(v\)</span> we obtain that there exists a travelling wave speed <span class="math inline">\(v_0 &gt;0\)</span> such that <span class="math inline">\(P_0= P_1\)</span> and we have a heteroclinic connection between <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((0,0)\)</span> in the phase plane. Hence for <span class="math inline">\(v=v_0\)</span> there exists a travelling wave front solution for the bistable <a href="#eq-bistable">Equation&nbsp;<span>3.11</span></a>.</p>
 <p>We can repeat the analysis for <span class="math display">\[  
 \int\limits_{0}^{1}f(u) \, du &lt; 0
@@ -1038,6 +1060,11 @@ P_1 &lt; P_0 \; .
 \int\limits_{0}^{1}f(u) \, du = 0,
 \]</span> then we have a standing wave with <span class="math inline">\(v=0\)</span>, since the calculations for <span class="math inline">\(P_0\)</span> and <span class="math inline">\(P_1\)</span> implies <span class="math inline">\(P_0=P_1\)</span> and there exists a heteroclinic orbit between <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((0,0)\)</span> in the phase space.</p>
 <p>Note: There exists a unique travelling wave velocity <span class="math inline">\(v\)</span> for which we have a travelling wave solution for bistable <a href="#eq-bistable">Equation&nbsp;<span>3.11</span></a>.</p>
+</section>
+</section>
+</section>
+<section id="references" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="references"><span class="header-section-number">3.6</span> References</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
@@ -1048,8 +1075,6 @@ Kolmogorov, AN, IG Petrovsky, and NS Piskunov. 1937. <span>“Investigation of t
 <span>“The Wave of Advance of Advantageous Genes.”</span> 1937. <em>Annals of Eugenics</em> 7 (4): 355–69.
 </div>
 </div>
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
