@@ -181,7 +181,7 @@ $$
  \end{aligned}
 $$
 
- For 
+For 
 $$
 (u_1^\ast, n_1^\ast)= (0,0)
 $$
@@ -269,9 +269,9 @@ $$
   \end{aligned}
 $$ {#eq-tw_pp}
 
-Upon makibg the assumption that the prey moves much more slowly than the predator species, i.e. 
+Upon making the assumption that the prey moves much more slowly than the predator species, i.e. 
 $$
-D= D_u/D_n \ll 1
+D= D_u/D_n \ll 1,
 $$
 @eq-tw_pp simplify to 
 
@@ -292,7 +292,11 @@ $$
 $$ {#eq-tw_pp_3}
 The steady states of @eq-tw_pp_3 are 
 $$
-(W^\ast_1, N^\ast_1, P^\ast_1) = (0,0,0), \quad (W^\ast_2, N^\ast_2, P^\ast_2) = (1,0,0), \quad (W^\ast_3, N^\ast_3, P^\ast_3) =(b, 1-b, 0).
+\begin{align}
+(W^\ast_1, N^\ast_1, P^\ast_1) &= (0,0,0),\\
+(W^\ast_2, N^\ast_2, P^\ast_2) &= (1,0,0), \\
+(W^\ast_3, N^\ast_3, P^\ast_3) &=(b, 1-b, 0).
+\end{align}
 $$
 
 The Jacobian matrix is 
