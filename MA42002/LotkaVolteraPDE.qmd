@@ -1,6 +1,7 @@
 ---
 title: "Lotka Voltera model"
 format: html
+code-tools: true
 ---
 
  
@@ -180,16 +181,17 @@ an &a(u-b)
 \end{aligned}
 $$
 
-For 
+At the steady state 
 $$
 (u_1^\ast, n_1^\ast)= (0,0)
 $$
 
+the characteristic equation is
 $$
-\det(J (0,0) - \lambda I) = - (1- \lambda)(\lambda+ ab) = 0
+\det(J (0,0) - \lambda I) = - (1- \lambda)(\lambda+ ab) = 0.
 $$
 
-and 
+The eigenvalues are 
 $$
 \lambda_1^+ = 1, \quad \lambda_1^- = - ab <0.
 $$
@@ -197,22 +199,33 @@ $$
 Thus $(0,0)$ is a saddle point.
  
  
-For 
+At the steady state 
+ 
 $$
 (u_2^\ast, n_2^\ast)= (1,0)
 $$
 
+the characteristic equation is
+
 $$
-\det(J (1,0) - \lambda I) = - (1+ \lambda)(a(1-b)- \lambda) = 0
+\det(J (1,0) - \lambda I) = - (1+ \lambda)(a(1-b)- \lambda) = 0.
 $$
- and 
+
+The eigenvalues are 
+
 $$
 \lambda_2^- =- 1, \quad \lambda_2^+ = a(1-b) >0 \; \text{ for } \; 0 \leq b <1.
 $$
 
 Thus $(1,0)$ is a saddle point.
  
-For $(u_3^\ast, n_3^\ast)= (b,1-b)$
+At the steady state 
+$$
+(u_3^\ast, n_3^\ast)= (b,1-b)
+$$
+
+the characteristic equation is
+
 $$
 \det(J (b,1-b) - \lambda I) =\lambda^2 + b \lambda + ab(1-b) = 0.
 $$
@@ -220,32 +233,31 @@ $$
 
 If 
 $$
-4 ab (1-b) \leq b^2  \implies \lambda_3^{\pm} < 0. 
+4 ab (1-b) \leq b^2  \implies \lambda_3^{\pm} < 0,
 $$
-Hence ($b,1-b$) is a stable node.
+($b,1-b$) is a stable node.
 
 If   
 $$
-4 ab (1-b) > b^2 \qquad \implies  \Re(\lambda_3{\pm}) < 0,  \Im(\lambda_3^{\pm}) \neq 0.
+4 ab (1-b) > b^2 \qquad \implies  \Re(\lambda_3{\pm}) < 0,  \Im(\lambda_3^{\pm}) \neq 0,
 $$
-Hence ($b,1-b$) is a stable focus (spiral).
+($b,1-b$) is a stable focus (spiral).
 
 
-  
 For $b>0$, $1-b>0$ spiral oscillations  are biologically realistic so long $u>0$ and $n>0$.
 
 
 ##  Existence of travelling wave profiles connection $(1,0)$ and $(b,1-b)$
 
-We make  travelling wave *ansatz*
+Condider the travelling wave *ansatz*
 $$
 \begin{aligned}
 u(t,x) &= W(x+ vt) = W(z), \quad v>0, \\
-n(t,x) &= N( x + vt) = N(z), \quad v >0,
+n(t,x) &= N( x + vt) = N(z), \quad v >0.
 \end{aligned}
 $$
 
-in @eq-pp_eq_2 and consider the boundary conditions
+We consider boundary conditions that connect $(1,0)$ to $(b,1-b)$, i.e.
 $$
 \begin{aligned}
 u(t,x) \to 1 \; \text{ as } x \to - \infty,  & \; \qquad  W(z)\to 1 \; \text{ as } z \to - \infty, \quad\\
@@ -255,9 +267,7 @@ n(t,x) \to 1-b \; \text{ as } x \to +\infty, & \;  \qquad N(z)\to 1-b \;  \text{
 \end{aligned}
 $$
 
-
-
-The system @eq-pp_eq_2 transforms to 
+@eq-pp_eq_2 transforms to 
 $$
 \begin{aligned}
 v \frac{dW}{dz} &= D \frac{d^2W}{dz^2} + W(1-W-N),\\
@@ -275,7 +285,7 @@ $$ {#eq-tw_pp}
 
 Upon making the assumption that the prey moves much more slowly than the predator species, i.e. 
 $$
-D= D_u/D_n \ll 1,
+D= \frac{D_u}{D_n} \ll 1,
 $$
 
 @eq-tw_pp simplify to 
@@ -325,28 +335,29 @@ $$
 $$
 and 
 $$
-\lambda_1^1= \frac 1 v > 0, \quad \lambda_2^{\pm} = \frac{ v \pm \sqrt{v^2 + 4 ab} } 2
+\lambda_1^1= \frac 1 v > 0, \quad \lambda_2^{\pm} = \frac{ v \pm \sqrt{v^2 + 4 ab} } 2.
 $$
 
-Thus $(0,0,0)$ is a saddle point with a $2$-dim unstable manifold
+Thus $(0,0,0)$ is a saddle point with a $2$-dim unstable manifold.
 
 At $(W^\ast_2, N^\ast_2, P^\ast_2) = (1,0,0)$  we have 
 $$
-\det(J(1,0,0) - \lambda I)= \left(- \frac 1 v - \lambda\right) (\lambda^2 - \lambda v + a(1-b)) =0
+\det(J(1,0,0) - \lambda I)= \left(- \frac 1 v - \lambda\right) (\lambda^2 - \lambda v + a(1-b)) =0,
 $$
 
 and 
 $$
-\lambda_1^1= -\frac 1 v < 0, \quad \lambda_2^{\pm} = \frac{ v \pm \sqrt{v^2 - 4 a(1-b)} } 2
+\lambda_1^1= -\frac 1 v < 0, \quad \lambda_2^{\pm} = \frac{ v \pm \sqrt{v^2 - 4 a(1-b)} } 2.
 $$
 
-Thus since, $0\leq b < 1$ and $4(1-b)>0$,
+Since 
 $$
-\begin{aligned}
-\text{If } &&  v^2 \geq  4 a(1-b) \quad (1,0,0) \text{ is a saddle with 2-dim unstable manifold},\\
- \text{If } &&  v^2 <  4 a(1-b) \quad (1,0,0) \text{ is an unstable focus}
-\end{aligned}
+0\leq b < 1 and 4(1-b)>0,
 $$
+
+
+* If $v^2 \geq  4 a(1-b)$, (1,0,0)  is a saddle with 2-dim unstable manifold.\\
+* If  $v^2 <  4 a(1-b)$  (1,0,0)is an unstable focus
 
 
 Thus for a travelling wave with  $W\geq 0$ and $N \geq 0$  to exist we require 
@@ -359,7 +370,11 @@ $$
 v_\text{min}=2\sqrt{a(1-b)}   \quad \text{ with } \quad  0\leq b<1.
 $$ 
 
-At $(W^\ast_3, N^\ast_3, P^\ast_3) =(b, 1-b, 0)$ we have 
+At 
+$$
+(W^\ast_3, N^\ast_3, P^\ast_3) =(b, 1-b, 0)
+$$ 
+we have 
 $$
 \det(J(b,1-b,0) - \lambda I)= \lambda^3 - \lambda^2(v- \frac b v) - \lambda b - \frac 1 v ab(1-b) = p(\lambda) =0.
 $$
@@ -377,15 +392,15 @@ $$
 \lambda_{m,M}= \frac 13 \left[ \left(v - \frac bv \right) \pm \sqrt{ \left(v - \frac bv\right) ^2 + 3 b } \right].
 $$
 
-If $a=0$, the eigenvalues  are
+If $a=0$, the eigenvalues are
 $$
 \lambda_3^1 = 0, \quad \lambda_3^\pm = \frac 12 \left( v - \frac bv \pm \sqrt{\left(v - \frac bv\right)^2 + 4 b} \right).
 $$ 
 
 Thus there exists a critical value $a^\ast>0$ such that 
-for $a \in (0, a^\ast)$ we obtain $2$ real negative eigenvalues and $1$ positive real eigenvalue and $(b, 1-b, 0)$ is a saddle with $2$-dim stable manifold and $1$-dim unstable manifold
+for $a \in (0, a^\ast)$, we obtain two real negative eigenvalues and one positive real eigenvalue. Hence $(b, 1-b, 0)$ is a saddle with $2$-dim stable manifold and $1$-dim unstable manifold
 
-For $a>a^\ast$  we will have a pair of complex conjugate eigenvalues with negative real part and one real positive eigenvalue corresponding to $1$-dim unstable manifold. 
+For $a>a^\ast$,  we obtain a pair of complex conjugate eigenvalues with negative real part and one real positive eigenvalue corresponding to $1$-dim unstable manifold. 
  
 This can be easily seen from a sketch of the cubic equation: 
 
@@ -393,7 +408,7 @@ $$
 p(\lambda) = \lambda^3 - \lambda^2(v- \frac b v) - \lambda b - \frac 1 v ab(1-b).
 $$
 
-```{python}
+``` {python}
 #| label: fig-cubic
 #| fig-cap: "Plot of cubic."
 #| code-fold: True
@@ -414,7 +429,6 @@ p3= lam**3-lam**2*(v-b/v)-lam*b-1/v*a3*b*(1-b)
 fig, ax= plt.subplots()
 ax.plot(lam,p1,lam,p2,lam,p3)
 ax.grid(True)
-ax.set_ylim([-0.5, 0.5])
 
 ```
 

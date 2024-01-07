@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MA42002 - 2&nbsp; Linear reaction diffusion equations</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./nonlinearreactiondiffusion.html" rel="next">
+<link href="./conservationequations.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./linearreactiondiffusion.html">Single species</a></li><li class="breadcrumb-item"><a href="./linearreactiondiffusion.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linear reaction diffusion equations</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">MA42002</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/dundeemath/MA42002/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./MA42002.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conservationequations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conservation equations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Single species</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linearreactiondiffusion.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linear reaction diffusion equations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nonlinearreactiondiffusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Non linear reaction diffusion equations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Multi species</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./LotkaVolteraPDE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lotka Voltera model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./BacterialChemotaxis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Aggregation via Chemotaxis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DiffusionDrivenInstability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NumericalMethods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linearstablityanalysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#one-dimensional-diffusion-equations" id="toc-one-dimensional-diffusion-equations" class="nav-link active" data-scroll-target="#one-dimensional-diffusion-equations"><span class="header-section-number">2.1</span> One-dimensional diffusion equations</a>
+  <ul class="collapse">
+  <li><a href="#fundamental-solution" id="toc-fundamental-solution" class="nav-link" data-scroll-target="#fundamental-solution"><span class="header-section-number">2.1.1</span> Fundamental solution</a></li>
+  <li><a href="#numerical-solution" id="toc-numerical-solution" class="nav-link" data-scroll-target="#numerical-solution"><span class="header-section-number">2.1.2</span> Numerical solution</a></li>
+  <li><a href="#key-properties-of-the-linear-diffusion-equation-heat-equation" id="toc-key-properties-of-the-linear-diffusion-equation-heat-equation" class="nav-link" data-scroll-target="#key-properties-of-the-linear-diffusion-equation-heat-equation"><span class="header-section-number">2.1.3</span> Key properties of the (linear) diffusion equation (heat equation)</a></li>
+  <li><a href="#diffusive-transit-time" id="toc-diffusive-transit-time" class="nav-link" data-scroll-target="#diffusive-transit-time"><span class="header-section-number">2.1.4</span> Diffusive transit time</a></li>
+  <li><a href="#diffusion-as-the-limit-of-a-random-walk" id="toc-diffusion-as-the-limit-of-a-random-walk" class="nav-link" data-scroll-target="#diffusion-as-the-limit-of-a-random-walk"><span class="header-section-number">2.1.5</span> Diffusion as the limit of a random walk</a></li>
+  </ul></li>
+  <li><a href="#linear-reaction-diffusion-equations" id="toc-linear-reaction-diffusion-equations" class="nav-link" data-scroll-target="#linear-reaction-diffusion-equations"><span class="header-section-number">2.2</span> Linear reaction-diffusion equations</a>
+  <ul class="collapse">
+  <li><a href="#exact-solution" id="toc-exact-solution" class="nav-link" data-scroll-target="#exact-solution"><span class="header-section-number">2.2.1</span> Exact solution</a></li>
+  <li><a href="#speed-of-a-wave-of-invasion" id="toc-speed-of-a-wave-of-invasion" class="nav-link" data-scroll-target="#speed-of-a-wave-of-invasion"><span class="header-section-number">2.2.2</span> Speed of a wave of invasion</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linear reaction diffusion equations</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>We will now consider equations (and systems of such equations) of the general form:</p>
+<p><span class="math display">\[
+\frac{\partial c}{\partial t} = D \nabla^2 c + f(c), \quad c \equiv c( {\mathbf{x}} , t ), \;\;  {\mathbf{x}} \in \mathbb R^n, \, \, t &gt;0.
+\]</span></p>
+<p>Such an equation is known as a <strong>reaction-diffusion equation</strong>, being composed of a reaction term, <span class="math inline">\(f(c)\)</span>, and a diffusion term, <span class="math inline">\(D \nabla^2 c\)</span>. Reaction-diffusion equations have many applications in biological systems e.g.&nbsp;travelling waves of invasion, pattern formation, spread of infectious diseases. For most of the remainder of the course we will consider such systems in one-space dimension i.e.&nbsp;<span class="math inline">\(x \in \mathbb R\)</span>.</p>
+<p>Consider the one-dimensional reaction-diffusion equation with constant diffusion coefficient <span class="math inline">\(D &gt; 0\)</span>: <span class="math display">\[
+\frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}  + f(c), \quad x\in \mathbb R, \, \, t &gt;0.
+\]</span></p>
+<section id="one-dimensional-diffusion-equations" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="one-dimensional-diffusion-equations"><span class="header-section-number">2.1</span> One-dimensional diffusion equations</h2>
+<p>In order to provide some insight into the structure of solutions of reaction-diffusion equations, we make an initial simplifying assumption i.e.&nbsp;we assume <span class="math inline">\(f(c)=0\)</span>, and obtain the linear diffusion equation (or heat equation):</p>
+<p><span id="eq-heat_eq"><span class="math display">\[
+\frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2},   \quad x\in \mathbb R, \, \, t &gt;0.
+\tag{2.1}\]</span></span> This equation is used to model the evolution of the concentration of a chemical in a long thin tube, or the temperature of a long thin rod.</p>
+<p>We assume that the initial condition for our species <span class="math inline">\(c\)</span> is located in one point <span class="math inline">\(x=0\)</span>, i.e.&nbsp; <span id="eq-heat_IC"><span class="math display">\[
+c(x_0 , 0) = \delta_0(x)\qquad x \in \mathbb R,
+\tag{2.2}\]</span></span> where <span class="math inline">\(\delta_0\)</span> is a <strong>Dirac delta distribution</strong> (Dirac measure) satisfying <span class="math display">\[
+\int_{-\infty}^{+\infty} \delta_0(x) = 1 \quad \text{ and } \quad \int_{-\infty}^{+\infty} f(x) \delta_0(x) = f(0) , \text{ for continuous } f.
+\]</span></p>
+<section id="fundamental-solution" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="fundamental-solution"><span class="header-section-number">2.1.1</span> Fundamental solution</h3>
+<p>It can be shown that the sequence of functions <span class="math inline">\(\{ \phi_\varepsilon(x) \}\)</span> given by <span class="math display">\[
+\frac 1{\varepsilon \sqrt{\pi} } e^{ - \frac{x^2}{ \varepsilon^2}}
+\]</span> converges to <span class="math inline">\(\delta_0(x)\)</span> as <span class="math inline">\(\varepsilon \to 0\)</span> (in the sense of distributions or generalized functions).</p>
+<p>Then for the diffusion <a href="#eq-heat_eq">Equation&nbsp;<span class="quarto-unresolved-ref">eq-heat_eq</span></a> with initial condition <a href="#eq-heat_IC">Equation&nbsp;<span class="quarto-unresolved-ref">eq-heat_IC</span></a>, it can be shown that the explicit (analytic) solution is given by <span id="eq-fund_sol"><span class="math display">\[
+c(x, t) = \frac1{\sqrt{4 \pi D t}} \exp \left( - \frac{ x^2}{ 4Dt} \right).
+\tag{2.3}\]</span></span> This is known as <strong>the fundamental solution</strong> of the diffusion equation in <span class="math inline">\(\mathbb R\)</span>.</p>
+<p>We also have, for general initial condition <span class="math inline">\(c(x, 0) = c_0(x)\)</span> for <span class="math inline">\(x\in \mathbb R\)</span>: <span class="math display">\[
+c(x, t) = \int_{-\infty}^{+\infty} \frac{c_0(y)}{\sqrt{4 \pi D t}} \exp \left( - \frac{ (x-y)^2}{ 4Dt} \right) dy.
+\]</span></p>
+<p>This result can be generalized to <span class="math inline">\(\mathbb R^n\times (0,\infty)\)</span> where the fundamental solution has the form <span class="math display">\[
+c(x,t) =  \frac 1{(4 \pi D t)^{n/2}} \exp \left( - \frac{ (x_{1}^{2} + x_{2}^{2} + \ldots + x_{n}^{2})}{ 4Dt} \right).
+\]</span></p>
+</section>
+<section id="numerical-solution" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="numerical-solution"><span class="header-section-number">2.1.2</span> Numerical solution</h3>
+<p>In <a href="#fig-diffusionpde">Figure&nbsp;<span class="quarto-unresolved-ref">fig-diffusionpde</span></a> we compute a numerical solution of the diffusion equation and compare it with the exact solution given by <a href="#eq-fund_sol">Equation&nbsp;<span class="quarto-unresolved-ref">eq-fund_sol</span></a>.</p>
+<div class="cell" data-execution_count="1">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>L<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>N_x<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>N_t<span class="op">=</span><span class="dv">120</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.linspace(<span class="dv">0</span>,T,N_t)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="dv">0</span>,L,N_x)<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>D<span class="op">=</span><span class="fl">1.5</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>epsilon<span class="op">=</span><span class="fl">0.1</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>u_0<span class="op">=</span><span class="dv">1</span><span class="op">/</span>(epsilon<span class="op">*</span>np.sqrt(np.pi))<span class="op">*</span>np.exp(<span class="op">-</span>x<span class="op">**</span><span class="dv">2</span><span class="op">/</span>epsilon<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>dx<span class="op">=</span>L<span class="op">/</span>(N_x<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>dt<span class="op">=</span>T<span class="op">/</span>(N_t<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> diffusionPDErhs(u,t):</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    N_x<span class="op">=</span><span class="bu">len</span>(u)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span>np.zeros_like(u)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,N_x<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>      f[i]<span class="op">=</span>D<span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(u[i<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span><span class="dv">2</span><span class="op">*</span>u[i]<span class="op">+</span>u[i<span class="op">+</span><span class="dv">1</span>])  </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    f[i]<span class="op">=</span>D<span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(<span class="op">-</span>u[i]<span class="op">+</span>u[i<span class="op">+</span><span class="dv">1</span>])</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span>N_x<span class="op">-</span><span class="dv">1</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    f[i]<span class="op">=</span>D<span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(u[i<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>u[i])</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f  </span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>sol<span class="op">=</span>odeint(diffusionPDErhs,u_0,t)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>[x_mesh,t_mesh]<span class="op">=</span>np.meshgrid(x,t)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>c_exact<span class="op">=</span><span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">4</span><span class="op">*</span>np.pi<span class="op">*</span>D<span class="op">*</span>t_mesh)<span class="op">*</span>np.exp(<span class="op">-</span>x_mesh<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">4</span><span class="op">*</span>D<span class="op">*</span>t_mesh))</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots()</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>ax.plot(x, sol[<span class="dv">1</span>,:], <span class="st">'r'</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>ax.plot(x, sol[<span class="dv">4</span>,:], <span class="st">'b'</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>ax.plot(x, sol[<span class="dv">8</span>,:], <span class="st">'m'</span>)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>ax.plot(x, sol[<span class="dv">12</span>,:], <span class="st">'k'</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'t'</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">0</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">4</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">8</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">12</span>])])</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots()</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>ax.plot(x, c_exact[<span class="dv">1</span>,:], <span class="st">'r'</span>)</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>ax.plot(x, c_exact[<span class="dv">4</span>,:], <span class="st">'b'</span>)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>ax.plot(x, c_exact[<span class="dv">8</span>,:], <span class="st">'m'</span>)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>ax.plot(x, c_exact[<span class="dv">12</span>,:], <span class="st">'k'</span>)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'t'</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">0</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">4</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">8</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">12</span>])])</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-diffusionpde" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="linearreactiondiffusion_files/figure-html/fig-diffusionpde-output-1.png" width="571" height="429" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.1: Numerical solution of diffusion equation.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-diffusionpde" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="linearreactiondiffusion_files/figure-html/fig-diffusionpde-output-2.png" width="571" height="429" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.2: Exact solution of diffusion equation.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="key-properties-of-the-linear-diffusion-equation-heat-equation" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="key-properties-of-the-linear-diffusion-equation-heat-equation"><span class="header-section-number">2.1.3</span> Key properties of the (linear) diffusion equation (heat equation)</h3>
+<ul>
+<li>The solution is infinitely smooth.</li>
+<li>The solution <span class="math inline">\(c(x,t)\)</span> stays positive for all <span class="math inline">\(t &gt;0\)</span> and <span class="math inline">\(x \in \mathbb R\)</span> if <span class="math inline">\(c(x,0) &gt;0\)</span> for <span class="math inline">\(x \in \mathbb R\)</span>.</li>
+<li>The solution ``propagates’’ with infinite speed i.e.&nbsp;for any <span class="math inline">\(t &gt; 0\)</span>, the solution is everywhere in <span class="math inline">\(\mathbb R\)</span>.</li>
+<li>If we change the initial data <span class="math inline">\(c(x,0)\)</span> (continuously) then the solution also changes (continuously).</li>
+</ul>
+</section>
+<section id="diffusive-transit-time" class="level3" data-number="2.1.4">
+<h3 data-number="2.1.4" class="anchored" data-anchor-id="diffusive-transit-time"><span class="header-section-number">2.1.4</span> Diffusive transit time</h3>
+<p>We now demonstrate the connection between time and space in diffusion equations. Consider a domain <span class="math inline">\(V \subset \mathbb R^n \;, n = 1,2,3.\)</span>, and particles that are entering <span class="math inline">\(V\)</span> and are being removed from <span class="math inline">\(V\)</span>. Define</p>
+<p><span class="math inline">\(N\)</span> - total number of particles in <span class="math inline">\(V\)</span></p>
+<p><span class="math inline">\(F\)</span> - total number of particles entering <span class="math inline">\(V\)</span> per unit time</p>
+<p><span class="math inline">\(\lambda\)</span> - average removal rate of particles from <span class="math inline">\(V\)</span></p>
+<p><span class="math inline">\(\tau = \frac 1\lambda\)</span> - transit time or average time of residency in <span class="math inline">\(V\)</span></p>
+<p>Regardless of spatial variations, we can make the following general statement regarding the total number of particles in <span class="math inline">\(V\)</span>, where we assume a constant entry rate <span class="math inline">\(F\)</span> and a constant removal rate <span class="math inline">\(\lambda\)</span> at some sink in <span class="math inline">\(V\)</span>:</p>
+<p><span class="math display">\[
+\frac{dN}{dt} = \text{entry rate} - \text{removal rate} = F - \lambda N.
+\]</span></p>
+<p>At steady state (<span class="math inline">\(dN/dt = 0\)</span>) we obtain <span class="math display">\[
+Missing content here. Check notes!
+\]</span></p>
+<p>Consider particles of concentration <span class="math inline">\(c(x,t)\)</span> diffusing with constant diffusion <span class="math inline">\(D\)</span> in a one-dimensional domain <span class="math inline">\((0,L)\)</span>, with a constant concentration at one boundary and removed by a sink at the other boundary. At steady-state, the equation governing the concentration is given by:</p>
+<p><span class="math display">\[
+D \frac{ d^2 c}{dx^2} = 0  \quad \text{ in } (0,L), \quad c(0) = C_0, \, c(L) = 0 .
+\]</span></p>
+<p>The solution (<strong>Exercise</strong>) is: <span class="math display">\[
+c(x) = C_0 \left( 1- \frac x L\right).
+\]</span> Then the number of particles entering at <span class="math inline">\(x=0\)</span> due to diffusive flux (Fickian diffusion) is: <span class="math display">\[
+J = - D \frac{ dc}{ dx} = D \frac{ C_0} L,  
+\]</span></p>
+<p>and the total number of particles is given by: <span class="math display">\[
+N = \int_0^L c(x) \, dx = \frac 12 L C_0 .
+\]</span> If we assume a cross-section of unit area at <span class="math inline">\(x=0\)</span>, then <span class="math display">\[
+F = \text{flux}\times\text{area} = J\times 1 = D \frac{ C_0} L
+\]</span> and <span class="math display">\[
+\tau =  \frac N F = \frac { C_0 L}{2} \frac L{ DC_0} = \frac 12 \frac{L^2}{D}.
+\]</span> Thus the average time it takes a particle to diffuse a distance, <span class="math inline">\(L\)</span>, is <span class="math display">\[
+\tau = \dfrac{L^2}{2D}
+\]</span> or viewed another way, the average distance through which diffusion transports a particle in a time <span class="math inline">\(\tau\)</span> is <span class="math inline">\(L= \sqrt{ 2D\tau}\)</span>.</p>
+</section>
+<section id="diffusion-as-the-limit-of-a-random-walk" class="level3" data-number="2.1.5">
+<h3 data-number="2.1.5" class="anchored" data-anchor-id="diffusion-as-the-limit-of-a-random-walk"><span class="header-section-number">2.1.5</span> Diffusion as the limit of a random walk</h3>
+<p>Consider the <strong>random walk</strong> of particles in a one-dimensional domain. Suppose that the particles move randomly a distance, <span class="math inline">\(\Delta x\)</span>, every time step, <span class="math inline">\(\Delta t\)</span>. Assume that the particles move left with probability <span class="math inline">\(\lambda_L\)</span> and right with probability <span class="math inline">\(\lambda_R\)</span>.</p>
+<p>In Figure <a href="#fig-randomwalksim">Figure&nbsp;<span class="quarto-unresolved-ref">fig-randomwalksim</span></a> a simulation of 400 random walking particles is presented. Each particle is initialised at the origin and can move one step left or right with equal probability at every time step of the simulation. As time evolves the particle density (histogram) disperses. The normalised particle density appears to be well described by the solution of the diffusion equation (solid lines, <a href="#eq-fund_sol">Equation&nbsp;<span class="quarto-unresolved-ref">eq-fund_sol</span></a>).</p>
+<div class="cell" data-execution_count="2">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>N_particles<span class="op">=</span><span class="dv">400</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>L<span class="op">=</span><span class="dv">50</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>N_x<span class="op">=</span><span class="dv">200</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="dv">500</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>N_t<span class="op">=</span><span class="dv">25000</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>D<span class="op">=</span><span class="fl">0.1</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>dt<span class="op">=</span>T<span class="op">/</span>N_t</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>move_probability<span class="op">=</span>D<span class="op">*</span>dt<span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="dv">0</span>,L,N_x)<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.linspace(dt,T,N_t)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>particle_positions<span class="op">=</span>np.zeros((N_t,N_particles),dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># loop over time</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,N_t):</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># loop over particles</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(N_particles):</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    r<span class="op">=</span>random.random()</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># move particle j right</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    new_particle_position<span class="op">=</span>particle_positions[i<span class="op">-</span><span class="dv">1</span>,j]</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> r<span class="op">&lt;</span>move_probability:</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>      new_particle_position<span class="op">+=</span>dx</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># move particle j left  </span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> r<span class="op">&lt;</span><span class="dv">2</span><span class="op">*</span>move_probability:</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>      new_particle_position<span class="op">-=</span>dx</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    particle_positions[i,j]<span class="op">=</span>new_particle_position</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>[x_mesh,t_mesh]<span class="op">=</span>np.meshgrid(x,t)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>c_exact<span class="op">=</span><span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">4</span><span class="op">*</span>np.pi<span class="op">*</span>D<span class="op">*</span>t_mesh)<span class="op">*</span>np.exp(<span class="op">-</span>x_mesh<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">4</span><span class="op">*</span>D<span class="op">*</span>t_mesh))</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots(<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].hist(particle_positions[<span class="dv">5</span>,:],density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].plot(x, c_exact[<span class="dv">5</span>,:], <span class="st">'r'</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_title(<span class="st">'$t=$'</span><span class="op">+</span><span class="bu">str</span>(t[<span class="dv">5</span>]))</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].hist(particle_positions[<span class="dv">500</span>,:],density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].plot(x, c_exact[<span class="dv">500</span>,:], <span class="st">'m'</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_title(<span class="st">'$t=$'</span><span class="op">+</span><span class="bu">str</span>(t[<span class="dv">500</span>]))</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].hist(particle_positions[<span class="dv">1000</span>,:],density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].plot(x, c_exact[<span class="dv">1000</span>,:], <span class="st">'b'</span>)</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_title(<span class="st">'$t=$'</span><span class="op">+</span><span class="bu">str</span>(t[<span class="dv">1000</span>]))</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].hist(particle_positions[<span class="dv">1500</span>,:],density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].plot(x, c_exact[<span class="dv">1500</span>,:], <span class="st">'k'</span>)</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_title(<span class="st">'$t=$'</span><span class="op">+</span><span class="bu">str</span>(t[<span class="dv">1500</span>]))</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_xlim([<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span>,L<span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_xlim([<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span>,L<span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_xlim([<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span>,L<span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_xlim([<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span>,L<span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-randomwalksim" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="linearreactiondiffusion_files/figure-html/fig-randomwalksim-output-1.png" width="579" height="449" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.3: Numerical implementation of random walk</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Concider the concentration of particles <span class="math inline">\(c(x,t)\)</span> at spatial location <span class="math inline">\(x\)</span> and time <span class="math inline">\(t\)</span>, (or more precisely, the probability density function of the position of a particle performing a random walk) we have: <span class="math display">\[
+c(x, t+ \Delta t) = c(x, t)  + \lambda_R c(x- \Delta x, t) - \lambda_R c(x, t) + \lambda_L c(x+ \Delta x, t) - \lambda_L c (x,t).
+\]</span> If we assume that <span class="math inline">\(\lambda_R+ \lambda_L =1\)</span> then <span class="math display">\[
+c(x, t+ \Delta t) =  \lambda_R c(x- \Delta x, t) + \lambda_L c(x+ \Delta x, t).
+\]</span> Applying a Taylor series expansion about <span class="math inline">\((x,t)\)</span> implies</p>
+<p><span class="math display">\[
+c(t,x) + \frac{ \partial c}{\partial t} \Delta t + \frac 12  \frac{ \partial^2 c}{\partial^2 t} (\Delta t )^2  + h.o.t. =
+\lambda_R \Big( c(t,x) - \frac{ \partial c}{\partial x} \Delta x + \frac 12  \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t. \Big)\\ +
+\lambda_L \Big( c(t,x) + \frac{ \partial c}{\partial x} \Delta x + \frac 12  \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t. \Big).
+\]</span></p>
+<p>Using <span class="math inline">\(\lambda_R+ \lambda_L =1\)</span> and assuming <span class="math inline">\(\lambda_L = \lambda_R = \frac 12\)</span> we obtain</p>
+<p><span class="math display">\[
+\frac{ \partial c}{\partial t} \Delta t + \frac 12  \frac{ \partial^2 c}{\partial^2 t} (\Delta t )^2  + h.o.t. =
+\frac 12  \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t.
+\]</span> Dividing by <span class="math inline">\(\Delta t\)</span> gives</p>
+<p><span class="math display">\[
+\frac{ \partial c}{\partial t}  + \frac 12  \frac{ \partial^2 c}{\partial^2 t} \Delta t   + h.o.t. =
+   \frac{ \partial^2 c}{\partial^2 x} \frac{(\Delta x )^2 }{2\Delta t} + h.o.t.
+\]</span></p>
+<p>Considering the limit <span class="math inline">\(\Delta t \to 0\)</span> and <span class="math inline">\(\Delta x \to 0\)</span> in such way that</p>
+<p><span class="math display">\[
+\frac{(\Delta x )^2 }{2\Delta t} \to D,
+\]</span></p>
+<p>yields the (one-dimensional) diffusion equation</p>
+<p><span class="math display">\[
+\frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}.
+\]</span></p>
+<p>This approach can be extended to consider other types of movement e.g.&nbsp;convection. For example, if we assume that<br>
+<span class="math display">\[
+\lambda_R+ \lambda_L =1,
+\]</span> and <span class="math display">\[
+\lambda_L - \lambda_R = \varepsilon,
+\]</span> the motion of the particles is biased and we may derive an appropriate <strong>reaction-diffusion-convection</strong> equation (see tutorial).</p>
+<p>Finally we note that there is a connection between diffusion and the normal distribution function.</p>
+<p><strong>Recall</strong> The normal distribution function in one-dimension with zero mean and variance <span class="math inline">\(\sigma^2\)</span> is given by @#eq-fund_sol.</p>
+<p><span class="math display">\[
+N(0, \sigma^2) \sim \frac 1 { \sqrt{ 2 \pi \sigma^2}} \exp \left( - \frac{x^2}{ 2 \sigma^2}\right).
+\]</span> Examining the formula for the fundamental solution of the diffusion <a href="#eq-fund_sol">Equation&nbsp;<span class="quarto-unresolved-ref">eq-fund_sol</span></a> in one-dimension, we see by inspection that the probability density function of the position of a particle performing a random walk in one-dimension starting at the origin is normally distributed with mean zero and variance <span class="math display">\[
+\sigma^2 = 2 D t.
+\]</span></p>
+</section>
+</section>
+<section id="linear-reaction-diffusion-equations" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="linear-reaction-diffusion-equations"><span class="header-section-number">2.2</span> Linear reaction-diffusion equations</h2>
+<p>Consider now the linear reaction term: <span class="math inline">\(f(c) = \rho c\)</span>, so that our reaction-diffusion equation is: <span id="eq-lin_re_eq"><span class="math display">\[
+\frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}   + \rho \, c, \quad x\in \mathbb R, \, \, t &gt;0,
+\tag{2.4}\]</span></span> where <span class="math inline">\(\rho \in \mathbb R\)</span> is a constant.</p>
+<p>Once again we consider the initial condition to be concentrated at the origin: <span id="eq-lin_re_eq_ic"><span class="math display">\[
+c(0,x) = \delta_0(x).
+\tag{2.5}\]</span></span></p>
+<section id="exact-solution" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="exact-solution"><span class="header-section-number">2.2.1</span> Exact solution</h3>
+<p>By considering a <em>separation of variables</em> approach, i.e.&nbsp;making the <strong>ansatz</strong> <span class="math display">\[
+c(x,t) = w(t) \tilde c(t,x),
+\]</span> it can be shown (<strong>Exercise</strong>) that the explicit solution for the linear reaction-diffusion <a href="#eq-lin_re_eq">Equation&nbsp;<span class="quarto-unresolved-ref">eq-lin_re_eq</span></a> with initial condition <a href="#eq-lin_re_eq_ic">Equation&nbsp;<span class="quarto-unresolved-ref">eq-lin_re_eq_ic</span></a> is given by</p>
+<p><span class="math display">\[
+c(t,x) = \frac1{\sqrt{4 \pi D t}} \exp \left(\rho t - \frac{x^2}{ 4Dt} \right).
+\]</span></p>
+<div class="cell" data-execution_count="3">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>L<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>N_x<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>N_t<span class="op">=</span><span class="dv">120</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.linspace(<span class="dv">0</span>,T,N_t)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="dv">0</span>,L,N_x)<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>D<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>rho<span class="op">=</span><span class="fl">1.0</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>epsilon<span class="op">=</span><span class="fl">0.1</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>u_0<span class="op">=</span><span class="dv">1</span><span class="op">/</span>(epsilon<span class="op">*</span>np.sqrt(np.pi))<span class="op">*</span>np.exp(<span class="op">-</span>x<span class="op">**</span><span class="dv">2</span><span class="op">/</span>epsilon<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>dx<span class="op">=</span>L<span class="op">/</span>(N_x<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>dt<span class="op">=</span>T<span class="op">/</span>(N_t<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logisticPDErhs(u,t):</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    N_x<span class="op">=</span><span class="bu">len</span>(u)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span>np.zeros_like(u)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,N_x<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>      f[i]<span class="op">=</span>D<span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(u[i<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span><span class="dv">2</span><span class="op">*</span>u[i]<span class="op">+</span>u[i<span class="op">+</span><span class="dv">1</span>])  </span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    f[i]<span class="op">=</span>D<span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(<span class="op">-</span>u[i]<span class="op">+</span>u[i<span class="op">+</span><span class="dv">1</span>])</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span>N_x<span class="op">-</span><span class="dv">1</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    f[i]<span class="op">=</span>D<span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(u[i<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>u[i])</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    reac<span class="op">=</span>rho<span class="op">*</span>u</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span>f<span class="op">+</span>reac</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f  </span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>sol<span class="op">=</span>odeint(logisticPDErhs,u_0,t)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>[x_mesh,t_mesh]<span class="op">=</span>np.meshgrid(x,t)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>c_exact<span class="op">=</span><span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">4</span><span class="op">*</span>np.pi<span class="op">*</span>D<span class="op">*</span>t_mesh)<span class="op">*</span>np.exp(rho<span class="op">*</span>t_mesh<span class="op">-</span>x_mesh<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">4</span><span class="op">*</span>D<span class="op">*</span>t_mesh))</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots()</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>ax.plot(x, sol[<span class="dv">1</span>,:], <span class="st">'r'</span>)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>ax.plot(x, sol[<span class="dv">4</span>,:], <span class="st">'b'</span>)</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>ax.plot(x, sol[<span class="dv">8</span>,:], <span class="st">'m'</span>)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>ax.plot(x, sol[<span class="dv">12</span>,:], <span class="st">'k'</span>)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'t'</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">0</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">4</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">8</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">12</span>])])</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots()</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>ax.plot(x, c_exact[<span class="dv">1</span>,:], <span class="st">'r'</span>)</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>ax.plot(x, c_exact[<span class="dv">4</span>,:], <span class="st">'b'</span>)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>ax.plot(x, c_exact[<span class="dv">8</span>,:], <span class="st">'m'</span>)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>ax.plot(x, c_exact[<span class="dv">12</span>,:], <span class="st">'k'</span>)</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'t'</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">0</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">4</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">8</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">12</span>])])</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-diffusionlinearsource" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="linearreactiondiffusion_files/figure-html/fig-diffusionlinearsource-output-1.png" width="571" height="429" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.4: Numerical solution of linear reaction diffusion equation</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-diffusionlinearsource" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="linearreactiondiffusion_files/figure-html/fig-diffusionlinearsource-output-2.png" width="571" height="429" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.5: Exact solution of linear reaction diffusion equation</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="speed-of-a-wave-of-invasion" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="speed-of-a-wave-of-invasion"><span class="header-section-number">2.2.2</span> Speed of a wave of invasion</h3>
+<p>Muskrats which were introduced in 1905 in Bohemia initially spread rapidly throughout Europe through a combination of random movement and proliferation (initially there were no predators and proliferation was rapid). A model for the initial spread can therefore be given by a two-dimensional diffusion equation combined with exponential growth and assuming that <span class="math inline">\(M\)</span> individuals were released at the origin (i.e.&nbsp;in Bohemia). Considering the density of muskrats <span class="math inline">\(u({\mathbf{x}} , t)\)</span>, the equation is</p>
+<p><span id="eq-muskrats_eq"><span class="math display">\[
+\frac{\partial u}{\partial t} = D \left(\frac{\partial^2 u}{\partial x_1^2} +  \frac{\partial^2 u}{\partial x_2^2}\right)  + \rho \, u, \quad {\mathbf{x}} = (x_1 , x_2) \in \mathbb R^2, \, \, t &gt;0,
+\tag{2.6}\]</span></span> <span id="eq-muskrats_eq_in"><span class="math display">\[
+u({\mathbf{x}}, 0) = M \delta_0({\mathbf{x}}), \quad {\mathbf{x}} \in \mathbb R^2.
+\tag{2.7}\]</span></span></p>
+<p>The solution of <a href="#eq-muskrats_eq">Equation&nbsp;<span class="quarto-unresolved-ref">eq-muskrats_eq</span></a> with initial conditions <a href="#eq-muskrats_eq_in">Equation&nbsp;<span class="quarto-unresolved-ref">eq-muskrats_eq_in</span></a> is equal to:</p>
+<p><span class="math display">\[
+u({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ |{\mathbf{x}} |^2}{ 4Dt} \right)\; = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ (x_{1}^{2} + x_{2}^{2})}{4Dt} \right).
+\]</span></p>
+<p>Transforming to polar coordinates <span class="math inline">\(x_1 = r \cos\varphi\)</span>, <span class="math inline">\(x_2 = r \sin \varphi\)</span> we obtain</p>
+<p><span class="math display">\[
+u({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ r^2}{ 4Dt} \right).
+\]</span></p>
+<p>From the properties of the fundamental solution, the wave of invasion extends all the way to infinity if <span class="math inline">\(t&gt;0\)</span>. Thus, for practical purposes, somehow we have to define the front of the wave.</p>
+<p>Consider that there is some detection threshold for the muskrats i.e.&nbsp;some predetermined small value of the density <span class="math inline">\(u_1\)</span>, say, such that any changes in density for <span class="math inline">\(u &lt;u_1\)</span> cannot be detected.</p>
+<p>Because of the symmetry of the problem, then the leading edge of the invading wave front of muskrats is the circle of radius <span class="math inline">\(r=r_1(t)\)</span> where <span class="math inline">\(u=u_1\)</span>, i.e.&nbsp;from the explicit solution of <a href="#eq-muskrats_eq">Equation&nbsp;<span class="quarto-unresolved-ref">eq-muskrats_eq</span></a>,</p>
+<p><span class="math display">\[
+u_1({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ r_1^2}{ 4Dt} \right).
+\]</span></p>
+<p>Rearranging and solving for <span class="math inline">\(r_1\)</span>, using the fact that <span class="math display">\[
+\lim\limits_{t\to \infty} \dfrac {\ln t} t =0,
+\]</span> we obtain for large <span class="math inline">\(t\)</span> that <span class="math display">\[
+r_1(t) \approx 2 \sqrt{ \rho D} t.
+\]</span></p>
+<p>Hence, the speed of invasion of the leading edge of the muskrats is given by: <span class="math display">\[
+v = \frac{r_1(t)}{t} =  2 \sqrt{ \rho D}.
+\]</span></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./conservationequations.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conservation equations</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./nonlinearreactiondiffusion.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Non linear reaction diffusion equations</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

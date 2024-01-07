@@ -8,11 +8,11 @@ format: html
 Under nutirent starvation conditions, Dicty cells undergo complex collective behaviours. Individual amoebae secrete a diffusible chemical, cyclic AMP or cAMP. The amoebae respond chemotactically to cAMP and begin to migrate towards regions of high cAMP concentration via  *chemotaxis*. As they migrate they generate a range of intricate patterns including *spiral waves* and *streaming* aggregation patterns (e.g.  @fig-dicty_spiral).
 
 
-See also [this link to a fascinating Youtube movie of slime mold aggregation](https://www.youtube.com/watch?v=bkVhLJLG7ug). Note the aggregation  between 0:35 and 0.48.
-{{< video https://www.youtube.com/watch?v=bkVhLJLG7ug >}}
+The movie below depicts slime mold aggregation {{< video https://www.youtube.com/watch?v=bkVhLJLG7ug >}}. Note the aggregation  between 0:35 and 0.48.
 
 
-In @fig-dicty_spiral we can see stills-shot images of spiral patterns. This spirals are dynamic as can be seen [in this movie](https://www.youtube.com/watch?v=OX5Yiz38fgY). See spiral pattern at around 0:36. 
+
+In @fig-dicty_spiral we can see stills-shot images of spiral patterns. This spirals are dynamic as can be seen {{< video https://www.youtube.com/watch?v=OX5Yiz38fgY >}}. See spiral pattern at around 0:36. 
 
 ![Spiral wave patterns underly Dictystelium aggregation. Image from @durston2013dictyostelium. ](CG-14-355_F2.jpg){#fig-dicty_spiral}
 

@@ -66,12 +66,13 @@ $$
 In @fig-diffusionpde we compute a numerical solution of the diffusion equation and compare it with the exact solution given by @eq-fund_sol.
 
 
-```{python}
+```{python .content-visible unless-format="pdf"}
 #| label: fig-diffusionpde
 #| fig-cap: 
 #|  - "Numerical solution of diffusion equation."
 #|  - "Exact solution of diffusion equation."
 #| code-fold: True
+
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt

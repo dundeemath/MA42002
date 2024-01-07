@@ -1,14 +1,14 @@
 ---
-title: "Mathematical modelling of infectious disease"
+title: "Infectious disease"
 format: html
 ---
  
- Mathematical modelling of infection diseases can help to understand complex (nonlinear) interactions, to design vaccination strategies, predict further outbreaks of diseases, how many individual will be affected.
+ Mathematical modelling of infectious diseases can help to understand complex (nonlinear) interactions, to design vaccination strategies, predict further outbreaks of diseases, how many individual will be affected.
  
  Assumptions
 *   Total population is constant: the duration of the epidemic is short compared to the lifetime of its hosts, so we can neglect birth and disease-unrelated death
 
-*Consider a disease which, after recovery, confers immunity (and/or death if lethal)  
+*  Consider a disease which, after recovery, confers immunity (and/or death if lethal)  
 
 * Simple diffusion for spatial distribution of population 
 
@@ -19,7 +19,7 @@ format: html
 *  $I$ -- invectives  - such that have the disease and can transmit it to susceptibles
 *  $R$ -- recovered (removed)  - such that have had the disease and are immune or isolate until recovered or death (if the disease is lethal) 
  
- Progress through the disease 
+Progress through the disease 
 $$
 S \longrightarrow I \longrightarrow R 
 $$ 
@@ -299,7 +299,7 @@ $$
 \begin{aligned}
 & \frac{\partial S}{\partial t} = -  SI + b S\left( 1 -  S \right) \; , & \qquad x \in \mathbb R , \; t>0 \; , \\
 & \frac{\partial I}{\partial t} =   SI - \mu \,  I+   \frac{ \partial^2 I}{\partial x^2} \; ,  & \qquad x \in \mathbb R , \; t>0 \; , \\
-& S(0,x) = 1, \qquad I(0,x) = I_0/S_0,  & \quad x \in \mathbb R \; ,
+& S(0,x) = 1, \qquad I(0,x) = I_0/S_0,  & \quad x \in \mathbb R,
 \end{aligned}
 $$ {#eq-sir_growth_nd}
 where 

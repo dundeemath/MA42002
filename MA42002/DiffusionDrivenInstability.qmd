@@ -2,53 +2,19 @@
 title: "Diffusion driven instability"
 format: html
 ---
-## Spatial Pattern Formation via Reaction-Diffusion Mechanisms
+## Spatial Pattern Formation via Reaction-Diffusion
 
-** Insert human embryogenesis image **
+*Insert human embryogenesis image*
 
 ### Pattern in Developmental Biology
 
-Embryology or developmental biology is that part of biology which is concerned with the formation, growth and development of the embryo from fertilization until birth. From the very moment of conception the embryo undergoes a process of dynamic change, brought about largely by cells responding to various chemical signalling cues e.g. migration, differentiation, proliferation. Figure \ref{embryogenesis} shows some of the major changes in embryonic development which occur up to a few weeks after fertilization. Many of the processes occurring at this early stage are vital for the successful subsequent development of the embryo and also lay down basic structures (e.g. [ somites](https://en.wikipedia.org/wiki/Somite)) that form the foundation of major body structures later on (e.g. the vertebrae of the spine)  cf. Professor Lewis Wolpert: '*It is not birth, marriage, or death, but gastrulation which is truly the most important time in your life.*'
-
-<!--
-\url{https://en.wikipedia.org/wiki/Lewis\_Wolpert}]. 
--->
-
-There are two main theories which describe how pattern arises during embryogenesis - one is the  **Turing pre-pattern theory**, the other is the **mechano-chemical** theory. In the Turing pre-pattern theory, chemicals, or [morphogens](https://en.wikipedia.org/wiki/Morphogen), react together and, if certain conditions concerning their reaction kinetics and diffusion rates are satisfied (to be derived in the next section), then a ## pre-pattern## of varying chemical concentrations is set up in the spatial domain. This means that throughout the spatial domain, the concentration levels of the chemicals will vary i.e. there will be a ##heterogeneous## distribution of chemical concentrations which is known as a pre-pattern. Any cells in the domain which subsequently encounter these varying levels of morphogens will then respond by, for example, proliferating differentially throughout the domain. In this way, the domain will then contain a {spatially heterogeneous} distribution of cell densities (i.e. a cellular pattern) which have responded to the morphogen pre-pattern. This pre-pattern theory was first proposed by Alan Turing (of Enigma Code fame) in his seminal 1952 paper, *The chemical basis of morphogenesis* @turing1990chemical. This was developed in more detailed manner by Alfred Gierer and Hans Meinhardt in another ground-breaking paper in 1972, *A theory of biological pattern formation* @gierer1972theory, where they introduced the concept of activating chemicals and inhibiting chemicals. J.D. Murray then applied the theory as an explanation for the generation of patterns observed on animal coats @murray1981pre. 
-
-In the mechano-chemical theory, cells interact with their surroundings and by exerting forces perturb their local environment. The combination of cell migration/proliferation and cell-generated forces is sufficient in certain circumstances to create a spatially heterogeneous distribution of cell densities i.e. the pattern is generated **simultaneously** with the cell migration/proliferation.  This alternative pattern formation theory was proposed by Murray and Oster @murray1984generation and is particularly appropriate for patterns generated in early embryogenesis by **mesenchymal cells** such as fibroblasts. 
+Embryology or developmental biology is that part of biology which is concerned with the formation, growth and development of the embryo from fertilization until birth. From the very moment of conception the embryo undergoes a process of dynamic change, brought about largely by cells responding to various chemical signalling cues e.g. migration, differentiation, proliferation. Figure ref{embryogenesis} shows some of the major changes in embryonic development which occur up to a few weeks after fertilization. Many of the processes occurring at this early stage are vital for the successful subsequent development of the embryo and also lay down basic structures (e.g. [somites](https://en.wikipedia.org/wiki/Somite)) that form the foundation of major body structures later on (e.g. the vertebrae of the spine)  cf. Professor Lewis Wolpert: '*It is not birth, marriage, or death, but gastrulation which is truly the most important time in your life.*'
 
 
 
-<!--
-\url{http://rstb.royalsocietypublishing.org/content/237/641/37}
+There are two main theories which describe how pattern arises during embryogenesis - one is the  *Turing pre-pattern theory*, the other is the *mechano-chemical* theory. In the Turing pre-pattern theory, chemicals, or [morphogens](https://en.wikipedia.org/wiki/Morphogen), react together and, if certain conditions concerning their reaction kinetics and diffusion rates are satisfied (to be derived in the next section), then a *pre-pattern* of varying chemical concentrations is set up in the spatial domain. This means that throughout the spatial domain, the concentration levels of the chemicals will vary i.e. there will be a *heterogeneous* distribution of chemical concentrations which is known as a pre-pattern. Any cells in the domain which subsequently encounter these varying levels of morphogens will then respond by, for example, proliferating differentially throughout the domain. In this way, the domain will then contain a {spatially heterogeneous} distribution of cell densities (i.e. a cellular pattern) which have responded to the morphogen pre-pattern. This pre-pattern theory was first proposed by Alan Turing (of Enigma Code fame) in his seminal 1952 paper, *The chemical basis of morphogenesis* @turing1990chemical. This was developed in more detailed manner by Alfred Gierer and Hans Meinhardt in another ground-breaking paper in 1972, *A theory of biological pattern formation* @gierer1972theory, where they introduced the concept of activating chemicals and inhibiting chemicals. J.D. Murray then applied the theory as an explanation for the generation of patterns observed on animal coats @murray1981pre. 
 
-\url{http://rstb.royalsocietypublishing.org/content/royptb/237/641/37.full.pdf}
-
-\url{https://en.wikipedia.org/wiki/The_Chemical_Basis_of_Morphogenesis} 
-
-
-\url{http://link.springer.com/article/10.1007\%2FBF00289234}
-
-\url{http://www.eb.tuebingen.mpg.de/de/forschung/emeriti/hans-meinhardt/home.html}
-
-\url{http://www.eb.tuebingen.mpg.de/fileadmin/uploads/pdf/Emeriti/Hans_Meinhardt/kyb.pdf}
-
-\url{http://www.eb.tuebingen.mpg.de/de/forschung/emeriti/hans-meinhardt/82-book/bur82.html}
-
-\url{http://www.eb.tuebingen.mpg.de/de/forschung/emeriti/hans-meinhardt/pattern7.html}
-
-\url{http://www.eb.tuebingen.mpg.de/fileadmin/uploads/pdf/Emeriti/Hans_Meinhardt/Old_paper_pdf/06-Interv-IJDB.pdf} 
-
-\url{http://www.researchgate.net/publication/238718711_A_Prepattern_formation_mechanism_for_animal_coat_markings}
-
-\url{https://en.wikipedia.org/wiki/James_D._Murray}
-
-\url{http://www.maths.ox.ac.uk/people/james.murray/}
-
-\url{https://www.youtube.com/watch?v=6Yj5Nyb_VyU} 
--->
-
+In the mechano-chemical theory, cells interact with their surroundings and by exerting forces perturb their local environment. The combination of cell migration/proliferation and cell-generated forces is sufficient in certain circumstances to create a spatially heterogeneous distribution of cell densities i.e. the pattern is generated *simultaneously* with the cell migration/proliferation.  This alternative pattern formation theory was proposed by Murray and Oster @murray1984generation and is particularly appropriate for patterns generated in early embryogenesis by *mesenchymal cells* such as fibroblasts. 
 
 ## Reaction-diffusion (Turing) Pre-pattern Mechanisms
 
@@ -61,9 +27,10 @@ $$
 \end{aligned}
 $$
 
-where $F(A,B)$ and $G(A,B)$ describe the reaction kinetics between the two morphogens and $D_A, D_B > 0$ are the diffusion coefficients. Turing's theory (Turing, 1952) *The chemical basis of morphogenesis* proposed that it was the diffusion of the substances $A, B$ which led to the evolution of a spatially heterogeneous solution to arise i.e. a spatial pattern. This has given rise to the phrase *diffusion-driven instability*. This was a rather revolutionary and counter-intuitive proposal, since, as we have seen, diffusion normally has the opposite tendency i.e. to smooth or average out spatial heterogeneities, and to give rise to spatially homogeneous solutions.  
+where $F(A,B)$ and $G(A,B)$ describe the reaction kinetics between the two morphogens and $D_A, D_B > 0$ are the diffusion coefficients. Turing's theory (Turing, 1952) *The chemical basis of morphogenesis* proposed that it was the diffusion of the substances $A,B$ which led to the evolution of a spatially heterogeneous solution to arise i.e. a spatial pattern. This has given rise to the phrase *diffusion-driven instability*. This was a rather revolutionary and counter-intuitive proposal, since, as we have seen, diffusion normally has the opposite tendency i.e. to smooth or average out spatial heterogeneities, and to give rise to spatially homogeneous solutions.  
 
 Various forms can be considered for the kinetic functions $F$ and $G$. However, we will focus mainly on three specific classes as follows:
+
 
 ### Schnackenberg kinetics
 
@@ -71,13 +38,13 @@ $$
 F(A,B) = k_1 - k_2 A + k_3 A^2 B, \;\;\;\; G(A,B) = k_4 - k_3 A^2 B
 $$
 
-$k_1, k_2, k_3, k_4 >0$. The term $k_3 A^2 B$ is **autocatalytic**, since the species $A$ upregulates its own production. 
+$k_1, k_2, k_3, k_4 >0$. The term $k_3 A^2 B$ is *autocatalytic*, since the species $A$ upregulates its own production. 
 
-###  Gierer \& Meinhardt kinetics
+###  Gierer and Meinhardt kinetics
 
-Gierer \& Meinhardt developed a model that describes activator-inhibitor kinetics. The  total reaction rates are
+Gierer and Meinhardt developed a model that describes activator-inhibitor kinetics. The  total reaction rates are
 $$
-F(A,B) = k_1 - k_2 A + \frac{k_3 A^2}{B}, \;\;\;\; G(A,B) = k_4 A^2 - k_5 B
+F(A,B) = k_1 - k_2 A + \frac{k_3 A^2}{B}, \quad G(A,B) = k_4 A^2 - k_5 B
 $$
 where
 $k_1, k_2, k_3, k_4 , k_5 > 0$. The term $k_3 A^2 / B$ is **autocatalytic**. 
@@ -96,7 +63,7 @@ with $k_i > 0$. In the original paper of Thomas (1975), $A$ represents the conce
 
 ## Non-dimensionalization
 
-Before proceeding with our analysis, it is prudent to non-dimensionalize each of the above systems. 
+Before proceeding further, it is prudent to non-dimensionalize each of the above systems. 
 
 ### Schnakenberg
 
@@ -106,7 +73,7 @@ $$
 u = A \left( \frac{k_3}{k_2} \right)^{1/2}, \quad v = B \left( \frac{k_3}{k_2} \right)^{1/2}, \quad t^* = \frac{D_A t}{L^2},\quad x^* = \frac{x}{L},
 $$
 
-where $L$ is a typical length scale, the dimensionless reaction-diffusion system with Schnakenberg kinetics becomes (upon dropping the $*$):
+where $L$ is a typical length scale, the dimensionless reaction-diffusion system with Schnakenberg kinetics becomes (upon dropping the $*$ for notational convenience):
 
 $$
 \begin{aligned}
@@ -120,7 +87,7 @@ $$
 d = \frac{D_B}{D_A}, \quad a = \frac{k_1}{k_2} \left( \frac{k_3}{k_2} \right)^{1/2}, \quad b = \frac{k_4}{k_2} \left( \frac{k_3}{k_2} \right)^{1/2}, \quad \gamma = \frac{L^2 k_2}{D_A}.
 $$
 
-### Gierer-Meinhardt
+### Gierer and Meinhardt
 
 The Gierer-Meinhardt kinetics can be non-dimensionalized as follows:
 
@@ -130,7 +97,7 @@ f(u, v) & =  a - b u + \frac{u^2}{v},
 g(u,v) &= u^2 - v, \\
 \end{aligned}
 $$
-where $a , b$ are positive parameters (Exercise/Tutorial).
+where $a$ and $b$ are positive parameters (Exercise/Tutorial).
 
 ### Thomas
 
@@ -143,12 +110,12 @@ g(u,v) &= \alpha (b - v) - h(u,v), \\
 h(u,v) & =  \frac{\rho u v}{1 + u + K u^2},
 \end{aligned}
 $$
-where $a , b, \alpha, \rho , K$ are positive parameters (Exercise/Tutorial).
+where $a , b, \alpha, \rho , K$ are positive parameters (see Exercise/Tutorial).
 
 
 ### General
 
-Any reaction-diffusion system can be non-dimensionalized and scaled following the above procedure to take the following general form:
+Any reaction-diffusion system can be non-dimensionalized and scaled following the above procedure to take the general form:
 
 $$
 \begin{aligned}
@@ -157,7 +124,7 @@ $$
 \end{aligned}
 $$
 
-where the parameter $d$ is the ratio of the diffusion coefficients from the dimensional system and the parameter $\gamma$ can be interpreted in any one of the following ways:
+where the parameter $d$ is the ratio of the diffusion coefficients and the parameter $\gamma$ can be interpreted in any one of the following ways:
 
 * $\gamma^{1/2}$ is proportional to the  **linear size** of the spatial domain in one-dimension. In two-dimensions, $\gamma$ is proportional to the area. 
 * $\gamma$ represents the relative strength of the reaction terms -- an increase in $\gamma$ may represent an increase in the activity of some rate-limiting step in the reaction sequence. 
@@ -272,14 +239,12 @@ ax[1].plot(x, v[48,:],'k--')
 ax[1].set_xlabel('$x$')
 ax[1].set_ylabel('$v$')
 
-plt.legend(['t'+ str(t[0]),'t='+ str(t[4]),'t='+ str(t[8]),'t='+ str(t[12])])
+plt.legend(['t='+ str(t[0]),'t='+ str(t[4]),'t='+ str(t[8]),'t='+ str(t[12])])
 plt.xlabel('$x$')
 plt.grid()
 plt.show()
 
 ```
-
-
 
 In Figure @fig-schnack_ddi_pde_2d we consider a numerical solution of the Schnackenberg model on a 2D square domain with no-flux boundary conditions. Note 
 
@@ -467,7 +432,7 @@ u(x,0)  = u_0(x), \qquad  v(x,0)  = v_0(x), \qquad x\in \Omega\; .
 $$ {#eq-pp_bc}
 
 
-A **spatially homogeneous steady-state** of @eq-pp  and @eq-pp_bc
+A *spatially homogeneous steady-state* of @eq-pp  and @eq-pp_bc
 satisfies 
 $$
 f(u,v) = 0 , \qquad g(u,v) =0
@@ -478,6 +443,7 @@ and we denote it by $(u_0, v_0)$.
 ### Stability of spatially homogeneous steady states to spatially homogeneous perturbations
 
 Before we consider the effect of the spatial terms (i.e. diffusion) in @eq-pp  and @eq-pp_bc, we first of all explore the stability of the underlying spatially homogeneous steady state.
+
 
 Consider the following perturbations to the steady state $(u_0 , v_0)$:
 $$
@@ -492,7 +458,7 @@ $$
 \end{aligned}
 $$ {#eq-pp_1}
 
- Using a Taylor expansion of $f$ and $g$ about $(u_0, v_0)$ we obtain the linearised system 
+Using a Taylor expansion of $f$ and $g$ about $(u_0, v_0)$ we obtain the linearised system 
 $$
 \begin{pmatrix} 
 \tilde u_t \\
@@ -525,7 +491,7 @@ $$
 and $\phi_1$, $\phi_2$ are corresponding eigenvectors. It is easily seen that
 
 $$
-\lambda_{1,2} = \frac \gamma 2 \left( \text{tr} (J) \pm \sqrt{ \text{tr}(J)^2 - 4 \det(J)} \right),
+\lambda_{1,2} = \frac \gamma 2 \left( \textrm{tr} (J) \pm \sqrt{ \textrm{tr}(J)^2 - 4 \det(J)} \right),
 $$
 
 and thus a spatially homogeneous steady state $(u_0, v_0)$ is **stable** to spatially homogeneous perturbations if 
@@ -536,7 +502,7 @@ $$
 
 $$
 \begin{aligned}
-\text{tr}(J) & = f_u + g_v < 0, \\
+\textrm{tr}(J) & = f_u + g_v < 0, \\
 \det(J) & = f_u g_v - f_v g_u > 0. 
 \end{aligned}
 $${#eq-stable_hom}
@@ -578,6 +544,7 @@ $$
 $$
 
 where
+
 
 $$
 D =  \begin{pmatrix} 
@@ -661,7 +628,7 @@ C_k^1 \; \bar u(t)
 \end{aligned}
 $$ {#eq-vxt}
 
-SEince $\nabla^2 \psi_k(x) = - k^2 \psi_k(x)$ we obtain 
+Since $\nabla^2 \psi_k(x) = - k^2 \psi_k(x)$ we obtain 
 
 $$
 D \nabla^2  V(x,t) = D \nabla^2 \left[ \sum_k \hat V_k(t) \psi_k(x) \right]   = \sum_k D \hat V_k(t) \nabla^2 \psi_k(x)= 
@@ -676,6 +643,7 @@ $$
 $$
 
 Since $\{\psi_k(x) \}$ is a orthogonal basis we obtain that 
+
 
 $$
  \frac{d}{d t}  \hat V_k(t) \psi_k(x)  =
@@ -722,6 +690,7 @@ where
 $$
 h(k^2) = dk^4 - \gamma (df_u + g_v) k^2 + \gamma^2 | J | .
 $$ {#eq-hk2}
+
 
 
 ```{python}
@@ -811,8 +780,6 @@ ax.set_ylim([-20,5])
 ax.legend(['d='+str(d_1),'d='+str(d_2),'d='+str(d_3)])
 plt.show()
 
-
-
 ```
 
 
@@ -823,24 +790,23 @@ $$
 
 Thus the steady state $(u_0, v_0)$ is **unstable** to spatially heterogeneous perturbations iff
 $$
-{\mathrm Re}(\lambda_1) > 0 \quad \text{and/or } \quad {\mathrm Re}(\lambda_2) >0,
+{\mathrm Re}(\lambda_1) > 0 \quad \textrm{and/or} \quad {\mathrm Re}(\lambda_2) >0,
 $$
 where $\lambda_{1,2}$ are solutions of @eq-charact_pp_1, @eq-spatial_eigenvalues.
 
 
 Now for 
 $$
-{\mathrm Re}(\lambda_1) > 0 \quad \text{and/or } \quad {\mathrm Re}(\lambda_2) >0
+{\mathrm Re}(\lambda_1) > 0 \quad \textrm{and/or } \quad {\mathrm Re}(\lambda_2) >0
 $$
 to be satisfied we require
 $$
-\text{tr}(\tilde J) > 0 \quad \text{ or } \quad \det(\tilde J) <0 \; .
+\textrm{tr}(\tilde J) > 0 \quad \textrm{ or } \quad \det(\tilde J) <0.
 $$
 
-Consider first ${\mathrm tr} (\tilde{J})$. 
-We have
+Consider first ${\mathrm tr} (\tilde{J})$. We have
 $$
-\text{tr}(\tilde J) = \gamma ( f_u+ g_v) - k^2(1+d) < 0, \hspace{4 cm}  
+\textrm{tr}(\tilde J) = \gamma ( f_u+ g_v) - k^2(1+d) < 0, \hspace{4 cm}  
 $$
 since $\gamma > 0$ and 
 $$ 
@@ -848,7 +814,7 @@ f_u+ g_v < 0
 $$ 
 by the stability condition for the spatially homogeneous perturbation @eq-stable_hom.
 
-Thus instability to the spatially heterogeneous perturbation **can only occur** if 
+Thus instability to the spatially heterogeneous perturbation *can only occur* if 
 $$
 \det(\tilde J) < 0
 $$ 
@@ -860,9 +826,10 @@ From the spatially homogeneous stability conditions @eq-stable_hom we have $\det
 $$
 d f_u + g_v >0.
 $$ {#eq-stabil_cond_nes}
-However, once again, due to @eq-stable_hom, we have $f_u+ g_v <0$,  and so we can conclude that *$d\neq 1$ and $f_u$ and $g_v$ must have opposite signs*. 
 
-Condition @eq-stabil_cond_nes is **necessary but not sufficient** to ensure $h(k^2) <0$. In order to guarantee that $h(k^2) < 0$, the minimum value $h_{{\mathrm min}}$ must be negative.  Differentiating @eq-hk2 w.r.t. $k^2$, we find that:
+However, once again, due to @eq-stable_hom, we have $f_u+ g_v <0$, and so we can conclude that $d\neq 1$ and $f_u$ and $g_v$ must have *opposite signs*. 
+
+Condition @eq-stabil_cond_nes is *necessary but not sufficient* to ensure $h(k^2) <0$. In order to guarantee that $h(k^2) < 0$, the minimum value $h_{min}$ must be negative. Differentiating @eq-hk2 w.r.t. $k^2$, we find that:
 
 $$
 k^2_{m} = \gamma \frac{d f_u + g_v}{2d} \;\; \Rightarrow \;\; h_{{\mathrm min}} = \gamma^2 \left[ | J | - \frac{(df_u + g_v)^2}{4d} \right].
@@ -895,7 +862,7 @@ $$ {#eq-kcrit}
 @fig-dispersion (a) shows a schematic diagram of the (quadratic) function $h(k^2)$ for three different values of the diffusion coefficient $d$: 
 
 * $d < d_c, \; h(k^2) > 0$, and there is no pattern; 
-* $d = d_c, \; h_{{\mathrm{min}}} = 0$, critical case; 
+* $d = d_c, \; h_{min} = 0$, critical case; 
 * $d > d_c, \; h(k^2) < 0$, and there is pattern. 
 
 Hence we can see from @eq-spatial_eigenvalues that whenever $h(k^2) < 0$ the curve $\lambda(k^2)$ is positive for the same range of wavenumbers that make $h(k^2)$ negative. The range of unstable wavenumbers 
@@ -915,9 +882,9 @@ $$ {#eq-k2range}
 *  $d < d_c, \; ${\mathrm Re}\lambda (k^2)$ < 0, \forall k^2 $, and there is no pattern; 
 *  $d = d_c, \; k^2_c = 0$, critical case; 
 
-The expression $\lambda = \lambda (k^2)$ is known as the **dispersion relation** and the plot of ${\mathrm Re} \lambda$ against $k^2$ is known as the **dispersion curve**. 
+The expression $\lambda = \lambda (k^2)$ is known as the *dispersion relation* and the plot of ${\mathrm Re} \lambda$ against $k^2$ is known as the *dispersion curve*. 
 
-From the previous analysis, within the unstable range of wavenumbers $(k^2_1 , k^2_2)$, ${\mathrm Re}\lambda (k^2) > 0$ has a **maximum value** at wavenumber $k^2_m$ given by @eq-hmin when $d > d_c$. This implies that there is a **fastest growing mode** in the solution @eq-vxt of our linearised system @eq-pp_4.  
+From the previous analysis, within the unstable range of wavenumbers $(k^2_1 , k^2_2)$, ${\mathrm Re}\lambda (k^2) > 0$ has a *maximum value* at wavenumber $k^2_m$ given by @eq-hmin when $d > d_c$. This implies that there is a *fastest growing mode* in the solution @eq-vxt of our linearised system @eq-pp_4.  
 
   
 
@@ -936,20 +903,7 @@ $$
 
 ** include figure dispersion **
 
-<!--
-%\textbf{ Dispersion relation}  \; When the diffusion coefficient $d$  increases beyond the critical value $d_c$, $h(k^2)$ becomes negative over a finite interval $(k_-^2, k_+^2)$, where $k^2_\pm$ are zeros of the quadratic equation $h(k^2) =0$. Thus   $(k_-^2, k_+^2)$ is the range of the unstable wave numbers. 
-%
-%We have also that eigenvalues $\lambda= \lambda(k)$ depend on  wave numbers $k$. This dependence  $\lambda= \lambda(k)$ is called a dispersion relation. 
-%
-%Thus for $d> d_c$ there exists a range of values of $k^2$ for which $Re(\lambda(k)) >0$. Note that $Re(\lambda(k))$ has a maximum for some $k^2_\text{max}(d)$ in this range. 
-%
-%The diversion relation is important as it says which eigenfunctions, i.e. which spatial patterns,  are linearly unstable and grow exponentially with time. 
-%
-%In unbounded domain, where  all wave numbers are possible, $k_{\text{max}}$ represent the wave number of the most fast growing mode ( corresponding eigenvalue with the greatest real part). 
-%In a bounded domain wave numbers are discrete and so only certain $k$ in the range  
-%$(k_-^2, k_+^2)$ are relevant for the formation of spatial patterns.  In this case $k_{\text{max}}$ is not necessary a wave number and the most fast growing mode is the closest to $k_{\text{max}}$ wave number.  In fact it is possible that for bounded domains the region $(k_-^2, k_+^2)$ does not contain any wave numbers and no unstable mode for such values of $d$ would exist. It means that a narrow diskersion relation results into a situation that we miss all wave numbers and none of eigenvalues with 
-%$Re(\lambda(k)) >0$ can be found, i.e. all modes will decay exponentially to zero. 
--->
+
 
 
 **NOTE** 
@@ -985,4 +939,3 @@ Demonstrate that the derived results are consistent with  numerical solutions. S
 * what about different kinetics (e.g. Gierer-Meinhardt, Thomas models)?
 
 ## References
-
