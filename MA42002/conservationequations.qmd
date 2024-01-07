@@ -3,7 +3,7 @@ title: "Conservation equations"
 format: html
 ---
 
-## Introduction
+## Introduction {#sec-conservation}
 
 Many biological systems are spatio-temporal, i.e. concentrations of biochemicals, densities of cells etc. depend on spatial position as well time. To describe such cases we must **relax** a major assumption that was made in Mathematical Biology I (MA32009): spatial homogeneity. We now  models biological system using partial differential equations.
 
@@ -149,11 +149,11 @@ and recoveered populations, respectively.
 Consider the governing ODE
 
 $$
-\begin{align}
+\begin{aligned}
 \frac{d S}{ dt} &= -rIS, \\
 \frac{d I}{ dt} &= rIS - aI, \\
 \frac{d R}{ dt} &= aI,
-\end{align}
+\end{aligned}
 $$
 where $r$ is the infection rate and $a$ is the recovery rate.
 
@@ -168,10 +168,10 @@ $$
 
 Applying the law of mass action we obtain the ODEs
 $$
-\begin{align}
+\begin{aligned}
 \frac{d A}{ dt} &= k_1 - k_2 A + k_3 A^2 B,  \\
 \frac{d B}{ dt} &= k_4 - k_3 A^2 B,
-\end{align}
+\end{aligned}
 $$
 where $k_1$ and $k_4$ are production rates, $k_2$ is a degradation rate and $k_3$ is the reaction rate for the A and B interaction.
 

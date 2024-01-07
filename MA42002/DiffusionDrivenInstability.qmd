@@ -71,7 +71,7 @@ $$
 F(A,B) = k_1 - k_2 A + k_3 A^2 B, \;\;\;\; G(A,B) = k_4 - k_3 A^2 B
 $$
 
-$k_1, k_2, k_3, k_4 >0$. The term $k_3 A^2 B$ is **autocatalytic**, since the species $A$ is involved in its own production. \url{https://en.wikipedia.org/wiki/Autocatalysis}
+$k_1, k_2, k_3, k_4 >0$. The term $k_3 A^2 B$ is **autocatalytic**, since the species $A$ upregulates its own production. 
 
 ###  Gierer \& Meinhardt kinetics
 
@@ -86,11 +86,11 @@ $k_1, k_2, k_3, k_4 , k_5 > 0$. The term $k_3 A^2 / B$ is **autocatalytic**.
 
 Thomas developed a model of substrate inhibition in which
 $$
-\begin{align}
+\begin{aligned}
 F(A,B) &= k_1 - k_2 A - H(A,B), \\
 G(A,B) &= k_4 A^2 - k_4 B -H(A,B), \\ 
 H(A,B) &= \frac{k_5 AB}{k_6 + k_7 + k_8 A^2}.
-\end{align}
+\end{aligned}
 $$
 with $k_i > 0$. In the original paper of Thomas (1975), $A$ represents the concentration of oxygen (substrate) and $B$ the concentration of uricase (enzyme). Substrate inhibition is evident in the term $k_8 A^2$. 
 
@@ -103,7 +103,7 @@ Before proceeding with our analysis, it is prudent to non-dimensionalize each of
 We illustrate this process for the Schnakenberg kinetics. Using the scaling
 
 $$
-u = A \left( \frac{k_3}{k_2} \right)^{1/2}, \;\;\;\; v = B \left( \frac{k_3}{k_2} \right)^{1/2}, \;\;\;\; t^* = \frac{D_A t}{L^2}, \;\;\;\; x^* = \frac{x}{L},
+u = A \left( \frac{k_3}{k_2} \right)^{1/2}, \quad v = B \left( \frac{k_3}{k_2} \right)^{1/2}, \quad t^* = \frac{D_A t}{L^2},\quad x^* = \frac{x}{L},
 $$
 
 where $L$ is a typical length scale, the dimensionless reaction-diffusion system with Schnakenberg kinetics becomes (upon dropping the $*$):
@@ -163,15 +163,14 @@ where the parameter $d$ is the ratio of the diffusion coefficients from the dime
 * $\gamma$ represents the relative strength of the reaction terms -- an increase in $\gamma$ may represent an increase in the activity of some rate-limiting step in the reaction sequence. 
 * An increase in $\gamma$ is equivalent to a decrease in the diffusion coefficient, $d$. 
 
-Note that in the case where the parameter $d > 1$, this means that the original diffusion coefficients are not equal. Specifically, in the case of the Gierer-Meinhardt activator-inhibitor system, $d >1$ implies that the inhibitor *diffuses more quickly* than the activator [$d > 1 \Rightarrow D_B > D_A$ ]. The spatial implications of this are shown in figure \ref{AI} -- the inhibitor diffuses a greater distance than the activator, giving rise to what is known as *local activation, long-range inhibition*. 
+Note that in the case where the parameter $d > 1$, this means that the original diffusion coefficients are not equal. Specifically, in the case of the Gierer-Meinhardt activator-inhibitor system, $d >1$ implies that the inhibitor *diffuses more quickly* than the activator [$d > 1 \Rightarrow D_B > D_A$ ]. The spatial implications of this are shown in @fig_ai -- the inhibitor diffuses a greater distance than the activator, giving rise to what is known as *local activation, long-range inhibition*. 
 
 
 ** Insert activator_inhibitor here **
 
-
 ## Numerical solution
 
-In  @fig-schnack_ddi_pde we plot numerical solutions of @eq-schnackenbergeqns with no flux boundary conditions. 
+In @fig-schnack_ddi_pde we plot numerical solutions of @eq-schnackenbergeqns with no flux boundary conditions. 
 
 In this numerical solution the initial condition are the spatially homogeneous steady state perturbed by uniformly sampled noise. As time evolves, a spatial pattern emerges. The main idea from a biological perspeftive is that an unpatterned region of an embryo could undergo chemical reactions, with the result being a patterned chemcial field. 
 

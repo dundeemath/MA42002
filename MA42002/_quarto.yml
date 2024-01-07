@@ -19,10 +19,10 @@ book:
       
     - part: "Multi species"
       chapters:
-         - LotkaVolteraPDE.qmd
-         - BacterialChemotaxis.qmd
-         - DiffusionDrivenInstability.qmd
-      #  - SIR_PDE.qmd
+        - LotkaVolteraPDE.qmd
+        - BacterialChemotaxis.qmd
+        - DiffusionDrivenInstability.qmd
+        - SIR_PDE.qmd
     - part: "Appendices"
       chapters:
         - NumericalMethods.qmd
