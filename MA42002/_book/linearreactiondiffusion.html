@@ -282,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math display">\[
 \frac{\partial c}{\partial t} = D \nabla^2 c + f(c), \quad c \equiv c( {\mathbf{x}} , t ), \;\;  {\mathbf{x}} \in \mathbb R^n, \, \, t &gt;0.
 \]</span></p>
-<p>Such an equation is known as a <strong>reaction-diffusion equation</strong>, being composed of a reaction term, <span class="math inline">\(f(c)\)</span>, and a diffusion term, <span class="math inline">\(D \nabla^2 c\)</span>. Reaction-diffusion equations have many applications in biological systems e.g.&nbsp;travelling waves of invasion, pattern formation, spread of infectious diseases. For most of the remainder of the course we will consider such systems in one-space dimension i.e.&nbsp;<span class="math inline">\(x \in \mathbb R\)</span>.</p>
+<p>Such an equation is known as a <em>reaction-diffusion equation</em>, being composed of a reaction term, <span class="math inline">\(f(c)\)</span>, and a diffusion term, <span class="math inline">\(D \nabla^2 c\)</span>. Reaction-diffusion equations have many applications in biological systems e.g.&nbsp;travelling waves of invasion, pattern formation, spread of infectious diseases. For most of the remainder of the course we will consider such systems in one-space dimension i.e.&nbsp;<span class="math inline">\(x \in \mathbb R\)</span>.</p>
 <p>Consider the one-dimensional reaction-diffusion equation with constant diffusion coefficient <span class="math inline">\(D &gt; 0\)</span>: <span class="math display">\[
 \frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}  + f(c), \quad x\in \mathbb R, \, \, t &gt;0.
 \]</span></p>
@@ -304,7 +304,7 @@ c(x_0 , 0) = \delta_0(x)\qquad x \in \mathbb R,
 \]</span> converges to <span class="math inline">\(\delta_0(x)\)</span> as <span class="math inline">\(\varepsilon \to 0\)</span> (in the sense of distributions or generalized functions).</p>
 <p>Then for the diffusion <a href="#eq-heat_eq">Equation&nbsp;<span>2.1</span></a> with initial condition <a href="#eq-heat_IC">Equation&nbsp;<span>2.2</span></a>, it can be shown that the explicit (analytic) solution is given by <span id="eq-fund_sol"><span class="math display">\[
 c(x, t) = \frac1{\sqrt{4 \pi D t}} \exp \left( - \frac{ x^2}{ 4Dt} \right).
-\tag{2.3}\]</span></span> This is known as <strong>the fundamental solution</strong> of the diffusion equation in <span class="math inline">\(\mathbb R\)</span>.</p>
+\tag{2.3}\]</span></span> This is known as the <em>fundamental solution</em> of the diffusion equation in <span class="math inline">\(\mathbb R\)</span>.</p>
 <p>We also have, for general initial condition <span class="math inline">\(c(x, 0) = c_0(x)\)</span> for <span class="math inline">\(x\in \mathbb R\)</span>: <span class="math display">\[
 c(x, t) = \int_{-\infty}^{+\infty} \frac{c_0(y)}{\sqrt{4 \pi D t}} \exp \left( - \frac{ (x-y)^2}{ 4Dt} \right) dy.
 \]</span></p>
@@ -557,9 +557,9 @@ c(t,x) + \frac{ \partial c}{\partial t} \Delta t + \frac 12  \frac{ \partial^2 c
 \lambda_R+ \lambda_L =1,
 \]</span> and <span class="math display">\[
 \lambda_L - \lambda_R = \varepsilon,
-\]</span> the motion of the particles is biased and we may derive an appropriate <strong>reaction-diffusion-convection</strong> equation (see tutorial).</p>
+\]</span> the motion of the particles is biased and we may derive an appropriate <em>reaction-diffusion-convection</em> equation (see tutorial).</p>
 <p>Finally we note that there is a connection between diffusion and the normal distribution function.</p>
-<p><strong>Recall</strong> The normal distribution function in one-dimension with zero mean and variance <span class="math inline">\(\sigma^2\)</span> is given by @#eq-fund_sol.</p>
+<p><strong>Recall</strong> The normal distribution function in one-dimension with zero mean and variance <span class="math inline">\(\sigma^2\)</span> is given by <a href="#eq-fund_sol">Equation&nbsp;<span>2.3</span></a>.</p>
 <p><span class="math display">\[
 N(0, \sigma^2) \sim \frac 1 { \sqrt{ 2 \pi \sigma^2}} \exp \left( - \frac{x^2}{ 2 \sigma^2}\right).
 \]</span> Examining the formula for the fundamental solution of the diffusion <a href="#eq-fund_sol">Equation&nbsp;<span>2.3</span></a> in one-dimension, we see by inspection that the probability density function of the position of a particle performing a random walk in one-dimension starting at the origin is normally distributed with mean zero and variance <span class="math display">\[

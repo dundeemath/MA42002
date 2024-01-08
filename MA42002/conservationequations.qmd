@@ -5,7 +5,7 @@ format: html
 
 ## Introduction {#sec-conservation}
 
-Many biological systems are spatio-temporal, i.e. concentrations of biochemicals, densities of cells etc. depend on spatial position as well time. To describe such cases we must **relax** a major assumption that was made in Mathematical Biology I (MA32009): spatial homogeneity. We now  models biological system using partial differential equations.
+Many biological systems are spatio-temporal, i.e. concentrations of biochemicals, densities of cells etc. depend on spatial position as well time. To describe such cases we must *relax* a major assumption that was made in Mathematical Biology I (MA32009): spatial homogeneity. We now  models biological system using partial differential equations.
 
 A conservation equation is the most fundamental statement through which changes in the distribution of the density (or concentration, temperature) is described. 
 $$
@@ -67,7 +67,7 @@ Depending on the biological context, the growth rate $K$ may take several forms 
 * $K= K(N(t))$ \qquad depends on bacterial density 
 * $K= K(c(t)):= \kappa c(t), \;\; (\text{with} \;\; \kappa >0  \;\; \text{a constant}$),  which depends on the nutrient concentration $c(t)$ at time $t$ i.e. $K$ depends on the available resources.
 
-#### Logistic growth via depleting nutrient source
+#### Logistic growth via nutrient depletion
 
 Suppose that the population growth rate depends on nutient availability.
 Suppose also that nutrient levels are depleted by population growth.
@@ -83,7 +83,7 @@ $${#eq-c_1}
 where $\kappa$ and $\alpha$ $\in \Re$.
 Consider the initial conditions
 $$
- N(0) = N_0 \quad \textrm{and}  \quad  c(0)= c_0.
+N(0) = N_0 \quad \textrm{and}  \quad  c(0)= c_0.
 $$
 
 Noting the conserved quantity

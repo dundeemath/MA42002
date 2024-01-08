@@ -10,7 +10,7 @@ $$
 \frac{\partial c}{\partial t} = D \nabla^2 c + f(c), \quad c \equiv c( {\mathbf{x}} , t ), \;\;  {\mathbf{x}} \in \mathbb R^n, \, \, t >0.
 $$
 
-Such an equation is known as a **reaction-diffusion equation**, being composed of a reaction term, $f(c)$, and a diffusion term, $D \nabla^2 c$. Reaction-diffusion equations have many applications in biological systems e.g. travelling waves of invasion, pattern formation, spread of infectious diseases. For most of the remainder of the course we will consider such systems in one-space dimension i.e. $x \in \mathbb R$. 
+Such an equation is known as a *reaction-diffusion equation*, being composed of a reaction term, $f(c)$, and a diffusion term, $D \nabla^2 c$. Reaction-diffusion equations have many applications in biological systems e.g. travelling waves of invasion, pattern formation, spread of infectious diseases. For most of the remainder of the course we will consider such systems in one-space dimension i.e. $x \in \mathbb R$. 
 
 
 
@@ -48,7 +48,7 @@ Then for the diffusion @eq-heat_eq with initial condition @eq-heat_IC, it can be
 $$
 c(x, t) = \frac1{\sqrt{4 \pi D t}} \exp \left( - \frac{ x^2}{ 4Dt} \right).
 $$ {#eq-fund_sol}
-This is known as **the fundamental solution** of the diffusion equation in $\mathbb R$. 
+This is known as the *fundamental solution* of the diffusion equation in $\mathbb R$. 
 
 We also have, for general initial condition $c(x, 0) = c_0(x)$ for $x\in \mathbb R$:
 $$
@@ -205,7 +205,7 @@ or viewed another way, the average distance through which diffusion transports a
 
 ### Diffusion as the limit of a random walk 
 
-Consider the **random walk** of particles in a one-dimensional domain. Suppose that the particles move randomly a distance, $\Delta x$, every time step, $\Delta t$. Assume that the particles move left with probability $\lambda_L$ and right with probability $\lambda_R$.
+Consider the *random walk* of particles in a one-dimensional domain. Suppose that the particles move randomly a distance, $\Delta x$, every time step, $\Delta t$. Assume that the particles move left with probability $\lambda_L$ and right with probability $\lambda_R$.
 
 In Figure @fig-randomwalksim a simulation of 400 random walking particles is presented. Each particle is initialised at the origin and can move one step left or right with equal probability at every time step of the simulation. As time evolves the particle density (histogram) disperses. The normalised particle density appears to be well described by the solution of the diffusion equation (solid lines, @eq-fund_sol).
 
@@ -332,12 +332,12 @@ and
 $$
 \lambda_L - \lambda_R = \varepsilon,
 $$
- the motion of the particles is biased and we may derive an appropriate **reaction-diffusion-convection** equation (see tutorial). 
+ the motion of the particles is biased and we may derive an appropriate *reaction-diffusion-convection* equation (see tutorial). 
 
 
 Finally we note that there is a connection between diffusion and the normal distribution function. 
 
-**Recall** The normal distribution function in one-dimension with zero mean and variance $\sigma^2$ is given by @#eq-fund_sol.
+**Recall** The normal distribution function in one-dimension with zero mean and variance $\sigma^2$ is given by @eq-fund_sol.
 
 $$
 N(0, \sigma^2) \sim \frac 1 { \sqrt{ 2 \pi \sigma^2}} \exp \left( - \frac{x^2}{ 2 \sigma^2}\right).
@@ -361,7 +361,7 @@ c(0,x) = \delta_0(x).
 $$ {#eq-lin_re_eq_ic}
 
 ### Exact solution
-By considering a *separation of variables* approach, i.e. making the **ansatz** 
+By considering a *separation of variables* approach, i.e. making the *ansatz* 
 $$
 c(x,t) = w(t) \tilde c(t,x),
 $$ 
