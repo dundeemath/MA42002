@@ -201,6 +201,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./SIR_PDE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Infectious disease</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -215,13 +221,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./NumericalMethods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./linearstablityanalysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
   </div>
 </li>
       </ul>
@@ -294,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="4.1" class="anchored" data-anchor-id="nondimensionalization"><span class="header-section-number">4.1</span> Nondimensionalization</h2>
 <p>Consider the scaling <span class="math display">\[
 x^\ast = x \sqrt{\frac \rho {D_n}}, \qquad t^\ast = \rho, t , \quad u^\ast = \frac uK, \quad n^\ast = n \frac \alpha \rho.
-\]</span> Upon dropping the asteriked notation, <a href="#eq-pp_eq">Equation&nbsp;<span class="quarto-unresolved-ref">eq-pp_eq</span></a> transform to <span id="eq-pp_eq_2"><span class="math display">\[
+\]</span> Upon dropping the asteriked notation, <a href="#eq-pp_eq">Equation&nbsp;<span>4.1</span></a> transform to <span id="eq-pp_eq_2"><span class="math display">\[
 \begin{cases}
 &amp;\dfrac{\partial u}{\partial t} =  u ( 1 - u - n)  + D \dfrac{\partial^2 u}{\partial x^2}\; = \; f(u,n) + D\dfrac{\partial^2 u}{\partial x^2} \qquad x\in \mathbb R , t&gt;0 \,,  \\
 &amp; \dfrac{\partial n}{\partial t} = a\,  n(u -b) + \dfrac{\partial^2  n}{\partial x^2}\; =\; \;  g(u,n) + \dfrac{\partial^2  n}{\partial x^2}\;  \qquad x\in \mathbb R , t&gt;0,
@@ -305,7 +311,7 @@ D= \dfrac{D_u}{D_n}, \quad a = \dfrac{\beta K}\rho, \quad   b = \dfrac \gamma{ K
 </section>
 <section id="numerical-solutions" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="numerical-solutions"><span class="header-section-number">4.2</span> Numerical solutions</h2>
-<p>In <a href="#fig-lvpde">Figure&nbsp;<span class="quarto-unresolved-ref">fig-lvpde</span></a> we plot numerical solution of <a href="#eq-pp_eq_2">Equation&nbsp;<span class="quarto-unresolved-ref">eq-pp_eq_2</span></a>. No flux boundary conditions are imposed at <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=150\)</span>.</p>
+<p>In <a href="#fig-lvpde">Figure&nbsp;<span>4.1</span></a> we plot numerical solution of <a href="#eq-pp_eq_2">Equation&nbsp;<span>4.2</span></a>. No flux boundary conditions are imposed at <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=150\)</span>.</p>
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
@@ -484,7 +490,7 @@ n(t,x) \to 0 \;  \text{ as } x \to - \infty ,  &amp;\qquad  \;  N(z)\to 0 \;  \t
 n(t,x) \to 1-b \; \text{ as } x \to +\infty, &amp; \;  \qquad N(z)\to 1-b \;  \text{ as } z \to +\infty.
 \end{aligned}
 \]</span></p>
-<p><a href="#eq-pp_eq_2">Equation&nbsp;<span class="quarto-unresolved-ref">eq-pp_eq_2</span></a> transforms to <span class="math display">\[
+<p><a href="#eq-pp_eq_2">Equation&nbsp;<span>4.2</span></a> transforms to <span class="math display">\[
 \begin{aligned}
 v \frac{dW}{dz} &amp;= D \frac{d^2W}{dz^2} + W(1-W-N),\\
 v \frac{dN}{dz} &amp;=  \frac{d^2N}{dz^2} + a N(W-b),
@@ -499,21 +505,21 @@ v \frac{dN}{dz} &amp;=  \frac{d^2N}{dz^2} + a N(W-b),
 <p>Upon making the assumption that the prey moves much more slowly than the predator species, i.e.&nbsp; <span class="math display">\[
 D= \frac{D_u}{D_n} \ll 1,
 \]</span></p>
-<p><a href="#eq-tw_pp">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_pp</span></a> simplify to</p>
+<p><a href="#eq-tw_pp">Equation&nbsp;<span>4.3</span></a> simplify to</p>
 <p><span id="eq-tw_pp_2"><span class="math display">\[
 \begin{aligned}
 v \frac{dW}{dz} &amp;=  W(1-W-N) ,\\
 v \frac{dN}{dz} &amp;=  \frac{d^2N}{dz^2} + a N(W-b).
 \end{aligned}
 \tag{4.4}\]</span></span></p>
-<p>We can rewrite <a href="#eq-tw_pp_2">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_pp_2</span></a> as a system of first order ODEs: <span id="eq-tw_pp_3"><span class="math display">\[
+<p>We can rewrite <a href="#eq-tw_pp_2">Equation&nbsp;<span>4.4</span></a> as a system of first order ODEs: <span id="eq-tw_pp_3"><span class="math display">\[
 \begin{aligned}
 \frac{dW}{dz} &amp;= \frac 1 v W(1-W-N) = F(W,N,P),\\
 \frac{dN}{dz} &amp;= P  = G(W, N,P),\\
 \frac{dP}{dz} &amp;= v P - a N(W-b)  = R(W,N,P).
 \end{aligned}
 \tag{4.5}\]</span></span></p>
-<p>The steady states of <a href="#eq-tw_pp_3">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_pp_3</span></a> are <span class="math display">\[
+<p>The steady states of <a href="#eq-tw_pp_3">Equation&nbsp;<span>4.5</span></a> are <span class="math display">\[
 \begin{aligned}
 (W^\ast_1, N^\ast_1, P^\ast_1) &amp;= (0,0,0),\\
 (W^\ast_2, N^\ast_2, P^\ast_2) &amp;= (1,0,0), \\
@@ -606,7 +612,7 @@ p(\lambda) = \lambda^3 - \lambda^2(v- \frac b v) - \lambda b - \frac 1 v ab(1-b)
 </div>
 </div>
 </div>
-<p>Thus we have a possible heteroclinic connection between <span class="math inline">\((1,0,0)\)</span> and <span class="math inline">\((b, 1-b, 0)\)</span>, i.e.&nbsp;between <span class="math inline">\(2\)</span>-dim unstable manifold at <span class="math inline">\((1,0,0)\)</span> and <span class="math inline">\(2\)</span>-dim stable manifold at <span class="math inline">\((b, 1-b, 0)\)</span>, and therefore an existence of a travelling wave front solution for <a href="#eq-pp_eq_2">Equation&nbsp;<span class="quarto-unresolved-ref">eq-pp_eq_2</span></a> with</p>
+<p>Thus we have a possible heteroclinic connection between <span class="math inline">\((1,0,0)\)</span> and <span class="math inline">\((b, 1-b, 0)\)</span>, i.e.&nbsp;between <span class="math inline">\(2\)</span>-dim unstable manifold at <span class="math inline">\((1,0,0)\)</span> and <span class="math inline">\(2\)</span>-dim stable manifold at <span class="math inline">\((b, 1-b, 0)\)</span>, and therefore an existence of a travelling wave front solution for <a href="#eq-pp_eq_2">Equation&nbsp;<span>4.2</span></a> with</p>
 <p><span class="math display">\[
 \begin{aligned}
 u(x,t) \to 1 \; \textrm{ as } x \to - \infty,  \quad &amp; u(x,t) \to b \; \textrm{ as } x \to +\infty,  \\

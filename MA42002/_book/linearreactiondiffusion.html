@@ -201,6 +201,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./SIR_PDE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Infectious disease</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -215,13 +221,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./NumericalMethods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./linearstablityanalysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
   </div>
 </li>
       </ul>
@@ -296,7 +302,7 @@ c(x_0 , 0) = \delta_0(x)\qquad x \in \mathbb R,
 <p>It can be shown that the sequence of functions <span class="math inline">\(\{ \phi_\varepsilon(x) \}\)</span> given by <span class="math display">\[
 \frac 1{\varepsilon \sqrt{\pi} } e^{ - \frac{x^2}{ \varepsilon^2}}
 \]</span> converges to <span class="math inline">\(\delta_0(x)\)</span> as <span class="math inline">\(\varepsilon \to 0\)</span> (in the sense of distributions or generalized functions).</p>
-<p>Then for the diffusion <a href="#eq-heat_eq">Equation&nbsp;<span class="quarto-unresolved-ref">eq-heat_eq</span></a> with initial condition <a href="#eq-heat_IC">Equation&nbsp;<span class="quarto-unresolved-ref">eq-heat_IC</span></a>, it can be shown that the explicit (analytic) solution is given by <span id="eq-fund_sol"><span class="math display">\[
+<p>Then for the diffusion <a href="#eq-heat_eq">Equation&nbsp;<span>2.1</span></a> with initial condition <a href="#eq-heat_IC">Equation&nbsp;<span>2.2</span></a>, it can be shown that the explicit (analytic) solution is given by <span id="eq-fund_sol"><span class="math display">\[
 c(x, t) = \frac1{\sqrt{4 \pi D t}} \exp \left( - \frac{ x^2}{ 4Dt} \right).
 \tag{2.3}\]</span></span> This is known as <strong>the fundamental solution</strong> of the diffusion equation in <span class="math inline">\(\mathbb R\)</span>.</p>
 <p>We also have, for general initial condition <span class="math inline">\(c(x, 0) = c_0(x)\)</span> for <span class="math inline">\(x\in \mathbb R\)</span>: <span class="math display">\[
@@ -308,7 +314,7 @@ c(x,t) =  \frac 1{(4 \pi D t)^{n/2}} \exp \left( - \frac{ (x_{1}^{2} + x_{2}^{2}
 </section>
 <section id="numerical-solution" class="level3" data-number="2.1.2">
 <h3 data-number="2.1.2" class="anchored" data-anchor-id="numerical-solution"><span class="header-section-number">2.1.2</span> Numerical solution</h3>
-<p>In <a href="#fig-diffusionpde">Figure&nbsp;<span class="quarto-unresolved-ref">fig-diffusionpde</span></a> we compute a numerical solution of the diffusion equation and compare it with the exact solution given by <a href="#eq-fund_sol">Equation&nbsp;<span class="quarto-unresolved-ref">eq-fund_sol</span></a>.</p>
+<p>In <a href="#fig-diffusionpde">Figure&nbsp;<span>2.2</span></a> we compute a numerical solution of the diffusion equation and compare it with the exact solution given by <a href="#eq-fund_sol">Equation&nbsp;<span>2.3</span></a>.</p>
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
@@ -438,7 +444,7 @@ F = \text{flux}\times\text{area} = J\times 1 = D \frac{ C_0} L
 <section id="diffusion-as-the-limit-of-a-random-walk" class="level3" data-number="2.1.5">
 <h3 data-number="2.1.5" class="anchored" data-anchor-id="diffusion-as-the-limit-of-a-random-walk"><span class="header-section-number">2.1.5</span> Diffusion as the limit of a random walk</h3>
 <p>Consider the <strong>random walk</strong> of particles in a one-dimensional domain. Suppose that the particles move randomly a distance, <span class="math inline">\(\Delta x\)</span>, every time step, <span class="math inline">\(\Delta t\)</span>. Assume that the particles move left with probability <span class="math inline">\(\lambda_L\)</span> and right with probability <span class="math inline">\(\lambda_R\)</span>.</p>
-<p>In Figure <a href="#fig-randomwalksim">Figure&nbsp;<span class="quarto-unresolved-ref">fig-randomwalksim</span></a> a simulation of 400 random walking particles is presented. Each particle is initialised at the origin and can move one step left or right with equal probability at every time step of the simulation. As time evolves the particle density (histogram) disperses. The normalised particle density appears to be well described by the solution of the diffusion equation (solid lines, <a href="#eq-fund_sol">Equation&nbsp;<span class="quarto-unresolved-ref">eq-fund_sol</span></a>).</p>
+<p>In Figure <a href="#fig-randomwalksim">Figure&nbsp;<span>2.3</span></a> a simulation of 400 random walking particles is presented. Each particle is initialised at the origin and can move one step left or right with equal probability at every time step of the simulation. As time evolves the particle density (histogram) disperses. The normalised particle density appears to be well described by the solution of the diffusion equation (solid lines, <a href="#eq-fund_sol">Equation&nbsp;<span>2.3</span></a>).</p>
 <div class="cell" data-execution_count="2">
 <details>
 <summary>Code</summary>
@@ -556,7 +562,7 @@ c(t,x) + \frac{ \partial c}{\partial t} \Delta t + \frac 12  \frac{ \partial^2 c
 <p><strong>Recall</strong> The normal distribution function in one-dimension with zero mean and variance <span class="math inline">\(\sigma^2\)</span> is given by @#eq-fund_sol.</p>
 <p><span class="math display">\[
 N(0, \sigma^2) \sim \frac 1 { \sqrt{ 2 \pi \sigma^2}} \exp \left( - \frac{x^2}{ 2 \sigma^2}\right).
-\]</span> Examining the formula for the fundamental solution of the diffusion <a href="#eq-fund_sol">Equation&nbsp;<span class="quarto-unresolved-ref">eq-fund_sol</span></a> in one-dimension, we see by inspection that the probability density function of the position of a particle performing a random walk in one-dimension starting at the origin is normally distributed with mean zero and variance <span class="math display">\[
+\]</span> Examining the formula for the fundamental solution of the diffusion <a href="#eq-fund_sol">Equation&nbsp;<span>2.3</span></a> in one-dimension, we see by inspection that the probability density function of the position of a particle performing a random walk in one-dimension starting at the origin is normally distributed with mean zero and variance <span class="math display">\[
 \sigma^2 = 2 D t.
 \]</span></p>
 </section>
@@ -573,7 +579,7 @@ c(0,x) = \delta_0(x).
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="exact-solution"><span class="header-section-number">2.2.1</span> Exact solution</h3>
 <p>By considering a <em>separation of variables</em> approach, i.e.&nbsp;making the <strong>ansatz</strong> <span class="math display">\[
 c(x,t) = w(t) \tilde c(t,x),
-\]</span> it can be shown (<strong>Exercise</strong>) that the explicit solution for the linear reaction-diffusion <a href="#eq-lin_re_eq">Equation&nbsp;<span class="quarto-unresolved-ref">eq-lin_re_eq</span></a> with initial condition <a href="#eq-lin_re_eq_ic">Equation&nbsp;<span class="quarto-unresolved-ref">eq-lin_re_eq_ic</span></a> is given by</p>
+\]</span> it can be shown (<strong>Exercise</strong>) that the explicit solution for the linear reaction-diffusion <a href="#eq-lin_re_eq">Equation&nbsp;<span>2.4</span></a> with initial condition <a href="#eq-lin_re_eq_ic">Equation&nbsp;<span>2.5</span></a> is given by</p>
 <p><span class="math display">\[
 c(t,x) = \frac1{\sqrt{4 \pi D t}} \exp \left(\rho t - \frac{x^2}{ 4Dt} \right).
 \]</span></p>
@@ -673,7 +679,7 @@ c(t,x) = \frac1{\sqrt{4 \pi D t}} \exp \left(\rho t - \frac{x^2}{ 4Dt} \right).
 \tag{2.6}\]</span></span> <span id="eq-muskrats_eq_in"><span class="math display">\[
 u({\mathbf{x}}, 0) = M \delta_0({\mathbf{x}}), \quad {\mathbf{x}} \in \mathbb R^2.
 \tag{2.7}\]</span></span></p>
-<p>The solution of <a href="#eq-muskrats_eq">Equation&nbsp;<span class="quarto-unresolved-ref">eq-muskrats_eq</span></a> with initial conditions <a href="#eq-muskrats_eq_in">Equation&nbsp;<span class="quarto-unresolved-ref">eq-muskrats_eq_in</span></a> is equal to:</p>
+<p>The solution of <a href="#eq-muskrats_eq">Equation&nbsp;<span>2.6</span></a> with initial conditions <a href="#eq-muskrats_eq_in">Equation&nbsp;<span>2.7</span></a> is equal to:</p>
 <p><span class="math display">\[
 u({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ |{\mathbf{x}} |^2}{ 4Dt} \right)\; = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ (x_{1}^{2} + x_{2}^{2})}{4Dt} \right).
 \]</span></p>
@@ -683,7 +689,7 @@ u({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ r^2}{ 4Dt} \r
 \]</span></p>
 <p>From the properties of the fundamental solution, the wave of invasion extends all the way to infinity if <span class="math inline">\(t&gt;0\)</span>. Thus, for practical purposes, somehow we have to define the front of the wave.</p>
 <p>Consider that there is some detection threshold for the muskrats i.e.&nbsp;some predetermined small value of the density <span class="math inline">\(u_1\)</span>, say, such that any changes in density for <span class="math inline">\(u &lt;u_1\)</span> cannot be detected.</p>
-<p>Because of the symmetry of the problem, then the leading edge of the invading wave front of muskrats is the circle of radius <span class="math inline">\(r=r_1(t)\)</span> where <span class="math inline">\(u=u_1\)</span>, i.e.&nbsp;from the explicit solution of <a href="#eq-muskrats_eq">Equation&nbsp;<span class="quarto-unresolved-ref">eq-muskrats_eq</span></a>,</p>
+<p>Because of the symmetry of the problem, then the leading edge of the invading wave front of muskrats is the circle of radius <span class="math inline">\(r=r_1(t)\)</span> where <span class="math inline">\(u=u_1\)</span>, i.e.&nbsp;from the explicit solution of <a href="#eq-muskrats_eq">Equation&nbsp;<span>2.6</span></a>,</p>
 <p><span class="math display">\[
 u_1({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ r_1^2}{ 4Dt} \right).
 \]</span></p>

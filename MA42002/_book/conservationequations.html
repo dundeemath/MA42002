@@ -167,6 +167,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./SIR_PDE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Infectious disease</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -181,13 +187,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./NumericalMethods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./linearstablityanalysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
   </div>
 </li>
       </ul>
@@ -287,7 +293,7 @@ ul.task-list li input[type="checkbox"] {
 \begin{aligned}
 N(t+\Delta t) &amp;=  \quad N(t)   + \quad  K N(t) \Delta t.
 \end{aligned}
-\tag{1.1}\]</span></span> Assuming that <span class="math inline">\(N\)</span> is differentiable, dividing <a href="#eq-n_1">Equation&nbsp;<span class="quarto-unresolved-ref">eq-n_1</span></a> by <span class="math inline">\(\Delta t\)</span> and taking the limit as <span class="math inline">\(\Delta t \to 0\)</span> <span id="eq-n_2"><span class="math display">\[
+\tag{1.1}\]</span></span> Assuming that <span class="math inline">\(N\)</span> is differentiable, dividing <a href="#eq-n_1">Equation&nbsp;<span>1.1</span></a> by <span class="math inline">\(\Delta t\)</span> and taking the limit as <span class="math inline">\(\Delta t \to 0\)</span> <span id="eq-n_2"><span class="math display">\[
 \frac{dN}{dt} = K N
 \tag{1.2}\]</span></span></p>
 <p>Depending on the biological context, the growth rate <span class="math inline">\(K\)</span> may take several forms e.g.&nbsp;</p>
@@ -313,18 +319,18 @@ N(0) = N_0 \quad \textrm{and}  \quad  c(0)= c_0.
 \frac{dN}{dt}+\frac{dc}{dt}=0,
 \]</span> integration yields <span id="eq-sol_c"><span class="math display">\[
 c(t)  = - \alpha N(t) + c(0)+ \alpha N(0) = - \alpha N(t) + \beta,
-\tag{1.4}\]</span></span> where <span class="math inline">\(\beta=c_0 +\alpha N_0\)</span>. Using <a href="#eq-sol_c">Equation&nbsp;<span class="quarto-unresolved-ref">eq-sol_c</span></a> in <a href="#eq-c_1">Equation&nbsp;<span class="quarto-unresolved-ref">eq-c_1</span></a> we obtain the <em>logistic growth</em> equation <span id="eq-n_4"><span class="math display">\[
+\tag{1.4}\]</span></span> where <span class="math inline">\(\beta=c_0 +\alpha N_0\)</span>. Using <a href="#eq-sol_c">Equation&nbsp;<span>1.4</span></a> in <a href="#eq-c_1">Equation&nbsp;<span>1.3</span></a> we obtain the <em>logistic growth</em> equation <span id="eq-n_4"><span class="math display">\[
 \frac{dN}{dt} = \kappa ( \beta- \alpha N)  N, \qquad  N(0)= N_0\quad  
 \tag{1.5}\]</span></span> Here we have <span class="math inline">\(K=K(N) = \kappa (\beta - \alpha N)\)</span>.</p>
 <p>The last equation can be rewritten as <span id="eq-n_5"><span class="math display">\[  
 \frac{dN}{dt} = \rho  N \,  (1 - \frac N B)  \qquad \quad N(0)= N_0,
-\tag{1.6}\]</span></span> where <span class="math inline">\(\rho = \kappa \beta\)</span> is the <strong>intrinsic growth rate</strong> and <span class="math inline">\(B = \frac \beta \alpha\)</span> is the <strong>carrying capacity</strong>. The solution of <a href="#eq-n_5">Equation&nbsp;<span class="quarto-unresolved-ref">eq-n_5</span></a> is given by <span class="math display">\[
+\tag{1.6}\]</span></span> where <span class="math inline">\(\rho = \kappa \beta\)</span> is the <strong>intrinsic growth rate</strong> and <span class="math inline">\(B = \frac \beta \alpha\)</span> is the <strong>carrying capacity</strong>. The solution of <a href="#eq-n_5">Equation&nbsp;<span>1.6</span></a> is given by <span class="math display">\[
 N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
 \]</span></p>
 </section>
 <section id="deathdecay" class="level4" data-number="1.2.1.3">
 <h4 data-number="1.2.1.3" class="anchored" data-anchor-id="deathdecay"><span class="header-section-number">1.2.1.3</span> Death/decay</h4>
-<p>In addition to growth, we may assume that cells die at rate <span class="math inline">\(d\)</span> and the simple growth <a href="#eq-n_2">Equation&nbsp;<span class="quarto-unresolved-ref">eq-n_2</span></a> can be generalised to <span class="math display">\[
+<p>In addition to growth, we may assume that cells die at rate <span class="math inline">\(d\)</span> and the simple growth <a href="#eq-n_2">Equation&nbsp;<span>1.2</span></a> can be generalised to <span class="math display">\[
 \frac{dN}{dt} = KN - d N,
 \]</span> where <span class="math inline">\(d\)</span> is the mortality (death) rate.</p>
 </section>
@@ -413,10 +419,10 @@ N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
 <p>Then the conservation equation for the number of particles in the volume <span class="math inline">\(V\)</span> is given by <span id="eq-concerv_01"><span class="math display">\[
 \frac{\partial}{\partial t} \int_x^{x+\Delta x} c(\tilde x, t) A d\tilde x = J(x,t) \, A  - J(x+\Delta x,t) \, A +\int_x^{x + \Delta x}  f(\tilde x, t, c(\tilde x, t))\,  A \, d \tilde x.
 \tag{1.7}\]</span></span></p>
-<p>i.e.&nbsp;the flux that changes the total population in <span class="math inline">\(V\)</span> is that entering through the cross-section at <span class="math inline">\(x\)</span> and leaving through the cross-section at <span class="math inline">\(x+\Delta x\)</span> (it is assumed that there no flux through the external surface of the tube). Assuming <span class="math inline">\(c\)</span> and <span class="math inline">\(f\)</span> to be sufficiently smooth (continuous in <span class="math inline">\(x\)</span>) and applying The Mean Value Theorem in <a href="#eq-concerv_01">Equation&nbsp;<span class="quarto-unresolved-ref">eq-concerv_01</span></a>, we obtain <span id="eq-concerv_1"><span class="math display">\[
+<p>i.e.&nbsp;the flux that changes the total population in <span class="math inline">\(V\)</span> is that entering through the cross-section at <span class="math inline">\(x\)</span> and leaving through the cross-section at <span class="math inline">\(x+\Delta x\)</span> (it is assumed that there no flux through the external surface of the tube). Assuming <span class="math inline">\(c\)</span> and <span class="math inline">\(f\)</span> to be sufficiently smooth (continuous in <span class="math inline">\(x\)</span>) and applying The Mean Value Theorem in <a href="#eq-concerv_01">Equation&nbsp;<span>1.7</span></a>, we obtain <span id="eq-concerv_1"><span class="math display">\[
 \frac{\partial}{\partial t} c(\xi, t) A \Delta x = J(x,t) \, A  - J(x+\Delta x,t) \, A +  f(\eta,t,c(\eta, t))\,  A \Delta x, \qquad \xi, \eta \in (x, x+ \Delta x).
 \tag{1.8}\]</span></span></p>
-<p>Dividing <a href="#eq-concerv_01">Equation&nbsp;<span class="quarto-unresolved-ref">eq-concerv_01</span></a> by <span class="math inline">\(A \, \Delta x\)</span> yields <span id="eq-concerv_2"><span class="math display">\[
+<p>Dividing <a href="#eq-concerv_01">Equation&nbsp;<span>1.7</span></a> by <span class="math inline">\(A \, \Delta x\)</span> yields <span id="eq-concerv_2"><span class="math display">\[
 \frac{\partial}{\partial t} c(\xi, t)  = - \frac  {J(x+\Delta x,t ) - J(x,t)} { \Delta x} + f(\eta,t,c(\eta, t)), \qquad \xi, \eta \in (x, x+ \Delta x).
 \tag{1.9}\]</span></span> Assuming that <span class="math inline">\(J\)</span> is differentiable with respect to <span class="math inline">\(x\)</span> and taking the limit as <span class="math inline">\(\Delta x \to 0\)</span> (and using the definition of partial derivatives) we obtain a one-dimensional conservation (balance) equation: <span id="eq-concerv_3"><span class="math display">\[
 \frac{\partial}{\partial t} c(x,t)  = - \frac  {\partial} { \partial x} J(x,t) + f(x,t ,c(x,t)).
@@ -449,7 +455,7 @@ N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
 <p><span id="eq-diffusion"><span class="math display">\[
 {\mathbf{J}} = - D\nabla c,
 \tag{1.12}\]</span></span> where <span class="math inline">\(D\)</span> is the diffusion coefficient. <span class="math inline">\(D\)</span> depends on the size of the particles, the type of solvent, the temperature, .</p>
-<p>Then applying <a href="#eq-diffusion">Equation&nbsp;<span class="quarto-unresolved-ref">eq-diffusion</span></a> in <a href="#eq-conservation_3D">Equation&nbsp;<span class="quarto-unresolved-ref">eq-conservation_3D</span></a> we obtain reaction-diffusion equation <span id="eq-react-diff"><span class="math display">\[
+<p>Then applying <a href="#eq-diffusion">Equation&nbsp;<span>1.12</span></a> in <a href="#eq-conservation_3D">Equation&nbsp;<span>1.11</span></a> we obtain reaction-diffusion equation <span id="eq-react-diff"><span class="math display">\[
 \frac{\partial}{\partial t} c =  - \nabla\cdot ( - D \nabla c(x,t))+  f(x,t ,c) = \nabla \cdot ( D \nabla c) + f(x,t ,c),
 \quad x\in \mathbb R^n, \,  \, t &gt;0.
 \tag{1.13}\]</span></span></p>
@@ -566,7 +572,7 @@ c(0,x) = c_0(x) , \qquad x \in \Omega  \; .
 \tag{1.17}\]</span></span> which can be augmented by an equation for the (diffusible) chemoattractant <span class="math inline">\(a\)</span> <span id="eq-chemoattrac"><span class="math display">\[
 \frac{\partial}{\partial t} a = D \nabla^2 a + g(x,t ,a, c),
 \quad x\in \mathbb R^n \,  \quad t &gt;0.
-\tag{1.18}\]</span></span> <a href="#eq-chemotaxis">Equation&nbsp;<span class="quarto-unresolved-ref">eq-chemotaxis</span></a> and <a href="#eq-chemoattrac">Equation&nbsp;<span class="quarto-unresolved-ref">eq-chemoattrac</span></a> form a system of equations, a so-called chemotaxis system.</p>
+\tag{1.18}\]</span></span> <a href="#eq-chemotaxis">Equation&nbsp;<span>1.17</span></a> and <a href="#eq-chemoattrac">Equation&nbsp;<span>1.18</span></a> form a system of equations, a so-called chemotaxis system.</p>
 </section>
 <section id="nondimensionalization" class="level3" data-number="1.3.7">
 <h3 data-number="1.3.7" class="anchored" data-anchor-id="nondimensionalization"><span class="header-section-number">1.3.7</span> Nondimensionalization</h3>

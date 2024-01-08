@@ -24,7 +24,7 @@ book:
         - LotkaVolteraPDE.qmd
         - BacterialChemotaxis.qmd
         - DiffusionDrivenInstability.qmd
-        #- SIR_PDE.qmd
+        - SIR_PDE.qmd
     - part: "Appendices"
       chapters:
         - NumericalMethods.qmd
@@ -40,5 +40,4 @@ format:
     echo: false
 
 execute:
-  freeze: true
   warning: false

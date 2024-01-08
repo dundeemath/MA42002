@@ -38,7 +38,7 @@ $$
 F(A,B) = k_1 - k_2 A + k_3 A^2 B, \;\;\;\; G(A,B) = k_4 - k_3 A^2 B
 $$
 
-$k_1, k_2, k_3, k_4 >0$. The term $k_3 A^2 B$ is *autocatalytic*, since the species $A$ upregulates its own production. 
+$k_1$, $k_2$, $k_3$, $k_4$ $>0$. The term $k_3 A^2 B$ is *autocatalytic*, since the species $A$ upregulates its own production. 
 
 ###  Gierer and Meinhardt kinetics
 
@@ -46,8 +46,9 @@ Gierer and Meinhardt developed a model that describes activator-inhibitor kineti
 $$
 F(A,B) = k_1 - k_2 A + \frac{k_3 A^2}{B}, \quad G(A,B) = k_4 A^2 - k_5 B
 $$
+
 where
-$k_1, k_2, k_3, k_4 , k_5 > 0$. The term $k_3 A^2 / B$ is **autocatalytic**. 
+$k_1$, $k_2$, $k_3$, $k_4$, $k_5$ > 0. The term $k_3 A^2 / B$ is **autocatalytic**. 
 
 ### Thomas kinetics
 
@@ -59,6 +60,7 @@ G(A,B) &= k_4 A^2 - k_4 B -H(A,B), \\
 H(A,B) &= \frac{k_5 AB}{k_6 + k_7 + k_8 A^2}.
 \end{aligned}
 $$
+
 with $k_i > 0$. In the original paper of Thomas (1975), $A$ represents the concentration of oxygen (substrate) and $B$ the concentration of uricase (enzyme). Substrate inhibition is evident in the term $k_8 A^2$. 
 
 ## Non-dimensionalization
@@ -110,13 +112,12 @@ g(u,v) &= \alpha (b - v) - h(u,v), \\
 h(u,v) & =  \frac{\rho u v}{1 + u + K u^2},
 \end{aligned}
 $$
-where $a , b, \alpha, \rho , K$ are positive parameters (see Exercise/Tutorial).
+where $a$ , $b$, $\alpha$, $\rho$ , $K$ are positive parameters (see Exercise/Tutorial).
 
 
 ### General
 
 Any reaction-diffusion system can be non-dimensionalized and scaled following the above procedure to take the general form:
-
 $$
 \begin{aligned}
 \frac{\partial u}{\partial  t} & = \gamma f(u,v)  + \nabla^2 u, \\
@@ -126,7 +127,7 @@ $$
 
 where the parameter $d$ is the ratio of the diffusion coefficients and the parameter $\gamma$ can be interpreted in any one of the following ways:
 
-* $\gamma^{1/2}$ is proportional to the  **linear size** of the spatial domain in one-dimension. In two-dimensions, $\gamma$ is proportional to the area. 
+* $\gamma^{1/2}$ is proportional to the  *linear size* of the spatial domain in one-dimension. In two-dimensions, $\gamma$ is proportional to the area. 
 * $\gamma$ represents the relative strength of the reaction terms -- an increase in $\gamma$ may represent an increase in the activity of some rate-limiting step in the reaction sequence. 
 * An increase in $\gamma$ is equivalent to a decrease in the diffusion coefficient, $d$. 
 
@@ -137,21 +138,9 @@ Note that in the case where the parameter $d > 1$, this means that the original 
 
 ## Numerical solution
 
-In @fig-schnack_ddi_pde we plot numerical solutions of @eq-schnackenbergeqns with no flux boundary conditions. 
-
-In this numerical solution the initial condition are the spatially homogeneous steady state perturbed by uniformly sampled noise. As time evolves, a spatial pattern emerges. The main idea from a biological perspeftive is that an unpatterned region of an embryo could undergo chemical reactions, with the result being a patterned chemcial field. 
-
-Some question that might arise:
-
-* How does pattern formation depend on model parameters?
-* How does pattern formation depend on domain size?
-* How does the pattern wavelength depend on model parameters?
-* How does the pattern depend on the initial conditions?
-* How can we numerically solve the reaction diffusion PDEs?
-
 ```{python}
 #| label: fig-schnack_ddi_pde
-#| fig-cap: "DDI with Schnackenberg kinetics"
+#| fig-cap: "DDI with Schnackenberg kinetics."
 #| code-fold: True
 
 import numpy as np
@@ -246,12 +235,11 @@ plt.show()
 
 ```
 
-In Figure @fig-schnack_ddi_pde_2d we consider a numerical solution of the Schnackenberg model on a 2D square domain with no-flux boundary conditions. Note 
+In  @fig-schnack_ddi_pde_2d we consider a numerical solution of the Schnackenberg model on a 2D square domain with no-flux boundary conditions.  
 
 ```{python}
 #| label: fig-schnack_ddi_pde_2d
 #| fig-cap: "DDI with Schnackenberg kinetics in 2D"
-#| cache: true
 #| code-fold: true
 import numpy as np
 from scipy.integrate import odeint
@@ -364,8 +352,6 @@ def ShcnackPDErhs2d(sol,t):
     return f  
 
 sol=odeint(ShcnackPDErhs2d,u_0,t)
-#soln = solve_ivp(ShcnackPDErhs,(0, T), u_0, method='Radau')
-
 
 u_0=sol[0,0:N_x**2]
 v_0=sol[0,N_x**2:]
@@ -411,10 +397,9 @@ plt.show()
 
 ```
 
+## General conditions for diffusion-driven instability
 
-## Linear Stability Analysis and Evolution of Spatial Pattern: General Conditions for Diffusion-driven Instability
-
-Let $\Omega\subset \mathbb R^n$ be a domain with smooth (sufficiently regular) boundary  $\partial \Omega$, with outward unit normal ${\mathbf{n}}$. Our general, non-dimensional reaction-diffusion system is then:
+Let $\Omega \subset R^n$ be a domain with smooth (sufficiently regular) boundary  $\partial \Omega$, with outward unit normal ${\mathbf{n}}$. Our general, non-dimensional reaction-diffusion system is then:
 
 $$
 \begin{aligned}
@@ -423,7 +408,8 @@ $$
 &
 \end{aligned}
 $${#eq-pp}
-together with boundary and initial Conditions
+
+together with boundary and initial conditions
 $$
 \begin{aligned}
 \nabla u \cdot {\mathbf{n} } = 0, \qquad \nabla v \cdot {\mathbf{n} } = 0, \qquad x\in \partial \Omega, \quad t>0, \\
@@ -437,12 +423,13 @@ satisfies
 $$
 f(u,v) = 0 , \qquad g(u,v) =0
 $$
+
 and we denote it by $(u_0, v_0)$. 
 
 
 ### Stability of spatially homogeneous steady states to spatially homogeneous perturbations
 
-Before we consider the effect of the spatial terms (i.e. diffusion) in @eq-pp  and @eq-pp_bc, we first of all explore the stability of the underlying spatially homogeneous steady state.
+Before we consider the effect of diffusion in @eq-pp  and @eq-pp_bc, we first  explore the stability of the spatially homogeneous steady state.
 
 
 Consider the following perturbations to the steady state $(u_0 , v_0)$:
@@ -450,7 +437,7 @@ $$
 u(x,t) = u_0 + \tilde u(t), \quad  v(x,t) = v_0 + \tilde v(t), \qquad \|\tilde u(t) \| \ll 1, \quad  \|\tilde v(t) \| \ll 1.
 $$ 
 
-Upon substitution  into @eq-pp
+Upon substitution into @eq-pp
 $$
 \begin{aligned}
 \frac{d\tilde u}{d t} = \gamma\, f(u_0 + \tilde u,v_0 + \tilde v),  \\
@@ -458,7 +445,7 @@ $$
 \end{aligned}
 $$ {#eq-pp_1}
 
-Using a Taylor expansion of $f$ and $g$ about $(u_0, v_0)$ we obtain the linearised system 
+Taylor expansion of $f$ and $g$ about $(u_0, v_0)$ yields the linearised system 
 $$
 \begin{pmatrix} 
 \tilde u_t \\
@@ -468,6 +455,7 @@ $$
 \tilde v
 \end{pmatrix},
 $$ {#eq-linear_pp}
+
 where 
 $$
 J =J(u_0, v_0) =  \begin{pmatrix} 
@@ -477,29 +465,30 @@ g_u & g_v
 $$
 
 The general solution of @eq-linear_pp is  
-
 $$
  \begin{pmatrix} 
 \tilde u(t) \\
 \tilde v(t)
-\end{pmatrix}   =  C_1 \phi_1 e^{\lambda_1 t} +  C_2 \phi_2 e^{\lambda_2 t}  , 
+\end{pmatrix}   =  C_1 \phi_1 e^{\lambda_1 t} +  C_2 \phi_2 e^{\lambda_2 t}, 
 $$
-where $C_1$, $C_2$  are arbitrary constants, $\lambda_1, \lambda_2$ are the eigenvalues of $\gamma J$, i.e. solutions of characteristic equation
+
+where $C_1$, $C_2$ are arbitrary constants, $\lambda_1, \lambda_2$ are the eigenvalues of $\gamma J$, i.e. solutions of the characteristic equation
 $$
 \det (\gamma J - \lambda I) = 0,
 $$
+
 and $\phi_1$, $\phi_2$ are corresponding eigenvectors. It is easily seen that
 
 $$
 \lambda_{1,2} = \frac \gamma 2 \left( \textrm{tr} (J) \pm \sqrt{ \textrm{tr}(J)^2 - 4 \det(J)} \right),
 $$
 
-and thus a spatially homogeneous steady state $(u_0, v_0)$ is **stable** to spatially homogeneous perturbations if 
+and thus a spatially homogeneous steady state $(u_0, v_0)$ is *stable* to spatially homogeneous perturbations if 
 $$
 {\mathrm Re}( \lambda_{1,2}) <0,
 $$
- i.e. if 
 
+i.e. if 
 $$
 \begin{aligned}
 \textrm{tr}(J) & = f_u + g_v < 0, \\
@@ -507,27 +496,28 @@ $$
 \end{aligned}
 $${#eq-stable_hom}
 
- We shall be interested only in such parameter values for which conditions @eq-stable_hom are satisfied (i.e. the spatially homogeneous steady state is linearly stable in the absence of diffusion).
+We shall be interested only in such parameter values for which conditions @eq-stable_hom are satisfied (i.e. the spatially homogeneous steady state is linearly stable in the absence of diffusion).
 
 ### Stability of spatially homogeneous steady states to spatially heterogeneous: spatially dependent, perturbations
 
-We now consider perturbations about the spatially homogeneous steady state that are spatially dependent i.e. 
+We now consider perturbations about the spatially homogeneous steady state that are spatially dependent, i.e. 
 $$
-u(x,t) = u_0 + \tilde u(x,t), \quad  v(x,t) = v_0 + \tilde v(x,t), \qquad \|\tilde u(x,t) \| \ll 1, \quad  \|\tilde v(x,t) \| \ll 1 .
+u(x,t) = u_0 + \tilde u(x,t), \quad  v(x,t) = v_0 + \tilde v(x,t), \qquad \|\tilde u(x,t) \| \ll 1, \quad  \|\tilde v(x,t) \| \ll 1.
 $$ 
 
-Upon substitution in @eq-pp and apply a Taylor expansion about $(u_0, v_0)$ to $f$ and $g$ to obtain the linearised problem 
+Upon substitution in @eq-pp and  Taylor expanding $f$ and $g$ about $(u_0, v_0)$ yields the linearised problem 
 
 $$
 \begin{aligned}
 \frac{\partial \tilde u(x,t)}{\partial t} = \gamma\, \left(f_u \tilde u(x,t) + f_v \tilde v(x,t)\right) + \nabla^2 \tilde u(x,t)  , \quad x\in \Omega, \;  t >0, \\
-\frac{\partial \tilde v(x,t)}{\partial   t} = \gamma\,  \left(g_u  \tilde u(x,t) + g_v \tilde v(x,t)\right) +d \nabla^2 \tilde v(x,t)  ,  \quad x\in \Omega, \;  t >0,  \\
+\frac{\partial \tilde v(x,t)}{\partial   t} = \gamma\,  \left(g_u  \tilde u(x,t) + g_v \tilde v(x,t)\right) +d \nabla^2 \tilde v(x,t)  \quad x\in \Omega,   t >0, 
 \end{aligned}
 $$ {#eq-pp_3}
+
 with boundary conditions
 $$
 \begin{aligned}
-{\mathbf{n}} \cdot \nabla \tilde u (x,t) = 0, \qquad {\mathbf{n}} \cdot \nabla \tilde v (x,t)  = 0, \qquad   x\in   \partial \Omega, \; t >0.
+{\mathbf{n}} \cdot \nabla \tilde u (x,t) = 0, \qquad {\mathbf{n}} \cdot \nabla \tilde v (x,t)  = 0, \qquad   x\in \partial \Omega, \; t >0.
 \end{aligned}
 $$ {#eq-pp_3bc}
 
@@ -538,6 +528,7 @@ V(x,t) = \begin{pmatrix}
 \tilde v(x,t)
 \end{pmatrix}
 $$ 
+
 we rewrite @eq-pp_3 as 
 $$
 \frac{\partial}{\partial t}  V(x,t) = \gamma J  V(x,t) + D \nabla^2   V(x,t), 
@@ -545,12 +536,11 @@ $$
 
 where
 
-
 $$
 D =  \begin{pmatrix} 
 1 & 0 \\
 0 & d 
-\end{pmatrix}\;.
+\end{pmatrix}.
 $$
 
 We shall consider a separation of variables approach, i.e.
@@ -559,8 +549,9 @@ V(x,t) =\begin{pmatrix}
  \bar u(t)  \varphi_1(x)
  \\
  \bar v(t)  \varphi_2(x)
- \end{pmatrix}\;
+ \end{pmatrix},
 $$
+
 and obtain 
 $$
 \begin{aligned}
@@ -582,15 +573,14 @@ $$
 $$ 
 for $t>0$. 
 
-
 ::: {#lem-laplacianeiegenvalues}
 
-Consider the spatial eigenvalue problem for the Laplacian $\nabla^2$ with zero-Neumann boundary conditions i.e.
+Consider the spatial eigenvalue problem for the Laplacian $\nabla^2$ with zero-Neumann boundary conditions, i.e.
 
 $$
 \begin{aligned}
-\nabla^2 \psi(x) = -k^2 \psi(x) , \qquad x \in \Omega ,  \\
-{\mathbf{n}} \cdot \nabla \psi(x) = 0 , \qquad x\in \partial \Omega \; . 
+\nabla^2 \psi(x) = -k^2 \psi(x), \qquad x \in \Omega,  \\
+{\mathbf{n}} \cdot \nabla \psi(x) = 0, \qquad x\in \partial \Omega. 
 \end{aligned}
 $$ {#eq-ev}
 
@@ -598,6 +588,7 @@ For a bounded domain $\Omega$ there exists a discrete set of eigenvalues
 $$
 0 \leq k^2_1< k_2^2\leq k_3^2\leq \ldots \leq k_j^2\leq \ldots,
 $$
+
 with 
 $$
 j \in \mathbb N, \quad  \textrm{and} \quad k_j^2 \to \infty \quad \textrm{as}  \quad j \to \infty.
@@ -615,6 +606,7 @@ $$
 \varphi_2(x)
  \end{pmatrix} = \sum_k C_k \psi_k(x), \qquad C_k =  \begin{pmatrix}  C_k^1 \\ C_k^2 \end{pmatrix} \in \mathbb R^2 \; 
 $$
+
 and
 $$
 \begin{aligned}
@@ -628,15 +620,19 @@ C_k^1 \; \bar u(t)
 \end{aligned}
 $$ {#eq-vxt}
 
-Since $\nabla^2 \psi_k(x) = - k^2 \psi_k(x)$ we obtain 
+Since 
+$$
+\nabla^2 \psi_k(x) = - k^2 \psi_k(x)
+$$
+
+we obtain 
 
 $$
 D \nabla^2  V(x,t) = D \nabla^2 \left[ \sum_k \hat V_k(t) \psi_k(x) \right]   = \sum_k D \hat V_k(t) \nabla^2 \psi_k(x)= 
 - \sum_k k^2 D \hat V_k(t)  \psi_k(x).
 $$
 
- Hence 
-
+Hence 
 $$
 \sum_k \frac{d}{d t}  \hat V_k(t) \psi_k(x)  =
   \sum_k \gamma J \hat V_k(t) \psi_k(x) -  \sum_k k^2  D \hat V_k(t) \psi_k(x). 
@@ -644,15 +640,16 @@ $$
 
 Since $\{\psi_k(x) \}$ is a orthogonal basis we obtain that 
 
-
 $$
  \frac{d}{d t}  \hat V_k(t) \psi_k(x)  =
    \gamma J  \hat V_k(t) \psi_k(x) -  k^2  D \hat V_k(t) \psi_k(x), 
 $$
+
 for each $k$. Finally, since 
 $$
 \psi_k(x)\;  /\hspace{-0.35 cm }\equiv 0
 $$ 
+
 in $\Omega$ this implies for each $k$ a system of ODEs:
 
 $$
@@ -661,22 +658,21 @@ $$
 \end{aligned}
 $${#eq-stab_pp_ode}
 
-where $\tilde J$ is a "modified" Jacobian:
+where $\tilde J$ is the "modified" Jacobian:
 
 $$
 \tilde{J} =  \begin{pmatrix} 
 \gamma f_u - k^2 & \gamma f_v \\
 \gamma g_u & \gamma g_v - d k^2
-\end{pmatrix}\;.
+\end{pmatrix}.
 $$
 
 Now solutions of @eq-stab_pp_ode are of the form 
 $$
 \hat V_k(t) = e^{\lambda t} P_k
 $$
-with $P_k \in \mathbb R^2$,  where, since $P_k\neq  0$ (looking for nontrivial solutions), we find that $\lambda$ are the eigenvalues of $\tilde J$ , i.e. 
 
-solutions of the characteristic equation 
+with $P_k \in \mathbb R^2$,  where, since $P_k\neq  0$ (looking for nontrivial solutions), we find that $\lambda$ are the eigenvalues of $\tilde J$ , i.e.  solutions of the characteristic equation 
 $$
 \det(\tilde J - \lambda I) = \det ( \gamma J - k^2 D - \lambda I) =0. 
 $$ {#eq-charact_pp_1}
@@ -686,6 +682,7 @@ Evaluating the above determinant, we arrive at the equation:
 $$
 \lambda^2 + [ k^2 (1 + d) - \gamma (f_u + g_v) ] \lambda + h(k^2) = 0,
 $$ {#eq-spatial_eigenvalues}
+
 where 
 $$
 h(k^2) = dk^4 - \gamma (df_u + g_v) k^2 + \gamma^2 | J | .
@@ -693,9 +690,130 @@ $$ {#eq-hk2}
 
 
 
+
+**NOTE**: From @eq-charact_pp_1, @eq-spatial_eigenvalues we can recover the characteristic equation for the spatially homogeneous perturbation when $k=0$, i.e. 
+$$
+\tilde J \Big|_{k=0} = ( \gamma J - k^2 D )\Big|_{k=0} = \gamma J.
+$$ 
+
+Thus the steady state $(u_0, v_0)$ is *unstable* to spatially heterogeneous perturbations iff
+$$
+{\mathrm Re}(\lambda_1) > 0 \quad \textrm{and/or} \quad {\mathrm Re}(\lambda_2) >0,
+$$
+
+where $\lambda_{1,2}$ are solutions of @eq-charact_pp_1, @eq-spatial_eigenvalues.
+
+
+Now for 
+$$
+{\mathrm Re}(\lambda_1) > 0 \quad \textrm{and/or } \quad {\mathrm Re}(\lambda_2) >0
+$$
+
+to be satisfied we require
+$$
+\textrm{tr}(\tilde J) > 0 \quad \textrm{ or } \quad \det(\tilde J) <0.
+$$
+
+Consider first ${\mathrm tr} (\tilde{J})$. We have
+$$
+\textrm{tr}(\tilde J) = \gamma ( f_u+ g_v) - k^2(1+d) < 0, \hspace{4 cm}  
+$$
+
+since $\gamma > 0$ and 
+$$ 
+f_u+ g_v < 0
+$$ 
+
+by the stability condition for the spatially homogeneous perturbation @eq-stable_hom. Thus instability to the spatially heterogeneous perturbation *can only occur* if 
+$$
+\det(\tilde J) < 0
+$$ 
+
+and so we require:
+$$
+\det(\tilde J) = h(k^2) = dk^4  - \gamma ( d\,  f_u + g_v) k^2 + \gamma^2 \det(J) < 0. 
+$$
+
+From the spatially homogeneous stability conditions @eq-stable_hom we have $\det(J) >0$. Thus $h(k^2)<0$ is possible only if 
+$$
+d f_u + g_v >0.
+$$ {#eq-stabil_cond_nes}
+
+However, once again, due to @eq-stable_hom, we have $f_u+ g_v <0$, and so we can conclude that $d\neq 1$ and $f_u$ and $g_v$ must have *opposite signs*. 
+
+Condition @eq-stabil_cond_nes is *necessary but not sufficient* to ensure $h(k^2) <0$. In order to guarantee that $h(k^2) < 0$, the minimum value $h_{min}$ must be negative. Differentiating @eq-hk2 w.r.t. $k^2$, we find that:
+
+$$
+k^2_{m} = \gamma \frac{d f_u + g_v}{2d} \;\; \Rightarrow \;\; h_{min} = \gamma^2 \left[ | J | - \frac{(df_u + g_v)^2}{4d} \right].
+$$ {#eq-hmin}
+
+Thus the condition that $h(k^2) < 0$ for some $k^2$ is:
+
+$$
+\frac{(df_u + g_v)^2}{4d} > |J|.
+$$
+
+The transition from stability to instability i.e. *bifurcation*, occurs when $h_{min} = 0$. From @eq-hmin, this means at bifurcation we have 
+$$
+|J| = \frac{(df_u + g_v)^2}{4d}.
+$$ {#eq-bif}
+
+For a fixed set of kinetics parameters, this means that we have a  *critical diffusion coefficient* $d_c(>1)$, which, after re-arranging @eq-bif, is the appropriate root of 
+
+$$
+q(d_c) = d^2_c f_u^2 + 2( 2 f_v g_u - f_u g_v) d_c + g_v^2 =0.
+$$ {#eq-dcrit}
+
+
+
+Finally, we note that using @eq-hmin, @eq-bif, the *critical wave number* can be written: 
+$$
+k_c^2 =\gamma  \frac{( d_c f_u + g_v)} { 2 d_c} = \gamma \left[ \frac {|J|}{d_c} \right]^{1/2} = \gamma \left[ \frac{f_u g_v - f_v g_u}{d_c} \right]^{1/2}. 
+$$ {#eq-kcrit}
+
+@fig-dispersion (a) shows a schematic diagram of the (quadratic) function $h(k^2)$ for three different values of the diffusion coefficient $d$: 
+
+* $d < d_c, \; h(k^2) > 0$, and there is no pattern; 
+* $d = d_c, \; h_{min} = 0$, critical case; 
+* $d > d_c, \; h(k^2) < 0$, and there is pattern. 
+
+Hence we can see from @eq-spatial_eigenvalues that whenever $h(k^2) < 0$ the curve $\lambda(k^2)$ is positive for the same range of wavenumbers that make $h(k^2)$ negative. The range of unstable wavenumbers 
+$$
+k^2_1 < k^2 < k^2_2
+$$ 
+
+can be found from the roots of @eq-hk2, $h(k^2) = 0$:
+
+$$
+\begin{aligned}
+k^2_1 &= \gamma \frac{(df_u + g_v) - \left\{ (df_u + g_v)^2 -4d |J| \right\}^{1/2} }{2d} < k^2  \\
+&< \gamma \frac{(df_u + g_v) +  \left\{ (df_u + g_v)^2 -4d |J| \right\}^{1/2}}{2d} = k^2_2 
+\end{aligned}
+$$ {#eq-k2range}
+
+@fig-dispersion (b) shows a schematic diagram of ${\mathrm Re}\lambda (k^2)$ for three different values of the diffusion coefficient $d$:
+*  $d < d_c, \; ${\mathrm Re}\lambda (k^2)$ < 0, \forall k^2 $, and there is no pattern; 
+*  $d = d_c, \; k^2_c = 0$, critical case; 
+
+The expression $\lambda = \lambda (k^2)$ is known as the *dispersion relation* and the plot of ${\mathrm Re} \lambda$ against $k^2$ is known as the *dispersion curve*. 
+
+From the previous analysis, within the unstable range of wavenumbers $(k^2_1 , k^2_2)$, ${\mathrm Re}\lambda (k^2) > 0$ has a *maximum value* at wavenumber $k^2_m$ given by @eq-hmin when $d > d_c$. This implies that there is a *fastest growing mode* in the solution @eq-vxt of our linearised system @eq-pp_4.  
+
+Recalling @eq-vxt,   
+$$
+V(x,t) = \sum_k C_k e^{\lambda(k^2) t} \, \psi_k(x),
+$$
+
+and noting the above analysis, this implies that as $t\to \infty$ the dominant contributions in the above sum are those for which ${\mathrm Re} \lambda(k^2) > 0$, since all other modes will tend to zero exponentially fast as $t\to \infty$. Thus, for large $t$, the solution is effectively given by:
+$$
+V(x,t) \approx \sum_{k_{1}}^{k_2} C_k e^{\lambda(k^2) t} \, \psi_k(x) \; .
+$$
+
 ```{python}
 #| label: fig-dispersion
-#| fig-cap: "A plot of $h(k^2)$ against k^2."
+#| fig-cap: 
+#|  - "A plot of $h(k^2)$ against $k^2$."
+#|  - "Hmm."
 #| code-fold: True
 import numpy as np
 import matplotlib.pyplot as plt
@@ -709,15 +827,15 @@ d_1=0.02
 d_2=3
 d_3=6
 
-
 f_u=0.2
 g_v=-0.5
-term1=d*f_u+g_v
 J=1.0 # positive determinant
 
 
 
 def Computeh(k_sq,d):
+  term1=d*f_u+g_v
+
   h=d*k_sq**2-gamma*(term1)*k_sq+ gamma**2*J
   return h
 
@@ -758,7 +876,6 @@ conditions_satisfied1=TestDDIconditions(d_1)
 conditions_satisfied2=TestDDIconditions(d_2)
 conditions_satisfied3=TestDDIconditions(d_3)
 
-print(conditions_satisfied1,conditions_satisfied2,conditions_satisfied3)
 
 fig, ax=plt.subplots()
 ax.plot(k_sq,h_1,'r',k_sq,h_2,'k',k_sq,h_3,'m')
@@ -782,137 +899,17 @@ plt.show()
 
 ```
 
-
-**NOTE**: From @eq-charact_pp_1, @eq-spatial_eigenvalues we can recover the characteristic equation for the spatially homogeneous perturbation when $k=0$, i.e. 
-$$
-\tilde J \Big|_{k=0} = ( \gamma J - k^2 D )\Big|_{k=0} = \gamma J.
-$$ 
-
-Thus the steady state $(u_0, v_0)$ is **unstable** to spatially heterogeneous perturbations iff
-$$
-{\mathrm Re}(\lambda_1) > 0 \quad \textrm{and/or} \quad {\mathrm Re}(\lambda_2) >0,
-$$
-where $\lambda_{1,2}$ are solutions of @eq-charact_pp_1, @eq-spatial_eigenvalues.
-
-
-Now for 
-$$
-{\mathrm Re}(\lambda_1) > 0 \quad \textrm{and/or } \quad {\mathrm Re}(\lambda_2) >0
-$$
-to be satisfied we require
-$$
-\textrm{tr}(\tilde J) > 0 \quad \textrm{ or } \quad \det(\tilde J) <0.
-$$
-
-Consider first ${\mathrm tr} (\tilde{J})$. We have
-$$
-\textrm{tr}(\tilde J) = \gamma ( f_u+ g_v) - k^2(1+d) < 0, \hspace{4 cm}  
-$$
-since $\gamma > 0$ and 
-$$ 
-f_u+ g_v < 0
-$$ 
-by the stability condition for the spatially homogeneous perturbation @eq-stable_hom.
-
-Thus instability to the spatially heterogeneous perturbation *can only occur* if 
-$$
-\det(\tilde J) < 0
-$$ 
-and so we require:
-$$
-\det(\tilde J) = h(k^2) = dk^4  - \gamma ( d\,  f_u + g_v) k^2 + \gamma^2 \det(J) < 0. 
-$$
-From the spatially homogeneous stability conditions @eq-stable_hom we have $\det(J) >0$. Thus $h(k^2)<0$ is possible only if 
-$$
-d f_u + g_v >0.
-$$ {#eq-stabil_cond_nes}
-
-However, once again, due to @eq-stable_hom, we have $f_u+ g_v <0$, and so we can conclude that $d\neq 1$ and $f_u$ and $g_v$ must have *opposite signs*. 
-
-Condition @eq-stabil_cond_nes is *necessary but not sufficient* to ensure $h(k^2) <0$. In order to guarantee that $h(k^2) < 0$, the minimum value $h_{min}$ must be negative. Differentiating @eq-hk2 w.r.t. $k^2$, we find that:
-
-$$
-k^2_{m} = \gamma \frac{d f_u + g_v}{2d} \;\; \Rightarrow \;\; h_{{\mathrm min}} = \gamma^2 \left[ | J | - \frac{(df_u + g_v)^2}{4d} \right].
-$$ {#eq-hmin}
-
-Thus the condition that $h(k^2) < 0$ for some $k^2$ is:
-
-$$
-\frac{(df_u + g_v)^2}{4d} > |J|.
-$$
-
-The transition from stability to instability i.e. **bifurcation**, occurs when $h_{{\mathrm min}} = 0$. From @eq-hmin, this means at bifurcation we have 
-$$
-|J| = \frac{(df_u + g_v)^2}{4d}.
-$$ {#eq-bif}
-
-For a fixed set of kinetics parameters, this means that we have a  **critical diffusion coefficient** $d_c \;(>1)$, which, after re-arranging @eq-bif, is the appropriate root of 
-
-$$
-q(d_c) = d^2_c f_u^2 + 2( 2 f_v g_u - f_u g_v) d_c + g_v^2 =0.
-$$ {#eq-dcrit}
-
-
-
-Finally, we note that using @eq-hmin, @eq-bif, the **critical wave number** can be written: 
-$$
-k_c^2 =\gamma  \frac{( d_c f_u + g_v)} { 2 d_c} = \gamma \left[ \frac {|J|}{d_c} \right]^{1/2} = \gamma \left[ \frac{f_u g_v - f_v g_u}{d_c} \right]^{1/2}. 
-$$ {#eq-kcrit}
-
-@fig-dispersion (a) shows a schematic diagram of the (quadratic) function $h(k^2)$ for three different values of the diffusion coefficient $d$: 
-
-* $d < d_c, \; h(k^2) > 0$, and there is no pattern; 
-* $d = d_c, \; h_{min} = 0$, critical case; 
-* $d > d_c, \; h(k^2) < 0$, and there is pattern. 
-
-Hence we can see from @eq-spatial_eigenvalues that whenever $h(k^2) < 0$ the curve $\lambda(k^2)$ is positive for the same range of wavenumbers that make $h(k^2)$ negative. The range of unstable wavenumbers 
-$$
-k^2_1 < k^2 < k^2_2
-$$ 
-can be found from the roots of @eq-hk2, $h(k^2) = 0$:
-
-$$
-\begin{aligned}
-k^2_1 &= \gamma \frac{(df_u + g_v) - \left\{ (df_u + g_v)^2 -4d |J| \right\}^{1/2} }{2d} < k^2  \\
-&< \gamma \frac{(df_u + g_v) +  \left\{ (df_u + g_v)^2 -4d |J| \right\}^{1/2}}{2d} = k^2_2 
-\end{aligned}
-$$ {#eq-k2range}
-
-@fig-dispersion (b) shows a schematic diagram of ${\mathrm Re}\lambda (k^2)$ for three different values of the diffusion coefficient $d$:
-*  $d < d_c, \; ${\mathrm Re}\lambda (k^2)$ < 0, \forall k^2 $, and there is no pattern; 
-*  $d = d_c, \; k^2_c = 0$, critical case; 
-
-The expression $\lambda = \lambda (k^2)$ is known as the *dispersion relation* and the plot of ${\mathrm Re} \lambda$ against $k^2$ is known as the *dispersion curve*. 
-
-From the previous analysis, within the unstable range of wavenumbers $(k^2_1 , k^2_2)$, ${\mathrm Re}\lambda (k^2) > 0$ has a *maximum value* at wavenumber $k^2_m$ given by @eq-hmin when $d > d_c$. This implies that there is a *fastest growing mode* in the solution @eq-vxt of our linearised system @eq-pp_4.  
-
-  
-
-Recalling @eq-vxt,   
-$$
-V(x,t) = \sum_k C_k e^{\lambda(k^2) t} \, \psi_k(x),
-$$
-and noting the above analysis, this implies that as $t\to \infty$ the dominant contributions in the above sum are those for which ${\mathrm Re} \lambda(k^2) > 0$, since all other modes will tend to zero exponentially fast as $t\to \infty$. Thus, for large $t$, the solution is effectively given by:
-$$
-V(x,t) \approx \sum_{k_{1}}^{k_2} C_k e^{\lambda(k^2) t} \, \psi_k(x) \; .
-$$
-
-
-%The critical value of $d=d_c$ at which the  bifurcation to instability occurs is defined by  $h_{\textrm{min}} =0$, i.e. such value of $d$ at which $h(k^2)=0$ has a double root. 
-
+%The critical value of $d=d_c$ at which the  bifurcation to instability occurs is defined by  $h_{min} =0$, i.e. such value of $d$ at which $h(k^2)=0$ has a double root. 
 
 ** include figure dispersion **
 
-
-
-
 **NOTE** 
 
-All the previous calculations concern a **linear stability analysis** carried out about a spatially homogeneous steady state of the system @eq-pp. This linear theory indicates that for $d > d_c$ there exists a finite number of **linearly unstable** spatial eigenfunctions which grow exponentially as $t \to \infty$. However, this linear theory holds only when we are close to the steady state i.e. it only holds for small perturbations. In the full **nonlinear system** the exponentially growing (unbounded) modes will eventually be bounded by the nonlinear terms and so bounded, stable spatial patterns characterised by the corresponding wavenumbers will be formed. 
+All the previous calculations concern a *linear stability analysis* carried out about a spatially homogeneous steady state of the system @eq-pp. This linear theory indicates that for $d > d_c$ there exists a finite number of *linearly unstable* spatial eigenfunctions which grow exponentially as $t \to \infty$. However, this linear theory holds only when we are close to the steady state i.e. it only holds for small perturbations. In the full *nonlinear system* the exponentially growing (unbounded) modes will eventually be bounded by the nonlinear terms and so bounded, stable spatial patterns characterised by the corresponding wavenumbers will be formed. 
 
 **Summary**
 
-We have obtained conditions for the generation of spatial patterns via systems of reaction-diffusion equations of the general form @eq-pp. Such systems involve **two chemicals or morphogens** reacting and diffusing together to generate a chemical pre-pattern that underlies a subsequent cellular pattern. The four conditions are as follows:
+We have obtained conditions for the generation of spatial patterns via systems of reaction-diffusion equations of the general form @eq-pp. Such systems involve *two chemicals or morphogens* reacting and diffusing together to generate a chemical pre-pattern that underlies a subsequent cellular pattern. The four conditions are as follows:
 
 $$
 \begin{aligned}
@@ -922,6 +919,7 @@ d f_u + g_v &> 0, \\
 (d f_u + g_v)^2 - 4d (f_u g_v - f_v g_u)^2 &< 0 , \nonumber 
 \end{aligned}
 $$ {#eq-pattern_conditions}
+
 with all partial derivatives being evaluated at the spatially homogeneous steady state $(u_0 , v_0)$. 
 
 From the first and third conditions, $d \neq 1$ and $f_u$ and $g_v$ must be of different signs. For each of the reaction kinetics mentioned here (Schnakenberg, Gierer-Meinhardt, Thomas), we have that $f_u > 0, g_v < 0$ and so this implies that $d > 1$. 

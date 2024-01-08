@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MA42002 - 8&nbsp; Linear stability analysis of a system of nonlinear ODES</title>
+<title>MA42002 - 9&nbsp; Linear stability analysis of a system of nonlinear ODES</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -75,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./NumericalMethods.html">Appendices</a></li><li class="breadcrumb-item"><a href="./linearstablityanalysis.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./NumericalMethods.html">Appendices</a></li><li class="breadcrumb-item"><a href="./linearstablityanalysis.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -166,6 +166,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./SIR_PDE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Infectious disease</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -180,13 +186,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./NumericalMethods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./linearstablityanalysis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
   </div>
 </li>
       </ul>
@@ -204,7 +210,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></h1>
 </div>
 
 
@@ -230,8 +236,8 @@ ul.task-list li input[type="checkbox"] {
 \dfrac{du_2}{dt} =G(u_1, u_2)
 \end{cases}
 \end{aligned}
-\tag{8.1}\]</span></span></p>
-<p><span class="math inline">\((u_1, u_2) = (u^\ast_1, u^\ast_2)\)</span> is the steady state of the system <a href="#eq-system_ode11">Equation&nbsp;<span class="quarto-unresolved-ref">eq-system_ode11</span></a>, i.e. <span class="math display">\[
+\tag{9.1}\]</span></span></p>
+<p><span class="math inline">\((u_1, u_2) = (u^\ast_1, u^\ast_2)\)</span> is the steady state of the system <a href="#eq-system_ode11">Equation&nbsp;<span>9.1</span></a>, i.e. <span class="math display">\[
 \dfrac{du_1}{dt} = 0
 \]</span> and <span class="math display">\[
 \dfrac{du_2}{dt} = 0
@@ -245,7 +251,7 @@ u_1(t) = u^\ast_1 + \bar u_1(t), \quad  u_2(t) = u^\ast_2 + \bar u_2(t)
 \dfrac{d(u^\ast_2+\bar u_2)}{dt} =G(u^\ast_1+u_1,u^\ast_2+\bar u_2)
 \end{cases}
 \end{aligned}
-\tag{8.2}\]</span></span></p>
+\tag{9.2}\]</span></span></p>
 <p>Then using the fact that <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span> is a steady state and applying Taylor series expansion about <span class="math inline">\(( u^\ast_1, u^\ast_2)\)</span> and assuming that<br>
 <span class="math display">\[
 \sup_{t}|\bar u_1(t)| \ll 1, \sup_{t}|\bar u_2(t)|\ll 1
@@ -258,7 +264,7 @@ u_1(t) = u^\ast_1 + \bar u_1(t), \quad  u_2(t) = u^\ast_2 + \bar u_2(t)
 +\dfrac{\partial G}{\partial u_2}(u^\ast_1, u^\ast_2) \,\bar u_2 + O(|\bar u_1|^2, |\bar u_2|^2)
 \end{cases}
 \end{aligned}
-\tag{8.3}\]</span></span></p>
+\tag{9.3}\]</span></span></p>
 <p>Thus since <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span> is a steady state, i.e.&nbsp;<span class="math inline">\(F(u^\ast_1, u^\ast_2) =0\)</span> and <span class="math inline">\(G(u^\ast_1, u^\ast_2) =0\)</span> (ignoring negligibly small higher order terms) we obtain system of linearised equations <span id="eq-system_ode14"><span class="math display">\[
 \begin{aligned}
 \begin{pmatrix}
@@ -268,13 +274,13 @@ u_1(t) = u^\ast_1 + \bar u_1(t), \quad  u_2(t) = u^\ast_2 + \bar u_2(t)
 \bar u_2
 \end{pmatrix}
 \end{aligned}
-\tag{8.4}\]</span></span> where the Jacobian matrix <span class="math inline">\(J(u^\ast_1, u^\ast_2)\)</span> is defined as <span class="math display">\[
+\tag{9.4}\]</span></span> where the Jacobian matrix <span class="math inline">\(J(u^\ast_1, u^\ast_2)\)</span> is defined as <span class="math display">\[
 J( u^\ast_1, u^\ast_2) = \begin{pmatrix}
 \dfrac{\partial F(u^\ast_1, u^\ast_2) }{\partial u_1}\; \; &amp; \dfrac{\partial F(u^\ast_1, u^\ast_2)}{\partial u_2}\\
 \dfrac{\partial G(u^\ast_1, u^\ast_2)}{\partial u_1} &amp; \dfrac{\partial G(u^\ast_1, u^\ast_2)}{\partial u_2}
 \end{pmatrix}
-\]</span> Therefore the behaviour of the nonlinear system <a href="#eq-system_ode11">Equation&nbsp;<span class="quarto-unresolved-ref">eq-system_ode11</span></a> near the steady state <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span> is determined by solutions of system of linear ODEs <a href="#eq-system_ode14">Equation&nbsp;<span class="quarto-unresolved-ref">eq-system_ode14</span></a>.</p>
-<p>Since <a href="#eq-system_ode14">Equation&nbsp;<span class="quarto-unresolved-ref">eq-system_ode14</span></a> is linear we can write the general solution of <span class="citation" data-cites="eqsystem_ode14">(<a href="#ref-eqsystem_ode14" role="doc-biblioref"><strong>eqsystem_ode14?</strong></a>)</span> <span class="math display">\[\begin{equation}
+\]</span> Therefore the behaviour of the nonlinear system <a href="#eq-system_ode11">Equation&nbsp;<span>9.1</span></a> near the steady state <span class="math inline">\((u^\ast_1, u^\ast_2)\)</span> is determined by solutions of system of linear ODEs <a href="#eq-system_ode14">Equation&nbsp;<span>9.4</span></a>.</p>
+<p>Since <a href="#eq-system_ode14">Equation&nbsp;<span>9.4</span></a> is linear we can write the general solution of <span class="citation" data-cites="eqsystem_ode14">(<a href="#ref-eqsystem_ode14" role="doc-biblioref"><strong>eqsystem_ode14?</strong></a>)</span> <span class="math display">\[\begin{equation}
 \begin{pmatrix} \bar u_1 \\
 \bar u_2
 \end{pmatrix} = e^{\lambda_1 t} \begin{pmatrix} \phi_1 \\
@@ -561,7 +567,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./NumericalMethods.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

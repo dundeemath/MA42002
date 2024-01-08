@@ -220,6 +220,12 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./SIR_PDE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Infectious disease</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -234,13 +240,13 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./NumericalMethods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./linearstablityanalysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear stability analysis of a system of nonlinear ODES</span></span></a>
   </div>
 </li>
       </ul>
@@ -306,7 +312,7 @@ div.csl-indent {
 u(x,0) =u_0(x).
 \]</span></p>
 <p>This is known as <strong>the Fisher equation</strong>, and was introduced by Fisher in <span class="math inline">\(1937\)</span> (<span class="citation" data-cites="fisher1937wave"><span>“The Wave of Advance of Advantageous Genes”</span> (<a href="#ref-fisher1937wave" role="doc-biblioref">1937</a>)</span>).</p>
-<p>We can non-dimensionalize <a href="#eq-fisher">Equation&nbsp;<span class="quarto-unresolved-ref">eq-fisher</span></a> by considering the scaling <span class="math display">\[t^\ast = \rho t, \quad  x^\ast = \sqrt{\dfrac \rho D} x, \quad  u^\ast = \displaystyle{\frac u K}.
+<p>We can non-dimensionalize <a href="#eq-fisher">Equation&nbsp;<span>3.1</span></a> by considering the scaling <span class="math display">\[t^\ast = \rho t, \quad  x^\ast = \sqrt{\dfrac \rho D} x, \quad  u^\ast = \displaystyle{\frac u K}.
 \]</span> Dropping the asteriks we obtain the non-dimensionalized Fisher equation (<strong>Exercise</strong>):</p>
 <p><span class="math display">\[
 \frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2} +   u(1-u), \qquad x\in \mathbb R, \, \, t &gt;0
@@ -315,7 +321,7 @@ u(x,0) = u_0(x).
 \tag{3.2}\]</span></span></p>
 <section id="numerical-solutions" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="numerical-solutions"><span class="header-section-number">3.1</span> Numerical solutions</h2>
-<p>In <a href="#fig-logisticpde">Figure&nbsp;<span class="quarto-unresolved-ref">fig-logisticpde</span></a> we have computed a numerical solution to <a href="#eq-fisher_1">Equation&nbsp;<span class="quarto-unresolved-ref">eq-fisher_1</span></a> together with no-flux boundary conditions. See Python code for further details. The key point to note is that the numerical solutions appear to be a <em>travelling wave</em>, at successive times the solution is translated along the <span class="math inline">\(x\)</span> axis. At long times the solution tends to <span class="math inline">\(u\sim1\)</span> (behind the wavefront). Ahead of the front, the solution is <span class="math inline">\(u\sim0\)</span>.</p>
+<p>In <a href="#fig-logisticpde">Figure&nbsp;<span>3.1</span></a> we have computed a numerical solution to <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a> together with no-flux boundary conditions. See Python code for further details. The key point to note is that the numerical solutions appear to be a <em>travelling wave</em>, at successive times the solution is translated along the <span class="math inline">\(x\)</span> axis. At long times the solution tends to <span class="math inline">\(u\sim1\)</span> (behind the wavefront). Ahead of the front, the solution is <span class="math inline">\(u\sim0\)</span>.</p>
 <ul>
 <li>Can we prove this is a travelling wave (e.g.&nbsp;the solution could be dynamic on a very slow time scale that is not captured by the numeircal solution)?</li>
 <li>Can we derived a form for the travelling wave profile?</li>
@@ -382,7 +388,7 @@ u(x,0) = u_0(x).
 </section>
 <section id="travelling-waves" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="travelling-waves"><span class="header-section-number">3.2</span> Travelling waves</h2>
-<p>It is known that the Fisher <a href="#eq-fisher_1">Equation&nbsp;<span class="quarto-unresolved-ref">eq-fisher_1</span></a> exhibits what are known as <em>travelling wave</em> solutions.</p>
+<p>It is known that the Fisher <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a> exhibits what are known as <em>travelling wave</em> solutions.</p>
 <div id="def-trwave" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 3.1 </strong></span>A travelling wave is a solution of a partial differential equation with a constant profile (shape) and a constant propagation speed.</p>
 </div>
@@ -390,15 +396,15 @@ u(x,0) = u_0(x).
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="types-of-travelling-waves"><span class="header-section-number">3.2.1</span> Types of travelling waves</h3>
 <ul>
 <li>Travelling pulse: <span class="math inline">\(u(x,t) \to a\)</span>, as <span class="math inline">\(x \to \pm \infty\)</span>.</li>
-<li>Travelling front : <span class="math inline">\(u(x,t) \to a\)</span>, as <span class="math inline">\(x \to - \infty\)</span>, <span class="math inline">\(u(x,t) \to b\)</span>, as <span class="math inline">\(x \to + \infty\)</span> and <span class="math inline">\(a\neq b\)</span> (this is what we see in <a href="#fig-logisticpde">Figure&nbsp;<span class="quarto-unresolved-ref">fig-logisticpde</span></a>)</li>
+<li>Travelling front : <span class="math inline">\(u(x,t) \to a\)</span>, as <span class="math inline">\(x \to - \infty\)</span>, <span class="math inline">\(u(x,t) \to b\)</span>, as <span class="math inline">\(x \to + \infty\)</span> and <span class="math inline">\(a\neq b\)</span> (this is what we see in <a href="#fig-logisticpde">Figure&nbsp;<span>3.1</span></a>)</li>
 <li>Travelling train: <span class="math inline">\(u(x,t)\)</span> is a periodic function in <span class="math inline">\(x\)</span>.</li>
 </ul>
 <p>A travelling wave solution of a PDE can be written in the form <span class="math inline">\(u(x,t) = W(z)\)</span>, where <span class="math inline">\(z = x - vt\)</span>. We shall consider <span class="math inline">\(v&gt;0\)</span>, which describes a wave moving from left to right.</p>
-<p>Consider first the <em>spatially uniform (homogeneous)</em> solution of <a href="#eq-fisher_1">Equation&nbsp;<span class="quarto-unresolved-ref">eq-fisher_1</span></a></p>
+<p>Consider first the <em>spatially uniform (homogeneous)</em> solution of <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a></p>
 <p><span id="eq-fisher_unif"><span class="math display">\[
 \frac{\partial u}{\partial t} =    u(1-u), \qquad   \, \, t &gt;0.
 \tag{3.3}\]</span></span></p>
-<p>Steady states of <a href="#eq-fisher_unif">Equation&nbsp;<span class="quarto-unresolved-ref">eq-fisher_unif</span></a> are <span class="math display">\[
+<p>Steady states of <a href="#eq-fisher_unif">Equation&nbsp;<span>3.3</span></a> are <span class="math display">\[
 u=u_1 =1
 \]</span> and <span class="math display">\[
 u=u_2 =0.
@@ -411,7 +417,7 @@ f(u)=u(1-u) \quad \textrm{and} \quad \frac{ df}{du}(u)= 1 - 2u.
 <p>Consider the travelling wave <em>ansatz</em><br>
 <span class="math display">\[
 u(x,t)= W(z) = W(x-vt),
-\]</span> where <span class="math inline">\(v\)</span> is a constant. Changing variables in <a href="#eq-fisher_1">Equation&nbsp;<span class="quarto-unresolved-ref">eq-fisher_1</span></a> and using <span class="math display">\[
+\]</span> where <span class="math inline">\(v\)</span> is a constant. Changing variables in <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a> and using <span class="math display">\[
 \begin{aligned}
 \frac{ \partial u}{\partial t} &amp;= \frac{ dW}{dz} \frac{\partial z}{\partial t} = - v   \frac{ dW}{dz}, \\
 \frac{ \partial u}{\partial x} &amp;= \frac{ dW}{dz} \frac{\partial z}{\partial x} =\frac{ dW}{dz}, \\
@@ -427,7 +433,7 @@ W(z) \to 0 \quad \text{ as } \quad z \to  +\infty,
 \tag{3.5}\]</span></span> and <span id="eq-tw_r"><span class="math display">\[
 W(z) \in [0,1].
 \tag{3.6}\]</span></span></p>
-<p>We can rewrite <a href="#eq-tw_eq">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq</span></a> as a system of two first order ODEs</p>
+<p>We can rewrite <a href="#eq-tw_eq">Equation&nbsp;<span>3.4</span></a> as a system of two first order ODEs</p>
 <p><span id="eq-tw_eq_2"><span class="math display">\[
 \begin{aligned}
 \frac{ dW}{dz}&amp; = P  = F(W,P), \\
@@ -437,7 +443,7 @@ W(z) \in [0,1].
 </section>
 <section id="numerical-solutions-1" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="numerical-solutions-1"><span class="header-section-number">3.2.2</span> Numerical solutions</h3>
-<p>In <a href="#fig-fishernumtravwave">Figure&nbsp;<span class="quarto-unresolved-ref">fig-fishernumtravwave</span></a> we plot the numerical solution to equations <a href="#eq-tw_eq_2">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_2</span></a> for different values of the wavespeed, <span class="math inline">\(v\)</span>. Note that when the wavespeed is too small the solution spirals in towards the origin. This solution cannot be valid as it implies that <span class="math inline">\(u&lt;0\)</span> for some <span class="math inline">\(z\)</span>.</p>
+<p>In <a href="#fig-fishernumtravwave">Figure&nbsp;<span>3.2</span></a> we plot the numerical solution to equations <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a> for different values of the wavespeed, <span class="math inline">\(v\)</span>. Note that when the wavespeed is too small the solution spirals in towards the origin. This solution cannot be valid as it implies that <span class="math inline">\(u&lt;0\)</span> for some <span class="math inline">\(z\)</span>.</p>
 <p>Note that some problem will not have a travelling wave solution. In this situation we could still make the travelling wave ansatz but this would usually result in a contradiction. In such a case this tells us that a travelling wave solution is not possible.</p>
 <div class="cell" data-execution_count="2">
 <details>
@@ -494,7 +500,7 @@ W(z) \in [0,1].
 <div id="fig-fishernumtravwave" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="nonlinearreactiondiffusion_files/figure-html/fig-fishernumtravwave-output-1.png" width="613" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.2: Proposed numerical solution of <a href="#eq-tw_eq_2">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_2</span></a> with prospective values of wavespeed <span class="math inline">\(c\)</span>.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;3.2: Proposed numerical solution of <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a> with prospective values of wavespeed <span class="math inline">\(c\)</span>.</figcaption>
 </figure>
 </div>
 </div>
@@ -502,10 +508,10 @@ W(z) \in [0,1].
 </section>
 <section id="steady-state-analysis" class="level3" data-number="3.2.3">
 <h3 data-number="3.2.3" class="anchored" data-anchor-id="steady-state-analysis"><span class="header-section-number">3.2.3</span> Steady state analysis</h3>
-<p>The steady states of <a href="#eq-tw_eq_2">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_2</span></a> are <span class="math inline">\((W_1, P_1) = (0,0)\)</span> and <span class="math inline">\((W_2, P_2) = (1,0)\)</span>.</p>
+<p>The steady states of <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a> are <span class="math inline">\((W_1, P_1) = (0,0)\)</span> and <span class="math inline">\((W_2, P_2) = (1,0)\)</span>.</p>
 <p>Using <span class="math display">\[
 \frac{dP}{dW} =  \frac{dP}{dz} \frac{dz}{dW} =\frac{ \frac{dP}{dz}}{ \frac{dW}{dz}}
-\]</span> and <a href="#eq-tw_eq_2">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_2</span></a> we can write an equation for <span class="math inline">\(P=P(W)\)</span>: <span id="eq-tw_eq_3"><span class="math display">\[
+\]</span> and <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a> we can write an equation for <span class="math inline">\(P=P(W)\)</span>: <span id="eq-tw_eq_3"><span class="math display">\[
 \frac{ dP}{dW} = - v - \frac{ W(1-W)} P,
 \tag{3.8}\]</span></span></p>
 <p>together with <span id="eq-tw_eq_3_bc"><span class="math display">\[
@@ -513,9 +519,9 @@ P(0) = 0, \quad P(1) = 0,
 \tag{3.9}\]</span></span> and <span id="eq-tw_eq_3_c"><span class="math display">\[
 P(W) &lt; 0  \quad \textrm{or} \quad   W \in (0,1).
 \tag{3.10}\]</span></span></p>
-<p>The condition <a href="#eq-tw_eq_3_c">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_3_c</span></a> is given by the form of travelling front, which we would like to show that it exists</p>
+<p>The condition <a href="#eq-tw_eq_3_c">Equation&nbsp;<span>3.10</span></a> is given by the form of travelling front, which we would like to show that it exists</p>
 <div id="lem-trwave" class="theorem lemma">
-<p><span class="theorem-title"><strong>Lemma 3.1 </strong></span>For every solution of <a href="#eq-tw_eq">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq</span></a> satisfying <a href="#eq-tw_bc">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_bc</span></a> and <a href="#eq-tw_r">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_r</span></a> we have that <span class="math inline">\(\dfrac{dW(z)}{dz} &lt;0\)</span> for all finite <span class="math inline">\(z\)</span>, i.e.&nbsp; <span class="math display">\[
+<p><span class="theorem-title"><strong>Lemma 3.1 </strong></span>For every solution of <a href="#eq-tw_eq">Equation&nbsp;<span>3.4</span></a> satisfying <a href="#eq-tw_bc">Equation&nbsp;<span>3.5</span></a> and <a href="#eq-tw_r">Equation&nbsp;<span>3.6</span></a> we have that <span class="math inline">\(\dfrac{dW(z)}{dz} &lt;0\)</span> for all finite <span class="math inline">\(z\)</span>, i.e.&nbsp; <span class="math display">\[
 P(W) &lt; 0 \quad  \mathrm{for} \quad  W \in (0,1).
 \]</span></p>
 </div>
@@ -523,20 +529,20 @@ P(W) &lt; 0 \quad  \mathrm{for} \quad  W \in (0,1).
 </section>
 <section id="connection-between-sign-of-p-and-sign-of-speed-v" class="level3" data-number="3.2.4">
 <h3 data-number="3.2.4" class="anchored" data-anchor-id="connection-between-sign-of-p-and-sign-of-speed-v"><span class="header-section-number">3.2.4</span> Connection between sign of <span class="math inline">\(P\)</span> and sign of speed <span class="math inline">\(v\)</span></h3>
-<p>Consider <a href="#eq-tw_eq_3">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_3</span></a>. Multiplying it by <span class="math inline">\(P\)</span> and integrating over <span class="math inline">\(W\)</span> from <span class="math inline">\(0\)</span> to <span class="math inline">\(1\)</span>, we obtain <span class="math display">\[
+<p>Consider <a href="#eq-tw_eq_3">Equation&nbsp;<span>3.8</span></a>. Multiplying it by <span class="math inline">\(P\)</span> and integrating over <span class="math inline">\(W\)</span> from <span class="math inline">\(0\)</span> to <span class="math inline">\(1\)</span>, we obtain <span class="math display">\[
 \int_0^1 \frac{dP}{dW}  P(W)\, dW = - v \int_0^1  P(W) dW - \int_0^1 W(1-W) dW.
-\]</span> Using conditions <a href="#eq-tw_eq_3_bc">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_3_bc</span></a> we have <span class="math display">\[
+\]</span> Using conditions <a href="#eq-tw_eq_3_bc">Equation&nbsp;<span>3.9</span></a> we have <span class="math display">\[
 \int_0^1 \frac{dP}{dW} \, P\, dW = \frac 12 \int  \frac{d}{dW} (P^2) dW = \frac 12\left( P^2(1) - P^2(0)\right) = 0,
 \]</span> and <span class="math display">\[
   v \int_0^1  P(W) dW=  - \int_0^1 W(1-W) dW &lt;0, \quad \text{ since } \int_0^1 W(1-W) dW &gt;0.
 \]</span> Thus for <span class="math inline">\(v&gt;0\)</span> we have <span class="math inline">\(P= W^\prime&lt;0\)</span> and for <span class="math inline">\(v&lt;0\)</span> we have <span class="math inline">\(P= W^\prime&gt;0\)</span>.</p>
-<p><strong>Note</strong>: <span class="math inline">\(u(x,t) = W(z)\)</span>, where <span class="math inline">\(z= x- vt\)</span> with <span class="math inline">\(v&lt;0\)</span> and <span class="math inline">\(\frac{ dW}{dz} &gt;0\)</span> will also be a travelling wave for the Fisher <a href="#eq-fisher_1">Equation&nbsp;<span class="quarto-unresolved-ref">eq-fisher_1</span></a>, i.e.&nbsp;a travelling wave front moving to the left.</p>
+<p><strong>Note</strong>: <span class="math inline">\(u(x,t) = W(z)\)</span>, where <span class="math inline">\(z= x- vt\)</span> with <span class="math inline">\(v&lt;0\)</span> and <span class="math inline">\(\frac{ dW}{dz} &gt;0\)</span> will also be a travelling wave for the Fisher <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a>, i.e.&nbsp;a travelling wave front moving to the left.</p>
 <p><strong>Note</strong>: Instead of <span class="math inline">\(z = x - vt\)</span> we can also consider <span class="math inline">\(z=x+ vt\)</span> . The sign of <span class="math inline">\(v\)</span> determines the direction of movement: If <span class="math inline">\(z = x - vt\)</span> for <span class="math inline">\(v&gt;0\)</span> we have travelling wave moving to the right and for <span class="math inline">\(v&lt;0\)</span> we have travelling wave moving to the left.</p>
 <p>If <span class="math inline">\(z = x + vt\)</span> for <span class="math inline">\(v&gt;0\)</span> we have travelling wave moving to the left and for <span class="math inline">\(v&lt;0\)</span> we have travelling wave moving to the right.</p>
 </section>
 <section id="stability-of-steady-states" class="level3" data-number="3.2.5">
 <h3 data-number="3.2.5" class="anchored" data-anchor-id="stability-of-steady-states"><span class="header-section-number">3.2.5</span> Stability of steady states</h3>
-<p>The <strong>Jacobian matrix</strong> for <a href="#eq-tw_eq_2">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_2</span></a> is given by: <span class="math display">\[
+<p>The <strong>Jacobian matrix</strong> for <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a> is given by: <span class="math display">\[
 J(W,P) = \begin{pmatrix}
 \frac{\partial F}{\partial W} &amp; \, \frac{\partial F }{\partial P}\\
 \frac{\partial G }{\partial W} &amp; \, \frac{\partial G }{\partial P}
@@ -590,7 +596,7 @@ W\\
 \]</span></p>
 <p>Consider that <span class="math display">\[
 \lambda_2^- &lt;0 &lt; \lambda_2^+  \quad \textrm{and choose} \quad W = \pm 1.
-\]</span> The eigenvectors are sketched in <a href="#fig-eigenvectors">Figure&nbsp;<span class="quarto-unresolved-ref">fig-eigenvectors</span></a>.</p>
+\]</span> The eigenvectors are sketched in <a href="#fig-eigenvectors">Figure&nbsp;<span>3.3</span></a>.</p>
 <div id="fig-eigenvectors" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="fig_4.png" class="img-fluid figure-img"></p>
@@ -634,7 +640,7 @@ T= \{ (W,P) : \, 0 \leq W \leq 1,\, \, P \leq 0, \, \,  P \geq \mu W \}
 \begin{pmatrix}
 \dfrac{ dW}{dz} \\ \\  \dfrac{dP}{dz}
 \end{pmatrix},
-\]</span> of <a href="#eq-tw_eq_2">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_2</span></a>.</p>
+\]</span> of <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a>.</p>
 <p>At <span class="math inline">\(P=0\)</span> <span class="math display">\[
 \begin{pmatrix}
 \dfrac{ dW}{dz} \\  \\ \dfrac{dP}{dz}
@@ -685,7 +691,7 @@ T= \{ (W,P) : \, 0 \leq W \leq 1,\, \, P \leq 0, \, \,  P \geq \mu W \}
 \end{pmatrix} \cdot n_3 \geq 0 \qquad \text{ at } \quad P=\mu W.
 \]</span></p>
 <p>Therefore we have shown that at the boundaries of <span class="math inline">\(T\)</span> the flow vector points in to the region <span class="math inline">\(T\)</span> and any trajectory approaching the boundaries from inside of <span class="math inline">\(T\)</span> will return to <span class="math inline">\(T\)</span> without crossing any of the boundaries of <span class="math inline">\(T\)</span>. Thus we have constructed an invariant (trapping) triangular region containing the steady states <span class="math inline">\((0,0)\)</span> and <span class="math inline">\((1,0)\)</span>.</p>
-<p>If we can show that there no other steady states or periodic solutions of the system <a href="#eq-tw_eq_2">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_2</span></a>, then a trajectory that leaves <span class="math inline">\((1,0)\)</span> must approach <span class="math inline">\((0,0)\)</span>.</p>
+<p>If we can show that there no other steady states or periodic solutions of the system <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a>, then a trajectory that leaves <span class="math inline">\((1,0)\)</span> must approach <span class="math inline">\((0,0)\)</span>.</p>
 <div id="thm-bendixson" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 3.1 </strong></span>Bendixson’s Negative Criterion, Dulac’s Negative Criterion</p>
 <p>If there exists a function <span class="math inline">\(\varphi(W,P)\)</span>, with <span class="math inline">\(\varphi \in C^1(\mathbb R^2)\)</span>, such that <span class="math display">\[
@@ -698,14 +704,14 @@ T= \{ (W,P) : \, 0 \leq W \leq 1,\, \, P \leq 0, \, \,  P \geq \mu W \}
 \end{aligned}
 \]</span> has no periodic solutions in this region.</p>
 </div>
-<p>We can apply <a href="#thm-bendixson">Theorem&nbsp;<span class="quarto-unresolved-ref">thm-bendixson</span></a> to our situation taking <span class="math inline">\(\varphi(W,P) = 1\)</span>. Then using <a href="#eq-tw_eq_2">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_2</span></a> we have <span class="math display">\[
+<p>We can apply <a href="#thm-bendixson">Theorem&nbsp;<span>3.1</span></a> to our situation taking <span class="math inline">\(\varphi(W,P) = 1\)</span>. Then using <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a> we have <span class="math display">\[
 \frac{\partial(\varphi F )}{\partial W} +  \frac{\partial(\varphi G )}{\partial P} = - v &lt; 0\; .
 \]</span> Thus we have no periodic solutions and also only two steady states <span class="math inline">\((0,0)\)</span> and <span class="math inline">\((1,0)\)</span> in the confined (invariant) simply-connected region <span class="math inline">\(T\)</span>. Therefore the trajectory that leaves <span class="math inline">\((1,0)\)</span> will approach <span class="math inline">\((0,0)\)</span>.</p>
 <p>We have therefore shown that for any <span class="math inline">\(v\geq 2\)</span> there exist a heteroclinic trajectory <span class="math inline">\(P(W)\)</span> connecting <span class="math inline">\((0,0)\)</span> and <span class="math inline">\((1,0)\)</span>.</p>
 <div id="thm-trwaveexistence" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 3.2 </strong></span>For <span class="math inline">\(P(W)\)</span> satisfying <a href="#eq-tw_eq_3">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_3</span></a>, <a href="#eq-tw_eq_3_bc">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_3_bc</span></a> and <span class="math inline">\(P(W) &lt; 0\)</span> for <span class="math inline">\(W \in (0,1)\)</span>, there exists a solution <span class="math inline">\(W(z)\)</span> of <a href="#eq-tw_eq">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq</span></a> satisfying <a href="#eq-tw_bc">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_bc</span></a> and <a href="#eq-tw_r">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_r</span></a>.</p>
+<p><span class="theorem-title"><strong>Theorem 3.2 </strong></span>For <span class="math inline">\(P(W)\)</span> satisfying <a href="#eq-tw_eq_3">Equation&nbsp;<span>3.8</span></a>, <a href="#eq-tw_eq_3_bc">Equation&nbsp;<span>3.9</span></a> and <span class="math inline">\(P(W) &lt; 0\)</span> for <span class="math inline">\(W \in (0,1)\)</span>, there exists a solution <span class="math inline">\(W(z)\)</span> of <a href="#eq-tw_eq">Equation&nbsp;<span>3.4</span></a> satisfying <a href="#eq-tw_bc">Equation&nbsp;<span>3.5</span></a> and <a href="#eq-tw_r">Equation&nbsp;<span>3.6</span></a>.</p>
 </div>
-<p>Thus for any wave speed <span class="math inline">\(v\)</span> satisfying <span class="math inline">\(v \geq 2\)</span>, we have the existence of travelling wave front <span class="math inline">\(u(x,t)= W(x- vt)\)</span> of Fisher’s equation <a href="#eq-fisher_1">Equation&nbsp;<span class="quarto-unresolved-ref">eq-fisher_1</span></a>.</p>
+<p>Thus for any wave speed <span class="math inline">\(v\)</span> satisfying <span class="math inline">\(v \geq 2\)</span>, we have the existence of travelling wave front <span class="math inline">\(u(x,t)= W(x- vt)\)</span> of Fisher’s equation <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a>.</p>
 </section>
 </section>
 <section id="initial-conditions" class="level3" data-number="3.2.7">
@@ -715,7 +721,7 @@ T= \{ (W,P) : \, 0 \leq W \leq 1,\, \, P \leq 0, \, \,  P \geq \mu W \}
 u_0(x) \geq 0, \quad \text{ with} \quad  u_0(x) = \begin{cases} 1 \, \text{ if } \, x \leq x_1, \\
 0 \, \text{ if } \, x \geq x_2,
 \end{cases}
-\]</span> where <span class="math inline">\(x_1 &lt; x_2\)</span> and <span class="math inline">\(u_0\)</span> is continuous in <span class="math inline">\([x_1, x_2]\)</span>, the solution of Fisher’s <a href="#eq-fisher_1">Equation&nbsp;<span class="quarto-unresolved-ref">eq-fisher_1</span></a> evolves to a travelling wave with minimal speed <span class="math display">\[
+\]</span> where <span class="math inline">\(x_1 &lt; x_2\)</span> and <span class="math inline">\(u_0\)</span> is continuous in <span class="math inline">\([x_1, x_2]\)</span>, the solution of Fisher’s <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a> evolves to a travelling wave with minimal speed <span class="math display">\[
 v_\text{ min} = 2 \sqrt{ \rho D}
 \]</span> and <span class="math display">\[
 u(t,x) \rightarrow 1 \quad \textrm{as} \quad x\rightarrow -\infty, \quad u(t,x) \rightarrow 0 \quad \textrm{and} \quad  x\rightarrow +\infty.
@@ -730,7 +736,7 @@ u(t,x) \rightarrow 1 \quad \textrm{as} \quad x\rightarrow -\infty, \quad u(t,x) 
 u(x,0)=u_0(x)  \qquad x\in \mathbb R,
 \]</span> where <span class="math inline">\(f(0) = f(a) = f(1)= 0\)</span> and <span class="math inline">\(0 &lt; a&lt;1\)</span>. There are three spatially uniform steady states <span class="math inline">\(u_1 =0\)</span>, <span class="math inline">\(u_2 =a\)</span>, <span class="math inline">\(u_3=1\)</span>.</p>
 <p>The stability of the steady states is given by the sign of <span class="math inline">\(f^\prime(u_j)\)</span> for <span class="math inline">\(j =1,2,3\)</span>.</p>
-<p>If we have that <span class="math inline">\(f^\prime (0) &lt; 0\)</span>, <span class="math inline">\(f^\prime(a) &gt;0\)</span> and <span class="math inline">\(f^\prime(1) &lt;0\)</span> then <span class="math inline">\(u_1=0\)</span> and <span class="math inline">\(u_3=1\)</span> are stable steady states and <span class="math inline">\(u_2 =a\)</span> is an unstable steady state of <a href="#eq-bistable">Equation&nbsp;<span class="quarto-unresolved-ref">eq-bistable</span></a>.</p>
+<p>If we have that <span class="math inline">\(f^\prime (0) &lt; 0\)</span>, <span class="math inline">\(f^\prime(a) &gt;0\)</span> and <span class="math inline">\(f^\prime(1) &lt;0\)</span> then <span class="math inline">\(u_1=0\)</span> and <span class="math inline">\(u_3=1\)</span> are stable steady states and <span class="math inline">\(u_2 =a\)</span> is an unstable steady state of <a href="#eq-bistable">Equation&nbsp;<span>3.11</span></a>.</p>
 <p>An example of such a function is <span class="math inline">\(f\)</span> is <span class="math inline">\(f=u(u-a)(1-u)\)</span> which arises in the study of nerve action potentials along nerve fibres and other problems in <strong>excitable media</strong>.</p>
 <p>The existence of two stable steady states gives rise to the name ``bistable equation’’.</p>
 </section>
@@ -826,7 +832,7 @@ u(x,0)=u_0(x)  \qquad x\in \mathbb R,
 <p><span id="eq-tw_eq_bis"><span class="math display">\[
 \frac{ d^2W}{dz^2}+  v \frac{ dW}{dz} + f(W)  = 0,  \; .
 \tag{3.12}\]</span></span></p>
-<p>We can rewrite <a href="#eq-tw_eq_bis">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_bis</span></a> as asystem of two 1st order ODEs <span id="eq-tw_eq_2_bis"><span class="math display">\[
+<p>We can rewrite <a href="#eq-tw_eq_bis">Equation&nbsp;<span>3.12</span></a> as asystem of two 1st order ODEs <span id="eq-tw_eq_2_bis"><span class="math display">\[
 \begin{aligned}
 \frac{ dW}{dz} = P = F(W,P) , \\
 \frac{ d P}{dz}= -  v P - f(W)  = G(W,P),  
@@ -834,7 +840,7 @@ u(x,0)=u_0(x)  \qquad x\in \mathbb R,
 \tag{3.13}\]</span></span></p>
 <section id="stability-of-the-steady-states" class="level3" data-number="3.5.1">
 <h3 data-number="3.5.1" class="anchored" data-anchor-id="stability-of-the-steady-states"><span class="header-section-number">3.5.1</span> Stability of the steady states</h3>
-<p>The steady states of <a href="#eq-tw_eq_2_bis">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_2_bis</span></a> are <span class="math inline">\((W_1, P_1) = (0,0)\)</span>, <span class="math inline">\((W_2, P_2) = (a,0)\)</span>, <span class="math inline">\((W_3, P_3) = (1,0)\)</span>.</p>
+<p>The steady states of <a href="#eq-tw_eq_2_bis">Equation&nbsp;<span>3.13</span></a> are <span class="math inline">\((W_1, P_1) = (0,0)\)</span>, <span class="math inline">\((W_2, P_2) = (a,0)\)</span>, <span class="math inline">\((W_3, P_3) = (1,0)\)</span>.</p>
 <p>The Jacobian matrix is given by <span class="math display">\[
 J(W,P) = \begin{pmatrix}
 \frac{\partial F}{\partial W} &amp; \, \frac{\partial F }{\partial P}\\
@@ -880,7 +886,7 @@ W\\
 </section>
 <section id="relation-between-sign-of-v-and-sign-of-intlimits_01-fu-du" class="level3" data-number="3.5.2">
 <h3 data-number="3.5.2" class="anchored" data-anchor-id="relation-between-sign-of-v-and-sign-of-intlimits_01-fu-du"><span class="header-section-number">3.5.2</span> Relation between sign of <span class="math inline">\(v\)</span> and sign of <span class="math inline">\(\int\limits_0^1 f(u) \, du\)</span></h3>
-<p>Consider <a href="#eq-tw_eq_bis">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_bis</span></a>, multiply it by <span class="math inline">\(\dfrac{dW}{dz}\)</span> and integrate over <span class="math inline">\((-\infty, + \infty)\)</span>: <span class="math display">\[
+<p>Consider <a href="#eq-tw_eq_bis">Equation&nbsp;<span>3.12</span></a>, multiply it by <span class="math inline">\(\dfrac{dW}{dz}\)</span> and integrate over <span class="math inline">\((-\infty, + \infty)\)</span>: <span class="math display">\[
 \int_{-\infty}^{+ \infty}  \dfrac{d^2W}{dz^2} \dfrac{dW}{dz} \, dz + v\int_{-\infty}^{+ \infty} \left|\dfrac{dW}{dz} \right|^2\, dz  + \int_{-\infty}^{+ \infty}f(W)\dfrac{dW}{dz} \, dz =0.
 \]</span></p>
 <p>Then <span class="math display">\[
@@ -963,7 +969,7 @@ v= \dfrac {\int\limits_{0}^{1}f(W) \, dW}{\int\limits_{-\infty}^{+ \infty} \left
 \]</span> i.e.&nbsp;<span class="math inline">\(v&gt;0\)</span>.</p>
 <ul>
 <li><p>Consider first <span class="math inline">\(v=0\)</span>.</p>
-<p>From the equations in <a href="#eq-tw_eq_2_bis">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_2_bis</span></a> and the assumptions on the function <span class="math inline">\(f\)</span> we have</p>
+<p>From the equations in <a href="#eq-tw_eq_2_bis">Equation&nbsp;<span>3.13</span></a> and the assumptions on the function <span class="math inline">\(f\)</span> we have</p>
 <ul>
 <li><p>If <span class="math inline">\(W \in (0,a)\)</span></p>
 <p>Using the fact that <span class="math inline">\(f(W) &lt;0\)</span> for <span class="math inline">\(W \in (0,a)\)</span> and <span class="math inline">\(P&lt;0\)</span> and <span class="math inline">\(v=0\)</span> we have <span class="math display">\[        
@@ -991,7 +997,7 @@ v= \dfrac {\int\limits_{0}^{1}f(W) \, dW}{\int\limits_{-\infty}^{+ \infty} \left
 <figcaption class="figure-caption">Figure&nbsp;3.8: Schematic diagram of eigenvectors.</figcaption>
 </figure>
 </div>
-<p>Now we shall compare <span class="math inline">\(P_0\)</span> and <span class="math inline">\(P_1\)</span>. For this we consider again equation <a href="#eq-tw_eq_bis">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_bis</span></a>, multiply by <span class="math inline">\(\dfrac{dW}{dz}\)</span> and integrate first over <span class="math inline">\((-\infty, z^\ast)\)</span> and then over <span class="math inline">\((z^\ast, + \infty)\)</span>, where <span class="math inline">\(z^\ast \in (-\infty, + \infty)\)</span> such that <span class="math inline">\(W(z^\ast)=a\)</span>. Then since <span class="math inline">\(v=0\)</span> we have first <span class="math display">\[    
+<p>Now we shall compare <span class="math inline">\(P_0\)</span> and <span class="math inline">\(P_1\)</span>. For this we consider again equation <a href="#eq-tw_eq_bis">Equation&nbsp;<span>3.12</span></a>, multiply by <span class="math inline">\(\dfrac{dW}{dz}\)</span> and integrate first over <span class="math inline">\((-\infty, z^\ast)\)</span> and then over <span class="math inline">\((z^\ast, + \infty)\)</span>, where <span class="math inline">\(z^\ast \in (-\infty, + \infty)\)</span> such that <span class="math inline">\(W(z^\ast)=a\)</span>. Then since <span class="math inline">\(v=0\)</span> we have first <span class="math display">\[    
     \int_{-\infty}^{z^\ast}  \dfrac{d^2W}{dz^2} \dfrac{dW}{dz} \, dz   + \int_{-\infty}^{z^\ast}f(W)\dfrac{dW}{dz} \, dz =0.
 \]</span> and <span class="math display">\[
     \frac 12\left|\dfrac{dW}{dz}\right|^2 \Big|_{z=-\infty}^{z=z^\ast}  + \int_{W(-\infty)}^{W(z^\ast)}f(W) dW=0 \; .
@@ -1016,7 +1022,7 @@ P_1 &lt; P_0 \; .
 <ul>
 <li>Consider <span class="math inline">\(v&gt;0\)</span> large.</li>
 </ul>
-<p>From the equations in <a href="#eq-tw_eq_2_bis">Equation&nbsp;<span class="quarto-unresolved-ref">eq-tw_eq_2_bis</span></a> and the assumptions on the function <span class="math inline">\(f\)</span> we have</p>
+<p>From the equations in <a href="#eq-tw_eq_2_bis">Equation&nbsp;<span>3.13</span></a> and the assumptions on the function <span class="math inline">\(f\)</span> we have</p>
 <pre><code>* If $W \in (0,a)$</code></pre>
 <p>Using the fact that <span class="math inline">\(f(W) &lt;0\)</span> for <span class="math inline">\(W \in (0,a)\)</span>, <span class="math inline">\(P&lt;0\)</span> and <span class="math inline">\(v&gt;0\)</span> we have</p>
 <p><span class="math display">\[
@@ -1052,14 +1058,14 @@ P_1 &lt; P_0 \; .
 <figcaption class="figure-caption">Figure&nbsp;3.9: Schematic diagram.</figcaption>
 </figure>
 </div>
-<p>Thus since for <span class="math inline">\(v=0\)</span> we have <span class="math inline">\(P_1 &lt; P_0\)</span> and for <span class="math inline">\(v&gt;0\)</span> we have that <span class="math inline">\(P(W)\)</span> is monotone decreasing for large <span class="math inline">\(|P|\)</span>, due to the continuity of the phase trajectories with respect to the velocity <span class="math inline">\(v\)</span> we obtain that there exists a travelling wave speed <span class="math inline">\(v_0 &gt;0\)</span> such that <span class="math inline">\(P_0= P_1\)</span> and we have a heteroclinic connection between <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((0,0)\)</span> in the phase plane. Hence for <span class="math inline">\(v=v_0\)</span> there exists a travelling wave front solution for the bistable <a href="#eq-bistable">Equation&nbsp;<span class="quarto-unresolved-ref">eq-bistable</span></a>.</p>
+<p>Thus since for <span class="math inline">\(v=0\)</span> we have <span class="math inline">\(P_1 &lt; P_0\)</span> and for <span class="math inline">\(v&gt;0\)</span> we have that <span class="math inline">\(P(W)\)</span> is monotone decreasing for large <span class="math inline">\(|P|\)</span>, due to the continuity of the phase trajectories with respect to the velocity <span class="math inline">\(v\)</span> we obtain that there exists a travelling wave speed <span class="math inline">\(v_0 &gt;0\)</span> such that <span class="math inline">\(P_0= P_1\)</span> and we have a heteroclinic connection between <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((0,0)\)</span> in the phase plane. Hence for <span class="math inline">\(v=v_0\)</span> there exists a travelling wave front solution for the bistable <a href="#eq-bistable">Equation&nbsp;<span>3.11</span></a>.</p>
 <p>We can repeat the analysis for <span class="math display">\[  
 \int\limits_{0}^{1}f(u) \, du &lt; 0
 \]</span> and obtain a travelling wave solution with <span class="math inline">\(v_0 &lt;0\)</span>.</p>
 <p>If <span class="math display">\[
 \int\limits_{0}^{1}f(u) \, du = 0,
 \]</span> then we have a standing wave with <span class="math inline">\(v=0\)</span>, since the calculations for <span class="math inline">\(P_0\)</span> and <span class="math inline">\(P_1\)</span> implies <span class="math inline">\(P_0=P_1\)</span> and there exists a heteroclinic orbit between <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((0,0)\)</span> in the phase space.</p>
-<p>Note: There exists a unique travelling wave velocity <span class="math inline">\(v\)</span> for which we have a travelling wave solution for bistable <a href="#eq-bistable">Equation&nbsp;<span class="quarto-unresolved-ref">eq-bistable</span></a>.</p>
+<p>Note: There exists a unique travelling wave velocity <span class="math inline">\(v\)</span> for which we have a travelling wave solution for bistable <a href="#eq-bistable">Equation&nbsp;<span>3.11</span></a>.</p>
 </section>
 </section>
 </section>
