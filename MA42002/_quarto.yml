@@ -6,8 +6,11 @@ book:
   author: "Philip Murray"
   date: "12/22/2023"
   repo-url: https://github.com/dundeemath/MA42002/
+  repo-actions: [issue]
 
+  cover-image: MA42002Cover.png
   downloads: pdf
+  favicon: MA42002Cover.png
 
   
 
@@ -38,6 +41,19 @@ format:
   pdf:
     documentclass: scrreprt
     echo: false
-
+    cover-image: MA42002Cover.png
+    image: MA42002Cover.png
+    toc-depth: 2
+    include-in-header:
+      - text: |
+          \usepackage{lipsum}
+          \usepackage{tikz}
+          \AtBeginDocument{\thispagestyle{empty}\begin{tikzpicture}[remember picture,overlay]
+          \node at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{MA42002Cover.png}};
+          \end{tikzpicture}\clearpage}
+          \AtEndDocument{\clearpage\thispagestyle{empty}\begin{tikzpicture}[remember picture,overlay]
+          \node at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{MA42002Cover.png}};
+          \end{tikzpicture}}
+  
 execute:
   warning: false
