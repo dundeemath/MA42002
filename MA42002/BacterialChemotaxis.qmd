@@ -1,5 +1,5 @@
 ---
-title: "Aggregation via Chemotaxis"
+title: "Aggregation via chemotaxis"
 format: html
 ---
 

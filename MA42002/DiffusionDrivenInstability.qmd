@@ -4,17 +4,29 @@ format: html
 ---
 ## Spatial Pattern Formation via Reaction-Diffusion
 
-*Insert human embryogenesis image*
-
 ### Pattern in Developmental Biology
 
-Embryology or developmental biology is that part of biology which is concerned with the formation, growth and development of the embryo from fertilization until birth. From the very moment of conception the embryo undergoes a process of dynamic change, brought about largely by cells responding to various chemical signalling cues e.g. migration, differentiation, proliferation. Figure ref{embryogenesis} shows some of the major changes in embryonic development which occur up to a few weeks after fertilization. Many of the processes occurring at this early stage are vital for the successful subsequent development of the embryo and also lay down basic structures (e.g. [somites](https://en.wikipedia.org/wiki/Somite)) that form the foundation of major body structures later on (e.g. the vertebrae of the spine)  cf. Professor Lewis Wolpert: '*It is not birth, marriage, or death, but gastrulation which is truly the most important time in your life.*'
+Embryology or developmental biology is that part of biology which is concerned with the formation, growth and development of the embryo from fertilization until birth. From the very moment of conception the embryo undergoes a process of dynamic change, brought about largely by cells responding to various chemical signalling cues e.g. migration, differentiation, proliferation. 
+
+{{< video https://www.youtube.com/watch?v=SEejivHRIbE >}}
 
 
+ Many of the processes occurring at this early stage are vital for the successful subsequent development of the embryo and also lay down basic structures (e.g. [somites](https://en.wikipedia.org/wiki/Somite)) that form the foundation of major body structures later on (e.g. the vertebrae of the spine)  
+ 
+ {{< video https://www.youtube.com/watch?v=kYZt5ygmaTA >}}
 
-There are two main theories which describe how pattern arises during embryogenesis - one is the  *Turing pre-pattern theory*, the other is the *mechano-chemical* theory. In the Turing pre-pattern theory, chemicals, or [morphogens](https://en.wikipedia.org/wiki/Morphogen), react together and, if certain conditions concerning their reaction kinetics and diffusion rates are satisfied (to be derived in the next section), then a *pre-pattern* of varying chemical concentrations is set up in the spatial domain. This means that throughout the spatial domain, the concentration levels of the chemicals will vary i.e. there will be a *heterogeneous* distribution of chemical concentrations which is known as a pre-pattern. Any cells in the domain which subsequently encounter these varying levels of morphogens will then respond by, for example, proliferating differentially throughout the domain. In this way, the domain will then contain a {spatially heterogeneous} distribution of cell densities (i.e. a cellular pattern) which have responded to the morphogen pre-pattern. This pre-pattern theory was first proposed by Alan Turing (of Enigma Code fame) in his seminal 1952 paper, *The chemical basis of morphogenesis* @turing1990chemical. This was developed in more detailed manner by Alfred Gierer and Hans Meinhardt in another ground-breaking paper in 1972, *A theory of biological pattern formation* @gierer1972theory, where they introduced the concept of activating chemicals and inhibiting chemicals. J.D. Murray then applied the theory as an explanation for the generation of patterns observed on animal coats @murray1981pre. 
+ 
+::: {.callout-note}
+## Professor Lewis Wolpert
+*It is not birth, marriage, or death, but gastrulation which is truly the most important time in your life.*
+:::
 
-In the mechano-chemical theory, cells interact with their surroundings and by exerting forces perturb their local environment. The combination of cell migration/proliferation and cell-generated forces is sufficient in certain circumstances to create a spatially heterogeneous distribution of cell densities i.e. the pattern is generated *simultaneously* with the cell migration/proliferation.  This alternative pattern formation theory was proposed by Murray and Oster @murray1984generation and is particularly appropriate for patterns generated in early embryogenesis by *mesenchymal cells* such as fibroblasts. 
+A fundamental question is: how do robust pattern emerge during ermbryo development? 
+
+
+In the Turing pre-pattern theory, chemicals, or [morphogens](https://en.wikipedia.org/wiki/Morphogen), react together and, if certain conditions concerning their reaction kinetics and diffusion rates are satisfied (to be derived in the next section), then a *pre-pattern* of varying chemical concentrations is set up in the spatial domain. This means that throughout the spatial domain, the concentration levels of the chemicals will vary i.e. there will be a *heterogeneous* distribution of chemical concentrations which is known as a pre-pattern. Any cells in the domain which subsequently encounter these varying levels of morphogens will then respond by, for example, proliferating differentially throughout the domain. In this way, the domain will then contain a spatially heterogeneous distribution of cell densities (i.e. a cellular pattern) which have responded to the morphogen pre-pattern. This pre-pattern theory was first proposed by Alan Turing (of Enigma Code fame) in his seminal 1952 paper, *The chemical basis of morphogenesis* @turing1990chemical. 
+
+In the mechano-chemical theory, cells interact with their surroundings and by exerting forces perturb their local environment. The combination of cell migration/proliferation and cell-generated forces is sufficient in certain circumstances to create a spatially heterogeneous distribution of cell densities i.e. the pattern is generated *simultaneously* with the cell migration/proliferation. This alternative pattern formation theory was proposed by Murray and Oster @murray1984generation and is particularly appropriate for patterns generated in early embryogenesis by *mesenchymal cells* such as fibroblasts. 
 
 ## Reaction-diffusion (Turing) Pre-pattern Mechanisms
 
@@ -42,7 +54,7 @@ $k_1$, $k_2$, $k_3$, $k_4$ $>0$. The term $k_3 A^2 B$ is *autocatalytic*, since 
 
 ###  Gierer and Meinhardt kinetics
 
-Gierer and Meinhardt developed a model that describes activator-inhibitor kinetics. The  total reaction rates are
+Gierer and Meinhardt @gierer1972theory developed a model that describes activator-inhibitor kinetics. The  total reaction rates are
 $$
 F(A,B) = k_1 - k_2 A + \frac{k_3 A^2}{B}, \quad G(A,B) = k_4 A^2 - k_5 B
 $$
@@ -131,10 +143,10 @@ where the parameter $d$ is the ratio of the diffusion coefficients and the param
 * $\gamma$ represents the relative strength of the reaction terms -- an increase in $\gamma$ may represent an increase in the activity of some rate-limiting step in the reaction sequence. 
 * An increase in $\gamma$ is equivalent to a decrease in the diffusion coefficient, $d$. 
 
-Note that in the case where the parameter $d > 1$, this means that the original diffusion coefficients are not equal. Specifically, in the case of the Gierer-Meinhardt activator-inhibitor system, $d >1$ implies that the inhibitor *diffuses more quickly* than the activator [$d > 1 \Rightarrow D_B > D_A$ ]. The spatial implications of this are shown in @fig_ai -- the inhibitor diffuses a greater distance than the activator, giving rise to what is known as *local activation, long-range inhibition*. 
+Note that in the case where the parameter $d > 1$, this means that the original diffusion coefficients are not equal. Specifically, in the case of the Gierer-Meinhardt activator-inhibitor system, $d >1$ implies that the inhibitor *diffuses more quickly* than the activator [$d > 1 \Rightarrow D_B > D_A$ ]. The spatial implications of this are shown in @fig-ai -- the inhibitor diffuses a greater distance than the activator, giving rise to what is known as *local activation, long-range inhibition*. 
 
 
-** Insert activator_inhibitor here **
+![Schematic diagram of activator inhibitor](activator_inhibitor.png){#fig-ai}
 
 ## Numerical solution
 
@@ -498,7 +510,7 @@ $${#eq-stable_hom}
 
 We shall be interested only in such parameter values for which conditions @eq-stable_hom are satisfied (i.e. the spatially homogeneous steady state is linearly stable in the absence of diffusion).
 
-### Stability of spatially homogeneous steady states to spatially heterogeneous: spatially dependent, perturbations
+### Stability of spatially homogeneous steady states to spatially heterogeneous perturbations
 
 We now consider perturbations about the spatially homogeneous steady state that are spatially dependent, i.e. 
 $$
@@ -792,6 +804,7 @@ k^2_1 &= \gamma \frac{(df_u + g_v) - \left\{ (df_u + g_v)^2 -4d |J| \right\}^{1/
 $$ {#eq-k2range}
 
 @fig-dispersion (b) shows a schematic diagram of ${\mathrm Re}\lambda (k^2)$ for three different values of the diffusion coefficient $d$:
+
 *  $d < d_c, \; ${\mathrm Re}\lambda (k^2)$ < 0, \forall k^2 $, and there is no pattern; 
 *  $d = d_c, \; k^2_c = 0$, critical case; 
 
@@ -812,27 +825,29 @@ $$
 ```{python}
 #| label: fig-dispersion
 #| fig-cap: 
-#|  - "A plot of $h(k^2)$ against $k^2$."
-#|  - "Hmm."
+#|  - "A plot of $h(k^2)$ plotted against $k^2$. Shaded region denotes unstable wave numbers in case of largets $d$."
+#|  - "The real part of the eigenvalue plotted against $k^2$."
 #| code-fold: True
 import numpy as np
 import matplotlib.pyplot as plt
 
 # genera
-k_sq=np.linspace(0,25,100)
+k_sq_max=35
+k_sq_min_plot=6.4
+k_sq=np.linspace(0,k_sq_max,100)
 
 
-gamma=10
-d_1=0.02
-d_2=3
-d_3=6
+# Some made up numbers for this example
+gamma=100.0
+d_1=3.0
+d_2=6.0
 
-f_u=0.2
+f_u=0.4
 g_v=-0.5
-J=1.0 # positive determinant
+J=0.1 # positive determinant
 
 
-
+# Compute h
 def Computeh(k_sq,d):
   term1=d*f_u+g_v
 
@@ -866,42 +881,41 @@ def TestDDIconditions(d):
 
 h_1=Computeh(k_sq,d_1)
 h_2=Computeh(k_sq,d_2)
-h_3=Computeh(k_sq,d_3)
 
 l_1_m, l_1_p = SolveReLambda(k_sq,d_1)
 l_2_m, l_2_p = SolveReLambda(k_sq,d_2)
-l_3_m, l_3_p = SolveReLambda(k_sq,d_3)
 
 conditions_satisfied1=TestDDIconditions(d_1)
 conditions_satisfied2=TestDDIconditions(d_2)
-conditions_satisfied3=TestDDIconditions(d_3)
 
 
 fig, ax=plt.subplots()
-ax.plot(k_sq,h_1,'r',k_sq,h_2,'k',k_sq,h_3,'m')
-plt.grid()
+ax.plot(k_sq,h_1,'r',k_sq,h_2,'k')
 ax.set_xlabel('$k^2$')
 ax.set_ylabel('$h$')
-ax.legend(['d='+str(d_1),'d='+str(d_2),'d='+str(d_3)])
+ax.legend(['d='+str(d_1),'d='+str(d_2)])
+ax.set_ylim([-1000,4000])
+ax.fill_betweenx ([-1000, 4000], [k_sq_min_plot], [25],alpha=0.2)
+ax.set_xlim([0,k_sq_max])
+
 plt.show()
 
 fig, ax=plt.subplots()
-ax.plot(k_sq,np.real(l_1_m),'r',k_sq,np.real(l_2_m),'k',k_sq,np.real(l_3_m),'m')
-ax.plot(k_sq,np.real(l_1_p),'r--',k_sq,np.real(l_2_p),'k--',k_sq,np.real(l_3_p),'m--')
+ax.plot(k_sq,np.real(l_1_m),'r',k_sq,np.real(l_2_m),'k')
+ax.plot(k_sq,np.real(l_1_p),'r--',k_sq,np.real(l_2_p),'k--')
 
 plt.grid()
 ax.set_xlabel('$k^2$')
-ax.set_ylabel('$\Re{\lambda}$')
-ax.set_ylim([-20,5])
+ax.set_ylabel('$\Re\{\lambda\}$')
+ax.set_ylim([-100,25])
+ax.fill_betweenx ([-100, 5], [k_sq_min_plot], [25],alpha=0.2)
+ax.set_xlim([0,k_sq_max])
 
-ax.legend(['d='+str(d_1),'d='+str(d_2),'d='+str(d_3)])
+ax.legend(['d='+str(d_1),'d='+str(d_2)])
 plt.show()
 
 ```
 
-%The critical value of $d=d_c$ at which the  bifurcation to instability occurs is defined by  $h_{min} =0$, i.e. such value of $d$ at which $h(k^2)=0$ has a double root. 
-
-** include figure dispersion **
 
 **NOTE** 
 
