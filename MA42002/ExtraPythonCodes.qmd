@@ -1,0 +1,20 @@
+
+
+
+```{python}
+
+from moviepy.editor
+from moviepy.editor import VideoFileClip
+
+import os
+os.environ["FFMPEG_BINARY"] = "~/Applications/ffmpeg"
+
+
+
+videoClip = VideoFileClip("COVID-19_England.gif")
+videoClip.write_mp4("COVID-19_England.mp4")
+
+
+
+
+```

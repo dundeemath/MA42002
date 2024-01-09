@@ -235,7 +235,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>Mathematical modelling of infectious diseases can help to understand complex (nonlinear) interactions, to design vaccination strategies, predict further outbreaks of diseases, how many individual will be affected.</p>
-<p><img src="COVID-19_England.gif" class="img-fluid"></p>
+<!--
+![](COVID-19_England.gif)
+-->
 <p>During the Covid-19 pandemic variants of the SIR ODE model were used to study disease transmission. One limitation of the SIR model is that it assumes a well-mixed population. In reality, infectious disease transmission is a spatio-tempral process.</p>
 <section id="generalising-the-sir-model" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="generalising-the-sir-model"><span class="header-section-number">7.1</span> Generalising the SIR model</h2>
@@ -265,10 +267,10 @@ S \longrightarrow I \longrightarrow R
 </ul>
 <p>Then a simple SIR model reads (in a long thin domain or in <span class="math inline">\(3\)</span>-dim domain with solutions in a form of planar fronts) <span id="eq-sirpde"><span class="math display">\[
 \begin{aligned}
-&amp;\frac{\partial S}{\partial t} = - r SI + D_S \frac{ \partial^2 S}{\partial x^2}\; ,  &amp;\qquad x \in \mathbb R , \; t&gt;0 \; , \\
-&amp;\frac{\partial I}{\partial t} = r SI - a I+ D_I \frac{ \partial^2 I}{\partial x^2} \; ,  &amp;\qquad x \in \mathbb R , \; t&gt;0 \; , \\
-&amp;\frac{\partial R}{\partial t} = a I + D_R \frac{ \partial^2 R}{\partial x^2} \; , &amp; \qquad x \in \mathbb R , \; t&gt;0 \; \\
-&amp;S(0,x) = S_0(x), \qquad I(0,x) = I_0(x), \quad R(0,x) = R_0(x),&amp; \qquad x \in \mathbb R \; ,
+\frac{\partial S}{\partial t} &amp;= - r SI + D_S \frac{ \partial^2 S}{\partial x^2}\; ,  \quad x \in \mathbb R ,  t&gt;0 \; , \\
+\frac{\partial I}{\partial t} &amp;= r SI - a I+ D_I \frac{ \partial^2 I}{\partial x^2} \; ,  \quad x \in \mathbb R , \; t&gt;0 \; , \\
+\frac{\partial R}{\partial t} &amp;= a I + D_R \frac{ \partial^2 R}{\partial x^2} \; ,  \quad x \in \mathbb R , \; t&gt;0 \; \\
+S(0,x) &amp;= S_0(x), \qquad I(0,x) = I_0(x), \quad R(0,x) = R_0(x), \qquad x \in \mathbb R \; ,
 \end{aligned}
 \tag{7.1}\]</span></span></p>
 <p>where</p>

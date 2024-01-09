@@ -5,12 +5,11 @@ format: html
  
  Mathematical modelling of infectious diseases can help to understand complex (nonlinear) interactions, to design vaccination strategies, predict further outbreaks of diseases, how many individual will be affected.
 
-
+<!--
 ![](COVID-19_England.gif)
-
+-->
 During the Covid-19 pandemic variants of the SIR ODE model were used to study disease transmission. One limitation of the SIR model is that it assumes a well-mixed population. In reality, infectious disease transmission is a spatio-tempral process.
  
-
 ## Generalising the SIR model
 
 Assumptions
@@ -47,10 +46,10 @@ $1/a$ measures the time spent in the infectious state.
 Then a simple SIR model reads  (in a long thin domain or in $3$-dim domain with solutions in a form of planar fronts) 
 $$
 \begin{aligned}
-&\frac{\partial S}{\partial t} = - r SI + D_S \frac{ \partial^2 S}{\partial x^2}\; ,  &\qquad x \in \mathbb R , \; t>0 \; , \\
-&\frac{\partial I}{\partial t} = r SI - a I+ D_I \frac{ \partial^2 I}{\partial x^2} \; ,  &\qquad x \in \mathbb R , \; t>0 \; , \\
-&\frac{\partial R}{\partial t} = a I + D_R \frac{ \partial^2 R}{\partial x^2} \; , & \qquad x \in \mathbb R , \; t>0 \; \\
-&S(0,x) = S_0(x), \qquad I(0,x) = I_0(x), \quad R(0,x) = R_0(x),& \qquad x \in \mathbb R \; , 
+\frac{\partial S}{\partial t} &= - r SI + D_S \frac{ \partial^2 S}{\partial x^2}\; ,  \quad x \in \mathbb R ,  t>0 \; , \\
+\frac{\partial I}{\partial t} &= r SI - a I+ D_I \frac{ \partial^2 I}{\partial x^2} \; ,  \quad x \in \mathbb R , \; t>0 \; , \\
+\frac{\partial R}{\partial t} &= a I + D_R \frac{ \partial^2 R}{\partial x^2} \; ,  \quad x \in \mathbb R , \; t>0 \; \\
+S(0,x) &= S_0(x), \qquad I(0,x) = I_0(x), \quad R(0,x) = R_0(x), \qquad x \in \mathbb R \; , 
 \end{aligned}
 $$ {#eq-sirpde}
 
@@ -392,5 +391,4 @@ $$
  0<\mu < \mu^\ast
 $$
 it is monotonic. 
- 
  
