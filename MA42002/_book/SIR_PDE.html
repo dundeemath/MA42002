@@ -208,10 +208,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#spatial-spread-of-rabies-among-foxes" id="toc-spatial-spread-of-rabies-among-foxes" class="nav-link active" data-scroll-target="#spatial-spread-of-rabies-among-foxes"><span class="header-section-number">7.1</span> Spatial spread of rabies among foxes</a>
-  <ul class="collapse">
-  <li><a href="#generalisation-of-simple-sir-model" id="toc-generalisation-of-simple-sir-model" class="nav-link" data-scroll-target="#generalisation-of-simple-sir-model"><span class="header-section-number">7.1.1</span> Generalisation of simple SIR model</a></li>
-  </ul></li>
+  <li><a href="#generalising-the-sir-model" id="toc-generalising-the-sir-model" class="nav-link active" data-scroll-target="#generalising-the-sir-model"><span class="header-section-number">7.1</span> Generalising the SIR model</a></li>
+  <li><a href="#spatial-spread-of-rabies-among-foxes" id="toc-spatial-spread-of-rabies-among-foxes" class="nav-link" data-scroll-target="#spatial-spread-of-rabies-among-foxes"><span class="header-section-number">7.2</span> Spatial spread of rabies among foxes</a></li>
+  <li><a href="#generalisation-of-simple-sir-model" id="toc-generalisation-of-simple-sir-model" class="nav-link" data-scroll-target="#generalisation-of-simple-sir-model"><span class="header-section-number">7.3</span> Generalisation of simple SIR model</a></li>
   </ul>
 </nav>
     </div>
@@ -236,37 +235,52 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>Mathematical modelling of infectious diseases can help to understand complex (nonlinear) interactions, to design vaccination strategies, predict further outbreaks of diseases, how many individual will be affected.</p>
-<p>Assumptions * Total population is constant: the duration of the epidemic is short compared to the lifetime of its hosts, so we can neglect birth and disease-unrelated death</p>
+<p><img src="COVID-19_England.gif" class="img-fluid"></p>
+<p>During the Covid-19 pandemic variants of the SIR ODE model were used to study disease transmission. One limitation of the SIR model is that it assumes a well-mixed population. In reality, infectious disease transmission is a spatio-tempral process.</p>
+<section id="generalising-the-sir-model" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="generalising-the-sir-model"><span class="header-section-number">7.1</span> Generalising the SIR model</h2>
+<p>Assumptions</p>
 <ul>
+<li><p>Total population is constant: the duration of the epidemic is short compared to the lifetime of its hosts, so we can neglect birth and disease-unrelated death</p></li>
 <li><p>Consider a disease which, after recovery, confers immunity (and/or death if lethal)</p></li>
 <li><p>Simple diffusion for spatial distribution of population</p></li>
 </ul>
-<p>Consider consider three classes of population density * <span class="math inline">\(S\)</span> – susceptibles - such that can be infected * <span class="math inline">\(I\)</span> – invectives - such that have the disease and can transmit it to susceptibles * <span class="math inline">\(R\)</span> – recovered (removed) - such that have had the disease and are immune or isolate until recovered or death (if the disease is lethal)</p>
+<p>Consider consider three categories of population</p>
+<ul>
+<li><span class="math inline">\(S\)</span> – susceptibles - can be infected</li>
+<li><span class="math inline">\(I\)</span> – invectives - have the disease and can transmit to susceptibles</li>
+<li><span class="math inline">\(R\)</span> – recovered (removed) - have had the disease and are no longer infective.</li>
+</ul>
 <p>Progress through the disease <span class="math display">\[
 S \longrightarrow I \longrightarrow R
 \]</span></p>
 <p>Model assumptions * The gain in the invectives class is at the rate proportional to the number of invectives <span class="math inline">\(I\)</span> and susceptibles <span class="math inline">\(S\)</span>, i.e.&nbsp;<span class="math inline">\(r\; I\; S\)</span>, ; <span class="math inline">\(r&gt;0\)</span>.</p>
 <ul>
-<li>The susceptibles are lost at the same rate, i.r. <span class="math inline">\(r\; I\; S\)</span>
-The rate of removal of invectives to the recovered class <span class="math inline">\(R\)</span> is proportional to the number of invectives, i.e.&nbsp;<span class="math inline">\(a\; I\)</span>, ; <span class="math inline">\(a&gt;0\)</span>.</li>
+<li>The susceptibles are lost at the same rate, i.r. <span class="math inline">\(r\; I\; S\)</span></li>
+<li>The rate of removal of invectives to the recovered class <span class="math inline">\(R\)</span> is proportional to the number of invectives, i.e.&nbsp;<span class="math inline">\(a\; I\)</span>, ; <span class="math inline">\(a&gt;0\)</span>.</li>
 </ul>
-<p>$ 1/a $ measures the time spent in the infectious state.</p>
+<p><span class="math inline">\(1/a\)</span> measures the time spent in the infectious state.</p>
 <ul>
 <li>The incubation period is short enough to be negligible: susceptibles are directly infected after coming into contact with the disease (with invectives).</li>
 </ul>
-<p>Then a simple SIR model reads (in a long thin domain or in <span class="math inline">\(3\)</span>-dim domain with solutions in a form of planar fronts) <span class="math display">\[
+<p>Then a simple SIR model reads (in a long thin domain or in <span class="math inline">\(3\)</span>-dim domain with solutions in a form of planar fronts) <span id="eq-sirpde"><span class="math display">\[
 \begin{aligned}
 &amp;\frac{\partial S}{\partial t} = - r SI + D_S \frac{ \partial^2 S}{\partial x^2}\; ,  &amp;\qquad x \in \mathbb R , \; t&gt;0 \; , \\
 &amp;\frac{\partial I}{\partial t} = r SI - a I+ D_I \frac{ \partial^2 I}{\partial x^2} \; ,  &amp;\qquad x \in \mathbb R , \; t&gt;0 \; , \\
 &amp;\frac{\partial R}{\partial t} = a I + D_R \frac{ \partial^2 R}{\partial x^2} \; , &amp; \qquad x \in \mathbb R , \; t&gt;0 \; \\
 &amp;S(0,x) = S_0(x), \qquad I(0,x) = I_0(x), \quad R(0,x) = R_0(x),&amp; \qquad x \in \mathbb R \; ,
 \end{aligned}
-\]</span></p>
-<p>where * <span class="math inline">\(a&gt;0\)</span> – removal or death rate * <span class="math inline">\(r&gt;0\)</span> – transmission or infection rate * <span class="math inline">\(D_S&gt;0\)</span>, ; <span class="math inline">\(D_I&gt;0\)</span>, ; <span class="math inline">\(D_R&gt;0\)</span> – diffusion coefficients</p>
-<p>We assume that <span class="math inline">\(S_0(x) \geq 0\)</span>, <span class="math inline">\(I_0(x) \geq 0\)</span>, <span class="math inline">\(R_0(x) \geq 0\)</span> for <span class="math inline">\(x \in \mathbb R\)</span> and obtain that solutions of <span class="math inline">\(\eqref{SIR1}\)</span> are nonnegative, i.e.&nbsp; <span class="math display">\[
+\tag{7.1}\]</span></span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(a&gt;0\)</span> – removal or death rate</li>
+<li><span class="math inline">\(r&gt;0\)</span> – transmission or infection rate</li>
+<li><span class="math inline">\(D_S&gt;0\)</span>, ; <span class="math inline">\(D_I&gt;0\)</span>, ; <span class="math inline">\(D_R&gt;0\)</span> – diffusion coefficients</li>
+</ul>
+<p>We assume that <span class="math inline">\(S_0(x) \geq 0\)</span>, <span class="math inline">\(I_0(x) \geq 0\)</span>, <span class="math inline">\(R_0(x) \geq 0\)</span> for <span class="math inline">\(x \in \mathbb R\)</span> and obtain that solutions of <a href="#eq-sirpde">Equation&nbsp;<span>7.1</span></a> are nonnegative, i.e.&nbsp; <span class="math display">\[
 S(t,x) \geq 0, \quad I(t,x) \geq 0, \quad R(t,x) \geq 0, \quad  x\in \mathbb R, \quad t &gt;0 \; .
 \]</span></p>
-<p>To analyse the model <span class="math inline">\(\eqref{SIR1}\)</span> it is sufficient to consider the first two equations, since <span class="math inline">\(R\)</span> is completely determined by <span class="math inline">\(I\)</span> and does not influence the dynamics of <span class="math inline">\(S\)</span> and <span class="math inline">\(I\)</span>.</p>
+<p>To analyse the model <a href="#eq-sirpde">Equation&nbsp;<span>7.1</span></a> it is sufficient to consider the first two equations, since <span class="math inline">\(R\)</span> is completely determined by <span class="math inline">\(I\)</span> and does not influence the dynamics of <span class="math inline">\(S\)</span> and <span class="math inline">\(I\)</span>.</p>
 <p>Considering the non-dimensionalisation <span class="math display">\[
 I^\ast = \frac I{\bar S_0} , \quad S^\ast = \frac S{\bar S_0} ,  \quad x^\ast = \left(\frac{ r \bar S_0}{D_I} \right)^{1/2} x, \quad t^\ast = r \bar S_0 t
 \]</span> we obtain ( after dropping <span class="math inline">\(`\ast'\)</span>)</p>
@@ -280,33 +294,33 @@ I^\ast = \frac I{\bar S_0} , \quad S^\ast = \frac S{\bar S_0} ,  \quad x^\ast = 
 <p>We would like to investigate the spatial spread of an epidemic wave of invectives into a uniform susceptibles population <span class="math inline">\(S_0(x) =\bar S_0\)</span>. We would like to determine conditions for existence of an epidemic wave and propagation speed.</p>
 <p>We shall assume first that <span class="math inline">\(D_S= D_I\)</span>, i.e.&nbsp;<span class="math inline">\(d=1\)</span>. Consider travelling wave solutions <span class="math display">\[
 S(t,x) = s(z), \quad I(t,x) = i(z), \quad z = x - v t, \quad v &gt;0
-\]</span> and obtain following ODEs for <span class="math inline">\(s\)</span> and <span class="math inline">\(i\)</span> <span id="eq-sit_tw"><span class="math display">\[
+\]</span> and obtain following ODEs for <span class="math inline">\(s\)</span> and <span class="math inline">\(i\)</span> <span id="eq-sir_tw"><span class="math display">\[
 \begin{aligned}
 s^{\prime \prime} + v s^\prime - i s = 0 \; , \\
 i^{\prime \prime} + v i^\prime + i s - \mu i= 0\; .
 \end{aligned}
-\tag{7.1}\]</span></span></p>
+\tag{7.2}\]</span></span></p>
 <p>We would like to analyse the existence of a travelling wave from for <span class="math inline">\(S\)</span> and travelling wave pulse for <span class="math inline">\(I\)</span>. We assume that the infection comes into susceptible population from the left.</p>
 <p>Therefore we consider the following boundary conditions for the travelling wave solutions</p>
-<p><span id="eq-sir_tw_bx"><span class="math display">\[
+<p><span id="eq-sir_tw_bc"><span class="math display">\[
 \begin{aligned}
 s(z) \to 1 \qquad  z\to + \infty, \quad \qquad  i(z) \to 0 \qquad  z\to + \infty\; ,\\
 s(z) \to \sigma \qquad  z\to - \infty, \quad \qquad  i(z) \to 0 \qquad  z\to - \infty\; ,\\
 s^\prime(z) \to 0\qquad  z\to \pm \infty, \quad \qquad i^\prime(z) \to 0 \qquad z \to \pm \infty \; ,
 \end{aligned}
-\tag{7.2}\]</span></span> where <span class="math inline">\(0 \leq \sigma &lt;1\)</span>.</p>
-<p>The steady states of <a href="#eq-sit_tw">Equation&nbsp;<span>7.1</span></a> are given by <span class="math display">\[
-is =0 , \quad i ( s- \mu) = 0  \quad \Longrightarrow \quad \ i=0, \quad s = \text{const} \; .
-\]</span> Considering boundary conditions <span class="quarto-unresolved-ref">?eq-sir_tw_bc</span> we obtain two steady states <span class="math display">\[
+\tag{7.3}\]</span></span> where <span class="math inline">\(0 \leq \sigma &lt;1\)</span>.</p>
+<p>The steady states of <a href="#eq-sir_tw">Equation&nbsp;<span>7.2</span></a> are given by <span class="math display">\[
+is =0 , \quad i ( s- \mu) = 0  \quad \Longrightarrow \quad \ i=0, \quad s = \text{const}.
+\]</span> Considering boundary conditions <a href="#eq-sir_tw_bc">Equation&nbsp;<span>7.3</span></a> we obtain two steady states <span class="math display">\[
 (s_0, i_0) = ( 1, 0), \qquad (s_0, i_0) = (\sigma, 0)
 \]</span> Hence we would like to have a heteroclinic connection between <span class="math inline">\((\sigma , 0)\)</span> and <span class="math inline">\((1,0)\)</span>.</p>
-<p>The necessary condition for existence of travelling wave solutions satisfying <span class="citation" data-cites="sir_tw">(<a href="#ref-sir_tw" role="doc-biblioref"><strong>sir_tw?</strong></a>)</span> and <span class="quarto-unresolved-ref">?eq-sir_tw_bc</span> is</p>
+<p>The necessary condition for existence of travelling wave solutions satisfying <a href="#eq-sir_tw">Equation&nbsp;<span>7.2</span></a> and <a href="#eq-sir_tw_bc">Equation&nbsp;<span>7.3</span></a> is</p>
 <p><span id="eq-cond_v_sir"><span class="math display">\[
 v \geq 2 \sqrt{ 1- \mu} \, \quad \text{ and } \quad 0 \leq \mu &lt; 1\; .  
-\tag{7.3}\]</span></span></p>
+\tag{7.4}\]</span></span></p>
 <p>In terms of original parameters we have <span class="math display">\[
 \mu = \frac a { r S_0} &lt; 1.
-\]</span> This is the necessary threshold conditions for the propagation of an epidemic wave pulse. The condition <span class="math inline">\(\eqref{cond_v_SIR}\)</span> determine also the non-dimensionalised minimal wave speed <span class="math display">\[
+\]</span> This is the necessary threshold conditions for the propagation of an epidemic wave pulse. The condition <a href="#eq-cond_v_sir">Equation&nbsp;<span>7.4</span></a> determine also the non-dimensionalised minimal wave speed <span class="math display">\[
 v^\ast_{\text{min}} = 2\sqrt{ 1- \mu}
 \]</span></p>
 <p>In dimensional terms we obtain <span class="math display">\[
@@ -317,25 +331,26 @@ v = \sqrt{ r S_0 D_I} v^\ast \quad v_{\text{min}} = 2  \sqrt{ r S_0 D_I}\sqrt{ 1
 2  \sqrt{ r S_0 D_I}\sqrt{ 1- \frac a{ r S_0} }
 \]</span></p>
 <p>We can analyse the behaviour of travelling wave solutions as <span class="math inline">\(z \to + \infty\)</span>.</p>
-<p>Linearised equation for the second equation in <span class="quarto-unresolved-ref">?eq-sir_tw</span> near <span class="math inline">\(s=1\)</span>, <span class="math inline">\(i=0\)</span>, i.e.&nbsp;as <span class="math inline">\(z \to + \infty\)</span> reads <span class="math display">\[
+<p>Linearised equation for the second equation in <a href="#eq-sir_tw">Equation&nbsp;<span>7.2</span></a> near <span class="math inline">\(s=1\)</span>, <span class="math inline">\(i=0\)</span>, i.e.&nbsp;as <span class="math inline">\(z \to + \infty\)</span> reads <span class="math display">\[
 i^{\prime \prime} + v i^\prime + i  - \mu i = 0\; .
 \]</span> Thus</p>
 <p><span id="eq-i_tw_infty"><span class="math display">\[
 i(z) \sim \exp \left(\frac 1 2 \left[ - v \pm \sqrt{ v^2 - 4(1-\mu)} \right] z \right) \quad \text{ as } z \to + \infty \; .
-\tag{7.4}\]</span></span> We can also show that the travelling wave solution <span class="math inline">\(s(z)\)</span> can not have a local maximum, since for <span class="math inline">\(s^\prime(z) = 0\)</span> first equation in <span class="quarto-unresolved-ref">?eq-sir_tw</span> implies <span class="math display">\[
+\tag{7.5}\]</span></span> We can also show that the travelling wave solution <span class="math inline">\(s(z)\)</span> can not have a local maximum, since for <span class="math inline">\(s^\prime(z) = 0\)</span> first equation in <a href="#eq-sir_tw">Equation&nbsp;<span>7.2</span></a> implies <span class="math display">\[
 s^{\prime \prime}(z) = is &gt;0,
 \]</span> which implies a local minimum. So <span class="math inline">\(s(z)\)</span> is monotone increasing.</p>
-<p>Considering linearisation of the first equation in <span class="quarto-unresolved-ref">?eq-sir_tw</span> near <span class="math inline">\(s=1\)</span>, <span class="math inline">\(i=0\)</span>, i.e.&nbsp;as <span class="math inline">\(z \to + \infty\)</span>, we obtain with <span class="math inline">\(s(z) = 1 - \tilde s(z)\)</span> <span class="math display">\[
+<p>Considering linearisation of the first equation in <a href="#eq-sir_tw">Equation&nbsp;<span>7.2</span></a> near <span class="math inline">\(s=1\)</span>, <span class="math inline">\(i=0\)</span>, i.e.&nbsp;as <span class="math inline">\(z \to + \infty\)</span>, we obtain with <span class="math inline">\(s(z) = 1 - \tilde s(z)\)</span> <span class="math display">\[
 \tilde s^{\prime \prime} + v \tilde s^{\prime} - i = 0 \; .
-\]</span> The using <a href="#eq-i_tw_infty">Equation&nbsp;<span>7.4</span></a> we can conclude that</p>
+\]</span> The using <a href="#eq-i_tw_infty">Equation&nbsp;<span>7.5</span></a> we can conclude that</p>
 <p><span id="eq-tilde_s_tw_infty"><span class="math display">\[
 \tilde s(z) \sim \exp \left(\frac 1 2 \left[ - v \pm \sqrt{ v^2 - 4(1-\mu)} \right] z \right) \quad \text{ as } z \to + \infty \; .
-\tag{7.5}\]</span></span> and</p>
+\tag{7.6}\]</span></span> and</p>
 <p><span id="eq-s_tw_infty"><span class="math display">\[
 s(z) \sim 1 - C \exp \left(\frac 1 2 \left[ - v \pm \sqrt{ v^2 - 4(1-\mu)} \right] z \right) \quad \text{ as } z \to + \infty \; .
-\tag{7.6}\]</span></span></p>
-<section id="spatial-spread-of-rabies-among-foxes" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="spatial-spread-of-rabies-among-foxes"><span class="header-section-number">7.1</span> Spatial spread of rabies among foxes</h2>
+\tag{7.7}\]</span></span></p>
+</section>
+<section id="spatial-spread-of-rabies-among-foxes" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="spatial-spread-of-rabies-among-foxes"><span class="header-section-number">7.2</span> Spatial spread of rabies among foxes</h2>
 <p>Spread of rabies is due primary to the migration of infected foxes. We assume the heathy foxes are territorial and do not travel very far, whereas rabid foxes wander over large distances.</p>
 <p>Thus we assume that <span class="math inline">\(D_S \ll D_I\)</span> and <span class="math inline">\(d= { D_S}/{D_I} \approx 0\)</span>.<br>
 <span id="eq-sir3"><span class="math display">\[
@@ -344,8 +359,8 @@ s(z) \sim 1 - C \exp \left(\frac 1 2 \left[ - v \pm \sqrt{ v^2 - 4(1-\mu)} \righ
 &amp; \frac{\partial I}{\partial t} = SI - \mu I+  \frac{ \partial^2 I}{\partial x^2} \; ,  &amp; \qquad x \in \mathbb R , \; t&gt;0 \; , \\
 &amp; S(0,x) = 1, \qquad I(0,x) = \frac{I_0}{\bar S_0},  &amp; \quad x \in \mathbb R \; ,
 \end{aligned}
-\tag{7.7}\]</span></span></p>
-<p>We shall look for travelling wave solutions of <span class="math inline">\(\eqref{SIR3}\)</span>: travelling wave front for <span class="math inline">\(S\)</span> and travelling wave pulse for <span class="math inline">\(I\)</span>. Considering <span class="math display">\[
+\tag{7.8}\]</span></span></p>
+<p>We shall look for travelling wave solutions of <a href="#eq-sir3">Equation&nbsp;<span>7.8</span></a>: travelling wave front for <span class="math inline">\(S\)</span> and travelling wave pulse for <span class="math inline">\(I\)</span>. Considering <span class="math display">\[
 S(t,x) = s(z), \quad I(t,x) = i(z), \quad z = x - v t, \quad v &gt;0
 \]</span> and obtain following ODEs for <span class="math inline">\(s\)</span> and <span class="math inline">\(i\)</span></p>
 <p><span id="eq-sir_tw_2"><span class="math display">\[
@@ -353,51 +368,61 @@ S(t,x) = s(z), \quad I(t,x) = i(z), \quad z = x - v t, \quad v &gt;0
 &amp;  v s^\prime = i s  \; , \\
 &amp; i^{\prime \prime} + v i^\prime + i s - \mu i= 0\;
 \end{aligned}
-\tag{7.8}\]</span></span> and corresponding boundary conditions</p>
+\tag{7.9}\]</span></span> and corresponding boundary conditions</p>
 <p><span id="eq-sir_tw_bc_2"><span class="math display">\[
 \begin{aligned}
 s(z) \to 1 \qquad  z\to + \infty, \quad \qquad  i(z) \to 0 \qquad  z\to + \infty\; ,\\
 s(z) \to \sigma \qquad  z\to - \infty, \quad \qquad  i(z) \to 0 \qquad  z\to - \infty\; ,\\
 s^\prime(z) \to 0\qquad  z\to \pm \infty, \quad \qquad i^\prime(z) \to 0 \qquad z \to \pm \infty \; ,
 \end{aligned}
-\tag{7.9}\]</span></span> where <span class="math inline">\(0 \leq \sigma &lt;1\)</span>.</p>
-<p>As before, the steady states of <a href="#eq-sir_tw_2">Equation&nbsp;<span>7.8</span></a> are given by <span class="math display">\[
+\tag{7.10}\]</span></span> where <span class="math inline">\(0 \leq \sigma &lt;1\)</span>.</p>
+<p>As before, the steady states of <a href="#eq-sir_tw_2">Equation&nbsp;<span>7.9</span></a> are given by <span class="math display">\[
 is =0 , \quad i ( s- \mu) = 0  \quad \Longrightarrow \quad  i=0, \quad s = \text{const} \; .
-\]</span> Considering boundary conditions <a href="#eq-sir_tw_bc_2">Equation&nbsp;<span>7.9</span></a> we obtain two steady states <span class="math display">\[
+\]</span></p>
+<p>Considering boundary conditions <a href="#eq-sir_tw_bc_2">Equation&nbsp;<span>7.10</span></a> we obtain two steady states <span class="math display">\[
 (s_0, i_0) = ( 1, 0), \qquad (s_0, i_0) = (\sigma, 0) \; .
 \]</span></p>
-<p>Linearising equations <a href="#eq-sir_tw_2">Equation&nbsp;<span>7.8</span></a> about the steady state <span class="math inline">\((1,0)\)</span> and requiring that <span class="math inline">\(i\)</span> is nonnegative we obtain, as for <span class="quarto-unresolved-ref">?eq-sir_tw</span>, the necessary conditions for existence of travelling wave solutions satisfying <a href="#eq-sir_tw_2">Equation&nbsp;<span>7.8</span></a> and <span class="citation" data-cites="sir_tw_bc_2">(<a href="#ref-sir_tw_bc_2" role="doc-biblioref"><strong>sir_tw_bc_2?</strong></a>)</span> : <span class="math display">\[
+<p>Linearising equations <a href="#eq-sir_tw_2">Equation&nbsp;<span>7.9</span></a> about the steady state <span class="math inline">\((1,0)\)</span> and requiring that <span class="math inline">\(i\)</span> is nonnegative we obtain, as for <a href="#eq-sir_tw">Equation&nbsp;<span>7.2</span></a>, the necessary conditions for existence of travelling wave solutions satisfying <a href="#eq-sir_tw_2">Equation&nbsp;<span>7.9</span></a> and <a href="#eq-sir_tw_bc_2">Equation&nbsp;<span>7.10</span></a> : <span class="math display">\[
 v \geq 2 \sqrt{ 1- \mu} \, \quad \text{ and } \quad 0 \leq \mu &lt; 1\; .  
 \]</span></p>
 <p>We can determine the relation between density of susceptibles left behind the infection pulse and the model parameters.</p>
-<p>Using first equation in <a href="#eq-sir_tw_2">Equation&nbsp;<span>7.8</span></a> in the second implies <span id="eq-sigma_1"><span class="math display">\[
+<p>Using first equation in <a href="#eq-sir_tw_2">Equation&nbsp;<span>7.9</span></a> in the second implies <span id="eq-sigma_1"><span class="math display">\[
 i^{\prime \prime} + v i^\prime + v s^\prime  - \mu i= 0\; .
-\tag{7.10}\]</span></span> Integrating with respect to <span class="math inline">\(z\)</span> yields</p>
+\tag{7.11}\]</span></span> Integrating with respect to <span class="math inline">\(z\)</span> yields</p>
 <p><span id="eq-sigma_2"><span class="math display">\[
 i^{\prime } + v i + v s  - \mu \int i\, dz = K= const\; .
-\tag{7.11}\]</span></span> Consider now ageing the first equation in <a href="#eq-sir_tw_2">Equation&nbsp;<span>7.8</span></a> <span class="math display">\[
+\tag{7.12}\]</span></span></p>
+<p>Consider now ageing the first equation in <a href="#eq-sir_tw_2">Equation&nbsp;<span>7.9</span></a> <span class="math display">\[
 i= v \frac {s^\prime} s, \quad \quad s \neq 0 \;
-\]</span> and obtain from <a href="#eq-sigma_2">Equation&nbsp;<span>7.11</span></a> <span class="math display">\[
+\]</span></p>
+<p>and obtain from <a href="#eq-sigma_2">Equation&nbsp;<span>7.12</span></a> <span class="math display">\[
 i^{\prime } + v i + v s  - v  \mu \int   \frac {s^\prime} s\, dz = K= const\; .
 \]</span> or <span id="eq-sigma_3"><span class="math display">\[
 i^{\prime } + v i + v s  - v  \mu \ln(s) = K\; .
-\tag{7.12}\]</span></span> Using now in <a href="#eq-sigma_3">Equation&nbsp;<span>7.12</span></a> boundary conditions as <span class="math inline">\(z \to + \infty\)</span>, from <a href="#eq-sir_tw_bc_2">Equation&nbsp;<span>7.9</span></a>, we can determine constant <span class="math inline">\(K\)</span>:</p>
+\tag{7.13}\]</span></span></p>
+<p>Using now in <a href="#eq-sigma_3">Equation&nbsp;<span>7.13</span></a> boundary conditions as <span class="math inline">\(z \to + \infty\)</span>, from <a href="#eq-sir_tw_bc_2">Equation&nbsp;<span>7.10</span></a>, we can determine constant <span class="math inline">\(K\)</span>:</p>
 <p><span class="math display">\[
 v    = K\; .
 \]</span> Thus we have <span id="eq-sigma_4"><span class="math display">\[
 i^{\prime } + v i + v( s  - \mu \ln(s) -1)= 0\; .
-\tag{7.13}\]</span></span> Using now in <a href="#eq-sigma_4">Equation&nbsp;<span>7.13</span></a> boundary conditions as <span class="math inline">\(z \to - \infty\)</span>, see <a href="#eq-sir_tw_bc_2">Equation&nbsp;<span>7.9</span></a>, gives</p>
+\tag{7.14}\]</span></span> Using now in <a href="#eq-sigma_4">Equation&nbsp;<span>7.14</span></a> boundary conditions as <span class="math inline">\(z \to - \infty\)</span>, see <a href="#eq-sir_tw_bc_2">Equation&nbsp;<span>7.10</span></a>, gives</p>
 <p><span class="math display">\[
 v( \sigma - \mu \ln(\sigma) -1)= 0\; .
 \]</span> and <span id="eq-sigma_5"><span class="math display">\[
 \frac{ \sigma- 1}{\ln(\sigma)} = \mu \; .
-\tag{7.14}\]</span></span> We obtain that the number of susceptibles is defined independently of the wave speed and the smaller <span class="math inline">\(\mu\)</span> corresponds to smaller <span class="math inline">\(\sigma\)</span> ( i.e.&nbsp;fever susceptibles survive infection wave). Thus <span class="math inline">\(\mu\)</span> measures how sever the epidemic is.</p>
+\tag{7.15}\]</span></span> We obtain that the number of susceptibles is defined independently of the wave speed and the smaller <span class="math inline">\(\mu\)</span> corresponds to smaller <span class="math inline">\(\sigma\)</span> ( i.e.&nbsp;fever susceptibles survive infection wave). Thus <span class="math inline">\(\mu\)</span> measures how sever the epidemic is.</p>
 <p>Considering the critical value for <span class="math inline">\(\mu =1\)</span>, which in dimensional terms means <span class="math display">\[
 \frac a { r S_0} = 1,
-\]</span> we can conclude that there exists no wave of infection * if <span class="math inline">\(S_0\)</span> is too low - density of foxes is too low in order to spread the disease,<br>
-* or if removal rate is too large - high death rate and the infection is too virulent * or if infection rate <span class="math inline">\(r\)</span> is too small - the disease is too</p>
-<section id="generalisation-of-simple-sir-model" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="generalisation-of-simple-sir-model"><span class="header-section-number">7.1.1</span> Generalisation of simple SIR model</h3>
+\]</span> we can conclude that there exists no wave of infection</p>
+<ul>
+<li>if <span class="math inline">\(S_0\)</span> is too low - density of foxes is too low in order to spread the disease,<br>
+</li>
+<li>or if removal rate is too large - high death rate and the infection is too virulent</li>
+<li>or if infection rate <span class="math inline">\(r\)</span> is too small - the disease is too</li>
+</ul>
+</section>
+<section id="generalisation-of-simple-sir-model" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="generalisation-of-simple-sir-model"><span class="header-section-number">7.3</span> Generalisation of simple SIR model</h2>
 <p>We developed a simple model for the passage of a wave of infection, however data of a spread of rabies in continental Europe looks quite different, i.e.&nbsp;comprises oscillations behind the wave front. It is likely that birth-death processes, not included in the simple model, impact dynamics of susceptibles and invectives.</p>
 <p>We generalised the simple model by considering growth of susceptibles population in a logistic manner</p>
 <p><span id="eq-sir_growth"><span class="math display">\[
@@ -406,17 +431,17 @@ v( \sigma - \mu \ln(\sigma) -1)= 0\; .
 &amp; \frac{\partial I}{\partial t} =  r SI - a I+  D_I \frac{ \partial^2 I}{\partial x^2} \; ,  &amp; \qquad x \in \mathbb R , \; t&gt;0 \; , \\
 &amp; S(0,x) = S_0, \qquad I(0,x) = I_0,  &amp; \quad x \in \mathbb R \; ,
 \end{aligned}
-\tag{7.15}\]</span></span> where <span class="math inline">\(B\)</span> is the intrinsic growth rate and <span class="math inline">\(S_0\)</span> is the carrying capacity.</p>
-<p>We can non-dimensionalize <a href="#eq-sir_growth">Equation&nbsp;<span>7.15</span></a> as before and obtain <span id="eq-sir_growth_nd"><span class="math display">\[
+\tag{7.16}\]</span></span> where <span class="math inline">\(B\)</span> is the intrinsic growth rate and <span class="math inline">\(S_0\)</span> is the carrying capacity.</p>
+<p>We can non-dimensionalize <a href="#eq-sir_growth">Equation&nbsp;<span>7.16</span></a> as before and obtain <span id="eq-sir_growth_nd"><span class="math display">\[
 \begin{aligned}
 &amp; \frac{\partial S}{\partial t} = -  SI + b S\left( 1 -  S \right) \; , &amp; \qquad x \in \mathbb R , \; t&gt;0 \; , \\
 &amp; \frac{\partial I}{\partial t} =   SI - \mu \,  I+   \frac{ \partial^2 I}{\partial x^2} \; ,  &amp; \qquad x \in \mathbb R , \; t&gt;0 \; , \\
 &amp; S(0,x) = 1, \qquad I(0,x) = I_0/S_0,  &amp; \quad x \in \mathbb R,
 \end{aligned}
-\tag{7.16}\]</span></span> where <span class="math display">\[
+\tag{7.17}\]</span></span> where <span class="math display">\[
 b= \frac{B}{r S_0}.
 \]</span></p>
-<p>Spatially homogeneous steady states of <a href="#eq-sir_growth_nd">Equation&nbsp;<span>7.16</span></a> are <span class="math inline">\((S^\ast_1, I^\ast_1) = (1,0)\)</span> and <span class="math inline">\((S^\ast_1, I^\ast_1) = (\mu, b(1-\mu))\)</span>.</p>
+<p>Spatially homogeneous steady states of <a href="#eq-sir_growth_nd">Equation&nbsp;<span>7.17</span></a> are <span class="math inline">\((S^\ast_1, I^\ast_1) = (1,0)\)</span> and <span class="math inline">\((S^\ast_1, I^\ast_1) = (\mu, b(1-\mu))\)</span>.</p>
 <p>To analyse the existence of travelling wave solutions we write equations for <span class="math inline">\(s(z)\)</span> and <span class="math inline">\(i(z)\)</span>, where <span class="math inline">\(s(z)=S(t,x)\)</span>, <span class="math inline">\(i(z) = I(t,x)\)</span> with <span class="math inline">\(z= x- vt\)</span></p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -430,12 +455,12 @@ b= \frac{B}{r S_0}.
 &amp; i^\prime = w, \\
 &amp; w^{\prime}= -  v w - i (s - \mu)\; .
 \end{aligned}
-\tag{7.17}\]</span></span> The system <a href="#eq-sir_tw_growth_2">Equation&nbsp;<span>7.17</span></a> has two stationary solutions</p>
+\tag{7.18}\]</span></span> The system <a href="#eq-sir_tw_growth_2">Equation&nbsp;<span>7.18</span></a> has two stationary solutions</p>
 <p><span class="math display">\[
 (s^\ast_1, i^\ast_1, w^\ast_1) = (1,0,0)
 \]</span> and</p>
 <p><span class="math display">\[(s^\ast_2, i^\ast_2, w^\ast_2) = (\mu, b(1-\mu),0)
-\]</span>. Considering linearisation of <a href="#eq-sir_tw_growth_2">Equation&nbsp;<span>7.17</span></a> and computing eigenvalues of the Jabocian matrix <span class="math display">\[
+\]</span>. Considering linearisation of <a href="#eq-sir_tw_growth_2">Equation&nbsp;<span>7.18</span></a> and computing eigenvalues of the Jabocian matrix <span class="math display">\[
 J(s,i,w)= \begin{pmatrix}
 \frac{i}{v} - \frac{b}{v}  + \frac{2bs}{v} &amp; \frac{s}{v} &amp; 0 \\
 0 &amp; 0 &amp; 1\\
@@ -449,10 +474,19 @@ J(s,i,w)= \begin{pmatrix}
 (s^\ast_2, i^\ast_2, w^\ast_2) = (\mu, b(1-\mu),0)
 \]</span></p>
 <p>is a stable node for <span class="math inline">\(\mu &lt; \mu^\ast\)</span> and a stable spiral (focus) for <span class="math inline">\(\mu &gt;\mu^\ast\)</span>, with some threshold value <span class="math inline">\(\mu^\ast\)</span>.</p>
-<p>Thus we can show that a travelling wave solution exists which connects two steady states <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((\mu, b(1-\mu))\)</span> and there exists a threshold <span class="math inline">\(\mu = \mu^\ast\)</span> such that for $1&gt;&gt; ^$ the approach to <span class="math inline">\((\mu, b(1-\mu))\)</span> is oscillatory, whereas for <span class="math inline">\(0&lt;\mu &lt; \mu^\ast\)</span> it is monotonic.</p>
+<p>Thus we can show that a travelling wave solution exists which connects two steady states <span class="math inline">\((1,0)\)</span> and<br>
+<span class="math display">\[
+(\mu, b(1-\mu))
+\]</span> and there exists a threshold <span class="math inline">\(\mu=\mu^\ast\)</span> such that for <span class="math display">\[
+1&gt;\mu &gt; \mu^\ast
+\]</span></p>
+<p>the approach to <span class="math display">\[
+(\mu, b(1-\mu))
+\]</span> is oscillatory, whereas for <span class="math display">\[
+0&lt;\mu &lt; \mu^\ast
+\]</span> it is monotonic.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

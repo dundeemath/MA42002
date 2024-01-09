@@ -4,8 +4,17 @@ format: html
 ---
  
  Mathematical modelling of infectious diseases can help to understand complex (nonlinear) interactions, to design vaccination strategies, predict further outbreaks of diseases, how many individual will be affected.
+
+
+![](COVID-19_England.gif)
+
+During the Covid-19 pandemic variants of the SIR ODE model were used to study disease transmission. One limitation of the SIR model is that it assumes a well-mixed population. In reality, infectious disease transmission is a spatio-tempral process.
  
- Assumptions
+
+## Generalising the SIR model
+
+Assumptions
+
 *   Total population is constant: the duration of the epidemic is short compared to the lifetime of its hosts, so we can neglect birth and disease-unrelated death
 
 *  Consider a disease which, after recovery, confers immunity (and/or death if lethal)  
@@ -13,11 +22,11 @@ format: html
 * Simple diffusion for spatial distribution of population 
 
  
- 
- Consider consider three classes of population density 
-*  $S$ -- susceptibles - such that can be infected
-*  $I$ -- invectives  - such that have the disease and can transmit it to susceptibles
-*  $R$ -- recovered (removed)  - such that have had the disease and are immune or isolate until recovered or death (if the disease is lethal) 
+Consider consider three categories of population  
+
+*  $S$ -- susceptibles - can be infected
+*  $I$ -- invectives  - have the disease and can transmit to susceptibles
+*  $R$ -- recovered (removed)  - have had the disease and are no longer infective.
  
 Progress through the disease 
 $$
@@ -28,9 +37,9 @@ Model assumptions
 * The gain in the invectives class is at the rate proportional to the number of invectives $I$ and susceptibles $S$, i.e. $r\;  I\; S$, \; $r>0$.  
 
 *  The susceptibles are lost at the same rate, i.r. $r\; I\; S$
-\item The rate of removal of invectives to the recovered class $R$ is proportional to the number of invectives, i.e. $a\; I$, \; $a>0$. 
+* The rate of removal of invectives to the recovered class $R$ is proportional to the number of invectives, i.e. $a\; I$, \; $a>0$. 
 
-$ 1/a $ measures the time spent in the infectious state.
+$1/a$ measures the time spent in the infectious state.
  
 * The incubation period is short enough to be negligible: susceptibles are directly infected after coming into contact with the disease (with invectives). 
  
@@ -43,19 +52,20 @@ $$
 &\frac{\partial R}{\partial t} = a I + D_R \frac{ \partial^2 R}{\partial x^2} \; , & \qquad x \in \mathbb R , \; t>0 \; \\
 &S(0,x) = S_0(x), \qquad I(0,x) = I_0(x), \quad R(0,x) = R_0(x),& \qquad x \in \mathbb R \; , 
 \end{aligned}
-$$
+$$ {#eq-sirpde}
 
 where
+
 *  $a>0$ -- removal or death rate 
 * $r>0$ --  transmission or infection rate 
 *  $D_S>0$, \; $D_I>0$, \; $D_R>0$ -- diffusion coefficients 
 
-We assume that $S_0(x) \geq 0$, $I_0(x) \geq 0$, $R_0(x) \geq 0$ for $x \in \mathbb R$ and obtain that  solutions of \eqref{SIR1} are nonnegative, i.e. 
+We assume that $S_0(x) \geq 0$, $I_0(x) \geq 0$, $R_0(x) \geq 0$ for $x \in \mathbb R$ and obtain that  solutions of @eq-sirpde are nonnegative, i.e. 
 $$
 S(t,x) \geq 0, \quad I(t,x) \geq 0, \quad R(t,x) \geq 0, \quad  x\in \mathbb R, \quad t >0 \; .
 $$
 
-To analyse the model \eqref{SIR1} it is sufficient to consider the first two equations, since $R$ is completely determined by $I$ and does not influence the dynamics of $S$ and $I$. 
+To analyse the model @eq-sirpde it is sufficient to consider the first two equations, since $R$ is completely determined by $I$ and does not influence the dynamics of $S$ and $I$. 
 
 
 Considering the non-dimensionalisation 
@@ -85,7 +95,7 @@ $$
 s^{\prime \prime} + v s^\prime - i s = 0 \; , \\
 i^{\prime \prime} + v i^\prime + i s - \mu i= 0\; .
 \end{aligned}
-$$ {#eq-sit_tw}
+$$ {#eq-sir_tw}
 
 We would like to analyse the existence of a travelling wave from for $S$ and travelling wave pulse for $I$.  We assume that  the infection comes into susceptible population from the left. 
 
@@ -97,13 +107,13 @@ s(z) \to 1 \qquad  z\to + \infty, \quad \qquad  i(z) \to 0 \qquad  z\to + \infty
 s(z) \to \sigma \qquad  z\to - \infty, \quad \qquad  i(z) \to 0 \qquad  z\to - \infty\; ,\\
 s^\prime(z) \to 0\qquad  z\to \pm \infty, \quad \qquad i^\prime(z) \to 0 \qquad z \to \pm \infty \; ,
 \end{aligned}
-$$ {#eq-sir_tw_bx}
+$$ {#eq-sir_tw_bc}
  where $0 \leq \sigma <1$.  
  
  
- The steady states of @eq-sit_tw are given by 
+The steady states of @eq-sir_tw are given by 
 $$
- is =0 , \quad i ( s- \mu) = 0  \quad \Longrightarrow \quad \ i=0, \quad s = \text{const} \; .
+ is =0 , \quad i ( s- \mu) = 0  \quad \Longrightarrow \quad \ i=0, \quad s = \text{const}.
 $$
 Considering boundary conditions @eq-sir_tw_bc  we obtain 
 two steady states 
@@ -112,8 +122,8 @@ $$
 $$
 Hence we would like to have a heteroclinic connection between $(\sigma , 0)$ and $(1,0)$. 
  
- The necessary condition for existence of travelling wave solutions satisfying 
-@sir_tw and @eq-sir_tw_bc is 
+The necessary condition for existence of travelling wave solutions satisfying 
+@eq-sir_tw and @eq-sir_tw_bc is 
 
 $$
  v \geq 2 \sqrt{ 1- \mu} \, \quad \text{ and } \quad 0 \leq \mu < 1\; .  
@@ -123,7 +133,7 @@ In terms of original parameters  we have
 $$
  \mu = \frac a { r S_0} < 1. 
  $$
-This is the necessary threshold conditions for the propagation of an epidemic wave pulse.  The condition \eqref{cond_v_SIR} determine also the non-dimensionalised  minimal wave speed
+This is the necessary threshold conditions for the propagation of an epidemic wave pulse.  The condition @eq-cond_v_sir determine also the non-dimensionalised  minimal wave speed
 $$
 v^\ast_{\text{min}} = 2\sqrt{ 1- \mu}
 $$
@@ -171,6 +181,9 @@ $$
  s(z) \sim 1 - C \exp \left(\frac 1 2 \left[ - v \pm \sqrt{ v^2 - 4(1-\mu)} \right] z \right) \quad \text{ as } z \to + \infty \; . 
 $$ {#eq-s_tw_infty}
 
+
+
+
 ## Spatial spread of rabies among foxes
 
 Spread of rabies is due primary to the migration of infected foxes. We assume the heathy foxes are territorial and do not travel very far, whereas rabid foxes wander over large distances.  
@@ -184,7 +197,7 @@ $$
 \end{aligned}
 $$ {#eq-sir3}
 
-We shall  look for travelling wave solutions of \eqref{SIR3}: travelling wave front for $S$ and travelling wave pulse for $I$. Considering 
+We shall  look for travelling wave solutions of @eq-sir3: travelling wave front for $S$ and travelling wave pulse for $I$. Considering 
 $$
 S(t,x) = s(z), \quad I(t,x) = i(z), \quad z = x - v t, \quad v >0
 $$
@@ -208,12 +221,11 @@ $$ {#eq-sir_tw_bc_2}
  where $0 \leq \sigma <1$.  
 
 
-
-
- As before, the steady states of @eq-sir_tw_2 are given by 
+As before, the steady states of @eq-sir_tw_2 are given by 
 $$
  is =0 , \quad i ( s- \mu) = 0  \quad \Longrightarrow \quad  i=0, \quad s = \text{const} \; .
- $$
+$$
+
 Considering boundary conditions @eq-sir_tw_bc_2 we obtain 
 two steady states 
 $$
@@ -222,7 +234,7 @@ $$
 
 Linearising equations @eq-sir_tw_2 about the steady state $(1,0)$ and requiring that $i$ is nonnegative we obtain, as for @eq-sir_tw, 
 the necessary conditions  for existence of  travelling wave solutions satisfying 
- @eq-sir_tw_2 and  @sir_tw_bc_2 :
+ @eq-sir_tw_2 and  @eq-sir_tw_bc_2 :
 $$
  v \geq 2 \sqrt{ 1- \mu} \, \quad \text{ and } \quad 0 \leq \mu < 1\; .  
 $$
@@ -239,10 +251,12 @@ Integrating with respect to $z$ yields
 $$
  i^{\prime } + v i + v s  - \mu \int i\, dz = K= const\; .
 $$ {#eq-sigma_2}
+
 Consider now ageing the first equation in @eq-sir_tw_2
 $$
 i= v \frac {s^\prime} s, \quad \quad s \neq 0 \; 
 $$
+
 and obtain from @eq-sigma_2
 $$
  i^{\prime } + v i + v s  - v  \mu \int   \frac {s^\prime} s\, dz = K= const\; .
@@ -251,6 +265,7 @@ or
 $$
  i^{\prime } + v i + v s  - v  \mu \ln(s) = K\; .
 $$ {#eq-sigma_3}
+
 Using now in @eq-sigma_3 boundary conditions as $z \to + \infty$,  from    @eq-sir_tw_bc_2,   we can determine constant $K$:
 
 $$
@@ -276,11 +291,12 @@ $$
 \frac a { r S_0} = 1, 
 $$
 we can conclude that there exists  no wave of infection 
+
 *  if $S_0$ is too low - density of foxes is too low in order to spread the disease,  
  *  or if removal rate is too large - high death rate  and the infection is too virulent
  * or if  infection rate $r$ is too small - the disease is too 
 
-### Generalisation of simple SIR model
+## Generalisation of simple SIR model
 We developed a simple model for the passage of a wave of infection,  however data of a spread of rabies in continental Europe looks quite different, i.e. comprises oscillations behind the wave front.  It is likely that  birth-death processes, not included in the simple model,  impact  dynamics of susceptibles and invectives.  
  
 We generalised the simple model by considering growth of susceptibles population in a logistic manner 
@@ -358,6 +374,23 @@ $$
 is a stable node for $\mu < \mu^\ast$ and a stable spiral (focus) for $\mu >\mu^\ast$, with some threshold value $\mu^\ast$. 
  
  Thus we can show that a travelling wave solution exists which connects two steady states 
- $(1,0)$ and  $(\mu, b(1-\mu))$ and there exists a threshold $\mu = \mu^\ast$ such that for $1>\mu > \mu^\ast $ the approach to $(\mu, b(1-\mu))$ is oscillatory, whereas for $0<\mu < \mu^\ast$ it is monotonic. 
+ $(1,0)$ and  
+ $$
+ (\mu, b(1-\mu))
+$$ 
+ and there exists a threshold $\mu=\mu^\ast$ such that for 
+$$
+ 1>\mu > \mu^\ast
+$$
+
+the approach to 
+$$
+ (\mu, b(1-\mu))
+$$ 
+ is oscillatory, whereas for 
+ $$
+ 0<\mu < \mu^\ast
+$$
+it is monotonic. 
  
  
