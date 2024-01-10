@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MA42002 - 5&nbsp; Aggregation via Chemotaxis</title>
+<title>MA42002 - 5&nbsp; Aggregation via chemotaxis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,7 +129,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html">Multi species</a></li><li class="breadcrumb-item"><a href="./BacterialChemotaxis.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Aggregation via Chemotaxis</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html">Multi species</a></li><li class="breadcrumb-item"><a href="./BacterialChemotaxis.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Aggregation via chemotaxis</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -211,7 +211,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./BacterialChemotaxis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Aggregation via Chemotaxis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Aggregation via chemotaxis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -223,7 +223,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./SIR_PDE.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Mathematical modelling of infectious disease</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Infectious disease</span></span></a>
   </div>
 </li>
       </ul>
@@ -267,14 +267,14 @@ div.csl-indent {
   <li><a href="#stability-analysis" id="toc-stability-analysis" class="nav-link" data-scroll-target="#stability-analysis"><span class="header-section-number">5.4</span> Stability Analysis</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="header-section-number">5.5</span> Exercise</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Aggregation via Chemotaxis</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Aggregation via chemotaxis</span></h1>
 </div>
 
 
@@ -291,9 +291,8 @@ div.csl-indent {
 
 <p><strong>Dictyostelium discoideum</strong> (Dicty) is a slime-mold that is widely studied experimentally as a model organism. The individual amoebae that constitute a slime-mold exhibit a range of phenomena also observed in mammalian cells e.g.&nbsp;differentiation, proliferation, migration.</p>
 <p>Under nutirent starvation conditions, Dicty cells undergo complex collective behaviours. Individual amoebae secrete a diffusible chemical, cyclic AMP or cAMP. The amoebae respond chemotactically to cAMP and begin to migrate towards regions of high cAMP concentration via <em>chemotaxis</em>. As they migrate they generate a range of intricate patterns including <em>spiral waves</em> and <em>streaming</em> aggregation patterns (e.g. <a href="#fig-dicty_spiral">Figure&nbsp;<span class="quarto-unresolved-ref">fig-dicty_spiral</span></a>).</p>
-<p>See also <a href="https://www.youtube.com/watch?v=bkVhLJLG7ug">this link to a fascinating Youtube movie of slime mold aggregation</a>. Note the aggregation between 0:35 and 0.48.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/bkVhLJLG7ug" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>In <a href="#fig-dicty_spiral">Figure&nbsp;<span class="quarto-unresolved-ref">fig-dicty_spiral</span></a> we can see stills-shot images of spiral patterns. This spirals are dynamic as can be seen <a href="https://www.youtube.com/watch?v=OX5Yiz38fgY">in this movie</a>. See spiral pattern at around 0:36.</p>
+<p>The movie below depicts slime mold aggregation. </p><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/bkVhLJLG7ug" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div> Note the aggregation between 0:35 and 0.48.<p></p>
+<p>In <a href="#fig-dicty_spiral">Figure&nbsp;<span class="quarto-unresolved-ref">fig-dicty_spiral</span></a> we can see stills-shot images of spiral patterns. This spirals are dynamic as can be seen in this movie. </p><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/OX5Yiz38fgY" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div> See spiral pattern at around 0:36.<p></p>
 <div id="fig-dicty_spiral" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="CG-14-355_F2.jpg" class="img-fluid figure-img"></p>
@@ -456,15 +455,16 @@ D_n \frac{\partial n}{\partial  x} - \chi_0 n \frac{\partial a}{\partial  x} &am
 <span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">'$x$'</span>)</span>
 <span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">'$a$'</span>)</span>
 <span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'t'</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">0</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">4</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">8</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">12</span>])])</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">0</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">4</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">8</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">12</span>])])</span>
 <span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
 <span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-bacterialchemotaxispde" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="BacterialChemotaxis_files/figure-html/fig-bacterialchemotaxispde-output-1.png" width="606" height="429" class="figure-img"></p>
+<p><img src="BacterialChemotaxis_files/figure-html/fig-bacterialchemotaxispde-output-1.png" width="661" height="468" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;5.2: Numerical solution of bacterial chemtaxis model</figcaption>
 </figure>
 </div>

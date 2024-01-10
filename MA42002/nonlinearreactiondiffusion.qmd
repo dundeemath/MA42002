@@ -2,7 +2,6 @@
 title: "Non linear reaction diffusion equations"
 format: html
 ---
-sdfg
 
 We now consider the one-dimensional diffusion equation with a non-linear reaction term of "logistic growth", to give the nonlinear  reaction-diffusion equation: 
 
