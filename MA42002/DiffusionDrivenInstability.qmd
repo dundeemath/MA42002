@@ -232,6 +232,8 @@ ax[1].set_ylabel('$v$')
 plt.legend(['t='+ str(t[0]),'t='+ str(t[4]),'t='+ str(t[8]),'t='+ str(t[12])])
 plt.xlabel('$x$')
 plt.grid()
+plt.tight_layout()
+
 plt.show()
 
 ```
@@ -377,23 +379,24 @@ ax[1,1].imshow(v_m)
 ax[0,2].imshow(u)
 ax[1,2].imshow(v)
 
-'''
-ax[0].plot(x,u[0,:],'r')
-ax[0].plot(x,u[16,:],'b')
-ax[0].plot(x,u[32,:],'m')
-ax[0].plot(x,u[48,:],'k')
-ax[0].set_xlabel('$x$')
-ax[0].set_ylabel('$u$')
+ax[0,0].set_xlabel('$x$')
+ax[0,1].set_xlabel('$x$')
+ax[0,2].set_xlabel('$x$')
+ax[1,0].set_xlabel('$x$')
+ax[1,1].set_xlabel('$x$')
+ax[1,2].set_xlabel('$x$')
 
-ax[1].plot(x, v[0,:],'r--')
-ax[1].plot(x, v[16,:],'b--')
-ax[1].plot(x, v[32,:],'m--')
-ax[1].plot(x, v[48,:],'k--')
-ax[1].set_xlabel('$x$')
-ax[1].set_ylabel('$v$')
-'''
+ax[0,0].set_ylabel('$y$')
+ax[0,1].set_ylabel('$y$')
+ax[0,2].set_ylabel('$y$')
+ax[1,0].set_ylabel('$y$')
+ax[1,1].set_ylabel('$y$')
+ax[1,2].set_ylabel('$y$')
+
 
 plt.xlabel('$x$')
+plt.tight_layout()
+
 plt.show()
 
 ```

@@ -1,0 +1,116 @@
+---
+title: "Week 1"
+author: "Philip Murray"
+format: beamer
+---
+
+# Lecture 1 
+
+## Conservation equations
+
+$$
+\begin{pmatrix}
+\text{rate of change}\\
+\text{ in the population density} 
+\end{pmatrix}
+= \begin{pmatrix}
+\text{spatial movement}
+\end{pmatrix}
++
+ \begin{pmatrix}
+ \text{birth, growth, death},\\
+ \text{production or degradation}\\
+  \text{due to chemical reactions} 
+\end{pmatrix}
+$$
+
+## Deriving spatially homogeneous models
+
+$$ 
+\begin{aligned}
+N(t+\Delta t) &=  \quad N(t)   + \quad  K N(t) \Delta t.
+\end{aligned}
+$$ {#eq-n_1}
+
+## A model for cell growth under nutrient depletion
+
+$$
+\begin{aligned}
+\frac{dN}{dt} &= K(c) N = \kappa cN,  \\
+ \frac{ dc}{dt} &= - \alpha \frac{dN}{dt} = - \alpha   \kappa c N,  
+ \end{aligned}
+$${#eq-c_1}
+
+
+## Logistic growth equation
+The last equation can be rewritten as
+$$  
+\frac{dN}{dt} = \rho  N \,  (1 - \frac N B)  \qquad \quad N(0)= N_0, 
+$$ {#eq-n_5}
+
+
+## Exercise
+
+Consider a well mixed bio reactor. 
+
+A biologist cultures an initial cell population of size $N_0$ in the bioreactor for 72 h.
+
+Cells undergo division with a period of 14 h.
+
+Each cell produces a non-degradable waste product, $W$, at rate $k_1$.
+
+When total waste levels exceed a threshold, $W^*$, cell division stops. Otherwise the cell population grows exponentially.
+
+How many cells are there at the end of the experiment?
+
+
+
+
+
+
+# Lecture 2
+
+##  The SIR model
+
+Consider the SIR model equations:
+$$
+\begin{aligned}
+\frac{d S}{ dt} &= -rIS, \\
+\frac{d I}{ dt} &= rIS - aI, \\
+\frac{d R}{ dt} &= aI.
+\end{aligned}
+$$
+
+What are the variables?
+What are the parameters?
+
+Identify an expression for the reproduction number, $R_0$.
+
+Hence explain why the condition $R_0<1$ is necessary to avoid an epidemic?
+
+##  An activator inhibitor model
+
+Consider the reqction schematic
+$$
+2A+B \rightarrow A.
+$$
+
+Assume that species A is produced at constant rate $k_1$ and degrades at rate $k_2$. 
+
+Assume that A is linearly degraded.
+
+Hence obtain the ODEs
+$$
+\begin{aligned}
+\frac{d A}{ dt} &= k_1 - k_2 A + k_3 A^2 B,  \\
+\frac{d B}{ dt} &= k_4 - k_3 A^2 B,
+\end{aligned}
+$$
+
+Identify the steady state of the ODEs.
+
+## Spatiotemporal models - derivation
+
+Deriving a conservation equation
+
+## Spatiotemporal models - fluxes

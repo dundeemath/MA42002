@@ -7,8 +7,7 @@ format: html
 
 Many biological systems are spatio-temporal, i.e. concentrations of biochemicals, densities of cells etc. depend on spatial position as well time. To describe such cases we must *relax* a major assumption that was made in Mathematical Biology I (MA32009): spatial homogeneity. We now models biological system using partial differential equations.
 
-A conservation equation is the most fundamental statement through which changes in the distribution of the density (or concentration, temperature) is described. 
-$$
+A conservation equation is the most fundamental statement through which changes in the distribution of the density (or concentration, temperature) is described. $$
 \begin{pmatrix}
 \text{rate of change}\\
 \text{ in the population density} 
@@ -50,8 +49,10 @@ Let $K$ represent the *per capita* rate of reproduction. Over a period of time, 
 \begin{aligned}
 N(t+\Delta t) &=  \quad N(t)   + \quad  K N(t) \Delta t.
 \end{aligned}
-$$ {#eq-n_1} Assuming that $N$ is differentiable, dividing @eq-n_1 by $\Delta t$ and taking the limit as $\Delta t \to 0$ $$
- \frac{dN}{dt} = K N 
+$$ {#eq-n_1}
+
+Assuming that $N$ is differentiable, dividing @eq-n_1 by $\Delta t$ and taking the limit as $\Delta t \to 0$ $$
+\frac{dN}{dt} = K N.
 $$ {#eq-n_2}
 
 Depending on the biological context, the growth rate $K$ may take several forms e.g.
@@ -59,13 +60,13 @@ Depending on the biological context, the growth rate $K$ may take several forms 
 -   $K = \textrm{constant}$
 -   $K = K(t)$ \qquad  time-dependent
 -   $K= K(N(t))$ \qquad depends on bacterial density
--   $K= K(c(t)):= \kappa c(t), \;\; (\text{with} \;\; \kappa >0 \;\; \text{a constant}$), which depends on the nutrient concentration $c(t)$ at time $t$ i.e. $K$ depends on the available resources.
+-   $K= K(c(t)):= \kappa c(t), \;\; (\text{with} \;\; \kappa >0 \;\; \text{a constant}$), which depends on the nutrient concentration $c(t)$ at time $t$.
 
 #### Logistic growth via nutrient depletion
 
 Suppose that the population growth rate depends on nutrient availability. Suppose also that nutrient levels are depleted by population growth.
 
-Let $c(t)$ represent the nutrient concentration at time, $t$. Bawed on the above assumptions we derive $$
+Let $c(t)$ represent the nutrient concentration at time, $t$. Based on the above assumptions we derive $$
 \begin{aligned}
 \frac{dN}{dt} &= K(c) N = \kappa cN,  \\
  \frac{ dc}{dt} &= - \alpha \frac{dN}{dt} = - \alpha   \kappa c N,  
@@ -75,16 +76,20 @@ N(0) = N_0 \quad \textrm{and}  \quad  c(0)= c_0.
 $$
 
 Noting the conserved quantity $$
-\frac{dN}{dt}+\frac{dc}{dt}=0,
+\alpha\frac{dN}{dt}+\frac{dc}{dt}=0,
 $$ integration yields $$
 c(t)  = - \alpha N(t) + c(0)+ \alpha N(0) = - \alpha N(t) + \beta,
-$$ {#eq-sol_c} where $\beta=c_0 +\alpha N_0$. Using @eq-sol_c in @eq-c_1 we obtain the *logistic growth* equation $$
-\frac{dN}{dt} = \kappa ( \beta- \alpha N)  N, \qquad  N(0)= N_0\quad  
-$$ {#eq-n_4} Here we have $K=K(N) = \kappa (\beta - \alpha N)$.
+$$ {#eq-sol_c}
+
+where $\beta=c_0 +\alpha N_0$. Substituting for @eq-sol_c in @eq-c_1 we obtain the *logistic growth* equation $$
+\frac{dN}{dt} = \kappa ( \beta- \alpha N)  N, \qquad  N(0)= N_0\quad,
+$$ {#eq-n_4} where $K=K(N) = \kappa (\beta - \alpha N)$.
 
 The last equation can be rewritten as $$  
 \frac{dN}{dt} = \rho  N \,  (1 - \frac N B)  \qquad \quad N(0)= N_0, 
-$$ {#eq-n_5} where $\rho = \kappa \beta$ is the **intrinsic growth rate** and $B = \frac \beta \alpha$ is the **carrying capacity**. The solution of @eq-n_5 is given by $$
+$$ {#eq-n_5}
+
+where $\rho = \kappa \beta$ is the *intrinsic growth rate* and $B = \frac \beta \alpha$ is the *carrying capacity*. The solution of @eq-n_5 is given by $$
 N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
 $$
 
@@ -96,19 +101,21 @@ $$ where $d$ is the mortality (death) rate.
 
 #### Competition
 
-The fact that individuals compete for food, habitat (i.e. space) or any limited resources, means that an increase in the net mortality of the population may be observed under crowded conditions. Hence we could obtain $$
+Consider a situation in which the *per capita* death rate increases at higher density. For example, suppose that $$
+d=d_1 N,
+$$ i.e. the mortality (death) rate is proportional to the population density. This assumption might arise in a situation where individuals compete for food, habitat (i.e. space) or any limited resources. Hence we could obtain the nonlinear ODE $$
 \frac{dN}{dt} = KN - d_1 N^2 , 
-$$ where $d=d_1N$ is the mortality (death) rate and is proportional to the population density.
+$$
 
 ### SIR Model
 
-Consider a model of infectious disease in which a population is slit into three compartments:
+Consider a model of infectious disease in which a population is split into three compartments:
 
 -   susceptible
 -   infected
 -   recovered
 
-Suppse that interaction between susceptible and infected results in infection of susceptible. Suppose also that infected people only remain infectious for a limited time.
+Suppse that when susceptible and infected individuals interact, the susceptibles become infected. Suppose also that infected people only remain infectious for a limited time.
 
 Let $S(t)$, $I(t)$ and $R(t)$ represent the population densities of susceptible, infected and recovered populations, respectively.
 
@@ -124,16 +131,18 @@ $$ where $r$ is the infection rate and $a$ is the recovery rate.
 
 ### Activator inhibitor kinetics
 
-Consider a pair of interacting biochemical species, A and B. Suppose that both A and B are produced at a constant rate and that A undergoes linear degradation. Suppose also that A and B interact $$
+Consider a pair of interacting biochemical species, A and B. Suppose that both A and B are produced at a constant rate and that A undergoes linear degradation. Suppose also that A and B interact such that $$
 2A+B \rightarrow A.
 $$
 
-Applying the law of mass action we obtain the ODEs $$
+Applying the law of mass action $$
 \begin{aligned}
 \frac{d A}{ dt} &= k_1 - k_2 A + k_3 A^2 B,  \\
 \frac{d B}{ dt} &= k_4 - k_3 A^2 B,
 \end{aligned}
-$$ where $k_1$ and $k_4$ are production rates, $k_2$ is a degradation rate and $k_3$ is the reaction rate for the A and B interaction.
+$$
+
+where $k_1$ and $k_4$ are production rates, $k_2$ is a degradation rate and $k_3$ is the reaction rate for the A and B interaction.
 
 ## Spatial movement
 
@@ -180,11 +189,11 @@ Let $x$ be the distance along the tube relative to an origin. We shall consider 
 
 We consider $S$ to be very small and $c(x,t)$ is assumed to be constant in $S$ (independent of $y$ and $z$). We also assume that $c$ is continuously differentiable with respect to $t$.
 
-The volume of $V$ is $A \Delta x$ and number of particles is given by $$
+The volume of $V$ is $A \Delta x$ and number of particles in the volume is given by $$
 \int_x^{x+\Delta x} c(\tilde x, t) \,  d \tilde x A.
 $$
 
-Then the conservation equation for the number of particles in the volume $V$ is given by $$
+Then a conservation equation for the number of particles in the volume $V$ is given by $$
 \frac{\partial}{\partial t} \int_x^{x+\Delta x} c(\tilde x, t) A d\tilde x = J(x,t) \, A  - J(x+\Delta x,t) \, A +\int_x^{x + \Delta x}  f(\tilde x, t, c(\tilde x, t))\,  A \, d \tilde x.
 $$ {#eq-concerv_01}
 
@@ -248,7 +257,7 @@ $$ {#eq-conservation_3D}
     \quad x\in \mathbb R^n,  \quad t >0.
     $$ {#eq-diff_nonlin}
 
--   Convection or Advection $$ 
+-   Convection or advection $$ 
     J = \textbf{v} c,
     $$ where $\textbf{v}$ is a velocity vector. Hence $$
     \frac{\partial}{\partial t} c(x,t) = - \nabla\cdot (\textbf{v}(x,t) c(x,t))  + f(x,t ,c),
@@ -346,7 +355,7 @@ $$
 
 ### Formulating a model
 
-The models that we will consider will comprise one or more partial differential equations together with boundary and initial conditions. The right-hand side of the PDEs willbe dervied based upon assumptions about a particular biological system under study. We will consider exploratory numerical solutions and then study qualitative behaviours of the solutions using analyses familiar from MA32009 (e.g. steady state analysis, linear stability analysis).
+The models that we will consider will comprise one or more partial differential equations together with boundary and initial conditions. The right-hand side of the PDEs will be derived based upon assumptions about a particular biological system under study. We will consider exploratory numerical solutions and then study qualitative behaviours of the solutions using analyses familiar from MA32009 (e.g. steady state analysis, linear stability analysis).
 
 We can have any combination of fluxes, depending on the biological system. For example, chemotaxis and diffusion
 
@@ -357,6 +366,20 @@ $$ {#eq-chemotaxis} which can be augmented by an equation for the (diffusible) c
 \frac{\partial}{\partial t} a = D \nabla^2 a + g(x,t ,a, c),
 \quad x\in \mathbb R^n \,  \quad t >0. 
 $$ {#eq-chemoattrac} @eq-chemotaxis and @eq-chemoattrac form a system of equations, a so-called chemotaxis system.
+
+::: callout-note
+## Checklist
+
+Depending on the problem under study, you will have to define and justify your use of the following:
+
+1.  Independent variables
+2.  Dependent variables
+3.  Domain of definition
+4.  Reaction kinetics
+5.  Fluxes
+6.  Initial conditions
+7.  Boundary conditions
+:::
 
 ### Nondimensionalization
 

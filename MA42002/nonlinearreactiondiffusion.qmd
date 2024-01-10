@@ -87,9 +87,10 @@ plt.plot(x, sol[0,:], 'r')
 plt.plot(x, sol[4,:], 'b')
 plt.plot(x, sol[8,:], 'm')
 plt.plot(x, sol[12,:], 'k')
-plt.legend(['t'+ str(t[0]),'t='+ str(t[4]),'t='+ str(t[8]),'t='+ str(t[12])])
+plt.legend(['t='+ str(t[0]),'t='+ str(t[4]),'t='+ str(t[8]),'t='+ str(t[12])])
 plt.xlabel('$x$')
 plt.grid()
+plt.tight_layout()
 plt.show()
 ```
 
@@ -199,21 +200,21 @@ z=np.linspace(1,T,N_z)
 
 u_0=[0.99,-0.0001]
 
-c_1=2.0
-c_2=8.6
-c_3=0.5
+v_1=2.0
+v_2=8.6
+v_3=0.5
 
-def fisherTrWaveODErhs(u, t, c):
+def fisherTrWaveODErhs(u, t, v):
     f=np.zeros_like(u)
     reaction=u[0]*(1-u[0]) 
 
     f[0]=u[1]
-    f[1]=-c*u[1]-reaction
+    f[1]=-v*u[1]-reaction
     return f  
 
-sol=odeint(fisherTrWaveODErhs,u_0,z, args=(c_1,))
-sol2=odeint(fisherTrWaveODErhs,u_0,z, args=(c_2,))
-sol3=odeint(fisherTrWaveODErhs,u_0,z, args=(c_3,))
+sol=odeint(fisherTrWaveODErhs,u_0,z, args=(v_1,))
+sol2=odeint(fisherTrWaveODErhs,u_0,z, args=(v_2,))
+sol3=odeint(fisherTrWaveODErhs,u_0,z, args=(v_3,))
 
 fig, ax = plt.subplots(1,2)
 ax[0].plot(sol[:,0],sol[:,1], 'r')
@@ -230,8 +231,9 @@ ax[1].set_xlim([-0.5, 100])
 
 ax[1].set_xlabel('$z$')
 ax[1].set_ylabel('$u$')
-plt.legend(['c='+str(c_1),'c='+str(c_2), 'c='+str(c_3)])
+plt.legend(['v='+str(v_1),'v='+str(v_2), 'v='+str(v_3)])
 plt.grid()
+plt.tight_layout()
 plt.show()
 
 ```
@@ -664,6 +666,8 @@ plt.plot(x, sol[30,:], 'm')
 plt.plot(x, sol[45,:], 'k')
 plt.legend(['t'+ str(t[0]),'t='+ str(t[4]),'t='+ str(t[8]),'t='+ str(t[12])])
 plt.xlabel('$x$')
+plt.ylabel('$u$')
+
 plt.grid()
 plt.show()
 
