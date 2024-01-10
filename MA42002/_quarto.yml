@@ -48,12 +48,11 @@ format:
       - text: |
           \usepackage{lipsum}
           \usepackage{tikz}
-          \AtBeginDocument{\thispagestyle{empty}\begin{tikzpicture}[remember picture,overlay]
+          \AtBeginDocument{\thispagestyle{empty}
+          \begin{tikzpicture}[remember picture,overlay]
           \node at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{MA42002Cover.png}};
           \end{tikzpicture}\clearpage}
-          \AtEndDocument{\clearpage\thispagestyle{empty}\begin{tikzpicture}[remember picture,overlay]
-          \node at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{MA42002Cover.png}};
-          \end{tikzpicture}}
+          
   
 execute:
   warning: false

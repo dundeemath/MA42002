@@ -283,7 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math display">\[
 \frac{\partial c}{\partial t} = D \nabla^2 c + f(c), \quad c \equiv c( {\mathbf{x}} , t ), \;\;  {\mathbf{x}} \in \mathbb R^n, \, \, t &gt;0.
 \]</span></p>
-<p>Such an equation is known as a <em>reaction-diffusion equation</em>, being composed of a reaction term, <span class="math inline">\(f(c)\)</span>, and a diffusion term, <span class="math inline">\(D \nabla^2 c\)</span>. Reaction-diffusion equations have many applications in biological systems e.g.&nbsp;travelling waves of invasion, pattern formation, spread of infectious diseases. For most of the remainder of the course we will consider such systems in one-space dimension i.e.&nbsp;<span class="math inline">\(x \in \mathbb R\)</span>.</p>
+<p>Such an equation is known as a <em>reaction-diffusion equation</em>, being composed of a reaction term, <span class="math inline">\(f(c)\)</span>, and a diffusion term, <span class="math inline">\(D \nabla^2 c\)</span>. Reaction-diffusion equations have many applications in biological systems e.g.&nbsp;travellng waves of invasion, pattern formation, spread of infectious diseases. For most of the remainder of the course we will consider such systems in one-space dimension i.e.&nbsp;<span class="math inline">\(x \in \mathbb R\)</span>.</p>
 <p>Consider the one-dimensional reaction-diffusion equation with constant diffusion coefficient <span class="math inline">\(D &gt; 0\)</span>: <span class="math display">\[
 \frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}  + f(c), \quad x\in \mathbb R, \, \, t &gt;0.
 \]</span></p>
@@ -293,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span id="eq-heat_eq"><span class="math display">\[
 \frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2},   \quad x\in \mathbb R, \, \, t &gt;0.
 \tag{2.1}\]</span></span> This equation is used to model the evolution of the concentration of a chemical in a long thin tube, or the temperature of a long thin rod.</p>
-<p>We assume that the initial condition for our species <span class="math inline">\(c\)</span> is located in one point <span class="math inline">\(x=0\)</span>, i.e.&nbsp; <span id="eq-heat_IC"><span class="math display">\[
+<p>We assume that the initial condition for our species <span class="math inline">\(c\)</span> is located in one point <span class="math inline">\(x=0\)</span>, i.e.&nbsp;<span id="eq-heat_IC"><span class="math display">\[
 c(x_0 , 0) = \delta_0(x)\qquad x \in \mathbb R,
 \tag{2.2}\]</span></span> where <span class="math inline">\(\delta_0\)</span> is a <strong>Dirac delta distribution</strong> (Dirac measure) satisfying <span class="math display">\[
 \int_{-\infty}^{+\infty} \delta_0(x) = 1 \quad \text{ and } \quad \int_{-\infty}^{+\infty} f(x) \delta_0(x) = f(0) , \text{ for continuous } f.

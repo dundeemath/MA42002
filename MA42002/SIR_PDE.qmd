@@ -3,6 +3,7 @@ title: "Infectious disease"
 format: html
 ---
  
+
  Mathematical modelling of infectious diseases can help to understand complex (nonlinear) interactions, to design vaccination strategies, predict further outbreaks of diseases, how many individual will be affected.
 
 <!--
@@ -33,6 +34,7 @@ S \longrightarrow I \longrightarrow R
 $$ 
 
 Model assumptions 
+
 * The gain in the invectives class is at the rate proportional to the number of invectives $I$ and susceptibles $S$, i.e. $r\;  I\; S$, \; $r>0$.  
 
 *  The susceptibles are lost at the same rate, i.r. $r\; I\; S$

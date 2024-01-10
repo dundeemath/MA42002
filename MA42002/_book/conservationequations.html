@@ -297,7 +297,7 @@ N(t+\Delta t) &amp;=  \quad N(t)   + \quad  K N(t) \Delta t.
 \tag{1.1}\]</span></span> Assuming that <span class="math inline">\(N\)</span> is differentiable, dividing <a href="#eq-n_1">Equation&nbsp;<span>1.1</span></a> by <span class="math inline">\(\Delta t\)</span> and taking the limit as <span class="math inline">\(\Delta t \to 0\)</span> <span id="eq-n_2"><span class="math display">\[
 \frac{dN}{dt} = K N
 \tag{1.2}\]</span></span></p>
-<p>Depending on the biological context, the growth rate <span class="math inline">\(K\)</span> may take several forms e.g.&nbsp;</p>
+<p>Depending on the biological context, the growth rate <span class="math inline">\(K\)</span> may take several forms e.g.</p>
 <ul>
 <li><span class="math inline">\(K = \textrm{constant}\)</span></li>
 <li><span class="math inline">\(K = K(t)\)</span> time-dependent</li>
@@ -307,7 +307,7 @@ N(t+\Delta t) &amp;=  \quad N(t)   + \quad  K N(t) \Delta t.
 </section>
 <section id="logistic-growth-via-nutrient-depletion" class="level4" data-number="1.2.1.2">
 <h4 data-number="1.2.1.2" class="anchored" data-anchor-id="logistic-growth-via-nutrient-depletion"><span class="header-section-number">1.2.1.2</span> Logistic growth via nutrient depletion</h4>
-<p>Suppose that the population growth rate depends on nutient availability. Suppose also that nutrient levels are depleted by population growth.</p>
+<p>Suppose that the population growth rate depends on nutrient availability. Suppose also that nutrient levels are depleted by population growth.</p>
 <p>Let <span class="math inline">\(c(t)\)</span> represent the nutrient concentration at time, <span class="math inline">\(t\)</span>. Bawed on the above assumptions we derive <span id="eq-c_1"><span class="math display">\[
 \begin{aligned}
 \frac{dN}{dt} &amp;= K(c) N = \kappa cN,  \\
@@ -344,14 +344,14 @@ N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
 </section>
 <section id="sir-model" class="level3" data-number="1.2.2">
 <h3 data-number="1.2.2" class="anchored" data-anchor-id="sir-model"><span class="header-section-number">1.2.2</span> SIR Model</h3>
-<p>Consider a model of infectious diease in which a population is slit into three compartments:</p>
+<p>Consider a model of infectious disease in which a population is slit into three compartments:</p>
 <ul>
 <li>susceptible</li>
 <li>infected</li>
-<li>recoveered</li>
+<li>recovered</li>
 </ul>
-<p>Suppse that interaction between suspectible and infected results in infection of susceptible. Suppose also that infected people only remain infectious for a limited time.</p>
-<p>Let <span class="math inline">\(S(t)\)</span>, <span class="math inline">\(I(t)\)</span> and <span class="math inline">\(R(t)\)</span> represent the population densities of susceptible, infected and recoveered populations, respectively.</p>
+<p>Suppse that interaction between susceptible and infected results in infection of susceptible. Suppose also that infected people only remain infectious for a limited time.</p>
+<p>Let <span class="math inline">\(S(t)\)</span>, <span class="math inline">\(I(t)\)</span> and <span class="math inline">\(R(t)\)</span> represent the population densities of susceptible, infected and recovered populations, respectively.</p>
 <p>Consider the governing ODE</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -363,7 +363,7 @@ N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
 </section>
 <section id="activator-inhibitor-kinetics" class="level3" data-number="1.2.3">
 <h3 data-number="1.2.3" class="anchored" data-anchor-id="activator-inhibitor-kinetics"><span class="header-section-number">1.2.3</span> Activator inhibitor kinetics</h3>
-<p>Consider a pair of interacting biochemical species, A and B. Suppose that both A and B are produced at a constant rate and that A underfgoes linear degradation. Suppose also that A and B interact <span class="math display">\[
+<p>Consider a pair of interacting biochemical species, A and B. Suppose that both A and B are produced at a constant rate and that A undergoes linear degradation. Suppose also that A and B interact <span class="math display">\[
 2A+B \rightarrow A.
 \]</span></p>
 <p>Applying the law of mass action we obtain the ODEs <span class="math display">\[
@@ -439,7 +439,7 @@ N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
 </ul>
 <p>Then the conservation equation reads <span class="math display">\[
 \frac{\partial}{\partial t} \int_V c(x,t) \, dx = - \int_{S} J(x,t) \cdot {\mathbf{n}} \, d\sigma + \int_V f(x,t ,c),
-\]</span> where <span class="math inline">\(\mathbf{n}\)</span> is the outward normal vector to <span class="math inline">\(S\)</span>. The normal component of the flux <span class="math inline">\(J\)</span> on <span class="math inline">\(S\)</span> leads to a change of number of particles (of mass) in <span class="math inline">\(V\)</span>. Applying the divergence theorem, i.e. <span class="math display">\[
+\]</span> where <span class="math inline">\(\mathbf{n}\)</span> is the outward normal vector to <span class="math inline">\(S\)</span>. The normal component of the flux <span class="math inline">\(J\)</span> on <span class="math inline">\(S\)</span> leads to a change of number of particles (of mass) in <span class="math inline">\(V\)</span>. Applying the divergence theorem, i.e.&nbsp;<span class="math display">\[
 \int_S J \cdot {\mathbf{n}} \, d\sigma = \int_V \text{ div} J \, dx,
 \]</span> and using the fact that <span class="math inline">\(V\)</span> is independent of time <span class="math inline">\(t\)</span> we obtain <span class="math display">\[
 \int_V \Big(\frac{\partial}{\partial t} c(x,t) + \nabla \cdot  J(x,t) -  f(x,t ,c)\Big) dx.
@@ -586,7 +586,7 @@ c(0,x) = c_0(x) , \qquad x \in \Omega  \; .
 <li><span class="math inline">\(\#\text{source/sink (reaction term)} = \dfrac{\#\text{concentration (or density)}}{\#\text{time}}\)</span></li>
 <li><span class="math inline">\(\#\text{flux} = \dfrac{\text{mass (number) of particles}}{\#\text{area} \times \# \text{time}}\)</span></li>
 </ul>
-<p>It is standard to non-dimensionalize a system of differential equations by scaling or non-dimensionalizing both the dependent and independent variables in the model.</p>
+<p>It is standard to non-dimensionalise a system of differential equations by scaling or non-dimensionalising both the dependent and independent variables in the model.</p>
 
 
 </section>
