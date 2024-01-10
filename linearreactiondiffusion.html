@@ -283,18 +283,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 \frac{\partial c}{\partial t} = D \nabla^2 c + f(c), \quad c \equiv c( {\mathbf{x}} , t ), \;\;  {\mathbf{x}} \in \mathbb R^n, \, \, t &gt;0.
 \]</span></p>
 <p>Such an equation is known as a <em>reaction-diffusion equation</em>, being composed of a reaction term, <span class="math inline">\(f(c)\)</span>, and a diffusion term, <span class="math inline">\(D \nabla^2 c\)</span>. Reaction-diffusion equations have many applications in biological systems e.g.&nbsp;travelling waves of invasion, pattern formation, spread of infectious diseases. For most of the remainder of the course we will consider such systems in one-space dimension i.e.&nbsp;<span class="math inline">\(x \in \mathbb R\)</span>.</p>
-<p>Consider the one-dimensional reaction-diffusion equation with constant diffusion coefficient <span class="math inline">\(D &gt; 0\)</span>: <span class="math display">\[
+<p>Consider the one-dimensional reaction-diffusion equation with constant diffusion coefficient <span class="math inline">\(D &gt; 0\)</span>: <span id="eq-general1Drd"><span class="math display">\[
 \frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}  + f(c), \quad x\in \mathbb R, \, \, t &gt;0.
-\]</span></p>
+\tag{2.1}\]</span></span></p>
 <section id="one-dimensional-diffusion-equations" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="one-dimensional-diffusion-equations"><span class="header-section-number">2.1</span> One-dimensional diffusion equations</h2>
 <p>In order to provide some insight into the structure of solutions of reaction-diffusion equations, we make an initial simplifying assumption i.e.&nbsp;we assume <span class="math inline">\(f(c)=0\)</span>, and obtain the linear diffusion equation (or heat equation):</p>
 <p><span id="eq-heat_eq"><span class="math display">\[
 \frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2},   \quad x\in \mathbb R, \, \, t &gt;0.
-\tag{2.1}\]</span></span> This equation is used to model the evolution of the concentration of a chemical in a long thin tube, or the temperature of a long thin rod.</p>
+\tag{2.2}\]</span></span> This equation is used to model the evolution of the concentration of a chemical in a long thin tube, or the temperature of a long thin rod.</p>
 <p>We assume that the solution is initialised to be non-zero at one point <span class="math inline">\(x=0\)</span>, i.e.&nbsp;<span id="eq-heat_IC"><span class="math display">\[
 c(x_0 , 0) = \delta_0(x)\qquad x \in \mathbb R,
-\tag{2.2}\]</span></span> where <span class="math inline">\(\delta_0\)</span> is a <em>Dirac delta distribution</em> (Dirac measure) satisfying <span class="math display">\[
+\tag{2.3}\]</span></span> where <span class="math inline">\(\delta_0\)</span> is a <em>Dirac delta distribution</em> (Dirac measure) satisfying <span class="math display">\[
 \int_{-\infty}^{+\infty} \delta_0(x) = 1 \quad \text{ and } \quad \int_{-\infty}^{+\infty} f(x) \delta_0(x) = f(0) , \text{ for continuous } f.
 \]</span></p>
 <section id="fundamental-solution" class="level3" data-number="2.1.1">
@@ -345,9 +345,9 @@ c(x_0 , 0) = \delta_0(x)\qquad x \in \mathbb R,
 </div>
 </div>
 <p>converges to <span class="math inline">\(\delta_0(x)\)</span> as <span class="math inline">\(\varepsilon \to 0\)</span> (in the sense of distributions or generalized functions).</p>
-<p>Then for the diffusion <a href="#eq-heat_eq">Equation&nbsp;<span>2.1</span></a> with initial condition <a href="#eq-heat_IC">Equation&nbsp;<span>2.2</span></a>, it can be shown that the explicit (analytic) solution is given by <span id="eq-fund_sol"><span class="math display">\[
+<p>Then for the diffusion <a href="#eq-heat_eq">Equation&nbsp;<span>2.2</span></a> with initial condition <a href="#eq-heat_IC">Equation&nbsp;<span>2.3</span></a>, it can be shown that the explicit (analytic) solution is given by <span id="eq-fund_sol"><span class="math display">\[
 c(x, t) = \frac1{\sqrt{4 \pi D t}} \exp \left( - \frac{ x^2}{ 4Dt} \right).
-\tag{2.3}\]</span></span></p>
+\tag{2.4}\]</span></span></p>
 <p>This is known as the <em>fundamental</em> solution of the diffusion equation in <span class="math inline">\(\mathbb R\)</span>.</p>
 <p>We also have, for general initial condition <span class="math inline">\(c(x, 0) = c_0(x)\)</span> for <span class="math inline">\(x\in \mathbb R\)</span>: <span class="math display">\[
 c(x, t) = \int_{-\infty}^{+\infty} \frac{c_0(y)}{\sqrt{4 \pi D t}} \exp \left( - \frac{ (x-y)^2}{ 4Dt} \right) dy.
@@ -358,7 +358,7 @@ c(x,t) =  \frac 1{(4 \pi D t)^{n/2}} \exp \left( - \frac{ (x_{1}^{2} + x_{2}^{2}
 </section>
 <section id="numerical-solution" class="level3" data-number="2.1.2">
 <h3 data-number="2.1.2" class="anchored" data-anchor-id="numerical-solution"><span class="header-section-number">2.1.2</span> Numerical solution</h3>
-<p>In <a href="#fig-diffusionpde">Figure&nbsp;<span>2.3</span></a> we compute a numerical solution of the diffusion equation and compare it with the exact solution given by <a href="#eq-fund_sol">Equation&nbsp;<span>2.3</span></a>.</p>
+<p>In <a href="#fig-diffusionpde">Figure&nbsp;<span>2.3</span></a> we compute a numerical solution of the diffusion equation and compare it with the exact solution given by <a href="#eq-fund_sol">Equation&nbsp;<span>2.4</span></a>.</p>
 <div class="cell" data-execution_count="2">
 <details>
 <summary>Code</summary>
@@ -487,8 +487,12 @@ c(\frac{L}{2})=\frac{C_0}{2}.
 </section>
 <section id="diffusion-as-the-limit-of-a-random-walk" class="level3" data-number="2.1.5">
 <h3 data-number="2.1.5" class="anchored" data-anchor-id="diffusion-as-the-limit-of-a-random-walk"><span class="header-section-number">2.1.5</span> Diffusion as the limit of a random walk</h3>
-<p>Consider the <em>random walk</em> of particles in a one-dimensional domain. Suppose that the particles move randomly a distance, <span class="math inline">\(\Delta x\)</span>, every time step, <span class="math inline">\(\Delta t\)</span>. Assume that the particles move left with probability <span class="math inline">\(\lambda_L\)</span> and right with probability <span class="math inline">\(\lambda_R\)</span>.</p>
-<p>In <a href="#fig-randomwalksim">Figure&nbsp;<span>2.4</span></a> a simulation of 400 random walking particles is presented. Each particle is initialised at the origin and can move one step left or right with equal probability at every time step of the simulation. As time evolves the particle density (histogram) disperses. The normalised particle density appears to be well described by the solution of the diffusion equation (solid lines, <a href="#eq-fund_sol">Equation&nbsp;<span>2.3</span></a>).</p>
+<p>Consider a <em>random walk</em> of particles in a one-dimensional domain. Let <span class="math inline">\(\lambda_L\)</span> and <span class="math inline">\(\lambda_R\)</span> represent hopping rates, such that the probability of a particle hopping distance <span class="math inline">\(\Delta x\)</span> to the right in time <span class="math inline">\(\Delta t\)</span> is <span class="math display">\[
+\lambda_R \Delta t.
+\]</span> Similarly, the probability of hopping a distance <span class="math inline">\(\Delta x\)</span> to the left is <span class="math display">\[
+\lambda_L \Delta t.
+\]</span></p>
+<p>In <a href="#fig-randomwalksim">Figure&nbsp;<span>2.4</span></a> results from a simulation of 400 random walkers is presented. Each particle is initialised at the origin and can move one step left or right with equal probability at every time step of the simulation. As time evolves the particle density (histogram) disperses. The normalised particle density appears to be well described by the solution of the diffusion equation (see solid lines, <a href="#eq-fund_sol">Equation&nbsp;<span>2.4</span></a>).</p>
 <div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
@@ -526,56 +530,57 @@ c(\frac{L}{2})=\frac{C_0}{2}.
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># loop over particles</span></span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(N_particles):</span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    r<span class="op">=</span>random.random()</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># move particle j right</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    new_particle_position<span class="op">=</span>particle_positions[i<span class="op">-</span><span class="dv">1</span>,j]</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> r<span class="op">&lt;</span>move_probability:</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>      new_particle_position<span class="op">+=</span>dx</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># move particle j left  </span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> r<span class="op">&lt;</span><span class="dv">2</span><span class="op">*</span>move_probability:</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>      new_particle_position<span class="op">-=</span>dx</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    particle_positions[i,j]<span class="op">=</span>new_particle_position</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># randomly sample uniform random number on U_[0,1]</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    r<span class="op">=</span>random.random()</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># move particle j right</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    new_particle_position<span class="op">=</span>particle_positions[i<span class="op">-</span><span class="dv">1</span>,j]</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> r<span class="op">&lt;</span>move_probability:</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>      new_particle_position<span class="op">+=</span>dx</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># move particle j left  </span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> r<span class="op">&lt;</span><span class="dv">2</span><span class="op">*</span>move_probability:</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>      new_particle_position<span class="op">-=</span>dx</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    particle_positions[i,j]<span class="op">=</span>new_particle_position</span>
 <span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute exaxct solution of diffusion equation</span></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>[x_mesh,t_mesh]<span class="op">=</span>np.meshgrid(x,t)</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>c_exact<span class="op">=</span><span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">4</span><span class="op">*</span>np.pi<span class="op">*</span>D<span class="op">*</span>t_mesh)<span class="op">*</span>np.exp(<span class="op">-</span>x_mesh<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">4</span><span class="op">*</span>D<span class="op">*</span>t_mesh))</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare normalised histogram of particule positions with PDE solution</span></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots(<span class="dv">2</span>,<span class="dv">2</span>)</span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].hist(particle_positions[<span class="dv">5</span>,:],density<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].plot(x, c_exact[<span class="dv">5</span>,:], <span class="st">'r'</span>)</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_title(<span class="st">'$t=$'</span><span class="op">+</span><span class="bu">str</span>(t[<span class="dv">4</span>]))</span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].hist(particle_positions[<span class="dv">500</span>,:],density<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].plot(x, c_exact[<span class="dv">500</span>,:], <span class="st">'m'</span>)</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_title(<span class="st">'$t=$'</span><span class="op">+</span><span class="bu">str</span>(t[<span class="dv">500</span>]))</span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].hist(particle_positions[<span class="dv">1000</span>,:],density<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].plot(x, c_exact[<span class="dv">1000</span>,:], <span class="st">'b'</span>)</span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_title(<span class="st">'$t=$'</span><span class="op">+</span><span class="bu">str</span>(t[<span class="dv">1000</span>]))</span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].hist(particle_positions[<span class="dv">1500</span>,:],density<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].plot(x, c_exact[<span class="dv">1500</span>,:], <span class="st">'k'</span>)</span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_title(<span class="st">'$t=$'</span><span class="op">+</span><span class="bu">str</span>(t[<span class="dv">1500</span>]))</span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_xlim([<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span>,L<span class="op">/</span><span class="dv">2</span>])</span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_xlim([<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span>,L<span class="op">/</span><span class="dv">2</span>])</span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_xlim([<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span>,L<span class="op">/</span><span class="dv">2</span>])</span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_xlim([<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span>,L<span class="op">/</span><span class="dv">2</span>])</span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_xlabel(<span class="st">'$x$'</span>)</span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_xlabel(<span class="st">'$x$'</span>)</span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_xlabel(<span class="st">'$x$'</span>)</span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_xlabel(<span class="st">'$x$'</span>)</span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_ylabel(<span class="st">'$c$'</span>)</span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_ylabel(<span class="st">'$c$'</span>)</span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_ylabel(<span class="st">'$c$'</span>)</span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_ylabel(<span class="st">'$c$'</span>)</span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute exaxct solution of diffusion equation</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>[x_mesh,t_mesh]<span class="op">=</span>np.meshgrid(x,t)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>c_exact<span class="op">=</span><span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">4</span><span class="op">*</span>np.pi<span class="op">*</span>D<span class="op">*</span>t_mesh)<span class="op">*</span>np.exp(<span class="op">-</span>x_mesh<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">4</span><span class="op">*</span>D<span class="op">*</span>t_mesh))</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare normalised histogram of particule positions with PDE solution</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots(<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].hist(particle_positions[<span class="dv">5</span>,:],density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].plot(x, c_exact[<span class="dv">5</span>,:], <span class="st">'r'</span>)</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_title(<span class="st">'$t=$'</span><span class="op">+</span><span class="bu">str</span>(t[<span class="dv">4</span>]))</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].hist(particle_positions[<span class="dv">500</span>,:],density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].plot(x, c_exact[<span class="dv">500</span>,:], <span class="st">'m'</span>)</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_title(<span class="st">'$t=$'</span><span class="op">+</span><span class="bu">str</span>(t[<span class="dv">500</span>]))</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].hist(particle_positions[<span class="dv">1000</span>,:],density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].plot(x, c_exact[<span class="dv">1000</span>,:], <span class="st">'b'</span>)</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_title(<span class="st">'$t=$'</span><span class="op">+</span><span class="bu">str</span>(t[<span class="dv">1000</span>]))</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].hist(particle_positions[<span class="dv">1500</span>,:],density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].plot(x, c_exact[<span class="dv">1500</span>,:], <span class="st">'k'</span>)</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_title(<span class="st">'$t=$'</span><span class="op">+</span><span class="bu">str</span>(t[<span class="dv">1500</span>]))</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_xlim([<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span>,L<span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_xlim([<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span>,L<span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_xlim([<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span>,L<span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_xlim([<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span>,L<span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_ylabel(<span class="st">'$c$'</span>)</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_ylabel(<span class="st">'$c$'</span>)</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_ylabel(<span class="st">'$c$'</span>)</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_ylabel(<span class="st">'$c$'</span>)</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-randomwalksim" class="quarto-figure quarto-figure-center anchored">
@@ -586,65 +591,71 @@ c(\frac{L}{2})=\frac{C_0}{2}.
 </div>
 </div>
 </div>
-<p>Consider the concentration of particles <span class="math inline">\(c(x,t)\)</span> at spatial location <span class="math inline">\(x\)</span> and time <span class="math inline">\(t\)</span>, (or more precisely, the probability density function of the position of a particle performing a random walk) we have: <span class="math display">\[
-c(x, t+ \Delta t) = c(x, t)  + \lambda_R c(x- \Delta x, t) - \lambda_R c(x, t) + \lambda_L c(x+ \Delta x, t) - \lambda_L c (x,t).
-\]</span> If we assume that <span class="math inline">\(\lambda_R+ \lambda_L =1\)</span> then <span class="math display">\[
-c(x, t+ \Delta t) =  \lambda_R c(x- \Delta x, t) + \lambda_L c(x+ \Delta x, t).
-\]</span> Applying a Taylor series expansion about <span class="math inline">\((x,t)\)</span> implies</p>
-<p><span class="math display">\[
-c(x,t) + \frac{ \partial c}{\partial t} \Delta t + \frac 12  \frac{ \partial^2 c}{\partial^2 t} (\Delta t )^2  + h.o.t. =
-\lambda_R \Big( c(x,t) - \frac{ \partial c}{\partial x} \Delta x + \frac 12  \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t. \Big)\\ +
-\lambda_L \Big( c(x,t) + \frac{ \partial c}{\partial x} \Delta x + \frac 12  \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t. \Big).
+<p>Let <span class="math inline">\(c(x,t)\)</span> represent the particle density at spatial location <span class="math inline">\(x\)</span> and time <span class="math inline">\(t\)</span>.</p>
+<p>A conservation equation for <span class="math inline">\(c\)</span> is given by <span class="math display">\[
+c(x, t+ \Delta t) = c(x, t)  + \lambda_R \Delta t c(x- \Delta x, t) - \lambda_R \Delta t c(x, t) + \lambda_L \Delta t c(x+ \Delta x, t) - \lambda_L \Delta t c (x,t).
 \]</span></p>
-<p>Using <span class="math inline">\(\lambda_R+ \lambda_L =1\)</span> and assuming <span class="math inline">\(\lambda_L = \lambda_R = \frac 12\)</span> we obtain</p>
+<p>Applying a Taylor series expansion about <span class="math inline">\((x,t)\)</span> implies</p>
+<p><span class="math display">\[
+c(x,t) + \frac{ \partial c}{\partial t} \Delta t + \frac{1}{2}  \frac{ \partial^2 c}{\partial^2 t} (\Delta t )^2  + h.o.t. =
+\lambda_R \Delta t \Big( c(x,t) - \frac{ \partial c}{\partial x} \Delta x + \frac 12  \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t. \Big)\\ +
+\lambda_L \Delta t \Big( c(x,t) + \frac{ \partial c}{\partial x} \Delta x + \frac 12  \frac{ \partial^2 c}{\partial x ^2} (\Delta x )^2  + h.o.t. \Big).
+\]</span></p>
+<p>Upon cancellation</p>
 <p><span class="math display">\[
 \frac{ \partial c}{\partial t} \Delta t + \frac 12  \frac{ \partial^2 c}{\partial^2 t} (\Delta t )^2  + h.o.t. =
-\frac 12  \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t.
-\]</span> Dividing by <span class="math inline">\(\Delta t\)</span> gives</p>
+  \frac{ \partial c}{\partial x} \Delta x\Delta t (\lambda_L-\lambda_R) + \frac 12 \Delta t (\lambda_L+\lambda_R)  \frac{ \partial^2 c}{\partial x ^2} (\Delta x )^2  + h.o.t.
+\]</span></p>
+<p>Dividing by <span class="math inline">\(\Delta t\)</span> gives</p>
 <p><span class="math display">\[
 \frac{ \partial c}{\partial t}  + \frac 12  \frac{ \partial^2 c}{\partial^2 t} \Delta t   + h.o.t. =
-   \frac{ \partial^2 c}{\partial^2 x} \frac{(\Delta x )^2 }{2\Delta t} + h.o.t.
+   \frac{ \partial c}{\partial x} \Delta x (\lambda_L-\lambda_R) + \frac 12  (\lambda_L+\lambda_R)  \frac{ \partial^2 c}{\partial x^2} (\Delta x )^2  + h.o.t.  
 \]</span></p>
-<p>Considering the limit <span class="math inline">\(\Delta t \to 0\)</span> and <span class="math inline">\(\Delta x \to 0\)</span> in such way that</p>
+<p>Considering the symmetric case where the probability of hopping left and right are equal, i.e. <span class="math display">\[
+\lambda=\lambda_L=\lambda_R
+\]</span> yields <span class="math display">\[
+\frac{ \partial c}{\partial t}  + \frac 12  \frac{ \partial^2 c}{\partial^2 t} \Delta t   + h.o.t. =
+    \lambda \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t.  
+\]</span></p>
+<p>Considering the limit <span class="math inline">\(\Delta t \to 0\)</span> and <span class="math inline">\(\Delta x \to 0\)</span> such that</p>
 <p><span class="math display">\[
-\frac{(\Delta x )^2 }{2\Delta t} \to D,
-\]</span></p>
-<p>yields the (one-dimensional) diffusion equation</p>
+D=\lambda (\Delta x )^2
+\]</span> is finite yields the (one-dimensional) diffusion equation</p>
 <p><span class="math display">\[
 \frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}.
 \]</span></p>
-<p>This approach can be extended to consider other types of movement e.g.&nbsp;convection. For example, if we assume that<br>
-<span class="math display">\[
-\lambda_R+ \lambda_L =1,
-\]</span> and <span class="math display">\[
+<p>Note that <span class="math inline">\(D\)</span> has appropriate units (length<span class="math inline">\(^2\)</span>/time) and that the probability of a particle hopping a distance <span class="math inline">\(\Delta x\)</span> in time <span class="math inline">\(\Delta t\)</span> is <span class="math display">\[
+\lambda \Delta t = \frac{D\Delta t}{\Delta x^2}.
+\]</span></p>
+<p>This approach can be extended to consider other types of movement e.g.&nbsp;convection. FOr example, biasing hopping such that <span class="math display">\[
 \lambda_L - \lambda_R = \varepsilon,
-\]</span> the motion of the particles is biased and we may derive an appropriate <em>reaction-diffusion-convection</em> equation (see tutorial).</p>
+\]</span> yields a <em>reaction-diffusion-convection</em> equation (see tutorial).</p>
 <p>Finally we note that there is a connection between diffusion and the normal distribution function.</p>
 <p><strong>Recall</strong> The normal distribution function in one-dimension with zero mean and variance <span class="math inline">\(\sigma^2\)</span> is given by</p>
 <p><span class="math display">\[
 N(0, \sigma^2) \sim \frac 1 { \sqrt{ 2 \pi \sigma^2}} \exp \left( - \frac{x^2}{ 2 \sigma^2}\right).
-\]</span> Examining the formula for the fundamental solution of the diffusion <a href="#eq-fund_sol">Equation&nbsp;<span>2.3</span></a> in one-dimension, we see by inspection that the probability density function of the position of a particle performing a random walk in one-dimension starting at the origin is normally distributed with mean zero and variance <span class="math display">\[
+\]</span> Examining the formula for the fundamental solution of the diffusion <a href="#eq-fund_sol">Equation&nbsp;<span>2.4</span></a> in one-dimension, we see by inspection that the probability density function of the position of a particle performing a random walk in one-dimension starting at the origin is normally distributed with mean zero and variance <span class="math display">\[
 \sigma^2 = 2 D t.
 \]</span></p>
 </section>
 </section>
 <section id="linear-reaction-diffusion-equations" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="linear-reaction-diffusion-equations"><span class="header-section-number">2.2</span> Linear reaction-diffusion equations</h2>
-<p>Consider now the linear reaction term: <span class="math inline">\(f(c) = \rho c\)</span>, so that our reaction-diffusion equation is: <span id="eq-lin_re_eq"><span class="math display">\[
+<p>Consider now the linear reaction term: <span class="math inline">\(f(c) = \rho c\)</span>, so that <a href="#eq-general1Drd">Equation&nbsp;<span>2.1</span></a> takes the form <span id="eq-lin_re_eq"><span class="math display">\[
 \frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}   + \rho \, c, \quad x\in \mathbb R, \, \, t &gt;0,
-\tag{2.4}\]</span></span> where <span class="math inline">\(\rho \in \mathbb R\)</span> is a constant.</p>
+\tag{2.5}\]</span></span> where <span class="math inline">\(\rho \in \mathbb R\)</span> is a constant.</p>
 <p>Once again we consider the initial condition to be concentrated at the origin: <span id="eq-lin_re_eq_ic"><span class="math display">\[
 c(0,x) = \delta_0(x).
-\tag{2.5}\]</span></span></p>
+\tag{2.6}\]</span></span></p>
 <section id="exact-solution" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="exact-solution"><span class="header-section-number">2.2.1</span> Exact solution</h3>
 <p>By considering a <em>separation of variables</em> approach, i.e.&nbsp;making the <em>ansatz</em> <span class="math display">\[
 c(x,t) = w(t) \tilde c(t,x),
-\]</span> it can be shown (<strong>Exercise</strong>) that the explicit solution for the linear reaction-diffusion <a href="#eq-lin_re_eq">Equation&nbsp;<span>2.4</span></a> with initial condition <a href="#eq-lin_re_eq_ic">Equation&nbsp;<span>2.5</span></a> is given by</p>
+\]</span> it can be shown (<strong>Exercise</strong>) that the explicit solution for the linear reaction-diffusion <a href="#eq-lin_re_eq">Equation&nbsp;<span>2.5</span></a> with initial condition <a href="#eq-lin_re_eq_ic">Equation&nbsp;<span>2.6</span></a> is given by</p>
 <p><span class="math display">\[
 c(t,x) = \frac1{\sqrt{4 \pi D t}} \exp \left(\rho t - \frac{x^2}{ 4Dt} \right).
 \]</span></p>
-<p>In <a href="#fig-diffusionlinearsource">Figure&nbsp;<span>2.6</span></a> we compare numerical and exact solutions.</p>
+<p>In <a href="#fig-diffusionlinearsource">Figure&nbsp;<span>2.6</span></a> we compare numerical and exact solutions of <a href="#eq-lin_re_eq">Equation&nbsp;<span>2.5</span></a>.</p>
 <div class="cell" data-execution_count="4">
 <details>
 <summary>Code</summary>
@@ -735,13 +746,14 @@ c(t,x) = \frac1{\sqrt{4 \pi D t}} \exp \left(\rho t - \frac{x^2}{ 4Dt} \right).
 </section>
 <section id="speed-of-a-wave-of-invasion" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="speed-of-a-wave-of-invasion"><span class="header-section-number">2.2.2</span> Speed of a wave of invasion</h3>
-<p>Muskrats which were introduced in 1905 in Bohemia initially spread rapidly throughout Europe through a combination of random movement and proliferation (initially there were no predators and proliferation was rapid). A model for the initial spread can therefore be given by a two-dimensional diffusion equation combined with exponential growth and assuming that <span class="math inline">\(M\)</span> individuals were released at the origin (i.e.&nbsp;in Bohemia). Considering the density of muskrats <span class="math inline">\(u({\mathbf{x}} , t)\)</span>, the equation is</p>
+<p>Muskrats, which were introduced in 1905 in Bohemia, initially spread rapidly throughout Europe through a combination of random movement and proliferation (initially there were no predators and proliferation was rapid). A model for the initial spread can therefore be given by a two-dimensional diffusion equation combined with exponential growth and assuming that <span class="math inline">\(M\)</span> individuals were released at the origin (i.e.&nbsp;in Bohemia). Letting <span class="math inline">\(u({\mathbf{x}} , t)\)</span>, represent the density of muskrats, the evolution equation is</p>
 <p><span id="eq-muskrats_eq"><span class="math display">\[
 \frac{\partial u}{\partial t} = D \left(\frac{\partial^2 u}{\partial x_1^2} +  \frac{\partial^2 u}{\partial x_2^2}\right)  + \rho \, u, \quad {\mathbf{x}} = (x_1 , x_2) \in \mathbb R^2, \, \, t &gt;0,
-\tag{2.6}\]</span></span> <span id="eq-muskrats_eq_in"><span class="math display">\[
-u({\mathbf{x}}, 0) = M \delta_0({\mathbf{x}}), \quad {\mathbf{x}} \in \mathbb R^2.
 \tag{2.7}\]</span></span></p>
-<p>The solution of <a href="#eq-muskrats_eq">Equation&nbsp;<span>2.6</span></a> with initial conditions <a href="#eq-muskrats_eq_in">Equation&nbsp;<span>2.7</span></a> is equal to:</p>
+<p>with initial condition <span id="eq-muskrats_eq_in"><span class="math display">\[
+u({\mathbf{x}}, 0) = M \delta_0({\mathbf{x}}), \quad {\mathbf{x}} \in \mathbb R^2.
+\tag{2.8}\]</span></span></p>
+<p>It can be shown that the solution of <a href="#eq-muskrats_eq">Equation&nbsp;<span>2.7</span></a> with initial conditions given by <a href="#eq-muskrats_eq_in">Equation&nbsp;<span>2.8</span></a> is:</p>
 <p><span class="math display">\[
 u({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ |{\mathbf{x}} |^2}{ 4Dt} \right)\; = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ (x_{1}^{2} + x_{2}^{2})}{4Dt} \right).
 \]</span></p>
@@ -749,15 +761,17 @@ u({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ |{\mathbf{x}}
 <p><span class="math display">\[
 u({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ r^2}{ 4Dt} \right).
 \]</span></p>
-<p>From the properties of the fundamental solution, the wave of invasion extends all the way to infinity if <span class="math inline">\(t&gt;0\)</span>. Thus, for practical purposes, somehow we have to define the front of the wave.</p>
+<p>From the properties of the fundamental solution, the wave of invasion extends all the way to infinity for any <span class="math inline">\(t&gt;0\)</span>. For practical purposes, we have to define the front of the wave.</p>
 <p>Consider that there is some detection threshold for the muskrats i.e.&nbsp;some predetermined small value of the density <span class="math inline">\(u_1\)</span>, say, such that any changes in density for <span class="math inline">\(u &lt;u_1\)</span> cannot be detected.</p>
-<p>Because of the symmetry of the problem, then the leading edge of the invading wave front of muskrats is the circle of radius <span class="math inline">\(r=r_1(t)\)</span> where <span class="math inline">\(u=u_1\)</span>, i.e.&nbsp;from the explicit solution of <a href="#eq-muskrats_eq">Equation&nbsp;<span>2.6</span></a>,</p>
+<p>Because of the symmetry of the problem, then the leading edge of the invading wave front of muskrats is the circle of radius <span class="math inline">\(r=r_1(t)\)</span> where <span class="math inline">\(u=u_1\)</span>, i.e.&nbsp;from the explicit solution of <a href="#eq-muskrats_eq">Equation&nbsp;<span>2.7</span></a></p>
 <p><span class="math display">\[
 u_1({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ r_1^2}{ 4Dt} \right).
 \]</span></p>
 <p>Rearranging and solving for <span class="math inline">\(r_1\)</span>, using the fact that <span class="math display">\[
 \lim\limits_{t\to \infty} \dfrac {\ln t} t =0,
-\]</span> we obtain for large <span class="math inline">\(t\)</span> that <span class="math display">\[
+\]</span></p>
+<p>we obtain for large <span class="math inline">\(t\)</span> that</p>
+<p><span class="math display">\[
 r_1(t) \approx 2 \sqrt{ \rho D} t.
 \]</span></p>
 <p>Hence, the speed of invasion of the leading edge of the muskrats is given by: <span class="math display">\[
