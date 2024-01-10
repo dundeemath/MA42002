@@ -32,7 +32,6 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <link href="./NumericalMethods.html" rel="next">
 <link href="./DiffusionDrivenInstability.html" rel="prev">
-<link href="./MA42002Cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -251,7 +250,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Consider consider three categories of population</p>
 <ul>
 <li><span class="math inline">\(S\)</span> – susceptibles - can be infected</li>
-<li><span class="math inline">\(I\)</span> – invectives - have the disease and can transmit to susceptibles</li>
+<li><span class="math inline">\(I\)</span> – infectives - have the disease and can transmit to susceptibles</li>
 <li><span class="math inline">\(R\)</span> – recovered (removed) - have had the disease and are no longer infective.</li>
 </ul>
 <p>Progress through the disease <span class="math display">\[
@@ -259,13 +258,13 @@ S \longrightarrow I \longrightarrow R
 \]</span></p>
 <p>Model assumptions</p>
 <ul>
-<li><p>The gain in the invectives class is at the rate proportional to the number of invectives <span class="math inline">\(I\)</span> and susceptibles <span class="math inline">\(S\)</span>, i.e.&nbsp;<span class="math inline">\(r\; I\; S\)</span>, ; <span class="math inline">\(r&gt;0\)</span>.</p></li>
+<li><p>The gain in the infectives class is at the rate proportional to the number of infectives <span class="math inline">\(I\)</span> and susceptibles <span class="math inline">\(S\)</span>, i.e.&nbsp;<span class="math inline">\(r\; I\; S\)</span>, ; <span class="math inline">\(r&gt;0\)</span>.</p></li>
 <li><p>The susceptibles are lost at the same rate, i.r. <span class="math inline">\(r\; I\; S\)</span></p></li>
-<li><p>The rate of removal of invectives to the recovered class <span class="math inline">\(R\)</span> is proportional to the number of invectives, i.e.&nbsp;<span class="math inline">\(a\; I\)</span>, ; <span class="math inline">\(a&gt;0\)</span>.</p></li>
+<li><p>The rate of removal of infectives to the recovered class <span class="math inline">\(R\)</span> is proportional to the number of invfectives, i.e.&nbsp;<span class="math inline">\(a\; I\)</span>, ; <span class="math inline">\(a&gt;0\)</span>.</p></li>
 </ul>
 <p><span class="math inline">\(1/a\)</span> measures the time spent in the infectious state.</p>
 <ul>
-<li>The incubation period is short enough to be negligible: susceptibles are directly infected after coming into contact with the disease (with invectives).</li>
+<li>The incubation period is short enough to be negligible: susceptibles are directly infected after coming into contact with the disease (with infectives).</li>
 </ul>
 <p>Then a simple SIR model reads (in a long thin domain or in <span class="math inline">\(3\)</span>-dim domain with solutions in a form of planar fronts) <span id="eq-sirpde"><span class="math display">\[
 \begin{aligned}
@@ -281,7 +280,7 @@ S(0,x) &amp;= S_0(x), \qquad I(0,x) = I_0(x), \quad R(0,x) = R_0(x), \qquad x \i
 <li><span class="math inline">\(r&gt;0\)</span> – transmission or infection rate</li>
 <li><span class="math inline">\(D_S&gt;0\)</span>, ; <span class="math inline">\(D_I&gt;0\)</span>, ; <span class="math inline">\(D_R&gt;0\)</span> – diffusion coefficients</li>
 </ul>
-<p>We assume that <span class="math inline">\(S_0(x) \geq 0\)</span>, <span class="math inline">\(I_0(x) \geq 0\)</span>, <span class="math inline">\(R_0(x) \geq 0\)</span> for <span class="math inline">\(x \in \mathbb R\)</span> and obtain that solutions of <a href="#eq-sirpde">Equation&nbsp;<span>7.1</span></a> are nonnegative, i.e.&nbsp; <span class="math display">\[
+<p>We assume that <span class="math inline">\(S_0(x) \geq 0\)</span>, <span class="math inline">\(I_0(x) \geq 0\)</span>, <span class="math inline">\(R_0(x) \geq 0\)</span> for <span class="math inline">\(x \in \mathbb R\)</span> and obtain that solutions of <a href="#eq-sirpde">Equation&nbsp;<span>7.1</span></a> are nonnegative, i.e.&nbsp;<span class="math display">\[
 S(t,x) \geq 0, \quad I(t,x) \geq 0, \quad R(t,x) \geq 0, \quad  x\in \mathbb R, \quad t &gt;0 \; .
 \]</span></p>
 <p>To analyse the model <a href="#eq-sirpde">Equation&nbsp;<span>7.1</span></a> it is sufficient to consider the first two equations, since <span class="math inline">\(R\)</span> is completely determined by <span class="math inline">\(I\)</span> and does not influence the dynamics of <span class="math inline">\(S\)</span> and <span class="math inline">\(I\)</span>.</p>
@@ -295,7 +294,7 @@ I^\ast = \frac I{\bar S_0} , \quad S^\ast = \frac S{\bar S_0} ,  \quad x^\ast = 
 &amp; S(0,x) = \frac{S_0(x)}{\bar S_0}, \qquad I(0,x) = \frac{I_0(x)}{\bar S_0},  &amp; \quad x \in \mathbb R \; ,
 \end{aligned}
 \]</span> where <span class="math inline">\(\bar S_0\)</span> is a representative population density and <span class="math inline">\(\mu = a /{ r \bar S_0}\)</span>.</p>
-<p>We would like to investigate the spatial spread of an epidemic wave of invectives into a uniform susceptibles population <span class="math inline">\(S_0(x) =\bar S_0\)</span>. We would like to determine conditions for existence of an epidemic wave and propagation speed.</p>
+<p>We would like to investigate the spatial spread of an epidemic wave of infectives into a uniform susceptibles population <span class="math inline">\(S_0(x) =\bar S_0\)</span>. We would like to determine conditions for existence of an epidemic wave and propagation speed.</p>
 <p>We shall assume first that <span class="math inline">\(D_S= D_I\)</span>, i.e.&nbsp;<span class="math inline">\(d=1\)</span>. Consider travelling wave solutions <span class="math display">\[
 S(t,x) = s(z), \quad I(t,x) = i(z), \quad z = x - v t, \quad v &gt;0
 \]</span> and obtain following ODEs for <span class="math inline">\(s\)</span> and <span class="math inline">\(i\)</span> <span id="eq-sir_tw"><span class="math display">\[

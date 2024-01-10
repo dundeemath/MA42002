@@ -32,7 +32,6 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <link href="./linearreactiondiffusion.html" rel="next">
 <link href="./index.html" rel="prev">
-<link href="./MA42002Cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -294,21 +293,22 @@ ul.task-list li input[type="checkbox"] {
 \begin{aligned}
 N(t+\Delta t) &amp;=  \quad N(t)   + \quad  K N(t) \Delta t.
 \end{aligned}
-\tag{1.1}\]</span></span> Assuming that <span class="math inline">\(N\)</span> is differentiable, dividing <a href="#eq-n_1">Equation&nbsp;<span>1.1</span></a> by <span class="math inline">\(\Delta t\)</span> and taking the limit as <span class="math inline">\(\Delta t \to 0\)</span> <span id="eq-n_2"><span class="math display">\[
-\frac{dN}{dt} = K N
+\tag{1.1}\]</span></span></p>
+<p>Assuming that <span class="math inline">\(N\)</span> is differentiable, dividing <a href="#eq-n_1">Equation&nbsp;<span>1.1</span></a> by <span class="math inline">\(\Delta t\)</span> and taking the limit as <span class="math inline">\(\Delta t \to 0\)</span> <span id="eq-n_2"><span class="math display">\[
+\frac{dN}{dt} = K N.
 \tag{1.2}\]</span></span></p>
 <p>Depending on the biological context, the growth rate <span class="math inline">\(K\)</span> may take several forms e.g.</p>
 <ul>
 <li><span class="math inline">\(K = \textrm{constant}\)</span></li>
 <li><span class="math inline">\(K = K(t)\)</span> time-dependent</li>
 <li><span class="math inline">\(K= K(N(t))\)</span> depends on bacterial density</li>
-<li><span class="math inline">\(K= K(c(t)):= \kappa c(t), \;\; (\text{with} \;\; \kappa &gt;0 \;\; \text{a constant}\)</span>), which depends on the nutrient concentration <span class="math inline">\(c(t)\)</span> at time <span class="math inline">\(t\)</span> i.e.&nbsp;<span class="math inline">\(K\)</span> depends on the available resources.</li>
+<li><span class="math inline">\(K= K(c(t)):= \kappa c(t), \;\; (\text{with} \;\; \kappa &gt;0 \;\; \text{a constant}\)</span>), which depends on the nutrient concentration <span class="math inline">\(c(t)\)</span> at time <span class="math inline">\(t\)</span>.</li>
 </ul>
 </section>
 <section id="logistic-growth-via-nutrient-depletion" class="level4" data-number="1.2.1.2">
 <h4 data-number="1.2.1.2" class="anchored" data-anchor-id="logistic-growth-via-nutrient-depletion"><span class="header-section-number">1.2.1.2</span> Logistic growth via nutrient depletion</h4>
 <p>Suppose that the population growth rate depends on nutrient availability. Suppose also that nutrient levels are depleted by population growth.</p>
-<p>Let <span class="math inline">\(c(t)\)</span> represent the nutrient concentration at time, <span class="math inline">\(t\)</span>. Bawed on the above assumptions we derive <span id="eq-c_1"><span class="math display">\[
+<p>Let <span class="math inline">\(c(t)\)</span> represent the nutrient concentration at time, <span class="math inline">\(t\)</span>. Based on the above assumptions we derive <span id="eq-c_1"><span class="math display">\[
 \begin{aligned}
 \frac{dN}{dt} &amp;= K(c) N = \kappa cN,  \\
 \frac{ dc}{dt} &amp;= - \alpha \frac{dN}{dt} = - \alpha   \kappa c N,  
@@ -317,15 +317,17 @@ N(t+\Delta t) &amp;=  \quad N(t)   + \quad  K N(t) \Delta t.
 N(0) = N_0 \quad \textrm{and}  \quad  c(0)= c_0.
 \]</span></p>
 <p>Noting the conserved quantity <span class="math display">\[
-\frac{dN}{dt}+\frac{dc}{dt}=0,
+\alpha\frac{dN}{dt}+\frac{dc}{dt}=0,
 \]</span> integration yields <span id="eq-sol_c"><span class="math display">\[
 c(t)  = - \alpha N(t) + c(0)+ \alpha N(0) = - \alpha N(t) + \beta,
-\tag{1.4}\]</span></span> where <span class="math inline">\(\beta=c_0 +\alpha N_0\)</span>. Using <a href="#eq-sol_c">Equation&nbsp;<span>1.4</span></a> in <a href="#eq-c_1">Equation&nbsp;<span>1.3</span></a> we obtain the <em>logistic growth</em> equation <span id="eq-n_4"><span class="math display">\[
-\frac{dN}{dt} = \kappa ( \beta- \alpha N)  N, \qquad  N(0)= N_0\quad  
-\tag{1.5}\]</span></span> Here we have <span class="math inline">\(K=K(N) = \kappa (\beta - \alpha N)\)</span>.</p>
+\tag{1.4}\]</span></span></p>
+<p>where <span class="math inline">\(\beta=c_0 +\alpha N_0\)</span>. Substituting for <a href="#eq-sol_c">Equation&nbsp;<span>1.4</span></a> in <a href="#eq-c_1">Equation&nbsp;<span>1.3</span></a> we obtain the <em>logistic growth</em> equation <span id="eq-n_4"><span class="math display">\[
+\frac{dN}{dt} = \kappa ( \beta- \alpha N)  N, \qquad  N(0)= N_0\quad,
+\tag{1.5}\]</span></span> where <span class="math inline">\(K=K(N) = \kappa (\beta - \alpha N)\)</span>.</p>
 <p>The last equation can be rewritten as <span id="eq-n_5"><span class="math display">\[  
 \frac{dN}{dt} = \rho  N \,  (1 - \frac N B)  \qquad \quad N(0)= N_0,
-\tag{1.6}\]</span></span> where <span class="math inline">\(\rho = \kappa \beta\)</span> is the <strong>intrinsic growth rate</strong> and <span class="math inline">\(B = \frac \beta \alpha\)</span> is the <strong>carrying capacity</strong>. The solution of <a href="#eq-n_5">Equation&nbsp;<span>1.6</span></a> is given by <span class="math display">\[
+\tag{1.6}\]</span></span></p>
+<p>where <span class="math inline">\(\rho = \kappa \beta\)</span> is the <em>intrinsic growth rate</em> and <span class="math inline">\(B = \frac \beta \alpha\)</span> is the <em>carrying capacity</em>. The solution of <a href="#eq-n_5">Equation&nbsp;<span>1.6</span></a> is given by <span class="math display">\[
 N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
 \]</span></p>
 </section>
@@ -337,20 +339,22 @@ N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
 </section>
 <section id="competition" class="level4" data-number="1.2.1.4">
 <h4 data-number="1.2.1.4" class="anchored" data-anchor-id="competition"><span class="header-section-number">1.2.1.4</span> Competition</h4>
-<p>The fact that individuals compete for food, habitat (i.e.&nbsp;space) or any limited resources, means that an increase in the net mortality of the population may be observed under crowded conditions. Hence we could obtain <span class="math display">\[
+<p>Consider a situation in which the <em>per capita</em> death rate increases at higher density. For example, suppose that <span class="math display">\[
+d=d_1 N,
+\]</span> i.e.&nbsp;the mortality (death) rate is proportional to the population density. This assumption might arise in a situation where individuals compete for food, habitat (i.e.&nbsp;space) or any limited resources. Hence we could obtain the nonlinear ODE <span class="math display">\[
 \frac{dN}{dt} = KN - d_1 N^2 ,
-\]</span> where <span class="math inline">\(d=d_1N\)</span> is the mortality (death) rate and is proportional to the population density.</p>
+\]</span></p>
 </section>
 </section>
 <section id="sir-model" class="level3" data-number="1.2.2">
 <h3 data-number="1.2.2" class="anchored" data-anchor-id="sir-model"><span class="header-section-number">1.2.2</span> SIR Model</h3>
-<p>Consider a model of infectious disease in which a population is slit into three compartments:</p>
+<p>Consider a model of infectious disease in which a population is split into three compartments:</p>
 <ul>
 <li>susceptible</li>
 <li>infected</li>
 <li>recovered</li>
 </ul>
-<p>Suppse that interaction between susceptible and infected results in infection of susceptible. Suppose also that infected people only remain infectious for a limited time.</p>
+<p>Suppse that when susceptible and infected individuals interact, the susceptibles become infected. Suppose also that infected people only remain infectious for a limited time.</p>
 <p>Let <span class="math inline">\(S(t)\)</span>, <span class="math inline">\(I(t)\)</span> and <span class="math inline">\(R(t)\)</span> represent the population densities of susceptible, infected and recovered populations, respectively.</p>
 <p>Consider the governing ODE</p>
 <p><span class="math display">\[
@@ -363,15 +367,16 @@ N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
 </section>
 <section id="activator-inhibitor-kinetics" class="level3" data-number="1.2.3">
 <h3 data-number="1.2.3" class="anchored" data-anchor-id="activator-inhibitor-kinetics"><span class="header-section-number">1.2.3</span> Activator inhibitor kinetics</h3>
-<p>Consider a pair of interacting biochemical species, A and B. Suppose that both A and B are produced at a constant rate and that A undergoes linear degradation. Suppose also that A and B interact <span class="math display">\[
+<p>Consider a pair of interacting biochemical species, A and B. Suppose that both A and B are produced at a constant rate and that A undergoes linear degradation. Suppose also that A and B interact such that <span class="math display">\[
 2A+B \rightarrow A.
 \]</span></p>
-<p>Applying the law of mass action we obtain the ODEs <span class="math display">\[
+<p>Applying the law of mass action <span class="math display">\[
 \begin{aligned}
 \frac{d A}{ dt} &amp;= k_1 - k_2 A + k_3 A^2 B,  \\
 \frac{d B}{ dt} &amp;= k_4 - k_3 A^2 B,
 \end{aligned}
-\]</span> where <span class="math inline">\(k_1\)</span> and <span class="math inline">\(k_4\)</span> are production rates, <span class="math inline">\(k_2\)</span> is a degradation rate and <span class="math inline">\(k_3\)</span> is the reaction rate for the A and B interaction.</p>
+\]</span></p>
+<p>where <span class="math inline">\(k_1\)</span> and <span class="math inline">\(k_4\)</span> are production rates, <span class="math inline">\(k_2\)</span> is a degradation rate and <span class="math inline">\(k_3\)</span> is the reaction rate for the A and B interaction.</p>
 </section>
 </section>
 <section id="spatial-movement" class="level2" data-number="1.3">
@@ -414,10 +419,10 @@ N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
 <li><p><span class="math inline">\(f(x,t ,c(x,t))\)</span> - source/sink (number of particles created or destroyed per unit volume and unit time)</p></li>
 </ul>
 <p>We consider <span class="math inline">\(S\)</span> to be very small and <span class="math inline">\(c(x,t)\)</span> is assumed to be constant in <span class="math inline">\(S\)</span> (independent of <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span>). We also assume that <span class="math inline">\(c\)</span> is continuously differentiable with respect to <span class="math inline">\(t\)</span>.</p>
-<p>The volume of <span class="math inline">\(V\)</span> is <span class="math inline">\(A \Delta x\)</span> and number of particles is given by <span class="math display">\[
+<p>The volume of <span class="math inline">\(V\)</span> is <span class="math inline">\(A \Delta x\)</span> and number of particles in the volume is given by <span class="math display">\[
 \int_x^{x+\Delta x} c(\tilde x, t) \,  d \tilde x A.
 \]</span></p>
-<p>Then the conservation equation for the number of particles in the volume <span class="math inline">\(V\)</span> is given by <span id="eq-concerv_01"><span class="math display">\[
+<p>Then a conservation equation for the number of particles in the volume <span class="math inline">\(V\)</span> is given by <span id="eq-concerv_01"><span class="math display">\[
 \frac{\partial}{\partial t} \int_x^{x+\Delta x} c(\tilde x, t) A d\tilde x = J(x,t) \, A  - J(x+\Delta x,t) \, A +\int_x^{x + \Delta x}  f(\tilde x, t, c(\tilde x, t))\,  A \, d \tilde x.
 \tag{1.7}\]</span></span></p>
 <p>i.e.&nbsp;the flux that changes the total population in <span class="math inline">\(V\)</span> is that entering through the cross-section at <span class="math inline">\(x\)</span> and leaving through the cross-section at <span class="math inline">\(x+\Delta x\)</span> (it is assumed that there no flux through the external surface of the tube). Assuming <span class="math inline">\(c\)</span> and <span class="math inline">\(f\)</span> to be sufficiently smooth (continuous in <span class="math inline">\(x\)</span>) and applying The Mean Value Theorem in <a href="#eq-concerv_01">Equation&nbsp;<span>1.7</span></a>, we obtain <span id="eq-concerv_1"><span class="math display">\[
@@ -473,7 +478,7 @@ D = D(c) , \qquad \text{ e.g. }\,   D(c)= D_0 c^m, \quad D_0 &gt;0,
   \frac{\partial}{\partial t} c = D_0 \nabla\cdot (c^m \nabla c) + f(x,t ,c),
 \quad x\in \mathbb R^n,  \quad t &gt;0.
 \tag{1.14}\]</span></span></p></li>
-<li><p>Convection or Advection <span class="math display">\[
+<li><p>Convection or advection <span class="math display">\[
 J = \textbf{v} c,
 \]</span> where <span class="math inline">\(\textbf{v}\)</span> is a velocity vector. Hence <span id="eq-convection"><span class="math display">\[
 \frac{\partial}{\partial t} c(x,t) = - \nabla\cdot (\textbf{v}(x,t) c(x,t))  + f(x,t ,c),
@@ -565,7 +570,7 @@ c(0,x) = c_0(x) , \qquad x \in \Omega  \; .
 </section>
 <section id="formulating-a-model" class="level3" data-number="1.3.6">
 <h3 data-number="1.3.6" class="anchored" data-anchor-id="formulating-a-model"><span class="header-section-number">1.3.6</span> Formulating a model</h3>
-<p>The models that we will consider will comprise one or more partial differential equations together with boundary and initial conditions. The right-hand side of the PDEs willbe dervied based upon assumptions about a particular biological system under study. We will consider exploratory numerical solutions and then study qualitative behaviours of the solutions using analyses familiar from MA32009 (e.g.&nbsp;steady state analysis, linear stability analysis).</p>
+<p>The models that we will consider will comprise one or more partial differential equations together with boundary and initial conditions. The right-hand side of the PDEs will be derived based upon assumptions about a particular biological system under study. We will consider exploratory numerical solutions and then study qualitative behaviours of the solutions using analyses familiar from MA32009 (e.g.&nbsp;steady state analysis, linear stability analysis).</p>
 <p>We can have any combination of fluxes, depending on the biological system. For example, chemotaxis and diffusion</p>
 <p><span id="eq-chemotaxis"><span class="math display">\[
 \frac{\partial}{\partial t} c = D \Delta c -\nabla \cdot (\chi(a) c \nabla a )  + f(x,t ,c),
@@ -574,6 +579,28 @@ c(0,x) = c_0(x) , \qquad x \in \Omega  \; .
 \frac{\partial}{\partial t} a = D \nabla^2 a + g(x,t ,a, c),
 \quad x\in \mathbb R^n \,  \quad t &gt;0.
 \tag{1.18}\]</span></span> <a href="#eq-chemotaxis">Equation&nbsp;<span>1.17</span></a> and <a href="#eq-chemoattrac">Equation&nbsp;<span>1.18</span></a> form a system of equations, a so-called chemotaxis system.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Checklist
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Depending on the problem under study, you will have to define and justify your use of the following:</p>
+<ol type="1">
+<li>Independent variables</li>
+<li>Dependent variables</li>
+<li>Domain of definition</li>
+<li>Reaction kinetics</li>
+<li>Fluxes</li>
+<li>Initial conditions</li>
+<li>Boundary conditions</li>
+</ol>
+</div>
+</div>
 </section>
 <section id="nondimensionalization" class="level3" data-number="1.3.7">
 <h3 data-number="1.3.7" class="anchored" data-anchor-id="nondimensionalization"><span class="header-section-number">1.3.7</span> Nondimensionalization</h3>
