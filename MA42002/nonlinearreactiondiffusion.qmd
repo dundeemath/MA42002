@@ -46,26 +46,26 @@ At long times the solution tends to $u\sim1$ (behind the wavefront). Ahead of th
 #| fig-cap: "Numerical solution of Fisher's equation."
 #| code-fold: True
 
+#  This code computes a numerical solution to Fishers equation
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 
+
+# Define domain and discretise
 T=100
 L=100
-
 N_x=100
 N_t=100
-
 t=np.linspace(1,T,N_t)
 x=np.linspace(0,L,N_x)
-
-
-u_0=0.5*(1+np.tanh(-0.1*(x-20)))
-
 dx=L/(N_x-1)
 dt=T/(N_t-1)
 
+# Initial condition
+u_0=0.5*(1+np.tanh(-0.1*(x-20)))
 
+# encode rhs of Fishers equation
 def logisticPDErhs(u,t):
     N_x=len(u)
     f=np.zeros_like(u)
@@ -80,8 +80,10 @@ def logisticPDErhs(u,t):
     f[i]=1/dx**2*(u[i-1]-u[i])+u[i]*(1-u[i]) 
     return f  
 
+# Solve system of ODEs representing discretised PDE
 sol=odeint(logisticPDErhs,u_0,t)
 
+# Plot results
 plt.plot(x, sol[0,:], 'r')
 plt.plot(x, sol[4,:], 'b')
 plt.plot(x, sol[8,:], 'm')
@@ -152,9 +154,10 @@ $$
 we obtain a second order ordinary differential equation for $W$
 
 $$
-\frac{ d^2W}{dz^2}+  v \frac{ dW}{dz} + W(1-W)  = 0, 
+\frac{ d^2W}{dz^2}+  v \frac{ dW}{dz} + W(1-W)  = 0. 
 $$ {#eq-tw_eq}
-where
+
+Boundary conditions are chosen that represent solutions to the spatially homogeneous problem, i.e. 
 $$
 W(z) \to 1 \quad \text{ as } \quad z \to  - \infty, \quad 
 W(z) \to 0 \quad \text{ as } \quad z \to  +\infty,
@@ -178,7 +181,11 @@ $$ {#eq-tw_eq_2}
 
 In @fig-fishernumtravwave  we plot the numerical solution to equations @eq-tw_eq_2 for different values of the wavespeed, $v$. Note that when the wavespeed is too small the solution spirals in towards the origin. This solution cannot be valid as it implies that $u<0$ for some $z$. 
 
-Note that some problem  will not have a travelling wave solution. In this situation we could still make the travelling wave ansatz but this would usually result in a contradiction. In such a case this tells us that a travelling wave solution is not possible.
+
+::: {.callout-tip}
+## What if a travelling wave solution does not exist?
+Note that some problems will not have a travelling wave solution. In this situation we might still make the travelling wave ansatz but this would usually result in a contradiction. 
+:::
 
 
 ```{python}
@@ -186,23 +193,24 @@ Note that some problem  will not have a travelling wave solution. In this situat
 #| fig-cap: "Proposed numerical solution of @eq-tw_eq_2  with prospective values of wavespeed $c$."
 #| code-fold: True
 
+# This code uses a shooting method to compute solutions of the travellign wave ODEs at different values of the wave speed
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 
-T=300
-
-a=0.2
+# Discretise domain
 N_z=5000
-
 z=np.linspace(1,T,N_z)
 
+# Initial condition
 u_0=[0.99,-0.0001]
 
+# Different values of wavespeed
 v_1=2.0
 v_2=8.6
 v_3=0.5
 
+# rhs of travelling wave ODEs
 def fisherTrWaveODErhs(u, t, v):
     f=np.zeros_like(u)
     reaction=u[0]*(1-u[0]) 
@@ -211,10 +219,12 @@ def fisherTrWaveODErhs(u, t, v):
     f[1]=-v*u[1]-reaction
     return f  
 
+# Compute numerical solution of travelling wave ODEs
 sol=odeint(fisherTrWaveODErhs,u_0,z, args=(v_1,))
 sol2=odeint(fisherTrWaveODErhs,u_0,z, args=(v_2,))
 sol3=odeint(fisherTrWaveODErhs,u_0,z, args=(v_3,))
 
+# PLot results
 fig, ax = plt.subplots(1,2)
 ax[0].plot(sol[:,0],sol[:,1], 'r')
 ax[0].plot(sol2[:,0],sol2[:,1], 'b')
@@ -271,7 +281,7 @@ P(W) < 0 \quad  \mathrm{for} \quad  W \in (0,1).
 $$
 :::
 
-Thus in phase-plane we shall look for a trajectory connecting $(W_1, P_1)=(0,0)$ and $(W_2, P_2) = (1,0)$ and $P<0$. 
+Thus in the phase-plane we  look for a trajectory connecting $(W_1, P_1)=(0,0)$ and $(W_2, P_2) = (1,0)$ and $P<0$. 
 
 ### Connection between sign of $P$ and sign of speed $v$
 
@@ -325,7 +335,7 @@ $$
 $$
 and we have for $v>0$ that  ${R} e(\lambda_1^\pm) <0$.
 
-Therefore  at $(0, 0)$
+Therefore  at $(0, 0)$ we have a
 $$
 \begin{cases} 
 \text{ stable node if }\,   v^2 \geq 4, \\
@@ -580,25 +590,30 @@ $$
  
 ## Travelling waves in bistable equations
  
-Consider now the reaction-diffusion equation:
+We now consider a reaction-diffusion equation of the form
 $$
  \frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2} +   f(u)\qquad x\in \mathbb R, \, \, t >0,  \\
 $$ {#eq-bistable}
 with initial condition
 $$
-u(x,0)=u_0(x)  \qquad x\in \mathbb R,
+u(x,0)=u_0(x)  \qquad x\in \mathbb R.
 $$
- where $f(0) = f(a) = f(1)= 0$ and $0 < a<1$. 
- There are three spatially uniform steady states $u_1 =0$, $u_2 =a$, $u_3=1$. 
+
+
+We impose the conditions
+$$
+f(0) = f(a) = f(1)= 0, \quad \textrm{with} \quad  0<a<1.
+$$  
+There are three spatially uniform steady states $u_1 =0$, $u_2 =a$, $u_3=1$. 
+
+The stability of the steady states is given by the sign of $f^\prime(u_j)$ for $j =1,2,3$. 
+If we have that $f^\prime (0) < 0$, $f^\prime(a) >0$ and $f^\prime(1) <0$ then $u_1=0$ and $u_3=1$ are stable steady states and  $u_2 =a$ is an unstable steady state of @eq-bistable. 
  
- The stability of the steady states is given by the sign of $f^\prime(u_j)$ for $j =1,2,3$. 
+An example of such a function is  
+$$f=u(u-a)(1-u),
+$$ 
+which arises in the study of nerve action potentials along nerve fibres and other problems in **excitable media**.
  
- If we have that $f^\prime (0) < 0$, $f^\prime(a) >0$ and $f^\prime(1) <0$ then $u_1=0$ and $u_3=1$ are stable steady states and 
- $u_2 =a$ is an unstable steady state of @eq-bistable. 
- 
- An example of such a function is  $f$ is $f=u(u-a)(1-u)$ which arises in the study of nerve action potentials along nerve fibres and other problems in **excitable media**.
- 
- The existence of two stable steady states gives rise to the name ``bistable equation''. 
  
 
 
@@ -606,42 +621,47 @@ $$
 ```{python}
 #| label: fig-bistablepde
 #| fig-cap: 
-#|  - "A plot of f(u) against u."
-#|  - "Numerical solution of bistable PDE."
+#|  - "A plot of f(u) against u. Note location of roots. "
+#|  - "Travelling waves in a numerical solution of bistable PDE."
 #| code-fold: True
+
+# This codes computed and plots a numerical solution of bistable PDE
 
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 
+
+# Define domain
 T=100
 L=100
-
-a=0.2
-
 N_x=100
 N_t=100
-
 t=np.linspace(1,T,N_t)
 x=np.linspace(0,L,N_x)
-
-
-u_0=6*0.5*(1+np.tanh(-1*(x-50)))*0.5*(1+np.tanh(1*(x-50)))
-u_0=0.5*(1+np.tanh(-1*0.2*(x-50)))
-
 dx=L/(N_x-1)
 dt=T/(N_t-1)
 
+
+# Model parameters
+a=0.2
+
+# Initial conditions
+u_0=6*0.5*(1+np.tanh(-1*(x-50)))*0.5*(1+np.tanh(1*(x-50)))
+u_0=0.5*(1+np.tanh(-1*0.2*(x-50)))
+
+
+# Plot the reaction term
 fig, ax = plt.subplots(1)
 u_samp=np.linspace(0,1,100)
 reac=u_samp*(u_samp-a)*(1-u_samp)
 ax.plot(u_samp,reac) 
 ax.set_xlabel('$u$')
 ax.set_ylabel('$f(u)$')
-
 plt.show()
 
 
+# function encodes the right-hand side omf the disretised PDE
 def bistablePDErhs(u,t):
     N_x=len(u)
     f=np.zeros_like(u)
@@ -657,8 +677,10 @@ def bistablePDErhs(u,t):
     f= f+reaction 
     return f  
 
+# Solve the system of ODES representing the disdcretised PDE
 sol=odeint(bistablePDErhs,u_0,t)
 
+# Plot results
 plt.plot(x, sol[0,:], 'r')
 plt.plot(x, sol[15,:], 'b')
 plt.plot(x, sol[30,:], 'm')
@@ -803,23 +825,31 @@ $$
 #| label: fig-bistablenumtravwave
 #| fig-cap: "Numerical solution of bistable PDE"
 #| code-fold: True
+
+# This code uses a shooting method to compute solutions of the travlling wave problem at different values of the wavespeed
+
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 
 T=300
 
+# Model parameter
 a=0.2
-N_z=5000
 
+# z domain
+N_z=5000
 z=np.linspace(1,T,N_z)
 
+# Initial condition
 u_0=[0.99,-0.0001]
 
+# Different values of wave speed
 c_1=2.0
 c_2=0.6
 c_3=0.425
 
+# compute rhs of the travlling wave ODEs 
 def bistableTrWaveODErhs(u, t, c):
     f=np.zeros_like(u)
     reaction=u[0]*(u[0]-a)*(1-u[0]) 
@@ -828,10 +858,12 @@ def bistableTrWaveODErhs(u, t, c):
     f[1]=-c*u[1]-reaction
     return f  
 
+# numerically solve travelling wave ODEs at different values of the wavespeed
 sol=odeint(bistableTrWaveODErhs,u_0,z, args=(c_1,))
 sol2=odeint(bistableTrWaveODErhs,u_0,z, args=(c_2,))
 sol3=odeint(bistableTrWaveODErhs,u_0,z, args=(c_3,))
 
+# Plot results
 fig, ax = plt.subplots(1)
 plt.plot(sol[:,0],sol[:,1], 'r')
 plt.plot(sol2[:,0],sol2[:,1], 'b')

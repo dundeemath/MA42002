@@ -7,9 +7,7 @@ format: html
 
 Under nutirent starvation conditions, Dicty cells undergo complex collective behaviours. Individual amoebae secrete a diffusible chemical, cyclic AMP or cAMP. The amoebae respond chemotactically to cAMP and begin to migrate towards regions of high cAMP concentration via  *chemotaxis*. As they migrate they generate a range of intricate patterns including *spiral waves* and *streaming* aggregation patterns (e.g.  @fig-dicty_spiral).
 
-
 The movie below depicts slime mold aggregation. {{< video https://www.youtube.com/watch?v=bkVhLJLG7ug >}} Note the aggregation  between 0:35 and 0.48.
-
 
 
 In @fig-dicty_spiral we can see stills-shot images of spiral patterns. This spirals are dynamic as can be seen in this movie. {{< video https://www.youtube.com/watch?v=OX5Yiz38fgY >}} See spiral pattern at around 0:36. 
@@ -18,9 +16,6 @@ In @fig-dicty_spiral we can see stills-shot images of spiral patterns. This spir
 
 * can we simulate/model the mechanisms regulate that give rise to cellular aggregation? 
 * how do features of patterns that form (e.g. pattern wavelength, speepd of aggregation) depend on individual cell properties?
-
-
-
 
 
 ##  Model derivation
@@ -105,7 +100,7 @@ In @fig-bacterialchemotaxispde we plot numerical solution of @eq-chemotaxis1d to
 * How does spatial pattern depend on the initial data?
 ```{python}
 #| label: fig-bacterialchemotaxispde
-#| fig-cap: "Numerical solution of bacterial chemtaxis model"
+#| fig-cap: "Numerical solution of bacterial chemtaxis model."
 #| code-fold: True
 import numpy as np
 from scipy.integrate import odeint
@@ -113,29 +108,32 @@ import matplotlib.pyplot as plt
 import random
 
 
+# Define domain and discretise
 T=80
 L=150
+N_x=200
+N_t=100
+t=np.linspace(1,T,N_t)
+x=np.linspace(0,L,N_x)
+dx=L/(N_x-1)
+dt=T/(N_t-1)
 
+
+# Define model parameters
 mu=1.2
 delta=0.1
 D_n=2.50
 D_a=2.5
 chi_0=1.4
 
-N_x=200
-N_t=100
 
-t=np.linspace(1,T,N_t)
-x=np.linspace(0,L,N_x)
-
+# Define initial conditions
 u_0=np.ones_like(x)+0.01*np.random.uniform(low=0.0, high=0.1, size=(N_x,))
 n_0=np.ones_like(x)
-
 u_0=np.concatenate((u_0,n_0))
 
-dx=L/(N_x-1)
-dt=T/(N_t-1)
 
+# Function to compute rhs of discretised PDEs
 def LVPDErhs(sol,t):
 
     N_x=int(np.ceil(len(sol)/2))
@@ -144,15 +142,17 @@ def LVPDErhs(sol,t):
     a=sol[N_x:2*N_x]
 
 
-
+    # arrays to store rhs for the two dep variables
     f_n=np.zeros_like(n)
     f_a=np.zeros_like(n)
 
     for i in range(1,N_x-2):
       f_n[i]=D_n/dx**2*(n[i-1]-2*n[i]+n[i+1]) - chi_0*n[i]*1/dx**2*(a[i-1]-2*a[i]+a[i+1])-chi_0/(2*dx)**2*(a[i+1]-a[i-1])*(n[i+1]-n[i-1])
 
+    # No flux BC
     i=0
     f_n[i]=D_n/dx**2*(-n[i]+n[i+1]) - chi_0*n[i]*1/(2*dx)**2*(-a[i]+a[i+1])-chi_0/(2*dx)**2*(a[i+1]-a[i])*(n[i+1]-n[i])
+    # No flux BC
 
     i=N_x-1
     f_n[i]=D_n/dx**2*(n[i-1]-n[i])- chi_0*n[i]*1/(2*dx)**2*(a[i-1]-a[i])-chi_0/(2*dx)**2*(a[i]-a[i-1])*(n[i]-n[i-1])
@@ -160,8 +160,11 @@ def LVPDErhs(sol,t):
 
     for i in range(1,N_x-2):
       f_a[i]=D_a/dx**2*(a[i-1]-2*a[i]+a[i+1]) 
+    
+    # No flux BC
     i=0
     f_a[i]=D_a/dx**2*(-a[i]+a[i+1]) 
+    # No flux BC
     i=N_x-1
     f_a[i]=D_a/dx**2*(a[i-1]-a[i])
 
@@ -174,11 +177,14 @@ def LVPDErhs(sol,t):
     f= np.concatenate((f_n, f_a)) 
     return f  
 
+
+# Integrate discretised ODEs
 sol=odeint(LVPDErhs,u_0,t)
 
 n=sol[:,0:N_x]
 a=sol[:,0:N_x]
 
+# Plot solutions
 fig, ax = plt.subplots(2,1)
 
 ax[0].plot(x,n[0,:],'r')

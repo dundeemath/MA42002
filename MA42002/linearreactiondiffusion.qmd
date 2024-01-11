@@ -11,9 +11,10 @@ $$
 
 Such an equation is known as a *reaction-diffusion equation*, being composed of a reaction term, $f(c)$, and a diffusion term, $D \nabla^2 c$. Reaction-diffusion equations have many applications in biological systems e.g. travelling waves of invasion, pattern formation, spread of infectious diseases. For most of the remainder of the course we will consider such systems in one-space dimension i.e. $x \in \mathbb R$.
 
-Consider the one-dimensional reaction-diffusion equation with constant diffusion coefficient $D > 0$: $$
-\frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}  + f(c), \quad x\in \mathbb R, \, \, t >0.
+Consider the one-dimensional reaction-diffusion equation with constant diffusion coefficient $D > 0$: 
 $$
+\frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}  + f(c), \quad x\in \mathbb R, \, \, t >0.
+$$ {#eq-general1Drd}
 
 ## One-dimensional diffusion equations
 
@@ -215,9 +216,17 @@ Hence the average distance through which diffusion transports a particle in a ti
 
 ### Diffusion as the limit of a random walk
 
-Consider the *random walk* of particles in a one-dimensional domain. Suppose that the particles move randomly a distance, $\Delta x$, every time step, $\Delta t$. Assume that the particles move left with probability $\lambda_L$ and right with probability $\lambda_R$.
+Consider a *random walk* of particles in a one-dimensional domain. Let $\lambda_L$ and $\lambda_R$ represent hopping rates, such that the probability of a particle hopping distance $\Delta x$ to the right in time $\Delta t$ is
+$$
+\lambda_R \Delta t.
+$$
+Similarly, the probability of hopping a distance $\Delta x$ to the left is
+$$
+\lambda_L \Delta t.
+$$
 
-In @fig-randomwalksim a simulation of 400 random walking particles is presented. Each particle is initialised at the origin and can move one step left or right with equal probability at every time step of the simulation. As time evolves the particle density (histogram) disperses. The normalised particle density appears to be well described by the solution of the diffusion equation (solid lines, @eq-fund_sol).
+
+In @fig-randomwalksim results from a simulation of 400 random walkers is presented. Each particle is initialised at the origin and can move one step left or right with equal probability at every time step of the simulation. As time evolves the particle density (histogram) disperses. The normalised particle density appears to be well described by the solution of the diffusion equation (see solid lines, @eq-fund_sol).
 
 ```{python}
 #| label: fig-randomwalksim
@@ -258,6 +267,7 @@ for i in range(1,N_t):
   # loop over particles
   for j in range(N_particles):
 
+    # randomly sample uniform random number on U_[0,1]
     r=random.random()
     # move particle j right
     new_particle_position=particle_positions[i-1,j]
@@ -310,48 +320,66 @@ plt.tight_layout()
 plt.show()
 ```
 
-Consider the concentration of particles $c(x,t)$ at spatial location $x$ and time $t$, (or more precisely, the probability density function of the position of a particle performing a random walk) we have: $$
-c(x, t+ \Delta t) = c(x, t)  + \lambda_R c(x- \Delta x, t) - \lambda_R c(x, t) + \lambda_L c(x+ \Delta x, t) - \lambda_L c (x,t).
-$$ If we assume that $\lambda_R+ \lambda_L =1$ then $$
-c(x, t+ \Delta t) =  \lambda_R c(x- \Delta x, t) + \lambda_L c(x+ \Delta x, t).
-$$ Applying a Taylor series expansion about $(x,t)$ implies
+Let $c(x,t)$ represent the particle density at spatial location $x$ and time $t$.
+
+A conservation equation for $c$ is given by
+$$
+c(x, t+ \Delta t) = c(x, t)  + \lambda_R \Delta t c(x- \Delta x, t) - \lambda_R \Delta t c(x, t) + \lambda_L \Delta t c(x+ \Delta x, t) - \lambda_L \Delta t c (x,t).
+$$ 
+
+Applying a Taylor series expansion about $(x,t)$ implies
 
 $$
-c(x,t) + \frac{ \partial c}{\partial t} \Delta t + \frac 12  \frac{ \partial^2 c}{\partial^2 t} (\Delta t )^2  + h.o.t. =
-\lambda_R \Big( c(x,t) - \frac{ \partial c}{\partial x} \Delta x + \frac 12  \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t. \Big)\\ +
-\lambda_L \Big( c(x,t) + \frac{ \partial c}{\partial x} \Delta x + \frac 12  \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t. \Big).
+c(x,t) + \frac{ \partial c}{\partial t} \Delta t + \frac{1}{2}  \frac{ \partial^2 c}{\partial^2 t} (\Delta t )^2  + h.o.t. =
+\lambda_R \Delta t \Big( c(x,t) - \frac{ \partial c}{\partial x} \Delta x + \frac 12  \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t. \Big)\\ +
+\lambda_L \Delta t \Big( c(x,t) + \frac{ \partial c}{\partial x} \Delta x + \frac 12  \frac{ \partial^2 c}{\partial x ^2} (\Delta x )^2  + h.o.t. \Big).
 $$
 
-Using $\lambda_R+ \lambda_L =1$ and assuming $\lambda_L = \lambda_R = \frac 12$ we obtain
+Upon cancellation
 
 $$
  \frac{ \partial c}{\partial t} \Delta t + \frac 12  \frac{ \partial^2 c}{\partial^2 t} (\Delta t )^2  + h.o.t. =
- \frac 12  \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t. 
-$$ Dividing by $\Delta t$ gives
+  \frac{ \partial c}{\partial x} \Delta x\Delta t (\lambda_L-\lambda_R) + \frac 12 \Delta t (\lambda_L+\lambda_R)  \frac{ \partial^2 c}{\partial x ^2} (\Delta x )^2  + h.o.t. 
+$$ 
+
+Dividing by $\Delta t$ gives
 
 $$
  \frac{ \partial c}{\partial t}  + \frac 12  \frac{ \partial^2 c}{\partial^2 t} \Delta t   + h.o.t. =
-   \frac{ \partial^2 c}{\partial^2 x} \frac{(\Delta x )^2 }{2\Delta t} + h.o.t. 
+   \frac{ \partial c}{\partial x} \Delta x (\lambda_L-\lambda_R) + \frac 12  (\lambda_L+\lambda_R)  \frac{ \partial^2 c}{\partial x^2} (\Delta x )^2  + h.o.t.  
 $$
 
-Considering the limit $\Delta t \to 0$ and $\Delta x \to 0$ in such way that
+Considering the symmetric case where the probability of hopping left and right are equal, i.e.
+$$
+\lambda=\lambda_L=\lambda_R
+$$
+yields
+$$
+ \frac{ \partial c}{\partial t}  + \frac 12  \frac{ \partial^2 c}{\partial^2 t} \Delta t   + h.o.t. =
+    \lambda \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t.  
+$$
+
+Considering the limit $\Delta t \to 0$ and $\Delta x \to 0$  such  that
 
 $$
- \frac{(\Delta x )^2 }{2\Delta t} \to D,
+D=\lambda (\Delta x )^2 
 $$
-
-yields the (one-dimensional) diffusion equation
+ is finite yields the (one-dimensional) diffusion equation
 
 $$
 \frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}.
 $$
 
-This approach can be extended to consider other types of movement e.g. convection. For example, if we assume that\
+Note that $D$ has appropriate units (length$^2$/time) and that the probability of a particle hopping a distance $\Delta x$ in time $\Delta t$ is
 $$
-\lambda_R+ \lambda_L =1,
-$$ and $$
+\lambda \Delta t = \frac{D\Delta t}{\Delta x^2}.
+$$
+
+This approach can be extended to consider other types of movement e.g. convection. FOr example, biasing hopping such that
+$$
 \lambda_L - \lambda_R = \varepsilon,
-$$ the motion of the particles is biased and we may derive an appropriate *reaction-diffusion-convection* equation (see tutorial).
+$$ 
+yields a *reaction-diffusion-convection* equation (see tutorial).
 
 Finally we note that there is a connection between diffusion and the normal distribution function.
 
@@ -365,25 +393,30 @@ $$
 
 ## Linear reaction-diffusion equations
 
-Consider now the linear reaction term: $f(c) = \rho c$, so that our reaction-diffusion equation is: $$
+Consider now the linear reaction term: $f(c) = \rho c$, so that @eq-general1Drd takes the form
+$$
 \frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}   + \rho \, c, \quad x\in \mathbb R, \, \, t >0, 
-$$ {#eq-lin_re_eq} where $\rho \in \mathbb R$ is a constant.
+$$ {#eq-lin_re_eq} 
+where $\rho \in \mathbb R$ is a constant.
 
-Once again we consider the initial condition to be concentrated at the origin: $$
+Once again we consider the initial condition to be concentrated at the origin: 
+$$
 c(0,x) = \delta_0(x).
 $$ {#eq-lin_re_eq_ic}
 
 ### Exact solution
 
-By considering a *separation of variables* approach, i.e. making the *ansatz* $$
+By considering a *separation of variables* approach, i.e. making the *ansatz* 
+$$
 c(x,t) = w(t) \tilde c(t,x),
-$$ it can be shown (**Exercise**) that the explicit solution for the linear reaction-diffusion @eq-lin_re_eq with initial condition @eq-lin_re_eq_ic is given by
+$$ 
+it can be shown (**Exercise**) that the explicit solution for the linear reaction-diffusion @eq-lin_re_eq with initial condition @eq-lin_re_eq_ic is given by
 
 $$
 c(t,x) = \frac1{\sqrt{4 \pi D t}} \exp \left(\rho t - \frac{x^2}{ 4Dt} \right).
 $$
 
-In @fig-diffusionlinearsource we compare numerical and exact solutions.
+In @fig-diffusionlinearsource we compare numerical and exact solutions of @eq-lin_re_eq.
 
 ```{python}
 #| label: fig-diffusionlinearsource
@@ -461,15 +494,18 @@ plt.show()
 
 ### Speed of a wave of invasion
 
-Muskrats which were introduced in 1905 in Bohemia initially spread rapidly throughout Europe through a combination of random movement and proliferation (initially there were no predators and proliferation was rapid). A model for the initial spread can therefore be given by a two-dimensional diffusion equation combined with exponential growth and assuming that $M$ individuals were released at the origin (i.e. in Bohemia). Considering the density of muskrats $u({\mathbf{x}} , t)$, the equation is
+Muskrats, which were introduced in 1905 in Bohemia, initially spread rapidly throughout Europe through a combination of random movement and proliferation (initially there were no predators and proliferation was rapid). A model for the initial spread can therefore be given by a two-dimensional diffusion equation combined with exponential growth and assuming that $M$ individuals were released at the origin (i.e. in Bohemia). Letting  $u({\mathbf{x}} , t)$,  represent the density of muskrats, the evolution equation is
 
 $$
 \frac{\partial u}{\partial t} = D \left(\frac{\partial^2 u}{\partial x_1^2} +  \frac{\partial^2 u}{\partial x_2^2}\right)  + \rho \, u, \quad {\mathbf{x}} = (x_1 , x_2) \in \mathbb R^2, \, \, t >0, 
-$$ {#eq-muskrats_eq} $$
+$$ {#eq-muskrats_eq} 
+
+with initial condition
+$$
 u({\mathbf{x}}, 0) = M \delta_0({\mathbf{x}}), \quad {\mathbf{x}} \in \mathbb R^2.
 $$ {#eq-muskrats_eq_in}
 
-The solution of @eq-muskrats_eq with initial conditions @eq-muskrats_eq_in is equal to:
+It can be shown that the solution of @eq-muskrats_eq with initial conditions given by @eq-muskrats_eq_in is:
 
 $$
 u({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ |{\mathbf{x}} |^2}{ 4Dt} \right)\; = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ (x_{1}^{2} + x_{2}^{2})}{4Dt} \right).
@@ -481,22 +517,28 @@ $$
 u({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ r^2}{ 4Dt} \right).
 $$
 
-From the properties of the fundamental solution, the wave of invasion extends all the way to infinity if $t>0$. Thus, for practical purposes, somehow we have to define the front of the wave.
+From the properties of the fundamental solution, the wave of invasion extends all the way to infinity for any $t>0$. For practical purposes,  we have to define the front of the wave.
 
 Consider that there is some detection threshold for the muskrats i.e. some predetermined small value of the density $u_1$, say, such that any changes in density for $u <u_1$ cannot be detected.
 
-Because of the symmetry of the problem, then the leading edge of the invading wave front of muskrats is the circle of radius $r=r_1(t)$ where $u=u_1$, i.e. from the explicit solution of @eq-muskrats_eq,
+Because of the symmetry of the problem, then the leading edge of the invading wave front of muskrats is the circle of radius $r=r_1(t)$ where $u=u_1$, i.e. from the explicit solution of @eq-muskrats_eq
 
 $$
 u_1({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ r_1^2}{ 4Dt} \right).
 $$
 
-Rearranging and solving for $r_1$, using the fact that $$
+Rearranging and solving for $r_1$, using the fact that 
+$$
 \lim\limits_{t\to \infty} \dfrac {\ln t} t =0, 
-$$ we obtain for large $t$ that $$
+$$ 
+
+we obtain for large $t$ that 
+
+$$
 r_1(t) \approx 2 \sqrt{ \rho D} t.
 $$
 
-Hence, the speed of invasion of the leading edge of the muskrats is given by: $$
+Hence, the speed of invasion of the leading edge of the muskrats is given by: 
+$$
 v = \frac{r_1(t)}{t} =  2 \sqrt{ \rho D}. 
 $$

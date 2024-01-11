@@ -1,7 +1,6 @@
 ---
 title: "Lotka Voltera model"
 format: html
-code-tools: true
 ---
 
  
@@ -12,7 +11,6 @@ Consider a predator-prey system (modified Lotka-Voltera equations) with diffusio
 * predator growth rate is proportional to the amount of prey
 * predator undergoes natural degradation 
 
-Suppose also that both predator and prey undero random motion.
 
 Let $u(x,t)$  and $n(x,t)$ represent the density of the prey and predator, respectively. The governing equations are:
 $$
@@ -22,19 +20,13 @@ $$
 \end{aligned} 
 $$ {#eq-pp_eq}
 
-where 
-
-*  $\rho$ --  prey growth rate,
-*  $K$ -- carrying capacity, 
-*  $\beta u$ -- growth rate of the predator,
-*  $\alpha$ -- rate at which the predator eats the prey,
-*  $\gamma$ -- death rate of the predator,
-*  $D_u$ -- diffusion coefficient of the prey
-*  $D_n$ - diffusion coefficient for the predator .
+where  $\rho$ is the prey linear growth rate, $K$ is the prey carrying capacity, $\beta$  is predator growth rate per unit prey, $\alpha$ is the prey removal rate per unit predator, $\gamma$ is predator natural death rate, $D_u$ is diffusion coefficient of the prey and $D_n$ is the diffusion coefficient for the predator.
  
-We will consider one spatial dimension. 
+We will consider one spatial dimension such that $x\in \mathbb R$ and $t>0$. 
 
- 
+THe boundary conditions are assumed to be Dirichlet (i.e. the values of $u$ and $n$ are prescribed).
+
+
 ## Nondimensionalization 
 Consider the scaling
 $$
@@ -65,27 +57,37 @@ import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 
+
+# Define domain and discretise
 T=100
 L=150
+N_x=100
+N_t=100
+t=np.linspace(1,T,N_t)
+x=np.linspace(0,L,N_x)
+dx=L/(N_x-1)
+dt=T/(N_t-1)
 
+
+# Define model parameters
 a=0.2
 b=0.4
 D_u=0.10
 
-N_x=100
-N_t=100
+u_L= b
+u_R=1.0
+n_L=1-b
+n_R=0.0
 
-t=np.linspace(1,T,N_t)
-x=np.linspace(0,L,N_x)
 
+# Define initial conditions
 u_0=b+(1-b)*0.5*(1+np.tanh(1*0.5*(x-50)))
 n_0=(1-b)*0.5*(1+np.tanh(-1*0.5*(x-50)))
 
 u_0=np.concatenate((u_0,n_0))
 
-dx=L/(N_x-1)
-dt=T/(N_t-1)
 
+# Compute rhs of discretised ODEs
 def LVPDErhs(sol,t):
 
     N_x=int(np.ceil(len(sol)/2))
@@ -101,16 +103,16 @@ def LVPDErhs(sol,t):
     for i in range(1,N_x-2):
       f_u[i]=D_u/dx**2*(u[i-1]-2*u[i]+u[i+1]) 
     i=0
-    f_u[i]=D_u/dx**2*(-u[i]+u[i+1]) 
+    f_u[i]=D_u/dx**2*(u_L-2*u[i]+u[i+1])  
     i=N_x-1
-    f_u[i]=D_u/dx**2*(u[i-1]-u[i])
+    f_u[i]=D_u/dx**2*(u_L-2*u[i]+u_R)  
 
     for i in range(1,N_x-2):
       f_n[i]=1/dx**2*(n[i-1]-2*n[i]+n[i+1]) 
     i=0
-    f_n[i]=1/dx**2*(-n[i]+n[i+1]) 
+    f_n[i]=1/dx**2*(n_L-2*n[i]+n[i+1]) 
     i=N_x-1
-    f_n[i]=1/dx**2*(n[i-1]-n[i])
+    f_n[i]=1/dx**2*(n[i-1]-2*n[i]+n_R) 
 
     reaction_u=u*(1-u-n)
     reaction_n=a*n*(u-b)
@@ -121,11 +123,14 @@ def LVPDErhs(sol,t):
     f= np.concatenate((f_u, f_n)) 
     return f  
 
+# Solve discretised ODEs
 sol=odeint(LVPDErhs,u_0,t)
+
 
 u=sol[:,0:N_x]
 n=sol[:,N_x:2*N_x]
 
+# Plot solutions
 fig, ax = plt.subplots(2,1)
 
 ax[0].plot(x,u[0,:],'r')
@@ -414,20 +419,27 @@ $$
 #| label: fig-cubic
 #| fig-cap: "Plot of cubic."
 #| code-fold: True
+
 import numpy as np
 import matplotlib.pyplot as plt
 
+
+# discretise lambda
 lam=np.linspace(-1.2,1.2,100)
+
+# Define parameters
 a=0.0
 a2=0.05
 a3=0.2
 b=0.2
 v=0.5
 
+# Compute polynomials
 p1= lam**3-lam**2*(v-b/v)-lam*b-1/v*a*b*(1-b)
 p2= lam**3-lam**2*(v-b/v)-lam*b-1/v*a2*b*(1-b)
 p3= lam**3-lam**2*(v-b/v)-lam*b-1/v*a3*b*(1-b)
 
+# plot
 fig, ax= plt.subplots()
 ax.plot(lam,p1,lam,p2,lam,p3)
 ax.set_xlabel('$\lambda$')
