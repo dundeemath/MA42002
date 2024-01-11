@@ -331,26 +331,26 @@ u(x,0) = u_0(x).
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="dv">100</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>L<span class="op">=</span><span class="dv">100</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>N_x<span class="op">=</span><span class="dv">100</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>N_t<span class="op">=</span><span class="dv">100</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.linspace(<span class="dv">1</span>,T,N_t)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="dv">0</span>,L,N_x)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>u_0<span class="op">=</span><span class="fl">0.5</span><span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>np.tanh(<span class="op">-</span><span class="fl">0.1</span><span class="op">*</span>(x<span class="op">-</span><span class="dv">20</span>)))</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  This code computes a numerical solution to Fishers equation</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Define domain and discretise</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>L<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>N_x<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>N_t<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.linspace(<span class="dv">1</span>,T,N_t)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="dv">0</span>,L,N_x)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>dx<span class="op">=</span>L<span class="op">/</span>(N_x<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>dt<span class="op">=</span>T<span class="op">/</span>(N_t<span class="op">-</span><span class="dv">1</span>)</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>dx<span class="op">=</span>L<span class="op">/</span>(N_x<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>dt<span class="op">=</span>T<span class="op">/</span>(N_t<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial condition</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>u_0<span class="op">=</span><span class="fl">0.5</span><span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>np.tanh(<span class="op">-</span><span class="fl">0.1</span><span class="op">*</span>(x<span class="op">-</span><span class="dv">20</span>)))</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># encode rhs of Fishers equation</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logisticPDErhs(u,t):</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    N_x<span class="op">=</span><span class="bu">len</span>(u)</span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span>np.zeros_like(u)</span>
@@ -365,17 +365,19 @@ u(x,0) = u_0(x).
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    f[i]<span class="op">=</span><span class="dv">1</span><span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(u[i<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>u[i])<span class="op">+</span>u[i]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>u[i]) </span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f  </span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>sol<span class="op">=</span>odeint(logisticPDErhs,u_0,t)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">0</span>,:], <span class="st">'r'</span>)</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">4</span>,:], <span class="st">'b'</span>)</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">8</span>,:], <span class="st">'m'</span>)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">12</span>,:], <span class="st">'k'</span>)</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">0</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">4</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">8</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">12</span>])])</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve system of ODEs representing discretised PDE</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>sol<span class="op">=</span>odeint(logisticPDErhs,u_0,t)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot results</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">0</span>,:], <span class="st">'r'</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">4</span>,:], <span class="st">'b'</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">8</span>,:], <span class="st">'m'</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">12</span>,:], <span class="st">'k'</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">0</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">4</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">8</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">12</span>])])</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-logisticpde" class="quarto-figure quarto-figure-center anchored">
@@ -427,8 +429,9 @@ u(x,t)= W(z) = W(x-vt),
 \]</span></p>
 <p>we obtain a second order ordinary differential equation for <span class="math inline">\(W\)</span></p>
 <p><span id="eq-tw_eq"><span class="math display">\[
-\frac{ d^2W}{dz^2}+  v \frac{ dW}{dz} + W(1-W)  = 0,
-\tag{3.4}\]</span></span> where <span id="eq-tw_bc"><span class="math display">\[
+\frac{ d^2W}{dz^2}+  v \frac{ dW}{dz} + W(1-W)  = 0.
+\tag{3.4}\]</span></span></p>
+<p>Boundary conditions are chosen that represent solutions to the spatially homogeneous problem, i.e.&nbsp; <span id="eq-tw_bc"><span class="math display">\[
 W(z) \to 1 \quad \text{ as } \quad z \to  - \infty, \quad
 W(z) \to 0 \quad \text{ as } \quad z \to  +\infty,
 \tag{3.5}\]</span></span> and <span id="eq-tw_r"><span class="math display">\[
@@ -445,58 +448,73 @@ W(z) \in [0,1].
 <section id="numerical-solutions-1" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="numerical-solutions-1"><span class="header-section-number">3.2.2</span> Numerical solutions</h3>
 <p>In <a href="#fig-fishernumtravwave">Figure&nbsp;<span>3.2</span></a> we plot the numerical solution to equations <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a> for different values of the wavespeed, <span class="math inline">\(v\)</span>. Note that when the wavespeed is too small the solution spirals in towards the origin. This solution cannot be valid as it implies that <span class="math inline">\(u&lt;0\)</span> for some <span class="math inline">\(z\)</span>.</p>
-<p>Note that some problem will not have a travelling wave solution. In this situation we could still make the travelling wave ansatz but this would usually result in a contradiction. In such a case this tells us that a travelling wave solution is not possible.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What if a travelling wave solution does not exist?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that some problems will not have a travelling wave solution. In this situation we might still make the travelling wave ansatz but this would usually result in a contradiction.</p>
+</div>
+</div>
 <div class="cell" data-execution_count="2">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="dv">300</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="fl">0.2</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>N_z<span class="op">=</span><span class="dv">5000</span></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This code uses a shooting method to compute solutions of the travellign wave ODEs at different values of the wave speed</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Discretise domain</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>N_z<span class="op">=</span><span class="dv">5000</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>z<span class="op">=</span>np.linspace(<span class="dv">1</span>,T,N_z)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>z<span class="op">=</span>np.linspace(<span class="dv">1</span>,T,N_z)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>u_0<span class="op">=</span>[<span class="fl">0.99</span>,<span class="op">-</span><span class="fl">0.0001</span>]</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial condition</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>u_0<span class="op">=</span>[<span class="fl">0.99</span>,<span class="op">-</span><span class="fl">0.0001</span>]</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Different values of wavespeed</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>v_1<span class="op">=</span><span class="fl">2.0</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>v_2<span class="op">=</span><span class="fl">8.6</span></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>v_3<span class="op">=</span><span class="fl">0.5</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fisherTrWaveODErhs(u, t, v):</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span>np.zeros_like(u)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    reaction<span class="op">=</span>u[<span class="dv">0</span>]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>u[<span class="dv">0</span>]) </span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    f[<span class="dv">0</span>]<span class="op">=</span>u[<span class="dv">1</span>]</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    f[<span class="dv">1</span>]<span class="op">=-</span>v<span class="op">*</span>u[<span class="dv">1</span>]<span class="op">-</span>reaction</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f  </span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>sol<span class="op">=</span>odeint(fisherTrWaveODErhs,u_0,z, args<span class="op">=</span>(v_1,))</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>sol2<span class="op">=</span>odeint(fisherTrWaveODErhs,u_0,z, args<span class="op">=</span>(v_2,))</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>sol3<span class="op">=</span>odeint(fisherTrWaveODErhs,u_0,z, args<span class="op">=</span>(v_3,))</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>)</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(sol[:,<span class="dv">0</span>],sol[:,<span class="dv">1</span>], <span class="st">'r'</span>)</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(sol2[:,<span class="dv">0</span>],sol2[:,<span class="dv">1</span>], <span class="st">'b'</span>)</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(sol3[:,<span class="dv">0</span>],sol3[:,<span class="dv">1</span>], <span class="st">'k'</span>)</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlim([<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.05</span>])</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlabel(<span class="st">'$u$'</span>)</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">'$du/dz$'</span>)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(z,sol[:,<span class="dv">0</span>], <span class="st">'r'</span>)</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(z,sol2[:,<span class="dv">0</span>], <span class="st">'b'</span>)</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(z,sol3[:,<span class="dv">0</span>], <span class="st">'k'</span>)</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlim([<span class="op">-</span><span class="fl">0.5</span>, <span class="dv">100</span>])</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">'$z$'</span>)</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">'$u$'</span>)</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'v='</span><span class="op">+</span><span class="bu">str</span>(v_1),<span class="st">'v='</span><span class="op">+</span><span class="bu">str</span>(v_2), <span class="st">'v='</span><span class="op">+</span><span class="bu">str</span>(v_3)])</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># rhs of travelling wave ODEs</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fisherTrWaveODErhs(u, t, v):</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span>np.zeros_like(u)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    reaction<span class="op">=</span>u[<span class="dv">0</span>]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>u[<span class="dv">0</span>]) </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    f[<span class="dv">0</span>]<span class="op">=</span>u[<span class="dv">1</span>]</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    f[<span class="dv">1</span>]<span class="op">=-</span>v<span class="op">*</span>u[<span class="dv">1</span>]<span class="op">-</span>reaction</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f  </span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute numerical solution of travelling wave ODEs</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>sol<span class="op">=</span>odeint(fisherTrWaveODErhs,u_0,z, args<span class="op">=</span>(v_1,))</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>sol2<span class="op">=</span>odeint(fisherTrWaveODErhs,u_0,z, args<span class="op">=</span>(v_2,))</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>sol3<span class="op">=</span>odeint(fisherTrWaveODErhs,u_0,z, args<span class="op">=</span>(v_3,))</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co"># PLot results</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(sol[:,<span class="dv">0</span>],sol[:,<span class="dv">1</span>], <span class="st">'r'</span>)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(sol2[:,<span class="dv">0</span>],sol2[:,<span class="dv">1</span>], <span class="st">'b'</span>)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(sol3[:,<span class="dv">0</span>],sol3[:,<span class="dv">1</span>], <span class="st">'k'</span>)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlim([<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.05</span>])</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlabel(<span class="st">'$u$'</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">'$du/dz$'</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(z,sol[:,<span class="dv">0</span>], <span class="st">'r'</span>)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(z,sol2[:,<span class="dv">0</span>], <span class="st">'b'</span>)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(z,sol3[:,<span class="dv">0</span>], <span class="st">'k'</span>)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlim([<span class="op">-</span><span class="fl">0.5</span>, <span class="dv">100</span>])</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">'$z$'</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">'$u$'</span>)</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'v='</span><span class="op">+</span><span class="bu">str</span>(v_1),<span class="st">'v='</span><span class="op">+</span><span class="bu">str</span>(v_2), <span class="st">'v='</span><span class="op">+</span><span class="bu">str</span>(v_3)])</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-fishernumtravwave" class="quarto-figure quarto-figure-center anchored">
@@ -527,7 +545,7 @@ P(W) &lt; 0  \quad \textrm{or} \quad   W \in (0,1).
 P(W) &lt; 0 \quad  \mathrm{for} \quad  W \in (0,1).
 \]</span></p>
 </div>
-<p>Thus in phase-plane we shall look for a trajectory connecting <span class="math inline">\((W_1, P_1)=(0,0)\)</span> and <span class="math inline">\((W_2, P_2) = (1,0)\)</span> and <span class="math inline">\(P&lt;0\)</span>.</p>
+<p>Thus in the phase-plane we look for a trajectory connecting <span class="math inline">\((W_1, P_1)=(0,0)\)</span> and <span class="math inline">\((W_2, P_2) = (1,0)\)</span> and <span class="math inline">\(P&lt;0\)</span>.</p>
 </section>
 <section id="connection-between-sign-of-p-and-sign-of-speed-v" class="level3" data-number="3.2.4">
 <h3 data-number="3.2.4" class="anchored" data-anchor-id="connection-between-sign-of-p-and-sign-of-speed-v"><span class="header-section-number">3.2.4</span> Connection between sign of <span class="math inline">\(P\)</span> and sign of speed <span class="math inline">\(v\)</span></h3>
@@ -561,7 +579,7 @@ J(W,P) = \begin{pmatrix}
 \]</span> Thus <span class="math display">\[
 \lambda^{\pm}_1 = \frac 12 ( - v \pm \sqrt{ v^2 - 4})
 \]</span> and we have for <span class="math inline">\(v&gt;0\)</span> that <span class="math inline">\({R} e(\lambda_1^\pm) &lt;0\)</span>.</p>
-<p>Therefore at <span class="math inline">\((0, 0)\)</span> <span class="math display">\[
+<p>Therefore at <span class="math inline">\((0, 0)\)</span> we have a <span class="math display">\[
 \begin{cases}
 \text{ stable node if }\,   v^2 \geq 4, \\
 \text{ stable focus if } \,  v^2 \leq 4 \quad (\text{ complex eigenvalues})
@@ -732,86 +750,97 @@ u(t,x) \rightarrow 1 \quad \textrm{as} \quad x\rightarrow -\infty, \quad u(t,x) 
 </section>
 <section id="travelling-waves-in-bistable-equations" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="travelling-waves-in-bistable-equations"><span class="header-section-number">3.3</span> Travelling waves in bistable equations</h2>
-<p>Consider now the reaction-diffusion equation: <span id="eq-bistable"><span class="math display">\[
+<p>We now consider a reaction-diffusion equation of the form <span id="eq-bistable"><span class="math display">\[
 \frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2} +   f(u)\qquad x\in \mathbb R, \, \, t &gt;0,  \\
 \tag{3.11}\]</span></span> with initial condition <span class="math display">\[
-u(x,0)=u_0(x)  \qquad x\in \mathbb R,
-\]</span> where <span class="math inline">\(f(0) = f(a) = f(1)= 0\)</span> and <span class="math inline">\(0 &lt; a&lt;1\)</span>. There are three spatially uniform steady states <span class="math inline">\(u_1 =0\)</span>, <span class="math inline">\(u_2 =a\)</span>, <span class="math inline">\(u_3=1\)</span>.</p>
-<p>The stability of the steady states is given by the sign of <span class="math inline">\(f^\prime(u_j)\)</span> for <span class="math inline">\(j =1,2,3\)</span>.</p>
-<p>If we have that <span class="math inline">\(f^\prime (0) &lt; 0\)</span>, <span class="math inline">\(f^\prime(a) &gt;0\)</span> and <span class="math inline">\(f^\prime(1) &lt;0\)</span> then <span class="math inline">\(u_1=0\)</span> and <span class="math inline">\(u_3=1\)</span> are stable steady states and <span class="math inline">\(u_2 =a\)</span> is an unstable steady state of <a href="#eq-bistable">Equation&nbsp;<span>3.11</span></a>.</p>
-<p>An example of such a function is <span class="math inline">\(f\)</span> is <span class="math inline">\(f=u(u-a)(1-u)\)</span> which arises in the study of nerve action potentials along nerve fibres and other problems in <strong>excitable media</strong>.</p>
-<p>The existence of two stable steady states gives rise to the name ``bistable equation’’.</p>
+u(x,0)=u_0(x)  \qquad x\in \mathbb R.
+\]</span></p>
+<p>We impose the conditions <span class="math display">\[
+f(0) = f(a) = f(1)= 0, \quad \textrm{with} \quad  0&lt;a&lt;1.
+\]</span><br>
+There are three spatially uniform steady states <span class="math inline">\(u_1 =0\)</span>, <span class="math inline">\(u_2 =a\)</span>, <span class="math inline">\(u_3=1\)</span>.</p>
+<p>The stability of the steady states is given by the sign of <span class="math inline">\(f^\prime(u_j)\)</span> for <span class="math inline">\(j =1,2,3\)</span>. If we have that <span class="math inline">\(f^\prime (0) &lt; 0\)</span>, <span class="math inline">\(f^\prime(a) &gt;0\)</span> and <span class="math inline">\(f^\prime(1) &lt;0\)</span> then <span class="math inline">\(u_1=0\)</span> and <span class="math inline">\(u_3=1\)</span> are stable steady states and <span class="math inline">\(u_2 =a\)</span> is an unstable steady state of <a href="#eq-bistable">Equation&nbsp;<span>3.11</span></a>.</p>
+<p>An example of such a function is<br>
+<span class="math display">\[f=u(u-a)(1-u),
+\]</span> which arises in the study of nerve action potentials along nerve fibres and other problems in <strong>excitable media</strong>.</p>
 </section>
 <section id="numerical-solutions-2" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="numerical-solutions-2"><span class="header-section-number">3.4</span> Numerical solutions</h2>
 <div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="dv">100</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>L<span class="op">=</span><span class="dv">100</span></span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This codes computed and plots a numerical solution of bistable PDE</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="fl">0.2</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>N_x<span class="op">=</span><span class="dv">100</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>N_t<span class="op">=</span><span class="dv">100</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Define domain</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>L<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>N_x<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>N_t<span class="op">=</span><span class="dv">100</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.linspace(<span class="dv">1</span>,T,N_t)</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="dv">0</span>,L,N_x)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>u_0<span class="op">=</span><span class="dv">6</span><span class="op">*</span><span class="fl">0.5</span><span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>np.tanh(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span><span class="dv">50</span>)))<span class="op">*</span><span class="fl">0.5</span><span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>np.tanh(<span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span><span class="dv">50</span>)))</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>u_0<span class="op">=</span><span class="fl">0.5</span><span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>np.tanh(<span class="op">-</span><span class="dv">1</span><span class="op">*</span><span class="fl">0.2</span><span class="op">*</span>(x<span class="op">-</span><span class="dv">50</span>)))</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>dx<span class="op">=</span>L<span class="op">/</span>(N_x<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>dt<span class="op">=</span>T<span class="op">/</span>(N_t<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>u_samp<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">100</span>)</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>reac<span class="op">=</span>u_samp<span class="op">*</span>(u_samp<span class="op">-</span>a)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>u_samp)</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>ax.plot(u_samp,reac) </span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'$u$'</span>)</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'$f(u)$'</span>)</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bistablePDErhs(u,t):</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    N_x<span class="op">=</span><span class="bu">len</span>(u)</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span>np.zeros_like(u)</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,N_x<span class="op">-</span><span class="dv">1</span>):</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>      f[i]<span class="op">=</span><span class="dv">1</span><span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(u[i<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span><span class="dv">2</span><span class="op">*</span>u[i]<span class="op">+</span>u[i<span class="op">+</span><span class="dv">1</span>]) </span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span><span class="dv">0</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    f[i]<span class="op">=</span><span class="dv">1</span><span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(<span class="op">-</span>u[i]<span class="op">+</span>u[i<span class="op">+</span><span class="dv">1</span>]) </span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span>N_x<span class="op">-</span><span class="dv">1</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    f[i]<span class="op">=</span><span class="dv">1</span><span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(u[i<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>u[i])</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    reaction<span class="op">=</span>u<span class="op">*</span>(u<span class="op">-</span>a)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>u) </span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span> f<span class="op">+</span>reaction </span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f  </span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>sol<span class="op">=</span>odeint(bistablePDErhs,u_0,t)</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">0</span>,:], <span class="st">'r'</span>)</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">15</span>,:], <span class="st">'b'</span>)</span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">30</span>,:], <span class="st">'m'</span>)</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">45</span>,:], <span class="st">'k'</span>)</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'t'</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">0</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">4</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">8</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">12</span>])])</span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$u$'</span>)</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>dx<span class="op">=</span>L<span class="op">/</span>(N_x<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>dt<span class="op">=</span>T<span class="op">/</span>(N_t<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Model parameters</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="fl">0.2</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial conditions</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>u_0<span class="op">=</span><span class="dv">6</span><span class="op">*</span><span class="fl">0.5</span><span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>np.tanh(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span><span class="dv">50</span>)))<span class="op">*</span><span class="fl">0.5</span><span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>np.tanh(<span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span><span class="dv">50</span>)))</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>u_0<span class="op">=</span><span class="fl">0.5</span><span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>np.tanh(<span class="op">-</span><span class="dv">1</span><span class="op">*</span><span class="fl">0.2</span><span class="op">*</span>(x<span class="op">-</span><span class="dv">50</span>)))</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the reaction term</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>u_samp<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">100</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>reac<span class="op">=</span>u_samp<span class="op">*</span>(u_samp<span class="op">-</span>a)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>u_samp)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>ax.plot(u_samp,reac) </span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'$u$'</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'$f(u)$'</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co"># function encodes the right-hand side omf the disretised PDE</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bistablePDErhs(u,t):</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    N_x<span class="op">=</span><span class="bu">len</span>(u)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span>np.zeros_like(u)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,N_x<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>      f[i]<span class="op">=</span><span class="dv">1</span><span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(u[i<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span><span class="dv">2</span><span class="op">*</span>u[i]<span class="op">+</span>u[i<span class="op">+</span><span class="dv">1</span>]) </span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    f[i]<span class="op">=</span><span class="dv">1</span><span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(<span class="op">-</span>u[i]<span class="op">+</span>u[i<span class="op">+</span><span class="dv">1</span>]) </span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span>N_x<span class="op">-</span><span class="dv">1</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    f[i]<span class="op">=</span><span class="dv">1</span><span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(u[i<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>u[i])</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    reaction<span class="op">=</span>u<span class="op">*</span>(u<span class="op">-</span>a)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>u) </span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span> f<span class="op">+</span>reaction </span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f  </span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve the system of ODES representing the disdcretised PDE</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>sol<span class="op">=</span>odeint(bistablePDErhs,u_0,t)</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot results</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">0</span>,:], <span class="st">'r'</span>)</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">15</span>,:], <span class="st">'b'</span>)</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">30</span>,:], <span class="st">'m'</span>)</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sol[<span class="dv">45</span>,:], <span class="st">'k'</span>)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'t'</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">0</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">4</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">8</span>]),<span class="st">'t='</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">12</span>])])</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$u$'</span>)</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-bistablepde" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="nonlinearreactiondiffusion_files/figure-html/fig-bistablepde-output-1.png" width="598" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.4: A plot of f(u) against u.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;3.4: A plot of f(u) against u. Note location of roots.</figcaption>
 </figure>
 </div>
 </div>
@@ -819,7 +848,7 @@ u(x,0)=u_0(x)  \qquad x\in \mathbb R,
 <div id="fig-bistablepde" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="nonlinearreactiondiffusion_files/figure-html/fig-bistablepde-output-2.png" width="589" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.5: Numerical solution of bistable PDE.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;3.5: Travelling waves in a numerical solution of bistable PDE.</figcaption>
 </figure>
 </div>
 </div>
@@ -918,46 +947,55 @@ v= \dfrac {\int\limits_{0}^{1}f(W) \, dW}{\int\limits_{-\infty}^{+ \infty} \left
 <div class="cell" data-execution_count="4">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="dv">300</span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This code uses a shooting method to compute solutions of the travlling wave problem at different values of the wavespeed</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="fl">0.2</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>N_z<span class="op">=</span><span class="dv">5000</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>z<span class="op">=</span>np.linspace(<span class="dv">1</span>,T,N_z)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="dv">300</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Model parameter</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="fl">0.2</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>u_0<span class="op">=</span>[<span class="fl">0.99</span>,<span class="op">-</span><span class="fl">0.0001</span>]</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>c_1<span class="op">=</span><span class="fl">2.0</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>c_2<span class="op">=</span><span class="fl">0.6</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>c_3<span class="op">=</span><span class="fl">0.425</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bistableTrWaveODErhs(u, t, c):</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span>np.zeros_like(u)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    reaction<span class="op">=</span>u[<span class="dv">0</span>]<span class="op">*</span>(u[<span class="dv">0</span>]<span class="op">-</span>a)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>u[<span class="dv">0</span>]) </span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    f[<span class="dv">0</span>]<span class="op">=</span>u[<span class="dv">1</span>]</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    f[<span class="dv">1</span>]<span class="op">=-</span>c<span class="op">*</span>u[<span class="dv">1</span>]<span class="op">-</span>reaction</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f  </span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>sol<span class="op">=</span>odeint(bistableTrWaveODErhs,u_0,z, args<span class="op">=</span>(c_1,))</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>sol2<span class="op">=</span>odeint(bistableTrWaveODErhs,u_0,z, args<span class="op">=</span>(c_2,))</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>sol3<span class="op">=</span>odeint(bistableTrWaveODErhs,u_0,z, args<span class="op">=</span>(c_3,))</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>plt.plot(sol[:,<span class="dv">0</span>],sol[:,<span class="dv">1</span>], <span class="st">'r'</span>)</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>plt.plot(sol2[:,<span class="dv">0</span>],sol2[:,<span class="dv">1</span>], <span class="st">'b'</span>)</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>plt.plot(sol3[:,<span class="dv">0</span>],sol3[:,<span class="dv">1</span>], <span class="st">'k'</span>)</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="op">-</span><span class="fl">0.05</span>, <span class="fl">1.05</span>])</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$u$'</span>)</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$du/dz$'</span>)</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'c='</span><span class="op">+</span><span class="bu">str</span>(c_1),<span class="st">'c='</span><span class="op">+</span><span class="bu">str</span>(c_2), <span class="st">'c='</span><span class="op">+</span><span class="bu">str</span>(c_3)])</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># z domain</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>N_z<span class="op">=</span><span class="dv">5000</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>z<span class="op">=</span>np.linspace(<span class="dv">1</span>,T,N_z)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial condition</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>u_0<span class="op">=</span>[<span class="fl">0.99</span>,<span class="op">-</span><span class="fl">0.0001</span>]</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Different values of wave speed</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>c_1<span class="op">=</span><span class="fl">2.0</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>c_2<span class="op">=</span><span class="fl">0.6</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>c_3<span class="op">=</span><span class="fl">0.425</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># compute rhs of the travlling wave ODEs </span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bistableTrWaveODErhs(u, t, c):</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span>np.zeros_like(u)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    reaction<span class="op">=</span>u[<span class="dv">0</span>]<span class="op">*</span>(u[<span class="dv">0</span>]<span class="op">-</span>a)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>u[<span class="dv">0</span>]) </span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    f[<span class="dv">0</span>]<span class="op">=</span>u[<span class="dv">1</span>]</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    f[<span class="dv">1</span>]<span class="op">=-</span>c<span class="op">*</span>u[<span class="dv">1</span>]<span class="op">-</span>reaction</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f  </span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co"># numerically solve travelling wave ODEs at different values of the wavespeed</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>sol<span class="op">=</span>odeint(bistableTrWaveODErhs,u_0,z, args<span class="op">=</span>(c_1,))</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>sol2<span class="op">=</span>odeint(bistableTrWaveODErhs,u_0,z, args<span class="op">=</span>(c_2,))</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>sol3<span class="op">=</span>odeint(bistableTrWaveODErhs,u_0,z, args<span class="op">=</span>(c_3,))</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot results</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>plt.plot(sol[:,<span class="dv">0</span>],sol[:,<span class="dv">1</span>], <span class="st">'r'</span>)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>plt.plot(sol2[:,<span class="dv">0</span>],sol2[:,<span class="dv">1</span>], <span class="st">'b'</span>)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>plt.plot(sol3[:,<span class="dv">0</span>],sol3[:,<span class="dv">1</span>], <span class="st">'k'</span>)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="op">-</span><span class="fl">0.05</span>, <span class="fl">1.05</span>])</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$u$'</span>)</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$du/dz$'</span>)</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'c='</span><span class="op">+</span><span class="bu">str</span>(c_1),<span class="st">'c='</span><span class="op">+</span><span class="bu">str</span>(c_2), <span class="st">'c='</span><span class="op">+</span><span class="bu">str</span>(c_3)])</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-bistablenumtravwave" class="quarto-figure quarto-figure-center anchored">
