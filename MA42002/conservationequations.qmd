@@ -45,7 +45,8 @@ Bacteria reproduce by undergoing successive cell divisions.
 
 Let $N(t)$ represent bacterial density at time $t$ (i.e. number of cells per volume).
 
-Let $K$ represent the *per capita* rate of reproduction. Over a period of time, $\Delta t$, $K N(t) \Delta t$ cells will be added. Hence $$ 
+Let $K$ represent the *per capita* rate of reproduction. Over a period of time, $\Delta t$, $K N(t) \Delta t$ cells will be added. Hence 
+$$ 
 \begin{aligned}
 N(t+\Delta t) &=  \quad N(t)   + \quad  K N(t) \Delta t.
 \end{aligned}

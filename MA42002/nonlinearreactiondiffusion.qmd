@@ -1,67 +1,55 @@
 ---
-title: "Travelling waves in linear reaction diffusion equations"
+title: "Travelling waves in nonlinear reaction diffusion equations"
 format: html
 ---
 
-::: {.callout-note}
-
+::: callout-note
 ## Travelling waves
 
-
-A travelling wave is a solution of a PDE that has a constant profile (shape) and a constant propagation speed. 
-
+A travelling wave is a solution of a PDE that has a constant profile (shape) and a constant propagation speed.
 
 A travelling wave solution could take the form of:
 
-* Travelling pulse:  $u(x,t) \to a$, as $x \to \pm \infty$.
-* Travelling front : $u(x,t) \to a$, as $x \to -  \infty$, $u(x,t) \to b$, as $x \to + \infty$ and $a\neq b$ (this is what we see in @fig-logisticpde)
-* Travelling train: $u(x,t)$ is a periodic function in $x$. 
+-   Travelling pulse: $u(x,t) \to a$, as $x \to \pm \infty$.
+-   Travelling front : $u(x,t) \to a$, as $x \to - \infty$, $u(x,t) \to b$, as $x \to + \infty$ and $a\neq b$ (this is what we see in @fig-logisticpde)
+-   Travelling train: $u(x,t)$ is a periodic function in $x$.
 
-A travelling wave solution of a PDE can be written in the form $u(x,t) = W(z)$, where $z = x - vt$. We shall consider $v>0$, which describes a wave moving from left to right. 
+A travelling wave solution of a PDE can be written in the form $u(x,t) = W(z)$, where $z = x - vt$. We shall consider $v>0$, which describes a wave moving from left to right.
 :::
 
-
 ## Fisher's equation
-We now consider the one-dimensional diffusion equation with a non-linear reaction term of "logistic growth", to give the nonlinear  reaction-diffusion equation: 
+
+We now consider the one-dimensional diffusion equation with a non-linear reaction term of "logistic growth", to give the nonlinear reaction-diffusion equation:
 
 $$
 \frac{\partial u}{\partial t} = D\frac{\partial^2 u}{\partial x^2} +   \rho u\left(1-\frac u K\right), \qquad x\in \mathbb R, \, \, t >0,  
-$${#eq-fisher}
+$$ {#eq-fisher}
 
-with initial Condition
-$$
+with initial Condition $$
 u(x,0) =u_0(x). 
-$$ 
+$$
 
-This is known as **the Fisher equation**, and was introduced by Fisher in $1937$  (@fisher1937wave). 
+This is known as **the Fisher equation**, and was introduced by Fisher in $1937$ (@fisher1937wave).
 
-We can non-dimensionalize @eq-fisher by considering the scaling 
-$$t^\ast = \rho t, \quad  x^\ast = \sqrt{\dfrac \rho D} x, \quad  u^\ast = \displaystyle{\frac u K}.
-$$ 
-Dropping the asteriks we obtain the non-dimensionalized Fisher equation (**Exercise**):
- 
+We can non-dimensionalise @eq-fisher by considering the scaling $$t^\ast = \rho t, \quad  x^\ast = \sqrt{\dfrac \rho D} x, \quad  u^\ast = \displaystyle{\frac u K}.
+$$ Dropping the asteriks we obtain the non-dimensionalised Fisher equation (**Exercise**):
+
 $$
 \frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2} +   u(1-u), \qquad x\in \mathbb R, \, \, t >0 
-$$
-with initial condition
-$$
+$$ with initial condition $$
 u(x,0) = u_0(x).
 $$ {#eq-fisher_1}
 
-
 ### Numerical solutions
-In @fig-logisticpde we have computed a numerical solution to @eq-fisher_1 together with no-flux boundary conditions. See Python code for further details.
-The key point to note is that the numerical solutions appear to be a *travelling wave*, at successive times the solution is translated along the $x$ axis.
-At long times the solution tends to $u\sim1$ (behind the wavefront). Ahead of the front, the solution is $u\sim0$.
 
-The numerical results motviate the following questions:
+In @fig-logisticpde we have computed a numerical solution to @eq-fisher_1 together with no-flux boundary conditions. See Python code for further details. The key point to note is that the numerical solutions appear to be a *travelling wave*, at successive times the solution is translated along the $x$ axis. At long times the solution tends to $u\sim1$ (behind the wavefront). Ahead of the front, the solution is $u\sim0$.
 
-* Can we prove the existence of a travelling wave (e.g. the numerical solution *could* have a profile that varies on a very slow time scale)?
-* How does the travelling depend on initial data?
-* How does the wave speed relate to model parameters?
-* How do the boundary conditions affect the wave propagation?
+The numerical results motivate the following questions:
 
-
+-   Can we prove the existence of a travelling wave (e.g. the numerical solution *could* have a profile that varies on a very slow time scale)?
+-   How does the travelling depend on initial data?
+-   How does the wave speed relate to model parameters?
+-   How do the boundary conditions affect the wave propagation?
 
 ```{python}
 #| label: fig-logisticpde
@@ -117,44 +105,32 @@ plt.tight_layout()
 plt.show()
 ```
 
-
 ### Spatially homogeneous solutions
-Consider first the *spatially uniform (homogeneous)* solution of  @eq-fisher_1 
+
+Consider first the *spatially uniform (homogeneous)* solution of @eq-fisher_1
 
 $$ 
 \frac{\partial u}{\partial t} =    u(1-u), \qquad   \, \, t >0.
 $$ {#eq-fisher_unif}
 
-Steady states of @eq-fisher_unif are 
-$$
+Steady states of @eq-fisher_unif are $$
 u=u_1 =1
-$$ 
-and 
-$$
+$$ and $$
 u=u_2 =0.
-$$ 
-To analyse the stability we consider 
-$$
+$$ To analyse the stability we consider $$
 f(u)=u(1-u) \quad \textrm{and} \quad \frac{ df}{du}(u)= 1 - 2u.
-$$
-Then 
-$$
+$$ Then $$
 \frac{ df}{du}(u_1)= -1 \quad \textrm{and} \quad \frac{ df}{du}(u_2)= 1.
-$$
-Thus
-$u_1=1$ is *stable* and $u_2=0$ is  *unstable*. 
+$$ Thus $u_1=1$ is *stable* and $u_2=0$ is *unstable*.
 
-This stability analysis suggests that for the spatially dependent situation we can have a travelling wave solution that connects the two steady states $u_1$ and $u_2$ i.e. a travelling front. 
-
+This stability analysis suggests that for the spatially dependent situation we can have a travelling wave solution that connects the two steady states $u_1$ and $u_2$ i.e. a travelling front.
 
 ### Travelling wave solutions {#sec-fisher}
-Consider the travelling wave *ansatz*  
+
+Consider the travelling wave *ansatz*\
 $$
 u(x,t)= W(z) = W(x-vt),
-$$
-where $v$ is a positive constant.
-Changing variables in @eq-fisher_1 and using 
-$$
+$$ where $v$ is a positive constant. Changing variables in @eq-fisher_1 and using $$
 \begin{aligned}
 \frac{ \partial u}{\partial t} &= \frac{ dW}{dz} \frac{\partial z}{\partial t} = - v   \frac{ dW}{dz}, \\
  \frac{ \partial u}{\partial x} &= \frac{ dW}{dz} \frac{\partial z}{\partial x} =\frac{ dW}{dz}, \\
@@ -168,13 +144,10 @@ $$
 \frac{ d^2W}{dz^2}+  v \frac{ dW}{dz} + W(1-W)  = 0. 
 $$ {#eq-tw_eq}
 
-Boundary conditions are chosen that represent solutions to the spatially homogeneous problem, i.e. 
-$$
+Boundary conditions are chosen that represent solutions to the spatially homogeneous problem, i.e. $$
 W(z) \to 1 \quad \text{ as } \quad z \to  - \infty, \quad 
 W(z) \to 0 \quad \text{ as } \quad z \to  +\infty,
-$$ {#eq-tw_bc} 
-and
-$$
+$$ {#eq-tw_bc} and $$
 W(z) \in [0,1]. 
 $$ {#eq-tw_r}
 
@@ -187,17 +160,15 @@ $$
 \end{aligned}
 $$ {#eq-tw_eq_2}
 
-
 #### Numerical solutions
 
-In @fig-fishernumtravwave  we plot the numerical solution to equations @eq-tw_eq_2 for different values of the wavespeed, $v$. Note that when the wavespeed is too small the solution spirals in towards the origin. This solution cannot be valid as it implies that $u<0$ for some $z$. 
+In @fig-fishernumtravwave we plot the numerical solution to equations @eq-tw_eq_2 for different values of the wave speed, $v$. Note that when the wave speed is too small the solution spirals in towards the origin. This solution cannot be valid as it implies that $u<0$ for some $z$.
 
-
-::: {.callout-tip}
+::: callout-tip
 ## What if a travelling wave solution does not exist?
-Note that some problems will not have a travelling wave solution. In this situation we might still make the travelling wave ansatz but this would usually result in a contradiction. 
-:::
 
+Note that some problems will not have a travelling wave solution. In this situation we might still make the travelling wave ansatz but this would usually result in a contradiction.
+:::
 
 ```{python}
 #| label: fig-fishernumtravwave
@@ -257,14 +228,12 @@ plt.tight_layout()
 plt.show()
 
 ```
- 
+
 #### Steady state and linear stability analysis
-The steady states of @eq-tw_eq_2 are 
-$(W_1, P_1) = (0,0)$ and $(W_2, P_2) = (1,0)$. 
 
+The steady states of @eq-tw_eq_2 are $(W_1, P_1) = (0,0)$ and $(W_2, P_2) = (1,0)$.
 
-The *Jacobian matrix* for @eq-tw_eq_2 is given by:
-$$
+The *Jacobian matrix* for @eq-tw_eq_2 is given by: $$
 J(W,P) = \begin{pmatrix}
 \frac{\partial F}{\partial W} & \, \frac{\partial F }{\partial P}\\
 \frac{\partial G }{\partial W} & \, \frac{\partial G }{\partial P}
@@ -275,32 +244,24 @@ J(W,P) = \begin{pmatrix}
 \end{pmatrix}.
 $$
 
-At $(W_1, P_1)=(0,0)$ the eigenvalues of $J(0,0)$ are solutions of the characteristic polynomial 
-$$
+At $(W_1, P_1)=(0,0)$ the eigenvalues of $J(0,0)$ are solutions of the characteristic polynomial $$
 \det(J(0,0) - \lambda I) = \begin{vmatrix} -\lambda & \, 1\\
 - 1 & \, -v - \lambda
 \end{vmatrix} = \lambda^2 + v \lambda + 1 = 0.
-$$
-Thus
-$$
+$$ Thus $$
 \lambda^{\pm}_1 = \frac 12 ( - v \pm \sqrt{ v^2 - 4})
-$$
-and we have for $v>0$ that  ${R} e(\lambda_1^\pm) <0$.
+$$ and we have for $v>0$ that ${R} e(\lambda_1^\pm) <0$.
 
-Therefore  at $(0, 0)$ we have a
-$$
+Therefore at $(0, 0)$ we have a $$
 \begin{cases} 
 \text{ stable node if }\,   v^2 \geq 4, \\
 \text{ stable focus if } \,  v^2 \leq 4 \quad (\text{ complex eigenvalues})
 \end{cases}
 $$ {#eq-origin-spiral-cond}
 
-The eigenvectors are  defined by 
-$$
+The eigenvectors are defined by $$
 - \lambda W + P = 0.
-$$
-Thus at $(W_1, P_1)=(0,0)$ we have 
-$$
+$$ Thus at $(W_1, P_1)=(0,0)$ we have $$
 \Phi_1 = \begin{pmatrix}
 W\\
 \lambda_1^- W
@@ -310,28 +271,19 @@ W\\
 \end{pmatrix}. 
 $$
 
-Consider that 
-$$
+Consider that $$
 \lambda_1^- \leq \lambda_1^+ <0 \quad \textrm{and choose} \quad W = \pm 1.
 $$
 
-
-
-At $(W_2, P_2)=(1,0)$ the eigenvalues of $J(1,0)$ are solutions of the characteristic polynomial 
-$$
+At $(W_2, P_2)=(1,0)$ the eigenvalues of $J(1,0)$ are solutions of the characteristic polynomial $$
 \det(J(1,0) - \lambda I) = \begin{vmatrix} -\lambda & \, 1 \\
 1 & \, -v - \lambda
 \end{vmatrix} = \lambda^2 + v \lambda - 1 = 0.
-$$
-Thus
-$$
+$$ Thus $$
 \lambda^{\pm}_2 = \frac 12 ( - v \pm \sqrt{ v^2 + 4})
-$$
-and we have for $v>0$ that  $\lambda_2^{-} <0 < \lambda_2^+$.
-Therefore  $(1,0)$ is a saddle. 
+$$ and we have for $v>0$ that $\lambda_2^{-} <0 < \lambda_2^+$. Therefore $(1,0)$ is a saddle.
 
-At $(W_2, P_2)=(1,0)$ we have 
-$$
+At $(W_2, P_2)=(1,0)$ we have $$
 \Psi_1 = \begin{pmatrix}
 W\\
 \lambda_2^- W
@@ -341,60 +293,46 @@ W\\
 \end{pmatrix}.
 $$
 
-Consider that 
-$$
+Consider that $$
 \lambda_2^- <0 < \lambda_2^+  \quad \textrm{and choose} \quad W = \pm 1.
-$$
-The eigenvectors are sketched in @fig-eigenvectors. 
+$$ The eigenvectors are sketched in @fig-eigenvectors.
 
 ![Schematic diagram of eigenvectors.](fig_4.png){#fig-eigenvectors}
 
 We seek a travelling wave solution that is represented by a trajectory that connects the unstable manifold of the saddle with the stable manifold at the origin.
 
-
 ::: {#def-line}
-The trajectory that connects two different points is called a heteroclinic connection. The trajectory that connects a point with itself  is called  a homoclinic connection.
+The trajectory that connects two different points is called a heteroclinic connection. The trajectory that connects a point with itself is called a homoclinic connection.
 :::
 
 #### Minimal wave speed
 
-It can be shown that  for $v<2$ a heteroclinic connection between $(0,0)$ and $(1,0)$ exists, but in this situation the steady state  $(0,0)$ is a stable focus and corresponds to an oscillatory front (see numerical solution in @fig-fishernumtravwave)
+It can be shown that for $v<2$ a heteroclinic connection between $(0,0)$ and $(1,0)$ exists, but in this situation the steady state $(0,0)$ is a stable focus and corresponds to an oscillatory front (see numerical solution in @fig-fishernumtravwave)
 
-In the context of a model of a biological process $W$ is the profile of a population density and $W\geq 0$.
-Hence, for $v<2$   trajectories connecting $(0,0)$ and $(1,0)$ are not biologically realistic. 
+In the context of a model of a biological process $W$ is the profile of a population density and $W\geq 0$. Hence, for $v<2$ trajectories connecting $(0,0)$ and $(1,0)$ are not biologically realistic.
 
-To avoid negative solutions we  impose the condition that the origin cannot be a spiral.  Considering @eq-origin-spiral-cond we obtain the nondimensional minimal speed 
-$$
+To avoid negative solutions we impose the condition that the origin cannot be a spiral. Considering @eq-origin-spiral-cond we obtain the nondimensional minimal speed $$
 v^\ast_\text{min}=2
-$$ 
-for which we have a travelling wave front solution for Fisher's equation. 
+$$ for which we have a travelling wave front solution for Fisher's equation.
 
-In the original dimensional variables we have: 
-$$
+In the original dimensional variables we have: $$
 z^\ast= x^\ast - v^\ast t^\ast = x \sqrt{ \frac \rho D} - v^\ast t \rho , \quad 
 \sqrt{ \frac D \rho } z^\ast= x  - \sqrt{D \rho}  \, v^\ast\,  t.
-$$
-Thus for $z = x - vt$ we have 
-$$ 
+$$ Thus for $z = x - vt$ we have $$ 
 v=  v^\ast \sqrt{D \rho},
-$$
-and
-$$
+$$ and $$
 v_{\text{min}}=  v^\ast_{\text{min}} \sqrt{D \rho} = 2  \sqrt{D \rho}.
-$$ 
+$$
 
 #### The existence of a travelling wave solution
 
-To show the existence of a travelling wave we will construct a **confined region** or **confined set** in $\mathbb{R}^2$, which contains both steady states  such that, once inside this region solution trajectories cannot escape from it (also known as an **invariant region** or **invariant set**). If we can then show that there are no other steady steadys in the confined region and that the solution is not oscillatory, the only valid solution must be a heteroclinic trajectory that connects the unstable manidolf of one steady state withthe stable manifold of another.
+To show the existence of a travelling wave we will construct a **confined region** or **confined set** in $\mathbb{R}^2$, which contains both steady states such that, once inside this region solution trajectories cannot escape from it (also known as an **invariant region** or **invariant set**). If we can then show that there are no other steady states in the confined region and that the solution is not oscillatory, the only valid solution must be a heteroclinic trajectory that connects the unstable manifold (eigenvector) of one steady state with the stable manifold of another.
 
-Consider
-$$
+Consider $$
 T= \{ (W,P) : \, 0 \leq W \leq 1,\, \, P \leq 0, \, \,  P \geq \mu W \} 
-$$ 
-for some $\mu <0$. 
+$$ for some $\mu <0$.
 
-Consider normal vectors at each boundary of $T$: 
-$$
+Consider normal vectors at each boundary of $T$: $$
 \text{ at } P = 0 \, : \, \, n_1 = \begin{pmatrix} 
 0 \\ -1
 \end{pmatrix}, \quad 
@@ -404,17 +342,13 @@ $$
 \text{ at } P = \mu W \, : \, \, n_3 = \begin{pmatrix} 
 -\mu \\1
 \end{pmatrix}.
-$$
-Consider the scalar product between normal vectors and the **flow vector** 
-$$
+$$ Consider the scalar product between normal vectors and the **flow vector** $$
 \begin{pmatrix} 
 \dfrac{ dW}{dz} \\ \\  \dfrac{dP}{dz}
 \end{pmatrix},
-$$
-of @eq-tw_eq_2. 
+$$ of @eq-tw_eq_2.
 
-At $P=0$
-$$
+At $P=0$ $$
 \begin{pmatrix} 
 \dfrac{ dW}{dz} \\  \\ \dfrac{dP}{dz}
 \end{pmatrix} \cdot n_1 = \begin{pmatrix} 
@@ -424,8 +358,7 @@ $$
 \end{pmatrix} =  \left(v P + W(1-W)\right) \Big|_{P=0} =  W(1-W) \geq 0 , \text{ for } W\in [0,1].
 $$
 
-At $W=1$
-$$
+At $W=1$ $$
 \begin{pmatrix} 
 \dfrac{ dW}{dz} \\  \\ \dfrac{dP}{dz}
 \end{pmatrix} \cdot n_2 = \begin{pmatrix} 
@@ -435,8 +368,7 @@ $$
 \end{pmatrix} =  -P  \geq 0 , \text{ since }P \leq 0.
 $$
 
-At $P=\mu W$
-$$
+At $P=\mu W$ $$
 \begin{aligned}
 \begin{pmatrix} 
 \dfrac{ dW}{dz} \\  \\ \dfrac{dP}{dz}
@@ -448,20 +380,15 @@ $$
 & =\left(  - \mu  P - vP -  W(1-W)\right) \Big|_{P=\mu W}  \\
 &=   - \mu^2 W - \mu v W - W(1-W) = - W( \mu^2 + \mu v + 1) + W^2.
 \end{aligned}
-$$
-Thus 
+$$ Thus
 
 $$
 \begin{pmatrix} 
 \dfrac{ dW}{dz} \\  \\ \dfrac{dP}{dz}
 \end{pmatrix} \cdot n_3 \geq 0,
-$$ 
-if 
-$$
+$$ if $$
 \mu^2 + \mu v + 1 \leq 0.
-$$
-The last inequality is satisfied if we have real roots of the equation 
-$\mu^2 + \mu v + 1 = 0$. We have that 
+$$ The last inequality is satisfied if we have real roots of the equation $\mu^2 + \mu v + 1 = 0$. We have that
 
 $$
 \mu_{1,2} = \frac{ - v \pm \sqrt{ v^2 -4}} 2
@@ -469,150 +396,105 @@ $$
 
 are real if $v^2 \geq 4$.
 
-Thus, since $v >0$,  for $v \geq 2$ and any 
-$$
+Thus, since $v >0$, for $v \geq 2$ and any $$
 \mu\in \left[ \dfrac{ - v -\sqrt{ v^2 -4}} 2, \dfrac{ - v +\sqrt{ v^2 -4}} 2 \right]
-$$
-we have
-$$
+$$ we have $$
 \begin{pmatrix} 
 \dfrac{ dW}{dz} \\  \\ \dfrac{dP}{dz}
 \end{pmatrix} \cdot n_3 \geq 0 \qquad \text{ at } \quad P=\mu W. 
 $$
 
+Therefore we have shown that at the boundaries of $T$ the flow vector points in to the region $T$ and any trajectory approaching the boundaries from inside of $T$ will return to $T$ without crossing any of the boundaries of $T$. Thus we have constructed an invariant (trapping) triangular region containing the steady states $(0,0)$ and $(1,0)$.
 
-Therefore we have shown that at the boundaries of $T$ the flow vector points in to the region $T$ and any trajectory approaching the boundaries from inside of $T$ will return to $T$ without crossing any of the boundaries of $T$. Thus we have constructed an invariant (trapping) triangular region containing the steady states $(0,0)$ and $(1,0)$. 
- 
-If we can show that there no other steady states or periodic solutions of the system @eq-tw_eq_2, then a trajectory that leaves $(1,0)$ must approach $(0,0)$. 
- 
- 
-:::{#thm-bendixson}
+If we can show that there no other steady states or periodic solutions of the system @eq-tw_eq_2, then a trajectory that leaves $(1,0)$ must approach $(0,0)$.
 
- Bendixson's Negative Criterion, Dulac's Negative Criterion
- 
- If there exists a function $\varphi(W,P)$, with $\varphi \in C^1(\mathbb R^2)$,  such that 
-$$
+::: {#thm-bendixson}
+Bendixson's Negative Criterion, Dulac's Negative Criterion
+
+If there exists a function $\varphi(W,P)$, with $\varphi \in C^1(\mathbb R^2)$, such that $$
  \frac{\partial(\varphi F )}{\partial W} +  \frac{\partial(\varphi G )}{\partial P},
 $$
 
- has the same sign $(\neq 0)$ almost everywhere in a simply connected region (region without holes), then the system 
-$$
+has the same sign $(\neq 0)$ almost everywhere in a simply connected region (region without holes), then the system $$
  \begin{aligned}
  \dfrac{ dW}{dz} &= F(W,P) \; , 
  \\   \dfrac{dP}{dz} &= G(W,P),
 \end{aligned}
-$$
- has no periodic solutions in this region. 
+$$ has no periodic solutions in this region.
 :::
 
- We can apply @thm-bendixson to our situation taking $\varphi(W,P) = 1$. Then using @eq-tw_eq_2 we have
-$$
+We can apply @thm-bendixson to our situation taking $\varphi(W,P) = 1$. Then using @eq-tw_eq_2 we have $$
  \frac{\partial(\varphi F )}{\partial W} +  \frac{\partial(\varphi G )}{\partial P} = - v < 0\; .
-$$ 
- Thus we have no periodic solutions and also only two steady states $(0,0)$
- and $(1,0)$ in the confined (invariant)  simply-connected region $T$.  Therefore the trajectory  that leaves $(1,0)$  will approach $(0,0)$. 
- 
- We have therefore shown that for any $v\geq 2$ there exist  a heteroclinic trajectory $P(W)$ connecting $(0,0)$ and $(1,0)$. 
- 
- 
- Thus for any wave speed $v$ satisfying   $v \geq 2$, we have the existence of travelling wave front $u(x,t)= W(x- vt)$ of Fisher's equation  @eq-fisher_1.
+$$ Thus we have no periodic solutions and also only two steady states $(0,0)$ and $(1,0)$ in the confined (invariant) simply-connected region $T$. Therefore the trajectory that leaves $(1,0)$ will approach $(0,0)$.
 
+We have therefore shown that for any $v\geq 2$ there exist a heteroclinic trajectory $P(W)$ connecting $(0,0)$ and $(1,0)$.
 
+Thus for any wave speed $v$ satisfying $v \geq 2$, we have the existence of travelling wave front $u(x,t)= W(x- vt)$ of Fisher's equation @eq-fisher_1.
 
 #### Sign of the wave speed {#sec-logisticwavespeed}
 
-Consider @eq-tw_eq together with boundary condition
-$$
+Consider @eq-tw_eq together with boundary condition $$
 W(z\rightarrow -\infty)=1 \quad W(z\rightarrow \infty)=0.
-$$
-Multiply @eq-tw_eq by $\dfrac{dW}{dz}$ and integrate over $(-\infty, + \infty)$:
-$$
+$$ Multiply @eq-tw_eq by $\dfrac{dW}{dz}$ and integrate over $(-\infty, + \infty)$: $$
 \int_{-\infty}^{+ \infty}  \dfrac{d^2W}{dz^2} \dfrac{dW}{dz} \, dz + v\int_{-\infty}^{+ \infty} \left|\dfrac{dW}{dz} \right|^2\, dz  + \int_{-\infty}^{+ \infty}W(1-W)\dfrac{dW}{dz} \, dz =0.
 $$
 
-Then 
-$$
+Then $$
 \frac 12 \int_{-\infty}^{+ \infty}  \dfrac{d}{dz} \left(\left|\dfrac{dW}{dz}\right |^2\right) \, dz + v\int_{-\infty}^{+ \infty} \left|\dfrac{dW}{dz} \right|^2\, dz  + \int_{W(-\infty)}^{W(+\infty)}W(1-W) \, dW =0.
-$$
-and  since $W(z) \to 1$ as $z \to - \infty$ and $W(z) \to 0$ as $z \to + \infty$ we obtain 
+$$ and since $W(z) \to 1$ as $z \to - \infty$ and $W(z) \to 0$ as $z \to + \infty$ we obtain
 
 $$
 \frac 12 \left( \left|\dfrac{dW(+\infty)}{dz}\right |^2-   \left|\dfrac{dW(-\infty)}{dz}\right |^2\right)  + v\int_{-\infty}^{+ \infty} \left|\dfrac{dW}{dz} \right|^2\, dz  + \int_{1}^{0}W(1-W)\, dW =0.
-$$
-The fact that $W$ is constant at $\pm \infty$ implies that 
-$$
+$$ The fact that $W$ is constant at $\pm \infty$ implies that $$
 \dfrac{dW}{dz}\Big|_{z=-\infty} = \dfrac{dW}{dz}\Big|_{z=+\infty}=0.
-$$
-Thus we have 
+$$ Thus we have
 
 $$
  v\int\limits_{-\infty}^{+ \infty} \left|\dfrac{dW}{dz} \right|^2\, dz  =  \int\limits_{0}^{1}W(1-W) dW =\frac{1}{6}
-$$
-and 
-$$
+$$ and $$
 v= \dfrac {\frac{1}{6}}{\int\limits_{-\infty}^{+ \infty} \left|\dfrac{dW}{dz} \right|^2 dz}.
 $$
-Thus the wavespeed must be positive and the wave therefore travels in the positive direction along the $x$ axis.
 
-In contrast, if we were to swap the boundary conditions such that
-$$
+Thus the wave speed must be positive and the wave therefore travels in the positive direction along the $x$ axis.
+
+In contrast, if we were to swap the boundary conditions such that $$
 W(z\rightarrow -\infty)=0 \quad W(z\rightarrow \infty)=1,
-$$
-the wavespeed would be negative and the wave would  travel in the negative direction along the $x$ axis.
+$$ the wavespeed would be negative and the wave would travel in the negative direction along the $x$ axis.
 
-
- 
 #### Initial conditions
- 
- One final key question is: For which initial conditions $u(x,0) = u_0(x)$ does the solution evolve to a travelling wave solution?
- 
- If we start with a travelling wave shape initial condition, i.e. $u_0(x)= W(z)|_{t=0} = W(x)$, then this simply propagates as a travelling wave. 
- However if  $u_0(x)\neq W(x)$, then it is not immediately obvious how the solution will evolve.  This problem was considered by Kolmogorov et al. @kolmogorov1937investigation, who showed that  for any initial data satisfying 
- $$
+
+One final key question is: For which initial conditions $u(x,0) = u_0(x)$ does the solution evolve to a travelling wave solution?
+
+If we start with a travelling wave shape initial condition, i.e. $u_0(x)= W(z)|_{t=0} = W(x)$, then this simply propagates as a travelling wave. However if $u_0(x)\neq W(x)$, then it is not immediately obvious how the solution will evolve. This problem was considered by Kolmogorov et al. @kolmogorov1937investigation, who showed that for any initial data satisfying $$
  u_0(x) \geq 0, \quad \text{ with} \quad  u_0(x) = \begin{cases} 1 \, \text{ if } \, x \leq x_1, \\
  0 \, \text{ if } \, x \geq x_2, 
  \end{cases}
- $$
- where $x_1 < x_2$ and $u_0$ is continuous in $[x_1, x_2]$, the solution of Fisher's @eq-fisher_1 evolves to a travelling wave with minimal speed 
-$$
+ $$ where $x_1 < x_2$ and $u_0$ is continuous in $[x_1, x_2]$, the solution of Fisher's @eq-fisher_1 evolves to a travelling wave with minimal speed $$
  v_\text{ min} = 2 \sqrt{ \rho D}
-$$
-and 
-$$
+$$ and $$
 u(t,x) \rightarrow 1 \quad \textrm{as} \quad x\rightarrow -\infty, \quad u(t,x) \rightarrow 0 \quad \textrm{and} \quad  x\rightarrow +\infty.
 $$
 
-
- 
 ## Bistable equation
- 
-We now consider a reaction-diffusion equation of the form
-$$
+
+We now consider a reaction-diffusion equation of the form $$
  \frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2} +   f(u),\qquad x\in \mathbb R, \, \, t >0,  \\
-$$ {#eq-bistable}
-with initial condition
-$$
+$$ {#eq-bistable} with initial condition $$
 u(x,0)=u_0(x),  \qquad x\in \mathbb R.
 $$
 
-
-We impose the condition that $f$ has three roots, such that
-$$
+We impose the condition that $f$ has three roots, such that $$
 f(0) = f(a) = f(1)= 0, \quad \textrm{with} \quad  0<a<1.
-$$  
-There are therefore three spatially uniform steady states $u_1 =0$, $u_2 =a$, $u_3=1$. 
+$$\
+There are therefore three spatially uniform steady states $u_1 =0$, $u_2 =a$, $u_3=1$.
 
-
-We also impose that
-$$
+We also impose that $$
 f^\prime (0) < 0, \quad  f^\prime(a) >0 \quad \textrm{and} f^\prime(1) <0
-$$
-Hence the spatially homogeneous steady states $u_1=0$ and $u_3=1$ are stable  and  $u_2 =a$ is  unstable.
- 
-An example of such a function (@fig-cubicnonlinearity) is  
+$$ Hence the spatially homogeneous steady states $u_1=0$ and $u_3=1$ are stable and $u_2 =a$ is unstable.
+
+An example of such a function (@fig-cubicnonlinearity) is\
 $$f=u(u-a)(1-u),
-$$ 
-which arises in the study of nerve action potentials along nerve fibres and other problems in *excitable media* (@keener2009mathematical). 
+$$ which arises in the study of nerve action potentials along nerve fibres and other problems in *excitable media* (@keener2009mathematical).
 
 ```{python}
 #| label: fig-cubicnonlinearity
@@ -638,12 +520,11 @@ ax.set_ylabel('$f(u)$')
 plt.grid()
 plt.show()
 
-``` 
+```
 
 ### Numerical solution
 
 In Figure @fig-bistablepde we plot a numerical solution of @eq-bistable. Note the emergence of a travelling wave solution.
-
 
 ```{python}
 #| label: fig-bistablepde
@@ -707,17 +588,15 @@ plt.show()
 
 ```
 
-
-
 ### Travelling wave ansatz
+
 In a similar manner to @sec-fisher, we look for a travelling wave solution of the form $u(x,t) = W(z)$ with $z= x-vt$, yielding
 
 $$
  \frac{ d^2W}{dz^2}+  v \frac{ dW}{dz} + f(W)  = 0,  \; .
 $$ {#eq-tw_eq_bis}
 
-We can rewrite @eq-tw_eq_bis as asystem of two 1st order ODEs
-$$
+We can rewrite @eq-tw_eq_bis as asystem of two 1st order ODEs $$
 \begin{aligned}
  \frac{ dW}{dz} = P = F(W,P) , \\
 \frac{ d P}{dz}= -  v P - f(W)  = G(W,P),  
@@ -725,14 +604,12 @@ $$
 $$ {#eq-tw_eq_2_bis}
 
 #### Linear stability of the steady states
- 
-The steady states of @eq-tw_eq_2_bis are 
-$$
+
+The steady states of @eq-tw_eq_2_bis are $$
 (W_1, P_1) = (0,0),\quad (W_2, P_2) = (a,0), \quad (W_3, P_3) = (1,0).
 $$
- 
-The Jacobian matrix is given by 
-$$
+
+The Jacobian matrix is given by $$
 J(W,P) = \begin{pmatrix}
 \frac{\partial F}{\partial W} & \, \frac{\partial F }{\partial P}\\
 \frac{\partial G }{\partial W} & \, \frac{\partial G }{\partial P}
@@ -743,8 +620,7 @@ J(W,P) = \begin{pmatrix}
 \end{pmatrix}
 $$
 
-At steady states $(W_j, P_j)$, the eigenvalues of $J(W_j,P_j)$ are solutions of the characteristic polynomial 
-$$
+At steady states $(W_j, P_j)$, the eigenvalues of $J(W_j,P_j)$ are solutions of the characteristic polynomial $$
 \det(J(W_j,P_j) - \lambda I) = \begin{vmatrix} -\lambda & \, 1\\
 - f^\prime(W_j) & \, -v - \lambda
 \end{vmatrix} = \lambda^2 + v \lambda + f^\prime(W_j) = 0 .
@@ -755,66 +631,49 @@ Therefore:
 $$
  \lambda^{\pm}_j = \frac{ - v \pm \sqrt{ v^2 - 4 f^\prime(W_j)}}2.
 $$
- 
- 
- At $(W_1, P_1)=(0,0)$  since $f^\prime(0) <0$ we obtain 
- $$
+
+At $(W_1, P_1)=(0,0)$ since $f^\prime(0) <0$ we obtain $$
  \lambda_1^{-} <0<\lambda_1^{+}. 
- $$ 
- Hence (0,0) is a saddle point. 
- 
-At $(W_2, P_2)=(a,0)$  since $f^\prime(a) >0$ we obtain 
-$$
+ $$ Hence (0,0) is a saddle point.
+
+At $(W_2, P_2)=(a,0)$ since $f^\prime(a) >0$ we obtain $$
  (a,0) - \begin{cases}
  \text{ focus} \quad \text{ if} \, v^2 < 4 f^\prime(a) \text{ and is stable if } v>0,   \text{ unstable if } v<0, \\
   \text{ node} \quad \text{ if} \, v^2 \geq 4 f^\prime(a) \text{ and is stable if } v>0,   \text{ unstable if } v<0, \\
    \text{centre } \quad \text{ if} \, v=0 \; . \\
  \end{cases}
  $$
- 
-At $(W_3, P_3)=(1,0)$  since $f^\prime(1) <0$ we obtain 
-$$
+
+At $(W_3, P_3)=(1,0)$ since $f^\prime(1) <0$ we obtain $$
  \lambda_3^{-} <0<\lambda_3^{+} 
- $$ 
- and it is a saddle point.
- 
-Eigenvectors are given by 
-$$
+ $$ and it is a saddle point.
+
+Eigenvectors are given by $$
  P =\lambda W
-$$
- and at each steady state we have two eigenvectors 
-$$
+$$ and at each steady state we have two eigenvectors $$
  \Psi_j^{\pm} = \begin{pmatrix}
  W\\
  \lambda_j^\pm W
  \end{pmatrix} , \qquad  j=1,2, 3.
-$$
-See @fig-eigenvectorsbistable for a sketch of the phase plane in the cases $v>0$ and $v=0$.
- 
- The stable and unstable manifolds are dependent on $v$.  We wish to show that for some $v$ the unstable manifold leaving one saddle point coincides with the stable manifold entering the other saddle point, i.e. we can choose a value for the wave speed $v$ such that a heteroclinic connection between $(1,0)$ and $(0,0)$ is obtained.  We shall use a "shooting argument" to prove this. 
+$$ See @fig-eigenvectorsbistable for a sketch of the phase plane in the cases $v>0$ and $v=0$.
 
+The stable and unstable manifolds are dependent on $v$. We wish to show that for some $v$ the unstable manifold leaving one saddle point coincides with the stable manifold entering the other saddle point, i.e. we can choose a value for the wave speed $v$ such that a heteroclinic connection between $(1,0)$ and $(0,0)$ is obtained. We shall use a "shooting argument" to prove this.
 
 ![Schematic diagram of eigenvectors.](fig3.png){#fig-eigenvectorsbistable}
- 
- 
+
 #### Relation between sign of $v$ and sign of $\int\limits_0^1 f(u) \, du$
-  
+
 Using similar arguments to @sec-logisticwavespeed
 
 $$
  v= \dfrac {\int\limits_{0}^{1}f(W) \, dW}{\int\limits_{-\infty}^{+ \infty} \left|\dfrac{dW}{dz} \right|^2 dz}.
-$$
-Since  $\int\limits_{-\infty}^{+ \infty} \left|\dfrac{dW}{dz} \right|^2 dz >0$ we can conclude that 
-$$
+$$ Since $\int\limits_{-\infty}^{+ \infty} \left|\dfrac{dW}{dz} \right|^2 dz >0$ we can conclude that $$
  \int_{0}^{1}f(u) \, du > 0  \quad  \Longrightarrow  \quad v> 0, \\
   \int_{0}^{1}f(u) \, du =0 \quad  \Longrightarrow  \quad v=0, \\
    \int_{0}^{1}f(u) \, du < 0  \quad  \Longrightarrow \quad v < 0. 
 $$
 
 Thus the direction of travel of the propagating front depends on the parameter $a$.
-
-
-
 
 #### Numerical shooting method
 
@@ -873,7 +732,6 @@ plt.plot(sol2[:,0],sol2[:,1], 'b')
 plt.plot(sol3[:,0],sol3[:,1], 'k')
 ax.set_xlim([-0.05, 1.05])
 ax.set_ylim([-0.5, 0.5])
-
 plt.xlabel('$W$')
 plt.ylabel('$P$')
 plt.legend(['v='+str(v_1),'v='+str(v_2), 'v='+str(v_3)])
@@ -884,54 +742,60 @@ plt.show()
 
 #### The shooting method proof of a heteroclinic connection
 
-Let's assume that
-$$
+Let's assume that $$
  \int\limits_{0}^{1}f(u) \, du > 0.
 $$
 
-
-Suppose that $v=0$. An explicit expresison for the trajectory is found by multiplying @eq- by $P$ and integrating over $z$. Hence
-$$
+Suppose that $v=0$. An explicit expression for the trajectory is found by multiplying @eq-tw_eq_bis by $P$ and integrating over $z$. Hence $$
 \frac{P^2}{2}+ \int_0^W f(u)du=0.
-$$
-If this trajectory reached $W=1$ then
-$$
-\frac{P^2}{2}+ \int_0^1 f(u)du=0.
-$$
-This is only possible if 
-$$
-\int_0^1 f(u)du<0.
+$$ If this trajectory reached $W=1$ then $$
+\frac{P^2}{2}_{\bigg|\infty}+ \int_0^1 f(u)du=0.
+$$ The boundary condition $$
+\frac{P^2}{2}_{\bigg|\infty}=0,
+$$ necessary for a travelling wave solution, therefore would imply that $$
+\int_0^1 f(u)du=0.
 $$
 
-This contradicts the assumption 
-$$
+This contradicts the assumption $$
 \int_0^1 f(u)du>0.
-$$
+$$ {#eq-czerobreakingcond}
 
-Moreover, on this trajectory interects the W axis as $P<0$ implies that $W$ is decreasing.
-Thus a trajectory with $v=0$ cannot connect $(1,0)$ and $(0,0)$.
+Moreover, such a trajectory intersects the $W=0$ axis for some $P<0$. An intersection on the $P=0$ axis would again imply @czerobreakingcond.
 
-Now suppose that $v$ is large.
+Now suppose that $v$ is large. The aim in this case is to show that solutions leaving (1,0) must intersect the $P=0$ axis for some $W>0$.
 
+1.  The stable eigenvector at (0,0) is $$
+    P=\lambda_- W.
+    $$ Note that $\lambda_- <v$.
 
-1. 
+2.  A solution trajectory must satisfy $$
+    \frac{dP }{dW} = \frac{-vP-f(W)}{P}= -v-\frac{f(W)}{P}
+    $$
 
-We can repeat the analysis for 
-$$  
+3.  Consider the line $P=-\sigma W$ with $\sigma>0$. On this line $$
+    \frac{dP }{dW} = -v+\frac{1}{\sigma}(W-a)(1-W) <-v+\frac{K}{\sigma}
+    $$ for some $K$ that can be identified (exercise).
+
+4.  Hence for large enough $v$ $dP/dW$ can be made arbitrarily negative and the condition $$
+    \frac{dP}{dW} < -\sigma
+    $$ {#eq-dP_dW_bd} can be satisfied.
+
+5.  This result implies that a trajectory leaving (1,0) with sufficiently large $v$ cannot intersect (0,0). If it did it would have to intersect the line $P=\sigma W$. This is not possible given @eq-dP_dW_bd and that $W$ is decreasing.
+
+Hence a trajectory approaching $(0,0)$ with sufficiently large $v$ is bounded below by the line $P=-\sigma W$. Such a trajectory must intersect the $P=0$ axis for some $W>0$.
+
+Finally, we have shown that \* trajectories with $v=0$ intersect the line $W=0$ for $P<0$ \* trajectories with large $v$ intersect the line $P=0$ for some $W>0$.
+
+As solution trajectories depend continuously on parameters, there must exist some value of $v$ for which a trajectory intersects (0,0). Hence a heteroclinic trajectory exists.
+
+We can repeat the analysis for $$  
 \int\limits_{0}^{1}f(u) \, du < 0
-$$
-and obtain a travelling wave solution with $v_0 <0$. 
+$$ and obtain a travelling wave solution with $v_0 <0$.
 
-If 
-$$
+If $$
 \int\limits_{0}^{1}f(u) \, du = 0,
-$$ 
-then we have a standing wave with $v=0$, since   the calculations  for $P_0$ and $P_1$ implies $P_0=P_1$ and there exists a heteroclinic orbit  between 
-$(1,0)$ and $(0,0)$ in the phase space. 
+$$ then we have a standing wave with $v=0$, since the calculations for $P_0$ and $P_1$ implies $P_0=P_1$ and there exists a heteroclinic orbit between $(1,0)$ and $(0,0)$ in the phase space.
 
-Note: There exists a unique travelling wave velocity $v$  for which we have a travelling wave solution for 
-bistable @eq-bistable. 
+Note: There exists a unique travelling wave velocity $v$ for which we have a travelling wave solution for bistable @eq-bistable.
 
 ## References
-
-

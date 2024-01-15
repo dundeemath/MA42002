@@ -375,7 +375,7 @@ $$
 \lambda \Delta t = \frac{D\Delta t}{\Delta x^2}.
 $$
 
-This approach can be extended to consider other types of movement e.g. convection. FOr example, biasing hopping such that
+This approach can be extended to consider other types of movement e.g. convection. For example, biasing hopping such that
 $$
 \lambda_L - \lambda_R = \varepsilon,
 $$ 
