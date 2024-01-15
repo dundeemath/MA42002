@@ -64,6 +64,10 @@ $$
 \frac{dN}{dt} = \rho  N \,  (1 - \frac N B)  \qquad \quad N(0)= N_0, 
 $$ {#eq-n_5}
 
+## Can also consider other biological processes
+
+
+
 
 ## Exercise
 
@@ -94,6 +98,11 @@ How many cells are there at the end of the experiment?
 
 ## Exercise solution
 
+## Recap
+
+* Is course layout clear
+* Introduction to conservation equation
+* Deriving spatially homogeneous models
 
 
 # Lecture 2
