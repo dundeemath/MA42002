@@ -1,36 +1,48 @@
 ---
-title: "Week 1"
+title: "Lecture slides"
 author: "Philip Murray"
 format: beamer
 ---
 
-# Lecture 1 
+## Lecture 1 
+
+* Introduction to MA42002
+* Conservation equations
+* Examples of spatially homogeneous models
+
+
 
 ## Conservation equations
-
 $$
+\begin{aligned}
 \begin{pmatrix}
 \text{rate of change}\\
 \text{ in the population density} 
 \end{pmatrix}
-= \begin{pmatrix}
+&= \begin{pmatrix}
 \text{spatial movement}
 \end{pmatrix}
-+
- \begin{pmatrix}
+\\
+ &+\begin{pmatrix}
  \text{birth, growth, death},\\
  \text{production or degradation}\\
   \text{due to chemical reactions} 
 \end{pmatrix}
+\end{aligned}
 $$
 
-## Deriving spatially homogeneous models
+\vspace{5cm}
 
-$$ 
-\begin{aligned}
+
+#  Spatially homogeneous models (MA32009 revision)
+
+## Example problem - bacteria in a dish
+$$\begin{aligned}
 N(t+\Delta t) &=  \quad N(t)   + \quad  K N(t) \Delta t.
-\end{aligned}
-$$ {#eq-n_1}
+\end{aligned} 
+$$
+
+\vspace{5cm}
 
 ## A model for cell growth under nutrient depletion
 
@@ -41,8 +53,12 @@ $$
  \end{aligned}
 $${#eq-c_1}
 
+\vspace{5cm}
 
-## Logistic growth equation
+
+
+
+## Leading to the logistic growth equation
 The last equation can be rewritten as
 $$  
 \frac{dN}{dt} = \rho  N \,  (1 - \frac N B)  \qquad \quad N(0)= N_0, 
@@ -64,7 +80,19 @@ When total waste levels exceed a threshold, $W^*$, cell division stops. Otherwis
 How many cells are there at the end of the experiment?
 
 
+## Model development
 
+
+::: {.callout-note}
+## Model checklist
+1. Variables (dependent, indepedent ?)
+2. Schematic diagram - what processes are being modelled?
+3. Governing equations?
+4. Define model parameters?
+5. Initial conditions?
+:::
+
+## Exercise solution
 
 
 
@@ -114,3 +142,4 @@ Identify the steady state of the ODEs.
 Deriving a conservation equation
 
 ## Spatiotemporal models - fluxes
+-->
