@@ -156,16 +156,18 @@ $$
 
 \vspace{6cm}
 
-##  An activator inhibitor model ((used in Chapter 6))
+##  An activator inhibitor model (used in Chapter 6)
 
-Consider the reaction schematic
-$$
-2A+B \rightarrow A.
-$$
 
 Assume that species A is produced at constant rate $k_1$ and degrades at rate $k_2$. 
 
-Assume that A is linearly degraded.
+Assume that B is produced at a constant rate, $k_4$.
+
+Consider the reaction schematic
+$$
+2A+B \rightarrow 3A,
+$$
+with reaction rate $k_3$.
 
 Write down governing ODEs.
 
@@ -177,12 +179,13 @@ Write down governing ODEs.
 Consider the ODEs
 $$
 \begin{aligned}
-\frac{d A}{ dt} &= k_1 - k_2 A + k_3 A^2 B,  \\
-\frac{d B}{ dt} &= k_4 - k_3 A^2 B,
+\frac{d a}{ dt} &= k_1 - k_2 a + k_3 a^2 b,  \\
+\frac{d b}{ dt} &= k_4 - k_3 a^2 b,
 \end{aligned}
 $$
 
 Identify the steady state of the ODEs.
+How would you compute linear stability of the steady state?
 
 \vspace{5cm}
 
@@ -242,6 +245,13 @@ $$
 \frac{\partial}{\partial t} \int_V c(x,t) \, dx = - \int_{S} J(x,t) \cdot {\mathbf{n}} \, d\sigma + \int_V f(x,t ,c)dx.
 $$
 \vspace{5 cm}
+
+## Recap
+
+* Introduced SIR and activator-inhibitor models
+* Derived conservation PDE
+* Introduced concept of flux, $J$
+
 
 
 ## Spatiotemporal models - fluxes

@@ -132,13 +132,13 @@ $$ where $r$ is the infection rate and $a$ is the recovery rate.
 ### Activator inhibitor kinetics
 
 Consider a pair of interacting biochemical species, A and B. Suppose that both A and B are produced at a constant rate and that A undergoes linear degradation. Suppose also that A and B interact such that $$
-2A+B \rightarrow A.
+2A+B \rightarrow 3A.
 $$
 
 Applying the law of mass action $$
 \begin{aligned}
-\frac{d A}{ dt} &= k_1 - k_2 A + k_3 A^2 B,  \\
-\frac{d B}{ dt} &= k_4 - k_3 A^2 B,
+\frac{d a}{ dt} &= k_1 - k_2 a + k_3 a^2 b,  \\
+\frac{d b}{ dt} &= k_4 - k_3 a^2 b,
 \end{aligned}
 $$
 
