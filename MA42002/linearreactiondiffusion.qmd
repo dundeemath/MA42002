@@ -11,8 +11,7 @@ $$
 
 Such an equation is known as a *reaction-diffusion equation*, being composed of a reaction term, $f(c)$, and a diffusion term, $D \nabla^2 c$. Reaction-diffusion equations have many applications in biological systems e.g. travelling waves of invasion, pattern formation, spread of infectious diseases. For most of the remainder of the course we will consider such systems in one-space dimension i.e. $x \in \mathbb R$.
 
-Consider the one-dimensional reaction-diffusion equation with constant diffusion coefficient $D > 0$: 
-$$
+Consider the one-dimensional reaction-diffusion equation with constant diffusion coefficient $D > 0$: $$
 \frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}  + f(c), \quad x\in \mathbb R, \, \, t >0.
 $$ {#eq-general1Drd}
 
@@ -184,8 +183,7 @@ plt.show()
 
 ### Diffusive transit time
 
-We now demonstrate the connection between time and space in diffusion equations
-Consider particles of concentration $c(x,t)$ diffusing with constant diffusion $D$ in a one-dimensional domain $(0,L)$, with a constant concentration at one boundary and removed by a sink at the other boundary. At steady-state, the equation governing the concentration is given by:
+We now demonstrate the connection between time and space in diffusion equations Consider particles of concentration $c(x,t)$ diffusing with constant diffusion $D$ in a one-dimensional domain $(0,L)$, with a constant concentration at one boundary and removed by a sink at the other boundary. At steady-state, the equation governing the concentration is given by:
 
 $$
 D \frac{ d^2 c}{dx^2} = 0  \quad \text{ in } (0,L), \quad c(0) = C_0, \, c(L) = 0 .
@@ -197,34 +195,25 @@ $$ Then the number of particles entering at $x=0$ due to diffusive flux (Fickian
 J = - D \frac{ dc}{ dx} = D \frac{ C_0}{L},  
 $$
 
-In the middle of the domain the particle concentration is
-$$
+In the middle of the domain the particle concentration is $$
 c(\frac{L}{2})=\frac{C_0}{2}.
 $$
 
-A typical particle speed is approximated by
-$$
+A typical particle speed is approximated by $$
  \frac{J}{c} = \frac{D \frac{ C_0}{L}}{\frac{C_0}{2}} = \frac{2D}{L}
 $$
 
-Travelling at this speed,  the average time it takes a particle to travel a distance, $L$, is 
-$$
+Travelling at this speed, the average time it takes a particle to travel a distance, $L$, is $$
 \tau = \frac{\textrm{distance}}{\textrm{speed}}=\dfrac{L^2}{2D.}
-$$ 
-Hence the average distance through which diffusion transports a particle in a time $\tau$ is $L= \sqrt{ 2D\tau}$.
-
+$$ Hence the average distance through which diffusion transports a particle in a time $\tau$ is $L= \sqrt{ 2D\tau}$.
 
 ### Diffusion as the limit of a random walk
 
-Consider a *random walk* of particles in a one-dimensional domain. Let $\lambda_L$ and $\lambda_R$ represent hopping rates, such that the probability of a particle hopping distance $\Delta x$ to the right in time $\Delta t$ is
-$$
+Consider a *random walk* of particles in a one-dimensional domain. Let $\lambda_L$ and $\lambda_R$ represent hopping rates, such that the probability of a particle hopping distance $\Delta x$ to the right in time $\Delta t$ is $$
 \lambda_R \Delta t.
-$$
-Similarly, the probability of hopping a distance $\Delta x$ to the left is
-$$
+$$ Similarly, the probability of hopping a distance $\Delta x$ to the left is $$
 \lambda_L \Delta t.
 $$
-
 
 In @fig-randomwalksim results from a simulation of 400 random walkers is presented. Each particle is initialised at the origin and can move one step left or right with equal probability at every time step of the simulation. As time evolves the particle density (histogram) disperses. The normalised particle density appears to be well described by the solution of the diffusion equation (see solid lines, @eq-fund_sol).
 
@@ -322,10 +311,9 @@ plt.show()
 
 Let $c(x,t)$ represent the particle density at spatial location $x$ and time $t$.
 
-A conservation equation for $c$ is given by
-$$
+A conservation equation for $c$ is given by $$
 c(x, t+ \Delta t) = c(x, t)  + \lambda_R \Delta t c(x- \Delta x, t) - \lambda_R \Delta t c(x, t) + \lambda_L \Delta t c(x+ \Delta x, t) - \lambda_L \Delta t c (x,t).
-$$ 
+$$
 
 Applying a Taylor series expansion about $(x,t)$ implies
 
@@ -340,7 +328,7 @@ Upon cancellation
 $$
  \frac{ \partial c}{\partial t} \Delta t + \frac 12  \frac{ \partial^2 c}{\partial^2 t} (\Delta t )^2  + h.o.t. =
   \frac{ \partial c}{\partial x} \Delta x\Delta t (\lambda_L-\lambda_R) + \frac 12 \Delta t (\lambda_L+\lambda_R)  \frac{ \partial^2 c}{\partial x ^2} (\Delta x )^2  + h.o.t. 
-$$ 
+$$
 
 Dividing by $\Delta t$ gives
 
@@ -349,41 +337,34 @@ $$
    \frac{ \partial c}{\partial x} \Delta x (\lambda_L-\lambda_R) + \frac 12  (\lambda_L+\lambda_R)  \frac{ \partial^2 c}{\partial x^2} (\Delta x )^2  + h.o.t.  
 $$
 
-Considering the symmetric case where the probability of hopping left and right are equal, i.e.
-$$
+Considering the symmetric case where the probability of hopping left and right are equal, i.e. $$
 \lambda=\lambda_L=\lambda_R
-$$
-yields
-$$
+$$ yields $$
  \frac{ \partial c}{\partial t}  + \frac 12  \frac{ \partial^2 c}{\partial^2 t} \Delta t   + h.o.t. =
     \lambda \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t.  
 $$
 
-Considering the limit $\Delta t \to 0$ and $\Delta x \to 0$  such  that
+Considering the limit $\Delta t \to 0$ and $\Delta x \to 0$ such that
 
 $$
 D=\lambda (\Delta x )^2 
-$$
- is finite yields the (one-dimensional) diffusion equation
+$$ is finite yields the (one-dimensional) diffusion equation
 
 $$
 \frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}.
 $$
 
-Note that $D$ has appropriate units (length$^2$/time) and that the probability of a particle hopping a distance $\Delta x$ in time $\Delta t$ is
-$$
+Note that $D$ has appropriate units (length$^2$/time) and that the probability of a particle hopping a distance $\Delta x$ in time $\Delta t$ is $$
 \lambda \Delta t = \frac{D\Delta t}{\Delta x^2}.
 $$
 
-This approach can be extended to consider other types of movement e.g. convection. For example, biasing hopping such that
-$$
+This approach can be extended to consider other types of movement e.g. convection. For example, biasing hopping such that $$
 \lambda_L - \lambda_R = \varepsilon,
-$$ 
-yields a *reaction-diffusion-convection* equation (see tutorial).
+$$ yields a *reaction-diffusion-convection* equation (see tutorial).
 
 Finally we note that there is a connection between diffusion and the normal distribution function.
 
-**Recall** The normal distribution function in one-dimension with zero mean and variance $\sigma^2$ is given by 
+**Recall** The normal distribution function in one-dimension with zero mean and variance $\sigma^2$ is given by
 
 $$
 N(0, \sigma^2) \sim \frac 1 { \sqrt{ 2 \pi \sigma^2}} \exp \left( - \frac{x^2}{ 2 \sigma^2}\right).
@@ -393,24 +374,19 @@ $$
 
 ## Linear reaction-diffusion equations
 
-Consider now the linear reaction term: $f(c) = \rho c$, so that @eq-general1Drd takes the form
-$$
+Consider now the linear reaction term: $f(c) = \rho c$, so that @eq-general1Drd takes the form $$
 \frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}   + \rho \, c, \quad x\in \mathbb R, \, \, t >0, 
-$$ {#eq-lin_re_eq} 
-where $\rho \in \mathbb R$ is a constant.
+$$ {#eq-lin_re_eq} where $\rho \in \mathbb R$ is a constant.
 
-Once again we consider the initial condition to be concentrated at the origin: 
-$$
+Once again we consider the initial condition to be concentrated at the origin: $$
 c(0,x) = \delta_0(x).
 $$ {#eq-lin_re_eq_ic}
 
 ### Exact solution
 
-By considering a *separation of variables* approach, i.e. making the *ansatz* 
-$$
+By considering a *separation of variables* approach, i.e. making the *ansatz* $$
 c(x,t) = w(t) \tilde c(t,x),
-$$ 
-it can be shown (**Exercise**) that the explicit solution for the linear reaction-diffusion @eq-lin_re_eq with initial condition @eq-lin_re_eq_ic is given by
+$$ it can be shown (**Exercise**) that the explicit solution for the linear reaction-diffusion @eq-lin_re_eq with initial condition @eq-lin_re_eq_ic is given by
 
 $$
 c(t,x) = \frac1{\sqrt{4 \pi D t}} \exp \left(\rho t - \frac{x^2}{ 4Dt} \right).
@@ -494,14 +470,13 @@ plt.show()
 
 ### Speed of a wave of invasion
 
-Muskrats, which were introduced in 1905 in Bohemia, initially spread rapidly throughout Europe through a combination of random movement and proliferation (initially there were no predators and proliferation was rapid). A model for the initial spread can therefore be given by a two-dimensional diffusion equation combined with exponential growth and assuming that $M$ individuals were released at the origin (i.e. in Bohemia). Letting  $u({\mathbf{x}} , t)$,  represent the density of muskrats, the evolution equation is
+Muskrats, which were introduced in 1905 in Bohemia, initially spread rapidly throughout Europe through a combination of random movement and proliferation (initially there were no predators and proliferation was rapid). A model for the initial spread can therefore be given by a two-dimensional diffusion equation combined with exponential growth and assuming that $M$ individuals were released at the origin (i.e. in Bohemia). Letting $u({\mathbf{x}} , t)$, represent the density of muskrats, the evolution equation is
 
 $$
 \frac{\partial u}{\partial t} = D \left(\frac{\partial^2 u}{\partial x_1^2} +  \frac{\partial^2 u}{\partial x_2^2}\right)  + \rho \, u, \quad {\mathbf{x}} = (x_1 , x_2) \in \mathbb R^2, \, \, t >0, 
-$$ {#eq-muskrats_eq} 
+$$ {#eq-muskrats_eq}
 
-with initial condition
-$$
+with initial condition $$
 u({\mathbf{x}}, 0) = M \delta_0({\mathbf{x}}), \quad {\mathbf{x}} \in \mathbb R^2.
 $$ {#eq-muskrats_eq_in}
 
@@ -517,7 +492,7 @@ $$
 u({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ r^2}{ 4Dt} \right).
 $$
 
-From the properties of the fundamental solution, the wave of invasion extends all the way to infinity for any $t>0$. For practical purposes,  we have to define the front of the wave.
+From the properties of the fundamental solution, the wave of invasion extends all the way to infinity for any $t>0$. For practical purposes, we have to define the front of the wave.
 
 Consider that there is some detection threshold for the muskrats i.e. some predetermined small value of the density $u_1$, say, such that any changes in density for $u <u_1$ cannot be detected.
 
@@ -527,18 +502,16 @@ $$
 u_1({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ r_1^2}{ 4Dt} \right).
 $$
 
-Rearranging and solving for $r_1$, using the fact that 
-$$
+Rearranging and solving for $r_1$, using the fact that $$
 \lim\limits_{t\to \infty} \dfrac {\ln t} t =0, 
-$$ 
+$$
 
-we obtain for large $t$ that 
+we obtain for large $t$ that
 
 $$
 r_1(t) \approx 2 \sqrt{ \rho D} t.
 $$
 
-Hence, the speed of invasion of the leading edge of the muskrats is given by: 
-$$
+Hence, the speed of invasion of the leading edge of the muskrats is given by: $$
 v = \frac{r_1(t)}{t} =  2 \sqrt{ \rho D}. 
 $$

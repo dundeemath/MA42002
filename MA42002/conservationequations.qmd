@@ -45,8 +45,7 @@ Bacteria reproduce by undergoing successive cell divisions.
 
 Let $N(t)$ represent bacterial density at time $t$ (i.e. number of cells per volume).
 
-Let $K$ represent the *per capita* rate of reproduction. Over a period of time, $\Delta t$, $K N(t) \Delta t$ cells will be added. Hence 
-$$ 
+Let $K$ represent the *per capita* rate of reproduction. Over a period of time, $\Delta t$, $K N(t) \Delta t$ cells will be added. Hence $$ 
 \begin{aligned}
 N(t+\Delta t) &=  \quad N(t)   + \quad  K N(t) \Delta t.
 \end{aligned}
@@ -190,11 +189,13 @@ Let $x$ be the distance along the tube relative to an origin. We shall consider 
 
 We consider $S$ to be very small and $c(x,t)$ is assumed to be constant in $S$ (independent of $y$ and $z$). We also assume that $c$ is continuously differentiable with respect to $t$.
 
-The volume of $V$ is $A \Delta x$ and number of particles in the volume is given by $$
+The volume of $V$ is $A \Delta x$ and number of particles in the volume is given by 
+$$
 \int_x^{x+\Delta x} c(\tilde x, t) \,  d \tilde x A.
 $$
 
-Then a conservation equation for the number of particles in the volume $V$ is given by $$
+Then a conservation equation for the number of particles in the volume $V$ is given by 
+$$
 \frac{\partial}{\partial t} \int_x^{x+\Delta x} c(\tilde x, t) A d\tilde x = J(x,t) \, A  - J(x+\Delta x,t) \, A +\int_x^{x + \Delta x}  f(\tilde x, t, c(\tilde x, t))\,  A \, d \tilde x.
 $$ {#eq-concerv_01}
 
@@ -217,7 +218,7 @@ Let $V \subset \mathbb R^n$ be an arbitrary bounded domain (i.e. satisfying the 
 -   $f(x,t ,c(x,t))$ - source/sink term (number of particles created or destroyed per unit volume and per unit time)
 
 Then the conservation equation reads $$
-\frac{\partial}{\partial t} \int_V c(x,t) \, dx = - \int_{S} J(x,t) \cdot {\mathbf{n}} \, d\sigma + \int_V f(x,t ,c), 
+\frac{\partial}{\partial t} \int_V c(x,t) \, dx = - \int_{S} J(x,t) \cdot {\mathbf{n}} \, d\sigma + \int_V f(x,t ,c)dx, 
 $$ where $\mathbf{n}$ is the outward normal vector to $S$. The normal component of the flux $J$ on $S$ leads to a change of number of particles (of mass) in $V$. Applying the divergence theorem, i.e. $$
 \int_S J \cdot {\mathbf{n}} \, d\sigma = \int_V \text{ div} J \, dx,
 $$ and using the fact that $V$ is independent of time $t$ we obtain $$
