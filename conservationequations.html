@@ -135,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./nonlinearreactiondiffusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Travelling waves in linear reaction diffusion equations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Travelling waves in nonlinear reaction diffusion equations</span></span></a>
   </div>
 </li>
       </ul>
@@ -368,12 +368,12 @@ d=d_1 N,
 <section id="activator-inhibitor-kinetics" class="level3" data-number="1.2.3">
 <h3 data-number="1.2.3" class="anchored" data-anchor-id="activator-inhibitor-kinetics"><span class="header-section-number">1.2.3</span> Activator inhibitor kinetics</h3>
 <p>Consider a pair of interacting biochemical species, A and B. Suppose that both A and B are produced at a constant rate and that A undergoes linear degradation. Suppose also that A and B interact such that <span class="math display">\[
-2A+B \rightarrow A.
+2A+B \rightarrow 3A.
 \]</span></p>
 <p>Applying the law of mass action <span class="math display">\[
 \begin{aligned}
-\frac{d A}{ dt} &amp;= k_1 - k_2 A + k_3 A^2 B,  \\
-\frac{d B}{ dt} &amp;= k_4 - k_3 A^2 B,
+\frac{d a}{ dt} &amp;= k_1 - k_2 a + k_3 a^2 b,  \\
+\frac{d b}{ dt} &amp;= k_4 - k_3 a^2 b,
 \end{aligned}
 \]</span></p>
 <p>where <span class="math inline">\(k_1\)</span> and <span class="math inline">\(k_4\)</span> are production rates, <span class="math inline">\(k_2\)</span> is a degradation rate and <span class="math inline">\(k_3\)</span> is the reaction rate for the A and B interaction.</p>
@@ -443,7 +443,7 @@ d=d_1 N,
 <li><span class="math inline">\(f(x,t ,c(x,t))\)</span> - source/sink term (number of particles created or destroyed per unit volume and per unit time)</li>
 </ul>
 <p>Then the conservation equation reads <span class="math display">\[
-\frac{\partial}{\partial t} \int_V c(x,t) \, dx = - \int_{S} J(x,t) \cdot {\mathbf{n}} \, d\sigma + \int_V f(x,t ,c),
+\frac{\partial}{\partial t} \int_V c(x,t) \, dx = - \int_{S} J(x,t) \cdot {\mathbf{n}} \, d\sigma + \int_V f(x,t ,c)dx,
 \]</span> where <span class="math inline">\(\mathbf{n}\)</span> is the outward normal vector to <span class="math inline">\(S\)</span>. The normal component of the flux <span class="math inline">\(J\)</span> on <span class="math inline">\(S\)</span> leads to a change of number of particles (of mass) in <span class="math inline">\(V\)</span>. Applying the divergence theorem, i.e.&nbsp;<span class="math display">\[
 \int_S J \cdot {\mathbf{n}} \, d\sigma = \int_V \text{ div} J \, dx,
 \]</span> and using the fact that <span class="math inline">\(V\)</span> is independent of time <span class="math inline">\(t\)</span> we obtain <span class="math display">\[

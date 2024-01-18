@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -133,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./nonlinearreactiondiffusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Travelling waves in linear reaction diffusion equations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Travelling waves in nonlinear reaction diffusion equations</span></span></a>
   </div>
 </li>
       </ul>
@@ -206,16 +240,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#python-libraries" id="toc-python-libraries" class="nav-link active" data-scroll-target="#python-libraries"><span class="header-section-number">8.1</span> Python libraries</a></li>
-  <li><a href="#single-pdes" id="toc-single-pdes" class="nav-link" data-scroll-target="#single-pdes"><span class="header-section-number">8.2</span> Single PDEs</a>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><span class="header-section-number">8.1</span> </a></li>
+  <li><a href="#python-libraries" id="toc-python-libraries" class="nav-link" data-scroll-target="#python-libraries"><span class="header-section-number">8.2</span> Python libraries</a></li>
+  <li><a href="#single-pdes" id="toc-single-pdes" class="nav-link" data-scroll-target="#single-pdes"><span class="header-section-number">8.3</span> Single PDEs</a>
   <ul class="collapse">
-  <li><a href="#mol" id="toc-mol" class="nav-link" data-scroll-target="#mol"><span class="header-section-number">8.2.1</span> MOL</a></li>
-  <li><a href="#spatial-discretisation" id="toc-spatial-discretisation" class="nav-link" data-scroll-target="#spatial-discretisation"><span class="header-section-number">8.2.2</span> Spatial discretisation</a></li>
-  <li><a href="#odeint" id="toc-odeint" class="nav-link" data-scroll-target="#odeint"><span class="header-section-number">8.2.3</span> odeint</a></li>
-  <li><a href="#implementing-boundary-conditions" id="toc-implementing-boundary-conditions" class="nav-link" data-scroll-target="#implementing-boundary-conditions"><span class="header-section-number">8.2.4</span> implementing boundary conditions</a></li>
-  <li><a href="#identifying-parameters" id="toc-identifying-parameters" class="nav-link" data-scroll-target="#identifying-parameters"><span class="header-section-number">8.2.5</span> Identifying parameters</a></li>
+  <li><a href="#mol" id="toc-mol" class="nav-link" data-scroll-target="#mol"><span class="header-section-number">8.3.1</span> MOL</a></li>
+  <li><a href="#spatial-discretisation" id="toc-spatial-discretisation" class="nav-link" data-scroll-target="#spatial-discretisation"><span class="header-section-number">8.3.2</span> Spatial discretisation</a></li>
+  <li><a href="#odeint" id="toc-odeint" class="nav-link" data-scroll-target="#odeint"><span class="header-section-number">8.3.3</span> odeint</a></li>
+  <li><a href="#implementing-boundary-conditions" id="toc-implementing-boundary-conditions" class="nav-link" data-scroll-target="#implementing-boundary-conditions"><span class="header-section-number">8.3.4</span> implementing boundary conditions</a></li>
+  <li><a href="#identifying-parameters" id="toc-identifying-parameters" class="nav-link" data-scroll-target="#identifying-parameters"><span class="header-section-number">8.3.5</span> Identifying parameters</a></li>
   </ul></li>
-  <li><a href="#systems-of-pdes" id="toc-systems-of-pdes" class="nav-link" data-scroll-target="#systems-of-pdes"><span class="header-section-number">8.3</span> Systems of PDEs</a></li>
+  <li><a href="#systems-of-pdes" id="toc-systems-of-pdes" class="nav-link" data-scroll-target="#systems-of-pdes"><span class="header-section-number">8.4</span> Systems of PDEs</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -239,34 +274,56 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="python-libraries" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="python-libraries"><span class="header-section-number">8.1</span> Python libraries</h2>
+<section id="section" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="section"><span class="header-section-number">8.1</span> </h2>
+<p>Python has been installed on most computers on campus and you can access it via AppsAnywhere. The icon is located on your desktop. From AppsAnywhere, please select Anaconda 3.</p>
+<p>However, you can also use your own personal computer. If you decide to do so, you will need to install Python on it. Python is free and works on Windows, Mac OS X and Linux.</p>
+<p>It is strongly recommended that you download and install ​ <a href="https://www.anaconda.com/download">Anaconda</a>. Install might take 5-15 minutes. Then reboot your computer.</p>
+<p>If install has</p>
+<p>Once you have installed Anaconda you can open Spyder. This will provide you with an editor to run python codes.</p>
+<p>Install a development environment (for writing and unnirn gscripts). I use <a href="https://code.visualstudio.com">Visual studio Code</a>.</p>
+<p>Install the <a href="https://code.visualstudio.com/docs">VS Code Python extension</a></p>
+<p>Copy and paste the code below and save as DemoPythonCode.py.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>z<span class="op">=</span>x<span class="op">+</span>y</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>4</code></pre>
+</div>
+</div>
+<p>You should see the answer 4 printed out on the terminal.</p>
+<p>You will likely now need to install some libraries</p>
+</section>
+<section id="python-libraries" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="python-libraries"><span class="header-section-number">8.2</span> Python libraries</h2>
 <ul>
 <li>matplotlib</li>
 <li>numpp</li>
 <li>scipy</li>
 </ul>
 </section>
-<section id="single-pdes" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="single-pdes"><span class="header-section-number">8.2</span> Single PDEs</h2>
-<section id="mol" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="mol"><span class="header-section-number">8.2.1</span> MOL</h3>
+<section id="single-pdes" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="single-pdes"><span class="header-section-number">8.3</span> Single PDEs</h2>
+<section id="mol" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="mol"><span class="header-section-number">8.3.1</span> MOL</h3>
 </section>
-<section id="spatial-discretisation" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="spatial-discretisation"><span class="header-section-number">8.2.2</span> Spatial discretisation</h3>
+<section id="spatial-discretisation" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="spatial-discretisation"><span class="header-section-number">8.3.2</span> Spatial discretisation</h3>
 </section>
-<section id="odeint" class="level3" data-number="8.2.3">
-<h3 data-number="8.2.3" class="anchored" data-anchor-id="odeint"><span class="header-section-number">8.2.3</span> odeint</h3>
+<section id="odeint" class="level3" data-number="8.3.3">
+<h3 data-number="8.3.3" class="anchored" data-anchor-id="odeint"><span class="header-section-number">8.3.3</span> odeint</h3>
 </section>
-<section id="implementing-boundary-conditions" class="level3" data-number="8.2.4">
-<h3 data-number="8.2.4" class="anchored" data-anchor-id="implementing-boundary-conditions"><span class="header-section-number">8.2.4</span> implementing boundary conditions</h3>
+<section id="implementing-boundary-conditions" class="level3" data-number="8.3.4">
+<h3 data-number="8.3.4" class="anchored" data-anchor-id="implementing-boundary-conditions"><span class="header-section-number">8.3.4</span> implementing boundary conditions</h3>
 </section>
-<section id="identifying-parameters" class="level3" data-number="8.2.5">
-<h3 data-number="8.2.5" class="anchored" data-anchor-id="identifying-parameters"><span class="header-section-number">8.2.5</span> Identifying parameters</h3>
+<section id="identifying-parameters" class="level3" data-number="8.3.5">
+<h3 data-number="8.3.5" class="anchored" data-anchor-id="identifying-parameters"><span class="header-section-number">8.3.5</span> Identifying parameters</h3>
 </section>
 </section>
-<section id="systems-of-pdes" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="systems-of-pdes"><span class="header-section-number">8.3</span> Systems of PDEs</h2>
+<section id="systems-of-pdes" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="systems-of-pdes"><span class="header-section-number">8.4</span> Systems of PDEs</h2>
 
 
 </section>

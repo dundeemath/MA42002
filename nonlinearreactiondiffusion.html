@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MA42002 - 3&nbsp; Travelling waves in linear reaction diffusion equations</title>
+<title>MA42002 - 3&nbsp; Travelling waves in nonlinear reaction diffusion equations</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,7 +129,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./linearreactiondiffusion.html">Single species</a></li><li class="breadcrumb-item"><a href="./nonlinearreactiondiffusion.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Travelling waves in linear reaction diffusion equations</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./linearreactiondiffusion.html">Single species</a></li><li class="breadcrumb-item"><a href="./nonlinearreactiondiffusion.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Travelling waves in nonlinear reaction diffusion equations</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -188,7 +188,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./nonlinearreactiondiffusion.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Travelling waves in linear reaction diffusion equations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Travelling waves in nonlinear reaction diffusion equations</span></span></a>
   </div>
 </li>
       </ul>
@@ -281,7 +281,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Travelling waves in linear reaction diffusion equations</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Travelling waves in nonlinear reaction diffusion equations</span></h1>
 </div>
 
 
@@ -326,8 +326,8 @@ Travelling waves
 u(x,0) =u_0(x).
 \]</span></p>
 <p>This is known as <strong>the Fisher equation</strong>, and was introduced by Fisher in <span class="math inline">\(1937\)</span> (<span class="citation" data-cites="fisher1937wave"><span>“The Wave of Advance of Advantageous Genes”</span> (<a href="#ref-fisher1937wave" role="doc-biblioref">1937</a>)</span>).</p>
-<p>We can non-dimensionalize <a href="#eq-fisher">Equation&nbsp;<span>3.1</span></a> by considering the scaling <span class="math display">\[t^\ast = \rho t, \quad  x^\ast = \sqrt{\dfrac \rho D} x, \quad  u^\ast = \displaystyle{\frac u K}.
-\]</span> Dropping the asteriks we obtain the non-dimensionalized Fisher equation (<strong>Exercise</strong>):</p>
+<p>We can non-dimensionalise <a href="#eq-fisher">Equation&nbsp;<span>3.1</span></a> by considering the scaling <span class="math display">\[t^\ast = \rho t, \quad  x^\ast = \sqrt{\dfrac \rho D} x, \quad  u^\ast = \displaystyle{\frac u K}.
+\]</span> Dropping the asteriks we obtain the non-dimensionalised Fisher equation (<strong>Exercise</strong>):</p>
 <p><span class="math display">\[
 \frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2} +   u(1-u), \qquad x\in \mathbb R, \, \, t &gt;0
 \]</span> with initial condition <span id="eq-fisher_1"><span class="math display">\[
@@ -336,7 +336,7 @@ u(x,0) = u_0(x).
 <section id="numerical-solutions" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="numerical-solutions"><span class="header-section-number">3.1.1</span> Numerical solutions</h3>
 <p>In <a href="#fig-logisticpde">Figure&nbsp;<span>3.1</span></a> we have computed a numerical solution to <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a> together with no-flux boundary conditions. See Python code for further details. The key point to note is that the numerical solutions appear to be a <em>travelling wave</em>, at successive times the solution is translated along the <span class="math inline">\(x\)</span> axis. At long times the solution tends to <span class="math inline">\(u\sim1\)</span> (behind the wavefront). Ahead of the front, the solution is <span class="math inline">\(u\sim0\)</span>.</p>
-<p>The numerical results motviate the following questions:</p>
+<p>The numerical results motivate the following questions:</p>
 <ul>
 <li>Can we prove the existence of a travelling wave (e.g.&nbsp;the numerical solution <em>could</em> have a profile that varies on a very slow time scale)?</li>
 <li>How does the travelling depend on initial data?</li>
@@ -437,7 +437,7 @@ u(x,t)= W(z) = W(x-vt),
 <p><span id="eq-tw_eq"><span class="math display">\[
 \frac{ d^2W}{dz^2}+  v \frac{ dW}{dz} + W(1-W)  = 0.
 \tag{3.4}\]</span></span></p>
-<p>Boundary conditions are chosen that represent solutions to the spatially homogeneous problem, i.e.&nbsp; <span id="eq-tw_bc"><span class="math display">\[
+<p>Boundary conditions are chosen that represent solutions to the spatially homogeneous problem, i.e.&nbsp;<span id="eq-tw_bc"><span class="math display">\[
 W(z) \to 1 \quad \text{ as } \quad z \to  - \infty, \quad
 W(z) \to 0 \quad \text{ as } \quad z \to  +\infty,
 \tag{3.5}\]</span></span> and <span id="eq-tw_r"><span class="math display">\[
@@ -452,7 +452,7 @@ W(z) \in [0,1].
 \tag{3.7}\]</span></span></p>
 <section id="numerical-solutions-1" class="level4" data-number="3.1.3.1">
 <h4 data-number="3.1.3.1" class="anchored" data-anchor-id="numerical-solutions-1"><span class="header-section-number">3.1.3.1</span> Numerical solutions</h4>
-<p>In <a href="#fig-fishernumtravwave">Figure&nbsp;<span>3.2</span></a> we plot the numerical solution to equations <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a> for different values of the wavespeed, <span class="math inline">\(v\)</span>. Note that when the wavespeed is too small the solution spirals in towards the origin. This solution cannot be valid as it implies that <span class="math inline">\(u&lt;0\)</span> for some <span class="math inline">\(z\)</span>.</p>
+<p>In <a href="#fig-fishernumtravwave">Figure&nbsp;<span>3.2</span></a> we plot the numerical solution to equations <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a> for different values of the wave speed, <span class="math inline">\(v\)</span>. Note that when the wave speed is too small the solution spirals in towards the origin. This solution cannot be valid as it implies that <span class="math inline">\(u&lt;0\)</span> for some <span class="math inline">\(z\)</span>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -619,7 +619,7 @@ v_{\text{min}}=  v^\ast_{\text{min}} \sqrt{D \rho} = 2  \sqrt{D \rho}.
 </section>
 <section id="the-existence-of-a-travelling-wave-solution" class="level4" data-number="3.1.3.4">
 <h4 data-number="3.1.3.4" class="anchored" data-anchor-id="the-existence-of-a-travelling-wave-solution"><span class="header-section-number">3.1.3.4</span> The existence of a travelling wave solution</h4>
-<p>To show the existence of a travelling wave we will construct a <strong>confined region</strong> or <strong>confined set</strong> in <span class="math inline">\(\mathbb{R}^2\)</span>, which contains both steady states such that, once inside this region solution trajectories cannot escape from it (also known as an <strong>invariant region</strong> or <strong>invariant set</strong>). If we can then show that there are no other steady steadys in the confined region and that the solution is not oscillatory, the only valid solution must be a heteroclinic trajectory that connects the unstable manidolf of one steady state withthe stable manifold of another.</p>
+<p>To show the existence of a travelling wave we will construct a <strong>confined region</strong> or <strong>confined set</strong> in <span class="math inline">\(\mathbb{R}^2\)</span>, which contains both steady states such that, once inside this region solution trajectories cannot escape from it (also known as an <strong>invariant region</strong> or <strong>invariant set</strong>). If we can then show that there are no other steady states in the confined region and that the solution is not oscillatory, the only valid solution must be a heteroclinic trajectory that connects the unstable manifold (eigenvector) of one steady state with the stable manifold of another.</p>
 <p>Consider <span class="math display">\[
 T= \{ (W,P) : \, 0 \leq W \leq 1,\, \, P \leq 0, \, \,  P \geq \mu W \}
 \]</span> for some <span class="math inline">\(\mu &lt;0\)</span>.</p>
@@ -726,7 +726,8 @@ W(z\rightarrow -\infty)=1 \quad W(z\rightarrow \infty)=0.
 v\int\limits_{-\infty}^{+ \infty} \left|\dfrac{dW}{dz} \right|^2\, dz  =  \int\limits_{0}^{1}W(1-W) dW =\frac{1}{6}
 \]</span> and <span class="math display">\[
 v= \dfrac {\frac{1}{6}}{\int\limits_{-\infty}^{+ \infty} \left|\dfrac{dW}{dz} \right|^2 dz}.
-\]</span> Thus the wavespeed must be positive and the wave therefore travels in the positive direction along the <span class="math inline">\(x\)</span> axis.</p>
+\]</span></p>
+<p>Thus the wave speed must be positive and the wave therefore travels in the positive direction along the <span class="math inline">\(x\)</span> axis.</p>
 <p>In contrast, if we were to swap the boundary conditions such that <span class="math display">\[
 W(z\rightarrow -\infty)=0 \quad W(z\rightarrow \infty)=1,
 \]</span> the wavespeed would be negative and the wave would travel in the negative direction along the <span class="math inline">\(x\)</span> axis.</p>
@@ -996,12 +997,11 @@ v= \dfrac {\int\limits_{0}^{1}f(W) \, dW}{\int\limits_{-\infty}^{+ \infty} \left
 <span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>plt.plot(sol3[:,<span class="dv">0</span>],sol3[:,<span class="dv">1</span>], <span class="st">'k'</span>)</span>
 <span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="op">-</span><span class="fl">0.05</span>, <span class="fl">1.05</span>])</span>
 <span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>])</span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$W$'</span>)</span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$P$'</span>)</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'v='</span><span class="op">+</span><span class="bu">str</span>(v_1),<span class="st">'v='</span><span class="op">+</span><span class="bu">str</span>(v_2), <span class="st">'v='</span><span class="op">+</span><span class="bu">str</span>(v_3)])</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$W$'</span>)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$P$'</span>)</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'v='</span><span class="op">+</span><span class="bu">str</span>(v_1),<span class="st">'v='</span><span class="op">+</span><span class="bu">str</span>(v_2), <span class="st">'v='</span><span class="op">+</span><span class="bu">str</span>(v_3)])</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-bistablenumtravwave" class="quarto-figure quarto-figure-center anchored">
@@ -1018,21 +1018,38 @@ v= \dfrac {\int\limits_{0}^{1}f(W) \, dW}{\int\limits_{-\infty}^{+ \infty} \left
 <p>Let’s assume that <span class="math display">\[
 \int\limits_{0}^{1}f(u) \, du &gt; 0.
 \]</span></p>
-<p>Suppose that <span class="math inline">\(v=0\)</span>. An explicit expresison for the trajectory is found by multiplying <span class="citation" data-cites="eq">(<a href="#ref-eq" role="doc-biblioref"><strong>eq?</strong></a>)</span>- by <span class="math inline">\(P\)</span> and integrating over <span class="math inline">\(z\)</span>. Hence <span class="math display">\[
+<p>Suppose that <span class="math inline">\(v=0\)</span>. An explicit expression for the trajectory is found by multiplying <a href="#eq-tw_eq_bis">Equation&nbsp;<span>3.10</span></a> by <span class="math inline">\(P\)</span> and integrating over <span class="math inline">\(z\)</span>. Hence <span class="math display">\[
 \frac{P^2}{2}+ \int_0^W f(u)du=0.
 \]</span> If this trajectory reached <span class="math inline">\(W=1\)</span> then <span class="math display">\[
-\frac{P^2}{2}+ \int_0^1 f(u)du=0.
-\]</span> This is only possible if <span class="math display">\[
-\int_0^1 f(u)du&lt;0.
+\frac{P^2}{2}_{\bigg|\infty}+ \int_0^1 f(u)du=0.
+\]</span> The boundary condition <span class="math display">\[
+\frac{P^2}{2}_{\bigg|\infty}=0,
+\]</span> necessary for a travelling wave solution, therefore would imply that <span class="math display">\[
+\int_0^1 f(u)du=0.
 \]</span></p>
-<p>This contradicts the assumption <span class="math display">\[
+<p>This contradicts the assumption <span id="eq-czerobreakingcond"><span class="math display">\[
 \int_0^1 f(u)du&gt;0.
-\]</span></p>
-<p>Moreover, on this trajectory interects the W axis as <span class="math inline">\(P&lt;0\)</span> implies that <span class="math inline">\(W\)</span> is decreasing. Thus a trajectory with <span class="math inline">\(v=0\)</span> cannot connect <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((0,0)\)</span>.</p>
-<p>Now suppose that <span class="math inline">\(v\)</span> is large.</p>
+\tag{3.12}\]</span></span></p>
+<p>Moreover, such a trajectory intersects the <span class="math inline">\(W=0\)</span> axis for some <span class="math inline">\(P&lt;0\)</span>. An intersection on the <span class="math inline">\(P=0\)</span> axis would again imply <span class="citation" data-cites="czerobreakingcond">(<a href="#ref-czerobreakingcond" role="doc-biblioref"><strong>czerobreakingcond?</strong></a>)</span>.</p>
+<p>Now suppose that <span class="math inline">\(v\)</span> is large. The aim in this case is to show that solutions leaving (1,0) must intersect the <span class="math inline">\(P=0\)</span> axis for some <span class="math inline">\(W&gt;0\)</span>.</p>
 <ol type="1">
-<li></li>
+<li><p>The stable eigenvector at (0,0) is <span class="math display">\[
+P=\lambda_- W.
+\]</span> Note that <span class="math inline">\(\lambda_- &lt;v\)</span>.</p></li>
+<li><p>A solution trajectory must satisfy <span class="math display">\[
+\frac{dP }{dW} = \frac{-vP-f(W)}{P}= -v-\frac{f(W)}{P}
+\]</span></p></li>
+<li><p>Consider the line <span class="math inline">\(P=-\sigma W\)</span> with <span class="math inline">\(\sigma&gt;0\)</span>. On this line <span class="math display">\[
+\frac{dP }{dW} = -v+\frac{1}{\sigma}(W-a)(1-W) &lt;-v+\frac{K}{\sigma}
+\]</span> for some <span class="math inline">\(K\)</span> that can be identified (exercise).</p></li>
+<li><p>Hence for large enough <span class="math inline">\(v\)</span> <span class="math inline">\(dP/dW\)</span> can be made arbitrarily negative and the condition <span id="eq-dP_dW_bd"><span class="math display">\[
+\frac{dP}{dW} &lt; -\sigma
+\tag{3.13}\]</span></span> can be satisfied.</p></li>
+<li><p>This result implies that a trajectory leaving (1,0) with sufficiently large <span class="math inline">\(v\)</span> cannot intersect (0,0). If it did it would have to intersect the line <span class="math inline">\(P=\sigma W\)</span>. This is not possible given <a href="#eq-dP_dW_bd">Equation&nbsp;<span>3.13</span></a> and that <span class="math inline">\(W\)</span> is decreasing.</p></li>
 </ol>
+<p>Hence a trajectory approaching <span class="math inline">\((0,0)\)</span> with sufficiently large <span class="math inline">\(v\)</span> is bounded below by the line <span class="math inline">\(P=-\sigma W\)</span>. Such a trajectory must intersect the <span class="math inline">\(P=0\)</span> axis for some <span class="math inline">\(W&gt;0\)</span>.</p>
+<p>Finally, we have shown that * trajectories with <span class="math inline">\(v=0\)</span> intersect the line <span class="math inline">\(W=0\)</span> for <span class="math inline">\(P&lt;0\)</span> * trajectories with large <span class="math inline">\(v\)</span> intersect the line <span class="math inline">\(P=0\)</span> for some <span class="math inline">\(W&gt;0\)</span>.</p>
+<p>As solution trajectories depend continuously on parameters, there must exist some value of <span class="math inline">\(v\)</span> for which a trajectory intersects (0,0). Hence a heteroclinic trajectory exists.</p>
 <p>We can repeat the analysis for <span class="math display">\[  
 \int\limits_{0}^{1}f(u) \, du &lt; 0
 \]</span> and obtain a travelling wave solution with <span class="math inline">\(v_0 &lt;0\)</span>.</p>
