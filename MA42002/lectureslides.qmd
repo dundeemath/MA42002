@@ -189,7 +189,18 @@ How would you compute linear stability of the steady state?
 
 \vspace{5cm}
 
-# Spatiotemporal models
+## Recap
+
+* Introduced SIR and activator-inhibitor models
+* Computed steady states and stability analysis
+
+
+
+## Lecture 3 Spatiotemporal models
+
+* Derive conservation PDEs
+* Consider different models of fluxes
+* Boundary conditions
 
 ## Spatiotemporal models - derivation
 Consider a spatial domain $V$. A conservation equation can be written either in terms of the mass or number of particles of a species as follows:
@@ -246,12 +257,60 @@ $$
 $$
 \vspace{5 cm}
 
-## Recap
-
-* Introduced SIR and activator-inhibitor models
-* Derived conservation PDE
-* Introduced concept of flux, $J$
 
 
+##  Fluxes - Fickian diffusion
+  $$
+    {\mathbf{J}} = - D\nabla c,
+  $$ {#eq-diffusion}
 
-## Spatiotemporal models - fluxes
+  \vspace{7cm}
+
+##  Fluxes - Nonlinear diffusion
+$$
+  D = D(c) , \qquad \text{ e.g. }\,   D(c)= D_0 c^m, \quad D_0 >0, 
+$$
+
+Hence
+$$
+J=-D(c)\nabla c
+$$ 
+
+\vspace{7cm}
+
+## Fluxes - Convection/advection
+$$
+  {\mathbf{J}} = \mathbf{v}c,
+$$ {#eq-diffusion}
+
+\vspace{7cm}
+
+##  Fluxes - Taxis
+$$
+    {\mathbf{J}} = \chi(a) c \nabla a,  
+$$
+
+## Domain of definition of the problem
+
+## Boundary conditions
+
+* Dirichlet
+* Neumann
+* Robin 
+
+
+\vspace{7cm}
+
+## Initial conditions
+
+
+
+
+\vspace{7cm}
+
+## Formulating a model
+
+
+
+
+\vspace{7cm}

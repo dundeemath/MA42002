@@ -2,6 +2,36 @@
 title: "Numerical methods in Python"
 format: html
 ---
+##
+ Python has been installed on most computers on campus and you can access it via AppsAnywhere. The icon is located on your desktop. From AppsAnywhere, please select Anaconda 3.
+
+ However, you can also use your own personal computer. If you decide to do so, you will need to install Python on it. Python is free and works on Windows, Mac OS X and Linux.
+
+It is strongly recommended that you download and install ​
+[Anaconda](https://www.anaconda.com/download). Install might take 5-15 minutes. Then reboot your computer. 
+
+If install has 
+
+
+
+Once you have installed Anaconda you can open Spyder. This will provide you with an editor to run python codes.
+
+Install a development environment (for writing and unnirn gscripts). I use [Visual studio Code](https://code.visualstudio.com).
+
+Install the [VS Code Python extension](https://code.visualstudio.com/docs)
+
+Copy and paste the code below and save as DemoPythonCode.py.
+
+```{python}
+x=2
+y=2
+z=x+y
+print(z)
+```
+
+You should see the answer 4 printed out on the terminal.
+
+You will likely now need to install some libraries
 
 ## Python libraries
 * matplotlib
