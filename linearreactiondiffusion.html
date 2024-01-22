@@ -460,13 +460,13 @@ c(x,t) =  \frac 1{(4 \pi D t)^{n/2}} \exp \left( - \frac{ (x_{1}^{2} + x_{2}^{2}
 <ul>
 <li>The solution is infinitely smooth.</li>
 <li>The solution <span class="math inline">\(c(x,t)\)</span> stays positive for all <span class="math inline">\(t &gt;0\)</span> and <span class="math inline">\(x \in \mathbb R\)</span> if <span class="math inline">\(c(x,0) &gt;0\)</span> for <span class="math inline">\(x \in \mathbb R\)</span>.</li>
-<li>The solution ``propagates’’ with infinite speed i.e.&nbsp;for any <span class="math inline">\(t &gt; 0\)</span>, the solution is everywhere in <span class="math inline">\(\mathbb R\)</span>.</li>
+<li>The solution <em>propagates</em> with infinite speed i.e.&nbsp;for any <span class="math inline">\(t &gt; 0\)</span>, the solution is everywhere in <span class="math inline">\(\mathbb R\)</span>.</li>
 <li>If we change the initial data <span class="math inline">\(c(x,0)\)</span> (continuously) then the solution also changes (continuously).</li>
 </ul>
 </section>
 <section id="diffusive-transit-time" class="level3" data-number="2.1.4">
 <h3 data-number="2.1.4" class="anchored" data-anchor-id="diffusive-transit-time"><span class="header-section-number">2.1.4</span> Diffusive transit time</h3>
-<p>We now demonstrate the connection between time and space in diffusion equations Consider particles of concentration <span class="math inline">\(c(x,t)\)</span> diffusing with constant diffusion <span class="math inline">\(D\)</span> in a one-dimensional domain <span class="math inline">\((0,L)\)</span>, with a constant concentration at one boundary and removed by a sink at the other boundary. At steady-state, the equation governing the concentration is given by:</p>
+<p>We now demonstrate the connection between time and space in diffusion equations. Consider particles of concentration <span class="math inline">\(c(x,t)\)</span> diffusing with constant diffusion, <span class="math inline">\(D\)</span>, in a one-dimensional domain <span class="math inline">\((0,L)\)</span>. Suppose that there is a constant concentration at one boundary and removed by a sink at the other boundary. At steady-state, the equation governing the concentration is given by:</p>
 <p><span class="math display">\[
 D \frac{ d^2 c}{dx^2} = 0  \quad \text{ in } (0,L), \quad c(0) = C_0, \, c(L) = 0 .
 \]</span></p>
@@ -483,7 +483,7 @@ c(\frac{L}{2})=\frac{C_0}{2}.
 \]</span></p>
 <p>Travelling at this speed, the average time it takes a particle to travel a distance, <span class="math inline">\(L\)</span>, is <span class="math display">\[
 \tau = \frac{\textrm{distance}}{\textrm{speed}}=\dfrac{L^2}{2D.}
-\]</span> Hence the average distance through which diffusion transports a particle in a time <span class="math inline">\(\tau\)</span> is <span class="math inline">\(L= \sqrt{ 2D\tau}\)</span>.</p>
+\]</span> Hence the typical distance through which diffusion transports a particle in a time <span class="math inline">\(\tau\)</span> is <span class="math inline">\(L= \sqrt{ 2D\tau}\)</span>.</p>
 </section>
 <section id="diffusion-as-the-limit-of-a-random-walk" class="level3" data-number="2.1.5">
 <h3 data-number="2.1.5" class="anchored" data-anchor-id="diffusion-as-the-limit-of-a-random-walk"><span class="header-section-number">2.1.5</span> Diffusion as the limit of a random walk</h3>
@@ -585,7 +585,7 @@ c(\frac{L}{2})=\frac{C_0}{2}.
 <div class="cell-output cell-output-display">
 <div id="fig-randomwalksim" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="linearreactiondiffusion_files/figure-html/fig-randomwalksim-output-1.png" width="661" height="467" class="figure-img"></p>
+<p><img src="linearreactiondiffusion_files/figure-html/fig-randomwalksim-output-1.png" width="662" height="469" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;2.4: Numerical implementation of random walk</figcaption>
 </figure>
 </div>
