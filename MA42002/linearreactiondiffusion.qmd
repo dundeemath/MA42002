@@ -178,12 +178,12 @@ plt.show()
 
 -   The solution is infinitely smooth.
 -   The solution $c(x,t)$ stays positive for all $t >0$ and $x \in \mathbb R$ if $c(x,0) >0$ for $x \in \mathbb R$.
--   The solution \`\`propagates'' with infinite speed i.e. for any $t > 0$, the solution is everywhere in $\mathbb R$.
+-   The solution *propagates* with infinite speed i.e. for any $t > 0$, the solution is everywhere in $\mathbb R$.
 -   If we change the initial data $c(x,0)$ (continuously) then the solution also changes (continuously).
 
 ### Diffusive transit time
 
-We now demonstrate the connection between time and space in diffusion equations Consider particles of concentration $c(x,t)$ diffusing with constant diffusion $D$ in a one-dimensional domain $(0,L)$, with a constant concentration at one boundary and removed by a sink at the other boundary. At steady-state, the equation governing the concentration is given by:
+We now demonstrate the connection between time and space in diffusion equations. Consider particles of concentration $c(x,t)$ diffusing with constant diffusion, $D$, in a one-dimensional domain $(0,L)$. Suppose that there is a constant concentration at one boundary and removed by a sink at the other boundary. At steady-state, the equation governing the concentration is given by:
 
 $$
 D \frac{ d^2 c}{dx^2} = 0  \quad \text{ in } (0,L), \quad c(0) = C_0, \, c(L) = 0 .
@@ -203,9 +203,11 @@ A typical particle speed is approximated by $$
  \frac{J}{c} = \frac{D \frac{ C_0}{L}}{\frac{C_0}{2}} = \frac{2D}{L}
 $$
 
-Travelling at this speed, the average time it takes a particle to travel a distance, $L$, is $$
+Travelling at this speed, the average time it takes a particle to travel a distance, $L$, is 
+$$
 \tau = \frac{\textrm{distance}}{\textrm{speed}}=\dfrac{L^2}{2D.}
-$$ Hence the average distance through which diffusion transports a particle in a time $\tau$ is $L= \sqrt{ 2D\tau}$.
+$$ 
+Hence the typical distance through which diffusion transports a particle in a time $\tau$ is $L= \sqrt{ 2D\tau}$.
 
 ### Diffusion as the limit of a random walk
 

@@ -200,7 +200,6 @@ How would you compute linear stability of the steady state?
 
 * Derive conservation PDEs
 * Consider different models of fluxes
-* Boundary conditions
 
 ## Spatiotemporal models - derivation
 Consider a spatial domain $V$. A conservation equation can be written either in terms of the mass or number of particles of a species as follows:
@@ -292,6 +291,14 @@ $$
 
 ## Domain of definition of the problem
 
+
+## Lecture 4
+
+*  Boundary and initial conditions
+*  Nondimensionalisation
+*  Introduce a linear reaction diffusion model
+*  Diffusion
+
 ## Boundary conditions
 
 * Dirichlet
@@ -314,3 +321,145 @@ $$
 
 
 \vspace{7cm}
+
+# Linear reaction diffusion equation
+
+## Reaction diffusion equation
+
+$$
+\frac{\partial c}{\partial t} = D \nabla^2 c + f(c), \quad c \equiv c( {\mathbf{x}} , t ), \;\;  {\mathbf{x}} \in \mathbb R^n, \, \, t >0.
+$$
+
+$$
+\frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}  + f(c), \quad x\in \mathbb R, \, \, t >0.
+$$ 
+
+##  1D diffusion equation with delta IC
+
+
+$$
+\frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2},   \quad x\in \mathbb R, \, \, t >0.
+$$ {#eq-heat_eq} 
+
+$$
+c(x_0 , 0) = \delta_0(x)\qquad x \in \mathbb R, 
+$$ {#eq-heat_IC} where $\delta_0$ is a *Dirac delta distribution* (Dirac measure) satisfying $$
+\int_{-\infty}^{+\infty} \delta_0(x) = 1 \quad \text{ and } \quad \int_{-\infty}^{+\infty} f(x) \delta_0(x) = f(0) , \text{ for continuous } f. 
+$$
+
+##
+Then for the diffusion @eq-heat_eq with initial condition @eq-heat_IC, it can be shown that the explicit (analytic) solution is given by $$
+c(x, t) = \frac1{\sqrt{4 \pi D t}} \exp \left( - \frac{ x^2}{ 4Dt} \right).
+$$ {#eq-fund_sol}
+
+
+##  Solution plot
+
+```{python .content-visible unless-format="pdf"}
+#| label: fig-diffusionpde
+#| fig-cap: 
+#|  - "Numerical solution of diffusion equation."
+#|  - "Exact solution of diffusion equation."
+#| code-fold: True
+
+import numpy as np
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+
+
+# define domain size
+T=10
+L=10
+
+# discretise domain
+N_x=100
+N_t=120
+t=np.linspace(0,T,N_t)
+x=np.linspace(0,L,N_x)-L/2
+dx=L/(N_x-1)
+dt=T/(N_t-1)
+
+# Define model parameters
+D=1.5
+epsilon=0.1
+
+
+# Define initial data
+u_0=1/(epsilon*np.sqrt(np.pi))*np.exp(-x**2/epsilon**2)
+
+# define rhs of PDE
+def diffusionPDErhs(u,t):
+    N_x=len(u)
+    f=np.zeros_like(u)
+
+    # Interior points on the domain
+    for i in range(1,N_x-1):
+      f[i]=D/dx**2*(u[i-1]-2*u[i]+u[i+1])  
+    
+    # Boundary at x=0 - flux is zero
+    i=0
+    f[i]=D/dx**2*(-u[i]+u[i+1])
+    
+    # Boundary at x=L - flux is zero
+    i=N_x-1
+    f[i]=D/dx**2*(u[i-1]-u[i])
+    return f  
+
+# Use method of lines to solve PDE
+sol=odeint(diffusionPDErhs,u_0,t)
+
+# Generate x and t mesh to compute exact solution
+[x_mesh,t_mesh]=np.meshgrid(x,t)
+
+c_exact=1/np.sqrt(4*np.pi*D*t_mesh)*np.exp(-x_mesh**2/(4*D*t_mesh))
+
+# Plot solutions and compare
+fig,ax=plt.subplots()
+ax.plot(x, sol[1,:], 'r')
+ax.plot(x, sol[4,:], 'b')
+ax.plot(x, sol[8,:], 'm')
+ax.plot(x, sol[12,:], 'k')
+plt.legend(['t='+ str(t[0]),'t='+ str(t[4]),'t='+ str(t[8]),'t='+ str(t[12])])
+plt.xlabel('$x$')
+plt.ylabel('$c$')
+
+plt.grid()
+plt.show()
+
+fig,ax=plt.subplots()
+ax.plot(x, c_exact[1,:], 'r')
+ax.plot(x, c_exact[4,:], 'b')
+ax.plot(x, c_exact[8,:], 'm')
+ax.plot(x, c_exact[12,:], 'k')
+plt.legend(['t='+ str(t[0]),'t='+ str(t[4]),'t='+ str(t[8]),'t='+ str(t[12])])
+plt.xlabel('$x$')
+plt.ylabel('$c$')
+plt.grid()
+plt.show()
+```
+
+
+
+## The 1D diffusion equation for arbitrary initial condition
+
+For a general initial condition $c(x, 0) = c_0(x)$ for $x\in \mathbb R$: 
+$$
+c(x, t) = \int_{-\infty}^{+\infty} \frac{c_0(y)}{\sqrt{4 \pi D t}} \exp \left( - \frac{ (x-y)^2}{ 4Dt} \right) dy.
+$$
+
+## Key properties of the (linear) diffusion equation (heat equation)
+
+-   The solution is infinitely smooth.
+-   The solution $c(x,t)$ stays positive for all $t >0$ and $x \in \mathbb R$ if $c(x,0) >0$ for $x \in \mathbb R$.
+-   The solution \`\`propagates'' with infinite speed i.e. for any $t > 0$, the solution is everywhere in $\mathbb R$.
+-   If we change the initial data $c(x,0)$ (continuously) then the solution also changes (continuously).
+
+## Diffusive transit time
+
+$$
+D \frac{ d^2 c}{dx^2} = 0  \quad \text{ in } (0,L), \quad c(0) = C_0, \, c(L) = 0 .
+$$
+
+\vspace{5cm}
+
+## Diffusion as a description of random walk
