@@ -211,7 +211,8 @@ Hence the typical distance through which diffusion transports a particle in a ti
 
 ### Diffusion as the limit of a random walk
 
-Consider a *random walk* of particles in a one-dimensional domain. Let $\lambda_L$ and $\lambda_R$ represent hopping rates, such that the probability of a particle hopping distance $\Delta x$ to the right in time $\Delta t$ is $$
+Consider a *random walk* of particles in a one-dimensional domain. Let $\lambda_L$ and $\lambda_R$ represent hopping rates, such that the probability of a particle hopping distance $\Delta x$ to the right in time $\Delta t$ is 
+$$
 \lambda_R \Delta t.
 $$ Similarly, the probability of hopping a distance $\Delta x$ to the left is $$
 \lambda_L \Delta t.
@@ -224,7 +225,7 @@ In @fig-randomwalksim results from a simulation of 400 random walkers is present
 #| fig-cap: "Numerical implementation of random walk"
 #| code-fold: True
 
-# This code simuates random walk of a large number of particles and compares distribution in space with a solution of the diffusion equation 
+# This code simulates random walk of a large number of particles and compares distribution in space with a solution of the diffusion equation 
 
 import numpy as np
 from scipy.integrate import odeint
@@ -339,9 +340,14 @@ $$
    \frac{ \partial c}{\partial x} \Delta x (\lambda_L-\lambda_R) + \frac 12  (\lambda_L+\lambda_R)  \frac{ \partial^2 c}{\partial x^2} (\Delta x )^2  + h.o.t.  
 $$
 
-Considering the symmetric case where the probability of hopping left and right are equal, i.e. $$
+Considering the symmetric case where the probability of hopping left and right are equal, i.e. 
+
+$$
 \lambda=\lambda_L=\lambda_R
-$$ yields $$
+$$ 
+
+yields 
+$$
  \frac{ \partial c}{\partial t}  + \frac 12  \frac{ \partial^2 c}{\partial^2 t} \Delta t   + h.o.t. =
     \lambda \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t.  
 $$
@@ -350,7 +356,8 @@ Considering the limit $\Delta t \to 0$ and $\Delta x \to 0$ such that
 
 $$
 D=\lambda (\Delta x )^2 
-$$ is finite yields the (one-dimensional) diffusion equation
+$$ 
+is finite yields the (one-dimensional) diffusion equation
 
 $$
 \frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}.
@@ -362,7 +369,8 @@ $$
 
 This approach can be extended to consider other types of movement e.g. convection. For example, biasing hopping such that $$
 \lambda_L - \lambda_R = \varepsilon,
-$$ yields a *reaction-diffusion-convection* equation (see tutorial).
+$$ 
+yields a *reaction-diffusion-convection* equation (see tutorial).
 
 Finally we note that there is a connection between diffusion and the normal distribution function.
 

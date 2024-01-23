@@ -296,8 +296,8 @@ $$
 
 *  Boundary and initial conditions
 *  Nondimensionalisation
-*  Introduce a linear reaction diffusion model
-*  Diffusion
+*  Model formulation
+
 
 ## Boundary conditions
 
@@ -321,15 +321,18 @@ $$
 
 
 \vspace{7cm}
+## Lecture 5
 
-# Linear reaction diffusion equation
+*  Introduce a linear reaction diffusion model
+*  Diffusion
 
-## Reaction diffusion equation
+
+## Linear reaction diffusion equation
 
 $$
 \frac{\partial c}{\partial t} = D \nabla^2 c + f(c), \quad c \equiv c( {\mathbf{x}} , t ), \;\;  {\mathbf{x}} \in \mathbb R^n, \, \, t >0.
 $$
-
+so in 1D Cartesian coordinates
 $$
 \frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}  + f(c), \quad x\in \mathbb R, \, \, t >0.
 $$ 
@@ -347,13 +350,7 @@ $$ {#eq-heat_IC} where $\delta_0$ is a *Dirac delta distribution* (Dirac measure
 \int_{-\infty}^{+\infty} \delta_0(x) = 1 \quad \text{ and } \quad \int_{-\infty}^{+\infty} f(x) \delta_0(x) = f(0) , \text{ for continuous } f. 
 $$
 
-##
-Then for the diffusion @eq-heat_eq with initial condition @eq-heat_IC, it can be shown that the explicit (analytic) solution is given by $$
-c(x, t) = \frac1{\sqrt{4 \pi D t}} \exp \left( - \frac{ x^2}{ 4Dt} \right).
-$$ {#eq-fund_sol}
-
-
-##  Solution plot
+## Numerical solution
 
 ```{python .content-visible unless-format="pdf"}
 #| label: fig-diffusionpde
@@ -440,6 +437,24 @@ plt.show()
 
 
 
+## An exact solution computed using a *similarity* variable
+
+Consider the diffusion @eq-heat_eq with initial condition @eq-heat_IC. 
+
+Introduce the similarity variable
+$$
+\eta=\frac{x}{\sqrt{Dt}}
+$$
+and look for solution of the form
+$$
+c(x,t)=\frac{1}{\sqrt{Dt}}F(\eta).
+$$
+
+Hence it can be shown that the explicit (analytic) solution is given by 
+$$
+c(x, t) = \frac1{\sqrt{4 \pi D t}} \exp \left( - \frac{ x^2}{ 4Dt} \right).
+$$ {#eq-fund_sol}
+
 ## The 1D diffusion equation for arbitrary initial condition
 
 For a general initial condition $c(x, 0) = c_0(x)$ for $x\in \mathbb R$: 
@@ -463,3 +478,117 @@ $$
 \vspace{5cm}
 
 ## Diffusion as a description of random walk
+
+Suppose that the probability of a particle hopping distance $\Delta x$ to the right in time $\Delta t$ is 
+$$
+\lambda_R \Delta t.
+$$ 
+Similarly, the probability of hopping a distance $\Delta x$ to the left is $$
+\lambda_L \Delta t.
+$$
+
+## Numerical simulation
+
+```{python}
+#| label: fig-randomwalksim
+#| fig-cap: "Numerical implementation of random walk"
+#| code-fold: True
+
+# This code simulates random walk of a large number of particles and compares distribution in space with a solution of the diffusion equation 
+
+import numpy as np
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+import random
+
+
+# Define total num particles
+N_particles=400
+
+# Discretise domain
+L=50
+N_x=200
+
+T=500
+N_t=25000
+dt=T/N_t
+x=np.linspace(0,L,N_x)-L/2
+t=np.linspace(dt,T,N_t)
+# Model parameters
+D=0.1
+
+# Relate diffusion coefficient to probability of moving distance dx in time dt
+move_probability=D*dt/dx**2
+
+# Initialise particle positions at the origin
+particle_positions=np.zeros((N_t,N_particles),dtype=float)
+
+# loop over time
+for i in range(1,N_t):
+  # loop over particles
+  for j in range(N_particles):
+
+    # randomly sample uniform random number on U_[0,1]
+    r=random.random()
+    # move particle j right
+    new_particle_position=particle_positions[i-1,j]
+    if r<move_probability:
+      new_particle_position+=dx
+    # move particle j left  
+    elif r<2*move_probability:
+      new_particle_position-=dx
+    particle_positions[i,j]=new_particle_position
+
+
+# Compute exaxct solution of diffusion equation
+[x_mesh,t_mesh]=np.meshgrid(x,t)
+c_exact=1/np.sqrt(4*np.pi*D*t_mesh)*np.exp(-x_mesh**2/(4*D*t_mesh))
+
+# Compare normalised histogram of particule positions with PDE solution
+fig,ax=plt.subplots(2,2)
+ax[0,0].hist(particle_positions[5,:],density=True)
+ax[0,0].plot(x, c_exact[5,:], 'r')
+ax[0,0].set_title('$t=$'+str(t[4]))
+
+ax[0,1].hist(particle_positions[500,:],density=True)
+ax[0,1].plot(x, c_exact[500,:], 'm')
+ax[0,1].set_title('$t=$'+str(t[500]))
+
+ax[1,0].hist(particle_positions[1000,:],density=True)
+ax[1,0].plot(x, c_exact[1000,:], 'b')
+ax[1,0].set_title('$t=$'+str(t[1000]))
+
+ax[1,1].hist(particle_positions[1500,:],density=True)
+ax[1,1].plot(x, c_exact[1500,:], 'k')
+ax[1,1].set_title('$t=$'+str(t[1500]))
+
+ax[0,0].set_xlim([-L/2,L/2])
+ax[0,1].set_xlim([-L/2,L/2])
+ax[1,0].set_xlim([-L/2,L/2])
+ax[1,1].set_xlim([-L/2,L/2])
+
+ax[0,0].set_xlabel('$x$')
+ax[0,1].set_xlabel('$x$')
+ax[1,0].set_xlabel('$x$')
+ax[1,1].set_xlabel('$x$')
+
+ax[0,0].set_ylabel('$c$')
+ax[0,1].set_ylabel('$c$')
+ax[1,0].set_ylabel('$c$')
+ax[1,1].set_ylabel('$c$')
+
+plt.tight_layout()
+plt.show()
+```
+
+## Derivation
+
+Let $c(x,t)$ represent the particle density at spatial location $x$ and time $t$.
+
+A conservation equation for $c$ is given by 
+$$
+\begin{aligned}
+c(x, t+ \Delta t) &= c(x, t)  + \lambda_R \Delta t c(x- \Delta x, t) - \lambda_R \Delta t c(x, t) + \\
+&\lambda_L \Delta t c(x+ \Delta x, t) - \lambda_L \Delta t c (x,t).
+\end{aligned}
+$$
