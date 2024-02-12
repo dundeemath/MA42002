@@ -290,11 +290,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="nondimensionalization" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="nondimensionalization"><span class="header-section-number">4.1</span> Nondimensionalization</h2>
 <p>Consider the scaling <span class="math display">\[
-x^\ast = x \sqrt{\frac \rho {D_n}}, \qquad t^\ast = \rho, t , \quad u^\ast = \frac uK, \quad n^\ast = n \frac \alpha \rho.
+x^\ast = x \sqrt{\frac \rho {D_n}}, \qquad t^\ast = \rho t , \quad u^\ast = \frac uK, \quad n^\ast = n \frac \alpha \rho.
 \]</span> Upon dropping the asteriked notation, <a href="#eq-pp_eq">Equation&nbsp;<span>4.1</span></a> transform to <span id="eq-pp_eq_2"><span class="math display">\[
 \begin{cases}
-&amp;\dfrac{\partial u}{\partial t} =  u ( 1 - u - n)  + D \dfrac{\partial^2 u}{\partial x^2}\; = \; f(u,n) + D\dfrac{\partial^2 u}{\partial x^2} \qquad x\in \mathbb R , t&gt;0 \,,  \\
-&amp; \dfrac{\partial n}{\partial t} = a\,  n(u -b) + \dfrac{\partial^2  n}{\partial x^2}\; =\; \;  g(u,n) + \dfrac{\partial^2  n}{\partial x^2}\;  \qquad x\in \mathbb R , t&gt;0,
+&amp;\dfrac{\partial u}{\partial t} =  u ( 1 - u - n)  + D \dfrac{\partial^2 u}{\partial x^2}\; = \; f(u,n) + D\dfrac{\partial^2 u}{\partial x^2}, \qquad x\in \mathbb R , t&gt;0 \,,  \\
+&amp; \dfrac{\partial n}{\partial t} = a\,  n(u -b) + \dfrac{\partial^2  n}{\partial x^2}\; =  g(u,n) + \dfrac{\partial^2  n}{\partial x^2},  \qquad x\in \mathbb R, t&gt;0,
 \end{cases}
 \tag{4.2}\]</span></span> where <span class="math display">\[
 D= \dfrac{D_u}{D_n}, \quad a = \dfrac{\beta K}\rho, \quad   b = \dfrac \gamma{ K \beta}.
@@ -327,15 +327,15 @@ D= \dfrac{D_u}{D_n}, \quad a = \dfrac{\beta K}\rho, \quad   b = \dfrac \gamma{ K
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span><span class="fl">0.4</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>D_u<span class="op">=</span><span class="fl">0.10</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>u_L<span class="op">=</span> b</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>u_R<span class="op">=</span><span class="fl">1.0</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>n_L<span class="op">=</span><span class="dv">1</span><span class="op">-</span>b</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>n_R<span class="op">=</span><span class="fl">0.0</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>u_L<span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>u_R<span class="op">=</span>b</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>n_L<span class="op">=</span><span class="fl">0.0</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>n_R<span class="op">=</span><span class="dv">1</span><span class="op">-</span>b</span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Define initial conditions</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>u_0<span class="op">=</span>b<span class="op">+</span>(<span class="dv">1</span><span class="op">-</span>b)<span class="op">*</span><span class="fl">0.5</span><span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>np.tanh(<span class="dv">1</span><span class="op">*</span><span class="fl">0.5</span><span class="op">*</span>(x<span class="op">-</span><span class="dv">50</span>)))</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>n_0<span class="op">=</span>(<span class="dv">1</span><span class="op">-</span>b)<span class="op">*</span><span class="fl">0.5</span><span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>np.tanh(<span class="op">-</span><span class="dv">1</span><span class="op">*</span><span class="fl">0.5</span><span class="op">*</span>(x<span class="op">-</span><span class="dv">50</span>)))</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>u_0<span class="op">=</span>b<span class="op">+</span>(<span class="dv">1</span><span class="op">-</span>b)<span class="op">*</span><span class="fl">0.5</span><span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>np.tanh(<span class="op">-</span><span class="fl">1.0</span><span class="op">*</span><span class="fl">0.5</span><span class="op">*</span>(x<span class="op">-</span><span class="dv">50</span>)))</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>n_0<span class="op">=</span>(<span class="dv">1</span><span class="op">-</span>b)<span class="op">*</span><span class="fl">0.5</span><span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>np.tanh(<span class="fl">1.0</span><span class="op">*</span><span class="fl">0.5</span><span class="op">*</span>(x<span class="op">-</span><span class="dv">50</span>)))</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>u_0<span class="op">=</span>np.concatenate((u_0,n_0))</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
@@ -555,10 +555,10 @@ J(W,N,P) = \begin{pmatrix}
 \lambda_1^1= -\frac 1 v &lt; 0, \quad \lambda_2^{\pm} = \frac{ v \pm \sqrt{v^2 - 4 a(1-b)} } 2.
 \]</span></p>
 <p>Since <span class="math display">\[
-0\leq b &lt; 1 and 4(1-b)&gt;0,
+0\leq b &lt; 1 \quad \textrm{and} \quad 4(1-b)&gt;0,
 \]</span></p>
 <ul>
-<li>If <span class="math inline">\(v^2 \geq 4 a(1-b)\)</span>, (1,0,0) is a saddle with 2-dim unstable manifold.\</li>
+<li>If <span class="math inline">\(v^2 \geq 4 a(1-b)\)</span>, (1,0,0) is a saddle with 2-dim unstable manifold.</li>
 <li>If <span class="math inline">\(v^2 &lt; 4 a(1-b)\)</span> (1,0,0)is an unstable focus</li>
 </ul>
 <p>Thus for a travelling wave with <span class="math inline">\(W\geq 0\)</span> and <span class="math inline">\(N \geq 0\)</span> to exist we require <span class="math display">\[

@@ -496,7 +496,7 @@ c(\frac{L}{2})=\frac{C_0}{2}.
 <div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This code simuates random walk of a large number of particles and compares distribution in space with a solution of the diffusion equation </span></span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This code simulates random walk of a large number of particles and compares distribution in space with a solution of the diffusion equation </span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
@@ -611,9 +611,11 @@ c(x,t) + \frac{ \partial c}{\partial t} \Delta t + \frac{1}{2}  \frac{ \partial^
 \frac{ \partial c}{\partial t}  + \frac 12  \frac{ \partial^2 c}{\partial^2 t} \Delta t   + h.o.t. =
    \frac{ \partial c}{\partial x} \Delta x (\lambda_L-\lambda_R) + \frac 12  (\lambda_L+\lambda_R)  \frac{ \partial^2 c}{\partial x^2} (\Delta x )^2  + h.o.t.  
 \]</span></p>
-<p>Considering the symmetric case where the probability of hopping left and right are equal, i.e.&nbsp;<span class="math display">\[
+<p>Considering the symmetric case where the probability of hopping left and right are equal, i.e.&nbsp;</p>
+<p><span class="math display">\[
 \lambda=\lambda_L=\lambda_R
-\]</span> yields <span class="math display">\[
+\]</span></p>
+<p>yields <span class="math display">\[
 \frac{ \partial c}{\partial t}  + \frac 12  \frac{ \partial^2 c}{\partial^2 t} \Delta t   + h.o.t. =
     \lambda \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t.  
 \]</span></p>
@@ -650,10 +652,10 @@ c(0,x) = \delta_0(x).
 <section id="exact-solution" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="exact-solution"><span class="header-section-number">2.2.1</span> Exact solution</h3>
 <p>By considering a <em>separation of variables</em> approach, i.e.&nbsp;making the <em>ansatz</em> <span class="math display">\[
-c(x,t) = w(t) \tilde c(t,x),
+c(x,t) = w(t) \tilde c(x,t),
 \]</span> it can be shown (<strong>Exercise</strong>) that the explicit solution for the linear reaction-diffusion <a href="#eq-lin_re_eq">Equation&nbsp;<span>2.5</span></a> with initial condition <a href="#eq-lin_re_eq_ic">Equation&nbsp;<span>2.6</span></a> is given by</p>
 <p><span class="math display">\[
-c(t,x) = \frac1{\sqrt{4 \pi D t}} \exp \left(\rho t - \frac{x^2}{ 4Dt} \right).
+c(x,t) = \frac1{\sqrt{4 \pi D t}} \exp \left(\rho t - \frac{x^2}{ 4Dt} \right).
 \]</span></p>
 <p>In <a href="#fig-diffusionlinearsource">Figure&nbsp;<span>2.6</span></a> we compare numerical and exact solutions of <a href="#eq-lin_re_eq">Equation&nbsp;<span>2.5</span></a>.</p>
 <div class="cell" data-execution_count="4">
