@@ -263,9 +263,10 @@ div.csl-indent {
   <ul>
   <li><a href="#model-derivation" id="toc-model-derivation" class="nav-link active" data-scroll-target="#model-derivation"><span class="header-section-number">5.1</span> Model derivation</a></li>
   <li><a href="#numerical-solutions" id="toc-numerical-solutions" class="nav-link" data-scroll-target="#numerical-solutions"><span class="header-section-number">5.2</span> Numerical solutions</a></li>
-  <li><a href="#spatially-homogeneous-steady-states" id="toc-spatially-homogeneous-steady-states" class="nav-link" data-scroll-target="#spatially-homogeneous-steady-states"><span class="header-section-number">5.3</span> Spatially Homogeneous Steady States</a></li>
-  <li><a href="#stability-analysis" id="toc-stability-analysis" class="nav-link" data-scroll-target="#stability-analysis"><span class="header-section-number">5.4</span> Stability Analysis</a></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="header-section-number">5.5</span> Exercise</a></li>
+  <li><a href="#conservation-of-cell-number" id="toc-conservation-of-cell-number" class="nav-link" data-scroll-target="#conservation-of-cell-number"><span class="header-section-number">5.3</span> Conservation of cell number</a></li>
+  <li><a href="#spatially-homogeneous-steady-state" id="toc-spatially-homogeneous-steady-state" class="nav-link" data-scroll-target="#spatially-homogeneous-steady-state"><span class="header-section-number">5.4</span> Spatially homogeneous steady state</a></li>
+  <li><a href="#stability-analysis" id="toc-stability-analysis" class="nav-link" data-scroll-target="#stability-analysis"><span class="header-section-number">5.5</span> Stability Analysis</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="header-section-number">5.6</span> Exercise</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -290,7 +291,7 @@ div.csl-indent {
 </header>
 
 <p><strong>Dictyostelium discoideum</strong> (Dicty) is a slime-mold that is widely studied experimentally as a model organism. The individual amoebae that constitute a slime-mold exhibit a range of phenomena also observed in mammalian cells e.g.&nbsp;differentiation, proliferation, migration.</p>
-<p>Under nutirent starvation conditions, Dicty cells undergo complex collective behaviours. Individual amoebae secrete a diffusible chemical, cyclic AMP or cAMP. The amoebae respond chemotactically to cAMP and begin to migrate towards regions of high cAMP concentration via <em>chemotaxis</em>. As they migrate they generate a range of intricate patterns including <em>spiral waves</em> and <em>streaming</em> aggregation patterns (e.g. <a href="#fig-dicty_spiral">Figure&nbsp;<span>5.1</span></a>).</p>
+<p>Under nutrient starvation conditions, Dicty cells undergo complex collective behaviours. Individual amoebae secrete a diffusible chemical, cyclic AMP or cAMP. The amoebae respond chemotactically to cAMP and begin to migrate towards regions of high cAMP concentration via <em>chemotaxis</em>. As they migrate they generate a range of intricate patterns including <em>spiral waves</em> and <em>streaming</em> aggregation patterns (e.g. <a href="#fig-dicty_spiral">Figure&nbsp;<span>5.1</span></a>).</p>
 <p>The movie below depicts slime mold aggregation. </p><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/bkVhLJLG7ug" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div> Note the aggregation between 0:35 and 0.48.<p></p>
 <p>In <a href="#fig-dicty_spiral">Figure&nbsp;<span>5.1</span></a> we can see stills-shot images of spiral patterns. This spirals are dynamic as can be seen in this movie. </p><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/OX5Yiz38fgY" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div> See spiral pattern at around 0:36.<p></p>
 <div id="fig-dicty_spiral" class="quarto-figure quarto-figure-center anchored">
@@ -301,7 +302,7 @@ div.csl-indent {
 </div>
 <ul>
 <li>can we simulate/model the mechanisms regulate that give rise to cellular aggregation?</li>
-<li>how do features of patterns that form (e.g.&nbsp;pattern wavelength, speepd of aggregation) depend on individual cell properties?</li>
+<li>how do features of patterns that form (e.g.&nbsp;pattern wavelength, speed of aggregation) depend on individual cell properties?</li>
 </ul>
 <section id="model-derivation" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="model-derivation"><span class="header-section-number">5.1</span> Model derivation</h2>
@@ -319,9 +320,9 @@ div.csl-indent {
 \end{aligned}
 \]</span></p>
 <p>where we have assumed Fickian diffusion for the cAMP and <span class="math inline">\(g(a,n)\)</span> represents the kinetics i.e.&nbsp;source/sink terms, of cAMP.</p>
-<p>One simple model has the following assumptiond:</p>
+<p>One simple model has the following assumptions:</p>
 <p><span class="math display">\[f(n,a) = 0, \;\;\; g(n,a) = \mu n - \delta a, \;\;\; \chi (a) = \chi_0\]</span></p>
-<p>i.e.&nbsp;</p>
+<p>i.e.</p>
 <ul>
 <li><p>there are no kinetics for the amoebae - they simply move randomly via diffusion and undergo chemotaxis in response to cAMP;</p></li>
 <li><p>proliferation is neglected; - this is a reasonable assumption given the timescales involved, since they amoebae move on a faster timescale than they proliferate;</p></li>
@@ -340,7 +341,7 @@ div.csl-indent {
 <p><span id="eq-chemotaxis1d"><span class="math display">\[
 \begin{aligned}
 \frac{\partial n}{\partial  t} &amp;=  D_n \frac{\partial ^2 n}{\partial x^2} - \chi_0 \frac{\partial}{\partial x} \left( n \frac{\partial a}{\partial x} \right), \\
-  &amp; &amp; \hspace{4.5cm} ( \dagger ) \\
+  &amp; &amp; \hspace{4.5cm} \\
 \frac{\partial a}{\partial  t} &amp;=  D_a \frac{\partial ^2 a}{\partial x^2}  +  \mu n - \delta a,
 \end{aligned}
 \tag{5.1}\]</span></span></p>
@@ -475,15 +476,15 @@ D_n \frac{\partial n}{\partial  x} - \chi_0 n \frac{\partial a}{\partial  x} &am
 <div class="cell-output cell-output-display">
 <div id="fig-bacterialchemotaxispde" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="BacterialChemotaxis_files/figure-html/fig-bacterialchemotaxispde-output-1.png" width="662" height="470" class="figure-img"></p>
+<p><img src="BacterialChemotaxis_files/figure-html/fig-bacterialchemotaxispde-output-1.png" width="661" height="468" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;5.2: Numerical solution of bacterial chemtaxis model.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="spatially-homogeneous-steady-states" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="spatially-homogeneous-steady-states"><span class="header-section-number">5.3</span> Spatially Homogeneous Steady States</h2>
+<section id="conservation-of-cell-number" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="conservation-of-cell-number"><span class="header-section-number">5.3</span> Conservation of cell number</h2>
 <p>Define the total number of cells, <span class="math inline">\(N\)</span>, <span class="math display">\[
 N= \int_0^L n(x,t)dx
 \]</span> Upon differentiation with respect to time <span class="math display">\[
@@ -493,28 +494,42 @@ N= \int_0^L n(x,t)dx
 \end{aligned}
 \]</span> Upon integration of the right-hand side w.r.t. <span class="math inline">\(x\)</span>, subsequent application of the no-flux boundary condition implies <span class="math display">\[
 \frac{dN}{dt}=0.
-\]</span> Hence the total number of cells in the domain is fixed by the initial data. For a spatially homogeneoud solutions, th4 cells must be uniformly distributed in space, i.e. <span class="math display">\[
+\]</span> Hence the total number of cells in the domain is fixed by the initial data.</p>
+</section>
+<section id="spatially-homogeneous-steady-state" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="spatially-homogeneous-steady-state"><span class="header-section-number">5.4</span> Spatially homogeneous steady state</h2>
+<p>Suppose that <span class="math inline">\((n^*,a^*)\)</span> is a spatially homogeneous, steady state solution, i.e.&nbsp;<span class="math display">\[
+\frac{\partial n}{\partial x}=\frac{\partial n}{\partial t}=\frac{\partial a}{\partial x}=\frac{\partial a}{\partial t}=0.
+\]</span></p>
+<p>Hence</p>
+<p><span class="math display">\[
+\mu n* - \delta a*=0,
+\]</span></p>
+<p>and therefore</p>
+<p><span class="math display">\[
+a*=\frac{\mu}{\delta }n*.
+\]</span></p>
+<p>Given initial cell number, <span class="math inline">\(N\)</span>, and domain size, <span class="math inline">\(L\)</span>, conservation of cell number implies that <span class="math display">\[
 n^*=N/L
 \]</span></p>
-<p>Additionaly, the spatially homogeneous steady state solution <span class="math inline">\((n^* , a^* )\)</span> satisfies:</p>
-<p><span class="math display">\[
-a^*=\frac{\mu}{\delta} n^*.
+<p>Thus the steady state is <span class="math display">\[
+(n^*,a^*)=\frac{N}{L}\left(1,\frac{\mu}{\delta}\right).
 \]</span></p>
-<p>We now undertake a linear stability analysis to determine whether this is stable or unstable. If the above spatially homogeneous steady state is unstable, this will indicate that aggregation patterns may arise in the system.</p>
+<p>If this spatially homogeneous steady state is unstable, this will indicate that aggregation patterns may arise in the system.</p>
 </section>
-<section id="stability-analysis" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="stability-analysis"><span class="header-section-number">5.4</span> Stability Analysis</h2>
+<section id="stability-analysis" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="stability-analysis"><span class="header-section-number">5.5</span> Stability Analysis</h2>
 <p>In a similar manner to previous stability analyses, we consider small perturbations around the spatially homogeneous steady state <span class="math inline">\((n^* , a^* )\)</span>, i.e.</p>
 <p><span class="math display">\[
 n(x,t) = n^* + \tilde{n}(x,t), \;\;\; a(x,t) = a^* + \tilde{a}(x,t)
 \]</span></p>
 <p>where <span class="math inline">\(\tilde{n}(x,t)\)</span> and <span class="math inline">\(\tilde{a}(x,t)\)</span> are “small” so that higher order terms can be neglected.</p>
 <p><strong>NOTE</strong> Unlike previous stability analysis, these perturbations are both <em>time</em> and <em>space</em> dependent.</p>
-<p>Substituting the above perturbations into equations <span class="math inline">\(( \dagger )\)</span>, we neglect higher order terms and retain only linear terms. This is largely straightforward, but we provide some detail for the linearization of the chemotactic term i.e.&nbsp;</p>
+<p>Substituting the above perturbations into <a href="#eq-chemotaxis1d">Equation&nbsp;<span>5.1</span></a>, we neglect higher order terms and retain only linear terms. This is largely straightforward, but we provide some detail for the linearisation of the chemotactic term i.e.</p>
 <p><span class="math display">\[
 \frac{\partial}{\partial x} \left[ ( n^* + \tilde{n}) \frac{\partial}{\partial x} \left( a^* + \tilde{a} \right) \right] = \frac{\partial}{\partial x} \left[ ( n^* + \tilde{n}) \frac{\partial \tilde{a}}{\partial x}  \right] \approx n^* \frac{\partial ^2 \tilde{a}}{\partial x^2}.
 \]</span></p>
-<p>The fully linearized system is then given by: <span id="eq-chemotax_linear"><span class="math display">\[
+<p>The fully linearised system is then given by: <span id="eq-chemotax_linear"><span class="math display">\[
 \begin{aligned}
 \frac{\partial \tilde{n}}{\partial  t} &amp; =  D_n \frac{\partial ^2 \tilde{n}}{\partial x^2} - \chi_0 n^* \frac{\partial ^2 \tilde{a}}{\partial x^2} \\
 \frac{\partial \tilde{a}}{\partial  t} &amp; =   D_a \frac{\partial ^2 \tilde{a}}{\partial x^2}  +  \mu \tilde{n} - \delta \tilde{a}.
@@ -527,7 +542,7 @@ n(x,t) = n^* + \tilde{n}(x,t), \;\;\; a(x,t) = a^* + \tilde{a}(x,t)
 \]</span></p>
 <p>Upon substitution <span class="math display">\[
 \begin{aligned}
-&amp;\frac{\partial u}{\partial  t}  \phi_1  =   D_n  u\frac{\partial ^2 \phi_1}{\partial x^2} - \chi_0 n^*  v\frac{\partial ^2 \phi_1}{\partial x^2} \\
+&amp;\frac{\partial u}{\partial  t}  \phi_1  =   D_n  u\frac{\partial ^2 \phi_1}{\partial x^2} - \chi_0 n^*  v\frac{\partial ^2 \phi_2}{\partial x^2} \\
 &amp; \frac{\partial v}{\partial  t}  \phi_2=     D_a v \frac{\partial ^2  \phi_2}{\partial x^2}  +  \mu u \,  \phi_1 - \delta v\,  \phi_2, \\
 \end{aligned}
 \]</span> with boundary conditions <span class="math display">\[
@@ -535,10 +550,17 @@ n(x,t) = n^* + \tilde{n}(x,t), \;\;\; a(x,t) = a^* + \tilde{a}(x,t)
 &amp; u \frac{\partial \phi_1}{\partial x} = 0, \quad   v \frac{\partial \phi_2}{\partial x} = 0 \quad \text{ for } \; x = 0, \; x=L.
 \end{aligned}
 \]</span></p>
-<p>We assume that<br>
-<span class="math display">\[
-\phi_1 = \phi_2 = \phi,
-\]</span> where <span class="math inline">\(\phi\)</span> is the solution of the elliptic problem <span class="math display">\[
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Elliptic problem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Suppose that <span class="math inline">\(\phi\)</span> is the solution of the elliptic problem <span class="math display">\[
 \begin{aligned}
 \frac{d^2 \phi}{dx^2} &amp;= - k^2 \phi &amp;&amp; \text{ in } \; (0,L), \\
 \frac{d \phi}{dx} &amp;= 0  &amp;&amp; \text{ for } \; x=0, \; x=L.
@@ -547,8 +569,13 @@ n(x,t) = n^* + \tilde{n}(x,t), \;\;\; a(x,t) = a^* + \tilde{a}(x,t)
 \phi(x) = A \cos(kx) + B\sin(kx).
 \]</span> Since <span class="math inline">\(\phi\)</span> satisfied zero Neumann boundary conditions we have that <span class="math display">\[
 \phi(x) = A \cos(kx),
-\]</span> where <span class="math inline">\(A\)</span> is an arbitrary constanr, and <span class="math display">\[
+\]</span> where <span class="math inline">\(A\)</span> is an arbitrary constant, and <span class="math display">\[
 k = \dfrac {m \pi} L, \quad m \in \mathbb N.
+\]</span></p>
+</div>
+</div>
+<p>We seek solutions <span class="math display">\[
+\phi_1 = \phi_2 = \phi.
 \]</span></p>
 <p>Then we have <span class="math display">\[
 \begin{aligned}
@@ -602,16 +629,16 @@ C_2
 \lambda &lt; 0  \Leftrightarrow \alpha &gt; 0 \;\;\; \text{and} \;\;\; \beta &gt;0.
 \]</span></p>
 <p>Now <span class="math display">\[\alpha = D_n k^2 + D_a k^2 + \delta &gt; 0,
-\]</span> and so for stability, we require <span class="math inline">\(\beta &gt; 0\)</span> i.e.&nbsp;</p>
+\]</span> and so for stability, we require <span class="math inline">\(\beta &gt; 0\)</span> i.e.</p>
 <p><span class="math display">\[
 \begin{aligned}
 &amp; &amp; D_n k^2 \left( D_a k^2 + \delta \right) - \mu \chi_0 n^* k^2 &gt; 0 \\
 &amp; &amp; \Rightarrow \mu \chi_0 n^* &lt;  D_n  \left( D_a k^2 + \delta \right)
 \end{aligned}
-\]</span> Hence, we will have instability when this condition is not satisfied i.e.&nbsp; <span class="math display">\[
+\]</span> Hence, we will have instability when this condition is not satisfied i.e.&nbsp;<span class="math display">\[
 \mu \chi_0 n^* &gt;  D_n  \left( D_a k^2 + \delta \right).
 \]</span></p>
-<p>The precise value of <span class="math inline">\(k^2\)</span> can be determined from the zero-flux boundary conditions i.e. <span class="math display">\[
+<p>The precise value of <span class="math inline">\(k^2\)</span> can be determined from the zero-flux boundary conditions i.e.&nbsp;<span class="math display">\[
 k  =  \frac{m \pi}{L}, \;\;\; m = 1,2, \dots
 \]</span> if we look for non-constant <span class="math inline">\(\phi\)</span>.</p>
 <p>Hence, we will have instability whenever <span class="math display">\[
@@ -628,14 +655,19 @@ k  =  \frac{m \pi}{L}, \;\;\; m = 1,2, \dots
 </ul>
 <p>Considering all other parameters to be fixed, in theory the above result states that it is possible to find a large enough value for the chemotactic coefficient <span class="math inline">\(\chi_0\)</span> to satisfy the instability condition i.e.&nbsp;chemotaxis induces instability and leads to aggregation of the amoebae.</p>
 </section>
-<section id="exercise" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="exercise"><span class="header-section-number">5.5</span> Exercise</h2>
+<section id="exercise" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="exercise"><span class="header-section-number">5.6</span> Exercise</h2>
 <p>From the results we have obtained we deduce that:</p>
 <ul>
 <li>chemotaxis has a destabilizing effect</li>
 <li>diffusion has a stabilizing effect on spatially homogeneous solutions</li>
 </ul>
-<p>If this is true then one might expect the numerical results presented in <a href="#fig-bacterialchemotaxispde">Figure&nbsp;<span>5.2</span></a> to have spatially homogeneous solutions if the diffusion coefficient is made sufficiently large. * Can you test this by running the code for larger values of the parameter <span class="math inline">\(D\)</span>? * Alternatively, what happens if you make the chemotactic coefficient <span class="math inline">\(\chi_0\)</span> smaller? * what kind of aggregation patterns do you see if the system is solved in two spatial dimensions?</p>
+<p>If this is true then one might expect the numerical results presented in <a href="#fig-bacterialchemotaxispde">Figure&nbsp;<span>5.2</span></a> to have spatially homogeneous solutions if the diffusion coefficient is made sufficiently large.</p>
+<ul>
+<li>Can you test this by running the code for larger values of the parameter <span class="math inline">\(D\)</span>?</li>
+<li>Alternatively, what happens if you make the chemotactic coefficient <span class="math inline">\(\chi_0\)</span> smaller?</li>
+<li>what kind of aggregation patterns do you see if the system is solved in two spatial dimensions?</li>
+</ul>
 <p>However, there is one type of system where diffusion also has a destabilizing effect…</p>
 
 
