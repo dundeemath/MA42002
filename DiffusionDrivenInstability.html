@@ -332,12 +332,12 @@ Professor Lewis Wolpert
 </div>
 <p>A fundamental question is: how do robust pattern emerge during embryo development?</p>
 <p>In the Turing pre-pattern theory, chemicals, or <a href="https://en.wikipedia.org/wiki/Morphogen">morphogens</a>, react together and, if certain conditions concerning their reaction kinetics and diffusion rates are satisfied (to be derived in the next section), then a <em>pre-pattern</em> of varying chemical concentrations is set up in the spatial domain. This means that throughout the spatial domain, the concentration levels of the chemicals will vary i.e.&nbsp;there will be a <em>heterogeneous</em> distribution of chemical concentrations which is known as a pre-pattern. Any cells in the domain which subsequently encounter these varying levels of morphogens will then respond by, for example, proliferating differentially throughout the domain. In this way, the domain will then contain a spatially heterogeneous distribution of cell densities (i.e.&nbsp;a cellular pattern) which have responded to the morphogen pre-pattern. This pre-pattern theory was first proposed by Alan Turing (of Enigma Code fame) in his seminal 1952 paper, <em>The chemical basis of morphogenesis</em> <span class="citation" data-cites="turing1990chemical">Turing (<a href="#ref-turing1990chemical" role="doc-biblioref">1990</a>)</span>.</p>
-<p>In the mechano-chemical theory, cells interact with their surroundings and by exerting forces perturb their local environment. The combination of cell migration/proliferation and cell-generated forces is sufficient in certain circumstances to create a spatially heterogeneous distribution of cell densities i.e.&nbsp;the pattern is generated <em>simultaneously</em> with the cell migration/proliferation. This alternative pattern formation theory was proposed by Murray and Oster <span class="citation" data-cites="murray1984generation">Murray and Oster (<a href="#ref-murray1984generation" role="doc-biblioref">1984</a>)</span> and is particularly appropriate for patterns generated in early embryogenesis by <em>mesenchymal cells</em> such as fibroblasts.</p>
+<p>In the mechano-chemical theory, cells interact with their surroundings and by exerting forces perturb their local environment. The combination of cell migration/proliferation and cell-generated forces is sufficient in certain circumstances to create a spatially heterogeneous distribution of cell densities i.e.&nbsp;the pattern is generated <em>simultaneously</em> with the cell migration/proliferation. This alternative pattern formation theory was proposed by Murray and Oster <span class="citation" data-cites="murray1984generation">Murray and Oster (<a href="#ref-murray1984generation" role="doc-biblioref">1984</a>)</span>.</p>
 </section>
 </section>
 <section id="reaction-diffusion-turing-pre-pattern-mechanisms" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="reaction-diffusion-turing-pre-pattern-mechanisms"><span class="header-section-number">6.2</span> Reaction-diffusion (Turing) Pre-pattern Mechanisms</h2>
-<p>We now consider our general (dimensional) reaction-diffusion model for two chemicals or morphogens with concentrations <span class="math inline">\(A({\mathbf{x}}, t)\)</span> and <span class="math inline">\(B({\mathbf{x}}, t)\)</span> which react together and diffuse in some spatial domain:</p>
+<p>We now consider a general (dimensional) reaction-diffusion model for two chemicals or morphogens with concentrations <span class="math inline">\(A({\mathbf{x}}, t)\)</span> and <span class="math inline">\(B({\mathbf{x}}, t)\)</span> that react together and diffuse in some spatial domain:</p>
 <p><span class="math display">\[
 \begin{aligned}
 \frac{\partial A}{\partial  t} &amp; =  F(A,B)  + D_A \nabla^2 A, \\
@@ -397,7 +397,7 @@ d = \frac{D_B}{D_A}, \quad a = \frac{k_1}{k_2} \left( \frac{k_3}{k_2} \right)^{1
 <p>The Gierer-Meinhardt kinetics can be non-dimensionalised as follows:</p>
 <p><span class="math display">\[
 \begin{aligned}
-f(u, v) &amp; =  a - b u + \frac{u^2}{v},
+f(u, v) &amp; =  a - b u + \frac{u^2}{v}, \\
 g(u,v) &amp;= u^2 - v, \\
 \end{aligned}
 \]</span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are positive parameters (Exercise/Tutorial).</p>
@@ -745,7 +745,7 @@ h(u,v) &amp; =  \frac{\rho u v}{1 + u + K u^2},
 </section>
 <section id="general-conditions-for-diffusion-driven-instability" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="general-conditions-for-diffusion-driven-instability"><span class="header-section-number">6.5</span> General conditions for diffusion-driven instability</h2>
-<p>Let <span class="math inline">\(\Omega \subset R^n\)</span> be a domain with smooth (sufficiently regular) boundary <span class="math inline">\(\partial \Omega\)</span>, with outward unit normal <span class="math inline">\({\mathbf{n}}\)</span>. Our general, non-dimensional reaction-diffusion system is then:</p>
+<p>Let <span class="math inline">\(\Omega \subset R^n\)</span> be a domain with smooth (sufficiently regular) boundary, <span class="math inline">\(\partial \Omega\)</span>, with outward unit normal <span class="math inline">\({\mathbf{n}}\)</span>. Our general, non-dimensional reaction-diffusion system is then:</p>
 <p><span id="eq-pp"><span class="math display">\[
 \begin{aligned}
 &amp;\frac{\partial u}{\partial  t} = \gamma\, f(u,v)  +  \nabla^2 u, \qquad x\in \Omega, \quad t&gt;0, \\
@@ -760,7 +760,7 @@ u(x,0)  = u_0(x), \qquad  v(x,0)  = v_0(x), \qquad x\in \Omega\; .
 \end{aligned}
 \tag{6.3}\]</span></span></p>
 <p>A <em>spatially homogeneous steady-state</em> of <a href="#eq-pp">Equation&nbsp;<span>6.2</span></a> and <a href="#eq-pp_bc">Equation&nbsp;<span>6.3</span></a> satisfies <span class="math display">\[
-f(u,v) = 0 , \qquad g(u,v) =0
+f(u,v) = 0 , \qquad g(u,v) =0.
 \]</span></p>
 <p>and we denote it by <span class="math inline">\((u_0, v_0)\)</span>.</p>
 <section id="stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations" class="level3" data-number="6.5.1">
@@ -848,6 +848,8 @@ D =  \begin{pmatrix}
 0 &amp; d
 \end{pmatrix}.
 \]</span></p>
+<section id="separation-of-variables" class="level4" data-number="6.5.2.1">
+<h4 data-number="6.5.2.1" class="anchored" data-anchor-id="separation-of-variables"><span class="header-section-number">6.5.2.1</span> Separation of variables</h4>
 <p>We shall consider a separation of variables approach, i.e.&nbsp;<span class="math display">\[
 V(x,t) =\begin{pmatrix}  
 \bar u(t)  \varphi_1(x)
@@ -869,8 +871,56 @@ V(x,t) =\begin{pmatrix}
 <p>It is assumed that <span class="math display">\[
 \bar u(t)\, / \hspace{-0.35 cm}\equiv 0 \quad \textrm{and} \quad  \bar v(t)\, / \hspace{-0.35 cm}\equiv 0
 \]</span> for <span class="math inline">\(t&gt;0\)</span>.</p>
-<div id="lem-laplacianeiegenvalues" class="theorem lemma">
-<p><span class="theorem-title"><strong>Lemma 6.1 </strong></span>Consider the spatial eigenvalue problem for the Laplacian <span class="math inline">\(\nabla^2\)</span> with zero-Neumann boundary conditions, i.e.</p>
+</section>
+<section id="eigenvalues-of-the-laplacian" class="level4" data-number="6.5.2.2">
+<h4 data-number="6.5.2.2" class="anchored" data-anchor-id="eigenvalues-of-the-laplacian"><span class="header-section-number">6.5.2.2</span> Eigenvalues of the Laplacian</h4>
+<p>We can make the assumption that <span class="math display">\[
+\phi_1(x)=\phi_2(x)=\phi(x)
+\]</span> and use the substitution <span class="math display">\[
+\nabla^2 \varphi=-k^2\varphi.
+\]</span></p>
+<p><em>1D Cartesian</em></p>
+<p>Make the ansatz that <span class="math inline">\(\phi_k(x)=\phi_1(x)=\phi_2(x)\)</span>.</p>
+<p>Subsitution in <a href="#eq-pp_4">Equation&nbsp;<span>6.9</span></a> yields <span class="math display">\[
+\begin{aligned}
+\frac{d \bar u(t)}{d t}\varphi_k(x) = \gamma\, \left(f_u \bar u(t) \varphi_k(x) + f_v \bar v(t) \varphi_k(x)\right) +\bar u(t)  \nabla^2 \varphi_k(x)  , \quad x\in \Omega, \;  t &gt;0, \\
+\frac{d \bar v(t)}{d t}\varphi_k(x) = \gamma\,  \left(g_u  \bar u(t) \varphi_k(x) + g_v \bar v(t) \varphi_k(x)\right) +  d \bar v(t) \nabla^2  \varphi_k(x)  ,  \quad x\in \Omega, \;  t &gt;0,  \\
+\end{aligned}
+\]</span></p>
+<p>Separating variables</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\nabla^2  \varphi_k(x)}{\varphi_k(x)}= \frac{\frac{d \bar u(t)}{d t} - \gamma\, \left(f_u \bar u(t)  + f_v \bar v(t)\right)}{\bar{u}(t)}     , \quad x\in \Omega, \;  t &gt;0, \\
+\end{aligned}
+\]</span></p>
+<p>Hence <span class="math display">\[
+\frac{\nabla^2  \varphi_k(x)}{\varphi_k(x)}=-k^2.
+\]</span></p>
+<p>In 1D Cartesians <span class="math display">\[
+\frac{d^2  \varphi_k(x)}{dx^2}=-k^2\varphi_k(x).
+\]</span></p>
+<p>with no-flux boundary condition on <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=1\)</span>. The solution is <span class="math display">\[
+\varphi_k(x)=B_k\psi_k (kx), \quad k=n\pi, \quad n\in Z,
+\]</span> where <span class="math display">\[
+\psi_k(x)=\cos(kx).
+\]</span></p>
+<p>The cosine function are eigenfunctions of the Laplacian operator in 1D Cartesian coordinates with no-flux boundary conditions.</p>
+<p>Note that:</p>
+<ul>
+<li><span class="math inline">\(k\)</span> is called the wavenumber</li>
+<li><span class="math inline">\(1/k\)</span> is proportional to the wavelength</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A general approach to the spatial eigenvalue problem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the spatial eigenvalue problem for the Laplacian <span class="math inline">\(\nabla^2\)</span> with zero-Neumann boundary conditions, i.e.</p>
 <p><span id="eq-ev"><span class="math display">\[
 \begin{aligned}
 \nabla^2 \psi(x) = -k^2 \psi(x), \qquad x \in \Omega,  \\
@@ -885,13 +935,16 @@ j \in \mathbb N, \quad  \textrm{and} \quad k_j^2 \to \infty \quad \textrm{as}  \
 \]</span></p>
 <p>Moreover, the eigenfunctions <span class="math inline">\(\{\psi_k(x) \}\)</span> form an <strong>orthogonal set</strong> of basis functions of the corresponding functional space (i.e.&nbsp;<span class="math inline">\(L^2(\Omega)\)</span>, <span class="math inline">\(H^1(\Omega)\)</span>).</p>
 </div>
-<p>Thus we can look for the spatial component of the solution of <a href="#eq-pp_4">Equation&nbsp;<span>6.9</span></a> as follows: <span class="math display">\[
+</div>
+</section>
+<section id="instability-of-spatially-heterogeneous-perturbations" class="level4" data-number="6.5.2.3">
+<h4 data-number="6.5.2.3" class="anchored" data-anchor-id="instability-of-spatially-heterogeneous-perturbations"><span class="header-section-number">6.5.2.3</span> Instability of spatially heterogeneous perturbations</h4>
+<p>we can look for the spatial component of the solution of <a href="#eq-pp_4">Equation&nbsp;<span>6.9</span></a> as follows: <span class="math display">\[
 \varphi(x) = \begin{pmatrix}  
 \varphi_1(x) \\
 \varphi_2(x)
 \end{pmatrix} = \sum_k C_k \psi_k(x), \qquad C_k =  \begin{pmatrix}  C_k^1 \\ C_k^2 \end{pmatrix} \in \mathbb R^2 \;
-\]</span></p>
-<p>and <span id="eq-vxt"><span class="math display">\[
+\]</span> and <span id="eq-vxt"><span class="math display">\[
 \begin{aligned}
 V(x,t) =\sum_k \hat V_k(t) \psi_k(x), \qquad \textrm{ where}
 \quad \hat V_k(t)=
@@ -914,7 +967,7 @@ D \nabla^2  V(x,t) = D \nabla^2 \left[ \sum_k \hat V_k(t) \psi_k(x) \right]   = 
 \sum_k \frac{d}{d t}  \hat V_k(t) \psi_k(x)  =
   \sum_k \gamma J \hat V_k(t) \psi_k(x) -  \sum_k k^2  D \hat V_k(t) \psi_k(x).
 \]</span></p>
-<p>Since <span class="math inline">\(\{\psi_k(x) \}\)</span> is a orthogonal basis we obtain that</p>
+<p>Since <span class="math inline">\(\{\psi_k(x) \}\)</span> is an orthogonal basis we obtain that</p>
 <p><span class="math display">\[
 \frac{d}{d t}  \hat V_k(t) \psi_k(x)  =
    \gamma J  \hat V_k(t) \psi_k(x) -  k^2  D \hat V_k(t) \psi_k(x),
@@ -925,7 +978,7 @@ D \nabla^2  V(x,t) = D \nabla^2 \left[ \sum_k \hat V_k(t) \psi_k(x) \right]   = 
 <p>in <span class="math inline">\(\Omega\)</span> this implies for each <span class="math inline">\(k\)</span> a system of ODEs:</p>
 <p><span id="eq-stab_pp_ode"><span class="math display">\[
 \begin{aligned}
-\frac{d}{d t}  \hat V_k(t)   &amp;=   \left(\gamma J  -  k^2  D\right) \hat V_k(t) &amp;= \tilde J\hat V_k(t) ,
+\frac{d}{d t}  \hat V_k(t)   =   \left(\gamma J  -  k^2  D\right) \hat V_k(t) = \tilde J\hat V_k(t) ,
 \end{aligned}
 \tag{6.13}\]</span></span></p>
 <p>where <span class="math inline">\(\tilde J\)</span> is the “modified” Jacobian:</p>
@@ -941,7 +994,7 @@ D \nabla^2  V(x,t) = D \nabla^2 \left[ \sum_k \hat V_k(t) \psi_k(x) \right]   = 
 <p>with <span class="math inline">\(P_k \in \mathbb R^2\)</span>, where, since <span class="math inline">\(P_k\neq 0\)</span> (looking for nontrivial solutions), we find that <span class="math inline">\(\lambda\)</span> are the eigenvalues of <span class="math inline">\(\tilde J\)</span> , i.e.&nbsp;solutions of the characteristic equation <span id="eq-charact_pp_1"><span class="math display">\[
 \det(\tilde J - \lambda I) = \det ( \gamma J - k^2 D - \lambda I) =0.
 \tag{6.14}\]</span></span></p>
-<p>Evaluating the above determinant, we arrive at the equation: <span id="eq-spatial_eigenvalues"><span class="math display">\[
+<p>Evaluating the determinant <span id="eq-spatial_eigenvalues"><span class="math display">\[
 \lambda^2 + [ k^2 (1 + d) - \gamma (f_u + g_v) ] \lambda + h(k^2) = 0,
 \tag{6.15}\]</span></span></p>
 <p>where <span id="eq-hk2"><span class="math display">\[
@@ -1151,6 +1204,7 @@ d f_u + g_v &amp;&gt; 0, \\
 <p>From the first and third conditions, <span class="math inline">\(d \neq 1\)</span> and <span class="math inline">\(f_u\)</span> and <span class="math inline">\(g_v\)</span> must be of different signs. For each of the reaction kinetics mentioned here (Schnakenberg, Gierer-Meinhardt, Thomas), we have that <span class="math inline">\(f_u &gt; 0, g_v &lt; 0\)</span> and so this implies that <span class="math inline">\(d &gt; 1\)</span>.</p>
 <p>If the conditions <a href="#eq-pattern_conditions">Equation&nbsp;<span>6.23</span></a> are satisfied, then there is a range of unstable wavenumbers given by <a href="#eq-k2range">Equation&nbsp;<span>6.22</span></a> which give rise to a spatial pattern. The spatial patterns which initially grow are those spatial eigenfunctions <span class="math inline">\(\psi_k(x)\)</span> whose wavenumbers <span class="math inline">\(k\)</span> are such that <span class="math inline">\(k_1 &lt; k &lt; k_2\)</span>.</p>
 <p>In most biological systems, the kinetic parameters and diffusion coefficients are fixed. This means that the only variable parameter in the system is <span class="math inline">\(\gamma\)</span> which as we have seen is related to the size of the domain under consideration. This has implications when considering patterns on finite domains, as will be seen in the next section.</p>
+</section>
 </section>
 </section>
 <section id="exercises" class="level2" data-number="6.6">
