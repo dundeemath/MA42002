@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -58,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -100,7 +101,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -109,6 +116,7 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -118,6 +126,33 @@ div.csl-indent {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
 
 <body class="nav-sidebar floating">
@@ -126,12 +161,12 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./linearreactiondiffusion.html">Single species</a></li><li class="breadcrumb-item"><a href="./nonlinearreactiondiffusion.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Travelling waves in nonlinear reaction diffusion equations</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./linearreactiondiffusion.html">Single species</a></li><li class="breadcrumb-item"><a href="./nonlinearreactiondiffusion.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Travelling waves in nonlinear reaction diffusion equations</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -141,13 +176,13 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">MA42002</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/dundeemath/MA42002/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./MA42002.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="https://github.com/dundeemath/MA42002/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./MA42002.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -254,7 +289,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -274,12 +309,12 @@ div.csl-indent {
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">3.3</span> References</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./linearreactiondiffusion.html">Single species</a></li><li class="breadcrumb-item"><a href="./nonlinearreactiondiffusion.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Travelling waves in nonlinear reaction diffusion equations</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Travelling waves in nonlinear reaction diffusion equations</span></h1>
 </div>
@@ -294,7 +329,9 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -310,7 +347,7 @@ Travelling waves
 <p>A travelling wave solution could take the form of:</p>
 <ul>
 <li>Travelling pulse: <span class="math inline">\(u(x,t) \to a\)</span>, as <span class="math inline">\(x \to \pm \infty\)</span>.</li>
-<li>Travelling front : <span class="math inline">\(u(x,t) \to a\)</span>, as <span class="math inline">\(x \to - \infty\)</span>, <span class="math inline">\(u(x,t) \to b\)</span>, as <span class="math inline">\(x \to + \infty\)</span> and <span class="math inline">\(a\neq b\)</span> (this is what we see in <a href="#fig-logisticpde">Figure&nbsp;<span>3.1</span></a>)</li>
+<li>Travelling front : <span class="math inline">\(u(x,t) \to a\)</span>, as <span class="math inline">\(x \to - \infty\)</span>, <span class="math inline">\(u(x,t) \to b\)</span>, as <span class="math inline">\(x \to + \infty\)</span> and <span class="math inline">\(a\neq b\)</span> (this is what we see in <a href="#fig-logisticpde" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>)</li>
 <li>Travelling train: <span class="math inline">\(u(x,t)\)</span> is a periodic function in <span class="math inline">\(x\)</span>.</li>
 </ul>
 <p>A travelling wave solution of a PDE can be written in the form <span class="math inline">\(u(x,t) = W(z)\)</span>, where <span class="math inline">\(z = x - vt\)</span>. We shall consider <span class="math inline">\(v&gt;0\)</span>, which describes a wave moving from left to right.</p>
@@ -326,7 +363,7 @@ Travelling waves
 u(x,0) =u_0(x).
 \]</span></p>
 <p>This is known as <strong>the Fisher equation</strong>, and was introduced by Fisher in <span class="math inline">\(1937\)</span> (<span class="citation" data-cites="fisher1937wave"><span>“The Wave of Advance of Advantageous Genes”</span> (<a href="#ref-fisher1937wave" role="doc-biblioref">1937</a>)</span>).</p>
-<p>We can non-dimensionalise <a href="#eq-fisher">Equation&nbsp;<span>3.1</span></a> by considering the scaling <span class="math display">\[t^\ast = \rho t, \quad  x^\ast = \sqrt{\dfrac \rho D} x, \quad  u^\ast = \displaystyle{\frac u K}.
+<p>We can non-dimensionalise <a href="#eq-fisher" class="quarto-xref">Equation&nbsp;<span>3.1</span></a> by considering the scaling <span class="math display">\[t^\ast = \rho t, \quad  x^\ast = \sqrt{\dfrac \rho D} x, \quad  u^\ast = \displaystyle{\frac u K}.
 \]</span> Dropping the asteriks we obtain the non-dimensionalised Fisher equation (<strong>Exercise</strong>):</p>
 <p><span class="math display">\[
 \frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2} +   u(1-u), \qquad x\in \mathbb R, \, \, t &gt;0
@@ -335,7 +372,7 @@ u(x,0) = u_0(x).
 \tag{3.2}\]</span></span></p>
 <section id="numerical-solutions" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="numerical-solutions"><span class="header-section-number">3.1.1</span> Numerical solutions</h3>
-<p>In <a href="#fig-logisticpde">Figure&nbsp;<span>3.1</span></a> we have computed a numerical solution to <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a> together with no-flux boundary conditions. See Python code for further details. The key point to note is that the numerical solutions appear to be a <em>travelling wave</em>, at successive times the solution is translated along the <span class="math inline">\(x\)</span> axis. At long times the solution tends to <span class="math inline">\(u\sim1\)</span> (behind the wavefront). Ahead of the front, the solution is <span class="math inline">\(u\sim0\)</span>.</p>
+<p>In <a href="#fig-logisticpde" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> we have computed a numerical solution to <a href="#eq-fisher_1" class="quarto-xref">Equation&nbsp;<span>3.2</span></a> together with no-flux boundary conditions. See Python code for further details. The key point to note is that the numerical solutions appear to be a <em>travelling wave</em>, at successive times the solution is translated along the <span class="math inline">\(x\)</span> axis. At long times the solution tends to <span class="math inline">\(u\sim1\)</span> (behind the wavefront). Ahead of the front, the solution is <span class="math inline">\(u\sim0\)</span>.</p>
 <p>The numerical results motivate the following questions:</p>
 <ul>
 <li>Can we prove the existence of a travelling wave (e.g.&nbsp;the numerical solution <em>could</em> have a profile that varies on a very slow time scale)?</li>
@@ -343,8 +380,8 @@ u(x,0) = u_0(x).
 <li>How does the wave speed relate to model parameters?</li>
 <li>How do the boundary conditions affect the wave propagation?</li>
 </ul>
-<div class="cell" data-execution_count="1">
-<details>
+<div id="cell-fig-logisticpde" class="cell" data-execution_count="1">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  This code computes a numerical solution to Fishers equation</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -395,10 +432,14 @@ u(x,0) = u_0(x).
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-logisticpde" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="nonlinearreactiondiffusion_files/figure-html/fig-logisticpde-output-1.png" width="662" height="468" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.1: Numerical solution of Fisher’s equation.</figcaption>
+<div id="fig-logisticpde" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-logisticpde-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="nonlinearreactiondiffusion_files/figure-html/fig-logisticpde-output-1.png" width="662" height="468" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-logisticpde-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Numerical solution of Fisher’s equation.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -406,11 +447,11 @@ u(x,0) = u_0(x).
 </section>
 <section id="spatially-homogeneous-solutions" class="level3" data-number="3.1.2">
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="spatially-homogeneous-solutions"><span class="header-section-number">3.1.2</span> Spatially homogeneous solutions</h3>
-<p>Consider first the <em>spatially uniform (homogeneous)</em> solution of <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a></p>
+<p>Consider first the <em>spatially uniform (homogeneous)</em> solution of <a href="#eq-fisher_1" class="quarto-xref">Equation&nbsp;<span>3.2</span></a></p>
 <p><span id="eq-fisher_unif"><span class="math display">\[
 \frac{\partial u}{\partial t} =    u(1-u), \qquad   \, \, t &gt;0.
 \tag{3.3}\]</span></span></p>
-<p>Steady states of <a href="#eq-fisher_unif">Equation&nbsp;<span>3.3</span></a> are <span class="math display">\[
+<p>Steady states of <a href="#eq-fisher_unif" class="quarto-xref">Equation&nbsp;<span>3.3</span></a> are <span class="math display">\[
 u=u_1 =1
 \]</span> and <span class="math display">\[
 u=u_2 =0.
@@ -426,7 +467,7 @@ f(u)=u(1-u) \quad \textrm{and} \quad \frac{ df}{du}(u)= 1 - 2u.
 <p>Consider the travelling wave <em>ansatz</em><br>
 <span class="math display">\[
 u(x,t)= W(z) = W(x-vt),
-\]</span> where <span class="math inline">\(v\)</span> is a positive constant. Changing variables in <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a> and using <span class="math display">\[
+\]</span> where <span class="math inline">\(v\)</span> is a positive constant. Changing variables in <a href="#eq-fisher_1" class="quarto-xref">Equation&nbsp;<span>3.2</span></a> and using <span class="math display">\[
 \begin{aligned}
 \frac{ \partial u}{\partial t} &amp;= \frac{ dW}{dz} \frac{\partial z}{\partial t} = - v   \frac{ dW}{dz}, \\
 \frac{ \partial u}{\partial x} &amp;= \frac{ dW}{dz} \frac{\partial z}{\partial x} =\frac{ dW}{dz}, \\
@@ -443,7 +484,7 @@ W(z) \to 0 \quad \text{ as } \quad z \to  +\infty,
 \tag{3.5}\]</span></span> and <span id="eq-tw_r"><span class="math display">\[
 W(z) \in [0,1].
 \tag{3.6}\]</span></span></p>
-<p>We can rewrite <a href="#eq-tw_eq">Equation&nbsp;<span>3.4</span></a> as a system of two first order ODEs</p>
+<p>We can rewrite <a href="#eq-tw_eq" class="quarto-xref">Equation&nbsp;<span>3.4</span></a> as a system of two first order ODEs</p>
 <p><span id="eq-tw_eq_2"><span class="math display">\[
 \begin{aligned}
 \frac{ dW}{dz}&amp; = P  = F(W,P), \\
@@ -452,7 +493,7 @@ W(z) \in [0,1].
 \tag{3.7}\]</span></span></p>
 <section id="numerical-solutions-1" class="level4" data-number="3.1.3.1">
 <h4 data-number="3.1.3.1" class="anchored" data-anchor-id="numerical-solutions-1"><span class="header-section-number">3.1.3.1</span> Numerical solutions</h4>
-<p>In <a href="#fig-fishernumtravwave">Figure&nbsp;<span>3.2</span></a> we plot the numerical solution to equations <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a> for different values of the wave speed, <span class="math inline">\(v\)</span>. Note that when the wave speed is too small the solution spirals in towards the origin. This solution cannot be valid as it implies that <span class="math inline">\(u&lt;0\)</span> for some <span class="math inline">\(z\)</span>.</p>
+<p>In <a href="#fig-fishernumtravwave" class="quarto-xref">Figure&nbsp;<span>3.2</span></a> we plot the numerical solution to equations <a href="#eq-tw_eq_2" class="quarto-xref">Equation&nbsp;<span>3.7</span></a> for different values of the wave speed, <span class="math inline">\(v\)</span>. Note that when the wave speed is too small the solution spirals in towards the origin. This solution cannot be valid as it implies that <span class="math inline">\(u&lt;0\)</span> for some <span class="math inline">\(z\)</span>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -466,8 +507,8 @@ What if a travelling wave solution does not exist?
 <p>Note that some problems will not have a travelling wave solution. In this situation we might still make the travelling wave ansatz but this would usually result in a contradiction.</p>
 </div>
 </div>
-<div class="cell" data-execution_count="2">
-<details>
+<div id="cell-fig-fishernumtravwave" class="cell" data-execution_count="2">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This code uses a shooting method to compute solutions of the travellign wave ODEs at different values of the wave speed</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -522,10 +563,14 @@ What if a travelling wave solution does not exist?
 <span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-fishernumtravwave" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="nonlinearreactiondiffusion_files/figure-html/fig-fishernumtravwave-output-1.png" width="659" height="468" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.2: Numerical solution of <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a> with different values of wavespeed,<span class="math inline">\(v\)</span>.</figcaption>
+<div id="fig-fishernumtravwave" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fishernumtravwave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="nonlinearreactiondiffusion_files/figure-html/fig-fishernumtravwave-output-1.png" width="659" height="468" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fishernumtravwave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: Numerical solution of <a href="#eq-tw_eq_2" class="quarto-xref">Equation&nbsp;<span>3.7</span></a> with different values of wavespeed,<span class="math inline">\(v\)</span>.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -533,8 +578,8 @@ What if a travelling wave solution does not exist?
 </section>
 <section id="steady-state-and-linear-stability-analysis" class="level4" data-number="3.1.3.2">
 <h4 data-number="3.1.3.2" class="anchored" data-anchor-id="steady-state-and-linear-stability-analysis"><span class="header-section-number">3.1.3.2</span> Steady state and linear stability analysis</h4>
-<p>The steady states of <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a> are <span class="math inline">\((W_1, P_1) = (0,0)\)</span> and <span class="math inline">\((W_2, P_2) = (1,0)\)</span>.</p>
-<p>The <em>Jacobian matrix</em> for <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a> is given by: <span class="math display">\[
+<p>The steady states of <a href="#eq-tw_eq_2" class="quarto-xref">Equation&nbsp;<span>3.7</span></a> are <span class="math inline">\((W_1, P_1) = (0,0)\)</span> and <span class="math inline">\((W_2, P_2) = (1,0)\)</span>.</p>
+<p>The <em>Jacobian matrix</em> for <a href="#eq-tw_eq_2" class="quarto-xref">Equation&nbsp;<span>3.7</span></a> is given by: <span class="math display">\[
 J(W,P) = \begin{pmatrix}
 \frac{\partial F}{\partial W} &amp; \, \frac{\partial F }{\partial P}\\
 \frac{\partial G }{\partial W} &amp; \, \frac{\partial G }{\partial P}
@@ -589,23 +634,27 @@ W\\
 \]</span></p>
 <p>Consider that <span class="math display">\[
 \lambda_2^- &lt;0 &lt; \lambda_2^+  \quad \textrm{and choose} \quad W = \pm 1.
-\]</span> The eigenvectors are sketched in <a href="#fig-eigenvectors">Figure&nbsp;<span>3.3</span></a>.</p>
-<div id="fig-eigenvectors" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="fig_4.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.3: Schematic diagram of eigenvectors.</figcaption>
+\]</span> The eigenvectors are sketched in <a href="#fig-eigenvectors" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>.</p>
+<div id="fig-eigenvectors" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eigenvectors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig_4.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenvectors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: Schematic diagram of eigenvectors.
+</figcaption>
 </figure>
 </div>
 <p>We seek a travelling wave solution that is represented by a trajectory that connects the unstable manifold of the saddle with the stable manifold at the origin.</p>
 <div id="def-line" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 3.1 </strong></span>The trajectory that connects two different points is called a heteroclinic connection. The trajectory that connects a point with itself is called a homoclinic connection.</p>
+<p><span class="theorem-title"><strong>Definition 3.1</strong></span> The trajectory that connects two different points is called a heteroclinic connection. The trajectory that connects a point with itself is called a homoclinic connection.</p>
 </div>
 </section>
 <section id="minimal-wave-speed" class="level4" data-number="3.1.3.3">
 <h4 data-number="3.1.3.3" class="anchored" data-anchor-id="minimal-wave-speed"><span class="header-section-number">3.1.3.3</span> Minimal wave speed</h4>
-<p>It can be shown that for <span class="math inline">\(v&lt;2\)</span> a heteroclinic connection between <span class="math inline">\((0,0)\)</span> and <span class="math inline">\((1,0)\)</span> exists, but in this situation the steady state <span class="math inline">\((0,0)\)</span> is a stable focus and corresponds to an oscillatory front (see numerical solution in <a href="#fig-fishernumtravwave">Figure&nbsp;<span>3.2</span></a>)</p>
+<p>It can be shown that for <span class="math inline">\(v&lt;2\)</span> a heteroclinic connection between <span class="math inline">\((0,0)\)</span> and <span class="math inline">\((1,0)\)</span> exists, but in this situation the steady state <span class="math inline">\((0,0)\)</span> is a stable focus and corresponds to an oscillatory front (see numerical solution in <a href="#fig-fishernumtravwave" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>)</p>
 <p>In the context of a model of a biological process <span class="math inline">\(W\)</span> is the profile of a population density and <span class="math inline">\(W\geq 0\)</span>. Hence, for <span class="math inline">\(v&lt;2\)</span> trajectories connecting <span class="math inline">\((0,0)\)</span> and <span class="math inline">\((1,0)\)</span> are not biologically realistic.</p>
-<p>To avoid negative solutions we impose the condition that the origin cannot be a spiral. Considering <a href="#eq-origin-spiral-cond">Equation&nbsp;<span>3.8</span></a> we obtain the nondimensional minimal speed <span class="math display">\[
+<p>To avoid negative solutions we impose the condition that the origin cannot be a spiral. Considering <a href="#eq-origin-spiral-cond" class="quarto-xref">Equation&nbsp;<span>3.8</span></a> we obtain the nondimensional minimal speed <span class="math display">\[
 v^\ast_\text{min}=2
 \]</span> for which we have a travelling wave front solution for Fisher’s equation.</p>
 <p>In the original dimensional variables we have: <span class="math display">\[
@@ -637,7 +686,7 @@ T= \{ (W,P) : \, 0 \leq W \leq 1,\, \, P \leq 0, \, \,  P \geq \mu W \}
 \begin{pmatrix}
 \dfrac{ dW}{dz} \\ \\  \dfrac{dP}{dz}
 \end{pmatrix},
-\]</span> of <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a>.</p>
+\]</span> of <a href="#eq-tw_eq_2" class="quarto-xref">Equation&nbsp;<span>3.7</span></a>.</p>
 <p>At <span class="math inline">\(P=0\)</span> <span class="math display">\[
 \begin{pmatrix}
 \dfrac{ dW}{dz} \\  \\ \dfrac{dP}{dz}
@@ -688,9 +737,9 @@ T= \{ (W,P) : \, 0 \leq W \leq 1,\, \, P \leq 0, \, \,  P \geq \mu W \}
 \end{pmatrix} \cdot n_3 \geq 0 \qquad \text{ at } \quad P=\mu W.
 \]</span></p>
 <p>Therefore we have shown that at the boundaries of <span class="math inline">\(T\)</span> the flow vector points in to the region <span class="math inline">\(T\)</span> and any trajectory approaching the boundaries from inside of <span class="math inline">\(T\)</span> will return to <span class="math inline">\(T\)</span> without crossing any of the boundaries of <span class="math inline">\(T\)</span>. Thus we have constructed an invariant (trapping) triangular region containing the steady states <span class="math inline">\((0,0)\)</span> and <span class="math inline">\((1,0)\)</span>.</p>
-<p>If we can show that there no other steady states or periodic solutions of the system <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a>, then a trajectory that leaves <span class="math inline">\((1,0)\)</span> must approach <span class="math inline">\((0,0)\)</span>.</p>
+<p>If we can show that there no other steady states or periodic solutions of the system <a href="#eq-tw_eq_2" class="quarto-xref">Equation&nbsp;<span>3.7</span></a>, then a trajectory that leaves <span class="math inline">\((1,0)\)</span> must approach <span class="math inline">\((0,0)\)</span>.</p>
 <div id="thm-bendixson" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 3.1 </strong></span>Bendixson’s Negative Criterion, Dulac’s Negative Criterion</p>
+<p><span class="theorem-title"><strong>Theorem 3.1</strong></span> Bendixson’s Negative Criterion, Dulac’s Negative Criterion</p>
 <p>If there exists a function <span class="math inline">\(\varphi(W,P)\)</span>, with <span class="math inline">\(\varphi \in C^1(\mathbb R^2)\)</span>, such that <span class="math display">\[
 \frac{\partial(\varphi F )}{\partial W} +  \frac{\partial(\varphi G )}{\partial P},
 \]</span></p>
@@ -701,17 +750,17 @@ T= \{ (W,P) : \, 0 \leq W \leq 1,\, \, P \leq 0, \, \,  P \geq \mu W \}
 \end{aligned}
 \]</span> has no periodic solutions in this region.</p>
 </div>
-<p>We can apply <a href="#thm-bendixson">Theorem&nbsp;<span>3.1</span></a> to our situation taking <span class="math inline">\(\varphi(W,P) = 1\)</span>. Then using <a href="#eq-tw_eq_2">Equation&nbsp;<span>3.7</span></a> we have <span class="math display">\[
+<p>We can apply <a href="#thm-bendixson" class="quarto-xref">Theorem&nbsp;<span>3.1</span></a> to our situation taking <span class="math inline">\(\varphi(W,P) = 1\)</span>. Then using <a href="#eq-tw_eq_2" class="quarto-xref">Equation&nbsp;<span>3.7</span></a> we have <span class="math display">\[
 \frac{\partial(\varphi F )}{\partial W} +  \frac{\partial(\varphi G )}{\partial P} = - v &lt; 0\; .
 \]</span> Thus we have no periodic solutions and also only two steady states <span class="math inline">\((0,0)\)</span> and <span class="math inline">\((1,0)\)</span> in the confined (invariant) simply-connected region <span class="math inline">\(T\)</span>. Therefore the trajectory that leaves <span class="math inline">\((1,0)\)</span> will approach <span class="math inline">\((0,0)\)</span>.</p>
 <p>We have therefore shown that for any <span class="math inline">\(v\geq 2\)</span> there exist a heteroclinic trajectory <span class="math inline">\(P(W)\)</span> connecting <span class="math inline">\((0,0)\)</span> and <span class="math inline">\((1,0)\)</span>.</p>
-<p>Thus for any wave speed <span class="math inline">\(v\)</span> satisfying <span class="math inline">\(v \geq 2\)</span>, we have the existence of travelling wave front <span class="math inline">\(u(x,t)= W(x- vt)\)</span> of Fisher’s equation <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a>.</p>
+<p>Thus for any wave speed <span class="math inline">\(v\)</span> satisfying <span class="math inline">\(v \geq 2\)</span>, we have the existence of travelling wave front <span class="math inline">\(u(x,t)= W(x- vt)\)</span> of Fisher’s equation <a href="#eq-fisher_1" class="quarto-xref">Equation&nbsp;<span>3.2</span></a>.</p>
 </section>
 <section id="sec-logisticwavespeed" class="level4" data-number="3.1.3.5">
 <h4 data-number="3.1.3.5" class="anchored" data-anchor-id="sec-logisticwavespeed"><span class="header-section-number">3.1.3.5</span> Sign of the wave speed</h4>
-<p>Consider <a href="#eq-tw_eq">Equation&nbsp;<span>3.4</span></a> together with boundary condition <span class="math display">\[
+<p>Consider <a href="#eq-tw_eq" class="quarto-xref">Equation&nbsp;<span>3.4</span></a> together with boundary condition <span class="math display">\[
 W(z\rightarrow -\infty)=1 \quad W(z\rightarrow \infty)=0.
-\]</span> Multiply <a href="#eq-tw_eq">Equation&nbsp;<span>3.4</span></a> by <span class="math inline">\(\dfrac{dW}{dz}\)</span> and integrate over <span class="math inline">\((-\infty, + \infty)\)</span>: <span class="math display">\[
+\]</span> Multiply <a href="#eq-tw_eq" class="quarto-xref">Equation&nbsp;<span>3.4</span></a> by <span class="math inline">\(\dfrac{dW}{dz}\)</span> and integrate over <span class="math inline">\((-\infty, + \infty)\)</span>: <span class="math display">\[
 \int_{-\infty}^{+ \infty}  \dfrac{d^2W}{dz^2} \dfrac{dW}{dz} \, dz + v\int_{-\infty}^{+ \infty} \left|\dfrac{dW}{dz} \right|^2\, dz  + \int_{-\infty}^{+ \infty}W(1-W)\dfrac{dW}{dz} \, dz =0.
 \]</span></p>
 <p>Then <span class="math display">\[
@@ -739,7 +788,7 @@ W(z\rightarrow -\infty)=0 \quad W(z\rightarrow \infty)=1,
 u_0(x) \geq 0, \quad \text{ with} \quad  u_0(x) = \begin{cases} 1 \, \text{ if } \, x \leq x_1, \\
 0 \, \text{ if } \, x \geq x_2,
 \end{cases}
-\]</span> where <span class="math inline">\(x_1 &lt; x_2\)</span> and <span class="math inline">\(u_0\)</span> is continuous in <span class="math inline">\([x_1, x_2]\)</span>, the solution of Fisher’s <a href="#eq-fisher_1">Equation&nbsp;<span>3.2</span></a> evolves to a travelling wave with minimal speed <span class="math display">\[
+\]</span> where <span class="math inline">\(x_1 &lt; x_2\)</span> and <span class="math inline">\(u_0\)</span> is continuous in <span class="math inline">\([x_1, x_2]\)</span>, the solution of Fisher’s <a href="#eq-fisher_1" class="quarto-xref">Equation&nbsp;<span>3.2</span></a> evolves to a travelling wave with minimal speed <span class="math display">\[
 v_\text{ min} = 2 \sqrt{ \rho D}
 \]</span> and <span class="math display">\[
 u(t,x) \rightarrow 1 \quad \textrm{as} \quad x\rightarrow -\infty, \quad u(t,x) \rightarrow 0 \quad \textrm{and} \quad  x\rightarrow +\infty.
@@ -761,11 +810,11 @@ There are therefore three spatially uniform steady states <span class="math inli
 <p>We also impose that <span class="math display">\[
 f^\prime (0) &lt; 0, \quad  f^\prime(a) &gt;0 \quad \textrm{and} f^\prime(1) &lt;0
 \]</span> Hence the spatially homogeneous steady states <span class="math inline">\(u_1=0\)</span> and <span class="math inline">\(u_3=1\)</span> are stable and <span class="math inline">\(u_2 =a\)</span> is unstable.</p>
-<p>An example of such a function (<a href="#fig-cubicnonlinearity">Figure&nbsp;<span>3.4</span></a>) is<br>
+<p>An example of such a function (<a href="#fig-cubicnonlinearity" class="quarto-xref">Figure&nbsp;<span>3.4</span></a>) is<br>
 <span class="math display">\[f=u(u-a)(1-u),
 \]</span> which arises in the study of nerve action potentials along nerve fibres and other problems in <em>excitable media</em> (<span class="citation" data-cites="keener2009mathematical">Keener and Sneyd (<a href="#ref-keener2009mathematical" role="doc-biblioref">2009</a>)</span>).</p>
-<div class="cell" data-execution_count="3">
-<details>
+<div id="cell-fig-cubicnonlinearity" class="cell" data-execution_count="3">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This codes computed and plots a numerical solution of bistable PDE</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -787,19 +836,23 @@ f^\prime (0) &lt; 0, \quad  f^\prime(a) &gt;0 \quad \textrm{and} f^\prime(1) &lt
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-cubicnonlinearity" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="nonlinearreactiondiffusion_files/figure-html/fig-cubicnonlinearity-output-1.png" width="601" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.4: A plot of f(u) against u. Note location of roots. ”</figcaption>
+<div id="fig-cubicnonlinearity" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cubicnonlinearity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="nonlinearreactiondiffusion_files/figure-html/fig-cubicnonlinearity-output-1.png" width="601" height="429" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cubicnonlinearity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.4: A plot of f(u) against u. Note location of roots. ”
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <section id="numerical-solution" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="numerical-solution"><span class="header-section-number">3.2.1</span> Numerical solution</h3>
-<p>In Figure <a href="#fig-bistablepde">Figure&nbsp;<span>3.5</span></a> we plot a numerical solution of <a href="#eq-bistable">Equation&nbsp;<span>3.9</span></a>. Note the emergence of a travelling wave solution.</p>
-<div class="cell" data-execution_count="4">
-<details>
+<p>In Figure <a href="#fig-bistablepde" class="quarto-xref">Figure&nbsp;<span>3.5</span></a> we plot a numerical solution of <a href="#eq-bistable" class="quarto-xref">Equation&nbsp;<span>3.9</span></a>. Note the emergence of a travelling wave solution.</p>
+<div id="cell-fig-bistablepde" class="cell" data-execution_count="4">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This codes computed and plots a numerical solution of bistable PDE</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -857,10 +910,14 @@ f^\prime (0) &lt; 0, \quad  f^\prime(a) &gt;0 \quad \textrm{and} f^\prime(1) &lt
 <span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-bistablepde" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="nonlinearreactiondiffusion_files/figure-html/fig-bistablepde-output-1.png" width="589" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.5: Travelling waves in a numerical solution of bistable PDE.</figcaption>
+<div id="fig-bistablepde" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bistablepde-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="nonlinearreactiondiffusion_files/figure-html/fig-bistablepde-output-1.png" width="589" height="429" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bistablepde-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.5: Travelling waves in a numerical solution of bistable PDE.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -868,11 +925,11 @@ f^\prime (0) &lt; 0, \quad  f^\prime(a) &gt;0 \quad \textrm{and} f^\prime(1) &lt
 </section>
 <section id="travelling-wave-ansatz" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="travelling-wave-ansatz"><span class="header-section-number">3.2.2</span> Travelling wave ansatz</h3>
-<p>In a similar manner to <a href="#sec-fisher"><span>Section&nbsp;3.1.3</span></a>, we look for a travelling wave solution of the form <span class="math inline">\(u(x,t) = W(z)\)</span> with <span class="math inline">\(z= x-vt\)</span>, yielding</p>
+<p>In a similar manner to <a href="#sec-fisher" class="quarto-xref"><span>Section 3.1.3</span></a>, we look for a travelling wave solution of the form <span class="math inline">\(u(x,t) = W(z)\)</span> with <span class="math inline">\(z= x-vt\)</span>, yielding</p>
 <p><span id="eq-tw_eq_bis"><span class="math display">\[
 \frac{ d^2W}{dz^2}+  v \frac{ dW}{dz} + f(W)  = 0,  \; .
 \tag{3.10}\]</span></span></p>
-<p>We can rewrite <a href="#eq-tw_eq_bis">Equation&nbsp;<span>3.10</span></a> as asystem of two 1st order ODEs <span id="eq-tw_eq_2_bis"><span class="math display">\[
+<p>We can rewrite <a href="#eq-tw_eq_bis" class="quarto-xref">Equation&nbsp;<span>3.10</span></a> as asystem of two 1st order ODEs <span id="eq-tw_eq_2_bis"><span class="math display">\[
 \begin{aligned}
 \frac{ dW}{dz} = P = F(W,P) , \\
 \frac{ d P}{dz}= -  v P - f(W)  = G(W,P),  
@@ -880,7 +937,7 @@ f^\prime (0) &lt; 0, \quad  f^\prime(a) &gt;0 \quad \textrm{and} f^\prime(1) &lt
 \tag{3.11}\]</span></span></p>
 <section id="linear-stability-of-the-steady-states" class="level4" data-number="3.2.2.1">
 <h4 data-number="3.2.2.1" class="anchored" data-anchor-id="linear-stability-of-the-steady-states"><span class="header-section-number">3.2.2.1</span> Linear stability of the steady states</h4>
-<p>The steady states of <a href="#eq-tw_eq_2_bis">Equation&nbsp;<span>3.11</span></a> are <span class="math display">\[
+<p>The steady states of <a href="#eq-tw_eq_2_bis" class="quarto-xref">Equation&nbsp;<span>3.11</span></a> are <span class="math display">\[
 (W_1, P_1) = (0,0),\quad (W_2, P_2) = (a,0), \quad (W_3, P_3) = (1,0).
 \]</span></p>
 <p>The Jacobian matrix is given by <span class="math display">\[
@@ -922,18 +979,22 @@ P =\lambda W
 W\\
 \lambda_j^\pm W
 \end{pmatrix} , \qquad  j=1,2, 3.
-\]</span> See <a href="#fig-eigenvectorsbistable">Figure&nbsp;<span>3.6</span></a> for a sketch of the phase plane in the cases <span class="math inline">\(v&gt;0\)</span> and <span class="math inline">\(v=0\)</span>.</p>
+\]</span> See <a href="#fig-eigenvectorsbistable" class="quarto-xref">Figure&nbsp;<span>3.6</span></a> for a sketch of the phase plane in the cases <span class="math inline">\(v&gt;0\)</span> and <span class="math inline">\(v=0\)</span>.</p>
 <p>The stable and unstable manifolds are dependent on <span class="math inline">\(v\)</span>. We wish to show that for some <span class="math inline">\(v\)</span> the unstable manifold leaving one saddle point coincides with the stable manifold entering the other saddle point, i.e.&nbsp;we can choose a value for the wave speed <span class="math inline">\(v\)</span> such that a heteroclinic connection between <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((0,0)\)</span> is obtained. We shall use a “shooting argument” to prove this.</p>
-<div id="fig-eigenvectorsbistable" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="fig3.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.6: Schematic diagram of eigenvectors.</figcaption>
+<div id="fig-eigenvectorsbistable" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eigenvectorsbistable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig3.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenvectorsbistable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.6: Schematic diagram of eigenvectors.
+</figcaption>
 </figure>
 </div>
 </section>
 <section id="relation-between-sign-of-v-and-sign-of-intlimits_01-fu-du" class="level4" data-number="3.2.2.2">
 <h4 data-number="3.2.2.2" class="anchored" data-anchor-id="relation-between-sign-of-v-and-sign-of-intlimits_01-fu-du"><span class="header-section-number">3.2.2.2</span> Relation between sign of <span class="math inline">\(v\)</span> and sign of <span class="math inline">\(\int\limits_0^1 f(u) \, du\)</span></h4>
-<p>Using similar arguments to <a href="#sec-logisticwavespeed"><span>Section&nbsp;3.1.3.5</span></a></p>
+<p>Using similar arguments to <a href="#sec-logisticwavespeed" class="quarto-xref"><span>Section 3.1.3.5</span></a></p>
 <p><span class="math display">\[
 v= \dfrac {\int\limits_{0}^{1}f(W) \, dW}{\int\limits_{-\infty}^{+ \infty} \left|\dfrac{dW}{dz} \right|^2 dz}.
 \]</span> Since <span class="math inline">\(\int\limits_{-\infty}^{+ \infty} \left|\dfrac{dW}{dz} \right|^2 dz &gt;0\)</span> we can conclude that <span class="math display">\[
@@ -945,9 +1006,9 @@ v= \dfrac {\int\limits_{0}^{1}f(W) \, dW}{\int\limits_{-\infty}^{+ \infty} \left
 </section>
 <section id="numerical-shooting-method" class="level4" data-number="3.2.2.3">
 <h4 data-number="3.2.2.3" class="anchored" data-anchor-id="numerical-shooting-method"><span class="header-section-number">3.2.2.3</span> Numerical shooting method</h4>
-<p>In <a href="#fig-bistablenumtravwave">Figure&nbsp;<span>3.7</span></a> we plot numerical solutions to equation <a href="#eq-tw_eq_2_bis">Equation&nbsp;<span>3.11</span></a>. These results suggest that there are potentially different wavefront solutions connecting steady states.</p>
-<div class="cell" data-execution_count="5">
-<details>
+<p>In <a href="#fig-bistablenumtravwave" class="quarto-xref">Figure&nbsp;<span>3.7</span></a> we plot numerical solutions to equation <a href="#eq-tw_eq_2_bis" class="quarto-xref">Equation&nbsp;<span>3.11</span></a>. These results suggest that there are potentially different wavefront solutions connecting steady states.</p>
+<div id="cell-fig-bistablenumtravwave" class="cell" data-execution_count="5">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This code uses a shooting method to compute solutions of the travlling wave problem at different values of the wavespeed</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1004,10 +1065,14 @@ v= \dfrac {\int\limits_{0}^{1}f(W) \, dW}{\int\limits_{-\infty}^{+ \infty} \left
 <span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-bistablenumtravwave" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="nonlinearreactiondiffusion_files/figure-html/fig-bistablenumtravwave-output-1.png" width="600" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.7: Using a shooting method to investigate travelling wave solutions. Continuity arguments suggest that there exists a travelling wave solution with v int he interval [0.38,0.48] such that a heteroclinic trajecotry connects (1,0) and (0,0).</figcaption>
+<div id="fig-bistablenumtravwave" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bistablenumtravwave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="nonlinearreactiondiffusion_files/figure-html/fig-bistablenumtravwave-output-1.png" width="600" height="429" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bistablenumtravwave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.7: Using a shooting method to investigate travelling wave solutions. Continuity arguments suggest that there exists a travelling wave solution with v int he interval [0.38,0.48] such that a heteroclinic trajecotry connects (1,0) and (0,0).
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1018,7 +1083,7 @@ v= \dfrac {\int\limits_{0}^{1}f(W) \, dW}{\int\limits_{-\infty}^{+ \infty} \left
 <p>Let’s assume that <span class="math display">\[
 \int\limits_{0}^{1}f(u) \, du &gt; 0.
 \]</span></p>
-<p>Suppose that <span class="math inline">\(v=0\)</span>. An explicit expression for the trajectory is found by multiplying <a href="#eq-tw_eq_bis">Equation&nbsp;<span>3.10</span></a> by <span class="math inline">\(P\)</span> and integrating over <span class="math inline">\(z\)</span>. Hence <span class="math display">\[
+<p>Suppose that <span class="math inline">\(v=0\)</span>. An explicit expression for the trajectory is found by multiplying <a href="#eq-tw_eq_bis" class="quarto-xref">Equation&nbsp;<span>3.10</span></a> by <span class="math inline">\(P\)</span> and integrating over <span class="math inline">\(z\)</span>. Hence <span class="math display">\[
 \frac{P^2}{2}+ \int_0^W f(u)du=0.
 \]</span> If this trajectory reached <span class="math inline">\(W=1\)</span> then <span class="math display">\[
 \frac{P^2}{2}_{\bigg|\infty}+ \int_0^1 f(u)du=0.
@@ -1045,7 +1110,7 @@ P=\lambda_- W.
 <li><p>Hence for large enough <span class="math inline">\(v\)</span> <span class="math inline">\(dP/dW\)</span> can be made arbitrarily negative and the condition <span id="eq-dP_dW_bd"><span class="math display">\[
 \frac{dP}{dW} &lt; -\sigma
 \tag{3.13}\]</span></span> can be satisfied.</p></li>
-<li><p>This result implies that a trajectory leaving (1,0) with sufficiently large <span class="math inline">\(v\)</span> cannot intersect (0,0). If it did it would have to intersect the line <span class="math inline">\(P=\sigma W\)</span>. This is not possible given <a href="#eq-dP_dW_bd">Equation&nbsp;<span>3.13</span></a> and that <span class="math inline">\(W\)</span> is decreasing.</p></li>
+<li><p>This result implies that a trajectory leaving (1,0) with sufficiently large <span class="math inline">\(v\)</span> cannot intersect (0,0). If it did it would have to intersect the line <span class="math inline">\(P=\sigma W\)</span>. This is not possible given <a href="#eq-dP_dW_bd" class="quarto-xref">Equation&nbsp;<span>3.13</span></a> and that <span class="math inline">\(W\)</span> is decreasing.</p></li>
 </ol>
 <p>Hence a trajectory approaching <span class="math inline">\((0,0)\)</span> with sufficiently large <span class="math inline">\(v\)</span> is bounded below by the line <span class="math inline">\(P=-\sigma W\)</span>. Such a trajectory must intersect the <span class="math inline">\(P=0\)</span> axis for some <span class="math inline">\(W&gt;0\)</span>.</p>
 <p>Finally, we have shown that * trajectories with <span class="math inline">\(v=0\)</span> intersect the line <span class="math inline">\(W=0\)</span> for <span class="math inline">\(P&lt;0\)</span> * trajectories with large <span class="math inline">\(v\)</span> intersect the line <span class="math inline">\(P=0\)</span> for some <span class="math inline">\(W&gt;0\)</span>.</p>
@@ -1056,7 +1121,7 @@ P=\lambda_- W.
 <p>If <span class="math display">\[
 \int\limits_{0}^{1}f(u) \, du = 0,
 \]</span> then we have a standing wave with <span class="math inline">\(v=0\)</span>, since the calculations for <span class="math inline">\(P_0\)</span> and <span class="math inline">\(P_1\)</span> implies <span class="math inline">\(P_0=P_1\)</span> and there exists a heteroclinic orbit between <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((0,0)\)</span> in the phase space.</p>
-<p>Note: There exists a unique travelling wave velocity <span class="math inline">\(v\)</span> for which we have a travelling wave solution for bistable <a href="#eq-bistable">Equation&nbsp;<span>3.9</span></a>.</p>
+<p>Note: There exists a unique travelling wave velocity <span class="math inline">\(v\)</span> for which we have a travelling wave solution for bistable <a href="#eq-bistable" class="quarto-xref">Equation&nbsp;<span>3.9</span></a>.</p>
 </section>
 </section>
 </section>
@@ -1064,7 +1129,7 @@ P=\lambda_- W.
 <h2 data-number="3.3" class="anchored" data-anchor-id="references"><span class="header-section-number">3.3</span> References</h2>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-keener2009mathematical" class="csl-entry" role="listitem">
 Keener, JP, and James Sneyd. 2009. <span>“Mathematical Physiology 1: Cellular Physiology.”</span> Springer New York, NY, USA.
 </div>
@@ -1157,10 +1222,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1170,8 +1252,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1183,7 +1274,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1227,6 +1441,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1252,6 +1467,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1313,12 +1554,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./linearreactiondiffusion.html" class="pagination-link">
+      <a href="./linearreactiondiffusion.html" class="pagination-link" aria-label="Linear reaction diffusion equations">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linear reaction diffusion equations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./LotkaVolteraPDE.html" class="pagination-link">
+      <a href="./LotkaVolteraPDE.html" class="pagination-link" aria-label="Lotka Voltera model">
         <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lotka Voltera model</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1327,4 +1568,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

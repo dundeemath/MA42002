@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,6 +62,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -65,6 +72,33 @@ ul.task-list li input[type="checkbox"] {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
 
 <body class="nav-sidebar floating">
@@ -73,12 +107,12 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./conservationequations.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conservation equations</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./conservationequations.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conservation equations</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -88,13 +122,13 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">MA42002</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/dundeemath/MA42002/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./MA42002.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="https://github.com/dundeemath/MA42002/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./MA42002.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -201,7 +235,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -229,7 +263,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#nondimensionalization" id="toc-nondimensionalization" class="nav-link" data-scroll-target="#nondimensionalization"><span class="header-section-number">1.3.7</span> Nondimensionalization</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -249,7 +283,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <section id="sec-conservation" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="sec-conservation"><span class="header-section-number">1.1</span> Introduction</h2>
@@ -294,7 +330,7 @@ ul.task-list li input[type="checkbox"] {
 N(t+\Delta t) &amp;=  \quad N(t)   + \quad  K N(t) \Delta t.
 \end{aligned}
 \tag{1.1}\]</span></span></p>
-<p>Assuming that <span class="math inline">\(N\)</span> is differentiable, dividing <a href="#eq-n_1">Equation&nbsp;<span>1.1</span></a> by <span class="math inline">\(\Delta t\)</span> and taking the limit as <span class="math inline">\(\Delta t \to 0\)</span> <span id="eq-n_2"><span class="math display">\[
+<p>Assuming that <span class="math inline">\(N\)</span> is differentiable, dividing <a href="#eq-n_1" class="quarto-xref">Equation&nbsp;<span>1.1</span></a> by <span class="math inline">\(\Delta t\)</span> and taking the limit as <span class="math inline">\(\Delta t \to 0\)</span> <span id="eq-n_2"><span class="math display">\[
 \frac{dN}{dt} = K N.
 \tag{1.2}\]</span></span></p>
 <p>Depending on the biological context, the growth rate <span class="math inline">\(K\)</span> may take several forms e.g.</p>
@@ -321,19 +357,19 @@ N(0) = N_0 \quad \textrm{and}  \quad  c(0)= c_0.
 \]</span> integration yields <span id="eq-sol_c"><span class="math display">\[
 c(t)  = - \alpha N(t) + c(0)+ \alpha N(0) = - \alpha N(t) + \beta,
 \tag{1.4}\]</span></span></p>
-<p>where <span class="math inline">\(\beta=c_0 +\alpha N_0\)</span>. Substituting for <a href="#eq-sol_c">Equation&nbsp;<span>1.4</span></a> in <a href="#eq-c_1">Equation&nbsp;<span>1.3</span></a> we obtain the <em>logistic growth</em> equation <span id="eq-n_4"><span class="math display">\[
+<p>where <span class="math inline">\(\beta=c_0 +\alpha N_0\)</span>. Substituting for <a href="#eq-sol_c" class="quarto-xref">Equation&nbsp;<span>1.4</span></a> in <a href="#eq-c_1" class="quarto-xref">Equation&nbsp;<span>1.3</span></a> we obtain the <em>logistic growth</em> equation <span id="eq-n_4"><span class="math display">\[
 \frac{dN}{dt} = \kappa ( \beta- \alpha N)  N, \qquad  N(0)= N_0\quad,
 \tag{1.5}\]</span></span> where <span class="math inline">\(K=K(N) = \kappa (\beta - \alpha N)\)</span>.</p>
 <p>The last equation can be rewritten as <span id="eq-n_5"><span class="math display">\[  
 \frac{dN}{dt} = \rho  N \,  (1 - \frac N B)  \qquad \quad N(0)= N_0,
 \tag{1.6}\]</span></span></p>
-<p>where <span class="math inline">\(\rho = \kappa \beta\)</span> is the <em>intrinsic growth rate</em> and <span class="math inline">\(B = \frac \beta \alpha\)</span> is the <em>carrying capacity</em>. The solution of <a href="#eq-n_5">Equation&nbsp;<span>1.6</span></a> is given by <span class="math display">\[
+<p>where <span class="math inline">\(\rho = \kappa \beta\)</span> is the <em>intrinsic growth rate</em> and <span class="math inline">\(B = \frac \beta \alpha\)</span> is the <em>carrying capacity</em>. The solution of <a href="#eq-n_5" class="quarto-xref">Equation&nbsp;<span>1.6</span></a> is given by <span class="math display">\[
 N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
 \]</span></p>
 </section>
 <section id="deathdecay" class="level4" data-number="1.2.1.3">
 <h4 data-number="1.2.1.3" class="anchored" data-anchor-id="deathdecay"><span class="header-section-number">1.2.1.3</span> Death/decay</h4>
-<p>In addition to growth, we may assume that cells die at rate <span class="math inline">\(d\)</span> and the simple growth <a href="#eq-n_2">Equation&nbsp;<span>1.2</span></a> can be generalised to <span class="math display">\[
+<p>In addition to growth, we may assume that cells die at rate <span class="math inline">\(d\)</span> and the simple growth <a href="#eq-n_2" class="quarto-xref">Equation&nbsp;<span>1.2</span></a> can be generalised to <span class="math display">\[
 \frac{dN}{dt} = KN - d N,
 \]</span> where <span class="math inline">\(d\)</span> is the mortality (death) rate.</p>
 </section>
@@ -425,10 +461,10 @@ d=d_1 N,
 <p>Then a conservation equation for the number of particles in the volume <span class="math inline">\(V\)</span> is given by <span id="eq-concerv_01"><span class="math display">\[
 \frac{\partial}{\partial t} \int_x^{x+\Delta x} c(\tilde x, t) A d\tilde x = J(x,t) \, A  - J(x+\Delta x,t) \, A +\int_x^{x + \Delta x}  f(\tilde x, t, c(\tilde x, t))\,  A \, d \tilde x.
 \tag{1.7}\]</span></span></p>
-<p>i.e.&nbsp;the flux that changes the total population in <span class="math inline">\(V\)</span> is that entering through the cross-section at <span class="math inline">\(x\)</span> and leaving through the cross-section at <span class="math inline">\(x+\Delta x\)</span> (it is assumed that there no flux through the external surface of the tube). Assuming <span class="math inline">\(c\)</span> and <span class="math inline">\(f\)</span> to be sufficiently smooth (continuous in <span class="math inline">\(x\)</span>) and applying The Mean Value Theorem in <a href="#eq-concerv_01">Equation&nbsp;<span>1.7</span></a>, we obtain <span id="eq-concerv_1"><span class="math display">\[
+<p>i.e.&nbsp;the flux that changes the total population in <span class="math inline">\(V\)</span> is that entering through the cross-section at <span class="math inline">\(x\)</span> and leaving through the cross-section at <span class="math inline">\(x+\Delta x\)</span> (it is assumed that there no flux through the external surface of the tube). Assuming <span class="math inline">\(c\)</span> and <span class="math inline">\(f\)</span> to be sufficiently smooth (continuous in <span class="math inline">\(x\)</span>) and applying The Mean Value Theorem in <a href="#eq-concerv_01" class="quarto-xref">Equation&nbsp;<span>1.7</span></a>, we obtain <span id="eq-concerv_1"><span class="math display">\[
 \frac{\partial}{\partial t} c(\xi, t) A \Delta x = J(x,t) \, A  - J(x+\Delta x,t) \, A +  f(\eta,t,c(\eta, t))\,  A \Delta x, \qquad \xi, \eta \in (x, x+ \Delta x).
 \tag{1.8}\]</span></span></p>
-<p>Dividing <a href="#eq-concerv_01">Equation&nbsp;<span>1.7</span></a> by <span class="math inline">\(A \, \Delta x\)</span> yields <span id="eq-concerv_2"><span class="math display">\[
+<p>Dividing <a href="#eq-concerv_01" class="quarto-xref">Equation&nbsp;<span>1.7</span></a> by <span class="math inline">\(A \, \Delta x\)</span> yields <span id="eq-concerv_2"><span class="math display">\[
 \frac{\partial}{\partial t} c(\xi, t)  = - \frac  {J(x+\Delta x,t ) - J(x,t)} { \Delta x} + f(\eta,t,c(\eta, t)), \qquad \xi, \eta \in (x, x+ \Delta x).
 \tag{1.9}\]</span></span> Assuming that <span class="math inline">\(J\)</span> is differentiable with respect to <span class="math inline">\(x\)</span> and taking the limit as <span class="math inline">\(\Delta x \to 0\)</span> (and using the definition of partial derivatives) we obtain a one-dimensional conservation (balance) equation: <span id="eq-concerv_3"><span class="math display">\[
 \frac{\partial}{\partial t} c(x,t)  = - \frac  {\partial} { \partial x} J(x,t) + f(x,t ,c(x,t)).
@@ -461,7 +497,7 @@ d=d_1 N,
 <p><span id="eq-diffusion"><span class="math display">\[
 {\mathbf{J}} = - D\nabla c,
 \tag{1.12}\]</span></span> where <span class="math inline">\(D\)</span> is the diffusion coefficient. <span class="math inline">\(D\)</span> depends on the size of the particles, the type of solvent, the temperature, .</p>
-<p>Then applying <a href="#eq-diffusion">Equation&nbsp;<span>1.12</span></a> in <a href="#eq-conservation_3D">Equation&nbsp;<span>1.11</span></a> we obtain reaction-diffusion equation <span id="eq-react-diff"><span class="math display">\[
+<p>Then applying <a href="#eq-diffusion" class="quarto-xref">Equation&nbsp;<span>1.12</span></a> in <a href="#eq-conservation_3D" class="quarto-xref">Equation&nbsp;<span>1.11</span></a> we obtain reaction-diffusion equation <span id="eq-react-diff"><span class="math display">\[
 \frac{\partial}{\partial t} c =  - \nabla\cdot ( - D \nabla c(x,t))+  f(x,t ,c) = \nabla \cdot ( D \nabla c) + f(x,t ,c),
 \quad x\in \mathbb R^n, \,  \, t &gt;0.
 \tag{1.13}\]</span></span></p>
@@ -578,7 +614,7 @@ c(0,x) = c_0(x) , \qquad x \in \Omega  \; .
 \tag{1.17}\]</span></span> which can be augmented by an equation for the (diffusible) chemoattractant <span class="math inline">\(a\)</span> <span id="eq-chemoattrac"><span class="math display">\[
 \frac{\partial}{\partial t} a = D \nabla^2 a + g(x,t ,a, c),
 \quad x\in \mathbb R^n \,  \quad t &gt;0.
-\tag{1.18}\]</span></span> <a href="#eq-chemotaxis">Equation&nbsp;<span>1.17</span></a> and <a href="#eq-chemoattrac">Equation&nbsp;<span>1.18</span></a> form a system of equations, a so-called chemotaxis system.</p>
+\tag{1.18}\]</span></span> <a href="#eq-chemotaxis" class="quarto-xref">Equation&nbsp;<span>1.17</span></a> and <a href="#eq-chemoattrac" class="quarto-xref">Equation&nbsp;<span>1.18</span></a> form a system of equations, a so-called chemotaxis system.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -699,10 +735,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -712,8 +765,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -725,7 +787,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -769,6 +954,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -794,6 +980,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -855,12 +1067,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
+      <a href="./index.html" class="pagination-link" aria-label="Introduction">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./linearreactiondiffusion.html" class="pagination-link">
+      <a href="./linearreactiondiffusion.html" class="pagination-link" aria-label="Linear reaction diffusion equations">
         <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linear reaction diffusion equations</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -869,4 +1081,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

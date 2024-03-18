@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -58,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -100,7 +101,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -109,6 +116,7 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -118,6 +126,33 @@ div.csl-indent {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
 
 <body class="nav-sidebar floating">
@@ -126,12 +161,12 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html">Multi species</a></li><li class="breadcrumb-item"><a href="./DiffusionDrivenInstability.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html">Multi species</a></li><li class="breadcrumb-item"><a href="./DiffusionDrivenInstability.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -141,13 +176,13 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">MA42002</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/dundeemath/MA42002/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./MA42002.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="https://github.com/dundeemath/MA42002/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./MA42002.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -254,7 +289,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -287,12 +322,12 @@ div.csl-indent {
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">6.6</span> Exercises</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">6.7</span> References</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html">Multi species</a></li><li class="breadcrumb-item"><a href="./DiffusionDrivenInstability.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></h1>
 </div>
@@ -307,7 +342,9 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <section id="spatial-pattern-formation-via-reaction-diffusion" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="spatial-pattern-formation-via-reaction-diffusion"><span class="header-section-number">6.1</span> Spatial Pattern Formation via Reaction-Diffusion</h2>
@@ -427,19 +464,23 @@ h(u,v) &amp; =  \frac{\rho u v}{1 + u + K u^2},
 <li><span class="math inline">\(\gamma\)</span> represents the relative strength of the reaction terms – an increase in <span class="math inline">\(\gamma\)</span> may represent an increase in the activity of some rate-limiting step in the reaction sequence.</li>
 <li>An increase in <span class="math inline">\(\gamma\)</span> is equivalent to a decrease in the diffusion coefficient, <span class="math inline">\(d\)</span>.</li>
 </ul>
-<p>Note that in the case where the parameter <span class="math inline">\(d &gt; 1\)</span>, this means that the original diffusion coefficients are not equal. Specifically, in the case of the Gierer-Meinhardt activator-inhibitor system, <span class="math inline">\(d &gt;1\)</span> implies that the inhibitor <em>diffuses more quickly</em> than the activator [<span class="math inline">\(d &gt; 1 \Rightarrow D_B &gt; D_A\)</span> ]. The spatial implications of this are shown in <a href="#fig-ai">Figure&nbsp;<span>6.1</span></a> – the inhibitor diffuses a greater distance than the activator, giving rise to what is known as <em>local activation, long-range inhibition</em>.</p>
-<div id="fig-ai" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="activator_inhibitor.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;6.1: Schematic diagram of activator inhibitor</figcaption>
+<p>Note that in the case where the parameter <span class="math inline">\(d &gt; 1\)</span>, this means that the original diffusion coefficients are not equal. Specifically, in the case of the Gierer-Meinhardt activator-inhibitor system, <span class="math inline">\(d &gt;1\)</span> implies that the inhibitor <em>diffuses more quickly</em> than the activator [<span class="math inline">\(d &gt; 1 \Rightarrow D_B &gt; D_A\)</span> ]. The spatial implications of this are shown in <a href="#fig-ai" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> – the inhibitor diffuses a greater distance than the activator, giving rise to what is known as <em>local activation, long-range inhibition</em>.</p>
+<div id="fig-ai" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ai-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="activator_inhibitor.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ai-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: Schematic diagram of activator inhibitor
+</figcaption>
 </figure>
 </div>
 </section>
 </section>
 <section id="numerical-solution" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="numerical-solution"><span class="header-section-number">6.4</span> Numerical solution</h2>
-<div class="cell" data-execution_count="1">
-<details>
+<div id="cell-fig-schnack_ddi_pde" class="cell" data-execution_count="1">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
@@ -548,17 +589,21 @@ h(u,v) &amp; =  \frac{\rho u v}{1 + u + K u^2},
 <span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-schnack_ddi_pde" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="DiffusionDrivenInstability_files/figure-html/fig-schnack_ddi_pde-output-1.png" width="661" height="468" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;6.2: DDI with Schnackenberg kinetics.</figcaption>
+<div id="fig-schnack_ddi_pde" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-schnack_ddi_pde-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="DiffusionDrivenInstability_files/figure-html/fig-schnack_ddi_pde-output-1.png" width="661" height="468" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schnack_ddi_pde-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.2: DDI with Schnackenberg kinetics.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In <a href="#fig-schnack_ddi_pde_2d">Figure&nbsp;<span>6.3</span></a> we consider a numerical solution of the Schnackenberg model on a 2D square domain with no-flux boundary conditions.</p>
-<div class="cell" data-execution_count="2">
-<details>
+<p>In <a href="#fig-schnack_ddi_pde_2d" class="quarto-xref">Figure&nbsp;<span>6.3</span></a> we consider a numerical solution of the Schnackenberg model on a 2D square domain with no-flux boundary conditions.</p>
+<div id="cell-fig-schnack_ddi_pde_2d" class="cell" data-execution_count="2">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
@@ -734,10 +779,14 @@ h(u,v) &amp; =  \frac{\rho u v}{1 + u + K u^2},
 <span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-schnack_ddi_pde_2d" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="DiffusionDrivenInstability_files/figure-html/fig-schnack_ddi_pde_2d-output-1.png" width="660" height="449" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;6.3: DDI with Schnackenberg kinetics in 2D</figcaption>
+<div id="fig-schnack_ddi_pde_2d" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-schnack_ddi_pde_2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="DiffusionDrivenInstability_files/figure-html/fig-schnack_ddi_pde_2d-output-1.png" width="660" height="449" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schnack_ddi_pde_2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.3: DDI with Schnackenberg kinetics in 2D
+</figcaption>
 </figure>
 </div>
 </div>
@@ -759,17 +808,17 @@ h(u,v) &amp; =  \frac{\rho u v}{1 + u + K u^2},
 u(x,0)  = u_0(x), \qquad  v(x,0)  = v_0(x), \qquad x\in \Omega\; .
 \end{aligned}
 \tag{6.3}\]</span></span></p>
-<p>A <em>spatially homogeneous steady-state</em> of <a href="#eq-pp">Equation&nbsp;<span>6.2</span></a> and <a href="#eq-pp_bc">Equation&nbsp;<span>6.3</span></a> satisfies <span class="math display">\[
+<p>A <em>spatially homogeneous steady-state</em> of <a href="#eq-pp" class="quarto-xref">Equation&nbsp;<span>6.2</span></a> and <a href="#eq-pp_bc" class="quarto-xref">Equation&nbsp;<span>6.3</span></a> satisfies <span class="math display">\[
 f(u,v) = 0 , \qquad g(u,v) =0.
 \]</span></p>
 <p>and we denote it by <span class="math inline">\((u_0, v_0)\)</span>.</p>
 <section id="stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations" class="level3" data-number="6.5.1">
 <h3 data-number="6.5.1" class="anchored" data-anchor-id="stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations"><span class="header-section-number">6.5.1</span> Stability of spatially homogeneous steady states to spatially homogeneous perturbations</h3>
-<p>Before we consider the effect of diffusion in <a href="#eq-pp">Equation&nbsp;<span>6.2</span></a> and <a href="#eq-pp_bc">Equation&nbsp;<span>6.3</span></a>, we first explore the stability of the spatially homogeneous steady state.</p>
+<p>Before we consider the effect of diffusion in <a href="#eq-pp" class="quarto-xref">Equation&nbsp;<span>6.2</span></a> and <a href="#eq-pp_bc" class="quarto-xref">Equation&nbsp;<span>6.3</span></a>, we first explore the stability of the spatially homogeneous steady state.</p>
 <p>Consider the following perturbations to the steady state <span class="math inline">\((u_0 , v_0)\)</span>: <span class="math display">\[
 u(x,t) = u_0 + \tilde u(t), \quad  v(x,t) = v_0 + \tilde v(t), \qquad \|\tilde u(t) \| \ll 1, \quad  \|\tilde v(t) \| \ll 1.
 \]</span></p>
-<p>Upon substitution into <a href="#eq-pp">Equation&nbsp;<span>6.2</span></a> <span id="eq-pp_1"><span class="math display">\[
+<p>Upon substitution into <a href="#eq-pp" class="quarto-xref">Equation&nbsp;<span>6.2</span></a> <span id="eq-pp_1"><span class="math display">\[
 \begin{aligned}
 \frac{d\tilde u}{d t} = \gamma\, f(u_0 + \tilde u,v_0 + \tilde v),  \\
 \frac{d \tilde v}{d  t} = \gamma\, g(u_0 + \tilde u,v_0 + \tilde v).
@@ -790,7 +839,7 @@ f_u &amp; f_v  \\
 g_u &amp; g_v
 \end{pmatrix}_{(u_0 , v_0)} \; .  
 \]</span></p>
-<p>The general solution of <a href="#eq-linear_pp">Equation&nbsp;<span>6.5</span></a> is<br>
+<p>The general solution of <a href="#eq-linear_pp" class="quarto-xref">Equation&nbsp;<span>6.5</span></a> is<br>
 <span class="math display">\[
 \begin{pmatrix}
 \tilde u(t) \\
@@ -809,18 +858,18 @@ g_u &amp; g_v
 \]</span></p>
 <p>i.e.&nbsp;if <span id="eq-stable_hom"><span class="math display">\[
 \begin{aligned}
-\textrm{tr}(J) &amp; = f_u + g_v &lt; 0, \\
+\mathrm{tr}(J) &amp; = f_u + g_v &lt; 0, \\
 \det(J) &amp; = f_u g_v - f_v g_u &gt; 0.
 \end{aligned}
 \tag{6.6}\]</span></span></p>
-<p>We shall be interested only in such parameter values for which conditions <a href="#eq-stable_hom">Equation&nbsp;<span>6.6</span></a> are satisfied (i.e.&nbsp;the spatially homogeneous steady state is linearly stable in the absence of diffusion).</p>
+<p>We shall be interested only in such parameter values for which conditions <a href="#eq-stable_hom" class="quarto-xref">Equation&nbsp;<span>6.6</span></a> are satisfied (i.e.&nbsp;the spatially homogeneous steady state is linearly stable in the absence of diffusion).</p>
 </section>
 <section id="stability-of-spatially-homogeneous-steady-states-to-spatially-heterogeneous-perturbations" class="level3" data-number="6.5.2">
 <h3 data-number="6.5.2" class="anchored" data-anchor-id="stability-of-spatially-homogeneous-steady-states-to-spatially-heterogeneous-perturbations"><span class="header-section-number">6.5.2</span> Stability of spatially homogeneous steady states to spatially heterogeneous perturbations</h3>
 <p>We now consider perturbations about the spatially homogeneous steady state that are spatially dependent, i.e.&nbsp;<span class="math display">\[
 u(x,t) = u_0 + \tilde u(x,t), \quad  v(x,t) = v_0 + \tilde v(x,t), \qquad \|\tilde u(x,t) \| \ll 1, \quad  \|\tilde v(x,t) \| \ll 1.
 \]</span></p>
-<p>Upon substitution in <a href="#eq-pp">Equation&nbsp;<span>6.2</span></a> and Taylor expanding <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> about <span class="math inline">\((u_0, v_0)\)</span> yields the linearised problem</p>
+<p>Upon substitution in <a href="#eq-pp" class="quarto-xref">Equation&nbsp;<span>6.2</span></a> and Taylor expanding <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> about <span class="math inline">\((u_0, v_0)\)</span> yields the linearised problem</p>
 <p><span id="eq-pp_3"><span class="math display">\[
 \begin{aligned}
 \frac{\partial \tilde u(x,t)}{\partial t} = \gamma\, \left(f_u \tilde u(x,t) + f_v \tilde v(x,t)\right) + \nabla^2 \tilde u(x,t)  , \quad x\in \Omega, \;  t &gt;0, \\
@@ -838,7 +887,7 @@ V(x,t) = \begin{pmatrix}
 \tilde v(x,t)
 \end{pmatrix}
 \]</span></p>
-<p>we rewrite <a href="#eq-pp_3">Equation&nbsp;<span>6.7</span></a> as <span class="math display">\[
+<p>we rewrite <a href="#eq-pp_3" class="quarto-xref">Equation&nbsp;<span>6.7</span></a> as <span class="math display">\[
 \frac{\partial}{\partial t}  V(x,t) = \gamma J  V(x,t) + D \nabla^2   V(x,t),
 \]</span></p>
 <p>where</p>
@@ -875,13 +924,12 @@ V(x,t) =\begin{pmatrix}
 <section id="eigenvalues-of-the-laplacian" class="level4" data-number="6.5.2.2">
 <h4 data-number="6.5.2.2" class="anchored" data-anchor-id="eigenvalues-of-the-laplacian"><span class="header-section-number">6.5.2.2</span> Eigenvalues of the Laplacian</h4>
 <p>We can make the assumption that <span class="math display">\[
-\phi_1(x)=\phi_2(x)=\phi(x)
+\phi_1(x)=\phi_2(x)=\phi_k(x)
 \]</span> and use the substitution <span class="math display">\[
-\nabla^2 \varphi=-k^2\varphi.
+\nabla^2 \varphi_k=-k^2\varphi_k.
 \]</span></p>
 <p><em>1D Cartesian</em></p>
-<p>Make the ansatz that <span class="math inline">\(\phi_k(x)=\phi_1(x)=\phi_2(x)\)</span>.</p>
-<p>Subsitution in <a href="#eq-pp_4">Equation&nbsp;<span>6.9</span></a> yields <span class="math display">\[
+<p>Subsitution in <a href="#eq-pp_4" class="quarto-xref">Equation&nbsp;<span>6.9</span></a> yields <span class="math display">\[
 \begin{aligned}
 \frac{d \bar u(t)}{d t}\varphi_k(x) = \gamma\, \left(f_u \bar u(t) \varphi_k(x) + f_v \bar v(t) \varphi_k(x)\right) +\bar u(t)  \nabla^2 \varphi_k(x)  , \quad x\in \Omega, \;  t &gt;0, \\
 \frac{d \bar v(t)}{d t}\varphi_k(x) = \gamma\,  \left(g_u  \bar u(t) \varphi_k(x) + g_v \bar v(t) \varphi_k(x)\right) +  d \bar v(t) \nabla^2  \varphi_k(x)  ,  \quad x\in \Omega, \;  t &gt;0,  \\
@@ -939,7 +987,7 @@ j \in \mathbb N, \quad  \textrm{and} \quad k_j^2 \to \infty \quad \textrm{as}  \
 </section>
 <section id="instability-of-spatially-heterogeneous-perturbations" class="level4" data-number="6.5.2.3">
 <h4 data-number="6.5.2.3" class="anchored" data-anchor-id="instability-of-spatially-heterogeneous-perturbations"><span class="header-section-number">6.5.2.3</span> Instability of spatially heterogeneous perturbations</h4>
-<p>we can look for the spatial component of the solution of <a href="#eq-pp_4">Equation&nbsp;<span>6.9</span></a> as follows: <span class="math display">\[
+<p>we can look for the spatial component of the solution of <a href="#eq-pp_4" class="quarto-xref">Equation&nbsp;<span>6.9</span></a> as follows: <span class="math display">\[
 \varphi(x) = \begin{pmatrix}  
 \varphi_1(x) \\
 \varphi_2(x)
@@ -988,7 +1036,7 @@ D \nabla^2  V(x,t) = D \nabla^2 \left[ \sum_k \hat V_k(t) \psi_k(x) \right]   = 
 \gamma g_u &amp; \gamma g_v - d k^2
 \end{pmatrix}.
 \]</span></p>
-<p>Now solutions of <a href="#eq-stab_pp_ode">Equation&nbsp;<span>6.13</span></a> are of the form <span class="math display">\[
+<p>Now solutions of <a href="#eq-stab_pp_ode" class="quarto-xref">Equation&nbsp;<span>6.13</span></a> are of the form <span class="math display">\[
 \hat V_k(t) = e^{\lambda t} P_k
 \]</span></p>
 <p>with <span class="math inline">\(P_k \in \mathbb R^2\)</span>, where, since <span class="math inline">\(P_k\neq 0\)</span> (looking for nontrivial solutions), we find that <span class="math inline">\(\lambda\)</span> are the eigenvalues of <span class="math inline">\(\tilde J\)</span> , i.e.&nbsp;solutions of the characteristic equation <span id="eq-charact_pp_1"><span class="math display">\[
@@ -1000,13 +1048,13 @@ D \nabla^2  V(x,t) = D \nabla^2 \left[ \sum_k \hat V_k(t) \psi_k(x) \right]   = 
 <p>where <span id="eq-hk2"><span class="math display">\[
 h(k^2) = dk^4 - \gamma (df_u + g_v) k^2 + \gamma^2 | J | .
 \tag{6.16}\]</span></span></p>
-<p><strong>NOTE</strong>: From <a href="#eq-charact_pp_1">Equation&nbsp;<span>6.14</span></a>, <a href="#eq-spatial_eigenvalues">Equation&nbsp;<span>6.15</span></a> we can recover the characteristic equation for the spatially homogeneous perturbation when <span class="math inline">\(k=0\)</span>, i.e.&nbsp;<span class="math display">\[
+<p><strong>NOTE</strong>: From <a href="#eq-charact_pp_1" class="quarto-xref">Equation&nbsp;<span>6.14</span></a>, <a href="#eq-spatial_eigenvalues" class="quarto-xref">Equation&nbsp;<span>6.15</span></a> we can recover the characteristic equation for the spatially homogeneous perturbation when <span class="math inline">\(k=0\)</span>, i.e.&nbsp;<span class="math display">\[
 \tilde J \Big|_{k=0} = ( \gamma J - k^2 D )\Big|_{k=0} = \gamma J.
 \]</span></p>
 <p>Thus the steady state <span class="math inline">\((u_0, v_0)\)</span> is <em>unstable</em> to spatially heterogeneous perturbations iff <span class="math display">\[
 {\mathrm Re}(\lambda_1) &gt; 0 \quad \textrm{and/or} \quad {\mathrm Re}(\lambda_2) &gt;0,
 \]</span></p>
-<p>where <span class="math inline">\(\lambda_{1,2}\)</span> are solutions of <a href="#eq-charact_pp_1">Equation&nbsp;<span>6.14</span></a>, <a href="#eq-spatial_eigenvalues">Equation&nbsp;<span>6.15</span></a>.</p>
+<p>where <span class="math inline">\(\lambda_{1,2}\)</span> are solutions of <a href="#eq-charact_pp_1" class="quarto-xref">Equation&nbsp;<span>6.14</span></a>, <a href="#eq-spatial_eigenvalues" class="quarto-xref">Equation&nbsp;<span>6.15</span></a>.</p>
 <p>Now for <span class="math display">\[
 {\mathrm Re}(\lambda_1) &gt; 0 \quad \textrm{and/or } \quad {\mathrm Re}(\lambda_2) &gt;0
 \]</span></p>
@@ -1019,17 +1067,17 @@ h(k^2) = dk^4 - \gamma (df_u + g_v) k^2 + \gamma^2 | J | .
 <p>since <span class="math inline">\(\gamma &gt; 0\)</span> and <span class="math display">\[
 f_u+ g_v &lt; 0
 \]</span></p>
-<p>by the stability condition for the spatially homogeneous perturbation <a href="#eq-stable_hom">Equation&nbsp;<span>6.6</span></a>. Thus instability to the spatially heterogeneous perturbation <em>can only occur</em> if <span class="math display">\[
+<p>by the stability condition for the spatially homogeneous perturbation <a href="#eq-stable_hom" class="quarto-xref">Equation&nbsp;<span>6.6</span></a>. Thus instability to the spatially heterogeneous perturbation <em>can only occur</em> if <span class="math display">\[
 \det(\tilde J) &lt; 0
 \]</span></p>
 <p>and so we require: <span class="math display">\[
 \det(\tilde J) = h(k^2) = dk^4  - \gamma ( d\,  f_u + g_v) k^2 + \gamma^2 \det(J) &lt; 0.
 \]</span></p>
-<p>From the spatially homogeneous stability conditions <a href="#eq-stable_hom">Equation&nbsp;<span>6.6</span></a> we have <span class="math inline">\(\det(J) &gt;0\)</span>. Thus <span class="math inline">\(h(k^2)&lt;0\)</span> is possible only if <span id="eq-stabil_cond_nes"><span class="math display">\[
+<p>From the spatially homogeneous stability conditions <a href="#eq-stable_hom" class="quarto-xref">Equation&nbsp;<span>6.6</span></a> we have <span class="math inline">\(\det(J) &gt;0\)</span>. Thus <span class="math inline">\(h(k^2)&lt;0\)</span> is possible only if <span id="eq-stabil_cond_nes"><span class="math display">\[
 d f_u + g_v &gt;0.
 \tag{6.17}\]</span></span></p>
-<p>However, once again, due to <a href="#eq-stable_hom">Equation&nbsp;<span>6.6</span></a>, we have <span class="math inline">\(f_u+ g_v &lt;0\)</span>, and so we can conclude that <span class="math inline">\(d\neq 1\)</span> and <span class="math inline">\(f_u\)</span> and <span class="math inline">\(g_v\)</span> must have <em>opposite signs</em>.</p>
-<p>Condition <a href="#eq-stabil_cond_nes">Equation&nbsp;<span>6.17</span></a> is <em>necessary but not sufficient</em> to ensure <span class="math inline">\(h(k^2) &lt;0\)</span>. In order to guarantee that <span class="math inline">\(h(k^2) &lt; 0\)</span>, the minimum value <span class="math inline">\(h_{min}\)</span> must be negative. Differentiating <a href="#eq-hk2">Equation&nbsp;<span>6.16</span></a> w.r.t. <span class="math inline">\(k^2\)</span>, we find that:</p>
+<p>However, once again, due to <a href="#eq-stable_hom" class="quarto-xref">Equation&nbsp;<span>6.6</span></a>, we have <span class="math inline">\(f_u+ g_v &lt;0\)</span>, and so we can conclude that <span class="math inline">\(d\neq 1\)</span> and <span class="math inline">\(f_u\)</span> and <span class="math inline">\(g_v\)</span> must have <em>opposite signs</em>.</p>
+<p>Condition <a href="#eq-stabil_cond_nes" class="quarto-xref">Equation&nbsp;<span>6.17</span></a> is <em>necessary but not sufficient</em> to ensure <span class="math inline">\(h(k^2) &lt;0\)</span>. In order to guarantee that <span class="math inline">\(h(k^2) &lt; 0\)</span>, the minimum value <span class="math inline">\(h_{min}\)</span> must be negative. Differentiating <a href="#eq-hk2" class="quarto-xref">Equation&nbsp;<span>6.16</span></a> w.r.t. <span class="math inline">\(k^2\)</span>, we find that:</p>
 <p><span id="eq-hmin"><span class="math display">\[
 k^2_{m} = \gamma \frac{d f_u + g_v}{2d} \;\; \Rightarrow \;\; h_{min} = \gamma^2 \left[ | J | - \frac{(df_u + g_v)^2}{4d} \right].
 \tag{6.18}\]</span></span></p>
@@ -1037,48 +1085,48 @@ k^2_{m} = \gamma \frac{d f_u + g_v}{2d} \;\; \Rightarrow \;\; h_{min} = \gamma^2
 <p><span class="math display">\[
 \frac{(df_u + g_v)^2}{4d} &gt; |J|.
 \]</span></p>
-<p>The transition from stability to instability i.e.&nbsp;<em>bifurcation</em>, occurs when <span class="math inline">\(h_{min} = 0\)</span>. From <a href="#eq-hmin">Equation&nbsp;<span>6.18</span></a>, this means at bifurcation we have <span id="eq-bif"><span class="math display">\[
+<p>The transition from stability to instability i.e.&nbsp;<em>bifurcation</em>, occurs when <span class="math inline">\(h_{min} = 0\)</span>. From <a href="#eq-hmin" class="quarto-xref">Equation&nbsp;<span>6.18</span></a>, this means at bifurcation we have <span id="eq-bif"><span class="math display">\[
 |J| = \frac{(df_u + g_v)^2}{4d}.
 \tag{6.19}\]</span></span></p>
-<p>For a fixed set of kinetics parameters, this means that we have a <em>critical diffusion coefficient</em> <span class="math inline">\(d_c(&gt;1)\)</span>, which, after re-arranging <a href="#eq-bif">Equation&nbsp;<span>6.19</span></a>, is the appropriate root of</p>
+<p>For a fixed set of kinetics parameters, this means that we have a <em>critical diffusion coefficient</em> <span class="math inline">\(d_c(&gt;1)\)</span>, which, after re-arranging <a href="#eq-bif" class="quarto-xref">Equation&nbsp;<span>6.19</span></a>, is the appropriate root of</p>
 <p><span id="eq-dcrit"><span class="math display">\[
 q(d_c) = d^2_c f_u^2 + 2( 2 f_v g_u - f_u g_v) d_c + g_v^2 =0.
 \tag{6.20}\]</span></span></p>
-<p>Finally, we note that using <a href="#eq-hmin">Equation&nbsp;<span>6.18</span></a>, <a href="#eq-bif">Equation&nbsp;<span>6.19</span></a>, the <em>critical wave number</em> can be written: <span id="eq-kcrit"><span class="math display">\[
+<p>Finally, we note that using <a href="#eq-hmin" class="quarto-xref">Equation&nbsp;<span>6.18</span></a>, <a href="#eq-bif" class="quarto-xref">Equation&nbsp;<span>6.19</span></a>, the <em>critical wave number</em> can be written: <span id="eq-kcrit"><span class="math display">\[
 k_c^2 =\gamma  \frac{( d_c f_u + g_v)} { 2 d_c} = \gamma \left[ \frac {|J|}{d_c} \right]^{1/2} = \gamma \left[ \frac{f_u g_v - f_v g_u}{d_c} \right]^{1/2}.
 \tag{6.21}\]</span></span></p>
-<p><a href="#fig-dispersion">Figure&nbsp;<span>6.5</span></a> (a) shows a schematic diagram of the (quadratic) function <span class="math inline">\(h(k^2)\)</span> for three different values of the diffusion coefficient <span class="math inline">\(d\)</span>:</p>
+<p><a href="#fig-dispersion" class="quarto-xref">Figure&nbsp;<span>6.5</span></a> (a) shows a schematic diagram of the (quadratic) function <span class="math inline">\(h(k^2)\)</span> for three different values of the diffusion coefficient <span class="math inline">\(d\)</span>:</p>
 <ul>
 <li><span class="math inline">\(d &lt; d_c, \; h(k^2) &gt; 0\)</span>, and there is no pattern;</li>
 <li><span class="math inline">\(d = d_c, \; h_{min} = 0\)</span>, critical case;</li>
 <li><span class="math inline">\(d &gt; d_c, \; h(k^2) &lt; 0\)</span>, and there is pattern.</li>
 </ul>
-<p>Hence we can see from <a href="#eq-spatial_eigenvalues">Equation&nbsp;<span>6.15</span></a> that whenever <span class="math inline">\(h(k^2) &lt; 0\)</span> the curve <span class="math inline">\(\lambda(k^2)\)</span> is positive for the same range of wavenumbers that make <span class="math inline">\(h(k^2)\)</span> negative. The range of unstable wavenumbers <span class="math display">\[
+<p>Hence we can see from <a href="#eq-spatial_eigenvalues" class="quarto-xref">Equation&nbsp;<span>6.15</span></a> that whenever <span class="math inline">\(h(k^2) &lt; 0\)</span> the curve <span class="math inline">\(\lambda(k^2)\)</span> is positive for the same range of wavenumbers that make <span class="math inline">\(h(k^2)\)</span> negative. The range of unstable wavenumbers <span class="math display">\[
 k^2_1 &lt; k^2 &lt; k^2_2
 \]</span></p>
-<p>can be found from the roots of <a href="#eq-hk2">Equation&nbsp;<span>6.16</span></a>, <span class="math inline">\(h(k^2) = 0\)</span>:</p>
+<p>can be found from the roots of <a href="#eq-hk2" class="quarto-xref">Equation&nbsp;<span>6.16</span></a>, <span class="math inline">\(h(k^2) = 0\)</span>:</p>
 <p><span id="eq-k2range"><span class="math display">\[
 \begin{aligned}
 k^2_1 &amp;= \gamma \frac{(df_u + g_v) - \left\{ (df_u + g_v)^2 -4d |J| \right\}^{1/2} }{2d} &lt; k^2  \\
 &amp;&lt; \gamma \frac{(df_u + g_v) +  \left\{ (df_u + g_v)^2 -4d |J| \right\}^{1/2}}{2d} = k^2_2
 \end{aligned}
 \tag{6.22}\]</span></span></p>
-<p><a href="#fig-dispersion">Figure&nbsp;<span>6.5</span></a> (b) shows a schematic diagram of <span class="math inline">\({\mathrm Re}\lambda (k^2)\)</span> for three different values of the diffusion coefficient <span class="math inline">\(d\)</span>:</p>
+<p><a href="#fig-dispersion" class="quarto-xref">Figure&nbsp;<span>6.5</span></a> (b) shows a schematic diagram of <span class="math inline">\({\mathrm Re}\lambda (k^2)\)</span> for three different values of the diffusion coefficient <span class="math inline">\(d\)</span>:</p>
 <ul>
-<li>$d &lt; d_c, ; <span class="math inline">\({\mathrm Re}\lambda (k^2)\)</span> &lt; 0, k^2 $, and there is no pattern;</li>
+<li><span class="math inline">\(d &lt; d_c\)</span>, ; $Re (k^2) &lt; 0, k^2 $, and there is no pattern;</li>
 <li><span class="math inline">\(d = d_c, \; k^2_c = 0\)</span>, critical case;</li>
 </ul>
 <p>The expression <span class="math inline">\(\lambda = \lambda (k^2)\)</span> is known as the <em>dispersion relation</em> and the plot of <span class="math inline">\({\mathrm Re} \lambda\)</span> against <span class="math inline">\(k^2\)</span> is known as the <em>dispersion curve</em>.</p>
-<p>From the previous analysis, within the unstable range of wavenumbers <span class="math inline">\((k^2_1 , k^2_2)\)</span>, <span class="math inline">\({\mathrm Re}\lambda (k^2) &gt; 0\)</span> has a <em>maximum value</em> at wavenumber <span class="math inline">\(k^2_m\)</span> given by <a href="#eq-hmin">Equation&nbsp;<span>6.18</span></a> when <span class="math inline">\(d &gt; d_c\)</span>. This implies that there is a <em>fastest growing mode</em> in the solution <a href="#eq-vxt">Equation&nbsp;<span>6.12</span></a> of our linearised system <a href="#eq-pp_4">Equation&nbsp;<span>6.9</span></a>.</p>
-<p>Recalling <a href="#eq-vxt">Equation&nbsp;<span>6.12</span></a>,<br>
+<p>From the previous analysis, within the unstable range of wavenumbers <span class="math inline">\((k^2_1 , k^2_2)\)</span>, <span class="math inline">\({\mathrm Re}\lambda (k^2) &gt; 0\)</span> has a <em>maximum value</em> at wavenumber <span class="math inline">\(k^2_m\)</span> given by <a href="#eq-hmin" class="quarto-xref">Equation&nbsp;<span>6.18</span></a> when <span class="math inline">\(d &gt; d_c\)</span>. This implies that there is a <em>fastest growing mode</em> in the solution <a href="#eq-vxt" class="quarto-xref">Equation&nbsp;<span>6.12</span></a> of our linearised system <a href="#eq-pp_4" class="quarto-xref">Equation&nbsp;<span>6.9</span></a>.</p>
+<p>Recalling <a href="#eq-vxt" class="quarto-xref">Equation&nbsp;<span>6.12</span></a>,<br>
 <span class="math display">\[
 V(x,t) = \sum_k C_k e^{\lambda(k^2) t} \, \psi_k(x),
 \]</span></p>
 <p>and noting the above analysis, this implies that as <span class="math inline">\(t\to \infty\)</span> the dominant contributions in the above sum are those for which <span class="math inline">\({\mathrm Re} \lambda(k^2) &gt; 0\)</span>, since all other modes will tend to zero exponentially fast as <span class="math inline">\(t\to \infty\)</span>. Thus, for large <span class="math inline">\(t\)</span>, the solution is effectively given by: <span class="math display">\[
 V(x,t) \approx \sum_{k_{1}}^{k_2} C_k e^{\lambda(k^2) t} \, \psi_k(x) \; .
 \]</span></p>
-<div class="cell" data-execution_count="3">
-<details>
+<div id="cell-fig-dispersion" class="cell" data-execution_count="3">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1172,26 +1220,34 @@ V(x,t) \approx \sum_{k_{1}}^{k_2} C_k e^{\lambda(k^2) t} \, \psi_k(x) \; .
 <span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-dispersion" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="DiffusionDrivenInstability_files/figure-html/fig-dispersion-output-1.png" width="621" height="436" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;6.4: A plot of <span class="math inline">\(h(k^2)\)</span> plotted against <span class="math inline">\(k^2\)</span>. Shaded region denotes unstable wave numbers in case of largets <span class="math inline">\(d\)</span>.</figcaption>
+<div id="fig-dispersion" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dispersion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="DiffusionDrivenInstability_files/figure-html/fig-dispersion-output-1.png" width="621" height="436" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dispersion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.4: A plot of <span class="math inline">\(h(k^2)\)</span> plotted against <span class="math inline">\(k^2\)</span>. Shaded region denotes unstable wave numbers in case of largets <span class="math inline">\(d\)</span>.
+</figcaption>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-dispersion" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="DiffusionDrivenInstability_files/figure-html/fig-dispersion-output-2.png" width="614" height="431" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;6.5: The real part of the eigenvalue plotted against <span class="math inline">\(k^2\)</span>.</figcaption>
+<div id="fig-dispersion" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dispersion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="DiffusionDrivenInstability_files/figure-html/fig-dispersion-output-2.png" width="614" height="431" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dispersion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.5: The real part of the eigenvalue plotted against <span class="math inline">\(k^2\)</span>.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p><strong>NOTE</strong></p>
-<p>All the previous calculations concern a <em>linear stability analysis</em> carried out about a spatially homogeneous steady state of the system <a href="#eq-pp">Equation&nbsp;<span>6.2</span></a>. This linear theory indicates that for <span class="math inline">\(d &gt; d_c\)</span> there exists a finite number of <em>linearly unstable</em> spatial eigenfunctions which grow exponentially as <span class="math inline">\(t \to \infty\)</span>. However, this linear theory holds only when we are close to the steady state i.e.&nbsp;it only holds for small perturbations. In the full <em>nonlinear system</em> the exponentially growing (unbounded) modes will eventually be bounded by the nonlinear terms and so bounded, stable spatial patterns characterised by the corresponding wavenumbers will be formed.</p>
+<p>All the previous calculations concern a <em>linear stability analysis</em> carried out about a spatially homogeneous steady state of the system <a href="#eq-pp" class="quarto-xref">Equation&nbsp;<span>6.2</span></a>. This linear theory indicates that for <span class="math inline">\(d &gt; d_c\)</span> there exists a finite number of <em>linearly unstable</em> spatial eigenfunctions which grow exponentially as <span class="math inline">\(t \to \infty\)</span>. However, this linear theory holds only when we are close to the steady state i.e.&nbsp;it only holds for small perturbations. In the full <em>nonlinear system</em> the exponentially growing (unbounded) modes will eventually be bounded by the nonlinear terms and so bounded, stable spatial patterns characterised by the corresponding wavenumbers will be formed.</p>
 <p><strong>Summary</strong></p>
-<p>We have obtained conditions for the generation of spatial patterns via systems of reaction-diffusion equations of the general form <a href="#eq-pp">Equation&nbsp;<span>6.2</span></a>. Such systems involve <em>two chemicals or morphogens</em> reacting and diffusing together to generate a chemical pre-pattern that underlies a subsequent cellular pattern. The four conditions are as follows:</p>
+<p>We have obtained conditions for the generation of spatial patterns via systems of reaction-diffusion equations of the general form <a href="#eq-pp" class="quarto-xref">Equation&nbsp;<span>6.2</span></a>. Such systems involve <em>two chemicals or morphogens</em> reacting and diffusing together to generate a chemical pre-pattern that underlies a subsequent cellular pattern. The four conditions are as follows:</p>
 <p><span id="eq-pattern_conditions"><span class="math display">\[
 \begin{aligned}
 f_u + g_v &amp;&lt; 0, \\
@@ -1202,7 +1258,7 @@ d f_u + g_v &amp;&gt; 0, \\
 \tag{6.23}\]</span></span></p>
 <p>with all partial derivatives being evaluated at the spatially homogeneous steady state <span class="math inline">\((u_0 , v_0)\)</span>.</p>
 <p>From the first and third conditions, <span class="math inline">\(d \neq 1\)</span> and <span class="math inline">\(f_u\)</span> and <span class="math inline">\(g_v\)</span> must be of different signs. For each of the reaction kinetics mentioned here (Schnakenberg, Gierer-Meinhardt, Thomas), we have that <span class="math inline">\(f_u &gt; 0, g_v &lt; 0\)</span> and so this implies that <span class="math inline">\(d &gt; 1\)</span>.</p>
-<p>If the conditions <a href="#eq-pattern_conditions">Equation&nbsp;<span>6.23</span></a> are satisfied, then there is a range of unstable wavenumbers given by <a href="#eq-k2range">Equation&nbsp;<span>6.22</span></a> which give rise to a spatial pattern. The spatial patterns which initially grow are those spatial eigenfunctions <span class="math inline">\(\psi_k(x)\)</span> whose wavenumbers <span class="math inline">\(k\)</span> are such that <span class="math inline">\(k_1 &lt; k &lt; k_2\)</span>.</p>
+<p>If the conditions <a href="#eq-pattern_conditions" class="quarto-xref">Equation&nbsp;<span>6.23</span></a> are satisfied, then there is a range of unstable wavenumbers given by <a href="#eq-k2range" class="quarto-xref">Equation&nbsp;<span>6.22</span></a> which give rise to a spatial pattern. The spatial patterns which initially grow are those spatial eigenfunctions <span class="math inline">\(\psi_k(x)\)</span> whose wavenumbers <span class="math inline">\(k\)</span> are such that <span class="math inline">\(k_1 &lt; k &lt; k_2\)</span>.</p>
 <p>In most biological systems, the kinetic parameters and diffusion coefficients are fixed. This means that the only variable parameter in the system is <span class="math inline">\(\gamma\)</span> which as we have seen is related to the size of the domain under consideration. This has implications when considering patterns on finite domains, as will be seen in the next section.</p>
 </section>
 </section>
@@ -1221,7 +1277,7 @@ d f_u + g_v &amp;&gt; 0, \\
 <h2 data-number="6.7" class="anchored" data-anchor-id="references"><span class="header-section-number">6.7</span> References</h2>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-gierer1972theory" class="csl-entry" role="listitem">
 <span>“A Theory of Biological Pattern Formation.”</span> 1972. <em>Kybernetik</em> 12: 30–39.
 </div>
@@ -1314,10 +1370,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1327,8 +1400,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1340,7 +1422,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1384,6 +1589,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1409,6 +1615,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1470,12 +1702,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./BacterialChemotaxis.html" class="pagination-link">
+      <a href="./BacterialChemotaxis.html" class="pagination-link" aria-label="Aggregation via chemotaxis">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Aggregation via chemotaxis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./SIR_PDE.html" class="pagination-link">
+      <a href="./SIR_PDE.html" class="pagination-link" aria-label="Infectious disease">
         <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Infectious disease</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1484,4 +1716,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

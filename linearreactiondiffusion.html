@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -99,6 +106,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
 
 <body class="nav-sidebar floating">
@@ -107,12 +141,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./linearreactiondiffusion.html">Single species</a></li><li class="breadcrumb-item"><a href="./linearreactiondiffusion.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linear reaction diffusion equations</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./linearreactiondiffusion.html">Single species</a></li><li class="breadcrumb-item"><a href="./linearreactiondiffusion.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linear reaction diffusion equations</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -122,13 +156,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">MA42002</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/dundeemath/MA42002/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./MA42002.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="https://github.com/dundeemath/MA42002/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./MA42002.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -235,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -256,12 +290,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#speed-of-a-wave-of-invasion" id="toc-speed-of-a-wave-of-invasion" class="nav-link" data-scroll-target="#speed-of-a-wave-of-invasion"><span class="header-section-number">2.2.2</span> Speed of a wave of invasion</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./linearreactiondiffusion.html">Single species</a></li><li class="breadcrumb-item"><a href="./linearreactiondiffusion.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linear reaction diffusion equations</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linear reaction diffusion equations</span></h1>
 </div>
@@ -276,7 +310,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p>We will now consider equations (and systems of such equations) of the general form:</p>
 <p><span class="math display">\[
@@ -302,8 +338,8 @@ c(x_0 , 0) = \delta_0(x)\qquad x \in \mathbb R,
 <p>It can be shown that the sequence of functions <span class="math inline">\(\{ \phi_\varepsilon(x) \}\)</span> given by <span class="math display">\[
 \frac 1{\varepsilon \sqrt{\pi} } e^{ - \frac{x^2}{ \varepsilon^2}}
 \]</span></p>
-<div class="cell" data-execution_count="1">
-<details>
+<div id="cell-fig-approxdelta" class="cell" data-execution_count="1">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
@@ -336,16 +372,20 @@ c(x_0 , 0) = \delta_0(x)\qquad x \in \mathbb R,
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-approxdelta" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="linearreactiondiffusion_files/figure-html/fig-approxdelta-output-1.png" width="575" height="411" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.1: Approximation of Dirac delta function.</figcaption>
+<div id="fig-approxdelta" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-approxdelta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="linearreactiondiffusion_files/figure-html/fig-approxdelta-output-1.png" width="575" height="411" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-approxdelta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Approximation of Dirac delta function.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>converges to <span class="math inline">\(\delta_0(x)\)</span> as <span class="math inline">\(\varepsilon \to 0\)</span> (in the sense of distributions or generalized functions).</p>
-<p>Then for the diffusion <a href="#eq-heat_eq">Equation&nbsp;<span>2.2</span></a> with initial condition <a href="#eq-heat_IC">Equation&nbsp;<span>2.3</span></a>, it can be shown that the explicit (analytic) solution is given by <span id="eq-fund_sol"><span class="math display">\[
+<p>Then for the diffusion <a href="#eq-heat_eq" class="quarto-xref">Equation&nbsp;<span>2.2</span></a> with initial condition <a href="#eq-heat_IC" class="quarto-xref">Equation&nbsp;<span>2.3</span></a>, it can be shown that the explicit (analytic) solution is given by <span id="eq-fund_sol"><span class="math display">\[
 c(x, t) = \frac1{\sqrt{4 \pi D t}} \exp \left( - \frac{ x^2}{ 4Dt} \right).
 \tag{2.4}\]</span></span></p>
 <p>This is known as the <em>fundamental</em> solution of the diffusion equation in <span class="math inline">\(\mathbb R\)</span>.</p>
@@ -358,9 +398,9 @@ c(x,t) =  \frac 1{(4 \pi D t)^{n/2}} \exp \left( - \frac{ (x_{1}^{2} + x_{2}^{2}
 </section>
 <section id="numerical-solution" class="level3" data-number="2.1.2">
 <h3 data-number="2.1.2" class="anchored" data-anchor-id="numerical-solution"><span class="header-section-number">2.1.2</span> Numerical solution</h3>
-<p>In <a href="#fig-diffusionpde">Figure&nbsp;<span>2.3</span></a> we compute a numerical solution of the diffusion equation and compare it with the exact solution given by <a href="#eq-fund_sol">Equation&nbsp;<span>2.4</span></a>.</p>
-<div class="cell" data-execution_count="2">
-<details>
+<p>In <a href="#fig-diffusionpde" class="quarto-xref">Figure&nbsp;<span>2.3</span></a> we compute a numerical solution of the diffusion equation and compare it with the exact solution given by <a href="#eq-fund_sol" class="quarto-xref">Equation&nbsp;<span>2.4</span></a>.</p>
+<div id="cell-fig-diffusionpde" class="cell" data-execution_count="2">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
@@ -438,18 +478,26 @@ c(x,t) =  \frac 1{(4 \pi D t)^{n/2}} \exp \left( - \frac{ (x_{1}^{2} + x_{2}^{2}
 <span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-diffusionpde" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="linearreactiondiffusion_files/figure-html/fig-diffusionpde-output-1.png" width="589" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.2: Numerical solution of diffusion equation.</figcaption>
+<div id="fig-diffusionpde" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diffusionpde-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="linearreactiondiffusion_files/figure-html/fig-diffusionpde-output-1.png" width="589" height="429" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diffusionpde-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Numerical solution of diffusion equation.
+</figcaption>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-diffusionpde" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="linearreactiondiffusion_files/figure-html/fig-diffusionpde-output-2.png" width="589" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.3: Exact solution of diffusion equation.</figcaption>
+<div id="fig-diffusionpde" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diffusionpde-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="linearreactiondiffusion_files/figure-html/fig-diffusionpde-output-2.png" width="589" height="429" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diffusionpde-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: Exact solution of diffusion equation.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -492,9 +540,9 @@ c(\frac{L}{2})=\frac{C_0}{2}.
 \]</span> Similarly, the probability of hopping a distance <span class="math inline">\(\Delta x\)</span> to the left is <span class="math display">\[
 \lambda_L \Delta t.
 \]</span></p>
-<p>In <a href="#fig-randomwalksim">Figure&nbsp;<span>2.4</span></a> results from a simulation of 400 random walkers is presented. Each particle is initialised at the origin and can move one step left or right with equal probability at every time step of the simulation. As time evolves the particle density (histogram) disperses. The normalised particle density appears to be well described by the solution of the diffusion equation (see solid lines, <a href="#eq-fund_sol">Equation&nbsp;<span>2.4</span></a>).</p>
-<div class="cell" data-execution_count="3">
-<details>
+<p>In <a href="#fig-randomwalksim" class="quarto-xref">Figure&nbsp;<span>2.4</span></a> results from a simulation of 400 random walkers is presented. Each particle is initialised at the origin and can move one step left or right with equal probability at every time step of the simulation. As time evolves the particle density (histogram) disperses. The normalised particle density appears to be well described by the solution of the diffusion equation (see solid lines, <a href="#eq-fund_sol" class="quarto-xref">Equation&nbsp;<span>2.4</span></a>).</p>
+<div id="cell-fig-randomwalksim" class="cell" data-execution_count="3">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This code simulates random walk of a large number of particles and compares distribution in space with a solution of the diffusion equation </span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -583,10 +631,14 @@ c(\frac{L}{2})=\frac{C_0}{2}.
 <span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-randomwalksim" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="linearreactiondiffusion_files/figure-html/fig-randomwalksim-output-1.png" width="661" height="467" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.4: Numerical implementation of random walk</figcaption>
+<div id="fig-randomwalksim" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-randomwalksim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="linearreactiondiffusion_files/figure-html/fig-randomwalksim-output-1.png" width="661" height="467" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-randomwalksim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.4: Numerical implementation of random walk
+</figcaption>
 </figure>
 </div>
 </div>
@@ -636,14 +688,14 @@ D=\lambda (\Delta x )^2
 <p><strong>Recall</strong> The normal distribution function in one-dimension with zero mean and variance <span class="math inline">\(\sigma^2\)</span> is given by</p>
 <p><span class="math display">\[
 N(0, \sigma^2) \sim \frac 1 { \sqrt{ 2 \pi \sigma^2}} \exp \left( - \frac{x^2}{ 2 \sigma^2}\right).
-\]</span> Examining the formula for the fundamental solution of the diffusion <a href="#eq-fund_sol">Equation&nbsp;<span>2.4</span></a> in one-dimension, we see by inspection that the probability density function of the position of a particle performing a random walk in one-dimension starting at the origin is normally distributed with mean zero and variance <span class="math display">\[
+\]</span> Examining the formula for the fundamental solution of the diffusion <a href="#eq-fund_sol" class="quarto-xref">Equation&nbsp;<span>2.4</span></a> in one-dimension, we see by inspection that the probability density function of the position of a particle performing a random walk in one-dimension starting at the origin is normally distributed with mean zero and variance <span class="math display">\[
 \sigma^2 = 2 D t.
 \]</span></p>
 </section>
 </section>
 <section id="linear-reaction-diffusion-equations" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="linear-reaction-diffusion-equations"><span class="header-section-number">2.2</span> Linear reaction-diffusion equations</h2>
-<p>Consider now the linear reaction term: <span class="math inline">\(f(c) = \rho c\)</span>, so that <a href="#eq-general1Drd">Equation&nbsp;<span>2.1</span></a> takes the form <span id="eq-lin_re_eq"><span class="math display">\[
+<p>Consider now the linear reaction term: <span class="math inline">\(f(c) = \rho c\)</span>, so that <a href="#eq-general1Drd" class="quarto-xref">Equation&nbsp;<span>2.1</span></a> takes the form <span id="eq-lin_re_eq"><span class="math display">\[
 \frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}   + \rho \, c, \quad x\in \mathbb R, \, \, t &gt;0,
 \tag{2.5}\]</span></span> where <span class="math inline">\(\rho \in \mathbb R\)</span> is a constant.</p>
 <p>Once again we consider the initial condition to be concentrated at the origin: <span id="eq-lin_re_eq_ic"><span class="math display">\[
@@ -653,13 +705,13 @@ c(0,x) = \delta_0(x).
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="exact-solution"><span class="header-section-number">2.2.1</span> Exact solution</h3>
 <p>By considering a <em>separation of variables</em> approach, i.e.&nbsp;making the <em>ansatz</em> <span class="math display">\[
 c(x,t) = w(t) \tilde c(x,t),
-\]</span> it can be shown (<strong>Exercise</strong>) that the explicit solution for the linear reaction-diffusion <a href="#eq-lin_re_eq">Equation&nbsp;<span>2.5</span></a> with initial condition <a href="#eq-lin_re_eq_ic">Equation&nbsp;<span>2.6</span></a> is given by</p>
+\]</span> it can be shown (<strong>Exercise</strong>) that the explicit solution for the linear reaction-diffusion <a href="#eq-lin_re_eq" class="quarto-xref">Equation&nbsp;<span>2.5</span></a> with initial condition <a href="#eq-lin_re_eq_ic" class="quarto-xref">Equation&nbsp;<span>2.6</span></a> is given by</p>
 <p><span class="math display">\[
 c(x,t) = \frac1{\sqrt{4 \pi D t}} \exp \left(\rho t - \frac{x^2}{ 4Dt} \right).
 \]</span></p>
-<p>In <a href="#fig-diffusionlinearsource">Figure&nbsp;<span>2.6</span></a> we compare numerical and exact solutions of <a href="#eq-lin_re_eq">Equation&nbsp;<span>2.5</span></a>.</p>
-<div class="cell" data-execution_count="4">
-<details>
+<p>In <a href="#fig-diffusionlinearsource" class="quarto-xref">Figure&nbsp;<span>2.6</span></a> we compare numerical and exact solutions of <a href="#eq-lin_re_eq" class="quarto-xref">Equation&nbsp;<span>2.5</span></a>.</p>
+<div id="cell-fig-diffusionlinearsource" class="cell" data-execution_count="4">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
@@ -729,18 +781,26 @@ c(x,t) = \frac1{\sqrt{4 \pi D t}} \exp \left(\rho t - \frac{x^2}{ 4Dt} \right).
 <span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-diffusionlinearsource" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="linearreactiondiffusion_files/figure-html/fig-diffusionlinearsource-output-1.png" width="571" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.5: Numerical solution of linear reaction diffusion equation</figcaption>
+<div id="fig-diffusionlinearsource" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diffusionlinearsource-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="linearreactiondiffusion_files/figure-html/fig-diffusionlinearsource-output-1.png" width="571" height="429" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diffusionlinearsource-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.5: Numerical solution of linear reaction diffusion equation
+</figcaption>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-diffusionlinearsource" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="linearreactiondiffusion_files/figure-html/fig-diffusionlinearsource-output-2.png" width="571" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.6: Exact solution of linear reaction diffusion equation</figcaption>
+<div id="fig-diffusionlinearsource" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diffusionlinearsource-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="linearreactiondiffusion_files/figure-html/fig-diffusionlinearsource-output-2.png" width="571" height="429" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diffusionlinearsource-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.6: Exact solution of linear reaction diffusion equation
+</figcaption>
 </figure>
 </div>
 </div>
@@ -755,7 +815,7 @@ c(x,t) = \frac1{\sqrt{4 \pi D t}} \exp \left(\rho t - \frac{x^2}{ 4Dt} \right).
 <p>with initial condition <span id="eq-muskrats_eq_in"><span class="math display">\[
 u({\mathbf{x}}, 0) = M \delta_0({\mathbf{x}}), \quad {\mathbf{x}} \in \mathbb R^2.
 \tag{2.8}\]</span></span></p>
-<p>It can be shown that the solution of <a href="#eq-muskrats_eq">Equation&nbsp;<span>2.7</span></a> with initial conditions given by <a href="#eq-muskrats_eq_in">Equation&nbsp;<span>2.8</span></a> is:</p>
+<p>It can be shown that the solution of <a href="#eq-muskrats_eq" class="quarto-xref">Equation&nbsp;<span>2.7</span></a> with initial conditions given by <a href="#eq-muskrats_eq_in" class="quarto-xref">Equation&nbsp;<span>2.8</span></a> is:</p>
 <p><span class="math display">\[
 u({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ |{\mathbf{x}} |^2}{ 4Dt} \right)\; = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ (x_{1}^{2} + x_{2}^{2})}{4Dt} \right).
 \]</span></p>
@@ -765,7 +825,7 @@ u({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ r^2}{ 4Dt} \r
 \]</span></p>
 <p>From the properties of the fundamental solution, the wave of invasion extends all the way to infinity for any <span class="math inline">\(t&gt;0\)</span>. For practical purposes, we have to define the front of the wave.</p>
 <p>Consider that there is some detection threshold for the muskrats i.e.&nbsp;some predetermined small value of the density <span class="math inline">\(u_1\)</span>, say, such that any changes in density for <span class="math inline">\(u &lt;u_1\)</span> cannot be detected.</p>
-<p>Because of the symmetry of the problem, then the leading edge of the invading wave front of muskrats is the circle of radius <span class="math inline">\(r=r_1(t)\)</span> where <span class="math inline">\(u=u_1\)</span>, i.e.&nbsp;from the explicit solution of <a href="#eq-muskrats_eq">Equation&nbsp;<span>2.7</span></a></p>
+<p>Because of the symmetry of the problem, then the leading edge of the invading wave front of muskrats is the circle of radius <span class="math inline">\(r=r_1(t)\)</span> where <span class="math inline">\(u=u_1\)</span>, i.e.&nbsp;from the explicit solution of <a href="#eq-muskrats_eq" class="quarto-xref">Equation&nbsp;<span>2.7</span></a></p>
 <p><span class="math display">\[
 u_1({\mathbf{x}}, t) = \frac M{4 \pi D t} \exp \left(\rho t - \frac{ r_1^2}{ 4Dt} \right).
 \]</span></p>
@@ -864,10 +924,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -877,8 +954,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -890,7 +976,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -934,6 +1143,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -959,6 +1169,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1020,12 +1256,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./conservationequations.html" class="pagination-link">
+      <a href="./conservationequations.html" class="pagination-link" aria-label="Conservation equations">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Conservation equations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./nonlinearreactiondiffusion.html" class="pagination-link">
+      <a href="./nonlinearreactiondiffusion.html" class="pagination-link" aria-label="Travelling waves in nonlinear reaction diffusion equations">
         <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Travelling waves in nonlinear reaction diffusion equations</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1034,4 +1270,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

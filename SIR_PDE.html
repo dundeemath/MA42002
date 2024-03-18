@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,6 +62,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -65,6 +72,33 @@ ul.task-list li input[type="checkbox"] {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
 
 <body class="nav-sidebar floating">
@@ -73,12 +107,12 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html">Multi species</a></li><li class="breadcrumb-item"><a href="./SIR_PDE.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Infectious disease</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html">Multi species</a></li><li class="breadcrumb-item"><a href="./SIR_PDE.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Infectious disease</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -88,13 +122,13 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">MA42002</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/dundeemath/MA42002/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./MA42002.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="https://github.com/dundeemath/MA42002/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./MA42002.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -201,23 +235,26 @@ ul.task-list li input[type="checkbox"] {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#generalising-the-sir-model" id="toc-generalising-the-sir-model" class="nav-link active" data-scroll-target="#generalising-the-sir-model"><span class="header-section-number">7.1</span> Generalising the SIR model</a></li>
+  <li><a href="#generalising-the-sir-model" id="toc-generalising-the-sir-model" class="nav-link active" data-scroll-target="#generalising-the-sir-model"><span class="header-section-number">7.1</span> Generalising the SIR model</a>
+  <ul class="collapse">
+  <li><a href="#the-leading-edge-of-the-epidemic-front" id="toc-the-leading-edge-of-the-epidemic-front" class="nav-link" data-scroll-target="#the-leading-edge-of-the-epidemic-front"><span class="header-section-number">7.1.1</span> The leading edge of the epidemic front</a></li>
+  </ul></li>
   <li><a href="#spatial-spread-of-rabies-among-foxes" id="toc-spatial-spread-of-rabies-among-foxes" class="nav-link" data-scroll-target="#spatial-spread-of-rabies-among-foxes"><span class="header-section-number">7.2</span> Spatial spread of rabies among foxes</a></li>
   <li><a href="#generalisation-of-simple-sir-model" id="toc-generalisation-of-simple-sir-model" class="nav-link" data-scroll-target="#generalisation-of-simple-sir-model"><span class="header-section-number">7.3</span> Generalisation of simple SIR model</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./LotkaVolteraPDE.html">Multi species</a></li><li class="breadcrumb-item"><a href="./SIR_PDE.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Infectious disease</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Infectious disease</span></h1>
 </div>
@@ -232,7 +269,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <p>Mathematical modelling of infectious diseases can help to understand complex (nonlinear) interactions, to design vaccination strategies, predict further outbreaks of diseases, how many individual will be affected.</p>
 <!--
@@ -280,77 +319,82 @@ S(0,x) &amp;= S_0(x), \qquad I(0,x) = I_0(x), \quad R(0,x) = R_0(x), \qquad x \i
 <li><span class="math inline">\(r&gt;0\)</span> – transmission or infection rate</li>
 <li><span class="math inline">\(D_S&gt;0\)</span>, ; <span class="math inline">\(D_I&gt;0\)</span>, ; <span class="math inline">\(D_R&gt;0\)</span> – diffusion coefficients</li>
 </ul>
-<p>We assume that <span class="math inline">\(S_0(x) \geq 0\)</span>, <span class="math inline">\(I_0(x) \geq 0\)</span>, <span class="math inline">\(R_0(x) \geq 0\)</span> for <span class="math inline">\(x \in \mathbb R\)</span> and obtain that solutions of <a href="#eq-sirpde">Equation&nbsp;<span>7.1</span></a> are nonnegative, i.e.&nbsp;<span class="math display">\[
+<p>We assume that <span class="math inline">\(S_0(x) \geq 0\)</span>, <span class="math inline">\(I_0(x) \geq 0\)</span>, <span class="math inline">\(R_0(x) \geq 0\)</span> for <span class="math inline">\(x \in \mathbb R\)</span> and obtain that solutions of <a href="#eq-sirpde" class="quarto-xref">Equation&nbsp;<span>7.1</span></a> are nonnegative, i.e.&nbsp;<span class="math display">\[
 S(t,x) \geq 0, \quad I(t,x) \geq 0, \quad R(t,x) \geq 0, \quad  x\in \mathbb R, \quad t &gt;0 \; .
 \]</span></p>
-<p>To analyse the model <a href="#eq-sirpde">Equation&nbsp;<span>7.1</span></a> it is sufficient to consider the first two equations, since <span class="math inline">\(R\)</span> is completely determined by <span class="math inline">\(I\)</span> and does not influence the dynamics of <span class="math inline">\(S\)</span> and <span class="math inline">\(I\)</span>.</p>
+<p>To analyse the model <a href="#eq-sirpde" class="quarto-xref">Equation&nbsp;<span>7.1</span></a> it is sufficient to consider the first two equations, since <span class="math inline">\(R\)</span> is completely determined by <span class="math inline">\(I\)</span> and does not influence the dynamics of <span class="math inline">\(S\)</span> and <span class="math inline">\(I\)</span>.</p>
 <p>Considering the non-dimensionalisation <span class="math display">\[
-I^\ast = \frac I{\bar S_0} , \quad S^\ast = \frac S{\bar S_0} ,  \quad x^\ast = \left(\frac{ r \bar S_0}{D_I} \right)^{1/2} x, \quad t^\ast = r \bar S_0 t
-\]</span> we obtain ( after dropping <span class="math inline">\(`\ast'\)</span>)</p>
+i = \frac I{\bar S_0} , s= \frac S{\bar S_0} ,  \quad x^\ast = \left(\frac{ r \bar S_0}{D_I} \right)^{1/2} x, \quad t^\ast = r \bar S_0 t
+\]</span> we obtain</p>
 <p><span class="math display">\[
 \begin{aligned}
-&amp; \frac{\partial S}{\partial t} = -  SI + d \frac{ \partial^2 S}{\partial x^2}\; , &amp; \qquad x \in \mathbb R , \; t&gt;0 \; , \\
-&amp; \frac{\partial I}{\partial t} = SI - \mu I+  \frac{ \partial^2 I}{\partial x^2} \; ,  &amp; \qquad x \in \mathbb R , \; t&gt;0 \; , \\
-&amp; S(0,x) = \frac{S_0(x)}{\bar S_0}, \qquad I(0,x) = \frac{I_0(x)}{\bar S_0},  &amp; \quad x \in \mathbb R \; ,
+&amp; \frac{\partial s}{\partial \tau} = -  si + d \frac{ \partial^2 s}{\partial x^2}\; , &amp; \qquad x \in \mathbb R , \; t&gt;0 \; , \\
+&amp; \frac{\partial i}{\partial \tau} = si - \mu i+  \frac{ \partial^2 i}{\partial x^2} \; ,  &amp; \qquad x \in \mathbb R , \; t&gt;0 \; , \\
+&amp; s(x,0) = \frac{S_0(x)}{\bar S_0}, \qquad i(x,0) = \frac{I_0(x)}{\bar S_0},  &amp; \quad x \in \mathbb R \; ,
 \end{aligned}
 \]</span> where <span class="math inline">\(\bar S_0\)</span> is a representative population density and <span class="math inline">\(\mu = a /{ r \bar S_0}\)</span>.</p>
 <p>We would like to investigate the spatial spread of an epidemic wave of infectives into a uniform susceptibles population <span class="math inline">\(S_0(x) =\bar S_0\)</span>. We would like to determine conditions for existence of an epidemic wave and propagation speed.</p>
 <p>We shall assume first that <span class="math inline">\(D_S= D_I\)</span>, i.e.&nbsp;<span class="math inline">\(d=1\)</span>. Consider travelling wave solutions <span class="math display">\[
-S(t,x) = s(z), \quad I(t,x) = i(z), \quad z = x - v t, \quad v &gt;0
+s(x,t) = \bar{s}(z), \quad i(x,t) = \bar{i}(z), \quad z = x - v t, \quad v &gt;0
 \]</span> and obtain following ODEs for <span class="math inline">\(s\)</span> and <span class="math inline">\(i\)</span> <span id="eq-sir_tw"><span class="math display">\[
 \begin{aligned}
-s^{\prime \prime} + v s^\prime - i s = 0 \; , \\
-i^{\prime \prime} + v i^\prime + i s - \mu i= 0\; .
+\bar{s}^{\prime \prime} + v \bar{s}^\prime - \bar{i}\bar{s} = 0 \; , \\
+\bar{i}^{\prime \prime} + v \bar{i}^\prime + \bar{i}\bar{s} - \mu \bar{i}= 0\; .
 \end{aligned}
 \tag{7.2}\]</span></span></p>
-<p>We would like to analyse the existence of a travelling wave from for <span class="math inline">\(S\)</span> and travelling wave pulse for <span class="math inline">\(I\)</span>. We assume that the infection comes into susceptible population from the left.</p>
+<p>We would like to analyse the existence of a travelling wave from for <span class="math inline">\(s\)</span> and travelling wave pulse for <span class="math inline">\(i\)</span>. We assume that the infection comes into susceptible population from the left.</p>
 <p>Therefore we consider the following boundary conditions for the travelling wave solutions</p>
 <p><span id="eq-sir_tw_bc"><span class="math display">\[
 \begin{aligned}
-s(z) \to 1 \qquad  z\to + \infty, \quad \qquad  i(z) \to 0 \qquad  z\to + \infty\; ,\\
-s(z) \to \sigma \qquad  z\to - \infty, \quad \qquad  i(z) \to 0 \qquad  z\to - \infty\; ,\\
-s^\prime(z) \to 0\qquad  z\to \pm \infty, \quad \qquad i^\prime(z) \to 0 \qquad z \to \pm \infty \; ,
+\bar{s}(z) \to 1 \qquad  z\to + \infty, \quad \qquad  \bar{i}(z) \to 0 \qquad  z\to + \infty\; ,\\
+\bar{s}(z) \to \sigma \qquad  z\to - \infty, \quad \qquad  \bar{i}(z) \to 0 \qquad  z\to - \infty\; ,\\
+\bar{s}^\prime(z) \to 0\qquad  z\to \pm \infty, \quad \qquad \bar{i}^\prime(z) \to 0 \qquad z \to \pm \infty \; ,
 \end{aligned}
 \tag{7.3}\]</span></span> where <span class="math inline">\(0 \leq \sigma &lt;1\)</span>.</p>
-<p>The steady states of <a href="#eq-sir_tw">Equation&nbsp;<span>7.2</span></a> are given by <span class="math display">\[
+<p>For notational convenience the barred notation is now dropped.</p>
+<p>The steady states of <a href="#eq-sir_tw" class="quarto-xref">Equation&nbsp;<span>7.2</span></a> are given by <span class="math display">\[
 is =0 , \quad i ( s- \mu) = 0  \quad \Longrightarrow \quad \ i=0, \quad s = \text{const}.
-\]</span> Considering boundary conditions <a href="#eq-sir_tw_bc">Equation&nbsp;<span>7.3</span></a> we obtain two steady states <span class="math display">\[
-(s_0, i_0) = ( 1, 0), \qquad (s_0, i_0) = (\sigma, 0)
+\]</span></p>
+<p>Considering boundary conditions <a href="#eq-sir_tw_bc" class="quarto-xref">Equation&nbsp;<span>7.3</span></a> we obtain two steady states <span class="math display">\[
+(s^*, i^*) = ( 1, 0), \qquad (s^*, i^*) = (\sigma, 0)
 \]</span> Hence we would like to have a heteroclinic connection between <span class="math inline">\((\sigma , 0)\)</span> and <span class="math inline">\((1,0)\)</span>.</p>
-<p>The necessary condition for existence of travelling wave solutions satisfying <a href="#eq-sir_tw">Equation&nbsp;<span>7.2</span></a> and <a href="#eq-sir_tw_bc">Equation&nbsp;<span>7.3</span></a> is</p>
+<p>By imposing the constraint that (0,0) cannot a spiral, a necessary condition for existence of travelling wave solutions satisfying <a href="#eq-sir_tw" class="quarto-xref">Equation&nbsp;<span>7.2</span></a> and <a href="#eq-sir_tw_bc" class="quarto-xref">Equation&nbsp;<span>7.3</span></a> is</p>
 <p><span id="eq-cond_v_sir"><span class="math display">\[
 v \geq 2 \sqrt{ 1- \mu} \, \quad \text{ and } \quad 0 \leq \mu &lt; 1\; .  
 \tag{7.4}\]</span></span></p>
 <p>In terms of original parameters we have <span class="math display">\[
 \mu = \frac a { r S_0} &lt; 1.
-\]</span> This is the necessary threshold conditions for the propagation of an epidemic wave pulse. The condition <a href="#eq-cond_v_sir">Equation&nbsp;<span>7.4</span></a> determine also the non-dimensionalised minimal wave speed <span class="math display">\[
+\]</span> This is the necessary threshold conditions for the propagation of an epidemic wave pulse. The condition <a href="#eq-cond_v_sir" class="quarto-xref">Equation&nbsp;<span>7.4</span></a> determine also the non-dimensionalised minimal wave speed <span class="math display">\[
 v^\ast_{\text{min}} = 2\sqrt{ 1- \mu}
 \]</span></p>
 <p>In dimensional terms we obtain <span class="math display">\[
-z^\ast = x^\ast - v^\ast t^\ast = \left( \frac { r S_0} {D_I} \right)^{1/} x - v^\ast r S_0 t  =
-\left( \frac { r S_0} {D_I} \right)^{1/} ( x - v t) = \left( \frac { r S_0} {D_I} \right)^{1/} z
+z^\ast = x^\ast - v^\ast t^\ast = \left( \frac { r S_0} {D_I} \right)^{1/2} x - v^\ast r S_0 t  =
+\left( \frac { r S_0} {D_I} \right)^{1/2} ( x - v t) = \left( \frac { r S_0} {D_I} \right)^{1/2} z
 \]</span> and <span class="math display">\[
 v = \sqrt{ r S_0 D_I} v^\ast \quad v_{\text{min}} = 2  \sqrt{ r S_0 D_I}\sqrt{ 1- \mu} =
 2  \sqrt{ r S_0 D_I}\sqrt{ 1- \frac a{ r S_0} }
 \]</span></p>
+<section id="the-leading-edge-of-the-epidemic-front" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="the-leading-edge-of-the-epidemic-front"><span class="header-section-number">7.1.1</span> The leading edge of the epidemic front</h3>
 <p>We can analyse the behaviour of travelling wave solutions as <span class="math inline">\(z \to + \infty\)</span>.</p>
-<p>Linearised equation for the second equation in <a href="#eq-sir_tw">Equation&nbsp;<span>7.2</span></a> near <span class="math inline">\(s=1\)</span>, <span class="math inline">\(i=0\)</span>, i.e.&nbsp;as <span class="math inline">\(z \to + \infty\)</span> reads <span class="math display">\[
+<p>Linearised equation for the second equation in <a href="#eq-sir_tw" class="quarto-xref">Equation&nbsp;<span>7.2</span></a> near <span class="math inline">\(s=1\)</span>, <span class="math inline">\(i=0\)</span>, i.e.&nbsp;as <span class="math inline">\(z \to + \infty\)</span> reads <span class="math display">\[
 i^{\prime \prime} + v i^\prime + i  - \mu i = 0\; .
 \]</span> Thus</p>
 <p><span id="eq-i_tw_infty"><span class="math display">\[
 i(z) \sim \exp \left(\frac 1 2 \left[ - v \pm \sqrt{ v^2 - 4(1-\mu)} \right] z \right) \quad \text{ as } z \to + \infty \; .
-\tag{7.5}\]</span></span> We can also show that the travelling wave solution <span class="math inline">\(s(z)\)</span> can not have a local maximum, since for <span class="math inline">\(s^\prime(z) = 0\)</span> first equation in <a href="#eq-sir_tw">Equation&nbsp;<span>7.2</span></a> implies <span class="math display">\[
+\tag{7.5}\]</span></span> We can also show that the travelling wave solution <span class="math inline">\(s(z)\)</span> can not have a local maximum, since for <span class="math inline">\(s^\prime(z) = 0\)</span> first equation in <a href="#eq-sir_tw" class="quarto-xref">Equation&nbsp;<span>7.2</span></a> implies <span class="math display">\[
 s^{\prime \prime}(z) = is &gt;0,
 \]</span> which implies a local minimum. So <span class="math inline">\(s(z)\)</span> is monotone increasing.</p>
-<p>Considering linearisation of the first equation in <a href="#eq-sir_tw">Equation&nbsp;<span>7.2</span></a> near <span class="math inline">\(s=1\)</span>, <span class="math inline">\(i=0\)</span>, i.e.&nbsp;as <span class="math inline">\(z \to + \infty\)</span>, we obtain with <span class="math inline">\(s(z) = 1 - \tilde s(z)\)</span> <span class="math display">\[
+<p>Considering linearisation of the first equation in <a href="#eq-sir_tw" class="quarto-xref">Equation&nbsp;<span>7.2</span></a> near <span class="math inline">\(s=1\)</span>, <span class="math inline">\(i=0\)</span>, i.e.&nbsp;as <span class="math inline">\(z \to + \infty\)</span>, we obtain with <span class="math inline">\(s(z) = 1 - \tilde s(z)\)</span> <span class="math display">\[
 \tilde s^{\prime \prime} + v \tilde s^{\prime} - i = 0 \; .
-\]</span> The using <a href="#eq-i_tw_infty">Equation&nbsp;<span>7.5</span></a> we can conclude that</p>
+\]</span> The using <a href="#eq-i_tw_infty" class="quarto-xref">Equation&nbsp;<span>7.5</span></a> we can conclude that</p>
 <p><span id="eq-tilde_s_tw_infty"><span class="math display">\[
 \tilde s(z) \sim \exp \left(\frac 1 2 \left[ - v \pm \sqrt{ v^2 - 4(1-\mu)} \right] z \right) \quad \text{ as } z \to + \infty \; .
 \tag{7.6}\]</span></span> and</p>
 <p><span id="eq-s_tw_infty"><span class="math display">\[
 s(z) \sim 1 - C \exp \left(\frac 1 2 \left[ - v \pm \sqrt{ v^2 - 4(1-\mu)} \right] z \right) \quad \text{ as } z \to + \infty \; .
 \tag{7.7}\]</span></span></p>
+</section>
 </section>
 <section id="spatial-spread-of-rabies-among-foxes" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="spatial-spread-of-rabies-among-foxes"><span class="header-section-number">7.2</span> Spatial spread of rabies among foxes</h2>
@@ -363,7 +407,7 @@ s(z) \sim 1 - C \exp \left(\frac 1 2 \left[ - v \pm \sqrt{ v^2 - 4(1-\mu)} \righ
 &amp; S(0,x) = 1, \qquad I(0,x) = \frac{I_0}{\bar S_0},  &amp; \quad x \in \mathbb R \; ,
 \end{aligned}
 \tag{7.8}\]</span></span></p>
-<p>We shall look for travelling wave solutions of <a href="#eq-sir3">Equation&nbsp;<span>7.8</span></a>: travelling wave front for <span class="math inline">\(S\)</span> and travelling wave pulse for <span class="math inline">\(I\)</span>. Considering <span class="math display">\[
+<p>We shall look for travelling wave solutions of <a href="#eq-sir3" class="quarto-xref">Equation&nbsp;<span>7.8</span></a>: travelling wave front for <span class="math inline">\(S\)</span> and travelling wave pulse for <span class="math inline">\(I\)</span>. Considering <span class="math display">\[
 S(t,x) = s(z), \quad I(t,x) = i(z), \quad z = x - v t, \quad v &gt;0
 \]</span> and obtain following ODEs for <span class="math inline">\(s\)</span> and <span class="math inline">\(i\)</span></p>
 <p><span id="eq-sir_tw_2"><span class="math display">\[
@@ -379,36 +423,36 @@ s(z) \to \sigma \qquad  z\to - \infty, \quad \qquad  i(z) \to 0 \qquad  z\to - \
 s^\prime(z) \to 0\qquad  z\to \pm \infty, \quad \qquad i^\prime(z) \to 0 \qquad z \to \pm \infty \; ,
 \end{aligned}
 \tag{7.10}\]</span></span> where <span class="math inline">\(0 \leq \sigma &lt;1\)</span>.</p>
-<p>As before, the steady states of <a href="#eq-sir_tw_2">Equation&nbsp;<span>7.9</span></a> are given by <span class="math display">\[
+<p>As before, the steady states of <a href="#eq-sir_tw_2" class="quarto-xref">Equation&nbsp;<span>7.9</span></a> are given by <span class="math display">\[
 is =0 , \quad i ( s- \mu) = 0  \quad \Longrightarrow \quad  i=0, \quad s = \text{const} \; .
 \]</span></p>
-<p>Considering boundary conditions <a href="#eq-sir_tw_bc_2">Equation&nbsp;<span>7.10</span></a> we obtain two steady states <span class="math display">\[
+<p>Considering boundary conditions <a href="#eq-sir_tw_bc_2" class="quarto-xref">Equation&nbsp;<span>7.10</span></a> we obtain two steady states <span class="math display">\[
 (s_0, i_0) = ( 1, 0), \qquad (s_0, i_0) = (\sigma, 0) \; .
 \]</span></p>
-<p>Linearising equations <a href="#eq-sir_tw_2">Equation&nbsp;<span>7.9</span></a> about the steady state <span class="math inline">\((1,0)\)</span> and requiring that <span class="math inline">\(i\)</span> is nonnegative we obtain, as for <a href="#eq-sir_tw">Equation&nbsp;<span>7.2</span></a>, the necessary conditions for existence of travelling wave solutions satisfying <a href="#eq-sir_tw_2">Equation&nbsp;<span>7.9</span></a> and <a href="#eq-sir_tw_bc_2">Equation&nbsp;<span>7.10</span></a> : <span class="math display">\[
+<p>Linearising equations <a href="#eq-sir_tw_2" class="quarto-xref">Equation&nbsp;<span>7.9</span></a> about the steady state <span class="math inline">\((1,0)\)</span> and requiring that <span class="math inline">\(i\)</span> is nonnegative we obtain, as for <a href="#eq-sir_tw" class="quarto-xref">Equation&nbsp;<span>7.2</span></a>, the necessary conditions for existence of travelling wave solutions satisfying <a href="#eq-sir_tw_2" class="quarto-xref">Equation&nbsp;<span>7.9</span></a> and <a href="#eq-sir_tw_bc_2" class="quarto-xref">Equation&nbsp;<span>7.10</span></a> : <span class="math display">\[
 v \geq 2 \sqrt{ 1- \mu} \, \quad \text{ and } \quad 0 \leq \mu &lt; 1\; .  
 \]</span></p>
 <p>We can determine the relation between density of susceptibles left behind the infection pulse and the model parameters.</p>
-<p>Using first equation in <a href="#eq-sir_tw_2">Equation&nbsp;<span>7.9</span></a> in the second implies <span id="eq-sigma_1"><span class="math display">\[
+<p>Using first equation in <a href="#eq-sir_tw_2" class="quarto-xref">Equation&nbsp;<span>7.9</span></a> in the second implies <span id="eq-sigma_1"><span class="math display">\[
 i^{\prime \prime} + v i^\prime + v s^\prime  - \mu i= 0\; .
 \tag{7.11}\]</span></span> Integrating with respect to <span class="math inline">\(z\)</span> yields</p>
 <p><span id="eq-sigma_2"><span class="math display">\[
 i^{\prime } + v i + v s  - \mu \int i\, dz = K= const\; .
 \tag{7.12}\]</span></span></p>
-<p>Consider now ageing the first equation in <a href="#eq-sir_tw_2">Equation&nbsp;<span>7.9</span></a> <span class="math display">\[
+<p>Consider now ageing the first equation in <a href="#eq-sir_tw_2" class="quarto-xref">Equation&nbsp;<span>7.9</span></a> <span class="math display">\[
 i= v \frac {s^\prime} s, \quad \quad s \neq 0 \;
 \]</span></p>
-<p>and obtain from <a href="#eq-sigma_2">Equation&nbsp;<span>7.12</span></a> <span class="math display">\[
+<p>and obtain from <a href="#eq-sigma_2" class="quarto-xref">Equation&nbsp;<span>7.12</span></a> <span class="math display">\[
 i^{\prime } + v i + v s  - v  \mu \int   \frac {s^\prime} s\, dz = K= const\; .
 \]</span> or <span id="eq-sigma_3"><span class="math display">\[
 i^{\prime } + v i + v s  - v  \mu \ln(s) = K\; .
 \tag{7.13}\]</span></span></p>
-<p>Using now in <a href="#eq-sigma_3">Equation&nbsp;<span>7.13</span></a> boundary conditions as <span class="math inline">\(z \to + \infty\)</span>, from <a href="#eq-sir_tw_bc_2">Equation&nbsp;<span>7.10</span></a>, we can determine constant <span class="math inline">\(K\)</span>:</p>
+<p>Using now in <a href="#eq-sigma_3" class="quarto-xref">Equation&nbsp;<span>7.13</span></a> boundary conditions as <span class="math inline">\(z \to + \infty\)</span>, from <a href="#eq-sir_tw_bc_2" class="quarto-xref">Equation&nbsp;<span>7.10</span></a>, we can determine constant <span class="math inline">\(K\)</span>:</p>
 <p><span class="math display">\[
 v    = K\; .
 \]</span> Thus we have <span id="eq-sigma_4"><span class="math display">\[
 i^{\prime } + v i + v( s  - \mu \ln(s) -1)= 0\; .
-\tag{7.14}\]</span></span> Using now in <a href="#eq-sigma_4">Equation&nbsp;<span>7.14</span></a> boundary conditions as <span class="math inline">\(z \to - \infty\)</span>, see <a href="#eq-sir_tw_bc_2">Equation&nbsp;<span>7.10</span></a>, gives</p>
+\tag{7.14}\]</span></span> Using now in <a href="#eq-sigma_4" class="quarto-xref">Equation&nbsp;<span>7.14</span></a> boundary conditions as <span class="math inline">\(z \to - \infty\)</span>, see <a href="#eq-sir_tw_bc_2" class="quarto-xref">Equation&nbsp;<span>7.10</span></a>, gives</p>
 <p><span class="math display">\[
 v( \sigma - \mu \ln(\sigma) -1)= 0\; .
 \]</span> and <span id="eq-sigma_5"><span class="math display">\[
@@ -435,7 +479,7 @@ v( \sigma - \mu \ln(\sigma) -1)= 0\; .
 &amp; S(0,x) = S_0, \qquad I(0,x) = I_0,  &amp; \quad x \in \mathbb R \; ,
 \end{aligned}
 \tag{7.16}\]</span></span> where <span class="math inline">\(B\)</span> is the intrinsic growth rate and <span class="math inline">\(S_0\)</span> is the carrying capacity.</p>
-<p>We can non-dimensionalize <a href="#eq-sir_growth">Equation&nbsp;<span>7.16</span></a> as before and obtain <span id="eq-sir_growth_nd"><span class="math display">\[
+<p>We can non-dimensionalize <a href="#eq-sir_growth" class="quarto-xref">Equation&nbsp;<span>7.16</span></a> as before and obtain <span id="eq-sir_growth_nd"><span class="math display">\[
 \begin{aligned}
 &amp; \frac{\partial S}{\partial t} = -  SI + b S\left( 1 -  S \right) \; , &amp; \qquad x \in \mathbb R , \; t&gt;0 \; , \\
 &amp; \frac{\partial I}{\partial t} =   SI - \mu \,  I+   \frac{ \partial^2 I}{\partial x^2} \; ,  &amp; \qquad x \in \mathbb R , \; t&gt;0 \; , \\
@@ -444,7 +488,7 @@ v( \sigma - \mu \ln(\sigma) -1)= 0\; .
 \tag{7.17}\]</span></span> where <span class="math display">\[
 b= \frac{B}{r S_0}.
 \]</span></p>
-<p>Spatially homogeneous steady states of <a href="#eq-sir_growth_nd">Equation&nbsp;<span>7.17</span></a> are <span class="math inline">\((S^\ast_1, I^\ast_1) = (1,0)\)</span> and <span class="math inline">\((S^\ast_1, I^\ast_1) = (\mu, b(1-\mu))\)</span>.</p>
+<p>Spatially homogeneous steady states of <a href="#eq-sir_growth_nd" class="quarto-xref">Equation&nbsp;<span>7.17</span></a> are <span class="math inline">\((S^\ast_1, I^\ast_1) = (1,0)\)</span> and <span class="math inline">\((S^\ast_1, I^\ast_1) = (\mu, b(1-\mu))\)</span>.</p>
 <p>To analyse the existence of travelling wave solutions we write equations for <span class="math inline">\(s(z)\)</span> and <span class="math inline">\(i(z)\)</span>, where <span class="math inline">\(s(z)=S(t,x)\)</span>, <span class="math inline">\(i(z) = I(t,x)\)</span> with <span class="math inline">\(z= x- vt\)</span></p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -458,12 +502,12 @@ b= \frac{B}{r S_0}.
 &amp; i^\prime = w, \\
 &amp; w^{\prime}= -  v w - i (s - \mu)\; .
 \end{aligned}
-\tag{7.18}\]</span></span> The system <a href="#eq-sir_tw_growth_2">Equation&nbsp;<span>7.18</span></a> has two stationary solutions</p>
+\tag{7.18}\]</span></span> The system <a href="#eq-sir_tw_growth_2" class="quarto-xref">Equation&nbsp;<span>7.18</span></a> has two stationary solutions</p>
 <p><span class="math display">\[
 (s^\ast_1, i^\ast_1, w^\ast_1) = (1,0,0)
 \]</span> and</p>
 <p><span class="math display">\[(s^\ast_2, i^\ast_2, w^\ast_2) = (\mu, b(1-\mu),0)
-\]</span>. Considering linearisation of <a href="#eq-sir_tw_growth_2">Equation&nbsp;<span>7.18</span></a> and computing eigenvalues of the Jabocian matrix <span class="math display">\[
+\]</span>. Considering linearisation of <a href="#eq-sir_tw_growth_2" class="quarto-xref">Equation&nbsp;<span>7.18</span></a> and computing eigenvalues of the Jabocian matrix <span class="math display">\[
 J(s,i,w)= \begin{pmatrix}
 \frac{i}{v} - \frac{b}{v}  + \frac{2bs}{v} &amp; \frac{s}{v} &amp; 0 \\
 0 &amp; 0 &amp; 1\\
@@ -572,10 +616,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -585,8 +646,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -598,7 +668,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -642,6 +835,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -667,6 +861,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -728,12 +948,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./DiffusionDrivenInstability.html" class="pagination-link">
+      <a href="./DiffusionDrivenInstability.html" class="pagination-link" aria-label="Diffusion driven instability">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Diffusion driven instability</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./NumericalMethods.html" class="pagination-link">
+      <a href="./NumericalMethods.html" class="pagination-link" aria-label="Numerical methods in Python">
         <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical methods in Python</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -742,4 +962,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
