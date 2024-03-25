@@ -358,7 +358,7 @@ is =0 , \quad i ( s- \mu) = 0  \quad \Longrightarrow \quad \ i=0, \quad s = \tex
 <p>Considering boundary conditions <a href="#eq-sir_tw_bc" class="quarto-xref">Equation&nbsp;<span>7.3</span></a> we obtain two steady states <span class="math display">\[
 (s^*, i^*) = ( 1, 0), \qquad (s^*, i^*) = (\sigma, 0)
 \]</span> Hence we would like to have a heteroclinic connection between <span class="math inline">\((\sigma , 0)\)</span> and <span class="math inline">\((1,0)\)</span>.</p>
-<p>By imposing the constraint that (0,0) cannot a spiral, a necessary condition for existence of travelling wave solutions satisfying <a href="#eq-sir_tw" class="quarto-xref">Equation&nbsp;<span>7.2</span></a> and <a href="#eq-sir_tw_bc" class="quarto-xref">Equation&nbsp;<span>7.3</span></a> is</p>
+<p>By imposing the constraint that (1,0) cannot be a spiral, a necessary condition for the existence of travelling wave solutions satisfying <a href="#eq-sir_tw" class="quarto-xref">Equation&nbsp;<span>7.2</span></a> and <a href="#eq-sir_tw_bc" class="quarto-xref">Equation&nbsp;<span>7.3</span></a> is</p>
 <p><span id="eq-cond_v_sir"><span class="math display">\[
 v \geq 2 \sqrt{ 1- \mu} \, \quad \text{ and } \quad 0 \leq \mu &lt; 1\; .  
 \tag{7.4}\]</span></span></p>
@@ -379,15 +379,15 @@ v = \sqrt{ r S_0 D_I} v^\ast \quad v_{\text{min}} = 2  \sqrt{ r S_0 D_I}\sqrt{ 1
 <p>We can analyse the behaviour of travelling wave solutions as <span class="math inline">\(z \to + \infty\)</span>.</p>
 <p>Linearised equation for the second equation in <a href="#eq-sir_tw" class="quarto-xref">Equation&nbsp;<span>7.2</span></a> near <span class="math inline">\(s=1\)</span>, <span class="math inline">\(i=0\)</span>, i.e.&nbsp;as <span class="math inline">\(z \to + \infty\)</span> reads <span class="math display">\[
 i^{\prime \prime} + v i^\prime + i  - \mu i = 0\; .
-\]</span> Thus</p>
-<p><span id="eq-i_tw_infty"><span class="math display">\[
+\]</span></p>
+<p>Thus <span id="eq-i_tw_infty"><span class="math display">\[
 i(z) \sim \exp \left(\frac 1 2 \left[ - v \pm \sqrt{ v^2 - 4(1-\mu)} \right] z \right) \quad \text{ as } z \to + \infty \; .
-\tag{7.5}\]</span></span> We can also show that the travelling wave solution <span class="math inline">\(s(z)\)</span> can not have a local maximum, since for <span class="math inline">\(s^\prime(z) = 0\)</span> first equation in <a href="#eq-sir_tw" class="quarto-xref">Equation&nbsp;<span>7.2</span></a> implies <span class="math display">\[
+\tag{7.5}\]</span></span> We can also show that the travelling wave solution <span class="math inline">\(s(z)\)</span> cannot have a local maximum, since for <span class="math inline">\(s^\prime(z) = 0\)</span> first equation in <a href="#eq-sir_tw" class="quarto-xref">Equation&nbsp;<span>7.2</span></a> implies <span class="math display">\[
 s^{\prime \prime}(z) = is &gt;0,
 \]</span> which implies a local minimum. So <span class="math inline">\(s(z)\)</span> is monotone increasing.</p>
 <p>Considering linearisation of the first equation in <a href="#eq-sir_tw" class="quarto-xref">Equation&nbsp;<span>7.2</span></a> near <span class="math inline">\(s=1\)</span>, <span class="math inline">\(i=0\)</span>, i.e.&nbsp;as <span class="math inline">\(z \to + \infty\)</span>, we obtain with <span class="math inline">\(s(z) = 1 - \tilde s(z)\)</span> <span class="math display">\[
 \tilde s^{\prime \prime} + v \tilde s^{\prime} - i = 0 \; .
-\]</span> The using <a href="#eq-i_tw_infty" class="quarto-xref">Equation&nbsp;<span>7.5</span></a> we can conclude that</p>
+\]</span> Then using <a href="#eq-i_tw_infty" class="quarto-xref">Equation&nbsp;<span>7.5</span></a> we can conclude that</p>
 <p><span id="eq-tilde_s_tw_infty"><span class="math display">\[
 \tilde s(z) \sim \exp \left(\frac 1 2 \left[ - v \pm \sqrt{ v^2 - 4(1-\mu)} \right] z \right) \quad \text{ as } z \to + \infty \; .
 \tag{7.6}\]</span></span> and</p>
@@ -433,13 +433,14 @@ is =0 , \quad i ( s- \mu) = 0  \quad \Longrightarrow \quad  i=0, \quad s = \text
 v \geq 2 \sqrt{ 1- \mu} \, \quad \text{ and } \quad 0 \leq \mu &lt; 1\; .  
 \]</span></p>
 <p>We can determine the relation between density of susceptibles left behind the infection pulse and the model parameters.</p>
-<p>Using first equation in <a href="#eq-sir_tw_2" class="quarto-xref">Equation&nbsp;<span>7.9</span></a> in the second implies <span id="eq-sigma_1"><span class="math display">\[
+<p>Using substituting the first equation in <a href="#eq-sir_tw_2" class="quarto-xref">Equation&nbsp;<span>7.9</span></a> in the second implies <span id="eq-sigma_1"><span class="math display">\[
 i^{\prime \prime} + v i^\prime + v s^\prime  - \mu i= 0\; .
-\tag{7.11}\]</span></span> Integrating with respect to <span class="math inline">\(z\)</span> yields</p>
+\tag{7.11}\]</span></span></p>
+<p>Integrating with respect to <span class="math inline">\(z\)</span> yields</p>
 <p><span id="eq-sigma_2"><span class="math display">\[
 i^{\prime } + v i + v s  - \mu \int i\, dz = K= const\; .
 \tag{7.12}\]</span></span></p>
-<p>Consider now ageing the first equation in <a href="#eq-sir_tw_2" class="quarto-xref">Equation&nbsp;<span>7.9</span></a> <span class="math display">\[
+<p>Consider now rearranging the first equation in <a href="#eq-sir_tw_2" class="quarto-xref">Equation&nbsp;<span>7.9</span></a> <span class="math display">\[
 i= v \frac {s^\prime} s, \quad \quad s \neq 0 \;
 \]</span></p>
 <p>and obtain from <a href="#eq-sigma_2" class="quarto-xref">Equation&nbsp;<span>7.12</span></a> <span class="math display">\[
@@ -465,13 +466,13 @@ v( \sigma - \mu \ln(\sigma) -1)= 0\; .
 <li>if <span class="math inline">\(S_0\)</span> is too low - density of foxes is too low in order to spread the disease,<br>
 </li>
 <li>or if removal rate is too large - high death rate and the infection is too virulent</li>
-<li>or if infection rate <span class="math inline">\(r\)</span> is too small - the disease is too</li>
+<li>or if infection rate <span class="math inline">\(r\)</span> is too small - the disease is not infective enough.</li>
 </ul>
 </section>
 <section id="generalisation-of-simple-sir-model" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="generalisation-of-simple-sir-model"><span class="header-section-number">7.3</span> Generalisation of simple SIR model</h2>
 <p>We developed a simple model for the passage of a wave of infection, however data of a spread of rabies in continental Europe looks quite different, i.e.&nbsp;comprises oscillations behind the wave front. It is likely that birth-death processes, not included in the simple model, impact dynamics of susceptibles and invectives.</p>
-<p>We generalised the simple model by considering growth of susceptibles population in a logistic manner</p>
+<p>We generalise the simple model by considering growth of susceptibles population in a logistic manner</p>
 <p><span id="eq-sir_growth"><span class="math display">\[
 \begin{aligned}
 &amp; \frac{\partial S}{\partial t} = -  rSI + B S\left( 1 - \frac S{S_0} \right) \; , &amp; \qquad x \in \mathbb R , \; t&gt;0 \; , \\
@@ -506,8 +507,10 @@ b= \frac{B}{r S_0}.
 <p><span class="math display">\[
 (s^\ast_1, i^\ast_1, w^\ast_1) = (1,0,0)
 \]</span> and</p>
-<p><span class="math display">\[(s^\ast_2, i^\ast_2, w^\ast_2) = (\mu, b(1-\mu),0)
-\]</span>. Considering linearisation of <a href="#eq-sir_tw_growth_2" class="quarto-xref">Equation&nbsp;<span>7.18</span></a> and computing eigenvalues of the Jabocian matrix <span class="math display">\[
+<p><span class="math display">\[
+(s^\ast_2, i^\ast_2, w^\ast_2) = (\mu, b(1-\mu),0).
+\]</span></p>
+<p>Considering linearisation of <a href="#eq-sir_tw_growth_2" class="quarto-xref">Equation&nbsp;<span>7.18</span></a> and computing eigenvalues of the Jabocian matrix <span class="math display">\[
 J(s,i,w)= \begin{pmatrix}
 \frac{i}{v} - \frac{b}{v}  + \frac{2bs}{v} &amp; \frac{s}{v} &amp; 0 \\
 0 &amp; 0 &amp; 1\\
@@ -521,8 +524,7 @@ J(s,i,w)= \begin{pmatrix}
 (s^\ast_2, i^\ast_2, w^\ast_2) = (\mu, b(1-\mu),0)
 \]</span></p>
 <p>is a stable node for <span class="math inline">\(\mu &lt; \mu^\ast\)</span> and a stable spiral (focus) for <span class="math inline">\(\mu &gt;\mu^\ast\)</span>, with some threshold value <span class="math inline">\(\mu^\ast\)</span>.</p>
-<p>Thus we can show that a travelling wave solution exists which connects two steady states <span class="math inline">\((1,0)\)</span> and<br>
-<span class="math display">\[
+<p>Thus we can show that a travelling wave solution exists which connects two steady states <span class="math inline">\((1,0)\)</span> and <span class="math display">\[
 (\mu, b(1-\mu))
 \]</span> and there exists a threshold <span class="math inline">\(\mu=\mu^\ast\)</span> such that for <span class="math display">\[
 1&gt;\mu &gt; \mu^\ast
