@@ -292,11 +292,6 @@ $$
 ## Domain of definition of the problem
 
 
-## Lecture 4
-
-*  Boundary and initial conditions
-*  Nondimensionalisation
-*  Model formulation
 
 
 ## Boundary conditions
@@ -307,6 +302,16 @@ $$
 
 
 \vspace{7cm}
+
+## Lecture 4
+
+*  Boundary and initial conditions
+*  Nondimensionalisation
+*  Model formulation
+*  a linear reaction diffusion model
+*  Diffusion
+
+
 
 ## Initial conditions
 
@@ -321,10 +326,8 @@ $$
 
 
 \vspace{7cm}
-## Lecture 5
 
-*  Introduce a linear reaction diffusion model
-*  Diffusion
+
 
 
 ## Linear reaction diffusion equation
@@ -474,6 +477,9 @@ $$
 $$
 D \frac{ d^2 c}{dx^2} = 0  \quad \text{ in } (0,L), \quad c(0) = C_0, \, c(L) = 0 .
 $$
+
+
+<!--
 
 \vspace{5cm}
 
@@ -2136,4 +2142,4 @@ $$ {#eq-sir_tw_bc_2} where $0 \leq \sigma <1$.
 ## The susceptible density behind the wavefront
 
 
-
+-->

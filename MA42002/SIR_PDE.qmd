@@ -66,47 +66,55 @@ $$
 To analyse the model @eq-sirpde it is sufficient to consider the first two equations, since $R$ is completely determined by $I$ and does not influence the dynamics of $S$ and $I$.
 
 Considering the non-dimensionalisation $$
-I^\ast = \frac I{\bar S_0} , \quad S^\ast = \frac S{\bar S_0} ,  \quad x^\ast = \left(\frac{ r \bar S_0}{D_I} \right)^{1/2} x, \quad t^\ast = r \bar S_0 t 
-$$ we obtain ( after dropping $`\ast'$)
+i = \frac I{\bar S_0} , s= \frac S{\bar S_0} ,  \quad x^\ast = \left(\frac{ r \bar S_0}{D_I} \right)^{1/2} x, \quad t^\ast = r \bar S_0 t 
+$$ 
+we obtain 
 
 $$
 \begin{aligned}
-& \frac{\partial S}{\partial t} = -  SI + d \frac{ \partial^2 S}{\partial x^2}\; , & \qquad x \in \mathbb R , \; t>0 \; , \\
-& \frac{\partial I}{\partial t} = SI - \mu I+  \frac{ \partial^2 I}{\partial x^2} \; ,  & \qquad x \in \mathbb R , \; t>0 \; , \\
-& S(0,x) = \frac{S_0(x)}{\bar S_0}, \qquad I(0,x) = \frac{I_0(x)}{\bar S_0},  & \quad x \in \mathbb R \; ,
+& \frac{\partial s}{\partial \tau} = -  si + d \frac{ \partial^2 s}{\partial x^2}\; , & \qquad x \in \mathbb R , \; t>0 \; , \\
+& \frac{\partial i}{\partial \tau} = si - \mu i+  \frac{ \partial^2 i}{\partial x^2} \; ,  & \qquad x \in \mathbb R , \; t>0 \; , \\
+& s(x,0) = \frac{S_0(x)}{\bar S_0}, \qquad i(x,0) = \frac{I_0(x)}{\bar S_0},  & \quad x \in \mathbb R \; ,
 \end{aligned}
 $$ where $\bar S_0$ is a representative population density and $\mu = a /{ r \bar S_0}$.
 
 We would like to investigate the spatial spread of an epidemic wave of infectives into a uniform susceptibles population $S_0(x) =\bar S_0$. We would like to determine conditions for existence of an epidemic wave and propagation speed.
 
-We shall assume first that $D_S= D_I$, i.e. $d=1$. Consider travelling wave solutions $$
-S(t,x) = s(z), \quad I(t,x) = i(z), \quad z = x - v t, \quad v >0
+We shall assume first that $D_S= D_I$, i.e. $d=1$. Consider travelling wave solutions 
+$$
+s(x,t) = \bar{s}(z), \quad i(x,t) = \bar{i}(z), \quad z = x - v t, \quad v >0
 $$ and obtain following ODEs for $s$ and $i$ $$
 \begin{aligned}
-s^{\prime \prime} + v s^\prime - i s = 0 \; , \\
-i^{\prime \prime} + v i^\prime + i s - \mu i= 0\; .
+\bar{s}^{\prime \prime} + v \bar{s}^\prime - \bar{i}\bar{s} = 0 \; , \\
+\bar{i}^{\prime \prime} + v \bar{i}^\prime + \bar{i}\bar{s} - \mu \bar{i}= 0\; .
 \end{aligned}
 $$ {#eq-sir_tw}
 
-We would like to analyse the existence of a travelling wave from for $S$ and travelling wave pulse for $I$. We assume that the infection comes into susceptible population from the left.
+We would like to analyse the existence of a travelling wave from for $s$ and travelling wave pulse for $i$. We assume that the infection comes into susceptible population from the left.
 
 Therefore we consider the following boundary conditions for the travelling wave solutions
 
 $$
 \begin{aligned}
-s(z) \to 1 \qquad  z\to + \infty, \quad \qquad  i(z) \to 0 \qquad  z\to + \infty\; ,\\
-s(z) \to \sigma \qquad  z\to - \infty, \quad \qquad  i(z) \to 0 \qquad  z\to - \infty\; ,\\
-s^\prime(z) \to 0\qquad  z\to \pm \infty, \quad \qquad i^\prime(z) \to 0 \qquad z \to \pm \infty \; ,
+\bar{s}(z) \to 1 \qquad  z\to + \infty, \quad \qquad  \bar{i}(z) \to 0 \qquad  z\to + \infty\; ,\\
+\bar{s}(z) \to \sigma \qquad  z\to - \infty, \quad \qquad  \bar{i}(z) \to 0 \qquad  z\to - \infty\; ,\\
+\bar{s}^\prime(z) \to 0\qquad  z\to \pm \infty, \quad \qquad \bar{i}^\prime(z) \to 0 \qquad z \to \pm \infty \; ,
 \end{aligned}
 $$ {#eq-sir_tw_bc} where $0 \leq \sigma <1$.
 
-The steady states of @eq-sir_tw are given by $$
- is =0 , \quad i ( s- \mu) = 0  \quad \Longrightarrow \quad \ i=0, \quad s = \text{const}.
-$$ Considering boundary conditions @eq-sir_tw_bc we obtain two steady states $$
-(s_0, i_0) = ( 1, 0), \qquad (s_0, i_0) = (\sigma, 0)
+For notational convenience the barred notation is now dropped.
+
+The steady states of @eq-sir_tw are given by 
+$$
+is =0 , \quad i ( s- \mu) = 0  \quad \Longrightarrow \quad \ i=0, \quad s = \text{const}.
+$$ 
+
+Considering boundary conditions @eq-sir_tw_bc we obtain two steady states 
+$$
+(s^*, i^*) = ( 1, 0), \qquad (s^*, i^*) = (\sigma, 0)
 $$ Hence we would like to have a heteroclinic connection between $(\sigma , 0)$ and $(1,0)$.
 
-The necessary condition for existence of travelling wave solutions satisfying @eq-sir_tw and @eq-sir_tw_bc is
+By imposing the constraint that (1,0) cannot be a spiral, a necessary condition for the existence of travelling wave solutions satisfying @eq-sir_tw and @eq-sir_tw_bc is
 
 $$
  v \geq 2 \sqrt{ 1- \mu} \, \quad \text{ and } \quad 0 \leq \mu < 1\; .  
@@ -114,33 +122,45 @@ $$ {#eq-cond_v_sir}
 
 In terms of original parameters we have $$
  \mu = \frac a { r S_0} < 1. 
- $$ This is the necessary threshold conditions for the propagation of an epidemic wave pulse. The condition @eq-cond_v_sir determine also the non-dimensionalised minimal wave speed $$
+ $$ 
+ This is the necessary threshold conditions for the propagation of an epidemic wave pulse. The condition @eq-cond_v_sir determine also the non-dimensionalised minimal wave speed 
+$$
 v^\ast_{\text{min}} = 2\sqrt{ 1- \mu}
 $$
 
-In dimensional terms we obtain $$
-z^\ast = x^\ast - v^\ast t^\ast = \left( \frac { r S_0} {D_I} \right)^{1/} x - v^\ast r S_0 t  = 
-\left( \frac { r S_0} {D_I} \right)^{1/} ( x - v t) = \left( \frac { r S_0} {D_I} \right)^{1/} z
-$$ and $$
+In dimensional terms we obtain 
+$$
+z^\ast = x^\ast - v^\ast t^\ast = \left( \frac { r S_0} {D_I} \right)^{1/2} x - v^\ast r S_0 t  = 
+\left( \frac { r S_0} {D_I} \right)^{1/2} ( x - v t) = \left( \frac { r S_0} {D_I} \right)^{1/2} z
+$$ 
+and 
+$$
 v = \sqrt{ r S_0 D_I} v^\ast \quad v_{\text{min}} = 2  \sqrt{ r S_0 D_I}\sqrt{ 1- \mu} = 
 2  \sqrt{ r S_0 D_I}\sqrt{ 1- \frac a{ r S_0} }
 $$
+
+### The leading edge of the epidemic front 
 
 We can analyse the behaviour of travelling wave solutions as $z \to + \infty$.
 
 Linearised equation for the second equation in @eq-sir_tw near $s=1$, $i=0$, i.e. as $z \to + \infty$ reads $$
 i^{\prime \prime} + v i^\prime + i  - \mu i = 0\; .
-$$ Thus
+$$ 
 
+Thus
 $$
 i(z) \sim \exp \left(\frac 1 2 \left[ - v \pm \sqrt{ v^2 - 4(1-\mu)} \right] z \right) \quad \text{ as } z \to + \infty \; . 
-$$ {#eq-i_tw_infty} We can also show that the travelling wave solution $s(z)$ can not have a local maximum, since for $s^\prime(z) = 0$ first equation in @eq-sir_tw implies $$
+$$ {#eq-i_tw_infty} We can also show that the travelling wave solution $s(z)$ cannot have a local maximum, since for $s^\prime(z) = 0$ first equation in @eq-sir_tw implies 
+$$
 s^{\prime \prime}(z) = is >0, 
-$$ which implies a local minimum. So $s(z)$ is monotone increasing.
+$$ 
+which implies a local minimum. So $s(z)$ is monotone increasing.
 
-Considering linearisation of the first equation in @eq-sir_tw near $s=1$, $i=0$, i.e. as $z \to + \infty$, we obtain with $s(z) = 1 - \tilde s(z)$ $$
+Considering linearisation of the first equation in @eq-sir_tw near $s=1$, $i=0$, i.e. as $z \to + \infty$, we obtain with $s(z) = 1 - \tilde s(z)$ 
+$$
 \tilde s^{\prime \prime} + v \tilde s^{\prime} - i = 0 \; . 
-$$ The using @eq-i_tw_infty we can conclude that
+$$ 
+Then using @eq-i_tw_infty we can conclude that
 
 $$
 \tilde s(z) \sim \exp \left(\frac 1 2 \left[ - v \pm \sqrt{ v^2 - 4(1-\mu)} \right] z \right) \quad \text{ as } z \to + \infty \; . 
@@ -163,16 +183,19 @@ $$
 \end{aligned}
 $$ {#eq-sir3}
 
-We shall look for travelling wave solutions of @eq-sir3: travelling wave front for $S$ and travelling wave pulse for $I$. Considering $$
+We shall look for travelling wave solutions of @eq-sir3: travelling wave front for $S$ and travelling wave pulse for $I$. Considering 
+$$
 S(t,x) = s(z), \quad I(t,x) = i(z), \quad z = x - v t, \quad v >0
-$$ and obtain following ODEs for $s$ and $i$
+$$ 
+and obtain following ODEs for $s$ and $i$
 
 $$
 \begin{aligned}
 &  v s^\prime = i s  \; , \\
 & i^{\prime \prime} + v i^\prime + i s - \mu i= 0\; 
 \end{aligned}
-$$ {#eq-sir_tw_2} and corresponding boundary conditions
+$$ {#eq-sir_tw_2} 
+and corresponding boundary conditions
 
 $$
 \begin{aligned}
@@ -182,7 +205,8 @@ s^\prime(z) \to 0\qquad  z\to \pm \infty, \quad \qquad i^\prime(z) \to 0 \qquad 
 \end{aligned}
 $$ {#eq-sir_tw_bc_2} where $0 \leq \sigma <1$.
 
-As before, the steady states of @eq-sir_tw_2 are given by $$
+As before, the steady states of @eq-sir_tw_2 are given by 
+$$
  is =0 , \quad i ( s- \mu) = 0  \quad \Longrightarrow \quad  i=0, \quad s = \text{const} \; .
 $$
 
@@ -190,25 +214,31 @@ Considering boundary conditions @eq-sir_tw_bc_2 we obtain two steady states $$
 (s_0, i_0) = ( 1, 0), \qquad (s_0, i_0) = (\sigma, 0) \; .
 $$
 
-Linearising equations @eq-sir_tw_2 about the steady state $(1,0)$ and requiring that $i$ is nonnegative we obtain, as for @eq-sir_tw, the necessary conditions for existence of travelling wave solutions satisfying @eq-sir_tw_2 and @eq-sir_tw_bc_2 : $$
+Linearising equations @eq-sir_tw_2 about the steady state $(1,0)$ and requiring that $i$ is nonnegative we obtain, as for @eq-sir_tw, the necessary conditions for existence of travelling wave solutions satisfying @eq-sir_tw_2 and @eq-sir_tw_bc_2 : 
+$$
  v \geq 2 \sqrt{ 1- \mu} \, \quad \text{ and } \quad 0 \leq \mu < 1\; .  
 $$
 
 We can determine the relation between density of susceptibles left behind the infection pulse and the model parameters.
 
-Using first equation in @eq-sir_tw_2 in the second implies $$
- i^{\prime \prime} + v i^\prime + v s^\prime  - \mu i= 0\; .
-$$ {#eq-sigma_1} Integrating with respect to $z$ yields
+Using substituting the first equation in @eq-sir_tw_2 in the second implies 
+$$
+i^{\prime \prime} + v i^\prime + v s^\prime  - \mu i= 0\; .
+$$ {#eq-sigma_1} 
+
+Integrating with respect to $z$ yields
 
 $$
  i^{\prime } + v i + v s  - \mu \int i\, dz = K= const\; .
 $$ {#eq-sigma_2}
 
-Consider now ageing the first equation in @eq-sir_tw_2 $$
+Consider now rearranging the first equation in @eq-sir_tw_2 
+$$
 i= v \frac {s^\prime} s, \quad \quad s \neq 0 \; 
 $$
 
-and obtain from @eq-sigma_2 $$
+and obtain from @eq-sigma_2 
+$$
  i^{\prime } + v i + v s  - v  \mu \int   \frac {s^\prime} s\, dz = K= const\; .
 $$ or $$
  i^{\prime } + v i + v s  - v  \mu \ln(s) = K\; .
@@ -218,29 +248,35 @@ Using now in @eq-sigma_3 boundary conditions as $z \to + \infty$, from @eq-sir_t
 
 $$
  v    = K\; .
-$$ Thus we have $$
+$$ Thus we have 
+$$
  i^{\prime } + v i + v( s  - \mu \ln(s) -1)= 0\; .
-$$ {#eq-sigma_4} Using now in @eq-sigma_4 boundary conditions as $z \to - \infty$, see @eq-sir_tw_bc_2, gives
+$$ {#eq-sigma_4} 
+Using now in @eq-sigma_4 boundary conditions as $z \to - \infty$, see @eq-sir_tw_bc_2, gives
 
 $$
- v( \sigma - \mu \ln(\sigma) -1)= 0\; .
-$$ and $$
+v( \sigma - \mu \ln(\sigma) -1)= 0\; .
+$$ 
+and 
+$$
 \frac{ \sigma- 1}{\ln(\sigma)} = \mu \; . 
 $$ {#eq-sigma_5} We obtain that the number of susceptibles is defined independently of the wave speed and the smaller $\mu$ corresponds to smaller $\sigma$ ( i.e. fever susceptibles survive infection wave). Thus $\mu$ measures how sever the epidemic is.
 
-Considering the critical value for $\mu =1$, which in dimensional terms means $$
+Considering the critical value for $\mu =1$, which in dimensional terms means 
+$$
 \frac a { r S_0} = 1, 
-$$ we can conclude that there exists no wave of infection
+$$ 
+we can conclude that there exists no wave of infection
 
 -   if $S_0$ is too low - density of foxes is too low in order to spread the disease,\
 -   or if removal rate is too large - high death rate and the infection is too virulent
--   or if infection rate $r$ is too small - the disease is too
+-   or if infection rate $r$ is too small - the disease is not infective enough.
 
 ## Generalisation of simple SIR model
 
 We developed a simple model for the passage of a wave of infection, however data of a spread of rabies in continental Europe looks quite different, i.e. comprises oscillations behind the wave front. It is likely that birth-death processes, not included in the simple model, impact dynamics of susceptibles and invectives.
 
-We generalised the simple model by considering growth of susceptibles population in a logistic manner
+We generalise the simple model by considering growth of susceptibles population in a logistic manner
 
 $$
 \begin{aligned}
@@ -250,13 +286,16 @@ $$
 \end{aligned}
 $$ {#eq-sir_growth} where $B$ is the intrinsic growth rate and $S_0$ is the carrying capacity.
 
-We can non-dimensionalize @eq-sir_growth as before and obtain $$
+We can non-dimensionalize @eq-sir_growth as before and obtain 
+$$
 \begin{aligned}
 & \frac{\partial S}{\partial t} = -  SI + b S\left( 1 -  S \right) \; , & \qquad x \in \mathbb R , \; t>0 \; , \\
 & \frac{\partial I}{\partial t} =   SI - \mu \,  I+   \frac{ \partial^2 I}{\partial x^2} \; ,  & \qquad x \in \mathbb R , \; t>0 \; , \\
 & S(0,x) = 1, \qquad I(0,x) = I_0/S_0,  & \quad x \in \mathbb R,
 \end{aligned}
-$$ {#eq-sir_growth_nd} where $$
+$$ {#eq-sir_growth_nd} 
+where 
+$$
 b= \frac{B}{r S_0}.
 $$
 
@@ -269,10 +308,11 @@ $$
 &  -v s^\prime =- i s  + b s ( 1-s) \; , \\
 & - v i^\prime =  i s - \mu i +  i^{\prime \prime}  \; 
 \end{aligned}
-$$ {eq-sir_tw_growth} and by introducing new variable $w= i^\prime$ obtain
+$$ {eq-sir_tw_growth} 
+and by introducing new variable $w= i^\prime$ obtain
 
 $$
- \begin{aligned}
+\begin{aligned}
 &   s^\prime = \frac 1 v i\,  s  - \frac  b v \,  s ( 1-s) \; , \\
 & i^\prime = w, \\
 & w^{\prime}= -  v w - i (s - \mu)\; .
@@ -283,8 +323,12 @@ $$
 (s^\ast_1, i^\ast_1, w^\ast_1) = (1,0,0)
 $$ and
 
-$$(s^\ast_2, i^\ast_2, w^\ast_2) = (\mu, b(1-\mu),0)
-$$. Considering linearisation of @eq-sir_tw_growth_2 and computing eigenvalues of the Jabocian matrix $$
+$$
+(s^\ast_2, i^\ast_2, w^\ast_2) = (\mu, b(1-\mu),0).
+$$
+
+Considering linearisation of @eq-sir_tw_growth_2 and computing eigenvalues of the Jabocian matrix 
+$$
 J(s,i,w)= \begin{pmatrix}
 \frac{i}{v} - \frac{b}{v}  + \frac{2bs}{v} & \frac{s}{v} & 0 \\
 0 & 0 & 1\\
@@ -292,25 +336,33 @@ J(s,i,w)= \begin{pmatrix}
 \end{pmatrix}
 $$
 
-evaluated at the steady states we obtain that $$
+evaluated at the steady states we obtain that 
+$$
  (s^\ast_1, i^\ast_1, w^\ast_1) = (1,0,0)
 $$
 
-is a saddle point and $$
+is a saddle point and 
+$$
  (s^\ast_2, i^\ast_2, w^\ast_2) = (\mu, b(1-\mu),0)
 $$
 
 is a stable node for $\mu < \mu^\ast$ and a stable spiral (focus) for $\mu >\mu^\ast$, with some threshold value $\mu^\ast$.
 
-Thus we can show that a travelling wave solution exists which connects two steady states $(1,0)$ and\
+Thus we can show that a travelling wave solution exists which connects two steady states $(1,0)$ and
 $$
  (\mu, b(1-\mu))
-$$ and there exists a threshold $\mu=\mu^\ast$ such that for $$
+$$ 
+and there exists a threshold $\mu=\mu^\ast$ such that for 
+$$
  1>\mu > \mu^\ast
 $$
 
-the approach to $$
+the approach to 
+$$
  (\mu, b(1-\mu))
-$$ is oscillatory, whereas for $$
+$$ 
+is oscillatory, whereas for 
+$$
  0<\mu < \mu^\ast
-$$ it is monotonic.
+$$ 
+it is monotonic.

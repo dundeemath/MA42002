@@ -30,13 +30,13 @@ THe boundary conditions are assumed to be Dirichlet (i.e. the values of $u$ and 
 ## Nondimensionalization 
 Consider the scaling
 $$
- x^\ast = x \sqrt{\frac \rho {D_n}}, \qquad t^\ast = \rho, t , \quad u^\ast = \frac uK, \quad n^\ast = n \frac \alpha \rho.
+ x^\ast = x \sqrt{\frac \rho {D_n}}, \qquad t^\ast = \rho t , \quad u^\ast = \frac uK, \quad n^\ast = n \frac \alpha \rho.
 $$
 Upon dropping the asteriked notation, @eq-pp_eq transform to
 $$
 \begin{cases}
-&\dfrac{\partial u}{\partial t} =  u ( 1 - u - n)  + D \dfrac{\partial^2 u}{\partial x^2}\; = \; f(u,n) + D\dfrac{\partial^2 u}{\partial x^2} \qquad x\in \mathbb R , t>0 \,,  \\
-& \dfrac{\partial n}{\partial t} = a\,  n(u -b) + \dfrac{\partial^2  n}{\partial x^2}\; =\; \;  g(u,n) + \dfrac{\partial^2  n}{\partial x^2}\;  \qquad x\in \mathbb R , t>0,
+&\dfrac{\partial u}{\partial t} =  u ( 1 - u - n)  + D \dfrac{\partial^2 u}{\partial x^2}\; = \; f(u,n) + D\dfrac{\partial^2 u}{\partial x^2}, \qquad x\in \mathbb R , t>0 \,,  \\
+& \dfrac{\partial n}{\partial t} = a\,  n(u -b) + \dfrac{\partial^2  n}{\partial x^2}\; =  g(u,n) + \dfrac{\partial^2  n}{\partial x^2},  \qquad x\in \mathbb R, t>0,
 \end{cases} 
 $$ {#eq-pp_eq_2}
 where 
@@ -74,15 +74,15 @@ a=0.2
 b=0.4
 D_u=0.10
 
-u_L= b
-u_R=1.0
-n_L=1-b
-n_R=0.0
+u_L= 1.0
+u_R=b
+n_L=0.0
+n_R=1-b
 
 
 # Define initial conditions
-u_0=b+(1-b)*0.5*(1+np.tanh(1*0.5*(x-50)))
-n_0=(1-b)*0.5*(1+np.tanh(-1*0.5*(x-50)))
+u_0=b+(1-b)*0.5*(1+np.tanh(-1.0*0.5*(x-50)))
+n_0=(1-b)*0.5*(1+np.tanh(1.0*0.5*(x-50)))
 
 u_0=np.concatenate((u_0,n_0))
 
@@ -359,11 +359,11 @@ $$
 
 Since 
 $$
-0\leq b < 1 and 4(1-b)>0,
+0\leq b < 1 \quad \textrm{and} \quad 4(1-b)>0,
 $$
 
 
-* If $v^2 \geq  4 a(1-b)$, (1,0,0)  is a saddle with 2-dim unstable manifold.\\
+* If $v^2 \geq  4 a(1-b)$, (1,0,0)  is a saddle with 2-dim unstable manifold.
 * If  $v^2 <  4 a(1-b)$  (1,0,0)is an unstable focus
 
 

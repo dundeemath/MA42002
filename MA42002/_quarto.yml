@@ -1,7 +1,6 @@
 project:
   type: book
-  resources: lectureslides.pdf
-
+  resources: lectureslides_24_25.pdf
 book:
   title: "MA42002"
   author: "Philip Murray"
@@ -12,7 +11,7 @@ book:
   cover-image: MA42002Cover.png
   downloads: pdf
 
-  
+
 
   chapters:
     - index.qmd
@@ -52,7 +51,9 @@ format:
           \begin{tikzpicture}[remember picture,overlay]
           \node at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{MA42002Cover.png}};
           \end{tikzpicture}\clearpage}
-          
-  
+    embed-resources: false
+        
+filters:
+  - shinylive
 execute:
   warning: false

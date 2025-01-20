@@ -25,11 +25,11 @@ A fundamental question is: how do robust pattern emerge during embryo developmen
 
 In the Turing pre-pattern theory, chemicals, or [morphogens](https://en.wikipedia.org/wiki/Morphogen), react together and, if certain conditions concerning their reaction kinetics and diffusion rates are satisfied (to be derived in the next section), then a *pre-pattern* of varying chemical concentrations is set up in the spatial domain. This means that throughout the spatial domain, the concentration levels of the chemicals will vary i.e. there will be a *heterogeneous* distribution of chemical concentrations which is known as a pre-pattern. Any cells in the domain which subsequently encounter these varying levels of morphogens will then respond by, for example, proliferating differentially throughout the domain. In this way, the domain will then contain a spatially heterogeneous distribution of cell densities (i.e. a cellular pattern) which have responded to the morphogen pre-pattern. This pre-pattern theory was first proposed by Alan Turing (of Enigma Code fame) in his seminal 1952 paper, *The chemical basis of morphogenesis* @turing1990chemical.
 
-In the mechano-chemical theory, cells interact with their surroundings and by exerting forces perturb their local environment. The combination of cell migration/proliferation and cell-generated forces is sufficient in certain circumstances to create a spatially heterogeneous distribution of cell densities i.e. the pattern is generated *simultaneously* with the cell migration/proliferation. This alternative pattern formation theory was proposed by Murray and Oster @murray1984generation and is particularly appropriate for patterns generated in early embryogenesis by *mesenchymal cells* such as fibroblasts.
+In the mechano-chemical theory, cells interact with their surroundings and by exerting forces perturb their local environment. The combination of cell migration/proliferation and cell-generated forces is sufficient in certain circumstances to create a spatially heterogeneous distribution of cell densities i.e. the pattern is generated *simultaneously* with the cell migration/proliferation. This alternative pattern formation theory was proposed by Murray and Oster @murray1984generation.
 
 ## Reaction-diffusion (Turing) Pre-pattern Mechanisms
 
-We now consider our general (dimensional) reaction-diffusion model for two chemicals or morphogens with concentrations $A({\mathbf{x}}, t)$ and $B({\mathbf{x}}, t)$ which react together and diffuse in some spatial domain:
+We now consider a general (dimensional) reaction-diffusion model for two chemicals or morphogens with concentrations $A({\mathbf{x}}, t)$ and $B({\mathbf{x}}, t)$ that react together and diffuse in some spatial domain:
 
 $$
 \begin{aligned}
@@ -101,7 +101,7 @@ The Gierer-Meinhardt kinetics can be non-dimensionalised as follows:
 
 $$
 \begin{aligned}
-f(u, v) & =  a - b u + \frac{u^2}{v}, 
+f(u, v) & =  a - b u + \frac{u^2}{v}, \\
 g(u,v) &= u^2 - v, \\
 \end{aligned}
 $$ where $a$ and $b$ are positive parameters (Exercise/Tutorial).
@@ -435,7 +435,7 @@ plt.show()
 
 ## General conditions for diffusion-driven instability
 
-Let $\Omega \subset R^n$ be a domain with smooth (sufficiently regular) boundary $\partial \Omega$, with outward unit normal ${\mathbf{n}}$. Our general, non-dimensional reaction-diffusion system is then:
+Let $\Omega \subset R^n$ be a domain with smooth (sufficiently regular) boundary, $\partial \Omega$, with outward unit normal ${\mathbf{n}}$.  Our general, non-dimensional reaction-diffusion system is then:
 
 $$
 \begin{aligned}
@@ -445,7 +445,8 @@ $$
 \end{aligned}
 $$ {#eq-pp}
 
-together with boundary and initial conditions $$
+together with boundary and initial conditions 
+$$
 \begin{aligned}
 \nabla u \cdot {\mathbf{n} } = 0, \qquad \nabla v \cdot {\mathbf{n} } = 0, \qquad x\in \partial \Omega, \quad t>0, \\
 u(x,0)  = u_0(x), \qquad  v(x,0)  = v_0(x), \qquad x\in \Omega\; .
@@ -453,7 +454,7 @@ u(x,0)  = u_0(x), \qquad  v(x,0)  = v_0(x), \qquad x\in \Omega\; .
 $$ {#eq-pp_bc}
 
 A *spatially homogeneous steady-state* of @eq-pp and @eq-pp_bc satisfies $$
-f(u,v) = 0 , \qquad g(u,v) =0
+f(u,v) = 0 , \qquad g(u,v) =0.
 $$
 
 and we denote it by $(u_0, v_0)$.
@@ -512,9 +513,10 @@ and thus a spatially homogeneous steady state $(u_0, v_0)$ is *stable* to spatia
 {\mathrm Re}( \lambda_{1,2}) <0,
 $$
 
-i.e. if $$
+i.e. if 
+$$
 \begin{aligned}
-\textrm{tr}(J) & = f_u + g_v < 0, \\
+\mathrm{tr}(J) & = f_u + g_v < 0, \\
 \det(J) & = f_u g_v - f_v g_u > 0. 
 \end{aligned}
 $$ {#eq-stable_hom}
@@ -562,6 +564,8 @@ D =  \begin{pmatrix}
 \end{pmatrix}.
 $$
 
+
+#### Separation of variables 
 We shall consider a separation of variables approach, i.e. $$
 V(x,t) =\begin{pmatrix}  
  \bar u(t)  \varphi_1(x)
@@ -587,7 +591,71 @@ It is assumed that $$
 \bar u(t)\, / \hspace{-0.35 cm}\equiv 0 \quad \textrm{and} \quad  \bar v(t)\, / \hspace{-0.35 cm}\equiv 0
 $$ for $t>0$.
 
-::: {#lem-laplacianeiegenvalues}
+
+#### Eigenvalues of the Laplacian
+
+We can make the assumption that
+$$
+\phi_1(x)=\phi_2(x)=\phi_k(x)
+$$
+and use the substitution
+$$
+\nabla^2 \varphi_k=-k^2\varphi_k.
+$$
+
+*1D Cartesian*
+
+
+Subsitution in @eq-pp_4 yields
+$$
+\begin{aligned}
+\frac{d \bar u(t)}{d t}\varphi_k(x) = \gamma\, \left(f_u \bar u(t) \varphi_k(x) + f_v \bar v(t) \varphi_k(x)\right) +\bar u(t)  \nabla^2 \varphi_k(x)  , \quad x\in \Omega, \;  t >0, \\
+\frac{d \bar v(t)}{d t}\varphi_k(x) = \gamma\,  \left(g_u  \bar u(t) \varphi_k(x) + g_v \bar v(t) \varphi_k(x)\right) +  d \bar v(t) \nabla^2  \varphi_k(x)  ,  \quad x\in \Omega, \;  t >0,  \\
+\end{aligned}
+$$
+
+
+
+Separating variables
+
+$$
+\begin{aligned}
+\frac{\nabla^2  \varphi_k(x)}{\varphi_k(x)}= \frac{\frac{d \bar u(t)}{d t} - \gamma\, \left(f_u \bar u(t)  + f_v \bar v(t)\right)}{\bar{u}(t)}     , \quad x\in \Omega, \;  t >0, \\
+\end{aligned}
+$$
+
+Hence 
+$$
+\frac{\nabla^2  \varphi_k(x)}{\varphi_k(x)}=-k^2.
+$$
+
+In 1D Cartesians
+$$
+\frac{d^2  \varphi_k(x)}{dx^2}=-k^2\varphi_k(x).
+$$
+
+with no-flux boundary condition on $x=0$ and $x=1$.
+The solution is
+$$
+\varphi_k(x)=B_k\psi_k (kx), \quad k=n\pi, \quad n\in Z,
+$$
+where
+$$
+\psi_k(x)=\cos(kx).
+$$
+
+
+
+The cosine function are eigenfunctions of the Laplacian operator in 1D Cartesian coordinates with no-flux boundary conditions.
+
+Note that:
+
+* $k$ is called the wavenumber
+* $1/k$ is proportional to the wavelength
+
+::: {.callout-note}
+# A general approach to the spatial eigenvalue problem 
+
 Consider the spatial eigenvalue problem for the Laplacian $\nabla^2$ with zero-Neumann boundary conditions, i.e.
 
 $$
@@ -606,16 +674,20 @@ j \in \mathbb N, \quad  \textrm{and} \quad k_j^2 \to \infty \quad \textrm{as}  \
 $$
 
 Moreover, the eigenfunctions $\{\psi_k(x) \}$ form an **orthogonal set** of basis functions of the corresponding functional space (i.e. $L^2(\Omega)$, $H^1(\Omega)$).
+
 :::
 
-Thus we can look for the spatial component of the solution of @eq-pp_4 as follows: $$
+#### Instability of spatially heterogeneous perturbations
+
+we can look for the spatial component of the solution of @eq-pp_4 as follows: 
+$$
 \varphi(x) = \begin{pmatrix}  
 \varphi_1(x) \\
 \varphi_2(x)
  \end{pmatrix} = \sum_k C_k \psi_k(x), \qquad C_k =  \begin{pmatrix}  C_k^1 \\ C_k^2 \end{pmatrix} \in \mathbb R^2 \; 
 $$
-
-and $$
+and 
+$$
 \begin{aligned}
 V(x,t) =\sum_k \hat V_k(t) \psi_k(x), \qquad \textrm{ where} 
 \quad \hat V_k(t)=
@@ -638,12 +710,13 @@ D \nabla^2  V(x,t) = D \nabla^2 \left[ \sum_k \hat V_k(t) \psi_k(x) \right]   = 
 - \sum_k k^2 D \hat V_k(t)  \psi_k(x).
 $$
 
-Hence $$
+Hence 
+$$
 \sum_k \frac{d}{d t}  \hat V_k(t) \psi_k(x)  =
   \sum_k \gamma J \hat V_k(t) \psi_k(x) -  \sum_k k^2  D \hat V_k(t) \psi_k(x). 
 $$
 
-Since $\{\psi_k(x) \}$ is a orthogonal basis we obtain that
+Since $\{\psi_k(x) \}$ is an orthogonal basis we obtain that
 
 $$
  \frac{d}{d t}  \hat V_k(t) \psi_k(x)  =
@@ -658,7 +731,7 @@ in $\Omega$ this implies for each $k$ a system of ODEs:
 
 $$
 \begin{aligned}
- \frac{d}{d t}  \hat V_k(t)   &=   \left(\gamma J  -  k^2  D\right) \hat V_k(t) &= \tilde J\hat V_k(t) ,
+ \frac{d}{d t}  \hat V_k(t)   =   \left(\gamma J  -  k^2  D\right) \hat V_k(t) = \tilde J\hat V_k(t) ,
 \end{aligned}
 $$ {#eq-stab_pp_ode}
 
@@ -671,6 +744,9 @@ $$
 \end{pmatrix}.
 $$
 
+
+
+
 Now solutions of @eq-stab_pp_ode are of the form $$
 \hat V_k(t) = e^{\lambda t} P_k
 $$
@@ -679,7 +755,8 @@ with $P_k \in \mathbb R^2$, where, since $P_k\neq 0$ (looking for nontrivial sol
 \det(\tilde J - \lambda I) = \det ( \gamma J - k^2 D - \lambda I) =0. 
 $$ {#eq-charact_pp_1}
 
-Evaluating the above determinant, we arrive at the equation: $$
+Evaluating the determinant
+ $$
 \lambda^2 + [ k^2 (1 + d) - \gamma (f_u + g_v) ] \lambda + h(k^2) = 0,
 $$ {#eq-spatial_eigenvalues}
 
@@ -691,13 +768,15 @@ $$ {#eq-hk2}
 \tilde J \Big|_{k=0} = ( \gamma J - k^2 D )\Big|_{k=0} = \gamma J.
 $$
 
-Thus the steady state $(u_0, v_0)$ is *unstable* to spatially heterogeneous perturbations iff $$
+Thus the steady state $(u_0, v_0)$ is *unstable* to spatially heterogeneous perturbations iff 
+$$
 {\mathrm Re}(\lambda_1) > 0 \quad \textrm{and/or} \quad {\mathrm Re}(\lambda_2) >0,
 $$
 
 where $\lambda_{1,2}$ are solutions of @eq-charact_pp_1, @eq-spatial_eigenvalues.
 
-Now for $$
+Now for 
+$$
 {\mathrm Re}(\lambda_1) > 0 \quad \textrm{and/or } \quad {\mathrm Re}(\lambda_2) >0
 $$
 
@@ -774,7 +853,7 @@ $$ {#eq-k2range}
 
 @fig-dispersion (b) shows a schematic diagram of ${\mathrm Re}\lambda (k^2)$ for three different values of the diffusion coefficient $d$:
 
--   \$d \< d_c, ; ${\mathrm Re}\lambda (k^2)$ \< 0, \forall k\^2 \$, and there is no pattern;
+-   $d < d_c$, ; $Re \lambda (k^2) \< 0, \forall k\^2 \$, and there is no pattern;
 -   $d = d_c, \; k^2_c = 0$, critical case;
 
 The expression $\lambda = \lambda (k^2)$ is known as the *dispersion relation* and the plot of ${\mathrm Re} \lambda$ against $k^2$ is known as the *dispersion curve*.

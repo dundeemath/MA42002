@@ -29,15 +29,15 @@ I have provided Python codes for most of the figures in the html version of the 
 | Week | Up to Section | Tutorial sheet| Class Test |
 |-------|:---|-----| ----|
 | 1     | 1.3.3  |   1 |----|
-| 2     | 2.1 |   1 |----|
+| 2     | 2.1 |   1 |Quiz 1|
 | 3     | 3  |   2 |----|
-| 4     | 3  |   2 |----|
-| 5     | 4  |   3 | Yes|
-| 6     | 4  |   4 |----|
+| 4     | 3  |   2 |Quiz 2|
+| 5     | 4  |   3 | ---|
+| 6     | 4  |   4  Class Test 1
 | 7     | 5  |   4 |----|
-| 8     | 5  |   5 |----|
+| 8     | 5  |   5 |Quiz 3|
 | 9     | 6  |   5 |----|
-| 10    | 6  |   6 | Yes|
+| 10    | 6  |   6 | Class Test 2|
 | 11    | 7  |   6 |----|
 : Projected delivery
 

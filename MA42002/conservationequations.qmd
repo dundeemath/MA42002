@@ -90,7 +90,7 @@ The last equation can be rewritten as $$
 $$ {#eq-n_5}
 
 where $\rho = \kappa \beta$ is the *intrinsic growth rate* and $B = \frac \beta \alpha$ is the *carrying capacity*. The solution of @eq-n_5 is given by $$
-N(t)= \frac{ N_0 K} { N_0 + (B-N_0) e^{-\rho t}} \; .
+N(t)= \frac{ N_0 B} { N_0 + (B-N_0) e^{-\rho t}} \; .
 $$
 
 #### Death/decay
@@ -103,7 +103,8 @@ $$ where $d$ is the mortality (death) rate.
 
 Consider a situation in which the *per capita* death rate increases at higher density. For example, suppose that $$
 d=d_1 N,
-$$ i.e. the mortality (death) rate is proportional to the population density. This assumption might arise in a situation where individuals compete for food, habitat (i.e. space) or any limited resources. Hence we could obtain the nonlinear ODE $$
+$$ i.e. the mortality (death) rate is proportional to the population density. This assumption might arise in a situation where individuals compete for food, habitat (i.e. space) or any limited resources. Hence we could obtain the nonlinear ODE 
+$$
 \frac{dN}{dt} = KN - d_1 N^2 , 
 $$
 
@@ -115,7 +116,7 @@ Consider a model of infectious disease in which a population is split into three
 -   infected
 -   recovered
 
-Suppse that when susceptible and infected individuals interact, the susceptibles become infected. Suppose also that infected people only remain infectious for a limited time.
+Suppose that when susceptible and infected individuals interact, the susceptibles become infected. Suppose also that infected people only remain infectious for a limited time.
 
 Let $S(t)$, $I(t)$ and $R(t)$ represent the population densities of susceptible, infected and recovered populations, respectively.
 
@@ -128,6 +129,103 @@ $$
 \frac{d R}{ dt} &= aI,
 \end{aligned}
 $$ where $r$ is the infection rate and $a$ is the recovery rate.
+
+In @fig-sirmodel you can explore numerical solutions of the SIR model. Can you identify what the maximum value of the parameter $r$ is such that the infected population size never exceeds some critical value (blue dashed line)?
+
+::: {#fig-sirmodel}
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 800
+#| eval: false
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="r",label="r",min=0.00001,max=0.001,value=0.001,step=0.00001),
+    ui.input_slider(id="S0",label="Initial susceptible pop. (S(0))",min=1000.0,max=8000.0,value=4000.1,step=5.0),
+    ui.input_slider(id="a",label="a",min=0.01,max=0.2,value=0.05,step=0.001),            
+    ui.input_slider(id="I0",label="Initial infectious pop. (I(0)) ",min=0.0,max=17.0,value=17.0,step=0.5),  
+    ui.input_slider(id="T",label="Simulation time",min=0.0,max=70.0,value=40.0,step=0.5),
+    ui.input_slider(id="max_inf",label="Max. infectiousness",min=0.0,max=10000.0,value=2500.0,step=100.5),             
+          
+            ),
+
+        ui.output_plot("plot"),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots()
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        r=float(input.r())
+        S_0=float(input.S0())
+        a=float(input.a())
+        I_0=float(input.I0())
+        T=float(input.T())
+        max_inf=float(input.max_inf())
+
+        R_0=r*S_0/a
+        
+        # Define rhs of LV ODEs
+        def rhs_sir_model(x,t,r,a):
+          rhs=np.zeros_like(x,dtype=float)
+          S=x[0]
+          I=x[1]
+          R=x[2]
+
+          
+
+          dS_dt=-r*I*S
+          dI_dt=r*I*S-a*I
+          dR_dt=a*I
+
+          rhs[0]=dS_dt
+          rhs[1]=dI_dt
+          rhs[2]=dR_dt
+
+          return rhs
+
+        # Define discretised t domain
+        t = np.linspace(0, T, 1000)
+
+        # define initial conditions
+        init_cond=[S_0,I_0,0.0]
+        
+        # Compute numerical solution of ODEs
+        sol1 = odeint(rhs_sir_model, init_cond,t,args=(r,a))
+
+        # Plot results
+        S=sol1[:,0]
+        I=sol1[:,1]
+        R=sol1[:,2]
+        
+        ax.plot(t, S, 'b',t,I,'r',t,R,'k')
+        ax.plot(t,max_inf*np.ones_like(t),'--')
+        ax.legend(['S','I','R','Max. allowed infectiousness'],loc='best')
+        ax.set_xlabel('$t$')
+        ax.set_title('R_0 =' + str(R_0))
+
+        #plt.grid()
+        #plt.show()
+    
+app = App(app_ui, server)
+```
+:::
 
 ### Activator inhibitor kinetics
 
@@ -143,6 +241,114 @@ Applying the law of mass action $$
 $$
 
 where $k_1$ and $k_4$ are production rates, $k_2$ is a degradation rate and $k_3$ is the reaction rate for the A and B interaction.
+
+
+In @fig-aimodel you can explore numerical solutions of the model. Can you identify parameters that are consistent with a linearly stable steady state.
+
+
+::: {#fig-aimodel}
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 800
+#| eval: false
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="k_1",label="k_1",min=0.00001,max=10.0,value=1.1,step=0.1),
+    ui.input_slider(id="k_2",label="k_2",min=0.0,max=10.0,value=3.5,step=0.1),
+    ui.input_slider(id="k_3",label="k_3",min=0.01,max=10.2,value=0.5,step=0.01),            
+    ui.input_slider(id="k_4",label="k_4 ",min=0.0,max=17.0,value=4.0,step=0.1),  
+    ui.input_slider(id="T",label="Simulation time",min=0.0,max=70.0,value=40.0,step=0.5),
+                 
+          
+            ),
+
+        ui.output_plot("plot"),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots(2,1)
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        k_1=float(input.k_1())
+        k_2=float(input.k_2())
+        k_3=float(input.k_3())
+        k_4=float(input.k_4())
+        T=float(input.T())
+
+        
+        # Define rhs of LV ODEs
+        def rhs_ai_model(x,t,k_1,k_2,k_3,k_4):
+          rhs=np.zeros_like(x,dtype=float)
+          
+          a=x[0]
+          b=x[1]
+
+          
+
+          da_dt=k_1-k_2*a-k_3*a*a*b
+          db_dt=k_4-k_3*a*a*b
+
+          rhs[0]=da_dt
+          rhs[1]=db_dt
+
+          return rhs
+
+        # Define discretised t domain
+        t = np.linspace(0, T, 1000)
+
+        a_0=3.0
+        b_0=2.0
+        # define initial conditions
+        init_cond=[a_0,b_0]
+        
+        # Compute numerical solution of ODEs
+        sol1 = odeint(rhs_ai_model, init_cond,t,args=(k_1,k_2,k_3,k_4))
+
+        # Plot results
+        a=sol1[:,0]
+        b=sol1[:,1]
+        
+        ax[0].plot(t, a, 'b',t,b,'r')
+        
+        ax[0].legend(['a','b'],loc='best')
+        ax[0].set_xlabel('$t$')
+        ax[0].set_title('Time series')
+
+        ax[1].plot( a,b,'r')
+        ax[1].set_xlabel('$a$')
+        ax[1].set_ylabel('$b$')
+
+
+        a_vec=np.linspace(0,np.max(a),1000)
+        ncline_a=(k_1-k_2*a_vec)/(k_3*a_vec*a_vec)
+        ncline_b=k_4/(k_3*a_vec*a_vec)
+        ax[1].plot(a_vec,ncline_a,'--',a_vec,ncline_b,'--')
+        ax[1].set_ylim([0,np.max(b)])
+        ax[1].set_title('Phase plane')
+
+        #plt.grid()
+        #plt.show()
+    
+app = App(app_ui, server)
+```
+:::
 
 ## Spatial movement
 

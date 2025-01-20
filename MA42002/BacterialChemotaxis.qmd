@@ -3,30 +3,26 @@ title: "Aggregation via chemotaxis"
 format: html
 ---
 
-**Dictyostelium discoideum** (Dicty) is a slime-mold that is widely studied experimentally as a model organism.  The individual amoebae that constitute a slime-mold exhibit a range of phenomena also observed in mammalian cells e.g. differentiation, proliferation, migration. 
+**Dictyostelium discoideum** (Dicty) is a slime-mold that is widely studied experimentally as a model organism. The individual amoebae that constitute a slime-mold exhibit a range of phenomena also observed in mammalian cells e.g. differentiation, proliferation, migration.
 
-Under nutirent starvation conditions, Dicty cells undergo complex collective behaviours. Individual amoebae secrete a diffusible chemical, cyclic AMP or cAMP. The amoebae respond chemotactically to cAMP and begin to migrate towards regions of high cAMP concentration via  *chemotaxis*. As they migrate they generate a range of intricate patterns including *spiral waves* and *streaming* aggregation patterns (e.g.  @fig-dicty_spiral).
+Under nutrient starvation conditions, Dicty cells undergo complex collective behaviours. Individual amoebae secrete a diffusible chemical, cyclic AMP or cAMP. The amoebae respond chemotactically to cAMP and begin to migrate towards regions of high cAMP concentration via *chemotaxis*. As they migrate they generate a range of intricate patterns including *spiral waves* and *streaming* aggregation patterns (e.g. @fig-dicty_spiral).
 
-The movie below depicts slime mold aggregation. {{< video https://www.youtube.com/watch?v=bkVhLJLG7ug >}} Note the aggregation  between 0:35 and 0.48.
+The movie below depicts slime mold aggregation. {{< video https://www.youtube.com/watch?v=bkVhLJLG7ug >}} Note the aggregation between 0:35 and 0.48.
 
+In @fig-dicty_spiral we can see stills-shot images of spiral patterns. This spirals are dynamic as can be seen in this movie. {{< video https://www.youtube.com/watch?v=OX5Yiz38fgY >}} See spiral pattern at around 0:36.
 
-In @fig-dicty_spiral we can see stills-shot images of spiral patterns. This spirals are dynamic as can be seen in this movie. {{< video https://www.youtube.com/watch?v=OX5Yiz38fgY >}} See spiral pattern at around 0:36. 
+![Spiral wave patterns underly Dictystelium aggregation. Image from @durston2013dictyostelium.](CG-14-355_F2.jpg){#fig-dicty_spiral}
 
-![Spiral wave patterns underly Dictystelium aggregation. Image from @durston2013dictyostelium. ](CG-14-355_F2.jpg){#fig-dicty_spiral}
+-   can we simulate/model the mechanisms regulate that give rise to cellular aggregation?
+-   how do features of patterns that form (e.g. pattern wavelength, speed of aggregation) depend on individual cell properties?
 
-* can we simulate/model the mechanisms regulate that give rise to cellular aggregation? 
-* how do features of patterns that form (e.g. pattern wavelength, speepd of aggregation) depend on individual cell properties?
+## Model derivation
 
-
-##  Model derivation
-
-We consider a model for Dicty aggregation  through the secretion of and chemotactic response to cAMP. We denote by $n({\mathbf{x}}, t)$ the density of amoebae and $a({\mathbf{x}}, t)$ the concentration of cAMP. The general conservation equation for the amoebae can be written:
+We consider a model for Dicty aggregation through the secretion of and chemotactic response to cAMP. We denote by $n({\mathbf{x}}, t)$ the density of amoebae and $a({\mathbf{x}}, t)$ the concentration of cAMP. The general conservation equation for the amoebae can be written:
 
 $$
 \frac{\partial n}{\partial  t} + \nabla \cdot {\mathbf{J}} = f(n,a),
-$$
-where $f(n,a)$ models any reaction terms for the amoebae e.g. proliferation, and the flux is given by
-$$
+$$ where $f(n,a)$ models any reaction terms for the amoebae e.g. proliferation, and the flux is given by $$
 {\mathbf{J}} = {\mathbf{J}}_{diffusion} + {\mathbf{J}}_{chemotaxis}.
 $$
 
@@ -39,23 +35,23 @@ $$
 \end{aligned}
 $$
 
-where we have assumed Fickian diffusion for the cAMP and $g(a,n)$ represents the kinetics i.e. source/sink terms, of cAMP. 
+where we have assumed Fickian diffusion for the cAMP and $g(a,n)$ represents the kinetics i.e. source/sink terms, of cAMP.
 
-One simple model has the following assumptiond:
+One simple model has the following assumptions:
 
 $$f(n,a) = 0, \;\;\; g(n,a) = \mu n - \delta a, \;\;\; \chi (a) = \chi_0$$
 
-i.e. 
+i.e.
 
-* there are no kinetics for the amoebae - they simply move randomly via diffusion and undergo chemotaxis in response to cAMP;
+-   there are no kinetics for the amoebae - they simply move randomly via diffusion and undergo chemotaxis in response to cAMP;
 
-* proliferation is neglected; - this is a reasonable assumption given the timescales involved, since they amoebae move on a faster timescale than they proliferate;
+-   proliferation is neglected; - this is a reasonable assumption given the timescales involved, since they amoebae move on a faster timescale than they proliferate;
 
-* the amoebae are assumed to produce cAMP in proportion to their density, which means the more amoebae there are, the more cAMP (a reasonable first approximation);
+-   the amoebae are assumed to produce cAMP in proportion to their density, which means the more amoebae there are, the more cAMP (a reasonable first approximation);
 
-* the chemotactic function is taken to be a constant, again a reasonable first approximation;
+-   the chemotactic function is taken to be a constant, again a reasonable first approximation;
 
-* $D_a > D_n$ since chemicals diffuse faster than cells move randomly.
+-   $D_a > D_n$ since chemicals diffuse faster than cells move randomly.
 
 Under such assumptions we obtain the model equation
 
@@ -71,7 +67,7 @@ which becomes, upon considering a 1-dimensional domain $[0,L]$,
 $$
 \begin{aligned}
 \frac{\partial n}{\partial  t} &=  D_n \frac{\partial ^2 n}{\partial x^2} - \chi_0 \frac{\partial}{\partial x} \left( n \frac{\partial a}{\partial x} \right), \\
-  & & \hspace{4.5cm} ( \dagger ) \\
+  & & \hspace{4.5cm} \\
 \frac{\partial a}{\partial  t} &=  D_a \frac{\partial ^2 a}{\partial x^2}  +  \mu n - \delta a,
 \end{aligned}
 $$ {#eq-chemotaxis1d}
@@ -93,11 +89,12 @@ $$
 
 ## Numerical solutions
 
-In @fig-bacterialchemotaxispde we plot numerical solution of @eq-chemotaxis1d together with no-flux boundary condition. The initial data are uniformly sampled. Note the emergence of periodic spatial structure in both variables. These correspond to peaks and troughs of cell density. The cells produce chemoattractant, $a$, and the this induces a chemtactic flux up the gradient in $a$. Hence more cells move towards regions where $a$ is high, more chemoattractant is produced in this region etc. 
+In @fig-bacterialchemotaxispde we plot numerical solution of @eq-chemotaxis1d together with no-flux boundary condition. The initial data are uniformly sampled. Note the emergence of periodic spatial structure in both variables. These correspond to peaks and troughs of cell density. The cells produce chemoattractant, $a$, and the this induces a chemtactic flux up the gradient in $a$. Hence more cells move towards regions where $a$ is high, more chemoattractant is produced in this region etc.
 
-* What is the long-time behaviour of these solutions
-* For which parameters do we expect to see pattern formation?
-* How does spatial pattern depend on the initial data?
+-   What is the long-time behaviour of these solutions
+-   For which parameters do we expect to see pattern formation?
+-   How does spatial pattern depend on the initial data?
+
 ```{python}
 #| label: fig-bacterialchemotaxispde
 #| fig-cap: "Numerical solution of bacterial chemtaxis model."
@@ -209,35 +206,46 @@ plt.show()
 
 ```
 
-## Spatially Homogeneous Steady States
+## Conservation of cell number
 
-Define the total number of cells, $N$,
-$$
+Define the total number of cells, $N$, $$
 N= \int_0^L n(x,t)dx
-$$
-Upon differentiation with respect to time
-$$
+$$ Upon differentiation with respect to time $$
 \begin{aligned}
 \frac{dN}{dt} &=\int_0^L \frac{\partial n(x,t)}{\partial t}dx
 &=\int_0^L  D_n \frac{\partial ^2 n}{\partial x^2} - \chi_0 \frac{\partial}{\partial x} \left( n \frac{\partial a}{\partial x} \right) dx.
 \end{aligned}
-$$
-Upon integration of the right-hand side w.r.t. $x$, subsequent application of the no-flux boundary condition implies
-$$
+$$ Upon integration of the right-hand side w.r.t. $x$, subsequent application of the no-flux boundary condition implies $$
 \frac{dN}{dt}=0.
+$$ Hence the total number of cells in the domain is fixed by the initial data.
+
+## Spatially homogeneous steady state
+
+Suppose that $(n^*,a^*)$ is a spatially homogeneous, steady state solution, i.e. $$
+\frac{\partial n}{\partial x}=\frac{\partial n}{\partial t}=\frac{\partial a}{\partial x}=\frac{\partial a}{\partial t}=0.
 $$
-Hence the total number of cells in the domain is fixed by the initial data. For a spatially homogeneoud solutions, th4 cells must be uniformly distributed in space, i.e.
+
+Hence
+
 $$
+\mu n* - \delta a*=0,
+$$
+
+and therefore
+
+$$
+a*=\frac{\mu}{\delta }n*.
+$$
+
+Given initial cell number, $N$, and domain size, $L$, conservation of cell number implies that $$
 n^*=N/L
 $$
 
-Additionaly, the spatially homogeneous steady state solution $(n^* , a^* )$ satisfies:
-
-$$
-a^*=\frac{\mu}{\delta} n^*.
+Thus the steady state is $$
+(n^*,a^*)=\frac{N}{L}\left(1,\frac{\mu}{\delta}\right).
 $$
 
-We now undertake a linear stability analysis to determine whether this is stable or unstable. If the above spatially homogeneous steady state is unstable, this will indicate that aggregation patterns may arise in the system.
+If this spatially homogeneous steady state is unstable, this will indicate that aggregation patterns may arise in the system.
 
 ## Stability Analysis
 
@@ -251,96 +259,79 @@ where $\tilde{n}(x,t)$ and $\tilde{a}(x,t)$ are "small" so that higher order ter
 
 **NOTE** Unlike previous stability analysis, these perturbations are both *time* and *space* dependent.
 
-Substituting the above perturbations into equations $( \dagger )$, we neglect higher order terms and retain only linear terms. This is largely straightforward, but we provide some detail for the linearization of the chemotactic term i.e. 
+Substituting the above perturbations into @eq-chemotaxis1d, we neglect higher order terms and retain only linear terms. This is largely straightforward, but we provide some detail for the linearisation of the chemotactic term i.e.
 
 $$
 \frac{\partial}{\partial x} \left[ ( n^* + \tilde{n}) \frac{\partial}{\partial x} \left( a^* + \tilde{a} \right) \right] = \frac{\partial}{\partial x} \left[ ( n^* + \tilde{n}) \frac{\partial \tilde{a}}{\partial x}  \right] \approx n^* \frac{\partial ^2 \tilde{a}}{\partial x^2}.
 $$
 
-The fully linearized system is then given by:
-$$
+The fully linearised system is then given by: $$
 \begin{aligned}
 \frac{\partial \tilde{n}}{\partial  t} & =  D_n \frac{\partial ^2 \tilde{n}}{\partial x^2} - \chi_0 n^* \frac{\partial ^2 \tilde{a}}{\partial x^2} \\
 \frac{\partial \tilde{a}}{\partial  t} & =   D_a \frac{\partial ^2 \tilde{a}}{\partial x^2}  +  \mu \tilde{n} - \delta \tilde{a}.
 \end{aligned}
 $$ {#eq-chemotax_linear}
 
-Although the above equations are linear, an explicit solution is non-trivial and we are required to make a further "separation of variables" *ansatz*. We seek solutions of the form
-$$
+Although the above equations are linear, an explicit solution is non-trivial and we are required to make a further "separation of variables" *ansatz*. We seek solutions of the form $$
 \tilde{n}(t,x) = u(t) \phi_1(x)
-$$ 
-and 
-$$
+$$ and $$
 \tilde a (t,x) = v(t) \phi_2(x)
 $$
 
-Upon substitution
-$$
+Upon substitution $$
 \begin{aligned}
-&\frac{\partial u}{\partial  t}  \phi_1  =   D_n  u\frac{\partial ^2 \phi_1}{\partial x^2} - \chi_0 n^*  v\frac{\partial ^2 \phi_1}{\partial x^2} \\
-& \frac{\partial v}{\partial  t}  \phi_2=     D_a v \frac{\partial ^2  \phi_2}{\partial x^2}  +  \mu u \,  \phi_1 - \delta v\,  \phi_2, \\
+&\frac{d u}{d  t}  \phi_1  =   D_n  u\frac{d ^2 \phi_1}{d x^2} - \chi_0 n^*  v\frac{d ^2 \phi_2}{d x^2} \\
+& \frac{d v}{d  t}  \phi_2=     D_a v \frac{d ^2  \phi_2}{d x^2}  +  \mu u \,  \phi_1 - \delta v\,  \phi_2, \\
 \end{aligned}
-$$
-with boundary conditions
-$$
+$$ with boundary conditions $$
 \begin{aligned}
-& u \frac{\partial \phi_1}{\partial x} = 0, \quad   v \frac{\partial \phi_2}{\partial x} = 0 \quad \text{ for } \; x = 0, \; x=L.
+& u \frac{d \phi_1}{d x} = 0, \quad   v \frac{d \phi_2}{d x} = 0 \quad \text{ for } \; x = 0, \; x=L.
 \end{aligned}
 $$
 
-We assume that  
-$$
-\phi_1 = \phi_2 = \phi,
-$$
-where $\phi$ is the solution of the elliptic problem 
-$$
+::: callout-note
+# Elliptic problem
+
+Suppose that $\phi$ is the solution of the elliptic problem $$
 \begin{aligned}
 \frac{d^2 \phi}{dx^2} &= - k^2 \phi && \text{ in } \; (0,L), \\
 \frac{d \phi}{dx} &= 0  && \text{ for } \; x=0, \; x=L. 
 \end{aligned}
-$$
-We can compute that solution of the equation for $\phi$ are of the form 
-$$
+$$ We can compute that solution of the equation for $\phi$ are of the form $$
 \phi(x) = A \cos(kx) + B\sin(kx).
-$$
-Since $\phi$ satisfied zero Neumann boundary conditions we have that 
-$$
+$$ Since $\phi$ satisfied zero Neumann boundary conditions we have that $$
 \phi(x) = A \cos(kx),
-$$
-where $A$ is an arbitrary constanr, and 
-$$
+$$ where $A$ is an arbitrary constant, and $$
 k = \dfrac {m \pi} L, \quad m \in \mathbb N.
-$$ 
-
-Then we have
 $$
+:::
+
+We seek solutions $$
+\phi_1 = \phi_2 = \phi.
+$$
+
+Then we have $$
 \begin{aligned}
 &\frac{\partial u}{\partial  t}  \phi  =   - k^2 D_n  u \phi +  \chi_0 n^* k^2\,  v \, \phi,  \\
 & \frac{\partial v}{\partial  t} \phi =   - k^2 D_a  \, v \phi  +  \mu u \,  \phi - \delta v\,  \phi, 
 \end{aligned}
-$$
- and since $\phi$ is not identically zero on $(0,L)$ we obtain a system of linear ODEs for $(u(t),v(t))$
-$$
+$$ and since $\phi$ is not identically zero on $(0,L)$ we obtain a system of linear ODEs for $(u(t),v(t))$ $$
 \begin{aligned}
 &\frac{\partial u}{\partial  t}    =   - k^2 D_n  u  +  \chi_0 n^* k^2\,  v,  \\
 & \frac{\partial v}{\partial  t} =   - k^2 D_a  \, v  +  \mu u  - \delta v. 
 \end{aligned}
 $$
 
-We know that solutions of linear ODEs have the form 
-$$
+We know that solutions of linear ODEs have the form $$
 u(t) = C_1 e^{\lambda t} \quad \textrm{and} \quad v(t) = C_2 e^{\lambda t}
-$$
- for some constant $C_1$, $C_2$ and $\lambda$ are eigenvalues of the corresponding matrix. 
+$$ for some constant $C_1$, $C_2$ and $\lambda$ are eigenvalues of the corresponding matrix.
 
-Thus  we obtain 
-$$
+Thus we obtain $$
 \begin{aligned}
 \lambda C_1 & =  - D_n k^2 C_1  + \chi_0 n^* k^2 C_2,  \\
 \lambda C_2 & = - D_a k^2 C_2 +  \mu C_1 - \delta C_2,
 \end{aligned}
-$$
-which can be written
+$$ which can be written
 
 $$
 \left(
@@ -357,28 +348,22 @@ C_2
 \right) = \mathbf{0} .
 $$
 
+**Remark** Notice that we obtained that $\tilde n$ and $\tilde a$ are of the form $$\tilde{n}(x,t) = C_1 e^{\lambda t} e^{ikx}, \;\;\; \tilde{a}(x,t) = C_2 e^{\lambda t} e^{ikx}.$$
 
- **Remark** Notice that we obtained that  $\tilde n$ and $\tilde a$ are of the form 
- $$\tilde{n}(x,t) = C_1 e^{\lambda t} e^{ikx}, \;\;\; \tilde{a}(x,t) = C_2 e^{\lambda t} e^{ikx}.$$ 
-
-
-For a non-trivial solution (for non-trivial perturbations $\tilde n$, $\tilde a$), i.e. $C_1 \neq 0$ and $C_2 \neq 0$, the determinant of the above matrix must be zero, and this leads to the following quadratic equation to be solved for $\lambda$: 
+For a non-trivial solution (for non-trivial perturbations $\tilde n$, $\tilde a$), i.e. $C_1 \neq 0$ and $C_2 \neq 0$, the determinant of the above matrix must be zero, and this leads to the following quadratic equation to be solved for $\lambda$:
 
 $$
 \lambda^2 + \left( D_n k^2 + D_a k^2 + \delta \right) \lambda + D_n k^2 \left( D_a k^2 + \delta \right) - \mu \chi_0 n^* k^2 = 0.
 $$
 
-This is of the form
-$$
+This is of the form $$
 \lambda^2 + \alpha \lambda + \beta = 0,
 $$
 
-and so has roots:
-$$
+and so has roots: $$
 \lambda = \frac{-\alpha \pm \sqrt{\alpha^2 - 4 \beta}}{2}.$$
 
-**NOTE** This has two *real* roots, since 
-$$
+**NOTE** This has two *real* roots, since $$
 \alpha^2 - 4 \beta > 0
 $$ (see Exercise/Tutorial).
 
@@ -388,57 +373,49 @@ $$
 \lambda < 0  \Leftrightarrow \alpha > 0 \;\;\; \text{and} \;\;\; \beta >0.
 $$
 
-Now 
-$$\alpha = D_n k^2 + D_a k^2 + \delta > 0,
-$$ 
-and so for stability, we require $\beta > 0$ i.e. 
+Now $$\alpha = D_n k^2 + D_a k^2 + \delta > 0,
+$$ and so for stability, we require $\beta > 0$ i.e.
 
 $$
 \begin{aligned}
 & & D_n k^2 \left( D_a k^2 + \delta \right) - \mu \chi_0 n^* k^2 > 0 \\
 & & \Rightarrow \mu \chi_0 n^* <  D_n  \left( D_a k^2 + \delta \right)
 \end{aligned}
-$$
-Hence, we will have instability when this condition is not satisfied i.e. 
-$$
+$$ Hence, we will have instability when this condition is not satisfied i.e. $$
 \mu \chi_0 n^* >  D_n  \left( D_a k^2 + \delta \right).
 $$
 
-The precise value of $k^2$ can be determined from the zero-flux boundary conditions i.e.
-$$ 
+The precise value of $k^2$ can be determined from the zero-flux boundary conditions i.e. $$ 
 k  =  \frac{m \pi}{L}, \;\;\; m = 1,2, \dots 
-$$
-if we look  for non-constant $\phi$.
+$$ if we look for non-constant $\phi$.
 
-Hence, we will have instability whenever
-$$
+Hence, we will have instability whenever $$
 \mu \chi_0 n^* >  D_n  \left( D_a \frac{m^2 \pi^2}{L^2} + \delta \right), \;\;\; m = 1,2, \dots
 $$
 
-It can be shown (see Exercise/Tutorial), that $\lambda (k^2)$ ( or $\lambda (m^2)$) is monotonic decreasing and hence the fastest growing mode is $m=1$ i.e. we have an instability as long as
-$$
+It can be shown (see Exercise/Tutorial), that $\lambda (k^2)$ ( or $\lambda (m^2)$) is monotonic decreasing and hence the fastest growing mode is $m=1$ i.e. we have an instability as long as $$
 \mu \chi_0 n^* >  D_n  \left( \frac{D_a \pi^2}{L^2} + \delta \right).
 $$
 
 In general, from the above inequality, we can say that there is a likelihood of instability (amoebae aggregation) if:
 
-* $D_a$, $D_n$ and $\delta$ are all ``small''
-* L is ``large''
-* $\chi_0 , \mu , n^*$ are ``large''
+-   $D_a$, $D_n$ and $\delta$ are all \`\`small''
+-   L is \`\`large''
+-   $\chi_0 , \mu , n^*$ are \`\`large''
 
 Considering all other parameters to be fixed, in theory the above result states that it is possible to find a large enough value for the chemotactic coefficient $\chi_0$ to satisfy the instability condition i.e. chemotaxis induces instability and leads to aggregation of the amoebae.
 
-## Exercise 
+## Exercise
+
 From the results we have obtained we deduce that:
 
-* chemotaxis has a destabilizing effect
-* diffusion has a stabilizing effect
-on spatially homogeneous solutions
+-   chemotaxis has a destabilizing effect
+-   diffusion has a stabilizing effect on spatially homogeneous solutions
 
-If this is true then one might expect the numerical results presented in @fig-bacterialchemotaxispde to have spatially homogeneous solutions if the diffusion coefficient is made sufficiently large. 
-* Can you test this by running the code for larger values of the parameter $D$?
-* Alternatively, what happens if you make the chemotactic coefficient $\chi_0$ smaller?
-* what kind of aggregation patterns do you see if the system is solved in two spatial dimensions?
+If this is true then one might expect the numerical results presented in @fig-bacterialchemotaxispde to have spatially homogeneous solutions if the diffusion coefficient is made sufficiently large.
 
+-   Can you test this by running the code for larger values of the parameter $D$?
+-   Alternatively, what happens if you make the chemotactic coefficient $\chi_0$ smaller?
+-   what kind of aggregation patterns do you see if the system is solved in two spatial dimensions?
 
 However, there is one type of system where diffusion also has a destabilizing effect...

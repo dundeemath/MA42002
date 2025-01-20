@@ -395,11 +395,11 @@ $$ {#eq-lin_re_eq_ic}
 ### Exact solution
 
 By considering a *separation of variables* approach, i.e. making the *ansatz* $$
-c(x,t) = w(t) \tilde c(t,x),
+c(x,t) = w(t) \tilde c(x,t),
 $$ it can be shown (**Exercise**) that the explicit solution for the linear reaction-diffusion @eq-lin_re_eq with initial condition @eq-lin_re_eq_ic is given by
 
 $$
-c(t,x) = \frac1{\sqrt{4 \pi D t}} \exp \left(\rho t - \frac{x^2}{ 4Dt} \right).
+c(x,t) = \frac1{\sqrt{4 \pi D t}} \exp \left(\rho t - \frac{x^2}{ 4Dt} \right).
 $$
 
 In @fig-diffusionlinearsource we compare numerical and exact solutions of @eq-lin_re_eq.
