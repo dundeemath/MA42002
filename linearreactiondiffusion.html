@@ -649,18 +649,18 @@ c(x, t+ \Delta t) = c(x, t)  + \lambda_R \Delta t c(x- \Delta x, t) - \lambda_R 
 \]</span></p>
 <p>Applying a Taylor series expansion about <span class="math inline">\((x,t)\)</span> implies</p>
 <p><span class="math display">\[
-c(x,t) + \frac{ \partial c}{\partial t} \Delta t + \frac{1}{2}  \frac{ \partial^2 c}{\partial^2 t} (\Delta t )^2  + h.o.t. =
-\lambda_R \Delta t \Big( c(x,t) - \frac{ \partial c}{\partial x} \Delta x + \frac 12  \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t. \Big)\\ +
+c(x,t) + \frac{ \partial c}{\partial t} \Delta t + \frac{1}{2}  \frac{ \partial^2 c}{\partial t^2} (\Delta t )^2  + h.o.t. =
+\lambda_R \Delta t \Big( c(x,t) - \frac{ \partial c}{\partial x} \Delta x + \frac 12  \frac{ \partial^2 c}{\partial x^2} (\Delta x )^2  + h.o.t. \Big)\\ +
 \lambda_L \Delta t \Big( c(x,t) + \frac{ \partial c}{\partial x} \Delta x + \frac 12  \frac{ \partial^2 c}{\partial x ^2} (\Delta x )^2  + h.o.t. \Big).
 \]</span></p>
 <p>Upon cancellation</p>
 <p><span class="math display">\[
-\frac{ \partial c}{\partial t} \Delta t + \frac 12  \frac{ \partial^2 c}{\partial^2 t} (\Delta t )^2  + h.o.t. =
+\frac{ \partial c}{\partial t} \Delta t + \frac 12  \frac{ \partial^2 c}{\partial t^2} (\Delta t )^2  + h.o.t. =
   \frac{ \partial c}{\partial x} \Delta x\Delta t (\lambda_L-\lambda_R) + \frac 12 \Delta t (\lambda_L+\lambda_R)  \frac{ \partial^2 c}{\partial x ^2} (\Delta x )^2  + h.o.t.
 \]</span></p>
 <p>Dividing by <span class="math inline">\(\Delta t\)</span> gives</p>
 <p><span class="math display">\[
-\frac{ \partial c}{\partial t}  + \frac 12  \frac{ \partial^2 c}{\partial^2 t} \Delta t   + h.o.t. =
+\frac{ \partial c}{\partial t}  + \frac 12  \frac{ \partial^2 c}{\partial t^2 } \Delta t   + h.o.t. =
    \frac{ \partial c}{\partial x} \Delta x (\lambda_L-\lambda_R) + \frac 12  (\lambda_L+\lambda_R)  \frac{ \partial^2 c}{\partial x^2} (\Delta x )^2  + h.o.t.  
 \]</span></p>
 <p>Considering the symmetric case where the probability of hopping left and right are equal, i.e.&nbsp;</p>
@@ -668,7 +668,7 @@ c(x,t) + \frac{ \partial c}{\partial t} \Delta t + \frac{1}{2}  \frac{ \partial^
 \lambda=\lambda_L=\lambda_R
 \]</span></p>
 <p>yields <span class="math display">\[
-\frac{ \partial c}{\partial t}  + \frac 12  \frac{ \partial^2 c}{\partial^2 t} \Delta t   + h.o.t. =
+\frac{ \partial c}{\partial t}  + \frac 12  \frac{ \partial^2 c}{\partial t^2} \Delta t   + h.o.t. =
     \lambda \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t.  
 \]</span></p>
 <p>Considering the limit <span class="math inline">\(\Delta t \to 0\)</span> and <span class="math inline">\(\Delta x \to 0\)</span> such that</p>
