@@ -4,7 +4,7 @@ author: "Philip Murray"
 format: beamer
 ---
 
-## Lecture 1 
+## Week 1 
 
 * Introduction to MA42002
 * Conservation equations
@@ -106,7 +106,7 @@ How many cells are there at the end of the experiment?
 
 
 
-## Lecture 2 
+## Week 1 
 
 * Continue example
 * Introduce SIR model
@@ -196,7 +196,7 @@ How would you compute linear stability of the steady state?
 
 
 
-## Lecture 3 Spatiotemporal models
+## Week  2 Spatiotemporal models
 
 * Derive conservation PDEs
 * Consider different models of fluxes
@@ -303,7 +303,7 @@ $$
 
 \vspace{7cm}
 
-## Lecture 4
+## Week 2
 
 *  Boundary and initial conditions
 *  Nondimensionalisation
@@ -479,7 +479,6 @@ D \frac{ d^2 c}{dx^2} = 0  \quad \text{ in } (0,L), \quad c(0) = C_0, \, c(L) = 
 $$
 
 
-<!--
 
 \vspace{5cm}
 
@@ -599,11 +598,7 @@ c(x, t+ \Delta t) &= c(x, t)  + \lambda_R \Delta t c(x- \Delta x, t) - \lambda_R
 \end{aligned}
 $$
 
-## Lecture 6
-
-* Random walk as a model for the diffusion equation
-* Linear reaction diffusion
-
+## Week 3
 
 ## Recap from last week
 A conservation equation for $c$ is given by 
@@ -617,7 +612,9 @@ $$
 \vspace{6cm}
 
 
+
 ##
+
 
 
 ## Linear reaction term
@@ -708,7 +705,8 @@ $$
 
 
 
-## Lecture 7 
+## Week 3
+
 ## Travelling waves
 
 ::: callout-note
@@ -872,7 +870,7 @@ plt.show()
 
 ```
 
-
+<!--
 ## Lecture   8 Recap
 
 * Two steady states (saddle plus stable node)

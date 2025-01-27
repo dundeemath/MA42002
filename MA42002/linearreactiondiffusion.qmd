@@ -321,22 +321,22 @@ $$
 Applying a Taylor series expansion about $(x,t)$ implies
 
 $$
-c(x,t) + \frac{ \partial c}{\partial t} \Delta t + \frac{1}{2}  \frac{ \partial^2 c}{\partial^2 t} (\Delta t )^2  + h.o.t. =
-\lambda_R \Delta t \Big( c(x,t) - \frac{ \partial c}{\partial x} \Delta x + \frac 12  \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t. \Big)\\ +
+c(x,t) + \frac{ \partial c}{\partial t} \Delta t + \frac{1}{2}  \frac{ \partial^2 c}{\partial t^2} (\Delta t )^2  + h.o.t. =
+\lambda_R \Delta t \Big( c(x,t) - \frac{ \partial c}{\partial x} \Delta x + \frac 12  \frac{ \partial^2 c}{\partial x^2} (\Delta x )^2  + h.o.t. \Big)\\ +
 \lambda_L \Delta t \Big( c(x,t) + \frac{ \partial c}{\partial x} \Delta x + \frac 12  \frac{ \partial^2 c}{\partial x ^2} (\Delta x )^2  + h.o.t. \Big).
 $$
 
 Upon cancellation
 
 $$
- \frac{ \partial c}{\partial t} \Delta t + \frac 12  \frac{ \partial^2 c}{\partial^2 t} (\Delta t )^2  + h.o.t. =
+ \frac{ \partial c}{\partial t} \Delta t + \frac 12  \frac{ \partial^2 c}{\partial t^2} (\Delta t )^2  + h.o.t. =
   \frac{ \partial c}{\partial x} \Delta x\Delta t (\lambda_L-\lambda_R) + \frac 12 \Delta t (\lambda_L+\lambda_R)  \frac{ \partial^2 c}{\partial x ^2} (\Delta x )^2  + h.o.t. 
 $$
 
 Dividing by $\Delta t$ gives
 
 $$
- \frac{ \partial c}{\partial t}  + \frac 12  \frac{ \partial^2 c}{\partial^2 t} \Delta t   + h.o.t. =
+ \frac{ \partial c}{\partial t}  + \frac 12  \frac{ \partial^2 c}{\partial t^2 } \Delta t   + h.o.t. =
    \frac{ \partial c}{\partial x} \Delta x (\lambda_L-\lambda_R) + \frac 12  (\lambda_L+\lambda_R)  \frac{ \partial^2 c}{\partial x^2} (\Delta x )^2  + h.o.t.  
 $$
 
@@ -348,7 +348,7 @@ $$
 
 yields 
 $$
- \frac{ \partial c}{\partial t}  + \frac 12  \frac{ \partial^2 c}{\partial^2 t} \Delta t   + h.o.t. =
+ \frac{ \partial c}{\partial t}  + \frac 12  \frac{ \partial^2 c}{\partial t^2} \Delta t   + h.o.t. =
     \lambda \frac{ \partial^2 c}{\partial^2 x} (\Delta x )^2  + h.o.t.  
 $$
 
