@@ -314,7 +314,7 @@ window.Quarto = {
 <p>Install a development environment (for writing and unnirn gscripts). I use <a href="https://code.visualstudio.com">Visual studio Code</a>.</p>
 <p>Install the <a href="https://code.visualstudio.com/docs">VS Code Python extension</a></p>
 <p>Copy and paste the code below and save as DemoPythonCode.py.</p>
-<div id="fa0539c4" class="cell" data-execution_count="1">
+<div id="153c0893" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span><span class="dv">2</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span><span class="dv">2</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>z<span class="op">=</span>x<span class="op">+</span>y</span>
@@ -361,25 +361,25 @@ N_x \Delta x=L \implies \Delta x = \frac{L}{N_x}.
 N_t \Delta t=T \implies \Delta t = \frac{T}{N_t}.
 \]</span></p></li>
 <li><p>Discretise the dependent variable</p>
-<p>Let <span class="math inline">\(c_{i,j}\)</span> represent the solution at the <span class="math inline">\(i^{th}\)</span> spatial position and <span class="math inline">\(j^{th}\)</span> time point.</p></li>
+<p>Let <span class="math inline">\(c_{j,i}\)</span> represent the solution at the <span class="math inline">\(i^{th}\)</span> spatial position and <span class="math inline">\(j^{th}\)</span> time point.</p></li>
 <li><p>Approximate derivatives in the PDE using finite differences</p>
 <p>Using an <em>explicit</em> method, the first order time derivative is approximated by</p>
 <p><span class="math display">\[
-\frac{\partial c}{\partial t}= \frac{c_{i,j+1}-c_{i,j}}{\Delta t}.
+\frac{\partial c}{\partial t}= \frac{c_{j+1,i}-c_{j,i}}{\Delta t}.
 \]</span></p>
 <p>The second order spatial derivative is approximated by</p>
 <p><span class="math display">\[
-\frac{\partial^2 c}{\partial x^2}= \frac{c_{i-1,j}-2c_{i,j}+c_{i+1,j}}{\Delta x ^2}.
+\frac{\partial^2 c}{\partial x^2}= \frac{c_{j,i-1}-2c_{j,i}+c_{j,i+1}}{\Delta x ^2}.
 \]</span></p></li>
 <li><p>Interior points in the spatial domain</p>
 <p>For <span class="math inline">\(0&lt;i&lt;N_x\)</span> the PDE can be expressed as</p>
 <p><span class="math display">\[
-\frac{c_{i,j+1}-c_{i,j}}{\Delta t} =
-D\frac{\partial^2 c}{\partial x^2}= \frac{c_{i-1,j}-2c_{i,j}+c_{i+1,j}}{\Delta x ^2}
+\frac{c_{j+1,i}-c_{j,i}}{\Delta t} =
+D\frac{\partial^2 c}{\partial x^2}= \frac{c_{j,i-1}-2c_{j,i}+c_{j,i+1}}{\Delta x ^2}
 \]</span></p>
 <p>Note that terms involving time <span class="math inline">\(j+1\)</span> only appear in one position. To obtain an iterative scheme rearrange such that <span class="math display">\[
-c_{i,j+1}=c_{i,j} +
-\nu \left(c_{i-1,j}-2c_{i,j}+c_{i+1,j}\right)
+c_{j+1,i}=c_{j,i} +
+\nu \left(c_{j,i-1}-2c_{j,i}+c_{j,i+1}\right)
 \]</span></p>
 <p>where</p>
 <p><span class="math display">\[
@@ -387,7 +387,7 @@ c_{i,j+1}=c_{i,j} +
 \]</span></p></li>
 <li><p>Boundary conditions</p>
 <p>At <span class="math inline">\(x=0\)</span> the boundary condition is that <span class="math inline">\(c=c_0 \forall t\)</span>. In the discretised system this is represented by <span class="math display">\[
-c_{0,j}=c_0 \forall j.
+c_{j,0}=c_0 \forall j.
 \]</span></p>
 <p>At <span class="math inline">\(x=L\)</span> we need to impose the no-flux condition. Consider the second derivative <span class="math display">\[
 \frac{\partial^2 c}{\partial x^2}
@@ -402,7 +402,7 @@ c_{0,j}=c_0 \forall j.
 \frac{\partial^2 c}{\partial x^2}
 =
 \lim_{\Delta x \rightarrow 0} \frac{-\frac{\partial c}{\partial x}\bigg|_{x=L^-}}{\Delta x}=
-\frac{c_{i-1,j}-c_{i,j}}{\Delta x ^2}.
+\frac{c_{j,i-1}-c_{j,i}}{\Delta x ^2}.
 \]</span></p></li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -417,7 +417,7 @@ Note
 <div class="callout-body-container callout-body">
 <p>#&nbsp;Boundary condition</p>
 <p>So the update rule is <span class="math display">\[
-c_{i,j+1}=c_{i,j}+\nu (c_{i-1,j}-c_{i,j}), \quad i=N_x.
+c_{j+1,i}=c_{j,i}+\nu (c_{j,i-1}-c_{j,i}), \quad i=N_x.
 \]</span></p>
 </div>
 </div>
@@ -469,20 +469,20 @@ c_{i,j+1}=c_{i,j}+\nu (c_{i-1,j}-c_{i,j}), \quad i=N_x.
 <span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop over time</span></span>
 <span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,N_t<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,N_t<span class="op">-</span><span class="dv">1</span>):</span>
 <span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># interior nodes</span></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,N_x<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,N_x<span class="op">-</span><span class="dv">1</span>):</span>
 <span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>        c[i<span class="op">+</span><span class="dv">1</span>,j]<span class="op">=</span> c[i,j]<span class="op">+</span>nu<span class="op">*</span>(c[i,j<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span><span class="dv">2</span><span class="op">*</span>c[i,j]<span class="op">+</span>c[i,j<span class="op">+</span><span class="dv">1</span>])</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>        c[j<span class="op">+</span><span class="dv">1</span>,i]<span class="op">=</span> c[j,i]<span class="op">+</span>nu<span class="op">*</span>(c[j,i<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span><span class="dv">2</span><span class="op">*</span>c[j,i]<span class="op">+</span>c[j,i<span class="op">+</span><span class="dv">1</span>])</span>
 <span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># at x=0</span></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    j<span class="op">=</span><span class="dv">0</span></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    c[i<span class="op">+</span><span class="dv">1</span>,j]<span class="op">=</span>c_0</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    c[j<span class="op">+</span><span class="dv">1</span>,i]<span class="op">=</span>c_0</span>
 <span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># at x=L</span></span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    j<span class="op">=</span>N_x<span class="op">-</span><span class="dv">1</span></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>    c[i<span class="op">+</span><span class="dv">1</span>,j]<span class="op">=</span> c[i,j]<span class="op">+</span>nu<span class="op">*</span>(c[i,j<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>c[i,j])</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span>N_x<span class="op">-</span><span class="dv">1</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>    c[j<span class="op">+</span><span class="dv">1</span>,i]<span class="op">=</span> c[j,i]<span class="op">+</span>nu<span class="op">*</span>(c[j,i<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>c[j,i])</span>
 <span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="co">## Visualise solution</span></span>
 <span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
@@ -546,7 +546,7 @@ c_{i,j+1}=c_{i,j}+\nu (c_{i-1,j}-c_{i,j}), \quad i=N_x.
 <div id="fig-numsol" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-numsol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="d55e8540" class="cell" data-execute="false" data-execution_count="2">
+<div id="6f19f44e" class="cell" data-execute="false" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -565,7 +565,7 @@ Figure&nbsp;8.1
 <ol type="1">
 <li>Explore numerical behaviour of the PDE solution for different value of parmeters <span class="math inline">\(D\)</span>, <span class="math inline">\(c_0\)</span> and <span class="math inline">\(\gamma\)</span>.</li>
 <li>Consider changing the initial condition, e.g.&nbsp;try <span class="math display">\[
-c_0(x)=\frac{c_0}{1+(x-\frac{L}{2})}.
+c_0(x)=\frac{c_0}{1+x}.
 \]</span></li>
 <li>Introduce a line reaction term such that the governing PDE is <span class="math display">\[
 \frac{\partial c}{\partial t}=D\frac{\partial ^ 2 c}{\partial x ^2}+f(c).
@@ -586,8 +586,8 @@ c(L)=0.
 <p>Here we consider using an implicit method. The key idea is that the time derviative is approximated using a backwards derivative.</p>
 <p>For <span class="math inline">\(0&lt;i&lt;N_x\)</span> the PDE can be expressed as</p>
 <p><span class="math display">\[
-\frac{c_{i,j+1}-c_{i,j}}{\Delta t} =
-D\frac{\partial^2 c}{\partial x^2}= \frac{\partial^2 c}{\partial x^2}= \frac{c_{i-1,j+1}-2c_{i,+1j}+c_{i+1,j+1}}{\Delta x ^2}
+\frac{c_{j+1,i}-c_{j,i}}{\Delta t} =
+D\frac{\partial^2 c}{\partial x^2}= \frac{\partial^2 c}{\partial x^2}= \frac{c_{j+1,i-1}-2c_{j+1,i}+c_{j+1,i+1}}{\Delta x ^2}
 \]</span></p>
 <p>To update at time <span class="math inline">\(j+1\)</span> we must now simultaneously solve for all discretised spatial points.</p>
 <p>Let the vector <span class="math inline">\(\mathbf{c}_j\)</span> represent the solution vector a the <span class="math inline">\(j^{th}\)</span> time point. The iterative scheme can be written as</p>
@@ -670,12 +670,12 @@ A= \begin{pmatrix}
 <span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&nbsp;Compute the inverse of A</span></span>
 <span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>A_inv<span class="op">=</span>np.linalg.inv(A)</span>
 <span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,N_t<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,N_t<span class="op">-</span><span class="dv">1</span>):</span>
 <span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>    new_sol<span class="op">=</span>A_inv<span class="op">@</span>(c[i,:].T).T</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>    new_sol<span class="op">=</span>A_inv<span class="op">@</span>(c[j,:].T).T</span>
 <span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>    <span class="co"># interior nodes</span></span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>    c[i<span class="op">+</span><span class="dv">1</span>,:]<span class="op">=</span>new_sol<span class="co">#+0.01*c[i,:]*(1-c[i,:]/c_0)</span></span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>    c[i<span class="op">+</span><span class="dv">1</span>,<span class="dv">0</span>]<span class="op">=</span>c_0 <span class="co"># enforce the dirichlet bc</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>    c[j<span class="op">+</span><span class="dv">1</span>,:]<span class="op">=</span>new_sol<span class="co">#+0.01*c[i,:]*(1-c[i,:]/c_0)</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>    c[j<span class="op">+</span><span class="dv">1</span>,<span class="dv">0</span>]<span class="op">=</span>c_0 <span class="co"># enforce the dirichlet bc</span></span>
 <span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="co">## Visualise solution</span></span>
 <span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="co"># set up a figure twice as wide as it is tall</span></span>
@@ -738,7 +738,7 @@ A= \begin{pmatrix}
 <div id="fig-numsolimplicit" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-numsolimplicit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="48c02ffa" class="cell" data-execute="false" data-execution_count="3">
+<div id="09c8a91a" class="cell" data-execute="false" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
