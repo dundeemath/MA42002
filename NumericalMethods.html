@@ -103,6 +103,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -249,15 +278,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><span class="header-section-number">8.1</span> </a></li>
   <li><a href="#python-libraries" id="toc-python-libraries" class="nav-link" data-scroll-target="#python-libraries"><span class="header-section-number">8.2</span> Python libraries</a></li>
-  <li><a href="#single-pdes" id="toc-single-pdes" class="nav-link" data-scroll-target="#single-pdes"><span class="header-section-number">8.3</span> Single PDEs</a>
-  <ul class="collapse">
-  <li><a href="#mol" id="toc-mol" class="nav-link" data-scroll-target="#mol"><span class="header-section-number">8.3.1</span> MOL</a></li>
-  <li><a href="#spatial-discretisation" id="toc-spatial-discretisation" class="nav-link" data-scroll-target="#spatial-discretisation"><span class="header-section-number">8.3.2</span> Spatial discretisation</a></li>
-  <li><a href="#odeint" id="toc-odeint" class="nav-link" data-scroll-target="#odeint"><span class="header-section-number">8.3.3</span> odeint</a></li>
-  <li><a href="#implementing-boundary-conditions" id="toc-implementing-boundary-conditions" class="nav-link" data-scroll-target="#implementing-boundary-conditions"><span class="header-section-number">8.3.4</span> implementing boundary conditions</a></li>
-  <li><a href="#identifying-parameters" id="toc-identifying-parameters" class="nav-link" data-scroll-target="#identifying-parameters"><span class="header-section-number">8.3.5</span> Identifying parameters</a></li>
-  </ul></li>
-  <li><a href="#systems-of-pdes" id="toc-systems-of-pdes" class="nav-link" data-scroll-target="#systems-of-pdes"><span class="header-section-number">8.4</span> Systems of PDEs</a></li>
+  <li><a href="#computing-the-numerical-solution-of-a-single-pde" id="toc-computing-the-numerical-solution-of-a-single-pde" class="nav-link" data-scroll-target="#computing-the-numerical-solution-of-a-single-pde"><span class="header-section-number">8.3</span> Computing the numerical solution of a single PDE</a></li>
+  <li><a href="#an-implicit-method" id="toc-an-implicit-method" class="nav-link" data-scroll-target="#an-implicit-method"><span class="header-section-number">8.4</span> An implicit method</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -288,12 +310,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Python has been installed on most computers on campus and you can access it via AppsAnywhere. The icon is located on your desktop. From AppsAnywhere, please select Anaconda 3.</p>
 <p>However, you can also use your own personal computer. If you decide to do so, you will need to install Python on it. Python is free and works on Windows, Mac OS X and Linux.</p>
 <p>It is strongly recommended that you download and install ​ <a href="https://www.anaconda.com/download">Anaconda</a>. Install might take 5-15 minutes. Then reboot your computer.</p>
-<p>If install has</p>
 <p>Once you have installed Anaconda you can open Spyder. This will provide you with an editor to run python codes.</p>
 <p>Install a development environment (for writing and unnirn gscripts). I use <a href="https://code.visualstudio.com">Visual studio Code</a>.</p>
 <p>Install the <a href="https://code.visualstudio.com/docs">VS Code Python extension</a></p>
 <p>Copy and paste the code below and save as DemoPythonCode.py.</p>
-<div id="a15a53d8" class="cell" data-execution_count="1">
+<div id="f50dc2ac" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span><span class="dv">2</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span><span class="dv">2</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>z<span class="op">=</span>x<span class="op">+</span>y</span>
@@ -313,28 +334,392 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>scipy</li>
 </ul>
 </section>
-<section id="single-pdes" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="single-pdes"><span class="header-section-number">8.3</span> Single PDEs</h2>
-<section id="mol" class="level3" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="mol"><span class="header-section-number">8.3.1</span> MOL</h3>
+<section id="computing-the-numerical-solution-of-a-single-pde" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="computing-the-numerical-solution-of-a-single-pde"><span class="header-section-number">8.3</span> Computing the numerical solution of a single PDE</h2>
+<p>Let <span class="math inline">\(c=c(x,t)\)</span>.</p>
+<p>Suppose that we want to solve the PDE</p>
+<p><span class="math display">\[
+\frac{\partial c}{\partial t}=D\frac{\partial ^ 2 c}{\partial x ^2}
+\]</span></p>
+<p>on the domain <span class="math inline">\(x\in[0,L]\)</span> with <span class="math inline">\(t\in[0,T]\)</span>.</p>
+<p>The initial condition is <span class="math display">\[
+c(0,x)=\frac{c_0}{1+e^{\gamma (x-L/2)}}
+\]</span> where <span class="math inline">\(D, c_0, \gamma \in \Re^+\)</span>.</p>
+<p>At <span class="math inline">\(x=0\)</span> we fix the density to be <span class="math display">\[
+c(0,t)=c_0.
+\]</span> At <span class="math inline">\(x=L\)</span> we impose a no-flux condition, i.e. <span class="math display">\[
+J_{x=0}=-D\frac{\partial c}{\partial x}\bigg|_{x=L}=0 \implies \frac{\partial c}{\partial x}\bigg|_{x=L}=0.
+\]</span></p>
+<p>We will use the finite difference method.</p>
+<ol type="1">
+<li><p>Discretise the independent variables</p>
+<p>Let <span class="math inline">\(x_i=i\Delta x\)</span> where <span class="math inline">\(i=0,..,N_x\)</span>. Choose <span class="math display">\[
+N_x \Delta x=L \implies \Delta x = \frac{L}{N_x}.
+\]</span></p>
+<p>Similarly, discretise time such that</p>
+<p><span class="math inline">\(t_j=j\Delta t\)</span> where <span class="math inline">\(j=0,..,N_t\)</span>. Choose <span class="math display">\[
+N_t \Delta t=T \implies \Delta t = \frac{T}{N_t}.
+\]</span></p></li>
+<li><p>Discretise the dependent variable</p>
+<p>Let <span class="math inline">\(c_{i,j}\)</span> represent the solution at the <span class="math inline">\(i^{th}\)</span> spatial position and <span class="math inline">\(j^{th}\)</span> time point.</p></li>
+<li><p>Approximate derivatives in the PDE using finite differences</p>
+<p>The first order time derivative is approximated by</p>
+<p><span class="math display">\[
+\frac{\partial c}{\partial t}= \frac{c_{i,j+1}-c_{i,j}}{\Delta t}.
+\]</span></p>
+<p>If we use an <em>explicit</em> method the second order spatial derivative is approximated by</p>
+<p><span class="math display">\[
+\frac{\partial^2 c}{\partial x^2}= \frac{c_{i-1,j}-2c_{i,j}+c_{i+1,j}}{\Delta x ^2}.
+\]</span></p></li>
+<li><p>Interior points in the spatial domain</p>
+<p>For <span class="math inline">\(0&lt;i&lt;N_x\)</span> the PDE can be expressed as</p>
+<p><span class="math display">\[
+\frac{c_{i,j+1}-c_{i,j}}{\Delta t} =
+D\frac{\partial^2 c}{\partial x^2}= \frac{c_{i-1,j}-2c_{i,j}+c_{i+1,j}}{\Delta x ^2}
+\]</span></p>
+<p>Note that terms involving time <span class="math inline">\(j+1\)</span> only appear in one position. To obtain an iterative scheme rearrange such that <span class="math display">\[
+c_{i,j+1}=c_{i,j} +
+\nu \left(c_{i-1,j}-2c_{i,j}+c_{i+1,j}\right)
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\nu=\frac{D \Delta t}{\Delta x ^2}.
+\]</span></p></li>
+<li><p>Boundary conditions</p>
+<p>At <span class="math inline">\(x=0\)</span> the boundary condition is that <span class="math inline">\(c=c_0 \forall t\)</span>. In the discretised system this is represented by <span class="math display">\[
+c_{0,j}=c_0 \forall j.
+\]</span></p>
+<p>At <span class="math inline">\(x=L\)</span> we need to impose the no-flux condition. Consider the second derivative <span class="math display">\[
+\frac{\partial^2 c}{\partial x^2}
+=
+\lim_{\Delta x \rightarrow 0} \frac{\frac{\partial c}{\partial x}\bigg|_{x^+}-\frac{\partial c}{\partial x}\bigg|_{x^-}}{\Delta x}.
+\]</span></p>
+<p>Now impose the boundary condition at <span class="math inline">\(x=L\)</span>, i.e. <span class="math display">\[
+\frac{\partial c}{\partial x}_{x^+}=0.
+\]</span></p>
+<p>Hence the Laplacian term can be represented by</p>
+<p><span class="math display">\[
+\frac{\partial^2 c}{\partial x^2}
+=
+\lim_{\Delta x \rightarrow 0} \frac{-\frac{\partial c}{\partial x}\bigg|_{ x^-}}{\Delta x}=
+\frac{c_{i-1,j}-c_{i,j}}{\Delta x ^2}.
+\]</span></p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>#&nbsp;Boundary condition</p>
+<p>So the update rule is <span class="math display">\[
+c_{i,j+1}=c_{i,j}+\nu (c_{i-1,j}-c_{i,j}), \quad i=N_x.
+\]</span></p>
+</div>
+</div>
+<p>In <a href="#fig-numsol" class="quarto-xref">Figure&nbsp;<span>8.1</span></a> an implementation of the above method is coded in Python.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include python modules</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Model parameters</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="fl">10.0</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>L<span class="op">=</span><span class="fl">12.0</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>D<span class="op">=</span><span class="fl">1.2</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>c_0<span class="op">=</span><span class="fl">2.5</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>gamma<span class="op">=</span><span class="fl">3.0</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Discretise independent variables</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># x</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>N_x<span class="op">=</span><span class="dv">30</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>Delta_x<span class="op">=</span>L<span class="op">/</span>N_x</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="dv">0</span>,L,N_x)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># t</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>N_t<span class="op">=</span><span class="dv">600</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>Delta_t<span class="op">=</span>T<span class="op">/</span>N_t</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.linspace(<span class="dv">0</span>,T,N_t)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Define solution matrix</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>c<span class="op">=</span>np.zeros((N_t,N_x),dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c.shape)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.shape)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Impose initial condition</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co"># t=0 is the first row of the solution matrix</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>c[<span class="dv">0</span>,:]<span class="op">=</span>c_0<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>np.exp(gamma<span class="op">*</span>(x<span class="op">-</span>L<span class="op">/</span><span class="fl">2.0</span>)))</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop over time</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>nu<span class="op">=</span>D<span class="op">*</span>Delta_t<span class="op">/</span>(Delta_x<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Stability shows this condition must hold for numerical stability</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nu)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span>(nu<span class="op">&lt;</span><span class="fl">0.5</span>)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,N_t<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># interior nodes</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,N_x<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>        c[i<span class="op">+</span><span class="dv">1</span>,j]<span class="op">=</span> c[i,j]<span class="op">+</span>nu<span class="op">*</span>(c[i,j<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span><span class="dv">2</span><span class="op">*</span>c[i,j]<span class="op">+</span>c[i,j<span class="op">+</span><span class="dv">1</span>])</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># at x=0</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    j<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    c[i<span class="op">+</span><span class="dv">1</span>,j]<span class="op">=</span>c_0</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># at x=L</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    j<span class="op">=</span>N_x<span class="op">-</span><span class="dv">1</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>    c[i<span class="op">+</span><span class="dv">1</span>,j]<span class="op">=</span> c[i,j]<span class="op">+</span>nu<span class="op">*</span>(c[i,j<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>c[i,j])</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="co">## Visualise solution</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots(<span class="dv">2</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].imshow(c,extent<span class="op">=</span>[<span class="dv">0</span>,L,<span class="dv">0</span>,T],origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_xlim([<span class="dv">0</span>,L])</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_ylim([<span class="dv">0</span>,T])</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_ylabel(<span class="st">'$t$'</span>)</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_title(<span class="st">'Solution surface in 3D'</span>)</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].plot(x,c[<span class="dv">0</span>,:])</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_xlim([<span class="dv">0</span>,L])</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_title(<span class="st">'Initial condition'</span>)</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].plot(t,c[:,<span class="dv">0</span>])</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_xlim([<span class="dv">0</span>,T])</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_ylim([<span class="dv">0</span>,c_0<span class="op">*</span><span class="fl">1.3</span>])</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_xlabel(<span class="st">'$t$'</span>)</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_ylabel(<span class="st">'$c$'</span>)</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_title(<span class="st">'B.C. at x=0'</span>)</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>flux_x_L<span class="op">=</span>(c[:,<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>c[:,<span class="op">-</span><span class="dv">2</span>])<span class="op">/</span>Delta_x</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].plot(t,flux_x_L)</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_xlim([<span class="dv">0</span>,T])</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_xlabel(<span class="st">'$t$'</span>)</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_title(<span class="st">'B.C. at x=L'</span>)</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_ylabel(<span class="st">'Flux'</span>)</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.axis("equal")  # Ensures square axes</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-numsol" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-numsol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="0bc82e3b" class="cell" data-execute="false" data-execution_count="2">
+<div class="cell-output cell-output-stdout">
+<pre><code>(600, 30)
+(30,)
+0.12499999999999997</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="NumericalMethods_files/figure-html/cell-3-output-2.png" width="821" height="819" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-numsol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1
+</figcaption>
+</figure>
+</div>
+<p>Exercises:</p>
+<ol type="1">
+<li>Explore numerical behaviour of the PDE solution for different value of parmeters <span class="math inline">\(D\)</span>, <span class="math inline">\(c_0\)</span> and <span class="math inline">\(\gamma\)</span>.</li>
+<li>Consider changing the initial condition, e.g.&nbsp;try <span class="math display">\[
+c_0(x)=\frac{c_0}{1+(x-\frac{L}{2})}.
+\]</span></li>
+<li>Introduce a line reaction term such that the governing PDE is <span class="math display">\[
+\frac{\partial c}{\partial t}=D\frac{\partial ^ 2 c}{\partial x ^2}+f(c).
+\]</span> Try the following cases:</li>
+</ol>
+<ul>
+<li><span class="math inline">\(f(c)=rc\)</span></li>
+<li><span class="math inline">\(f(c)=rc(1-\frac{c}{c_0})\)</span></li>
+</ul>
+<ol start="4" type="1">
+<li>Try changing the boundary condition at x=L such that <span class="math display">\[
+c(L)=0.
+\]</span></li>
+</ol>
 </section>
-<section id="spatial-discretisation" class="level3" data-number="8.3.2">
-<h3 data-number="8.3.2" class="anchored" data-anchor-id="spatial-discretisation"><span class="header-section-number">8.3.2</span> Spatial discretisation</h3>
-</section>
-<section id="odeint" class="level3" data-number="8.3.3">
-<h3 data-number="8.3.3" class="anchored" data-anchor-id="odeint"><span class="header-section-number">8.3.3</span> odeint</h3>
-</section>
-<section id="implementing-boundary-conditions" class="level3" data-number="8.3.4">
-<h3 data-number="8.3.4" class="anchored" data-anchor-id="implementing-boundary-conditions"><span class="header-section-number">8.3.4</span> implementing boundary conditions</h3>
-</section>
-<section id="identifying-parameters" class="level3" data-number="8.3.5">
-<h3 data-number="8.3.5" class="anchored" data-anchor-id="identifying-parameters"><span class="header-section-number">8.3.5</span> Identifying parameters</h3>
-</section>
-</section>
-<section id="systems-of-pdes" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="systems-of-pdes"><span class="header-section-number">8.4</span> Systems of PDEs</h2>
+<section id="an-implicit-method" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="an-implicit-method"><span class="header-section-number">8.4</span> An implicit method</h2>
+<p>Here we consider using an implicit method. The key idea is that the Laplacian is approximated using the solution at time <span class="math inline">\(j+1\)</span>rather than time <span class="math inline">\(j\)</span>. Hence <span class="math display">\[
+\frac{\partial^2 c}{\partial x^2}= \frac{c_{i-1,j+1}-2c_{i,+1j}+c_{i+1,j+1}}{\Delta x ^2}.
+\]</span></p>
+<p>For <span class="math inline">\(0&lt;i&lt;N_x\)</span> the PDE can be expressed as</p>
+<p><span class="math display">\[
+\frac{c_{i,j+1}-c_{i,j}}{\Delta t} =
+D\frac{\partial^2 c}{\partial x^2}= \frac{\partial^2 c}{\partial x^2}= \frac{c_{i-1,j+1}-2c_{i,+1j}+c_{i+1,j+1}}{\Delta x ^2}
+\]</span></p>
+<p>To update at time <span class="math inline">\(j+1\)</span> we must now simultaneously solve for all discretised spatial points.</p>
+<p>Let the vector <span class="math inline">\(\mathbf{c}_j\)</span> represent the solution vector a the <span class="math inline">\(j^{th}\)</span> time point. The iterative scheme can be written as</p>
+<p><span class="math display">\[
+A\mathbf{c}_{j+1}=\mathbf{c}_j
+\]</span> where <span class="math inline">\(A\)</span> is a tridiagonal matrix given by <span class="math display">\[
+A= \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp;0 &amp; 0 ... &amp; 0 \\   
+0  &amp;-\nu &amp; 1+2\nu &amp;-\nu &amp; 0 &amp; . . . &amp; 0 \\
+0  &amp; 0 &amp;-\nu &amp; 1+2\nu &amp;\nu &amp;  . . . &amp; 0 \\
+&amp;.&amp; .&amp; .&amp; .&amp; . &amp;. &amp; .\\
+0 &amp; 0&amp; 0 &amp; 0 &amp; 0 &amp;-\nu &amp; 1+2\nu &amp; -\nu  \\
+0&amp; 0 &amp; 0&amp; 0 &amp; 0 &amp; 0 &amp;-\nu &amp; 1+\nu  \\
+\end{pmatrix}
+\]</span></p>
+<p>The boundary conditions are represented by the first and last rows in the matrix <span class="math inline">\(A\)</span>.</p>
+<p>After computing A and calculating its inverse the solution can be computed using a matrix multiplication</p>
+<p><span class="math display">\[
+\mathbf{c}_{j+1}=A^{-1}\mathbf{c}_j
+\]</span></p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include python modules</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Model parameters</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="fl">10.0</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>L<span class="op">=</span><span class="fl">12.0</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>D<span class="op">=</span><span class="fl">1.2</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>c_0<span class="op">=</span><span class="fl">2.5</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>gamma<span class="op">=</span><span class="fl">3.0</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Discretise independent variables</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># x</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>N_x<span class="op">=</span><span class="dv">30</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>Delta_x<span class="op">=</span>L<span class="op">/</span>N_x</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="dv">0</span>,L,N_x)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co"># t</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>N_t<span class="op">=</span><span class="dv">600</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>Delta_t<span class="op">=</span>T<span class="op">/</span>N_t</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.linspace(<span class="dv">0</span>,T,N_t)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Define solution matrix</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>c<span class="op">=</span>np.zeros((N_t,N_x),dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c.shape)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.shape)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Impose initial condition</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co"># t=0 is the first row of the solution matrix</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>c[<span class="dv">0</span>,:]<span class="op">=</span>c_0<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>np.exp(gamma<span class="op">*</span>(x<span class="op">-</span>L<span class="op">/</span><span class="fl">2.0</span>)))</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop over time</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>nu<span class="op">=</span>D<span class="op">*</span>Delta_t<span class="op">/</span>(Delta_x<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Tridiagonal matrix A</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.zeros((N_x, N_x))</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N_x):</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    A[i, i] <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>nu</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>        A[i, i<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="op">-</span>nu</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">&lt;</span> N_x<span class="op">-</span><span class="dv">1</span>:</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>        A[i, i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> <span class="op">-</span>nu</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>A[<span class="dv">0</span>,<span class="dv">0</span>]<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>A[<span class="dv">0</span>,<span class="dv">1</span>]<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>A[<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>]<span class="op">=</span><span class="dv">1</span><span class="op">+</span>nu</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>A[<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">2</span>]<span class="op">=-</span>nu</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>A_inv<span class="op">=</span>np.linalg.inv(A)</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,N_t<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    new_sol<span class="op">=</span>A_inv<span class="op">@</span>(c[i,:].T).T</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>    <span class="co"># interior nodes</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>    c[i<span class="op">+</span><span class="dv">1</span>,:]<span class="op">=</span>new_sol</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>    c[i<span class="op">+</span><span class="dv">1</span>,<span class="dv">0</span>]<span class="op">=</span>c_0 <span class="co"># enforce the dirichlet bc</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="co">## Visualise solution</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots(<span class="dv">2</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].imshow(c,extent<span class="op">=</span>[<span class="dv">0</span>,L,<span class="dv">0</span>,T],origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_xlim([<span class="dv">0</span>,L])</span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_ylim([<span class="dv">0</span>,T])</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_ylabel(<span class="st">'$t$'</span>)</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_title(<span class="st">'Solution surface in 3D'</span>)</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].plot(x,c[<span class="dv">0</span>,:])</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_xlim([<span class="dv">0</span>,L])</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_title(<span class="st">'Initial condition'</span>)</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].plot(t,c[:,<span class="dv">0</span>])</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_xlim([<span class="dv">0</span>,T])</span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_ylim([<span class="dv">0</span>,c_0<span class="op">*</span><span class="fl">1.3</span>])</span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_xlabel(<span class="st">'$t$'</span>)</span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_ylabel(<span class="st">'$c$'</span>)</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_title(<span class="st">'B.C. at x=0'</span>)</span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>flux_x_L<span class="op">=</span>(c[:,<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>c[:,<span class="op">-</span><span class="dv">2</span>])<span class="op">/</span>Delta_x</span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].plot(t,flux_x_L)</span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_xlim([<span class="dv">0</span>,T])</span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_xlabel(<span class="st">'$t$'</span>)</span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_title(<span class="st">'B.C. at x=L'</span>)</span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_ylabel(<span class="st">'Flux'</span>)</span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.axis("equal")  # Ensures square axes</span></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-numsolimplicit" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-numsolimplicit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="176a1abd" class="cell" data-execute="false" data-execution_count="3">
+<div class="cell-output cell-output-stdout">
+<pre><code>(600, 30)
+(30,)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="NumericalMethods_files/figure-html/cell-4-output-2.png" width="821" height="819" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-numsolimplicit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.2
+</figcaption>
+</figure>
+</div>
 </section>
 
 </main> <!-- /main -->
