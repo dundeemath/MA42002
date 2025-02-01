@@ -51,59 +51,123 @@ The numerical results motivate the following questions:
 -   How does the wave speed relate to model parameters?
 -   How do the boundary conditions affect the wave propagation?
 
+
+:::
+
 ```{python}
+#| execute: false
+#| code-fold: true
 #| label: fig-logisticpde
 #| fig-cap: "Numerical solution of Fisher's equation."
-#| code-fold: True
-
-#  This code computes a numerical solution to Fishers equation
+ 
+# Include python modules
 import numpy as np
-from scipy.integrate import odeint
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
 
+# Domain dimensions
+T=12.
+L=42.0
 
-# Define domain and discretise
-T=100
-L=100
+# Model parameters
+
+D=1.2
+c_0=1.0
+gamma=20.0
+r=2.0
+
+# Discretise independent variables
+
+# x
 N_x=100
-N_t=100
-t=np.linspace(1,T,N_t)
+Delta_x=L/N_x
 x=np.linspace(0,L,N_x)
-dx=L/(N_x-1)
-dt=T/(N_t-1)
 
-# Initial condition
-u_0=0.5*(1+np.tanh(-0.1*(x-20)))
+# t
+N_t=600
+Delta_t=T/N_t
+t=np.linspace(0,T,N_t)
 
-# encode rhs of Fishers equation
-def logisticPDErhs(u,t):
-    N_x=len(u)
-    f=np.zeros_like(u)
-    for i in range(1,N_x-1):
-      f[i]=1/dx**2*(u[i-1]-2*u[i]+u[i+1])+u[i]*(1-u[i])  
+# Define solution matrix
+
+c=np.zeros((N_t,N_x),dtype=float)
 
 
-    i=0
-    f[i]=1/dx**2*(-u[i]+u[i+1])+u[i]*(1-u[i]) 
-    i=N_x-1
+# Impose initial condition
+# t=0 is the first row of the solution matrix
 
-    f[i]=1/dx**2*(u[i-1]-u[i])+u[i]*(1-u[i]) 
-    return f  
+c[0,:]=0.5*(1+np.tanh(-0.5*(x-L/4.0)))
 
-# Solve system of ODEs representing discretised PDE
-sol=odeint(logisticPDErhs,u_0,t)
+# Loop over time
 
-# Plot results
-plt.plot(x, sol[0,:], 'r')
-plt.plot(x, sol[4,:], 'b')
-plt.plot(x, sol[8,:], 'm')
-plt.plot(x, sol[12,:], 'k')
-plt.legend(['t='+ str(t[0]),'t='+ str(t[4]),'t='+ str(t[8]),'t='+ str(t[12])])
-plt.xlabel('$x$')
-plt.grid()
-plt.tight_layout()
+nu=D*Delta_t/(Delta_x**2)
+
+# Define the matrix A
+A = np.zeros((N_x, N_x))
+for i in range(N_x):
+    A[i, i] = 1 + 2*nu
+    if i > 0:
+        A[i, i-1] = -nu
+    if i < N_x-1:
+        A[i, i+1] = -nu
+
+A[0,0]=1
+A[0,1]=0
+
+A[-1,-1]=1+nu
+A[-1,-2]=-nu
+
+# Compute the inverse of A
+A_inv=np.linalg.inv(A)
+
+for j in range(0,N_t-1):
+    
+    new_sol=A_inv@(c[j,:].T).T
+    # interior nodes
+    c[j+1,:]=new_sol+Delta_t*r*c[j,:]*(1-c[j,:]/c_0)
+    c[j+1,0]=c_0 # enforce the dirichlet bc
+    c[j+1,-1]=0.0 # enforce the dirichlet bc
+## Visualise solution
+
+# set up a figure twice as wide as it is tall
+fig = plt.figure()
+
+# =============
+# First subplot
+# =============
+# set up the Axes for the first plot
+ax = fig.add_subplot(1, 2, 1, projection='3d')
+[x_mesh,t_mesh]=np.meshgrid(x,t)
+surf = ax.plot_surface(x_mesh, t_mesh,c,linewidth=0,cmap=cm.coolwarm, antialiased=False)
+#ax[0,0].imshow(c,extent=[0,L,0,T],origin='lower')
+ax.set_xlim([0,L])
+ax.set_ylim([0,T])
+ax.set_xlabel('$x$')
+ax.set_ylabel('$t$')
+ax.set_zlabel('$c$')
+
+ax.set_title('Solution surface in 3D')
+fig.colorbar(surf, shrink=0.5, aspect=5)
+
+ax = fig.add_subplot(1, 2, 2)
+ax.plot(x,c[0,:])
+ax.plot(x,c[int(N_t/8),:])
+ax.plot(x,c[int(2*N_t/8),:])
+ax.plot(x,c[int(3*N_t/8),:])
+
+ax.set_xlim([0,L])
+ax.set_xlabel('$x$')
+ax.set_title('')
+ax.legend([ str(0),str(round(t[int(N_t/8)],2)),str(round(t[int(2*N_t/8)],2)),str(round(t[int(3*N_t/8)],2)) ])
+ax.set_ylabel('$c$')
+
+
+fig.tight_layout()
 plt.show()
+
 ```
+:::
 
 ### Spatially homogeneous solutions
 
