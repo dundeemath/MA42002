@@ -870,8 +870,8 @@ plt.show()
 
 ```
 
-<!--
-## Lecture   8 Recap
+
+## Week 4  
 
 * Two steady states (saddle plus stable node)
 * Confined set
@@ -937,15 +937,6 @@ $$ for some $\mu <0$.
 
 \vspace{5cm}
 
-## A confined set - ctd
-
-## Lecture   8 Recap
-
-* Two steady  states (saddle + stable node)
-* Confined set
-* No oscillations
-
-## Finishing off the confined set
 
 ## No oscillations
 
@@ -968,6 +959,9 @@ has no periodic solutions in this region.
 ## Choosing $\phi$
 
 \vspace{6cm}
+
+$$
+
 For any $v>2$, there exists a travelling wave solution to Fisher's equation.
 
 ## Sign of the wave speed
@@ -1071,10 +1065,12 @@ plt.grid()
 plt.show()
 
 ```
-## Lecture   9 
-* Bistable equation
+
+
 
 ## Travelling wave ansatz
+
+<!--
 
 $$
  \frac{ d^2W}{dz^2}+  v \frac{ dW}{dz} + f(W)  = 0,
