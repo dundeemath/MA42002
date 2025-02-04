@@ -824,7 +824,7 @@ This contradicts the assumption $$
 \int_0^1 f(u)du>0.
 $$ {#eq-czerobreakingcond}
 
-Moreover, such a trajectory intersects the $W=0$ axis for some $P<0$. An intersection on the $P=0$ axis would again imply @czerobreakingcond.
+Moreover, such a trajectory intersects the $W=0$ axis for some $P<0$. An intersection on the $P=0$ axis would again imply @eq-czerobreakingcond.
 
 Now suppose that $v$ is large. The aim in this case is to show that solutions leaving (1,0) must intersect the $P=0$ axis for some $W>0$.
 
@@ -848,7 +848,9 @@ Now suppose that $v$ is large. The aim in this case is to show that solutions le
 
 Hence a trajectory approaching $(0,0)$ with sufficiently large $v$ is bounded below by the line $P=-\sigma W$. Such a trajectory must intersect the $P=0$ axis for some $W>0$.
 
-Finally, we have shown that \* trajectories with $v=0$ intersect the line $W=0$ for $P<0$ \* trajectories with large $v$ intersect the line $P=0$ for some $W>0$.
+Finally, we have shown that 
+* trajectories with $v=0$ intersect the line $W=0$ for $P<0$ 
+* trajectories with large $v$ intersect the line $P=0$ for some $W>0$.
 
 As solution trajectories depend continuously on parameters, there must exist some value of $v$ for which a trajectory intersects (0,0). Hence a heteroclinic trajectory exists.
 
