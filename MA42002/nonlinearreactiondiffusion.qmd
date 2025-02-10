@@ -806,25 +806,51 @@ plt.show()
 
 #### The shooting method proof of a heteroclinic connection
 
-Let's assume that $$
- \int\limits_{0}^{1}f(u) \, du > 0.
+Let's assume that 
+$$
+ \int\limits_{0}^{1}f(W) \, dW > 0.
+$$
+Hence the actual speed of the travelling wave is positive (if ths solution exists).
+
+
+*Shooting wave speed smaller than the true wave speed*
+
+Now consider the case when the `shooting' wave speed is zero, i.e. $v=0$. An explicit expression for the trajectory is found by multiplying @eq-tw_eq_bis by $P$ and integrating over $z$ from $-\infty$ up to $z^*$ where $W(z^*)$=W^*. 
+
+Hence 
+$$
+\frac{P^2}{2}\bigg|_{-\infty}^{z^*}= \int_{W^*}^1 f(W)dW.
+$$ 
+If this trajectory reached $W=0$ then 
+$$
+\frac{P^2}{2}\bigg|_{\infty}= \int_0^1 f(W)dW=0.
+$$ 
+The boundary condition 
+$$
+\frac{P^2}{2}\bigg|_{\pm\infty}=0,
+$$ 
+necessary for a travelling wave solution, therefore would imply that 
+$$
+\int_0^1 f(W)dW=0.
 $$
 
-Suppose that $v=0$. An explicit expression for the trajectory is found by multiplying @eq-tw_eq_bis by $P$ and integrating over $z$. Hence $$
-\frac{P^2}{2}+ \int_0^W f(u)du=0.
-$$ If this trajectory reached $W=1$ then $$
-\frac{P^2}{2}_{\bigg|\infty}+ \int_0^1 f(u)du=0.
-$$ The boundary condition $$
-\frac{P^2}{2}_{\bigg|\infty}=0,
-$$ necessary for a travelling wave solution, therefore would imply that $$
-\int_0^1 f(u)du=0.
+This contradicts the assumption 
 $$
-
-This contradicts the assumption $$
-\int_0^1 f(u)du>0.
+\int_0^1 f(W)dW>0.
 $$ {#eq-czerobreakingcond}
 
-Moreover, such a trajectory intersects the $W=0$ axis for some $P<0$. An intersection on the $P=0$ axis would again imply @eq-czerobreakingcond.
+Moreover, such a trajectory cannot intersect the $P=0$ axis for $W>0$ as this would imply that
+$$
+\int_{W^*}^1 f(W)dW=0.
+$$
+This cannot be true as 
+$$
+\int_{W^*}^1 f(W)dW>0, \quad \forall \quad   0 < W^*<1.
+$$
+
+Given that $dW/dZ<0$ (i.e. $W$ is decreasing) then the trajectory intersects the $W=0$ axis for some $P<0$. 
+
+*Shooting wave speed larger than the true wave speed*
 
 Now suppose that $v$ is large. The aim in this case is to show that solutions leaving (1,0) must intersect the $P=0$ axis for some $W>0$.
 
@@ -849,6 +875,7 @@ Now suppose that $v$ is large. The aim in this case is to show that solutions le
 Hence a trajectory approaching $(0,0)$ with sufficiently large $v$ is bounded below by the line $P=-\sigma W$. Such a trajectory must intersect the $P=0$ axis for some $W>0$.
 
 Finally, we have shown that 
+
 * trajectories with $v=0$ intersect the line $W=0$ for $P<0$ 
 * trajectories with large $v$ intersect the line $P=0$ for some $W>0$.
 
