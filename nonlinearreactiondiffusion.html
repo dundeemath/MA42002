@@ -1141,21 +1141,29 @@ Figure&nbsp;3.7: Using a shooting method to investigate travelling wave solution
 <section id="the-shooting-method-proof-of-a-heteroclinic-connection" class="level4" data-number="3.2.2.4">
 <h4 data-number="3.2.2.4" class="anchored" data-anchor-id="the-shooting-method-proof-of-a-heteroclinic-connection"><span class="header-section-number">3.2.2.4</span> The shooting method proof of a heteroclinic connection</h4>
 <p>Let’s assume that <span class="math display">\[
-\int\limits_{0}^{1}f(u) \, du &gt; 0.
-\]</span></p>
-<p>Suppose that <span class="math inline">\(v=0\)</span>. An explicit expression for the trajectory is found by multiplying <a href="#eq-tw_eq_bis" class="quarto-xref">Equation&nbsp;<span>3.10</span></a> by <span class="math inline">\(P\)</span> and integrating over <span class="math inline">\(z\)</span>. Hence <span class="math display">\[
-\frac{P^2}{2}+ \int_0^W f(u)du=0.
-\]</span> If this trajectory reached <span class="math inline">\(W=1\)</span> then <span class="math display">\[
-\frac{P^2}{2}_{\bigg|\infty}+ \int_0^1 f(u)du=0.
+\int\limits_{0}^{1}f(W) \, dW &gt; 0.
+\]</span> Hence the actual speed of the travelling wave is positive (if ths solution exists).</p>
+<p><em>Shooting wave speed smaller than the true wave speed</em></p>
+<p>Now consider the case when the `shooting’ wave speed is zero, i.e.&nbsp;<span class="math inline">\(v=0\)</span>. An explicit expression for the trajectory is found by multiplying <a href="#eq-tw_eq_bis" class="quarto-xref">Equation&nbsp;<span>3.10</span></a> by <span class="math inline">\(P\)</span> and integrating over <span class="math inline">\(z\)</span> from <span class="math inline">\(-\infty\)</span> up to <span class="math inline">\(z^*\)</span> where <span class="math inline">\(W(z^*)\)</span>=W^*.</p>
+<p>Hence <span class="math display">\[
+\frac{P^2}{2}\bigg|_{-\infty}^{z^*}= \int_{W^*}^1 f(W)dW.
+\]</span> If this trajectory reached <span class="math inline">\(W=0\)</span> then <span class="math display">\[
+\frac{P^2}{2}\bigg|_{\infty}= \int_0^1 f(W)dW=0.
 \]</span> The boundary condition <span class="math display">\[
-\frac{P^2}{2}_{\bigg|\infty}=0,
+\frac{P^2}{2}\bigg|_{\pm\infty}=0,
 \]</span> necessary for a travelling wave solution, therefore would imply that <span class="math display">\[
-\int_0^1 f(u)du=0.
+\int_0^1 f(W)dW=0.
 \]</span></p>
 <p>This contradicts the assumption <span id="eq-czerobreakingcond"><span class="math display">\[
-\int_0^1 f(u)du&gt;0.
+\int_0^1 f(W)dW&gt;0.
 \tag{3.12}\]</span></span></p>
-<p>Moreover, such a trajectory intersects the <span class="math inline">\(W=0\)</span> axis for some <span class="math inline">\(P&lt;0\)</span>. An intersection on the <span class="math inline">\(P=0\)</span> axis would again imply <a href="#eq-czerobreakingcond" class="quarto-xref">Equation&nbsp;<span>3.12</span></a>.</p>
+<p>Moreover, such a trajectory cannot intersect the <span class="math inline">\(P=0\)</span> axis for <span class="math inline">\(W&gt;0\)</span> as this would imply that <span class="math display">\[
+\int_{W^*}^1 f(W)dW=0.
+\]</span> This cannot be true as <span class="math display">\[
+\int_{W^*}^1 f(W)dW&gt;0, \quad \forall \quad   0 &lt; W^*&lt;1.
+\]</span></p>
+<p>Given that <span class="math inline">\(dW/dZ&lt;0\)</span> (i.e.&nbsp;<span class="math inline">\(W\)</span> is decreasing) then the trajectory intersects the <span class="math inline">\(W=0\)</span> axis for some <span class="math inline">\(P&lt;0\)</span>.</p>
+<p><em>Shooting wave speed larger than the true wave speed</em></p>
 <p>Now suppose that <span class="math inline">\(v\)</span> is large. The aim in this case is to show that solutions leaving (1,0) must intersect the <span class="math inline">\(P=0\)</span> axis for some <span class="math inline">\(W&gt;0\)</span>.</p>
 <ol type="1">
 <li><p>The stable eigenvector at (0,0) is <span class="math display">\[
@@ -1173,7 +1181,11 @@ P=\lambda_- W.
 <li><p>This result implies that a trajectory leaving (1,0) with sufficiently large <span class="math inline">\(v\)</span> cannot intersect (0,0). If it did it would have to intersect the line <span class="math inline">\(P=\sigma W\)</span>. This is not possible given <a href="#eq-dP_dW_bd" class="quarto-xref">Equation&nbsp;<span>3.13</span></a> and that <span class="math inline">\(W\)</span> is decreasing.</p></li>
 </ol>
 <p>Hence a trajectory approaching <span class="math inline">\((0,0)\)</span> with sufficiently large <span class="math inline">\(v\)</span> is bounded below by the line <span class="math inline">\(P=-\sigma W\)</span>. Such a trajectory must intersect the <span class="math inline">\(P=0\)</span> axis for some <span class="math inline">\(W&gt;0\)</span>.</p>
-<p>Finally, we have shown that * trajectories with <span class="math inline">\(v=0\)</span> intersect the line <span class="math inline">\(W=0\)</span> for <span class="math inline">\(P&lt;0\)</span> * trajectories with large <span class="math inline">\(v\)</span> intersect the line <span class="math inline">\(P=0\)</span> for some <span class="math inline">\(W&gt;0\)</span>.</p>
+<p>Finally, we have shown that</p>
+<ul>
+<li>trajectories with <span class="math inline">\(v=0\)</span> intersect the line <span class="math inline">\(W=0\)</span> for <span class="math inline">\(P&lt;0\)</span></li>
+<li>trajectories with large <span class="math inline">\(v\)</span> intersect the line <span class="math inline">\(P=0\)</span> for some <span class="math inline">\(W&gt;0\)</span>.</li>
+</ul>
 <p>As solution trajectories depend continuously on parameters, there must exist some value of <span class="math inline">\(v\)</span> for which a trajectory intersects (0,0). Hence a heteroclinic trajectory exists.</p>
 <p>We can repeat the analysis for <span class="math display">\[  
 \int\limits_{0}^{1}f(u) \, du &lt; 0
