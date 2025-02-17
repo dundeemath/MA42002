@@ -224,7 +224,7 @@ $$
 \lambda_2^- =- 1, \quad \lambda_2^+ = a(1-b) >0 \; \text{ for } \; 0 \leq b <1.
 $$
 
-Thus $(1,0)$ is a saddle point.
+Thus $(1,0)$ is a saddle point for $b<1$. For $b>1$ it is a stable node.
  
 At the steady state 
 $$
