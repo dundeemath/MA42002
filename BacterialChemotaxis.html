@@ -537,22 +537,24 @@ N= \int_0^L n(x,t)dx
 \frac{dN}{dt} &amp;=\int_0^L \frac{\partial n(x,t)}{\partial t}dx
 &amp;=\int_0^L  D_n \frac{\partial ^2 n}{\partial x^2} - \chi_0 \frac{\partial}{\partial x} \left( n \frac{\partial a}{\partial x} \right) dx.
 \end{aligned}
-\]</span> Upon integration of the right-hand side w.r.t. <span class="math inline">\(x\)</span>, subsequent application of the no-flux boundary condition implies <span class="math display">\[
+\]</span></p>
+<p>Upon integration of the right-hand side w.r.t. <span class="math inline">\(x\)</span>, subsequent application of the no-flux boundary condition implies <span class="math display">\[
 \frac{dN}{dt}=0.
-\]</span> Hence the total number of cells in the domain is fixed by the initial data.</p>
+\]</span></p>
+<p>Hence the total number of cells in the domain is fixed by the initial data.</p>
 </section>
 <section id="spatially-homogeneous-steady-state" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="spatially-homogeneous-steady-state"><span class="header-section-number">5.4</span> Spatially homogeneous steady state</h2>
-<p>Suppose that <span class="math inline">\((n^*,a^*)\)</span> is a spatially homogeneous, steady state solution, i.e.&nbsp;<span class="math display">\[
+<p>Suppose that <span class="math inline">\((n^*,a^*)\)</span> is a spatially homogeneous, steady state solution, i.e.&nbsp; <span class="math display">\[
 \frac{\partial n}{\partial x}=\frac{\partial n}{\partial t}=\frac{\partial a}{\partial x}=\frac{\partial a}{\partial t}=0.
 \]</span></p>
 <p>Hence</p>
 <p><span class="math display">\[
-\mu n* - \delta a*=0,
+\mu n^* - \delta a^*=0,
 \]</span></p>
 <p>and therefore</p>
 <p><span class="math display">\[
-a*=\frac{\mu}{\delta }n*.
+a^*=\frac{\mu}{\delta }n^*.
 \]</span></p>
 <p>Given initial cell number, <span class="math inline">\(N\)</span>, and domain size, <span class="math inline">\(L\)</span>, conservation of cell number implies that <span class="math display">\[
 n^*=N/L
@@ -581,18 +583,18 @@ n(x,t) = n^* + \tilde{n}(x,t), \;\;\; a(x,t) = a^* + \tilde{a}(x,t)
 \end{aligned}
 \tag{5.2}\]</span></span></p>
 <p>Although the above equations are linear, an explicit solution is non-trivial and we are required to make a further “separation of variables” <em>ansatz</em>. We seek solutions of the form <span class="math display">\[
-\tilde{n}(t,x) = u(t) \phi_1(x)
+\tilde{n}(t,x) = u(t) \bar{\phi}_1(x)
 \]</span> and <span class="math display">\[
-\tilde a (t,x) = v(t) \phi_2(x)
+\tilde a (t,x) = v(t) \bar{\phi}_2(x)
 \]</span></p>
 <p>Upon substitution <span class="math display">\[
 \begin{aligned}
-&amp;\frac{d u}{d  t}  \phi_1  =   D_n  u\frac{d ^2 \phi_1}{d x^2} - \chi_0 n^*  v\frac{d ^2 \phi_2}{d x^2} \\
-&amp; \frac{d v}{d  t}  \phi_2=     D_a v \frac{d ^2  \phi_2}{d x^2}  +  \mu u \,  \phi_1 - \delta v\,  \phi_2, \\
+&amp;\frac{d u}{dt}  \bar{\phi}_1  =   D_n  u\frac{d^2 \bar{\phi_1}}{d x^2} - \chi_0 n^*  v\frac{d ^2 \bar{\phi}_2}{d x^2} \\
+&amp; \frac{d v}{dt}  \bar{\phi}_2=     D_a v \frac{d ^2  \bar{\phi}_2}{d x^2}  +  \mu u \,  \bar{\phi}_1 - \delta v\,  \bar{\phi}_2, \\
 \end{aligned}
 \]</span> with boundary conditions <span class="math display">\[
 \begin{aligned}
-&amp; u \frac{d \phi_1}{d x} = 0, \quad   v \frac{d \phi_2}{d x} = 0 \quad \text{ for } \; x = 0, \; x=L.
+&amp; u \frac{d \bar{\phi}_1}{d x} = 0, \quad   v \frac{d \bar{\phi}_2}{d x} = 0 \quad \text{ for } \; x = 0, \; x=L.
 \end{aligned}
 \]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -605,82 +607,50 @@ Elliptic problem
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Suppose that <span class="math inline">\(\phi\)</span> is the solution of the elliptic problem <span class="math display">\[
+<p>Suppose that <span class="math inline">\(\phi_k(x)\)</span> is the solution of the elliptic problem <span class="math display">\[
 \begin{aligned}
-\frac{d^2 \phi}{dx^2} &amp;= - k^2 \phi &amp;&amp; \text{ in } \; (0,L), \\
-\frac{d \phi}{dx} &amp;= 0  &amp;&amp; \text{ for } \; x=0, \; x=L.
+\frac{d^2 \phi_k}{dx^2} &amp;= - k^2 \phi &amp;&amp; \text{ in } \; (0,L), \\
+\frac{d \phi_k}{dx} &amp;= 0  &amp;&amp; \text{ for } \; x=0, \; x=L.
 \end{aligned}
-\]</span> We can compute that solution of the equation for <span class="math inline">\(\phi\)</span> are of the form <span class="math display">\[
-\phi(x) = A \cos(kx) + B\sin(kx).
-\]</span> Since <span class="math inline">\(\phi\)</span> satisfied zero Neumann boundary conditions we have that <span class="math display">\[
-\phi(x) = A \cos(kx),
+\]</span> We can compute that solution of the equation for <span class="math inline">\(\phi_k\)</span> are of the form <span class="math display">\[
+\phi_k(x) = A \cos(kx) + B\sin(kx).
+\]</span> Since <span class="math inline">\(\phi_k\)</span> satisfied zero Neumann boundary conditions we have that <span class="math display">\[
+\phi_k(x) = A \cos(kx),
 \]</span> where <span class="math inline">\(A\)</span> is an arbitrary constant, and <span class="math display">\[
 k = \dfrac {m \pi} L, \quad m \in \mathbb N.
 \]</span></p>
 </div>
 </div>
 <p>We seek solutions <span class="math display">\[
-\phi_1 = \phi_2 = \phi.
-\]</span></p>
+\bar{\phi}_1(x) = \bar{\phi}_2(x) = \phi_k(x),
+\]</span> and denote corresponding temporal components with <span class="math inline">\(u_k(t)\)</span> and <span class="math inline">\(v_k(t)\)</span>.</p>
 <p>Then we have <span class="math display">\[
 \begin{aligned}
-&amp;\frac{\partial u}{\partial  t}  \phi  =   - k^2 D_n  u \phi +  \chi_0 n^* k^2\,  v \, \phi,  \\
-&amp; \frac{\partial v}{\partial  t} \phi =   - k^2 D_a  \, v \phi  +  \mu u \,  \phi - \delta v\,  \phi,
+&amp;\frac{d u_k}{\partial  t}  \phi_k(x)  =   - k^2 D_n  u_k \phi_k(x) +  \chi_0 n^* k^2\,  v_k \, \phi_k(x),  \\
+&amp; \frac{d v_k}{\partial  t} \phi_k(x) =   - k^2 D_a  \, v_k \phi_k(x)  +  \mu u_k \,  \phi_k(x) - \delta v_k\,  \phi_k(x),
 \end{aligned}
-\]</span> and since <span class="math inline">\(\phi\)</span> is not identically zero on <span class="math inline">\((0,L)\)</span> we obtain a system of linear ODEs for <span class="math inline">\((u(t),v(t))\)</span> <span class="math display">\[
+\]</span> and since <span class="math inline">\(\phi_k(x)\)</span> is not identically zero on <span class="math inline">\((0,L)\)</span> we obtain a system of linear ODEs for <span class="math inline">\((u_k(t),v_k(t))\)</span> <span class="math display">\[
 \begin{aligned}
-&amp;\frac{\partial u}{\partial  t}    =   - k^2 D_n  u  +  \chi_0 n^* k^2\,  v,  \\
-&amp; \frac{\partial v}{\partial  t} =   - k^2 D_a  \, v  +  \mu u  - \delta v.
+&amp;\frac{d u_k}{\partial  t}    =   - k^2 D_n  u_k  +  \chi_0 n^* k^2\,  v_k,  \\
+&amp; \frac{d v_k}{\partial  t} =   - k^2 D_a  \, v_k  +  \mu u_k  - \delta v_k.
 \end{aligned}
 \]</span></p>
-<p>We know that solutions of linear ODEs have the form <span class="math display">\[
-u(t) = C_1 e^{\lambda t} \quad \textrm{and} \quad v(t) = C_2 e^{\lambda t}
-\]</span> for some constant <span class="math inline">\(C_1\)</span>, <span class="math inline">\(C_2\)</span> and <span class="math inline">\(\lambda\)</span> are eigenvalues of the corresponding matrix.</p>
-<p>Thus we obtain <span class="math display">\[
-\begin{aligned}
-\lambda C_1 &amp; =  - D_n k^2 C_1  + \chi_0 n^* k^2 C_2,  \\
-\lambda C_2 &amp; = - D_a k^2 C_2 +  \mu C_1 - \delta C_2,
-\end{aligned}
-\]</span> which can be written</p>
-<p><span class="math display">\[
-\left(
-\begin{array}{cc}
-- D_n k^2 - \lambda &amp;  \chi_0 n^* k^2 \\
-\mu &amp; - D_a k^2 -\delta -\lambda
-\end{array}
-\right)
-\left(
-\begin{array}{c}
-C_1 \\
-C_2
-\end{array}
-\right) = \mathbf{0} .
+<p>This can be written in the form <span class="math display">\[
+\frac{d\mathbf{w}_k}{dt}=A\mathbf{w}_k
+\]</span> where <span class="math display">\[
+A=\begin{pmatrix}
+-k^2 D_n &amp; \chi_0 n^* k^2\\
+\mu  &amp;  -D_ak^2-\delta
+\end{pmatrix}
 \]</span></p>
-<p><strong>Remark</strong> Notice that we obtained that <span class="math inline">\(\tilde n\)</span> and <span class="math inline">\(\tilde a\)</span> are of the form <span class="math display">\[\tilde{n}(x,t) = C_1 e^{\lambda t} e^{ikx}, \;\;\; \tilde{a}(x,t) = C_2 e^{\lambda t} e^{ikx}.\]</span></p>
-<p>For a non-trivial solution (for non-trivial perturbations <span class="math inline">\(\tilde n\)</span>, <span class="math inline">\(\tilde a\)</span>), i.e.&nbsp;<span class="math inline">\(C_1 \neq 0\)</span> and <span class="math inline">\(C_2 \neq 0\)</span>, the determinant of the above matrix must be zero, and this leads to the following quadratic equation to be solved for <span class="math inline">\(\lambda\)</span>:</p>
-<p><span class="math display">\[
-\lambda^2 + \left( D_n k^2 + D_a k^2 + \delta \right) \lambda + D_n k^2 \left( D_a k^2 + \delta \right) - \mu \chi_0 n^* k^2 = 0.
+<p>Hence the trace is <span class="math display">\[
+\mathrm{tr}A= -k^2 D_n -D_ak^2-\delta &lt;0.
 \]</span></p>
-<p>This is of the form <span class="math display">\[
-\lambda^2 + \alpha \lambda + \beta = 0,
+<p>The determinant is <span class="math display">\[
+(k^2 D_n)(D_ak^2+\delta)-\chi_0 n^* k^2\mu.
 \]</span></p>
-<p>and so has roots: <span class="math display">\[
-\lambda = \frac{-\alpha \pm \sqrt{\alpha^2 - 4 \beta}}{2}.\]</span></p>
-<p><strong>NOTE</strong> This has two <em>real</em> roots, since <span class="math display">\[
-\alpha^2 - 4 \beta &gt; 0
-\]</span> (see Exercise/Tutorial).</p>
-<p>For stability, we require both roots to be negative. Since both roots are real, this leads to:</p>
+<p>For linear <em>instability</em> of the <span class="math inline">\(k^{th}\)</span> mode we therefore require a negative determinant, i.e.</p>
 <p><span class="math display">\[
-\lambda &lt; 0  \Leftrightarrow \alpha &gt; 0 \;\;\; \text{and} \;\;\; \beta &gt;0.
-\]</span></p>
-<p>Now <span class="math display">\[\alpha = D_n k^2 + D_a k^2 + \delta &gt; 0,
-\]</span> and so for stability, we require <span class="math inline">\(\beta &gt; 0\)</span> i.e.</p>
-<p><span class="math display">\[
-\begin{aligned}
-&amp; &amp; D_n k^2 \left( D_a k^2 + \delta \right) - \mu \chi_0 n^* k^2 &gt; 0 \\
-&amp; &amp; \Rightarrow \mu \chi_0 n^* &lt;  D_n  \left( D_a k^2 + \delta \right)
-\end{aligned}
-\]</span> Hence, we will have instability when this condition is not satisfied i.e.&nbsp;<span class="math display">\[
 \mu \chi_0 n^* &gt;  D_n  \left( D_a k^2 + \delta \right).
 \]</span></p>
 <p>The precise value of <span class="math inline">\(k^2\)</span> can be determined from the zero-flux boundary conditions i.e.&nbsp;<span class="math display">\[
