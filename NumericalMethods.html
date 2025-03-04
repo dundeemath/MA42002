@@ -280,7 +280,16 @@ window.Quarto = {
   <li><a href="#python-libraries" id="toc-python-libraries" class="nav-link" data-scroll-target="#python-libraries"><span class="header-section-number">8.2</span> Python libraries</a></li>
   <li><a href="#computing-the-numerical-solution-of-a-single-pde" id="toc-computing-the-numerical-solution-of-a-single-pde" class="nav-link" data-scroll-target="#computing-the-numerical-solution-of-a-single-pde"><span class="header-section-number">8.3</span> Computing the numerical solution of a single PDE</a></li>
   <li><a href="#an-implicit-method" id="toc-an-implicit-method" class="nav-link" data-scroll-target="#an-implicit-method"><span class="header-section-number">8.4</span> An implicit method</a></li>
-  <li><a href="#two-spatial-dimensions" id="toc-two-spatial-dimensions" class="nav-link" data-scroll-target="#two-spatial-dimensions"><span class="header-section-number">9</span> Two spatial dimensions</a></li>
+  <li><a href="#systems-of-two-dependent-variables-in-one-spatial-dimension" id="toc-systems-of-two-dependent-variables-in-one-spatial-dimension" class="nav-link" data-scroll-target="#systems-of-two-dependent-variables-in-one-spatial-dimension"><span class="header-section-number">9</span> Systems of two dependent variables in one spatial dimension</a>
+  <ul class="collapse">
+  <li><a href="#lotka-volterra" id="toc-lotka-volterra" class="nav-link" data-scroll-target="#lotka-volterra"><span class="header-section-number">9.1</span> Lotka Volterra</a></li>
+  <li><a href="#chemotaxis" id="toc-chemotaxis" class="nav-link" data-scroll-target="#chemotaxis"><span class="header-section-number">9.2</span> Chemotaxis</a></li>
+  <li><a href="#ddi" id="toc-ddi" class="nav-link" data-scroll-target="#ddi"><span class="header-section-number">9.3</span> DDI</a>
+  <ul class="collapse">
+  <li><a href="#one-spatial-dimension" id="toc-one-spatial-dimension" class="nav-link" data-scroll-target="#one-spatial-dimension"><span class="header-section-number">9.3.1</span> One spatial dimension</a></li>
+  <li><a href="#two-spatial-dimensions" id="toc-two-spatial-dimensions" class="nav-link" data-scroll-target="#two-spatial-dimensions"><span class="header-section-number">9.3.2</span> Two spatial dimensions</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/dundeemath/MA42002/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -315,7 +324,7 @@ window.Quarto = {
 <p>Install a development environment (for writing and unnirn gscripts). I use <a href="https://code.visualstudio.com">Visual studio Code</a>.</p>
 <p>Install the <a href="https://code.visualstudio.com/docs">VS Code Python extension</a></p>
 <p>Copy and paste the code below and save as DemoPythonCode.py.</p>
-<div id="8aa4e2c0" class="cell" data-execution_count="1">
+<div id="4938ca5a" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span><span class="dv">2</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span><span class="dv">2</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>z<span class="op">=</span>x<span class="op">+</span>y</span>
@@ -547,7 +556,7 @@ c_{j+1,i}=c_{j,i}+\nu (c_{j,i-1}-c_{j,i}), \quad i=N_x.
 <div id="fig-numsol" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-numsol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="98b60ef3" class="cell" data-execute="false" data-execution_count="2">
+<div id="47c37940" class="cell" data-execute="false" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -739,7 +748,7 @@ A= \begin{pmatrix}
 <div id="fig-numsolimplicit" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-numsolimplicit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="602a32e1" class="cell" data-execute="false" data-execution_count="3">
+<div id="9072d970" class="cell" data-execute="false" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -755,10 +764,170 @@ Figure&nbsp;8.2
 </figure>
 </div>
 </section>
-<section id="two-spatial-dimensions" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Two spatial dimensions</h1>
+<section id="systems-of-two-dependent-variables-in-one-spatial-dimension" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Systems of two dependent variables in one spatial dimension</h1>
+<section id="lotka-volterra" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="lotka-volterra"><span class="header-section-number">9.1</span> Lotka Volterra</h2>
+</section>
+<section id="chemotaxis" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="chemotaxis"><span class="header-section-number">9.2</span> Chemotaxis</h2>
+</section>
+<section id="ddi" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="ddi"><span class="header-section-number">9.3</span> DDI</h2>
+<section id="one-spatial-dimension" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="one-spatial-dimension"><span class="header-section-number">9.3.1</span> One spatial dimension</h3>
+<p>We want to solve the reaction diffusion problem <span class="math display">\[
+\begin{aligned}
+\frac{\partial u}{\partial  t} &amp; = \gamma f(u,v)  + \nabla^2 u, \\
+\frac{\partial v}{\partial  t} &amp; = \gamma g(u,w)  + d \nabla^2 v,
+\end{aligned}
+\]</span></p>
+<section id="conditions-for-ddi" class="level4" data-number="9.3.1.1">
+<h4 data-number="9.3.1.1" class="anchored" data-anchor-id="conditions-for-ddi"><span class="header-section-number">9.3.1.1</span> Conditions for DDI</h4>
+<p>For DDI we need the Turing conditions being derived in lectures to hold.</p>
+<p>Consider the Jacobian <span class="math display">\[
+A=\begin{pmatrix}
+f_u &amp; f_v \\ g_u &amp; g_v.
+\end{pmatrix}
+\]</span></p>
+<p>Consider also the modified Jacobian <span class="math display">\[
+\tilde{A}=\begin{pmatrix}
+f_u - k_2 &amp; f_v \\ g_u &amp; g_v-dk^2.
+\end{pmatrix}
+\]</span></p>
+<p>For DDI it is required that: <span class="math display">\[
+\begin{aligned}
+\mathrm{tr}{A}&amp;&lt;0 \\
+\mathrm{det}{A}&amp;&gt;0 \\
+\mathrm{det}{\tilde{A}}&amp;&lt;0
+\end{aligned}
+\]</span></p>
+</section>
+<section id="implementation-of-numerical-solution-of-the-pde" class="level4" data-number="9.3.1.2">
+<h4 data-number="9.3.1.2" class="anchored" data-anchor-id="implementation-of-numerical-solution-of-the-pde"><span class="header-section-number">9.3.1.2</span> Implementation of numerical solution of the PDE</h4>
+<p>Discretise space and time and let <span class="math inline">\(u_{ij}\)</span> and <span class="math inline">\(v_{ij}\)</span> represent the solution at the <span class="math inline">\(i^{th}\)</span> time step and <span class="math inline">\(j^{th}\)</span> spatial step. Using a backward difference for the time derivative yields <span class="math display">\[
+\frac{u_{i,j}-u_{i-1,j}}{\Delta t} = f(u_{i-1,j},v{i-1,j})+\frac{u_{i,j-1}-2u_{i,j}+u_{i,j+1}}{\Delta x ^2}
+\]</span></p>
+<p>We can gather terms at time step <span class="math inline">\(i\)</span> and bring to the left-hand side. Writing in matrix form, and also considering the <span class="math inline">\(v\)</span> equation, <span class="math display">\[
+\begin{aligned}
+A_u \mathbf{u}_{i} &amp; =u_{i-1}+f(\mathbf{u}_{i-1},\mathbf{v}_{i-1})\\
+A_v \mathbf{v}_{i} &amp; =v_{i-1}+g(\mathbf{u}_{i-1},\mathbf{v}_{i-1})
+\end{aligned}
+\]</span></p>
+<p>The matrices <span class="math inline">\(A_u\)</span> and <span class="math inline">\(A_v\)</span> have tridiagonal stucture.</p>
+<p>Hence the solution at the <span class="math inline">\(i^{th}\)</span> time point can be computed as <span class="math display">\[
+\begin{aligned}
+\mathbf{u}_{i} &amp;=A_u^{-1}\left(u_{i-1}+f(\mathbf{u}_{i-1},\mathbf{v}_{i-1})\right), \\
+\mathbf{v}_{i}&amp;=A_v^{-1}\left(v_{i-1}+g(\mathbf{u}_{i-1},\mathbf{v}_{i-1})\right).
+\end{aligned}
+\]</span></p>
+<p>The initial condition is considered by setting <span class="math inline">\(u_{0,j}\)</span> and <span class="math inline">\(v_{0,j}\)</span> as required.</p>
+<p>The boundaries are represented by the first and last spatial points (<span class="math inline">\(j=0\)</span> and <span class="math inline">\(j=N\)</span>, respectively).</p>
+<p>The no -flux condition can be implemented by treating the boundary points as special cases. The governing equation at <span class="math inline">\(j=0\)</span> is <span class="math display">\[
+\frac{u_{i,0}-u_{i-1,0}}{\Delta t} = f(u_{i-1,0},v{i-1,0})+\frac{-u_{i,0}+u_{i,1}}{\Delta x ^2}
+\]</span></p>
+<p>A similar argument applies at <span class="math inline">\(j=N\)</span>.</p>
+<p>Once the above problem is set up, the solution is computed via a sequence of matrix multiplications in a for loop.</p>
+</section>
+<section id="exercises" class="level4" data-number="9.3.1.3">
+<h4 data-number="9.3.1.3" class="anchored" data-anchor-id="exercises"><span class="header-section-number">9.3.1.3</span> Exercises</h4>
+<ol type="1">
+<li><p>Change the model parameters. Show that pattern formation in the solution of the PDE occurs when there exists some <span class="math inline">\(k^2\)</span> s.t <span class="math inline">\(\mathrm{det}\tilde{A}&lt;0.\)</span></p></li>
+<li><p>Show that the mode that appears in the numerical solution of the PDE can in some cases be predicted from the stability analysis.</p></li>
+<li><p>Show that no pattern formation occurs when the diffusion coefficients are equal.</p></li>
+<li><p>What is the role of noise in the initial conditions? If you initialise the numerical solution at steady state, does pattern formation occur? What if you initialise at of the stable modes (i.e.&nbsp;<span class="math inline">\(\cos{n\pi x/L}\)</span>) where <span class="math inline">\(n\)</span> is stable?</p></li>
+</ol>
+<div class="cell" data-execution_count="4">
+<div id="fig-schnack" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-schnack-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display">
+<div id="fig-schnack-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-schnack-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="NumericalMethods_files/figure-html/fig-schnack-output-1.png" data-ref-parent="fig-schnack" width="618" height="449" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-schnack-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Numerical solution of the Schnackenberg model.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-schnack-2" class="quarto-float quarto-figure quarto-figure-center anchored" width="661" height="468">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-schnack-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="NumericalMethods_files/figure-html/fig-schnack-output-2.png" id="fig-schnack-2" data-ref-parent="fig-schnack" width="661" height="468" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-schnack-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-schnack-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.1
+</figcaption>
+</figure>
+</div>
+</div>
+<p>:::</p>
+</section>
+</section>
+<section id="two-spatial-dimensions" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="two-spatial-dimensions"><span class="header-section-number">9.3.2</span> Two spatial dimensions</h3>
+<p>Similar procedures to above can be provided. There are now three independent variables. Hence the discretised solution is represented by <span class="math inline">\(u_{i,j,k}\)</span>. As the computaitonal problem is more challengning to solve, we make use of the sparse structure of the matrices that appear.</p>
+<p>The theoretical results can also be derived in a simialr manner as the 1D case. Some additional complications arise when we separate the variables.</p>
+<p>Exercises:</p>
+<ol type="1">
+<li><p>Change the aspcet ratio of the spatial domain. Does this affect pattern formation?</p></li>
+<li><p>Try to explore the parameter space and obtain:</p></li>
+</ol>
+<ul>
+<li>spotted patterns</li>
+<li>stripe patterns</li>
+<li>labyrinthe patterns</li>
+</ul>
+<div class="cell" data-execution_count="5">
+<div id="fig-schnack-2d" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-schnack-2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display">
+<div id="fig-schnack-2d-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-schnack-2d-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="NumericalMethods_files/figure-html/fig-schnack-2d-output-1.png" data-ref-parent="fig-schnack-2d" width="675" height="296" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-schnack-2d-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Numerical solution of the Schnackenberg model in 2d.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-schnack-2d-2" class="quarto-float quarto-figure quarto-figure-center anchored" width="583" height="416">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-schnack-2d-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="NumericalMethods_files/figure-html/fig-schnack-2d-output-2.png" id="fig-schnack-2d-2" data-ref-parent="fig-schnack-2d" width="583" height="416" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-schnack-2d-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-schnack-2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.2
+</figcaption>
+</figure>
+</div>
+</div>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
