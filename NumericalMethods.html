@@ -324,7 +324,7 @@ window.Quarto = {
 <p>Install a development environment (for writing and unnirn gscripts). I use <a href="https://code.visualstudio.com">Visual studio Code</a>.</p>
 <p>Install the <a href="https://code.visualstudio.com/docs">VS Code Python extension</a></p>
 <p>Copy and paste the code below and save as DemoPythonCode.py.</p>
-<div id="4938ca5a" class="cell" data-execution_count="1">
+<div id="c1efc33c" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span><span class="dv">2</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span><span class="dv">2</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>z<span class="op">=</span>x<span class="op">+</span>y</span>
@@ -556,7 +556,7 @@ c_{j+1,i}=c_{j,i}+\nu (c_{j,i-1}-c_{j,i}), \quad i=N_x.
 <div id="fig-numsol" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-numsol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="47c37940" class="cell" data-execute="false" data-execution_count="2">
+<div id="173f36cf" class="cell" data-execute="false" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -748,7 +748,7 @@ A= \begin{pmatrix}
 <div id="fig-numsolimplicit" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-numsolimplicit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="9072d970" class="cell" data-execute="false" data-execution_count="3">
+<div id="1ea27329" class="cell" data-execute="false" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -823,8 +823,8 @@ A_v \mathbf{v}_{i} &amp; =v_{i-1}+g(\mathbf{u}_{i-1},\mathbf{v}_{i-1})
 \]</span></p>
 <p>The initial condition is considered by setting <span class="math inline">\(u_{0,j}\)</span> and <span class="math inline">\(v_{0,j}\)</span> as required.</p>
 <p>The boundaries are represented by the first and last spatial points (<span class="math inline">\(j=0\)</span> and <span class="math inline">\(j=N\)</span>, respectively).</p>
-<p>The no -flux condition can be implemented by treating the boundary points as special cases. The governing equation at <span class="math inline">\(j=0\)</span> is <span class="math display">\[
-\frac{u_{i,0}-u_{i-1,0}}{\Delta t} = f(u_{i-1,0},v{i-1,0})+\frac{-u_{i,0}+u_{i,1}}{\Delta x ^2}
+<p>The no-flux condition can be implemented by treating the boundary points as special cases. The governing equation at <span class="math inline">\(j=0\)</span> is <span class="math display">\[
+\frac{u_{i,0}-u_{i-1,0}}{\Delta t} = f(u_{i-1,0},v_{i-1,0})+\frac{-u_{i,0}+u_{i,1}}{\Delta x ^2}
 \]</span></p>
 <p>A similar argument applies at <span class="math inline">\(j=N\)</span>.</p>
 <p>Once the above problem is set up, the solution is computed via a sequence of matrix multiplications in a for loop.</p>
@@ -854,7 +854,7 @@ A_v \mathbf{v}_{i} &amp; =v_{i-1}+g(\mathbf{u}_{i-1},\mathbf{v}_{i-1})
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-schnack-2" class="quarto-float quarto-figure quarto-figure-center anchored" width="661" height="468">
+<div id="fig-schnack-2" class="quarto-float quarto-figure quarto-figure-center anchored" height="468" width="661">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-schnack-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="NumericalMethods_files/figure-html/fig-schnack-output-2.png" id="fig-schnack-2" data-ref-parent="fig-schnack" width="661" height="468" class="figure-img">
@@ -906,7 +906,7 @@ Figure&nbsp;9.1
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-schnack-2d-2" class="quarto-float quarto-figure quarto-figure-center anchored" width="583" height="416">
+<div id="fig-schnack-2d-2" class="quarto-float quarto-figure quarto-figure-center anchored" height="416" width="583">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-schnack-2d-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="NumericalMethods_files/figure-html/fig-schnack-2d-output-2.png" id="fig-schnack-2d-2" data-ref-parent="fig-schnack-2d" width="583" height="416" class="figure-img">
