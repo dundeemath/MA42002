@@ -324,7 +324,7 @@ window.Quarto = {
 <p>Install a development environment (for writing and unnirn gscripts). I use <a href="https://code.visualstudio.com">Visual studio Code</a>.</p>
 <p>Install the <a href="https://code.visualstudio.com/docs">VS Code Python extension</a></p>
 <p>Copy and paste the code below and save as DemoPythonCode.py.</p>
-<div id="3170a8ea" class="cell" data-execution_count="1">
+<div id="29483ad3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span><span class="dv">2</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span><span class="dv">2</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>z<span class="op">=</span>x<span class="op">+</span>y</span>
@@ -556,7 +556,7 @@ c_{j+1,i}=c_{j,i}+\nu (c_{j,i-1}-c_{j,i}), \quad i=N_x.
 <div id="fig-numsol" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-numsol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="2fdf4c26" class="cell" data-execute="false" data-execution_count="2">
+<div id="684e2999" class="cell" data-execute="false" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -748,7 +748,7 @@ A= \begin{pmatrix}
 <div id="fig-numsolimplicit" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-numsolimplicit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="d1e45150" class="cell" data-execute="false" data-execution_count="3">
+<div id="05b095aa" class="cell" data-execute="false" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -837,16 +837,195 @@ A_v \mathbf{v}_{i} &amp; =v_{i-1}+g(\mathbf{u}_{i-1},\mathbf{v}_{i-1})
 <li><p>Show that no pattern formation occurs when the diffusion coefficients are equal.</p></li>
 <li><p>What is the role of noise in the initial conditions? If you initialise the numerical solution at steady state, does pattern formation occur? What if you initialise at of the stable modes (i.e.&nbsp;<span class="math inline">\(\cos{n\pi x/L}\)</span>) where <span class="math inline">\(n\)</span> is stable?</p></li>
 </ol>
-<p>:::</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include python modules</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> cm</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.gridspec <span class="im">import</span> GridSpec</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Define some functions</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the matrix A - represents linear algebra from finite difference method</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> DefineA(nu):</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  A <span class="op">=</span> np.zeros((N_x, N_x))</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N_x):</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>      A[i, i] <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>nu</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> i <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>          A[i, i<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="op">-</span>nu</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> i <span class="op">&lt;</span> N_x<span class="op">-</span><span class="dv">1</span>:</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>          A[i, i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> <span class="op">-</span>nu</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  A[<span class="dv">0</span>,<span class="dv">0</span>]<span class="op">=</span><span class="dv">1</span><span class="op">+</span>nu</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  A[<span class="dv">0</span>,<span class="dv">1</span>]<span class="op">=-</span>nu</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  A[<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>]<span class="op">=</span><span class="dv">1</span><span class="op">+</span>nu</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  A[<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">2</span>]<span class="op">=-</span>nu</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> A</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ComputeReactionRates(u,v):</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  reaction_u<span class="op">=</span>gamma<span class="op">*</span>(a<span class="op">-</span>u<span class="op">+</span>(u<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>v)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  reaction_v<span class="op">=</span>gamma<span class="op">*</span>(b<span class="op">-</span>(u<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>v)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> reaction_u, reaction_v</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> SetInitialConditionWithNoise():</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define solution matrix</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    u<span class="op">=</span>np.zeros((N_t,N_x),dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    v<span class="op">=</span>np.zeros((N_t,N_x),dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    init_noiseStr<span class="op">=</span><span class="fl">0.01</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    u[<span class="dv">0</span>,:]<span class="op">=</span>(a<span class="op">+</span>b)<span class="op">*</span>np.ones_like(x)<span class="op">+</span>init_noiseStr<span class="op">*</span>np.random.uniform(low<span class="op">=-</span><span class="fl">1.0</span>, high<span class="op">=</span><span class="fl">1.0</span>, size<span class="op">=</span>(N_x,))</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    v[<span class="dv">0</span>,:]<span class="op">=</span>b<span class="op">*</span>(<span class="dv">1</span><span class="op">/</span>(a<span class="op">+</span>b)<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>np.ones_like(x)<span class="op">+</span>init_noiseStr<span class="op">*</span>np.random.uniform(low<span class="op">=-</span><span class="fl">1.0</span>, high<span class="op">=</span><span class="fl">1.0</span>, size<span class="op">=</span>(N_x,))</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u,v</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> SetInitialConditionAsEigenMode(n):</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define solution matrix</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    u<span class="op">=</span>np.zeros((N_t,N_x),dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    v<span class="op">=</span>np.zeros((N_t,N_x),dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    u[<span class="dv">0</span>,:]<span class="op">=</span>np.cos(n<span class="op">*</span>np.pi<span class="op">*</span>x<span class="op">/</span>L)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    v[<span class="dv">0</span>,:]<span class="op">=</span>np.cos(n<span class="op">*</span>np.pi<span class="op">*</span>x<span class="op">/</span>L)</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u,v</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Domain dimensions</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="fl">0.630</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>L<span class="op">=</span><span class="fl">2.0</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="co"># Model parameters</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="fl">0.25</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span><span class="fl">1.25</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>d<span class="op">=</span><span class="fl">30.0</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>gamma<span class="op">=</span><span class="fl">70.0</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="co"># Discretise indendent variables</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="co"># x</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>N_x<span class="op">=</span><span class="dv">300</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>Delta_x<span class="op">=</span>L<span class="op">/</span>N_x</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="dv">0</span>,L,N_x)</span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="co"># t</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>N_t<span class="op">=</span><span class="dv">5000</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>Delta_t<span class="op">=</span>T<span class="op">/</span>N_t</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.linspace(<span class="dv">0</span>,T,N_t)</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Impose initial condition</span></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>u,v<span class="op">=</span>SetInitialConditionWithNoise()</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>u,<span class="co">#v=SetInitialConditionAsEigenMode(6)</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Define matrices needed for implementation of finite difference method</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>A_u<span class="op">=</span>DefineA(Delta_t<span class="op">/</span>(Delta_x<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>A_v<span class="op">=</span>DefineA(d<span class="op">*</span>Delta_t<span class="op">/</span>(Delta_x<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&nbsp;Compute the inverse of A</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>A_inv_u<span class="op">=</span>np.linalg.inv(A_u)</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>A_inv_v<span class="op">=</span>np.linalg.inv(A_v)</span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop over time</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,N_t<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute reaction rates</span></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>    reaction_u, reaction_v<span class="op">=</span>ComputeReactionRates(u[j,:],v[j,:])</span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute rhs of iterative scheme</span></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>    rhs_u<span class="op">=</span>u[j,:]<span class="op">+</span>Delta_t<span class="op">*</span>reaction_u</span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>    rhs_v<span class="op">=</span>v[j,:]<span class="op">+</span>Delta_t<span class="op">*</span>reaction_v</span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>    <span class="co"># MAtrix multiplication</span></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>    u[j<span class="op">+</span><span class="dv">1</span>,:]<span class="op">=</span>(A_inv_u<span class="op">@</span>(rhs_u.T)).T</span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>    v[j<span class="op">+</span><span class="dv">1</span>,:]<span class="op">=</span>(A_inv_v<span class="op">@</span>(rhs_v.T)).T</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="co">## Visualise solution</span></span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>gs <span class="op">=</span> GridSpec(<span class="dv">4</span>, <span class="dv">4</span>, figure<span class="op">=</span>fig)</span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> fig.add_subplot(gs[<span class="dv">0</span>:<span class="dv">2</span>, <span class="dv">0</span>:<span class="dv">2</span>],projection<span class="op">=</span><span class="st">'3d'</span>)          </span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="co"># Full-width subplot at the top</span></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> fig.add_subplot(gs[<span class="dv">0</span>:<span class="dv">2</span>, <span class="dv">2</span>:<span class="dv">4</span>],projection<span class="op">=</span><span class="st">'3d'</span>)       </span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a><span class="co"># Larger subplot on the bottom-left</span></span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>ax3 <span class="op">=</span> fig.add_subplot(gs[<span class="dv">2</span>:<span class="dv">4</span>, :])  </span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a><span class="co">## Surf plot u</span></span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>[x_mesh,t_mesh]<span class="op">=</span>np.meshgrid(x,t)</span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>surf <span class="op">=</span> ax1.plot_surface(x_mesh, t_mesh,u,linewidth<span class="op">=</span><span class="dv">0</span>,cmap<span class="op">=</span>cm.coolwarm, antialiased<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>ax1.set_xlim([<span class="dv">0</span>,L])</span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim([<span class="dv">0</span>,T])</span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'$t$'</span>)</span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>ax1.set_zlabel(<span class="st">'$u$'</span>)</span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'$u$'</span>)</span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>fig.colorbar(surf, shrink<span class="op">=</span><span class="fl">0.5</span>, aspect<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a><span class="co">## Surf plot v</span></span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>surf <span class="op">=</span> ax2.plot_surface(x_mesh, t_mesh,v,linewidth<span class="op">=</span><span class="dv">0</span>,cmap<span class="op">=</span>cm.coolwarm, antialiased<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a>ax2.set_xlim([<span class="dv">0</span>,L])</span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim([<span class="dv">0</span>,T])</span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'$t$'</span>)</span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a>ax2.set_zlabel(<span class="st">'$v$'</span>)</span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">'$v$'</span>)</span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a>fig.colorbar(surf, shrink<span class="op">=</span><span class="fl">0.5</span>, aspect<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a><span class="co">## Plot snapshot in time</span></span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a>n_samp<span class="op">=</span><span class="fl">8.0</span></span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a>ax3.plot(x,u[<span class="op">-</span><span class="dv">1</span>,:],x,v[<span class="op">-</span><span class="dv">1</span>,:],x,np.cos(n_samp<span class="op">*</span>x<span class="op">*</span>np.pi<span class="op">/</span>L))</span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a>ax3.set_xlim([<span class="dv">0</span>,L])</span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a>ax3.set_xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a>ax3.set_title(<span class="st">''</span>)</span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a>ax3.legend([<span class="st">'$u$'</span>,<span class="st">'$v$'</span>])</span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a>ax3.set_title(<span class="st">'Solution at time $T$'</span>)</span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute steady state and JAcobian components</span></span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a>u_s<span class="op">=</span>a<span class="op">+</span>b</span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>v_s<span class="op">=</span>b<span class="op">/</span>(a<span class="op">+</span>b)<span class="op">**</span><span class="dv">2</span>  </span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>f_u<span class="op">=</span>(<span class="op">-</span><span class="fl">1.0</span><span class="op">+</span><span class="fl">2.0</span><span class="op">*</span>u_s<span class="op">*</span>v_s)</span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>f_v<span class="op">=</span>(u_s<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>g_u<span class="op">=</span>(<span class="op">-</span><span class="fl">2.0</span><span class="op">*</span>u_s<span class="op">*</span>v_s)</span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>g_v<span class="op">=</span>(<span class="op">-</span>u_s<span class="op">**</span><span class="fl">2.0</span>)</span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a>k_sq_vec<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="dv">300</span>,<span class="dv">1000</span>)</span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>tr_tilde_A<span class="op">=</span>gamma<span class="op">*</span>(f_u<span class="op">+</span>g_v)<span class="op">-</span>k_sq_vec<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>d)</span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a>det_tilde_A<span class="op">=</span>d<span class="op">*</span>k_sq_vec<span class="op">**</span><span class="fl">2.0</span><span class="op">-</span>gamma<span class="op">*</span>k_sq_vec<span class="op">*</span>(d<span class="op">*</span>f_u<span class="op">+</span>g_v)<span class="op">+</span>gamma<span class="op">**</span><span class="fl">2.0</span><span class="op">*</span>(f_u<span class="op">*</span>g_v<span class="op">-</span>g_u<span class="op">*</span>f_v)</span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a><span class="co">## Plot linear stability results</span></span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots()</span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>ax.plot(np.sqrt(k_sq_vec)<span class="op">*</span>L<span class="op">/</span>np.pi,det_tilde_A)</span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="op">-</span><span class="dv">10</span>,<span class="dv">1000</span>])</span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'$n$'</span>)</span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'$\det{</span><span class="ch">\\</span><span class="st">tilde</span><span class="sc">{A}</span><span class="st">}$'</span>)</span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Stability plot'</span>)</span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-1DRDPDE" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1DRDPDE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell" data-execution_count="4">
 <div id="fig-schnack" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
-<figure class="quarto-float quarto-float-fig figure">
+<figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-schnack-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display">
 <div id="fig-schnack-1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-schnack-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="NumericalMethods_files/figure-html/fig-schnack-output-1.png" data-ref-parent="fig-schnack" width="618" height="449" class="figure-img">
+<img src="NumericalMethods_files/figure-html/fig-schnack-output-1.png" data-ref-parent="fig-1DRDPDE" width="618" height="449" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-schnack-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Numerical solution of the Schnackenberg model.
@@ -855,10 +1034,10 @@ A_v \mathbf{v}_{i} &amp; =v_{i-1}+g(\mathbf{u}_{i-1},\mathbf{v}_{i-1})
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-schnack-2" class="quarto-float quarto-figure quarto-figure-center anchored" height="468" width="661">
+<div id="fig-schnack-2" class="quarto-float quarto-figure quarto-figure-center anchored" width="661" height="468">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-schnack-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="NumericalMethods_files/figure-html/fig-schnack-output-2.png" id="fig-schnack-2" data-ref-parent="fig-schnack" width="661" height="468" class="figure-img">
+<img src="NumericalMethods_files/figure-html/fig-schnack-output-2.png" id="fig-schnack-2" data-ref-parent="fig-1DRDPDE" width="661" height="468" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-schnack-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b)
@@ -867,13 +1046,18 @@ A_v \mathbf{v}_{i} &amp; =v_{i-1}+g(\mathbf{u}_{i-1},\mathbf{v}_{i-1})
 </div>
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-schnack-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.1
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-schnack-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c)
 </figcaption>
 </figure>
 </div>
 </div>
-<p>:::</p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-1DRDPDE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.1
+</figcaption>
+</figure>
+</div>
 </section>
 </section>
 <section id="two-spatial-dimensions" class="level3" data-number="9.3.2">
@@ -890,16 +1074,172 @@ Figure&nbsp;9.1
 <li>stripe patterns</li>
 <li>labyrinthe patterns</li>
 </ul>
-<p>:::</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse <span class="im">import</span> diags</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse.linalg <span class="im">import</span> spsolve</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse.linalg <span class="im">import</span> inv</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sp</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Define model parameters</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="fl">0.25</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span><span class="fl">1.25</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>d<span class="op">=</span><span class="fl">30.0</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>gamma<span class="op">=</span><span class="fl">70.0</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>D_u<span class="op">=</span><span class="fl">1.0</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>D_v<span class="op">=</span>d<span class="op">*</span>D_u</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Domain size </span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>Lx<span class="op">=</span><span class="fl">2.0</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>Ly<span class="op">=</span>Lx</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">5.0</span> </span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Grid discretisation</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>Nt <span class="op">=</span> <span class="dv">1000</span>         <span class="co"># Number of time steps</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>Nx, Ny <span class="op">=</span> <span class="dv">100</span>,<span class="dv">100</span>     <span class="co"># Number of grid points</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_A(D,dt,dy,dx,Ny,Nx):</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Build sparse matrix for implicit scheme</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Stability parameters</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    rx <span class="op">=</span> D<span class="op">*</span>dt<span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    ry <span class="op">=</span> D<span class="op">*</span>dt<span class="op">/</span>dy<span class="op">**</span><span class="dv">2</span>    </span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> Nx<span class="op">*</span>Ny  <span class="co"># Tot. num. grid points</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Construct the sparse matrix</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    diagonals <span class="op">=</span> [rx, rx, ry, ry]</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    offsets <span class="op">=</span> [<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, Nx, <span class="op">-</span>Nx]</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> diags(diagonals, offsets,shape<span class="op">=</span>(N,N), <span class="bu">format</span><span class="op">=</span><span class="st">"csr"</span>)</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Loop over left and right boundaries of domain to deal with edges</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> left_bdy <span class="kw">in</span> <span class="bu">range</span>(Nx,Nx<span class="op">*</span>(Ny<span class="op">-</span><span class="dv">1</span>),Nx):</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>        A[left_bdy,left_bdy<span class="op">-</span><span class="dv">1</span>]<span class="op">=</span><span class="fl">0.0</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>        right_bdy<span class="op">=</span>left_bdy<span class="op">+</span>Nx<span class="op">-</span><span class="dv">1</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>        A[right_bdy,right_bdy<span class="op">+</span><span class="dv">1</span>]<span class="op">=</span><span class="fl">0.0</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># corners</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    A[Nx<span class="op">-</span><span class="dv">1</span>,Nx]<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    A[Nx<span class="op">*</span>(Ny<span class="op">-</span><span class="dv">1</span>),Nx<span class="op">*</span>(Ny<span class="op">-</span><span class="dv">1</span>)<span class="op">-</span><span class="dv">1</span>]<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ensure Neumann boundary condition: Adjust diagonal elements so each row sums to zero</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> A.tolil()</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>        row_sum <span class="op">=</span> A[i,:].<span class="bu">sum</span>()</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>        A[i, i] <span class="op">=-</span>row_sum  <span class="co"># Adjust diagonal to enforce sum zero</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> A.tocsr()</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ComputeReactionTerms(u,v):</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>    reac_u<span class="op">=</span>gamma<span class="op">*</span>(a<span class="op">-</span>u<span class="op">+</span>(u<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>v)</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>    reac_v<span class="op">=</span>gamma<span class="op">*</span>(b<span class="op">-</span>(u<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>v)</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> reac_u,reac_v</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> SetInitialConditions(x,y):</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>     <span class="co"># Initialize solution</span></span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> np.zeros((Nx, Ny))  <span class="co"># Initial condition </span></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> np.zeros((Nx, Ny))  <span class="co"># Initial condition </span></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>    X, Y <span class="op">=</span> np.meshgrid(x, y, indexing<span class="op">=</span><span class="st">"ij"</span>)</span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>    rand_noise_fact<span class="op">=</span><span class="fl">1.0</span></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>    u[:, :]<span class="op">=</span>(a<span class="op">+</span>b)<span class="op">*</span>np.ones_like(X)<span class="op">+</span>rand_noise_fact<span class="op">*</span>np.random.uniform(low<span class="op">=-</span><span class="fl">1.0</span>, high<span class="op">=</span><span class="fl">1.0</span>, size<span class="op">=</span>(X.shape))</span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>    v[:, :]<span class="op">=</span> b<span class="op">*</span>(<span class="dv">1</span><span class="op">/</span>(a<span class="op">+</span>b)<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>np.ones_like(X)<span class="op">+</span>rand_noise_fact<span class="op">*</span>np.random.uniform(low<span class="op">=-</span><span class="fl">1.0</span>, high<span class="op">=</span><span class="fl">1.0</span>, size<span class="op">=</span>(X.shape))</span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> u.flatten()</span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> v.flatten()</span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u,v</span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> diffusion_2d_implicit(Lx, Ly, Nx, Ny, T, Nt, D_u,D_v):</span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a><span class="co">    Solves  2D reaction diffusion equation using an implicit, Crank-Nicholson finite difference scheme.</span></span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a><span class="co"> </span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Spatial and temporal grid</span></span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>    dx <span class="op">=</span> Lx <span class="op">/</span> (Nx <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>    dy <span class="op">=</span> Ly <span class="op">/</span> (Ny <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>    dt <span class="op">=</span> T <span class="op">/</span> (Nt<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(<span class="dv">0</span>, Lx, Nx)</span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.linspace(<span class="dv">0</span>, Ly, Ny)</span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set initial condition </span></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>    u,v<span class="op">=</span>SetInitialConditions(x,y)</span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generatee matrices for implementation of FD problem</span></span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>    A_u<span class="op">=</span>build_A(D_u,dt,dx,dy,Nx,Ny)</span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>    A_v<span class="op">=</span>build_A(D_v,dt,dx,dy,Nx,Ny)</span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>    I<span class="op">=</span>sp.sparse.identity(Nx<span class="op">*</span>Ny,<span class="bu">format</span><span class="op">=</span><span class="st">'csr'</span>)</span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>    CN_fact<span class="op">=</span><span class="fl">0.5</span> <span class="co"># choose to be 0.5 for Crank Nicholson, 1 for backward Euler</span></span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>    LHS_matrix_u<span class="op">=</span>I<span class="op">-</span>CN_fact<span class="op">*</span>A_u</span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>    LHS_matrix_v<span class="op">=</span>I<span class="op">-</span>CN_fact<span class="op">*</span>A_v</span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(Nt):</span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Solve the linear system</span></span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>        u_copy<span class="op">=</span>u.copy()</span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>        v_copy<span class="op">=</span>v.copy()</span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>        reac_u,reac_v<span class="op">=</span>ComputeReactionTerms(u_copy,v_copy)</span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>        rhs_u<span class="op">=</span>u_copy<span class="op">+</span>dt<span class="op">*</span>reac_u<span class="op">+</span>(<span class="fl">1.0</span><span class="op">-</span>CN_fact)<span class="op">*</span>A_u<span class="op">*</span>u_copy</span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>        rhs_v<span class="op">=</span>v_copy<span class="op">+</span>dt<span class="op">*</span>reac_v<span class="op">+</span>(<span class="fl">1.0</span><span class="op">-</span>CN_fact)<span class="op">*</span>A_v<span class="op">*</span>v_copy</span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> spsolve(LHS_matrix_u, rhs_u)</span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>        v <span class="op">=</span> spsolve(LHS_matrix_v, rhs_v)</span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Reshape the solution back into 2D</span></span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> u.reshape((Nx, Ny))</span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> v.reshape((Nx, Ny))</span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> u,v,x,y</span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve the 2D diffusion equation</span></span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>u,v, x, y <span class="op">=</span> diffusion_2d_implicit(Lx, Ly, Nx, Ny, T, Nt, D_u,D_v)</span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>k_sq_vec<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="dv">30</span>,<span class="dv">1000</span>)</span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>n_vec<span class="op">=</span>np.sqrt(k_sq_vec)<span class="op">*</span>L<span class="op">/</span>np.pi</span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>u_s<span class="op">=</span>a<span class="op">+</span>b</span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>v_s<span class="op">=</span>b<span class="op">/</span>(a<span class="op">+</span>b)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>f_u<span class="op">=</span>(<span class="op">-</span><span class="fl">1.0</span><span class="op">+</span><span class="fl">2.0</span><span class="op">*</span>u_s<span class="op">*</span>v_s)</span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>f_v<span class="op">=</span>(u_s<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>g_u<span class="op">=</span>(<span class="op">-</span><span class="fl">2.0</span><span class="op">*</span>u_s<span class="op">*</span>v_s)</span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>g_v<span class="op">=</span>(<span class="op">-</span>u_s<span class="op">**</span><span class="fl">2.0</span>)</span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>tr_tilde_A<span class="op">=</span>gamma<span class="op">*</span>(f_u<span class="op">+</span>g_v)<span class="op">-</span>k_sq_vec<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>d)</span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>det_tilde_A<span class="op">=</span>d<span class="op">*</span>k_sq_vec<span class="op">**</span><span class="dv">2</span><span class="op">-</span>gamma<span class="op">*</span>k_sq_vec<span class="op">*</span>(d<span class="op">*</span>f_u<span class="op">+</span>g_v)<span class="op">+</span>gamma<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(f_u<span class="op">*</span>g_v<span class="op">-</span>g_u<span class="op">*</span>f_v)</span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the final solution</span></span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>im<span class="op">=</span>ax[<span class="dv">0</span>].imshow(u,extent<span class="op">=</span>[<span class="dv">0</span>,Ly,<span class="dv">0</span>,Lx])</span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlabel(<span class="st">"$x$"</span>)</span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">"$y$"</span>)</span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">"$u$"</span>)</span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a>fig.colorbar(im,shrink<span class="op">=</span><span class="fl">0.2</span>,ax<span class="op">=</span>ax[<span class="dv">0</span>])</span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a>im2<span class="op">=</span>ax[<span class="dv">1</span>].imshow(v,extent<span class="op">=</span>[<span class="dv">0</span>,Ly,<span class="dv">0</span>,Lx])</span>
+<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a>fig.colorbar(im2,shrink<span class="op">=</span><span class="fl">0.2</span>,ax<span class="op">=</span>ax[<span class="dv">1</span>])</span>
+<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">"$x$"</span>)</span>
+<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">"$y$"</span>)</span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">"$v$"</span>)</span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots()</span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a>ax.plot(n_vec,det_tilde_A)</span>
+<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="op">-</span><span class="dv">100</span>,<span class="dv">1000</span>])</span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-1DRDPDE" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1DRDPDE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell" data-execution_count="5">
 <div id="fig-schnack-2d" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
-<figure class="quarto-float quarto-float-fig figure">
+<figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-schnack-2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display">
 <div id="fig-schnack-2d-1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-schnack-2d-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="NumericalMethods_files/figure-html/fig-schnack-2d-output-1.png" data-ref-parent="fig-schnack-2d" width="675" height="296" class="figure-img">
+<img src="NumericalMethods_files/figure-html/fig-schnack-2d-output-1.png" data-ref-parent="fig-1DRDPDE" width="675" height="296" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-schnack-2d-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Numerical solution of the Schnackenberg model in 2d.
@@ -908,10 +1248,10 @@ Figure&nbsp;9.1
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-schnack-2d-2" class="quarto-float quarto-figure quarto-figure-center anchored" height="416" width="583">
+<div id="fig-schnack-2d-2" class="quarto-float quarto-figure quarto-figure-center anchored" width="583" height="416">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-schnack-2d-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="NumericalMethods_files/figure-html/fig-schnack-2d-output-2.png" id="fig-schnack-2d-2" data-ref-parent="fig-schnack-2d" width="583" height="416" class="figure-img">
+<img src="NumericalMethods_files/figure-html/fig-schnack-2d-output-2.png" id="fig-schnack-2d-2" data-ref-parent="fig-1DRDPDE" width="583" height="416" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-schnack-2d-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b)
@@ -920,13 +1260,18 @@ Figure&nbsp;9.1
 </div>
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-schnack-2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.2
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-schnack-2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c)
 </figcaption>
 </figure>
 </div>
 </div>
-<p>:::</p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-1DRDPDE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.2
+</figcaption>
+</figure>
+</div>
 
 
 </section>
