@@ -707,33 +707,33 @@ u(x,0)  = u_0(x), \qquad  v(x,0)  = v_0(x), \qquad x\in \Omega\; .
 <p>A <em>spatially homogeneous steady-state</em> of <a href="#eq-pp" class="quarto-xref">Equation&nbsp;<span>6.2</span></a> and <a href="#eq-pp_bc" class="quarto-xref">Equation&nbsp;<span>6.3</span></a> satisfies <span class="math display">\[
 f(u,v) = 0 , \qquad g(u,v) =0.
 \]</span></p>
-<p>and we denote it by <span class="math inline">\((u_0, v_0)\)</span>.</p>
+<p>and we denote it by <span class="math inline">\((u^*, v^*)\)</span>.</p>
 <section id="stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations" class="level3" data-number="6.5.1">
 <h3 data-number="6.5.1" class="anchored" data-anchor-id="stability-of-spatially-homogeneous-steady-states-to-spatially-homogeneous-perturbations"><span class="header-section-number">6.5.1</span> Stability of spatially homogeneous steady states to spatially homogeneous perturbations</h3>
 <p>Before we consider the effect of diffusion in <a href="#eq-pp" class="quarto-xref">Equation&nbsp;<span>6.2</span></a> and <a href="#eq-pp_bc" class="quarto-xref">Equation&nbsp;<span>6.3</span></a>, we first explore the stability of the spatially homogeneous steady state.</p>
-<p>Consider the following perturbations to the steady state <span class="math inline">\((u_0 , v_0)\)</span>: <span class="math display">\[
-u(x,t) = u_0 + \tilde u(t), \quad  v(x,t) = v_0 + \tilde v(t), \qquad \|\tilde u(t) \| \ll 1, \quad  \|\tilde v(t) \| \ll 1.
+<p>Consider the following perturbations to the steady state <span class="math inline">\((u^* , vV*)\)</span>: <span class="math display">\[
+u(x,t) = u^* + \tilde u(t), \quad  v(x,t) = v^* + \tilde v(t), \qquad \|\tilde u(t) \| \ll 1, \quad  \|\tilde v(t) \| \ll 1.
 \]</span></p>
 <p>Upon substitution into <a href="#eq-pp" class="quarto-xref">Equation&nbsp;<span>6.2</span></a> <span id="eq-pp_1"><span class="math display">\[
 \begin{aligned}
-\frac{d\tilde u}{d t} = \gamma\, f(u_0 + \tilde u,v_0 + \tilde v),  \\
-\frac{d \tilde v}{d  t} = \gamma\, g(u_0 + \tilde u,v_0 + \tilde v).
+\frac{d\tilde u}{d t} = \gamma\, f(u^* + \tilde u,v^* + \tilde v),  \\
+\frac{d \tilde v}{d  t} = \gamma\, g(u^* + \tilde u,v^* + \tilde v).
 \end{aligned}
 \tag{6.4}\]</span></span></p>
-<p>Taylor expansion of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> about <span class="math inline">\((u_0, v_0)\)</span> yields the linearised system <span id="eq-linear_pp"><span class="math display">\[
+<p>Taylor expansion of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> about <span class="math inline">\((u^*, v^*)\)</span> yields the linearised system <span id="eq-linear_pp"><span class="math display">\[
 \begin{pmatrix}
 \tilde u_t \\
 \tilde v_t
-\end{pmatrix}  = \gamma J  \begin{pmatrix}
+\end{pmatrix}  = \gamma A  \begin{pmatrix}
 \tilde u \\
 \tilde v
 \end{pmatrix},
 \tag{6.5}\]</span></span></p>
 <p>where <span class="math display">\[
-J =J(u_0, v_0) =  \begin{pmatrix}
+A =A(u^*, v^*) =  \begin{pmatrix}
 f_u &amp; f_v  \\
 g_u &amp; g_v
-\end{pmatrix}_{(u_0 , v_0)} \; .  
+\end{pmatrix}_{(u^* , v^*)} \; .  
 \]</span></p>
 <p>The general solution of <a href="#eq-linear_pp" class="quarto-xref">Equation&nbsp;<span>6.5</span></a> is<br>
 <span class="math display">\[
@@ -742,20 +742,20 @@ g_u &amp; g_v
 \tilde v(t)
 \end{pmatrix}   =  C_1 \phi_1 e^{\lambda_1 t} +  C_2 \phi_2 e^{\lambda_2 t},
 \]</span></p>
-<p>where <span class="math inline">\(C_1\)</span>, <span class="math inline">\(C_2\)</span> are arbitrary constants, <span class="math inline">\(\lambda_1, \lambda_2\)</span> are the eigenvalues of <span class="math inline">\(\gamma J\)</span>, i.e.&nbsp;solutions of the characteristic equation <span class="math display">\[
-\det (\gamma J - \lambda I) = 0,
+<p>where <span class="math inline">\(C_1\)</span>, <span class="math inline">\(C_2\)</span> are arbitrary constants, <span class="math inline">\(\lambda_1, \lambda_2\)</span> are the eigenvalues of <span class="math inline">\(\gamma A\)</span>, i.e.&nbsp;solutions of the characteristic equation <span class="math display">\[
+\det (\gamma A - \lambda I) = 0,
 \]</span></p>
 <p>and <span class="math inline">\(\phi_1\)</span>, <span class="math inline">\(\phi_2\)</span> are corresponding eigenvectors. It is easily seen that</p>
 <p><span class="math display">\[
-\lambda_{1,2} = \frac \gamma 2 \left( \textrm{tr} (J) \pm \sqrt{ \textrm{tr}(J)^2 - 4 \det(J)} \right),
+\lambda_{1,2} = \frac \gamma 2 \left( \textrm{tr} (A) \pm \sqrt{ \textrm{tr}(A)^2 - 4 \det(A)} \right),
 \]</span></p>
-<p>and thus a spatially homogeneous steady state <span class="math inline">\((u_0, v_0)\)</span> is <em>stable</em> to spatially homogeneous perturbations if <span class="math display">\[
+<p>and thus a spatially homogeneous steady state <span class="math inline">\((u^*, v^*)\)</span> is <em>stable</em> to spatially homogeneous perturbations if <span class="math display">\[
 {\mathrm Re}( \lambda_{1,2}) &lt;0,
 \]</span></p>
 <p>i.e.&nbsp;if <span id="eq-stable_hom"><span class="math display">\[
 \begin{aligned}
-\mathrm{tr}(J) &amp; = f_u + g_v &lt; 0, \\
-\det(J) &amp; = f_u g_v - f_v g_u &gt; 0.
+\mathrm{tr}(A) &amp; = f_u + g_v &lt; 0, \\
+\det(A) &amp; = f_u g_v - f_v g_u &gt; 0.
 \end{aligned}
 \tag{6.6}\]</span></span></p>
 <p>We shall be interested only in such parameter values for which conditions <a href="#eq-stable_hom" class="quarto-xref">Equation&nbsp;<span>6.6</span></a> are satisfied (i.e.&nbsp;the spatially homogeneous steady state is linearly stable in the absence of diffusion).</p>
@@ -763,9 +763,9 @@ g_u &amp; g_v
 <section id="stability-of-spatially-homogeneous-steady-states-to-spatially-heterogeneous-perturbations" class="level3" data-number="6.5.2">
 <h3 data-number="6.5.2" class="anchored" data-anchor-id="stability-of-spatially-homogeneous-steady-states-to-spatially-heterogeneous-perturbations"><span class="header-section-number">6.5.2</span> Stability of spatially homogeneous steady states to spatially heterogeneous perturbations</h3>
 <p>We now consider perturbations about the spatially homogeneous steady state that are spatially dependent, i.e.&nbsp;<span class="math display">\[
-u(x,t) = u_0 + \tilde u(x,t), \quad  v(x,t) = v_0 + \tilde v(x,t), \qquad \|\tilde u(x,t) \| \ll 1, \quad  \|\tilde v(x,t) \| \ll 1.
+u(x,t) = u^* + \tilde u(x,t), \quad  v(x,t) = v^* + \tilde v(x,t), \qquad \|\tilde u(x,t) \| \ll 1, \quad  \|\tilde v(x,t) \| \ll 1.
 \]</span></p>
-<p>Upon substitution in <a href="#eq-pp" class="quarto-xref">Equation&nbsp;<span>6.2</span></a> and Taylor expanding <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> about <span class="math inline">\((u_0, v_0)\)</span> yields the linearised problem</p>
+<p>Upon substitution in <a href="#eq-pp" class="quarto-xref">Equation&nbsp;<span>6.2</span></a> and Taylor expanding <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> about <span class="math inline">\((u^*, v^*)\)</span> yields the linearised problem</p>
 <p><span id="eq-pp_3"><span class="math display">\[
 \begin{aligned}
 \frac{\partial \tilde u(x,t)}{\partial t} = \gamma\, \left(f_u \tilde u(x,t) + f_v \tilde v(x,t)\right) + \nabla^2 \tilde u(x,t)  , \quad x\in \Omega, \;  t &gt;0, \\
@@ -784,7 +784,7 @@ V(x,t) = \begin{pmatrix}
 \end{pmatrix}
 \]</span></p>
 <p>we rewrite <a href="#eq-pp_3" class="quarto-xref">Equation&nbsp;<span>6.7</span></a> as <span class="math display">\[
-\frac{\partial}{\partial t}  V(x,t) = \gamma J  V(x,t) + D \nabla^2   V(x,t),
+\frac{\partial}{\partial t}  V(x,t) = \gamma A  V(x,t) + D \nabla^2   V(x,t),
 \]</span></p>
 <p>where</p>
 <p><span class="math display">\[
@@ -909,12 +909,12 @@ D \nabla^2  V(x,t) = D \nabla^2 \left[ \sum_k \hat V_k(t) \psi_k(x) \right]   = 
 \]</span></p>
 <p>Hence <span class="math display">\[
 \sum_k \frac{d}{d t}  \hat V_k(t) \psi_k(x)  =
-  \sum_k \gamma J \hat V_k(t) \psi_k(x) -  \sum_k k^2  D \hat V_k(t) \psi_k(x).
+  \sum_k \gamma A \hat V_k(t) \psi_k(x) -  \sum_k k^2  D \hat V_k(t) \psi_k(x).
 \]</span></p>
 <p>Since <span class="math inline">\(\{\psi_k(x) \}\)</span> is an orthogonal basis we obtain that</p>
 <p><span class="math display">\[
 \frac{d}{d t}  \hat V_k(t) \psi_k(x)  =
-   \gamma J  \hat V_k(t) \psi_k(x) -  k^2  D \hat V_k(t) \psi_k(x),
+   \gamma A  \hat V_k(t) \psi_k(x) -  k^2  D \hat V_k(t) \psi_k(x),
 \]</span></p>
 <p>for each <span class="math inline">\(k\)</span>. Finally, since <span class="math display">\[
 \psi_k(x)\;  /\hspace{-0.35 cm }\equiv 0
@@ -922,98 +922,92 @@ D \nabla^2  V(x,t) = D \nabla^2 \left[ \sum_k \hat V_k(t) \psi_k(x) \right]   = 
 <p>in <span class="math inline">\(\Omega\)</span> this implies for each <span class="math inline">\(k\)</span> a system of ODEs:</p>
 <p><span id="eq-stab_pp_ode"><span class="math display">\[
 \begin{aligned}
-\frac{d}{d t}  \hat V_k(t)   =   \left(\gamma J  -  k^2  D\right) \hat V_k(t) = \tilde J\hat V_k(t) ,
+\frac{d}{d t}  \hat V_k(t)   =   \left(\gamma A  -  k^2  D\right) \hat V_k(t) = \tilde A\hat V_k(t) ,
 \end{aligned}
 \tag{6.13}\]</span></span></p>
-<p>where <span class="math inline">\(\tilde J\)</span> is the “modified” Jacobian:</p>
+<p>where <span class="math inline">\(\tilde A\)</span> is the “modified” Jacobian:</p>
 <p><span class="math display">\[
-\tilde{J} =  \begin{pmatrix}
+\tilde{A} =  \begin{pmatrix}
 \gamma f_u - k^2 &amp; \gamma f_v \\
 \gamma g_u &amp; \gamma g_v - d k^2
 \end{pmatrix}.
 \]</span></p>
-<p>Now solutions of <a href="#eq-stab_pp_ode" class="quarto-xref">Equation&nbsp;<span>6.13</span></a> are of the form <span class="math display">\[
-\hat V_k(t) = e^{\lambda t} P_k
-\]</span></p>
-<p>with <span class="math inline">\(P_k \in \mathbb R^2\)</span>, where, since <span class="math inline">\(P_k\neq 0\)</span> (looking for nontrivial solutions), we find that <span class="math inline">\(\lambda\)</span> are the eigenvalues of <span class="math inline">\(\tilde J\)</span> , i.e.&nbsp;solutions of the characteristic equation <span id="eq-charact_pp_1"><span class="math display">\[
-\det(\tilde J - \lambda I) = \det ( \gamma J - k^2 D - \lambda I) =0.
-\tag{6.14}\]</span></span></p>
-<p>Evaluating the determinant <span id="eq-spatial_eigenvalues"><span class="math display">\[
+<p>The characteristic equation is given by <span id="eq-spatial_eigenvalues"><span class="math display">\[
 \lambda^2 + [ k^2 (1 + d) - \gamma (f_u + g_v) ] \lambda + h(k^2) = 0,
-\tag{6.15}\]</span></span></p>
+\tag{6.14}\]</span></span></p>
 <p>where <span id="eq-hk2"><span class="math display">\[
-h(k^2) = dk^4 - \gamma (df_u + g_v) k^2 + \gamma^2 | J | .
-\tag{6.16}\]</span></span></p>
-<p><strong>NOTE</strong>: From <a href="#eq-charact_pp_1" class="quarto-xref">Equation&nbsp;<span>6.14</span></a>, <a href="#eq-spatial_eigenvalues" class="quarto-xref">Equation&nbsp;<span>6.15</span></a> we can recover the characteristic equation for the spatially homogeneous perturbation when <span class="math inline">\(k=0\)</span>, i.e.&nbsp;<span class="math display">\[
-\tilde J \Big|_{k=0} = ( \gamma J - k^2 D )\Big|_{k=0} = \gamma J.
+h(k^2) = dk^4 - \gamma (df_u + g_v) k^2 + \gamma^2 | A | .
+\tag{6.15}\]</span></span></p>
+<p><strong>NOTE</strong>: From <span class="quarto-unresolved-ref">?eq-charact_pp_1</span>, <a href="#eq-spatial_eigenvalues" class="quarto-xref">Equation&nbsp;<span>6.14</span></a> we can recover the characteristic equation for the spatially homogeneous perturbation when <span class="math inline">\(k=0\)</span>, i.e.&nbsp;<span class="math display">\[
+\tilde A \Big|_{k=0} = ( \gamma A - k^2 D )\Big|_{k=0} = \gamma A.
 \]</span></p>
-<p>Thus the steady state <span class="math inline">\((u_0, v_0)\)</span> is <em>unstable</em> to spatially heterogeneous perturbations iff <span class="math display">\[
+<p>Thus the steady state <span class="math inline">\((u^*, v^*)\)</span> is <em>unstable</em> to spatially heterogeneous perturbations iff <span class="math display">\[
 {\mathrm Re}(\lambda_1) &gt; 0 \quad \textrm{and/or} \quad {\mathrm Re}(\lambda_2) &gt;0,
 \]</span></p>
-<p>where <span class="math inline">\(\lambda_{1,2}\)</span> are solutions of <a href="#eq-charact_pp_1" class="quarto-xref">Equation&nbsp;<span>6.14</span></a>, <a href="#eq-spatial_eigenvalues" class="quarto-xref">Equation&nbsp;<span>6.15</span></a>.</p>
+<p>where <span class="math inline">\(\lambda_{1,2}\)</span> are solutions of <span class="quarto-unresolved-ref">?eq-charact_pp_1</span>, <a href="#eq-spatial_eigenvalues" class="quarto-xref">Equation&nbsp;<span>6.14</span></a>.</p>
 <p>Now for <span class="math display">\[
 {\mathrm Re}(\lambda_1) &gt; 0 \quad \textrm{and/or } \quad {\mathrm Re}(\lambda_2) &gt;0
 \]</span></p>
 <p>to be satisfied we require <span class="math display">\[
-\textrm{tr}(\tilde J) &gt; 0 \quad \textrm{ or } \quad \det(\tilde J) &lt;0.
+\textrm{tr}(\tilde A) &gt; 0 \quad \textrm{ or } \quad \det(\tilde A) &lt;0.
 \]</span></p>
-<p>Consider first <span class="math inline">\({\mathrm tr} (\tilde{J})\)</span>. We have <span class="math display">\[
-\textrm{tr}(\tilde J) = \gamma ( f_u+ g_v) - k^2(1+d) &lt; 0, \hspace{4 cm}  
+<p>Consider first <span class="math inline">\({\mathrm tr} (\tilde{A})\)</span>. We have <span class="math display">\[
+\textrm{tr}(\tilde A) = \gamma ( f_u+ g_v) - k^2(1+d) &lt; 0, \hspace{4 cm}  
 \]</span></p>
 <p>since <span class="math inline">\(\gamma &gt; 0\)</span> and <span class="math display">\[
 f_u+ g_v &lt; 0
 \]</span></p>
 <p>by the stability condition for the spatially homogeneous perturbation <a href="#eq-stable_hom" class="quarto-xref">Equation&nbsp;<span>6.6</span></a>. Thus instability to the spatially heterogeneous perturbation <em>can only occur</em> if <span class="math display">\[
-\det(\tilde J) &lt; 0
+\det(\tilde A) &lt; 0
 \]</span></p>
 <p>and so we require: <span class="math display">\[
-\det(\tilde J) = h(k^2) = dk^4  - \gamma ( d\,  f_u + g_v) k^2 + \gamma^2 \det(J) &lt; 0.
+\det(\tilde A) = h(k^2) = dk^4  - \gamma ( d\,  f_u + g_v) k^2 + \gamma^2 \det(A) &lt; 0.
 \]</span></p>
-<p>From the spatially homogeneous stability conditions <a href="#eq-stable_hom" class="quarto-xref">Equation&nbsp;<span>6.6</span></a> we have <span class="math inline">\(\det(J) &gt;0\)</span>. Thus <span class="math inline">\(h(k^2)&lt;0\)</span> is possible only if <span id="eq-stabil_cond_nes"><span class="math display">\[
+<p>From the spatially homogeneous stability conditions <a href="#eq-stable_hom" class="quarto-xref">Equation&nbsp;<span>6.6</span></a> we have <span class="math inline">\(\det(A) &gt;0\)</span>. Thus <span class="math inline">\(h(k^2)&lt;0\)</span> is possible only if <span id="eq-stabil_cond_nes"><span class="math display">\[
 d f_u + g_v &gt;0.
-\tag{6.17}\]</span></span></p>
+\tag{6.16}\]</span></span></p>
 <p>However, once again, due to <a href="#eq-stable_hom" class="quarto-xref">Equation&nbsp;<span>6.6</span></a>, we have <span class="math inline">\(f_u+ g_v &lt;0\)</span>, and so we can conclude that <span class="math inline">\(d\neq 1\)</span> and <span class="math inline">\(f_u\)</span> and <span class="math inline">\(g_v\)</span> must have <em>opposite signs</em>.</p>
-<p>Condition <a href="#eq-stabil_cond_nes" class="quarto-xref">Equation&nbsp;<span>6.17</span></a> is <em>necessary but not sufficient</em> to ensure <span class="math inline">\(h(k^2) &lt;0\)</span>. In order to guarantee that <span class="math inline">\(h(k^2) &lt; 0\)</span>, the minimum value <span class="math inline">\(h_{min}\)</span> must be negative. Differentiating <a href="#eq-hk2" class="quarto-xref">Equation&nbsp;<span>6.16</span></a> w.r.t. <span class="math inline">\(k^2\)</span>, we find that:</p>
+<p>Condition <a href="#eq-stabil_cond_nes" class="quarto-xref">Equation&nbsp;<span>6.16</span></a> is <em>necessary but not sufficient</em> to ensure <span class="math inline">\(h(k^2) &lt;0\)</span>. In order to guarantee that <span class="math inline">\(h(k^2) &lt; 0\)</span>, the minimum value <span class="math inline">\(h_{min}\)</span> must be negative. Differentiating <a href="#eq-hk2" class="quarto-xref">Equation&nbsp;<span>6.15</span></a> w.r.t. <span class="math inline">\(k^2\)</span>, we find that:</p>
 <p><span id="eq-hmin"><span class="math display">\[
-k^2_{m} = \gamma \frac{d f_u + g_v}{2d} \;\; \Rightarrow \;\; h_{min} = \gamma^2 \left[ | J | - \frac{(df_u + g_v)^2}{4d} \right].
-\tag{6.18}\]</span></span></p>
+k^2_{m} = \gamma \frac{d f_u + g_v}{2d} \;\; \Rightarrow \;\; h_{min} = \gamma^2 \left[ | A | - \frac{(df_u + g_v)^2}{4d} \right].
+\tag{6.17}\]</span></span></p>
 <p>Thus the condition that <span class="math inline">\(h(k^2) &lt; 0\)</span> for some <span class="math inline">\(k^2\)</span> is:</p>
 <p><span class="math display">\[
-\frac{(df_u + g_v)^2}{4d} &gt; |J|.
+\frac{(df_u + g_v)^2}{4d} &gt; |A|.
 \]</span></p>
-<p>The transition from stability to instability i.e.&nbsp;<em>bifurcation</em>, occurs when <span class="math inline">\(h_{min} = 0\)</span>. From <a href="#eq-hmin" class="quarto-xref">Equation&nbsp;<span>6.18</span></a>, this means at bifurcation we have <span id="eq-bif"><span class="math display">\[
-|J| = \frac{(df_u + g_v)^2}{4d}.
-\tag{6.19}\]</span></span></p>
-<p>For a fixed set of kinetics parameters, this means that we have a <em>critical diffusion coefficient</em> <span class="math inline">\(d_c(&gt;1)\)</span>, which, after re-arranging <a href="#eq-bif" class="quarto-xref">Equation&nbsp;<span>6.19</span></a>, is the appropriate root of</p>
+<p>The transition from stability to instability i.e.&nbsp;<em>bifurcation</em>, occurs when <span class="math inline">\(h_{min} = 0\)</span>. From <a href="#eq-hmin" class="quarto-xref">Equation&nbsp;<span>6.17</span></a>, this means at bifurcation we have <span id="eq-bif"><span class="math display">\[
+|A| = \frac{(df_u + g_v)^2}{4d}.
+\tag{6.18}\]</span></span></p>
+<p>For a fixed set of kinetics parameters, this means that we have a <em>critical diffusion coefficient</em> <span class="math inline">\(d_c(&gt;1)\)</span>, which, after re-arranging <a href="#eq-bif" class="quarto-xref">Equation&nbsp;<span>6.18</span></a>, is the appropriate root of</p>
 <p><span id="eq-dcrit"><span class="math display">\[
 q(d_c) = d^2_c f_u^2 + 2( 2 f_v g_u - f_u g_v) d_c + g_v^2 =0.
+\tag{6.19}\]</span></span></p>
+<p>Finally, we note that using <a href="#eq-hmin" class="quarto-xref">Equation&nbsp;<span>6.17</span></a>, <a href="#eq-bif" class="quarto-xref">Equation&nbsp;<span>6.18</span></a>, the <em>critical wave number</em> can be written: <span id="eq-kcrit"><span class="math display">\[
+k_c^2 =\gamma  \frac{( d_c f_u + g_v)} { 2 d_c} = \gamma \left[ \frac {|A|}{d_c} \right]^{1/2} = \gamma \left[ \frac{f_u g_v - f_v g_u}{d_c} \right]^{1/2}.
 \tag{6.20}\]</span></span></p>
-<p>Finally, we note that using <a href="#eq-hmin" class="quarto-xref">Equation&nbsp;<span>6.18</span></a>, <a href="#eq-bif" class="quarto-xref">Equation&nbsp;<span>6.19</span></a>, the <em>critical wave number</em> can be written: <span id="eq-kcrit"><span class="math display">\[
-k_c^2 =\gamma  \frac{( d_c f_u + g_v)} { 2 d_c} = \gamma \left[ \frac {|J|}{d_c} \right]^{1/2} = \gamma \left[ \frac{f_u g_v - f_v g_u}{d_c} \right]^{1/2}.
-\tag{6.21}\]</span></span></p>
 <p><a href="#fig-dispersion" class="quarto-xref">Figure&nbsp;<span>6.5</span></a> (a) shows a schematic diagram of the (quadratic) function <span class="math inline">\(h(k^2)\)</span> for three different values of the diffusion coefficient <span class="math inline">\(d\)</span>:</p>
 <ul>
 <li><span class="math inline">\(d &lt; d_c, \; h(k^2) &gt; 0\)</span>, and there is no pattern;</li>
 <li><span class="math inline">\(d = d_c, \; h_{min} = 0\)</span>, critical case;</li>
 <li><span class="math inline">\(d &gt; d_c, \; h(k^2) &lt; 0\)</span>, and there is pattern.</li>
 </ul>
-<p>Hence we can see from <a href="#eq-spatial_eigenvalues" class="quarto-xref">Equation&nbsp;<span>6.15</span></a> that whenever <span class="math inline">\(h(k^2) &lt; 0\)</span> the curve <span class="math inline">\(\lambda(k^2)\)</span> is positive for the same range of wavenumbers that make <span class="math inline">\(h(k^2)\)</span> negative. The range of unstable wavenumbers <span class="math display">\[
+<p>Hence we can see from <a href="#eq-spatial_eigenvalues" class="quarto-xref">Equation&nbsp;<span>6.14</span></a> that whenever <span class="math inline">\(h(k^2) &lt; 0\)</span> the curve <span class="math inline">\(\lambda(k^2)\)</span> is positive for the same range of wavenumbers that make <span class="math inline">\(h(k^2)\)</span> negative. The range of unstable wavenumbers <span class="math display">\[
 k^2_1 &lt; k^2 &lt; k^2_2
 \]</span></p>
-<p>can be found from the roots of <a href="#eq-hk2" class="quarto-xref">Equation&nbsp;<span>6.16</span></a>, <span class="math inline">\(h(k^2) = 0\)</span>:</p>
+<p>can be found from the roots of <a href="#eq-hk2" class="quarto-xref">Equation&nbsp;<span>6.15</span></a>, <span class="math inline">\(h(k^2) = 0\)</span>:</p>
 <p><span id="eq-k2range"><span class="math display">\[
 \begin{aligned}
-k^2_1 &amp;= \gamma \frac{(df_u + g_v) - \left\{ (df_u + g_v)^2 -4d |J| \right\}^{1/2} }{2d} &lt; k^2  \\
-&amp;&lt; \gamma \frac{(df_u + g_v) +  \left\{ (df_u + g_v)^2 -4d |J| \right\}^{1/2}}{2d} = k^2_2
+k^2_1 &amp;= \gamma \frac{(df_u + g_v) - \left\{ (df_u + g_v)^2 -4d |A| \right\}^{1/2} }{2d} &lt; k^2  \\
+&amp;&lt; \gamma \frac{(df_u + g_v) +  \left\{ (df_u + g_v)^2 -4d |A| \right\}^{1/2}}{2d} = k^2_2
 \end{aligned}
-\tag{6.22}\]</span></span></p>
+\tag{6.21}\]</span></span></p>
 <p><a href="#fig-dispersion" class="quarto-xref">Figure&nbsp;<span>6.5</span></a> (b) shows a schematic diagram of <span class="math inline">\({\mathrm Re}\lambda (k^2)\)</span> for three different values of the diffusion coefficient <span class="math inline">\(d\)</span>:</p>
 <ul>
 <li><span class="math inline">\(d &lt; d_c\)</span>, ; $Re (k^2) &lt; 0, k^2 $, and there is no pattern;</li>
 <li><span class="math inline">\(d = d_c, \; k^2_c = 0\)</span>, critical case;</li>
 </ul>
 <p>The expression <span class="math inline">\(\lambda = \lambda (k^2)\)</span> is known as the <em>dispersion relation</em> and the plot of <span class="math inline">\({\mathrm Re} \lambda\)</span> against <span class="math inline">\(k^2\)</span> is known as the <em>dispersion curve</em>.</p>
-<p>From the previous analysis, within the unstable range of wavenumbers <span class="math inline">\((k^2_1 , k^2_2)\)</span>, <span class="math inline">\({\mathrm Re}\lambda (k^2) &gt; 0\)</span> has a <em>maximum value</em> at wavenumber <span class="math inline">\(k^2_m\)</span> given by <a href="#eq-hmin" class="quarto-xref">Equation&nbsp;<span>6.18</span></a> when <span class="math inline">\(d &gt; d_c\)</span>. This implies that there is a <em>fastest growing mode</em> in the solution <a href="#eq-vxt" class="quarto-xref">Equation&nbsp;<span>6.12</span></a> of our linearised system <a href="#eq-pp_4" class="quarto-xref">Equation&nbsp;<span>6.9</span></a>.</p>
+<p>From the previous analysis, within the unstable range of wavenumbers <span class="math inline">\((k^2_1 , k^2_2)\)</span>, <span class="math inline">\({\mathrm Re}\lambda (k^2) &gt; 0\)</span> has a <em>maximum value</em> at wavenumber <span class="math inline">\(k^2_m\)</span> given by <a href="#eq-hmin" class="quarto-xref">Equation&nbsp;<span>6.17</span></a> when <span class="math inline">\(d &gt; d_c\)</span>. This implies that there is a <em>fastest growing mode</em> in the solution <a href="#eq-vxt" class="quarto-xref">Equation&nbsp;<span>6.12</span></a> of our linearised system <a href="#eq-pp_4" class="quarto-xref">Equation&nbsp;<span>6.9</span></a>.</p>
 <p>Recalling <a href="#eq-vxt" class="quarto-xref">Equation&nbsp;<span>6.12</span></a>,<br>
 <span class="math display">\[
 V(x,t) = \sum_k C_k e^{\lambda(k^2) t} \, \psi_k(x),
@@ -1151,10 +1145,10 @@ f_u g_v - f_v g_u &amp;&gt; 0, \\
 d f_u + g_v &amp;&gt; 0, \\
 (d f_u + g_v)^2 - 4d (f_u g_v - f_v g_u)^2 &amp;&lt; 0 , \nonumber
 \end{aligned}
-\tag{6.23}\]</span></span></p>
-<p>with all partial derivatives being evaluated at the spatially homogeneous steady state <span class="math inline">\((u_0 , v_0)\)</span>.</p>
+\tag{6.22}\]</span></span></p>
+<p>with all partial derivatives being evaluated at the spatially homogeneous steady state <span class="math inline">\((u^* , v^*)\)</span>.</p>
 <p>From the first and third conditions, <span class="math inline">\(d \neq 1\)</span> and <span class="math inline">\(f_u\)</span> and <span class="math inline">\(g_v\)</span> must be of different signs. For each of the reaction kinetics mentioned here (Schnakenberg, Gierer-Meinhardt, Thomas), we have that <span class="math inline">\(f_u &gt; 0, g_v &lt; 0\)</span> and so this implies that <span class="math inline">\(d &gt; 1\)</span>.</p>
-<p>If the conditions <a href="#eq-pattern_conditions" class="quarto-xref">Equation&nbsp;<span>6.23</span></a> are satisfied, then there is a range of unstable wavenumbers given by <a href="#eq-k2range" class="quarto-xref">Equation&nbsp;<span>6.22</span></a> which give rise to a spatial pattern. The spatial patterns which initially grow are those spatial eigenfunctions <span class="math inline">\(\psi_k(x)\)</span> whose wavenumbers <span class="math inline">\(k\)</span> are such that <span class="math inline">\(k_1 &lt; k &lt; k_2\)</span>.</p>
+<p>If the conditions <a href="#eq-pattern_conditions" class="quarto-xref">Equation&nbsp;<span>6.22</span></a> are satisfied, then there is a range of unstable wavenumbers given by <a href="#eq-k2range" class="quarto-xref">Equation&nbsp;<span>6.21</span></a> which give rise to a spatial pattern. The spatial patterns which initially grow are those spatial eigenfunctions <span class="math inline">\(\psi_k(x)\)</span> whose wavenumbers <span class="math inline">\(k\)</span> are such that <span class="math inline">\(k_1 &lt; k &lt; k_2\)</span>.</p>
 <p>In most biological systems, the kinetic parameters and diffusion coefficients are fixed. This means that the only variable parameter in the system is <span class="math inline">\(\gamma\)</span> which as we have seen is related to the size of the domain under consideration. This has implications when considering patterns on finite domains, as will be seen in the next section.</p>
 </section>
 </section>
