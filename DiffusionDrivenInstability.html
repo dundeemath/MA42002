@@ -740,12 +740,12 @@ g_u &amp; g_v
 \begin{pmatrix}
 \tilde u(t) \\
 \tilde v(t)
-\end{pmatrix}   =  C_1 \phi_1 e^{\lambda_1 t} +  C_2 \phi_2 e^{\lambda_2 t},
+\end{pmatrix}   =  C_1 \mathbf{v}_1 e^{\lambda_1 t} +  C_2 \mathbf{v}_2e ^{\lambda_2 t},
 \]</span></p>
 <p>where <span class="math inline">\(C_1\)</span>, <span class="math inline">\(C_2\)</span> are arbitrary constants, <span class="math inline">\(\lambda_1, \lambda_2\)</span> are the eigenvalues of <span class="math inline">\(\gamma A\)</span>, i.e.&nbsp;solutions of the characteristic equation <span class="math display">\[
 \det (\gamma A - \lambda I) = 0,
 \]</span></p>
-<p>and <span class="math inline">\(\phi_1\)</span>, <span class="math inline">\(\phi_2\)</span> are corresponding eigenvectors. It is easily seen that</p>
+<p>and <span class="math inline">\(\mathbf{v}_1\)</span>, <span class="math inline">\(\mathbf{v}_2\)</span> are corresponding eigenvectors. It is easily seen that</p>
 <p><span class="math display">\[
 \lambda_{1,2} = \frac \gamma 2 \left( \textrm{tr} (A) \pm \sqrt{ \textrm{tr}(A)^2 - 4 \det(A)} \right),
 \]</span></p>
@@ -797,20 +797,20 @@ D =  \begin{pmatrix}
 <h4 data-number="6.5.2.1" class="anchored" data-anchor-id="separation-of-variables"><span class="header-section-number">6.5.2.1</span> Separation of variables</h4>
 <p>We shall consider a separation of variables approach, i.e.&nbsp;<span class="math display">\[
 V(x,t) =\begin{pmatrix}  
-\bar u(t)  \varphi_1(x)
+\bar u(t)  \varphi(x)
 \\
-\bar v(t)  \varphi_2(x)
+\bar v(t)  \varphi(x)
 \end{pmatrix},
 \]</span></p>
 <p>and obtain <span id="eq-pp_4"><span class="math display">\[
 \begin{aligned}
-\frac{d \bar u(t)}{d t}\varphi_1(x) = \gamma\, \left(f_u \bar u(t) \varphi_1(x) + f_v \bar v(t) \varphi_2(x)\right) +\bar u(t)  \nabla^2 \varphi_1(x)  , \quad x\in \Omega, \;  t &gt;0, \\
-\frac{d \bar v(t)}{d t}\varphi_2(x) = \gamma\,  \left(g_u  \bar u(t) \varphi_1(x) + g_v \bar v(t) \varphi_2(x)\right) +  d \bar v(t) \nabla^2  \varphi_2(x)  ,  \quad x\in \Omega, \;  t &gt;0,  \\
+\frac{d \bar u(t)}{d t}\varphi(x) = \gamma\, \left(f_u \bar u(t) \varphi_1(x) + f_v \bar v(t) \varphi(x)\right) +\bar u(t)  \nabla^2 \varphi(x)  , \quad x\in \Omega, \;  t &gt;0, \\
+\frac{d \bar v(t)}{d t}\varphi(x) = \gamma\,  \left(g_u  \bar u(t) \varphi(x) + g_v \bar v(t) \varphi(x)\right) +  d \bar v(t) \nabla^2  \varphi(x)  ,  \quad x\in \Omega, \;  t &gt;0,  \\
 \end{aligned}
 \tag{6.9}\]</span></span></p>
 <p>with boundary conditions <span id="eq-pp_4bc"><span class="math display">\[
 \begin{aligned}
-{\mathbf{n}} \cdot \nabla \varphi_1(x) = 0, \qquad {\mathbf{n}} \cdot \nabla\varphi_2 (x) = 0, \qquad   x\in   \partial \Omega, \; t &gt;0.
+{\mathbf{n}} \cdot \nabla \varphi(x) = 0, \qquad {\mathbf{n}} \cdot \nabla\varphi (x) = 0, \qquad   x\in   \partial \Omega, \; t &gt;0.
 \end{aligned}
 \tag{6.10}\]</span></span></p>
 <p>It is assumed that <span class="math display">\[
@@ -819,31 +819,25 @@ V(x,t) =\begin{pmatrix}
 </section>
 <section id="eigenvalues-of-the-laplacian" class="level4" data-number="6.5.2.2">
 <h4 data-number="6.5.2.2" class="anchored" data-anchor-id="eigenvalues-of-the-laplacian"><span class="header-section-number">6.5.2.2</span> Eigenvalues of the Laplacian</h4>
-<p>We can make the assumption that <span class="math display">\[
-\phi_1(x)=\phi_2(x)=\phi_k(x)
-\]</span> and use the substitution <span class="math display">\[
-\nabla^2 \varphi_k=-k^2\varphi_k.
-\]</span></p>
-<p><em>1D Cartesian</em></p>
 <p>Subsitution in <a href="#eq-pp_4" class="quarto-xref">Equation&nbsp;<span>6.9</span></a> yields <span class="math display">\[
 \begin{aligned}
-\frac{d \bar u(t)}{d t}\varphi_k(x) = \gamma\, \left(f_u \bar u(t) \varphi_k(x) + f_v \bar v(t) \varphi_k(x)\right) +\bar u(t)  \nabla^2 \varphi_k(x)  , \quad x\in \Omega, \;  t &gt;0, \\
-\frac{d \bar v(t)}{d t}\varphi_k(x) = \gamma\,  \left(g_u  \bar u(t) \varphi_k(x) + g_v \bar v(t) \varphi_k(x)\right) +  d \bar v(t) \nabla^2  \varphi_k(x)  ,  \quad x\in \Omega, \;  t &gt;0,  \\
+\frac{d \bar u(t)}{d t}\varphi(x) = \gamma\, \left(f_u \bar u(t) \varphi(x) + f_v \bar v(t) \varphi(x)\right) +\bar u(t)  \nabla^2 \varphi_(x)  , \quad x\in \Omega, \;  t &gt;0, \\
+\frac{d \bar v(t)}{d t}\varphi(x) = \gamma\,  \left(g_u  \bar u(t) \varphi(x) + g_v \bar v(t) \varphi(x)\right) +  d \bar v(t) \nabla^2  \varphi(x)  ,  \quad x\in \Omega, \;  t &gt;0,  \\
 \end{aligned}
 \]</span></p>
 <p>Separating variables</p>
 <p><span class="math display">\[
 \begin{aligned}
-\frac{\nabla^2  \varphi_k(x)}{\varphi_k(x)}= \frac{\frac{d \bar u(t)}{d t} - \gamma\, \left(f_u \bar u(t)  + f_v \bar v(t)\right)}{\bar{u}(t)}     , \quad x\in \Omega, \;  t &gt;0, \\
+\frac{\nabla^2  \varphi(x)}{\varphi(x)}= \frac{\frac{d \bar u(t)}{d t} - \gamma\, \left(f_u \bar u(t)  + f_v \bar v(t)\right)}{\bar{u}(t)}     , \quad x\in \Omega, \;  t &gt;0, \\
 \end{aligned}
 \]</span></p>
 <p>Hence <span class="math display">\[
-\frac{\nabla^2  \varphi_k(x)}{\varphi_k(x)}=-k^2.
+\frac{\nabla^2  \varphi(x)}{\varphi(x)}=-k^2.
 \]</span></p>
 <p>In 1D Cartesians <span class="math display">\[
-\frac{d^2  \varphi_k(x)}{dx^2}=-k^2\varphi_k(x).
+\frac{d^2  \varphi(x)}{dx^2}=-k^2\varphi(x).
 \]</span></p>
-<p>with no-flux boundary condition on <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=1\)</span>. The solution is <span class="math display">\[
+<p>with no-flux boundary condition on <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=1\)</span>. There is an infinite family of solution given by <span class="math display">\[
 \varphi_k(x)=B_k\psi_k (kx), \quad k=n\pi, \quad n\in Z,
 \]</span> where <span class="math display">\[
 \psi_k(x)=\cos(kx).
@@ -880,51 +874,18 @@ j \in \mathbb N, \quad  \textrm{and} \quad k_j^2 \to \infty \quad \textrm{as}  \
 <p>Moreover, the eigenfunctions <span class="math inline">\(\{\psi_k(x) \}\)</span> form an <strong>orthogonal set</strong> of basis functions of the corresponding functional space (i.e.&nbsp;<span class="math inline">\(L^2(\Omega)\)</span>, <span class="math inline">\(H^1(\Omega)\)</span>).</p>
 </div>
 </div>
-</section>
-<section id="instability-of-spatially-heterogeneous-perturbations" class="level4" data-number="6.5.2.3">
-<h4 data-number="6.5.2.3" class="anchored" data-anchor-id="instability-of-spatially-heterogeneous-perturbations"><span class="header-section-number">6.5.2.3</span> Instability of spatially heterogeneous perturbations</h4>
-<p>we can look for the spatial component of the solution of <a href="#eq-pp_4" class="quarto-xref">Equation&nbsp;<span>6.9</span></a> as follows: <span class="math display">\[
-\varphi(x) = \begin{pmatrix}  
-\varphi_1(x) \\
-\varphi_2(x)
-\end{pmatrix} = \sum_k C_k \psi_k(x), \qquad C_k =  \begin{pmatrix}  C_k^1 \\ C_k^2 \end{pmatrix} \in \mathbb R^2 \;
-\]</span> and <span id="eq-vxt"><span class="math display">\[
-\begin{aligned}
-V(x,t) =\sum_k \hat V_k(t) \psi_k(x), \qquad \textrm{ where}
-\quad \hat V_k(t)=
-\begin{pmatrix}  
-C_k^1 \; \bar u(t)
-\\
-C_k^2 \; \bar v(t)
-\end{pmatrix}.
-\end{aligned}
-\tag{6.12}\]</span></span></p>
-<p>Since <span class="math display">\[
+<p>Now return to the temporal equations. Define <span class="math display">\[
+\mathbf{w}_k(t)=\begin{pmatrix} \bar{u}_k(t)\\ \bar{v}_k(t)  \end{pmatrix}.
+\]</span></p>
+<p>Noting that <span class="math display">\[
 \nabla^2 \psi_k(x) = - k^2 \psi_k(x)
 \]</span></p>
 <p>we obtain</p>
-<p><span class="math display">\[
-D \nabla^2  V(x,t) = D \nabla^2 \left[ \sum_k \hat V_k(t) \psi_k(x) \right]   = \sum_k D \hat V_k(t) \nabla^2 \psi_k(x)=
-- \sum_k k^2 D \hat V_k(t)  \psi_k(x).
-\]</span></p>
-<p>Hence <span class="math display">\[
-\sum_k \frac{d}{d t}  \hat V_k(t) \psi_k(x)  =
-  \sum_k \gamma A \hat V_k(t) \psi_k(x) -  \sum_k k^2  D \hat V_k(t) \psi_k(x).
-\]</span></p>
-<p>Since <span class="math inline">\(\{\psi_k(x) \}\)</span> is an orthogonal basis we obtain that</p>
-<p><span class="math display">\[
-\frac{d}{d t}  \hat V_k(t) \psi_k(x)  =
-   \gamma A  \hat V_k(t) \psi_k(x) -  k^2  D \hat V_k(t) \psi_k(x),
-\]</span></p>
-<p>for each <span class="math inline">\(k\)</span>. Finally, since <span class="math display">\[
-\psi_k(x)\;  /\hspace{-0.35 cm }\equiv 0
-\]</span></p>
-<p>in <span class="math inline">\(\Omega\)</span> this implies for each <span class="math inline">\(k\)</span> a system of ODEs:</p>
 <p><span id="eq-stab_pp_ode"><span class="math display">\[
 \begin{aligned}
-\frac{d}{d t}  \hat V_k(t)   =   \left(\gamma A  -  k^2  D\right) \hat V_k(t) = \tilde A\hat V_k(t) ,
+\frac{d}{d t}   \mathbf{w}_k(t)   =   \left(\gamma A  -  k^2  D\right)  \mathbf{w}_k(t) = \tilde A\mathbf{w}_k(t) ,
 \end{aligned}
-\tag{6.13}\]</span></span></p>
+\tag{6.12}\]</span></span></p>
 <p>where <span class="math inline">\(\tilde A\)</span> is the “modified” Jacobian:</p>
 <p><span class="math display">\[
 \tilde{A} =  \begin{pmatrix}
@@ -934,17 +895,16 @@ D \nabla^2  V(x,t) = D \nabla^2 \left[ \sum_k \hat V_k(t) \psi_k(x) \right]   = 
 \]</span></p>
 <p>The characteristic equation is given by <span id="eq-spatial_eigenvalues"><span class="math display">\[
 \lambda^2 + [ k^2 (1 + d) - \gamma (f_u + g_v) ] \lambda + h(k^2) = 0,
-\tag{6.14}\]</span></span></p>
+\tag{6.13}\]</span></span></p>
 <p>where <span id="eq-hk2"><span class="math display">\[
 h(k^2) = dk^4 - \gamma (df_u + g_v) k^2 + \gamma^2 | A | .
-\tag{6.15}\]</span></span></p>
-<p><strong>NOTE</strong>: From <span class="quarto-unresolved-ref">?eq-charact_pp_1</span>, <a href="#eq-spatial_eigenvalues" class="quarto-xref">Equation&nbsp;<span>6.14</span></a> we can recover the characteristic equation for the spatially homogeneous perturbation when <span class="math inline">\(k=0\)</span>, i.e.&nbsp;<span class="math display">\[
+\tag{6.14}\]</span></span></p>
+<p><strong>NOTE</strong>: we can recover the characteristic equation for the spatially homogeneous perturbation when <span class="math inline">\(k=0\)</span>, i.e.&nbsp;<span class="math display">\[
 \tilde A \Big|_{k=0} = ( \gamma A - k^2 D )\Big|_{k=0} = \gamma A.
 \]</span></p>
 <p>Thus the steady state <span class="math inline">\((u^*, v^*)\)</span> is <em>unstable</em> to spatially heterogeneous perturbations iff <span class="math display">\[
-{\mathrm Re}(\lambda_1) &gt; 0 \quad \textrm{and/or} \quad {\mathrm Re}(\lambda_2) &gt;0,
+{\mathrm Re}(\lambda_1) &gt; 0 \quad \textrm{and/or} \quad {\mathrm Re}(\lambda_2) &gt;0.
 \]</span></p>
-<p>where <span class="math inline">\(\lambda_{1,2}\)</span> are solutions of <span class="quarto-unresolved-ref">?eq-charact_pp_1</span>, <a href="#eq-spatial_eigenvalues" class="quarto-xref">Equation&nbsp;<span>6.14</span></a>.</p>
 <p>Now for <span class="math display">\[
 {\mathrm Re}(\lambda_1) &gt; 0 \quad \textrm{and/or } \quad {\mathrm Re}(\lambda_2) &gt;0
 \]</span></p>
@@ -965,24 +925,54 @@ f_u+ g_v &lt; 0
 \]</span></p>
 <p>From the spatially homogeneous stability conditions <a href="#eq-stable_hom" class="quarto-xref">Equation&nbsp;<span>6.6</span></a> we have <span class="math inline">\(\det(A) &gt;0\)</span>. Thus <span class="math inline">\(h(k^2)&lt;0\)</span> is possible only if <span id="eq-stabil_cond_nes"><span class="math display">\[
 d f_u + g_v &gt;0.
-\tag{6.16}\]</span></span></p>
-<p>However, once again, due to <a href="#eq-stable_hom" class="quarto-xref">Equation&nbsp;<span>6.6</span></a>, we have <span class="math inline">\(f_u+ g_v &lt;0\)</span>, and so we can conclude that <span class="math inline">\(d\neq 1\)</span> and <span class="math inline">\(f_u\)</span> and <span class="math inline">\(g_v\)</span> must have <em>opposite signs</em>.</p>
-<p>Condition <a href="#eq-stabil_cond_nes" class="quarto-xref">Equation&nbsp;<span>6.16</span></a> is <em>necessary but not sufficient</em> to ensure <span class="math inline">\(h(k^2) &lt;0\)</span>. In order to guarantee that <span class="math inline">\(h(k^2) &lt; 0\)</span>, the minimum value <span class="math inline">\(h_{min}\)</span> must be negative. Differentiating <a href="#eq-hk2" class="quarto-xref">Equation&nbsp;<span>6.15</span></a> w.r.t. <span class="math inline">\(k^2\)</span>, we find that:</p>
+\tag{6.15}\]</span></span></p>
+<p>However, once again, due to <a href="#eq-stable_hom" class="quarto-xref">Equation&nbsp;<span>6.6</span></a>, we have <span class="math inline">\(f_u+g_v &lt;0\)</span>, and so we can conclude that <span class="math inline">\(d\neq 1\)</span> and <span class="math inline">\(f_u\)</span> and <span class="math inline">\(g_v\)</span> must have <em>opposite signs</em>.</p>
+<p>Condition <a href="#eq-stabil_cond_nes" class="quarto-xref">Equation&nbsp;<span>6.15</span></a> is <em>necessary but not sufficient</em> to ensure <span class="math inline">\(h(k^2) &lt;0\)</span>. In order to guarantee that <span class="math inline">\(h(k^2) &lt; 0\)</span>, the minimum value <span class="math inline">\(h_{min}\)</span> must be negative. Differentiating <a href="#eq-hk2" class="quarto-xref">Equation&nbsp;<span>6.14</span></a> w.r.t. <span class="math inline">\(k^2\)</span>, we find that:</p>
 <p><span id="eq-hmin"><span class="math display">\[
 k^2_{m} = \gamma \frac{d f_u + g_v}{2d} \;\; \Rightarrow \;\; h_{min} = \gamma^2 \left[ | A | - \frac{(df_u + g_v)^2}{4d} \right].
-\tag{6.17}\]</span></span></p>
+\tag{6.16}\]</span></span></p>
 <p>Thus the condition that <span class="math inline">\(h(k^2) &lt; 0\)</span> for some <span class="math inline">\(k^2\)</span> is:</p>
 <p><span class="math display">\[
 \frac{(df_u + g_v)^2}{4d} &gt; |A|.
 \]</span></p>
-<p>The transition from stability to instability i.e.&nbsp;<em>bifurcation</em>, occurs when <span class="math inline">\(h_{min} = 0\)</span>. From <a href="#eq-hmin" class="quarto-xref">Equation&nbsp;<span>6.17</span></a>, this means at bifurcation we have <span id="eq-bif"><span class="math display">\[
+</section>
+<section id="a-general-solution" class="level4" data-number="6.5.2.3">
+<h4 data-number="6.5.2.3" class="anchored" data-anchor-id="a-general-solution"><span class="header-section-number">6.5.2.3</span> A general solution</h4>
+<p><a href="#eq-pp_4" class="quarto-xref">Equation&nbsp;<span>6.9</span></a> is a linear system. Hence by the linear superposition principle, the sum of solutions will itself be a solution. Consider</p>
+<p><span id="eq-vxt"><span class="math display">\[
+\begin{aligned}
+\mathbf{V}(x,t) =\sum_k \mathbf{w}_k(t) \psi_k(x), \qquad \textrm{ where}
+\end{aligned}
+\tag{6.17}\]</span></span></p>
+<p><em>Linear superposition and othogonality</em></p>
+<p>The Laplacian term is given by <span class="math display">\[
+D \nabla^2  V(x,t) = D \nabla^2 \left[ \sum_k \mathbf{w}_k(t) \psi_k(x) \right]   = \sum_k D \mathbf{w}_k(t) \nabla^2 \psi_k(x)=
+- \sum_k k^2 D \mathbf{w}_k(t)  \psi_k(x).
+\]</span></p>
+<p>Hence <span class="math display">\[
+\sum_k \frac{d}{d t} \mathbf{w}_k(t) \psi_k(x)  =
+  \sum_k \gamma A\mathbf{w}_k(t) \psi_k(x) -  \sum_k k^2  D\mathbf{w}_k(t) \psi_k(x).
+\]</span></p>
+<p>As the basis functions are orthogonal, the above equality must hold term-wise. This allows for differential stability of different modes and hence pattern formation to occur.</p>
+<p><em>Initial perturbations</em></p>
+<p>At <span class="math inline">\(t=0\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+V(x,0) =\sum_k \mathbf{w}_k(0) \psi_k(x),
+\end{aligned}
+\]</span></p>
+<p>This is just in the form of a Fourier cosine series defined on the domain <span class="math inline">\([0,L]\)</span>. Hence an arbitrary initial perturbation can be represented given appropriate choices for the constants <span class="math inline">\(\mathbf{w}_k(0)\)</span>.</p>
+</section>
+<section id="bifurcations-to-pattern-formation" class="level4" data-number="6.5.2.4">
+<h4 data-number="6.5.2.4" class="anchored" data-anchor-id="bifurcations-to-pattern-formation"><span class="header-section-number">6.5.2.4</span> Bifurcations to pattern formation</h4>
+<p>The transition from stability to instability i.e.&nbsp;<em>bifurcations</em>, occurs when <span class="math inline">\(h_{min} = 0\)</span>. From <a href="#eq-hmin" class="quarto-xref">Equation&nbsp;<span>6.16</span></a>, this means that at a bifurcation we have <span id="eq-bif"><span class="math display">\[
 |A| = \frac{(df_u + g_v)^2}{4d}.
 \tag{6.18}\]</span></span></p>
-<p>For a fixed set of kinetics parameters, this means that we have a <em>critical diffusion coefficient</em> <span class="math inline">\(d_c(&gt;1)\)</span>, which, after re-arranging <a href="#eq-bif" class="quarto-xref">Equation&nbsp;<span>6.18</span></a>, is the appropriate root of</p>
+<p>For a fixed set of rate constants, this means that we have a <em>critical diffusion coefficient</em> <span class="math inline">\(d_c(&gt;1)\)</span>, which, after re-arranging <a href="#eq-bif" class="quarto-xref">Equation&nbsp;<span>6.18</span></a>, is the appropriate root of</p>
 <p><span id="eq-dcrit"><span class="math display">\[
 q(d_c) = d^2_c f_u^2 + 2( 2 f_v g_u - f_u g_v) d_c + g_v^2 =0.
 \tag{6.19}\]</span></span></p>
-<p>Finally, we note that using <a href="#eq-hmin" class="quarto-xref">Equation&nbsp;<span>6.17</span></a>, <a href="#eq-bif" class="quarto-xref">Equation&nbsp;<span>6.18</span></a>, the <em>critical wave number</em> can be written: <span id="eq-kcrit"><span class="math display">\[
+<p>Finally, we note that using <a href="#eq-hmin" class="quarto-xref">Equation&nbsp;<span>6.16</span></a>, <a href="#eq-bif" class="quarto-xref">Equation&nbsp;<span>6.18</span></a>, the <em>critical wave number</em> can be written: <span id="eq-kcrit"><span class="math display">\[
 k_c^2 =\gamma  \frac{( d_c f_u + g_v)} { 2 d_c} = \gamma \left[ \frac {|A|}{d_c} \right]^{1/2} = \gamma \left[ \frac{f_u g_v - f_v g_u}{d_c} \right]^{1/2}.
 \tag{6.20}\]</span></span></p>
 <p><a href="#fig-dispersion" class="quarto-xref">Figure&nbsp;<span>6.5</span></a> (a) shows a schematic diagram of the (quadratic) function <span class="math inline">\(h(k^2)\)</span> for three different values of the diffusion coefficient <span class="math inline">\(d\)</span>:</p>
@@ -991,24 +981,24 @@ k_c^2 =\gamma  \frac{( d_c f_u + g_v)} { 2 d_c} = \gamma \left[ \frac {|A|}{d_c}
 <li><span class="math inline">\(d = d_c, \; h_{min} = 0\)</span>, critical case;</li>
 <li><span class="math inline">\(d &gt; d_c, \; h(k^2) &lt; 0\)</span>, and there is pattern.</li>
 </ul>
-<p>Hence we can see from <a href="#eq-spatial_eigenvalues" class="quarto-xref">Equation&nbsp;<span>6.14</span></a> that whenever <span class="math inline">\(h(k^2) &lt; 0\)</span> the curve <span class="math inline">\(\lambda(k^2)\)</span> is positive for the same range of wavenumbers that make <span class="math inline">\(h(k^2)\)</span> negative. The range of unstable wavenumbers <span class="math display">\[
+<p>Hence we can see from <a href="#eq-spatial_eigenvalues" class="quarto-xref">Equation&nbsp;<span>6.13</span></a> that whenever <span class="math inline">\(h(k^2) &lt; 0\)</span> the curve <span class="math inline">\(\lambda(k^2)\)</span> is positive for the same range of wavenumbers that make <span class="math inline">\(h(k^2)\)</span> negative. The range of unstable wavenumbers <span class="math display">\[
 k^2_1 &lt; k^2 &lt; k^2_2
 \]</span></p>
-<p>can be found from the roots of <a href="#eq-hk2" class="quarto-xref">Equation&nbsp;<span>6.15</span></a>, <span class="math inline">\(h(k^2) = 0\)</span>:</p>
+<p>can be found from the roots of <a href="#eq-hk2" class="quarto-xref">Equation&nbsp;<span>6.14</span></a>, <span class="math inline">\(h(k^2) = 0\)</span>:</p>
 <p><span id="eq-k2range"><span class="math display">\[
 \begin{aligned}
 k^2_1 &amp;= \gamma \frac{(df_u + g_v) - \left\{ (df_u + g_v)^2 -4d |A| \right\}^{1/2} }{2d} &lt; k^2  \\
 &amp;&lt; \gamma \frac{(df_u + g_v) +  \left\{ (df_u + g_v)^2 -4d |A| \right\}^{1/2}}{2d} = k^2_2
 \end{aligned}
 \tag{6.21}\]</span></span></p>
-<p><a href="#fig-dispersion" class="quarto-xref">Figure&nbsp;<span>6.5</span></a> (b) shows a schematic diagram of <span class="math inline">\({\mathrm Re}\lambda (k^2)\)</span> for three different values of the diffusion coefficient <span class="math inline">\(d\)</span>:</p>
+<p><a href="#fig-dispersion" class="quarto-xref">Figure&nbsp;<span>6.5</span></a> (b) shows a schematic diagram of <span class="math inline">\({\mathrm {Re}}\lambda (k^2)\)</span> for three different values of the diffusion coefficient <span class="math inline">\(d\)</span>:</p>
 <ul>
-<li><span class="math inline">\(d &lt; d_c\)</span>, ; $Re (k^2) &lt; 0, k^2 $, and there is no pattern;</li>
+<li><span class="math inline">\(d &lt; d_c\)</span>, ; <span class="math inline">\(\mathrm {Re}\lambda (k^2) &lt; 0, \forall k^2\)</span>, and there is no pattern;</li>
 <li><span class="math inline">\(d = d_c, \; k^2_c = 0\)</span>, critical case;</li>
 </ul>
 <p>The expression <span class="math inline">\(\lambda = \lambda (k^2)\)</span> is known as the <em>dispersion relation</em> and the plot of <span class="math inline">\({\mathrm Re} \lambda\)</span> against <span class="math inline">\(k^2\)</span> is known as the <em>dispersion curve</em>.</p>
-<p>From the previous analysis, within the unstable range of wavenumbers <span class="math inline">\((k^2_1 , k^2_2)\)</span>, <span class="math inline">\({\mathrm Re}\lambda (k^2) &gt; 0\)</span> has a <em>maximum value</em> at wavenumber <span class="math inline">\(k^2_m\)</span> given by <a href="#eq-hmin" class="quarto-xref">Equation&nbsp;<span>6.17</span></a> when <span class="math inline">\(d &gt; d_c\)</span>. This implies that there is a <em>fastest growing mode</em> in the solution <a href="#eq-vxt" class="quarto-xref">Equation&nbsp;<span>6.12</span></a> of our linearised system <a href="#eq-pp_4" class="quarto-xref">Equation&nbsp;<span>6.9</span></a>.</p>
-<p>Recalling <a href="#eq-vxt" class="quarto-xref">Equation&nbsp;<span>6.12</span></a>,<br>
+<p>From the previous analysis, within the unstable range of wavenumbers <span class="math inline">\((k^2_1 , k^2_2)\)</span>, <span class="math inline">\({\mathrm Re}\lambda (k^2) &gt; 0\)</span> has a <em>maximum value</em> at wavenumber <span class="math inline">\(k^2_m\)</span> given by <a href="#eq-hmin" class="quarto-xref">Equation&nbsp;<span>6.16</span></a> when <span class="math inline">\(d &gt; d_c\)</span>. This implies that there is a <em>fastest growing mode</em> in the solution <a href="#eq-vxt" class="quarto-xref">Equation&nbsp;<span>6.17</span></a> of our linearised system <a href="#eq-pp_4" class="quarto-xref">Equation&nbsp;<span>6.9</span></a>.</p>
+<p>Recalling <a href="#eq-vxt" class="quarto-xref">Equation&nbsp;<span>6.17</span></a>,<br>
 <span class="math display">\[
 V(x,t) = \sum_k C_k e^{\lambda(k^2) t} \, \psi_k(x),
 \]</span></p>
