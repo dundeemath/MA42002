@@ -503,14 +503,14 @@ b= \frac{B}{r S_0}.
 &amp; i^\prime = w, \\
 &amp; w^{\prime}= -  v w - i (s - \mu)\; .
 \end{aligned}
-\tag{7.18}\]</span></span> The system <a href="#eq-sir_tw_growth_2" class="quarto-xref">Equation&nbsp;<span>7.18</span></a> has two stationary solutions</p>
+\tag{7.18}\]</span></span> The system <a href="#eq-sir_tw_growth_2" class="quarto-xref">Equation&nbsp;<span>7.18</span></a> has two nontrivial stationary solutions</p>
 <p><span class="math display">\[
 (s^\ast_1, i^\ast_1, w^\ast_1) = (1,0,0)
-\]</span> and</p>
+\]</span> ]and</p>
 <p><span class="math display">\[
 (s^\ast_2, i^\ast_2, w^\ast_2) = (\mu, b(1-\mu),0).
 \]</span></p>
-<p>Considering linearisation of <a href="#eq-sir_tw_growth_2" class="quarto-xref">Equation&nbsp;<span>7.18</span></a> and computing eigenvalues of the Jabocian matrix <span class="math display">\[
+<p>Considering linearisation of <a href="#eq-sir_tw_growth_2" class="quarto-xref">Equation&nbsp;<span>7.18</span></a> and computing eigenvalues of the Jacobian matrix <span class="math display">\[
 J(s,i,w)= \begin{pmatrix}
 \frac{i}{v} - \frac{b}{v}  + \frac{2bs}{v} &amp; \frac{s}{v} &amp; 0 \\
 0 &amp; 0 &amp; 1\\
@@ -520,20 +520,16 @@ J(s,i,w)= \begin{pmatrix}
 <p>evaluated at the steady states we obtain that <span class="math display">\[
 (s^\ast_1, i^\ast_1, w^\ast_1) = (1,0,0)
 \]</span></p>
-<p>is a saddle point and <span class="math display">\[
+<p>is a saddle point. Linearising about the point <span class="math display">\[
 (s^\ast_2, i^\ast_2, w^\ast_2) = (\mu, b(1-\mu),0)
+\]</span> yields the characteristic equation <span class="math display">\[
+\lambda^3-\lambda^2(-v+\frac{b\mu}{v})-bu\lambda+\mu \frac{b(1-\mu)}{v}=0.
 \]</span></p>
-<p>is a stable node for <span class="math inline">\(\mu &lt; \mu^\ast\)</span> and a stable spiral (focus) for <span class="math inline">\(\mu &gt;\mu^\ast\)</span>, with some threshold value <span class="math inline">\(\mu^\ast\)</span>.</p>
-<p>Thus we can show that a travelling wave solution exists which connects two steady states <span class="math inline">\((1,0)\)</span> and <span class="math display">\[
-(\mu, b(1-\mu))
-\]</span> and there exists a threshold <span class="math inline">\(\mu=\mu^\ast\)</span> such that for <span class="math display">\[
+<p>To proceed consider the case <span class="math inline">\(\mu=1\)</span>. It can be shown that exists a threshold <span class="math inline">\(\mu=\mu^\ast\)</span> such that for <span class="math display">\[
 1&gt;\mu &gt; \mu^\ast
-\]</span></p>
-<p>the approach to <span class="math display">\[
-(\mu, b(1-\mu))
-\]</span> is oscillatory, whereas for <span class="math display">\[
+\]</span> there is a co-dim 2 stable manifold and co-dim 1 unstable manifold. For <span class="math display">\[
 0&lt;\mu &lt; \mu^\ast
-\]</span> it is monotonic.</p>
+\]</span> there is a pair of complex eigenvalues with negative real part.</p>
 
 
 </section>
